@@ -17,14 +17,15 @@ import { Icon } from '../shared/icon';
           India leads the detailed showcase. Each country keeps its own operational data partition.
         </p>
       </div>
-      <span class="subtle-tag">FEDERATION DESIGN · PHASE 2</span>
+      <span class="subtle-tag">COUNTRY-LOCAL FORECASTING · PHASE 3</span>
     </div>
     <div class="info-banner">
       <app-icon name="network" />
       <div>
         <strong>Domestic resources. International model collaboration.</strong><br />Physical
         redistribution will stay within each nation. Future federated rounds will exchange model
-        updates between country nodes. Training and aggregation are not implemented yet.
+        updates between country nodes. Local forecasting is implemented; federated training and
+        aggregation are not.
       </div>
     </div>
     @if (error()) {
@@ -63,7 +64,10 @@ import { Icon } from '../shared/icon';
             }
           </dl>
           <p class="node-training">
-            Local training: not started<br />Round and model metrics: not available
+            Federated rounds: not started<br />Local forecast evaluation:
+            <a routerLink="/model-performance" [queryParams]="{ country_id: country.id }"
+              >view saved metrics →</a
+            >
           </p>
           <a
             routerLink="/overview"

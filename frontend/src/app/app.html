@@ -59,7 +59,7 @@
         (change)="changeCountry($event)"
       >
         @for (c of countries(); track c.id) {
-          <option [value]="c.id">{{ c.name }}</option>
+          <option [value]="c.id" [selected]="c.id === country()">{{ c.name }}</option>
         }</select
       ><span class="divider">/</span><span class="muted">National health network</span>
     </div>
@@ -75,9 +75,9 @@
       <app-icon name="filter" /><label class="sr-only" for="state"
         >Region / State / Union Territory</label
       ><select id="state" [value]="state()" (change)="changeState($event)">
-        <option value="">All {{ countryName() }}</option>
+        <option value="" [selected]="!state()">All {{ countryName() }}</option>
         @for (region of regions(); track region.id) {
-          <option [value]="region.id">{{ region.name }}</option>
+          <option [value]="region.id" [selected]="region.id === state()">{{ region.name }}</option>
         }
       </select>
       @if (country() === 'IN') {
@@ -88,11 +88,11 @@
           [disabled]="!state()"
           (change)="changeDistrict($event)"
         >
-          <option value="">
+          <option value="" [selected]="!district()">
             {{ state() ? 'All sample districts' : 'All districts in sample' }}
           </option>
           @for (d of availableDistricts(); track d.id) {
-            <option [value]="d.id">{{ d.name }}</option>
+            <option [value]="d.id" [selected]="d.id === district()">{{ d.name }}</option>
           }
         </select>
       }

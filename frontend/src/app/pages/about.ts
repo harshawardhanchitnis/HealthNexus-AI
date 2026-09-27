@@ -27,7 +27,7 @@ import { Icon } from '../shared/icon';
     </div>
     <div class="about-grid">
       <section class="panel prose">
-        <h2>Working in Phase 2</h2>
+        <h2>Working through Phase 3</h2>
         <ul>
           <li>Five-country geography and the existing India drill-down.</li>
           <li>Two real public-source adapters: MoHFW / PIB Health Dynamics summary and WHO GHO.</li>
@@ -38,6 +38,8 @@ import { Icon } from '../shared/icon';
             demand.
           </li>
           <li>Resource views and transparent threshold alerts.</li>
+          <li>540-day histories, evaluated country-local forecasting and empirical uncertainty.</li>
+          <li>Requested-demand targets and reproducible model-based stock-out estimates.</li>
         </ul>
         <a routerLink="/data-sources" class="inline-link"
           >Inspect the evidence <app-icon name="arrow"
@@ -46,13 +48,16 @@ import { Icon } from '../shared/icon';
       <section class="panel prose">
         <h2>Next milestones</h2>
         <ol>
-          <li>Evaluated ML demand forecasts, uncertainty and predictive warnings.</li>
+          <li>Predictive early-warning workflow and emergency digital twin.</li>
           <li>Causal emergency scenarios and before/after comparisons.</li>
           <li>OR-Tools redistribution within each country.</li>
           <li>Grounded, server-side Gemini explanations.</li>
           <li>Genuine country-node FedAvg with measured metrics.</li>
         </ol>
-        <p>These services have not been implemented or represented as running in Phase 2.</p>
+        <p>
+          These next services remain future work. Forecasts and measured model comparisons are
+          available now when trained artifacts are installed.
+        </p>
       </section>
     </div>
     <section class="panel prose">

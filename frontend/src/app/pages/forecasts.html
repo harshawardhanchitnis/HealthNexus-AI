@@ -1,0 +1,243 @@
+<div class="page-heading">
+  <div>
+    <div class="eyebrow">PREDICTIVE INTELLIGENCE / COUNTRY-LOCAL MODELS</div>
+    <h1>See demand before it arrives.</h1>
+    <p>Measured forecasts. Visible uncertainty. A clearer view of tomorrow’s resources.</p>
+  </div>
+  <a class="button secondary" routerLink="/model-performance" queryParamsHandling="preserve"
+    >Model performance →</a
+  >
+</div>
+<div class="forecast-controls panel">
+  <label
+    >Facility<select
+      aria-label="Forecast facility"
+      [value]="selected()"
+      (change)="change('facility_id', $event)"
+    >
+      @for (f of facilities(); track f.id) {
+        <option [value]="f.id" [selected]="f.id === selected()">{{ f.name }}</option>
+      }
+    </select></label
+  >
+  <label
+    >Resource<select
+      aria-label="Forecast resource"
+      [value]="resource()"
+      (change)="change('resource', $event)"
+    >
+      @for (r of resources; track r.id) {
+        <option [value]="r.id" [selected]="r.id === resource()">{{ r.name }}</option>
+      }
+    </select></label
+  >
+  <label
+    >Horizon<select
+      aria-label="Forecast horizon"
+      [value]="horizon()"
+      (change)="change('horizon', $event)"
+    >
+      <option value="1" [selected]="horizon() === 1">Next day</option>
+      <option value="7" [selected]="horizon() === 7">Next 7 days</option>
+      <option value="14" [selected]="horizon() === 14">Next 14 days</option>
+    </select></label
+  >
+</div>
+<div class="forecast-notice">
+  Forecasting uses simulated facility-level time series calibrated with public healthcare
+  statistics. These are not live government predictions.
+</div>
+@if (loading()) {
+  <div class="loading-state" role="status">Loading evaluated forecast…</div>
+} @else if (error()) {
+  <section class="empty-state" role="alert">
+    <h2>Forecast unavailable</h2>
+    <p>{{ error() }}</p>
+    <p>
+      Training is an explicit offline action; missing or stale models never produce substitute
+      forecasts.
+    </p>
+  </section>
+} @else if (data(); as d) {
+  <section class="panel forecast-chart-panel">
+    <div class="panel-heading">
+      <div>
+        <h2>{{ label() }}</h2>
+        <p>{{ selected() }} · Origin {{ d.as_of | date: 'dd MMM yyyy' }} · {{ d.unit }}</p>
+      </div>
+      <span class="tag">{{ d.provenance.model.replaceAll('_', ' ') }}</span>
+    </div>
+    <app-forecast-chart [data]="d" />
+  </section>
+  <div class="kpi-grid">
+    <article class="kpi">
+      <div class="kpi-label">Latest daily demand</div>
+      <div class="kpi-value">{{ d.summary.latest_demand | number: '1.0-0' }}</div>
+      <div class="kpi-note">Requested, before supply constraints</div>
+    </article>
+    <article class="kpi">
+      <div class="kpi-label">Expected {{ d.horizon }}-day total</div>
+      <div class="kpi-value">{{ d.summary.forecast_total | number: '1.0-0' }}</div>
+      <div class="kpi-note">
+        80% bootstrap range {{ d.summary.total_lower80 | number: '1.0-0' }}–{{
+          d.summary.total_upper80 | number: '1.0-0'
+        }}
+      </div>
+    </article>
+    <article class="kpi">
+      <div class="kpi-label">Daily demand change</div>
+      <div class="kpi-value">
+        {{ d.summary.change_percent === null ? '—' : (d.summary.change_percent | number: '1.1-1')
+        }}<small>%</small>
+      </div>
+      <div class="kpi-note">Future daily mean vs recent 7-day mean</div>
+    </article>
+    <article class="kpi">
+      <div class="kpi-label">Held-out WAPE</div>
+      <div class="kpi-value">
+        {{ d.test_metric.wape === null ? '—' : (d.test_metric.wape * 100 | number: '1.2-2')
+        }}<small>%</small>
+      </div>
+      <div class="kpi-note">
+        Country target model · {{ d.test_metric.samples | number }} test predictions
+      </div>
+    </article>
+  </div>
+  @if (d.stockout; as s) {
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <div class="eyebrow">STOCK-OUT INTELLIGENCE / 14 DAYS</div>
+          <h2>Will the reserve hold?</h2>
+          <p>
+            Scheduled receipts known at the forecast origin; future orders and transfers excluded.
+          </p>
+        </div>
+        <span class="risk-pill" [class.high]="s.status === 'HIGH'">{{ s.status }}</span>
+      </div>
+      <div class="stock-metrics">
+        <div>
+          <small>Current stock</small><strong>{{ s.current_stock | number }}</strong
+          ><span>{{ d.unit }} · reserve {{ s.safety_stock | number }}</span>
+        </div>
+        <div>
+          <small>Demand-based cover</small
+          ><strong
+            >{{ s.days_of_cover === null ? '—' : (s.days_of_cover | number: '1.1-1') }}
+            <small>days</small></strong
+          ><span>Excludes incoming receipts</span>
+        </div>
+        <div>
+          <small>Safety reserve breach</small
+          ><strong>{{
+            s.safety_breach_date ? (s.safety_breach_date | date: 'dd MMM') : 'Beyond horizon'
+          }}</strong
+          ><span>Point projection · may already be breached</span>
+        </div>
+        <div>
+          <small>Expected depletion</small
+          ><strong>{{
+            s.stockout_date ? (s.stockout_date | date: 'dd MMM') : 'Beyond horizon'
+          }}</strong
+          ><span>Point projection · not a guarantee</span>
+        </div>
+      </div>
+      <div class="risk-grid">
+        @for (h of ['3', '7', '14']; track h) {
+          <article>
+            <span>Within {{ h }} days</span
+            ><strong>{{ s.probabilities[h] | percent: '1.1-1' }}</strong
+            ><small>Estimated model-based stock-out probability</small>
+          </article>
+        }
+      </div>
+      <p class="chart-footnote">{{ s.method }}</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Demand</th>
+              <th>Scheduled receipts</th>
+              <th>Projected stock</th>
+              <th>95% stock range</th>
+              <th>Unmet demand</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of s.trajectory; track p.date) {
+              <tr>
+                <td>{{ p.date | date: 'dd MMM' }}</td>
+                <td>{{ p.demand | number: '1.1-1' }}</td>
+                <td>{{ p.expected_receipts | number: '1.0-0' }}</td>
+                <td>{{ p.closing_stock | number: '1.1-1' }}</td>
+                <td>{{ p.lower95 | number: '1.1-1' }}–{{ p.upper95 | number: '1.1-1' }}</td>
+                <td>{{ p.unmet_demand | number: '1.1-1' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+  <div class="forecast-context-grid">
+    <section class="panel">
+      <div class="panel-heading"><h2>What supports this outlook</h2></div>
+      <ul class="forecast-explanations">
+        @for (e of d.explanations; track e) {
+          <li>{{ e }}</li>
+        }
+      </ul>
+    </section>
+    <section class="panel">
+      <div class="panel-heading"><h2>Model & evaluation</h2></div>
+      <div class="forecast-metadata">
+        <p>
+          <strong>{{ d.provenance.model_version }}</strong>
+        </p>
+        <p>
+          Training: {{ d.provenance.windows['train'].start }} → {{ d.provenance.trained_through }}
+        </p>
+        <p>
+          Test: {{ d.provenance.windows['test'].start }} → {{ d.provenance.windows['test'].end }}
+        </p>
+        <p>Evaluated {{ d.provenance.evaluated_at | date: 'dd MMM yyyy' }}</p>
+        <p>
+          Observed coverage: 80% band {{ d.coverage['0.8'].coverage | percent: '1.1-1' }} · 95% band
+          {{ d.coverage['0.95'].coverage | percent: '1.1-1' }}
+        </p>
+        <p>{{ d.provenance.source_vintage_note }}</p>
+        <a routerLink="/data-sources" queryParamsHandling="preserve"
+          >Inspect public calibration sources →</a
+        >
+      </div>
+    </section>
+  </div>
+  <details class="panel provenance-details">
+    <summary>Exact daily forecasts & provenance</summary>
+    <p>{{ d.provenance.uncertainty_method }}</p>
+    <p class="hash-line">History SHA-256: {{ d.provenance.history_sha256 }}</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Point</th>
+            <th>80% interval</th>
+            <th>95% interval</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of d.forecast; track p.date) {
+            <tr>
+              <td>{{ p.date }}</td>
+              <td>{{ p.point | number: '1.2-2' }}</td>
+              <td>{{ p.lower80 | number: '1.2-2' }}–{{ p.upper80 | number: '1.2-2' }}</td>
+              <td>{{ p.lower95 | number: '1.2-2' }}–{{ p.upper95 | number: '1.2-2' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+}

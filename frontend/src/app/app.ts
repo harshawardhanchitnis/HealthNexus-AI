@@ -29,6 +29,8 @@ export class App {
     { path: '/facilities', icon: 'hospital', label: 'Facilities' },
     { path: '/supply', icon: 'box', label: 'Medicine & supply' },
     { path: '/alerts', icon: 'bell', label: 'Early warnings' },
+    { path: '/forecasts', icon: 'chart', label: 'Forecasts' },
+    { path: '/model-performance', icon: 'shield', label: 'Model performance' },
     { path: '/brics', icon: 'network', label: 'BRICS nodes' },
     { path: '/data-sources', icon: 'layers', label: 'Data sources' },
   ];
@@ -48,12 +50,10 @@ export class App {
     this.regions.set([]);
     this.districts.set([]);
     if (!this.countries().length)
-      this.api
-        .countries()
-        .subscribe({
-          next: (data) => this.countries.set(data.items),
-          error: () => this.regionsError.set(true),
-        });
+      this.api.countries().subscribe({
+        next: (data) => this.countries.set(data.items),
+        error: () => this.regionsError.set(true),
+      });
     this.regionRequest = this.api.regions(this.country()).subscribe({
       next: (data) => {
         this.regions.set(data.regions);
@@ -66,7 +66,7 @@ export class App {
     return this.countries().find((c) => c.id === this.country())?.name || this.country();
   }
   changeCountry(event: Event) {
-    this.router.navigate(['/overview'], {
+    this.router.navigate([this.scopeRoute()], {
       queryParams: { country_id: (event.target as HTMLSelectElement).value },
     });
   }
@@ -74,7 +74,7 @@ export class App {
     return this.districts().filter((d) => d.state_id === this.state());
   }
   changeState(event: Event) {
-    this.router.navigate(['/overview'], {
+    this.router.navigate([this.scopeRoute()], {
       queryParams: {
         country_id: this.country(),
         state_id: (event.target as HTMLSelectElement).value || null,
@@ -82,12 +82,16 @@ export class App {
     });
   }
   changeDistrict(event: Event) {
-    this.router.navigate(['/overview'], {
+    this.router.navigate([this.scopeRoute()], {
       queryParams: {
         country_id: this.country(),
         state_id: this.state() || null,
         district_id: (event.target as HTMLSelectElement).value || null,
       },
     });
+  }
+  private scopeRoute() {
+    const path = this.router.url.split('?')[0];
+    return ['/forecasts', '/model-performance'].includes(path) ? path : '/overview';
   }
 }

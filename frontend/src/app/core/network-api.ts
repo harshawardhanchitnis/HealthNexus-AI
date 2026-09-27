@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Forecast, Performance } from './forecast-models';
 import {
   Alert,
   District,
@@ -24,6 +25,23 @@ export class NetworkApi {
   }
   countries() {
     return this.http.get<{ items: Country[] }>('/api/countries');
+  }
+  forecast(facility: string, resource: string, country = 'IN', horizon = 14) {
+    const suffix =
+      resource === 'footfall'
+        ? 'footfall'
+        : resource === 'admissions'
+          ? 'beds'
+          : 'medicines/' + encodeURIComponent(resource);
+    return this.http.get<Forecast>(
+      '/api/forecasts/facilities/' + encodeURIComponent(facility) + '/' + suffix,
+      { params: this.params({ country_id: country, horizon }) },
+    );
+  }
+  performance(country = 'IN') {
+    return this.http.get<Performance>('/api/models/forecasting/metrics', {
+      params: this.params({ country_id: country }),
+    });
   }
   sources(country = '') {
     return this.http.get<SourcesResponse>('/api/data-sources', {

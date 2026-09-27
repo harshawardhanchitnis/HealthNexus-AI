@@ -1,6 +1,14 @@
 import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
+    path: 'forecasts',
+    loadComponent: () => import('./pages/forecasts').then((m) => m.ForecastsPage),
+  },
+  {
+    path: 'model-performance',
+    loadComponent: () => import('./pages/model-performance').then((m) => m.ModelPerformancePage),
+  },
+  {
     path: 'data-sources',
     loadComponent: () => import('./pages/data-sources').then((m) => m.DataSourcesPage),
   },

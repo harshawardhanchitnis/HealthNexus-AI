@@ -1418,3 +1418,251 @@ td strong {
     overflow-y: auto;
   }
 }
+/* Phase 3 forecasting uses the existing command-centre type and colour system. */
+.forecast-controls {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr;
+  gap: 20px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+.forecast-controls label {
+  display: grid;
+  gap: 9px;
+  color: #657780;
+  font-size: 12px;
+  font-weight: 600;
+}
+.forecast-controls select {
+  min-width: 0;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dce7e5;
+  border-radius: 7px;
+  background: white;
+  color: #253c47;
+}
+.forecast-notice {
+  padding: 17px 22px;
+  background: #eaf5f1;
+  color: #436b60;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 18px 0 24px;
+}
+.forecast-chart-panel {
+  margin-bottom: 24px;
+}
+.forecast-legend {
+  display: flex;
+  gap: 22px;
+  padding: 0 24px 8px;
+  font-size: 12px;
+  color: #6c7d84;
+  flex-wrap: wrap;
+}
+.forecast-legend span::before {
+  content: '';
+  display: inline-block;
+  width: 17px;
+  height: 3px;
+  margin-right: 7px;
+  vertical-align: middle;
+  background: #405868;
+}
+.forecast-legend .forecast-key::before {
+  background: #087e65;
+}
+.forecast-legend .band-key::before {
+  background: #a9d8cb;
+  height: 10px;
+}
+.forecast-plot {
+  padding: 0 16px;
+  overflow-x: auto;
+}
+.forecast-plot svg {
+  display: block;
+  width: 100%;
+  min-width: 560px;
+}
+.chart-footnote {
+  color: #6a7e83;
+  font-size: 12px;
+  line-height: 1.7;
+  padding: 0 24px 20px;
+}
+.stock-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 4px 24px 24px;
+}
+.stock-metrics div {
+  display: grid;
+  gap: 10px;
+}
+.stock-metrics small,
+.stock-metrics span {
+  color: #6b7d85;
+  font-size: 12px;
+}
+.stock-metrics strong {
+  color: #223f46;
+  font-size: 23px;
+}
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 24px 20px;
+  border: 1px solid #e0eae6;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.risk-grid article {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  background: #f6faf8;
+}
+.risk-grid strong {
+  font-size: 30px;
+  color: #276552;
+}
+.risk-grid span,
+.risk-grid small {
+  color: #69817a;
+  font-size: 12px;
+}
+.risk-pill {
+  border-radius: 20px;
+  background: #f5edd6;
+  color: #8c742f;
+  padding: 8px 13px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.risk-pill.high {
+  background: #fbe6e8;
+  color: #a44050;
+}
+.forecast-context-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.forecast-explanations {
+  margin: 0;
+  padding: 0 35px 26px;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #5b7179;
+}
+.forecast-explanations li + li {
+  margin-top: 14px;
+}
+.forecast-metadata {
+  padding: 0 24px 24px;
+  color: #5b7179;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.hash-line {
+  overflow-wrap: anywhere;
+}
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.split-grid article {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  border: 1px solid #dbe6e3;
+  border-top: 3px solid #70b6a5;
+  border-radius: 8px;
+  background: white;
+}
+.split-grid small {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #638278;
+}
+.split-grid span {
+  color: #71828a;
+  font-size: 12px;
+}
+.champion-row {
+  background: #edf7f2;
+}
+.coverage-list {
+  padding: 12px 24px;
+  font-size: 12px;
+  color: #6a7c85;
+}
+.coverage-list p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.outlook-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 0 24px 24px;
+  line-height: 1.8;
+  font-size: 14px;
+  color: #5e767b;
+}
+.predictive-outlook {
+  margin-bottom: 24px;
+  border-top: 3px solid #53ad97;
+}
+@media (max-width: 900px) {
+  .stock-metrics,
+  .split-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .forecast-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+  .forecast-controls label:first-child {
+    grid-column: 1/-1;
+  }
+  .forecast-context-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .forecast-controls,
+  .risk-grid,
+  .outlook-grid {
+    grid-template-columns: 1fr;
+  }
+  .forecast-controls label:first-child {
+    grid-column: auto;
+  }
+  .risk-grid {
+    margin: 0 16px 20px;
+  }
+  .stock-metrics {
+    padding: 4px 16px 24px;
+  }
+  .forecast-legend {
+    gap: 12px;
+    padding: 0 16px 12px;
+  }
+  .split-grid article {
+    padding: 14px;
+  }
+  .split-grid strong {
+    font-size: 13px;
+  }
+  .forecast-plot svg {
+    min-width: 560px;
+  }
+}

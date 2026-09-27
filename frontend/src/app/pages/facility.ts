@@ -8,9 +8,10 @@ import { Alert, Facility, Calibration, Provenance } from '../core/models';
 import { StatusBadge } from '../shared/status-badge';
 import { TrendChart } from '../shared/trend-chart';
 import { Icon } from '../shared/icon';
+import { PredictiveOutlook } from '../shared/predictive-outlook';
 @Component({
   selector: 'app-facility',
-  imports: [RouterLink, DecimalPipe, DatePipe, StatusBadge, TrendChart, Icon],
+  imports: [RouterLink, DecimalPipe, DatePipe, StatusBadge, TrendChart, Icon, PredictiveOutlook],
   template: `
     <a routerLink="/facilities" queryParamsHandling="preserve" class="inline-link back-link"
       >← Back to facilities</a
@@ -64,6 +65,7 @@ import { Icon } from '../shared/icon';
           </div>
         </article>
       </div>
+      <app-predictive-outlook [facility]="f.id" [country]="f.country_id" />
       <details class="panel provenance-details">
         <summary>Data provenance & calibration</summary>
         <p>{{ provenance()?.methodology || 'Legacy uncalibrated sample.' }}</p>
