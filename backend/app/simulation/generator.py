@@ -7,7 +7,7 @@ from datetime import date, timedelta
 
 from app.core.config import ROOT
 from app.core.geography import COUNTRY_BY_ID
-from app.models.network import Alert, Beds, DailyActivity, District, Facility, InventoryItem, Region, Snapshot, Staff, Status, StockDay
+from app.models.network import Alert, Beds, DailyActivity, District, Facility, InventoryItem, Region, Snapshot, Staff, Status, StockDay, ScheduledReceipt
 from app.models.provenance import Provenance
 from app.simulation.calibration import calibration_for, public_provenance
 
@@ -40,7 +40,9 @@ def syndrome_mix(footfall: int, seasonal: float) -> dict[str, int]:
     return counts
 
 
-def generate_snapshot(seed: int = 42, as_of: date | None = None, country_id: str = "IN") -> Snapshot:
+def generate_snapshot(seed: int = 42, as_of: date | None = None, country_id: str = "IN", history_days: int = 28) -> Snapshot:
+    if not 28 <= history_days <= 730:
+        raise ValueError("History must contain 28–730 days")
     if country_id not in COUNTRY_BY_ID:
         raise ValueError("Unsupported country")
     rng = random.Random(f"{seed}:{country_id}")
@@ -49,7 +51,7 @@ def generate_snapshot(seed: int = 42, as_of: date | None = None, country_id: str
     op_id, geo_id, derived_id = f"operations-{country_id}-v2", f"geography-{country_id}-v2", f"risk-{country_id}-v2"
     provenance = public_provenance()
     provenance[op_id] = Provenance(id=op_id, source_type="synthetic", source_name="Calibrated operational generator",
-        accessed_at=as_of, geography=[country_id], is_synthetic=True, version=f"2/seed-{seed}",
+        accessed_at=as_of, geography=[country_id], is_synthetic=True, version=f"3/seed-{seed}/days-{history_days}",
         methodology="Public aggregate anchors + assumed contact rates, syndrome-resource profiles, admission/discharge and daily stock ledgers. No real facility records.",
         input_ids=[row["id"] for row in calibration["inputs"]])
     provenance[geo_id] = Provenance(id=geo_id, source_type="derived", source_name="Curated prototype geography",
@@ -82,13 +84,15 @@ def generate_snapshot(seed: int = 42, as_of: date | None = None, country_id: str
                 baseline = catchment * [0.011, 0.009, 0.004][index]
                 previous_occupied = round(total_beds * 0.5)
                 history = []
-                for day in range(28):
-                    observed = as_of - timedelta(days=27 - day)
+                demand_state = 1.0
+                for day in range(history_days):
+                    observed = as_of - timedelta(days=history_days - 1 - day)
                     # Hemisphere-aware, explicitly assumed seasonality; no fabricated disease statistics.
                     peak = 245 if region.latitude >= 0 else 65
                     seasonal = math.cos(2 * math.pi * (observed.timetuple().tm_yday - peak) / 365)
                     weekly = [1.15, 1.03, 1.02, 1.0, 1.02, 0.90, 0.70][observed.weekday()]
-                    footfall = max(1, round(baseline * weekly * (1 + 0.12 * seasonal) * (1 + 0.001 * day) * rng.uniform(0.96, 1.04)))
+                    demand_state = 0.75 * demand_state + 0.25 * rng.uniform(0.88, 1.12)
+                    footfall = max(1, round(baseline * weekly * (1 + 0.12 * seasonal) * (1 + 0.00025 * day) * demand_state * rng.uniform(0.96, 1.04)))
                     mix = syndrome_mix(footfall, seasonal)
                     admissions_requested = round(footfall * [0.045, 0.05, 0.06][index])
                     discharges = min(previous_occupied, round(previous_occupied / [2.5, 3, 5][index]))
@@ -103,18 +107,30 @@ def generate_snapshot(seed: int = 42, as_of: date | None = None, country_id: str
                 delivery_delay = len(facilities) % 9 == 1
                 for code, name, unit, profile in MEDICINES:
                     opening = max(1, round(baseline * sum(syndrome_mix(1000, 0)[s] / 1000 * rate for s, rate in profile.items()) * 15))
-                    ledger = []
+                    ledger, orders = [], []
                     for day, activity in enumerate(history):
                         requested = max(1, round(sum(activity.syndrome_counts[s] * rate for s, rate in profile.items())))
                         recent = [entry.requested for entry in ledger[-7:]]
                         expected = sum(recent) / len(recent) if recent else requested
-                        delivery_due = day > 0 and day % 7 == 0
-                        # 7-day reserve + weekly review period + 7-day logistics buffer.
-                        received = max(0, round(21 * expected) - opening) if delivery_due and not (delivery_delay and day >= 14) else 0
+                        # Orders use only trailing requested demand, with three-day lead time.
+                        # A delayed order is rescheduled only when its due date is missed.
+                        scheduled = sum(o["quantity"] for o in orders if o["expected"] == day)
+                        delayed = False
+                        for order in orders:
+                            if order["expected"] == day and delivery_delay and day % 35 >= 10 and not order["delayed"]:
+                                order["expected"] += 21
+                                order["delayed"], delayed = True, True
+                        received = sum(o["quantity"] for o in orders if o["expected"] == day)
+                        orders = [o for o in orders if o["expected"] != day]
+                        if day % 7 == 0:
+                            quantity = max(0, round(21 * expected) - opening - received - sum(o["quantity"] for o in orders))
+                            if quantity:
+                                orders.append({"ordered": day, "expected": day + 3, "quantity": quantity, "delayed": False})
                         consumed = min(requested, opening + received)
                         closing = opening + received - consumed
                         ledger.append(StockDay(date=activity.date, opening=opening, received=received,
-                            requested=requested, consumed=consumed, unmet_demand=requested-consumed, closing=closing))
+                            requested=requested, consumed=consumed, unmet_demand=requested-consumed, closing=closing,
+                            safety_stock=math.ceil(expected * 7), scheduled_receipts=scheduled, delivery_delayed=delayed))
                         activity.medicine_units += consumed
                         opening = closing
                     latest = ledger[-1]
@@ -123,7 +139,10 @@ def generate_snapshot(seed: int = 42, as_of: date | None = None, country_id: str
                     inventory.append(InventoryItem(medicine_id=code, name=name, unit=unit,
                         opening_stock=latest.opening, units_consumed=latest.consumed, units_received=latest.received,
                         current_stock=latest.closing, safety_stock=math.ceil(average * 7), average_daily_consumption=average,
-                        days_of_cover=days, status=inventory_status(days), ledger=ledger, provenance_id=op_id))
+                        days_of_cover=days, status=inventory_status(days), ledger=ledger, provenance_id=op_id,
+                        scheduled_deliveries=[ScheduledReceipt(ordered_at=history[0].date + timedelta(days=o["ordered"]),
+                            expected_at=history[0].date + timedelta(days=o["expected"]), quantity=o["quantity"], lead_time_days=3)
+                            for o in orders]))
                 doctors = max(1, round(calibration["doctors_by_type"][index] * calibration["doctor_staffing_factor"] * population_factor))
                 nurses = max(1, round(calibration["nurses_by_type"][index] * population_factor))
                 support = [6, 12, 60][index]
@@ -133,6 +152,11 @@ def generate_snapshot(seed: int = 42, as_of: date | None = None, country_id: str
                 present_nurses = nurses - sum(rng.random() < absence_rate for _ in range(nurses))
                 present_support = support - sum(rng.random() < absence_rate for _ in range(support))
                 present = present_doctors + present_nurses + present_support
+                for activity in history:
+                    activity.total_beds = total_beds
+                    activity.scheduled_staff = scheduled
+                    activity.available_staff = scheduled - sum(rng.random() < 0.08 for _ in range(scheduled))
+                history[-1].available_staff = present
                 attendance = present / scheduled
                 staff_status = Status.AT_RISK if attendance < 0.8 else Status.HEALTHY
                 status = max([item.status for item in inventory] + [staff_status], key=lambda s: RANK[s])

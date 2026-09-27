@@ -40,11 +40,12 @@ def raw_snapshot(adapter: str, source_url: str, payload: str, format: str,
         checksum_sha256=digest, requests=requests or [source_url], extraction=extraction)
 
 
-def save_json(path: Path, value: BaseModel):
+def save_json(path: Path, value: BaseModel | dict):
     """Replace only after complete serialization; failed imports preserve the cache."""
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(value.model_dump_json(indent=2) + "\n", encoding="utf-8")
+    payload = value.model_dump_json(indent=2) if isinstance(value, BaseModel) else json.dumps(value, indent=2, allow_nan=False)
+    temporary.write_text(payload + "\n", encoding="utf-8")
     temporary.replace(path)
 
 

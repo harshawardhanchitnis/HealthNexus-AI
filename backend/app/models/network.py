@@ -43,9 +43,14 @@ class DailyActivity(BaseModel):
     discharges: int = Field(default=0, ge=0)
     unmet_admissions: int = Field(default=0, ge=0)
     syndrome_counts: dict[str, int] = Field(default_factory=dict)
+    total_beds: int | None = Field(default=None, gt=0)
+    scheduled_staff: int | None = Field(default=None, gt=0)
+    available_staff: int | None = Field(default=None, ge=0)
 
     @model_validator(mode="after")
     def activity_balance(self):
+        if self.scheduled_staff is not None and (self.available_staff is None or self.available_staff > self.scheduled_staff):
+            raise ValueError("Historical attendance exceeds scheduled staff")
         if self.previous_occupied is not None:
             if self.discharges > self.previous_occupied or self.occupied_beds != self.previous_occupied + self.admissions - self.discharges:
                 raise ValueError("Admissions/discharges do not reconcile")
@@ -62,16 +67,28 @@ class StockDay(BaseModel):
     consumed: int = Field(ge=0)
     unmet_demand: int = Field(ge=0)
     closing: int = Field(ge=0)
+    transfers_received: int = Field(default=0, ge=0)
+    transfers_sent: int = Field(default=0, ge=0)
+    safety_stock: int = Field(default=0, ge=0)
+    scheduled_receipts: int = Field(default=0, ge=0)
+    delivery_delayed: bool = False
 
     @model_validator(mode="after")
     def conservation(self):
-        if self.consumed > self.opening + self.received:
+        if self.consumed + self.transfers_sent > self.opening + self.received + self.transfers_received:
             raise ValueError("Consumption exceeds available stock")
-        if self.closing != self.opening + self.received - self.consumed:
+        if self.closing != self.opening + self.received + self.transfers_received - self.consumed - self.transfers_sent:
             raise ValueError("Daily inventory balance does not reconcile")
         if self.requested != self.consumed + self.unmet_demand:
             raise ValueError("Unserved demand must be explicit")
         return self
+
+
+class ScheduledReceipt(BaseModel):
+    ordered_at: date
+    expected_at: date
+    quantity: int = Field(gt=0)
+    lead_time_days: int = Field(ge=1)
 
 
 class InventoryItem(BaseModel):
@@ -88,6 +105,8 @@ class InventoryItem(BaseModel):
     days_of_cover: float = Field(ge=0)
     status: Status
     ledger: list[StockDay] = Field(default_factory=list)
+    scheduled_deliveries: list[ScheduledReceipt] = Field(default_factory=list)
+    category: str = "illustrative essential medicine"
 
     @model_validator(mode="after")
     def stock_balance(self):

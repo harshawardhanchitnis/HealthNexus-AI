@@ -12,9 +12,10 @@ from app.models.network import Snapshot, Status
 from app.services.repository import NetworkRepository, create_repository
 from app.services.summary import aggregate_history, summarize
 from app.simulation.calibration import calibration_for
+from app.forecasting.routes import forecast_router
 
 
-def create_app(repository: NetworkRepository | None = None) -> FastAPI:
+def create_app(repository: NetworkRepository | None = None, forecast_service=None) -> FastAPI:
     settings = Settings()
 
     @asynccontextmanager
@@ -22,7 +23,7 @@ def create_app(repository: NetworkRepository | None = None) -> FastAPI:
         app.state.repository = repository or create_repository(settings)
         yield
 
-    app = FastAPI(title="HealthNexus AI · BRICS", version="0.2.0", lifespan=lifespan)
+    app = FastAPI(title="HealthNexus AI · BRICS", version="0.3.0", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
         allow_credentials=False, allow_methods=["GET"], allow_headers=["Content-Type"])
 
@@ -133,6 +134,7 @@ def create_app(repository: NetworkRepository | None = None) -> FastAPI:
         items = [a for a in data.alerts if a.facility_id in ids and (not severity or a.severity == severity)]
         return {"items": items, "total": len(items)}
 
+    app.include_router(forecast_router(forecast_service))
     return app
 
 

@@ -7,6 +7,9 @@ services:
       - "127.0.0.1:8000:8000"
     environment:
       HEALTHNEXUS_STORAGE: local
+    volumes:
+      - ./data/generated:/workspace/data/generated:ro
+      - ./artifacts/models:/workspace/artifacts/models:ro
   frontend:
     build:
       context: .
