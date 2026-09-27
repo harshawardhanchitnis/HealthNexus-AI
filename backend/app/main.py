@@ -16,6 +16,8 @@ from app.forecasting.routes import forecast_router
 from app.forecasting.prediction import ForecastService
 from app.scenarios.engine import ScenarioEngine
 from app.scenarios.routes import resilience_router
+from app.optimization.service import OptimizationService
+from app.optimization.routes import optimization_router
 
 
 def create_app(repository: NetworkRepository | None = None, forecast_service=None) -> FastAPI:
@@ -26,7 +28,7 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         app.state.repository = repository or create_repository(settings)
         yield
 
-    app = FastAPI(title="HealthNexus AI · BRICS", version="0.4.0", lifespan=lifespan)
+    app = FastAPI(title="HealthNexus AI · BRICS", version="0.5.0", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
         allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
 
@@ -139,7 +141,9 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
 
     forecasts = forecast_service or ForecastService()
     app.include_router(forecast_router(forecasts))
-    app.include_router(resilience_router(ScenarioEngine(forecasts)))
+    scenarios = ScenarioEngine(forecasts)
+    app.include_router(resilience_router(scenarios))
+    app.include_router(optimization_router(OptimizationService(scenarios)))
     return app
 
 
