@@ -1,0 +1,540 @@
+<div class="page-heading">
+  <div>
+    <div class="eyebrow">EMERGENCY DIGITAL TWIN / OPERATIONAL RESILIENCE</div>
+    <h1>Emergency Simulator</h1>
+    <p>Change the conditions. Trace the pressure. Compare every outcome against its baseline.</p>
+  </div>
+  <button class="button secondary" (click)="pune()" [disabled]="running()">Load Pune demo</button>
+</div>
+<section class="twin-intro">
+  <div>
+    <span class="tag">NON-DESTRUCTIVE SCENARIO</span>
+    <h2>A controlled shock. A measurable response.</h2>
+    <p>
+      Saved forecasts → explicit emergency assumptions → resource trajectories → structured
+      warnings.
+    </p>
+  </div>
+  <div class="twin-scope">
+    <strong>{{ district() || state() || country() }}</strong
+    ><span>{{ facilities().length }} facilities in selected scope</span>
+  </div>
+</section>
+<form class="panel twin-form" (ngSubmit)="run()" #form="ngForm">
+  <div class="panel-heading">
+    <div>
+      <h2>Configure emergency</h2>
+      <p>Choose country, region and district in the navigation filters above.</p>
+    </div>
+    <span class="tag">14-DAY PROJECTION</span>
+  </div>
+  <div class="twin-fields">
+    <label
+      >Emergency type<select name="kind" [(ngModel)]="kind" (ngModelChange)="changeKind()">
+        <option value="DENGUE_SURGE">Dengue surge</option>
+        <option value="DELIVERY_DELAY">Medicine delivery delay</option>
+        <option value="STAFF_SHORTAGE">Staff shortage</option>
+        <option value="FACILITY_DISRUPTION">Facility / flood disruption</option>
+      </select></label
+    >
+    <label
+      >Severity preset<select name="severity" [(ngModel)]="severity">
+        <option value="moderate">Moderate</option>
+        <option value="severe">Severe</option>
+        <option value="critical">Critical</option>
+      </select></label
+    >
+    <label
+      >Duration (days)<input
+        name="duration"
+        type="number"
+        min="1"
+        max="14"
+        step="1"
+        required
+        [(ngModel)]="duration"
+    /></label>
+    <label
+      >Affected facilities<select name="facility" [(ngModel)]="facilityFilter">
+        <option value="">All facilities in scope</option>
+        @for (f of facilities(); track f.id) {
+          <option [value]="f.id">{{ f.name }}</option>
+        }
+      </select></label
+    >
+  </div>
+  <p class="twin-description">{{ description() }}</p>
+  @if (kind === 'DELIVERY_DELAY') {
+    <div class="twin-fields">
+      <label
+        >Medicine<select name="medicine" [(ngModel)]="medicine">
+          <option value="IVF">IV fluids</option>
+          <option value="PCM">Paracetamol</option>
+          <option value="ORS">ORS</option>
+          <option value="AMX">Amoxicillin</option>
+          <option value="IFA">Iron and folic acid</option>
+        </select></label
+      ><label
+        >Delay days (optional override)<input
+          name="delay"
+          type="number"
+          min="1"
+          max="30"
+          step="1"
+          placeholder="Use severity preset"
+          [(ngModel)]="custom"
+      /></label>
+    </div>
+  }
+  @if (kind === 'STAFF_SHORTAGE' || kind === 'FACILITY_DISRUPTION') {
+    <div class="twin-fields">
+      <label
+        >{{
+          kind === 'STAFF_SHORTAGE' ? 'Staff unavailable (%)' : 'Service capacity reduction (%)'
+        }}
+        — optional override<input
+          name="reduction"
+          type="number"
+          min="1"
+          max="100"
+          placeholder="Use severity preset"
+          [(ngModel)]="custom"
+      /></label>
+    </div>
+  }
+  <details class="twin-advanced">
+    <summary>Timing & reproducibility</summary>
+    <div class="twin-fields">
+      <label>Start date (optional)<input name="start" type="date" [(ngModel)]="startDate" /></label
+      ><label
+        >Simulation seed<input
+          name="seed"
+          type="number"
+          min="0"
+          max="2147483647"
+          step="1"
+          required
+          [(ngModel)]="seed"
+      /></label>
+    </div>
+    <p>
+      Defaults to the day after the saved forecast origin. Start and duration must fit within the
+      next 14 days.
+    </p>
+  </details>
+  <div class="twin-actions">
+    <span>Baseline records remain unchanged. No retraining or automatic transfers.</span
+    ><button
+      type="button"
+      (click)="run()"
+      class="button primary"
+      [disabled]="running() || loading() || form.invalid || !facilities().length"
+    >
+      {{ running() ? 'Computing scenario…' : 'Run Simulation' }}
+    </button>
+  </div>
+</form>
+@if (error()) {
+  <div class="info-banner" role="alert">{{ error() }}</div>
+}
+@if (notice()) {
+  <div class="info-banner" role="status">{{ notice() }}</div>
+}
+@if (loading()) {
+  <div class="loading-state" role="status">Loading scenario context…</div>
+}
+@if (result(); as r) {
+  <section class="scenario-result-heading">
+    <div>
+      <div class="eyebrow">SCENARIO COMPLETE</div>
+      <h2>
+        {{ title(r.scenario.definition.scenario_type) }} ·
+        {{
+          r.scenario.definition.district_id ||
+            r.scenario.definition.state_id ||
+            r.scenario.definition.country_id
+        }}
+      </h2>
+      <p>
+        {{ r.scenario.definition.severity }} · {{ r.scenario.definition.duration }} days · starts
+        {{ r.scenario.definition.start_date | date: 'dd MMM yyyy' }} ·
+        {{ r.scenario_result.facilities.length }} facilities
+      </p>
+    </div>
+    <div class="twin-result-actions">
+      <a
+        class="button primary"
+        routerLink="/warnings"
+        [queryParams]="{
+          country_id: r.scenario.definition.country_id,
+          state_id: r.scenario.definition.state_id,
+          district_id: r.scenario.definition.district_id,
+          scenario_id: r.scenario.scenario_id,
+        }"
+        >Open scenario warnings →</a
+      ><button class="button secondary" [disabled]="running()" (click)="discard()">
+        Discard / reset scenario
+      </button>
+    </div>
+  </section>
+  <div class="forecast-notice">
+    BASELINE FORECAST versus SCENARIO PROJECTION · Emergency effects use specified operational
+    assumptions, not epidemiological predictions. All KPIs cover 14 days; baseline pressure is
+    retained.
+  </div>
+  <div class="twin-kpis">
+    @for (k of kpis; track k.key) {
+      @let d = r.delta[k.key];
+      <article class="kpi">
+        <div class="kpi-label">{{ k.name }}</div>
+        <div class="twin-kpi-pair">
+          <span
+            ><small>Baseline</small
+            >{{
+              k.key === 'max_stockout_probability'
+                ? risk(d.baseline)
+                : d.baseline === null
+                  ? 'No capacity'
+                  : (d.baseline | number: '1.0-1')
+            }}</span
+          ><b>→</b
+          ><strong
+            ><small>Scenario</small
+            >{{
+              k.key === 'max_stockout_probability'
+                ? risk(d.scenario)
+                : d.scenario === null
+                  ? 'No capacity'
+                  : (d.scenario | number: '1.0-1')
+            }}</strong
+          >
+        </div>
+        <div class="kpi-note">{{ k.unit }}</div>
+        <div class="twin-delta">
+          @if (d.absolute !== null) {
+            @if (k.key === 'max_stockout_probability') {
+              {{ d.absolute * 100 | number: '1.1-1' }} percentage points
+            } @else if (k.key === 'peak_bed_occupancy_percent') {
+              {{ d.absolute | number: '1.1-1' }} percentage points
+            } @else if (d.percent !== null) {
+              {{ d.percent >= 0 ? '+' : '' }}{{ d.percent | number: '1.1-1' }}% change
+            } @else {
+              Δ {{ d.absolute | number: '1.0-1' }}
+            }
+          } @else {
+            Undefined ratio where capacity is zero
+          }
+        </div>
+      </article>
+    }
+  </div>
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Resource impact</h2>
+        <p>
+          Syndrome-specific demand; quantities use each medicine’s own unit. Risk is the maximum
+          facility risk, not a network probability.
+        </p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Resource</th>
+            <th>Baseline demand</th>
+            <th>Scenario demand</th>
+            <th>Change</th>
+            <th>14-day stock-out risk</th>
+            <th>Unmet demand</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (i of r.resource_impact; track i.resource_id) {
+            <tr>
+              <td>
+                <strong>{{ i.name }}</strong
+                ><small class="cell-sub">{{ i.unit }}</small>
+              </td>
+              <td>{{ i.demand.baseline | number: '1.0-0' }}</td>
+              <td class="scenario-text">{{ i.demand.scenario | number: '1.0-0' }}</td>
+              <td>{{ i.demand.percent | number: '1.1-1' }}%</td>
+              <td>
+                {{ i.max_stockout_risk.baseline | number: '1.0-1' }}% →
+                {{ i.max_stockout_risk.scenario | number: '1.0-1' }}%
+              </td>
+              <td>
+                {{ i.unmet_demand.baseline | number: '1.0-0' }} →
+                {{ i.unmet_demand.scenario | number: '1.0-0' }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Affected facilities</h2>
+        <p>
+          Ranked by deterministic warning priority. Select a facility to inspect the causal
+          timeline.
+        </p>
+      </div>
+    </div>
+    <div class="twin-facilities">
+      @for (f of r.scenario_result.facilities; track f.facility_id) {
+        <button
+          class="twin-facility"
+          [class.selected]="focus()?.facility_id === f.facility_id"
+          (click)="selected.set(f.facility_id)"
+          [attr.aria-pressed]="focus()?.facility_id === f.facility_id"
+        >
+          <span class="severity-chip" [attr.data-severity]="f.status">{{ f.status }}</span
+          ><strong>{{ f.facility_name }}</strong
+          ><small>Priority {{ f.priority_score | number: '1.1-1' }} · {{ f.facility_id }}</small>
+        </button>
+      }
+    </div>
+  </section>
+  @if (focus(); as f) {
+    @if (baseline(); as b) {
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>{{ f.facility_name }}</h2>
+            <p>
+              Baseline {{ b.status }} → scenario {{ f.status }} · {{ f.provenance.model_version }}
+            </p>
+          </div>
+          <label class="twin-chart-control"
+            >Resource<select
+              aria-label="Scenario chart resource"
+              [value]="chartResource()"
+              (change)="chooseResource($event)"
+            >
+              <option value="footfall" [selected]="chartResource() === 'footfall'">
+                Patient footfall
+              </option>
+              @for (i of f.resources; track i.resource_id) {
+                <option [value]="i.resource_id" [selected]="chartResource() === i.resource_id">
+                  {{ i.name }}
+                </option>
+              }
+            </select></label
+          >
+        </div>
+        <app-scenario-chart
+          [label]="
+            chartResource() === 'footfall'
+              ? 'Patient demand'
+              : resource()?.name || 'Medicine demand'
+          "
+          [history]="chartResource() === 'footfall' ? f.history : []"
+          [baseline]="chart(false)"
+          [scenario]="chart(true)"
+        />
+        <p class="chart-footnote">
+          Baseline uncertainty uses empirical model errors. Scenario bands add the specified shock
+          without estimating its uncertainty. Resource demand charts begin at the forecast horizon.
+        </p>
+        @if (resource(); as item) {
+          @if (baseResource(); as original) {
+            <div class="panel-heading">
+              <div>
+                <h2>Inventory trajectory · {{ item.name }}</h2>
+                <p>
+                  {{ item.stockout.current_stock }} {{ item.unit }} at origin · safety reserve
+                  {{ item.stockout.safety_stock }}
+                </p>
+              </div>
+            </div>
+            <app-scenario-chart
+              [baseline]="stockChart(false)"
+              [scenario]="stockChart(true)"
+              label="Inventory trajectory"
+            />
+            <div class="risk-grid">
+              @for (h of ['3', '7', '14']; track h) {
+                <article>
+                  <span>Stock-out within {{ h }} days</span
+                  ><strong
+                    >{{ original.stockout.probabilities[h] | percent: '1.1-1' }} →
+                    {{ item.stockout.probabilities[h] | percent: '1.1-1' }}</strong
+                  ><small>Baseline → conditional scenario estimate</small>
+                </article>
+              }
+            </div>
+            <p class="chart-footnote">
+              Safety breach: {{ original.stockout.safety_breach_date || 'Beyond horizon' }} →
+              {{ item.stockout.safety_breach_date || 'Beyond horizon' }} · depletion:
+              {{ original.stockout.stockout_date || 'Beyond horizon' }} →
+              {{ item.stockout.stockout_date || 'Beyond horizon' }}
+            </p>
+            <details class="provenance-details">
+              <summary>Daily inventory balance</summary>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Baseline stock</th>
+                      <th>Scenario stock</th>
+                      <th>Baseline demand</th>
+                      <th>Scenario demand</th>
+                      <th>Receipts</th>
+                      <th>Unmet</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of item.stockout.trajectory; track p.date; let i = $index) {
+                      <tr>
+                        <td>{{ p.date | date: 'dd MMM' }}</td>
+                        <td>
+                          {{ original.stockout.trajectory[i].closing_stock | number: '1.1-1' }}
+                        </td>
+                        <td>{{ p.closing_stock | number: '1.1-1' }}</td>
+                        <td>{{ original.stockout.trajectory[i].demand | number: '1.1-1' }}</td>
+                        <td>{{ p.demand | number: '1.1-1' }}</td>
+                        <td>{{ p.expected_receipts | number: '1.0-0' }}</td>
+                        <td>{{ p.unmet_demand | number: '1.1-1' }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          }
+        }
+      </section>
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Operational timeline</h2>
+            <p>
+              Baseline → scenario, daily. Fractional counts are expected values. Unmet admissions
+              and existing overflow remain explicit.
+            </p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Footfall</th>
+                <th>Fever visits</th>
+                <th>Occupied beds</th>
+                <th>Usable beds</th>
+                <th>Unmet admissions</th>
+                <th>Staff available</th>
+                <th>Workload ratio</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of f.timeline; track p.date; let i = $index) {
+                <tr>
+                  <td>{{ p.date | date: 'dd MMM' }}</td>
+                  <td>
+                    {{ b.timeline[i].footfall | number: '1.0-0' }} →
+                    {{ p.footfall | number: '1.0-0' }}
+                  </td>
+                  <td>
+                    {{ b.timeline[i].syndrome_counts['fever'] | number: '1.0-0' }} →
+                    {{ p.syndrome_counts['fever'] | number: '1.0-0' }}
+                  </td>
+                  <td>
+                    {{ b.timeline[i].occupied | number: '1.0-1' }} →
+                    {{ p.occupied | number: '1.0-1'
+                    }}<small class="cell-sub"
+                      >Overflow {{ p.bed_overflow | number: '1.0-1' }}</small
+                    >
+                  </td>
+                  <td>
+                    {{ b.timeline[i].bed_capacity | number: '1.0-1' }} →
+                    {{ p.bed_capacity | number: '1.0-1' }}
+                  </td>
+                  <td>
+                    {{ b.timeline[i].unmet_admissions | number: '1.0-1' }} →
+                    {{ p.unmet_admissions | number: '1.0-1' }}
+                  </td>
+                  <td>
+                    {{ b.timeline[i].available_staff | number: '1.0-1' }} →
+                    {{ p.available_staff | number: '1.0-1'
+                    }}<small class="cell-sub">{{ p.scheduled_staff }} scheduled</small>
+                  </td>
+                  <td>
+                    {{ b.timeline[i].workload_ratio | number: '1.1-1' }} →
+                    {{
+                      p.workload_ratio === null
+                        ? 'No capacity'
+                        : (p.workload_ratio | number: '1.1-1')
+                    }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        @if (f.receipt_changes.length) {
+          <div class="forecast-metadata">
+            <h3>Changed scheduled receipts</h3>
+            @for (c of f.receipt_changes; track $index) {
+              <p>
+                {{ c.resource_id }} · {{ c.quantity }} units · {{ c.original_date }} →
+                {{ c.projected_date }} · ordered {{ c.ordered_at }}
+              </p>
+            }
+          </div>
+        }
+      </section>
+    }
+  }
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Generated warnings</h2>
+        <p>
+          {{ r.warnings_created.summary.counts['CRITICAL'] }} critical ·
+          {{ r.warnings_created.summary.counts['WARNING'] }} warning ·
+          {{ r.warnings_created.summary.counts['WATCH'] }} watch · includes existing baseline risks
+          with severity transitions.
+        </p>
+      </div>
+    </div>
+    <app-warning-cards [items]="r.warnings_created.items" />
+  </section>
+  <details class="panel provenance-details">
+    <summary>Scenario assumptions & provenance</summary>
+    <div class="forecast-metadata">
+      <p>
+        Origin {{ r.scenario.origin }} · seed {{ r.scenario.definition.seed }} ·
+        {{ r.scenario.config_version }} · created {{ r.scenario.created_at | date: 'medium' }}
+      </p>
+      <p class="hash-line">Baseline snapshot: {{ r.scenario.baseline_snapshot_id }}</p>
+      <h3>Effective parameters</h3>
+      @for (p of r.scenario.effective_parameters | keyvalue; track p.key) {
+        <p>
+          <strong>{{ p.key }}</strong
+          >: {{ p.value }}
+        </p>
+      }
+      <ul>
+        @for (a of r.scenario.assumptions; track a) {
+          <li>{{ a }}</li>
+        }
+      </ul>
+    </div>
+  </details>
+} @else if (!loading() && !error()) {
+  <section class="panel twin-empty">
+    <h2>Ready to test resilience</h2>
+    <p>
+      Run a scenario to see paired demand, inventory, bed and staffing trajectories. The Pune demo
+      starts with a severe 14-day dengue surge.
+    </p>
+    <a routerLink="/forecasts" queryParamsHandling="preserve">Inspect baseline forecasts →</a>
+  </section>
+}

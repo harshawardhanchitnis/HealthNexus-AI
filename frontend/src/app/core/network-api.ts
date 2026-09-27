@@ -2,6 +2,12 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Forecast, Performance } from './forecast-models';
 import {
+  ScenarioDefinition,
+  ScenarioMetadata,
+  ScenarioResult,
+  WarningList,
+} from './resilience-models';
+import {
   Alert,
   District,
   Facility,
@@ -17,6 +23,27 @@ import {
 @Injectable({ providedIn: 'root' })
 export class NetworkApi {
   private http = inject(HttpClient);
+  runScenario(body: ScenarioDefinition) {
+    return this.http.post<ScenarioResult>('/api/scenarios', body);
+  }
+  scenario(id: string, country: string) {
+    return this.http.get<ScenarioResult>('/api/scenarios/' + encodeURIComponent(id), {
+      params: this.params({ country_id: country }),
+    });
+  }
+  scenarios(country: string) {
+    return this.http.get<ScenarioMetadata[]>('/api/scenarios', {
+      params: this.params({ country_id: country }),
+    });
+  }
+  discardScenario(id: string, country: string) {
+    return this.http.delete<void>('/api/scenarios/' + encodeURIComponent(id), {
+      params: this.params({ country_id: country }),
+    });
+  }
+  warnings(scope: Record<string, string>) {
+    return this.http.get<WarningList>('/api/warnings', { params: this.params(scope) });
+  }
   private params(scope: Record<string, string | number>) {
     let params = new HttpParams();
     for (const [key, value] of Object.entries(scope))

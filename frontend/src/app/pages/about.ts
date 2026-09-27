@@ -27,7 +27,7 @@ import { Icon } from '../shared/icon';
     </div>
     <div class="about-grid">
       <section class="panel prose">
-        <h2>Working through Phase 3</h2>
+        <h2>Working through Phase 4</h2>
         <ul>
           <li>Five-country geography and the existing India drill-down.</li>
           <li>Two real public-source adapters: MoHFW / PIB Health Dynamics summary and WHO GHO.</li>
@@ -40,6 +40,7 @@ import { Icon } from '../shared/icon';
           <li>Resource views and transparent threshold alerts.</li>
           <li>540-day histories, evaluated country-local forecasting and empirical uncertainty.</li>
           <li>Requested-demand targets and reproducible model-based stock-out estimates.</li>
+          <li>Early Warning Centre and four non-destructive emergency scenarios with baseline comparisons.</li>
         </ul>
         <a routerLink="/data-sources" class="inline-link"
           >Inspect the evidence <app-icon name="arrow"
@@ -48,8 +49,6 @@ import { Icon } from '../shared/icon';
       <section class="panel prose">
         <h2>Next milestones</h2>
         <ol>
-          <li>Predictive early-warning workflow and emergency digital twin.</li>
-          <li>Causal emergency scenarios and before/after comparisons.</li>
           <li>OR-Tools redistribution within each country.</li>
           <li>Grounded, server-side Gemini explanations.</li>
           <li>Genuine country-node FedAvg with measured metrics.</li>

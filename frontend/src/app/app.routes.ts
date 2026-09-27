@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
+    path: 'emergency',
+    loadComponent: () => import('./pages/emergency').then((m) => m.EmergencyPage),
+  },
+  { path: 'warnings', loadComponent: () => import('./pages/warnings').then((m) => m.WarningsPage) },
+  {
     path: 'forecasts',
     loadComponent: () => import('./pages/forecasts').then((m) => m.ForecastsPage),
   },
