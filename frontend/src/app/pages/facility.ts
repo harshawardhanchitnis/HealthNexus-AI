@@ -2,9 +2,9 @@ import { Component, inject, signal } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, of, switchMap, tap } from 'rxjs';
+import { catchError, combineLatest, of, switchMap, tap } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
-import { Alert, Facility } from '../core/models';
+import { Alert, Facility, Calibration, Provenance } from '../core/models';
 import { StatusBadge } from '../shared/status-badge';
 import { TrendChart } from '../shared/trend-chart';
 import { Icon } from '../shared/icon';
@@ -25,7 +25,10 @@ import { Icon } from '../shared/icon';
     } @else if (facility(); as f) {
       <div class="page-heading">
         <div>
-          <div class="eyebrow">INDIA / {{ f.state_id }} / {{ f.district_name }}</div>
+          <div class="eyebrow">
+            {{ countryName() }} / {{ f.state_id }}
+            {{ f.district_name ? '/ ' + f.district_name : '' }}
+          </div>
           <h1>{{ f.name }}</h1>
           <p>{{ f.id }} · Synthetic facility · {{ asOf() | date: 'dd MMM yyyy' }}</p>
         </div>
@@ -61,6 +64,18 @@ import { Icon } from '../shared/icon';
           </div>
         </article>
       </div>
+      <details class="panel provenance-details">
+        <summary>Data provenance & calibration</summary>
+        <p>{{ provenance()?.methodology || 'Legacy uncalibrated sample.' }}</p>
+        <p>
+          These operational values remain simulated. Public anchor references:
+          {{ f.calibration_ids.length }}. Source: {{ provenance()?.source_name }} · version
+          {{ provenance()?.version }}
+        </p>
+        <a routerLink="/data-sources" queryParamsHandling="preserve"
+          >Inspect public sources, reference years and calibration assumptions →</a
+        >
+      </details>
       <section class="panel">
         <div class="panel-heading">
           <div>
@@ -79,6 +94,7 @@ import { Icon } from '../shared/icon';
                 <th>Current</th>
                 <th>7-day reserve</th>
                 <th>Days of cover</th>
+                <th>Unserved today</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -97,6 +113,11 @@ import { Icon } from '../shared/icon';
                   </td>
                   <td>{{ i.safety_stock | number }}</td>
                   <td>{{ i.days_of_cover }}</td>
+                  <td>
+                    {{
+                      i.ledger.length ? i.ledger[i.ledger.length - 1].unmet_demand : 'Not tracked'
+                    }}
+                  </td>
                   <td><app-status [value]="i.status" /></td>
                 </tr>
               }
@@ -153,15 +174,18 @@ export class FacilityPage {
   asOf = signal('');
   error = signal('');
   loading = signal(true);
+  countryName = signal('India');
+  provenance = signal<Provenance | null>(null);
+  calibration = signal<Calibration>({});
   constructor() {
-    this.route.paramMap
+    combineLatest([this.route.paramMap, this.route.queryParamMap])
       .pipe(
         tap(() => {
           this.loading.set(true);
           this.error.set('');
         }),
-        switchMap((params) =>
-          this.api.facility(params.get('id') || '').pipe(
+        switchMap(([params, query]) =>
+          this.api.facility(params.get('id') || '', query.get('country_id') || 'IN').pipe(
             catchError((error) => {
               this.error.set(
                 error.status === 404
@@ -179,6 +203,9 @@ export class FacilityPage {
           this.facility.set(data.facility);
           this.alerts.set(data.alerts);
           this.asOf.set(data.as_of);
+          this.countryName.set(data.country.name);
+          this.provenance.set(data.provenance[data.facility.provenance_id]);
+          this.calibration.set(data.calibration);
         }
         this.loading.set(false);
       });

@@ -1,5 +1,10 @@
 import { Routes } from '@angular/router';
 export const routes: Routes = [
+  {
+    path: 'data-sources',
+    loadComponent: () => import('./pages/data-sources').then((m) => m.DataSourcesPage),
+  },
+  { path: 'brics', loadComponent: () => import('./pages/brics').then((m) => m.BricsPage) },
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
   ...['overview', 'network', 'facilities', 'supply', 'alerts'].map((page) => ({
     path: page,

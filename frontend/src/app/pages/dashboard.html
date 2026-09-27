@@ -25,7 +25,25 @@
 } @else if (data(); as view) {
   <div class="snapshot-line">
     <span class="snapshot-status"><i></i>BACKEND CONNECTED</span
-    ><span>Sample snapshot · {{ view.as_of | date: 'dd MMM yyyy' }} · {{ scopeName() }}</span>
+    ><span>Simulated operations · {{ view.as_of | date: 'dd MMM yyyy' }} · {{ scopeName() }}</span>
+  </div>
+  <div class="info-banner source-context">
+    <app-icon name="layers" />
+    <div>
+      <strong>{{
+        view.calibration.public_sources_available
+          ? 'Public-data-backed context. Simulated facility operations.'
+          : 'Uncalibrated fallback snapshot.'
+      }}</strong
+      ><br />{{
+        view.calibration.public_sources_available
+          ? 'Historical public aggregates anchor the capacity and workforce model. Operational figures below are synthetic, not live government data.'
+          : 'This snapshot has no recorded public calibration. Regenerate it after importing the official source cache.'
+      }}
+    </div>
+    <a routerLink="/data-sources" queryParamsHandling="preserve" class="inline-link"
+      >Sources & years →</a
+    >
   </div>
   @if (page() === 'overview' || page() === 'network') {
     <div class="kpi-grid">
@@ -85,10 +103,14 @@
       <section class="panel network-panel">
         <div class="panel-heading">
           <div>
-            <h2>India network coverage</h2>
+            <h2>{{ view.country.name }} network coverage</h2>
             <p>
-              {{ view.coverage.states }} states · {{ view.coverage.union_territories }} union
-              territories
+              @if (view.country.id === 'IN') {
+                {{ view.coverage.states }} states · {{ view.coverage.union_territories }} union
+                territories
+              } @else {
+                {{ view.coverage.regions }} representative regions · sample coverage
+              }
             </p>
           </div>
           <span class="subtle-tag">REGION GRID</span>
@@ -118,7 +140,7 @@
           }
         </div>
         <div class="panel-footnote">
-          Each tile is one state / UT, coloured by its highest facility risk. Select a tile to
+          Each tile is one region, coloured by its highest facility risk. Select a tile to
           explore. This grid is not a geographic map.
         </div>
       </section>
@@ -193,7 +215,7 @@
     <section class="panel">
       <div class="panel-heading">
         <div>
-          <h2>States & union territories</h2>
+          <h2>{{ view.country.region_label }}</h2>
           <p>Sample coverage, with equal visibility for every region</p>
         </div>
       </div>
@@ -232,8 +254,14 @@
     <section class="panel facilities-panel">
       <div class="panel-heading">
         <div>
-          <h2>{{ page() === 'overview' ? 'Facility watchlist' : 'Healthcare facilities' }}</h2>
-          <p>PHCs, community health centres and district hospitals</p>
+          <h2>{{ page() === 'overview' ? 'Facility snapshot' : 'Healthcare facilities' }}</h2>
+          <p>
+            {{
+              view.country.id === 'IN'
+                ? 'PHCs, community health centres and district hospitals'
+                : 'Primary care centres, community and regional hospitals'
+            }}
+          </p>
         </div>
         @if (page() === 'overview') {
           <a class="inline-link" routerLink="/facilities" queryParamsHandling="preserve"
@@ -264,7 +292,7 @@
           <thead>
             <tr>
               <th>Facility</th>
-              <th>State / UT</th>
+              <th>Region</th>
               <th>Status</th>
               <th>Patient visits</th>
               <th>Available beds</th>
@@ -418,8 +446,8 @@
     <app-icon name="shield" />
     <p>
       <strong>Prototype data notice.</strong> Operational values and facility locations are
-      synthetic. All states and UTs are represented; district and facility coverage is illustrative.
-      No patient-identifiable data is used.
+      synthetic. {{ view.coverage.notice }} Public-source reference years and calibration
+      assumptions are documented separately. No patient-identifiable data is used.
     </p>
     <a routerLink="/about">Learn more</a>
   </div>

@@ -1,7 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NetworkApi } from './core/network-api';
-import { Region, District } from './core/models';
+import { Region, District, Country } from './core/models';
+import { Subscription } from 'rxjs';
 import { Icon } from './shared/icon';
 
 @Component({
@@ -13,6 +14,9 @@ import { Icon } from './shared/icon';
 export class App {
   private api = inject(NetworkApi);
   private router = inject(Router);
+  private regionRequest?: Subscription;
+  countries = signal<Country[]>([]);
+  country = signal('IN');
   regions = signal<Region[]>([]);
   districts = signal<District[]>([]);
   state = signal('');
@@ -21,21 +25,36 @@ export class App {
   regionsError = signal(false);
   nav = [
     { path: '/overview', icon: 'dashboard', label: 'Overview' },
-    { path: '/network', icon: 'network', label: 'India network' },
+    { path: '/network', icon: 'network', label: 'Country network' },
     { path: '/facilities', icon: 'hospital', label: 'Facilities' },
     { path: '/supply', icon: 'box', label: 'Medicine & supply' },
     { path: '/alerts', icon: 'bell', label: 'Early warnings' },
+    { path: '/brics', icon: 'network', label: 'BRICS nodes' },
+    { path: '/data-sources', icon: 'layers', label: 'Data sources' },
   ];
   constructor() {
-    this.loadRegions();
     this.router.routerState.root.queryParamMap.subscribe((params) => {
+      const nextCountry = params.get('country_id') || 'IN';
+      const changed = nextCountry !== this.country();
+      this.country.set(nextCountry);
       this.state.set(params.get('state_id') || '');
       this.district.set(params.get('district_id') || '');
+      if (changed || !this.regions().length) this.loadRegions();
     });
   }
   loadRegions() {
     this.regionsError.set(false);
-    this.api.regions().subscribe({
+    this.regionRequest?.unsubscribe();
+    this.regions.set([]);
+    this.districts.set([]);
+    if (!this.countries().length)
+      this.api
+        .countries()
+        .subscribe({
+          next: (data) => this.countries.set(data.items),
+          error: () => this.regionsError.set(true),
+        });
+    this.regionRequest = this.api.regions(this.country()).subscribe({
       next: (data) => {
         this.regions.set(data.regions);
         this.districts.set(data.districts);
@@ -43,17 +62,29 @@ export class App {
       error: () => this.regionsError.set(true),
     });
   }
+  countryName() {
+    return this.countries().find((c) => c.id === this.country())?.name || this.country();
+  }
+  changeCountry(event: Event) {
+    this.router.navigate(['/overview'], {
+      queryParams: { country_id: (event.target as HTMLSelectElement).value },
+    });
+  }
   availableDistricts() {
     return this.districts().filter((d) => d.state_id === this.state());
   }
   changeState(event: Event) {
     this.router.navigate(['/overview'], {
-      queryParams: { state_id: (event.target as HTMLSelectElement).value || null },
+      queryParams: {
+        country_id: this.country(),
+        state_id: (event.target as HTMLSelectElement).value || null,
+      },
     });
   }
   changeDistrict(event: Event) {
     this.router.navigate(['/overview'], {
       queryParams: {
+        country_id: this.country(),
         state_id: this.state() || null,
         district_id: (event.target as HTMLSelectElement).value || null,
       },

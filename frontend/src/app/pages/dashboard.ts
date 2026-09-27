@@ -33,14 +33,14 @@ export class Dashboard {
   statuses: Status[] = ['HEALTHY', 'WATCH', 'AT_RISK', 'CRITICAL'];
   titles: Record<string, string> = {
     overview: 'National command centre',
-    network: 'One India. A connected network.',
+    network: 'Country healthcare network',
     facilities: 'Facility explorer',
     supply: 'Medicine & supply',
     alerts: 'Early warning centre',
   };
   subtitles: Record<string, string> = {
     overview: 'A clear view of healthcare readiness, from the nation to the last mile.',
-    network: 'Resource visibility across every state and union territory.',
+    network: 'Public-data context and simulated resources within the selected country.',
     facilities: 'Explore capacity, medicine cover and operational readiness.',
     supply: 'Track essential medicine stocks and the facilities below their safety reserve.',
     alerts: 'Transparent, rule-based signals that help teams act sooner.',
@@ -62,6 +62,7 @@ export class Dashboard {
           this.loading.set(true);
           this.error.set('');
           this.scope = {
+            country_id: params.get('country_id') || 'IN',
             state_id: params.get('state_id') || '',
             district_id: params.get('district_id') || '',
           };
@@ -128,7 +129,9 @@ export class Dashboard {
     this.refresh();
   }
   selectRegion(id: string) {
-    this.router.navigate(['/overview'], { queryParams: { state_id: id } });
+    this.router.navigate(['/overview'], {
+      queryParams: { country_id: this.scope['country_id'], state_id: id },
+    });
   }
   severity(region: Overview['regions'][number]): Status {
     return region.status_counts.CRITICAL
@@ -144,7 +147,7 @@ export class Dashboard {
       ? this.scope['district_id'].replaceAll('-', ' ')
       : this.scope['state_id']
         ? this.data()?.regions[0]?.name || this.scope['state_id']
-        : 'All India';
+        : 'All ' + (this.data()?.country.name || this.scope['country_id'] || 'India');
   }
   visibleAlerts() {
     return this.page() === 'alerts' ? this.alerts() : this.data()?.alerts || [];

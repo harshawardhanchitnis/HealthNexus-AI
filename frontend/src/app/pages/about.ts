@@ -7,86 +7,79 @@ import { Icon } from '../shared/icon';
   template: `
     <div class="page-heading">
       <div>
-        <div class="eyebrow">TRANSPARENCY / INDIA</div>
-        <h1>Built for a more resilient India.</h1>
-        <p>A clear account of our scope, our data and what works today.</p>
+        <div class="eyebrow">HEALTHNEXUS AI / PROJECT SCOPE</div>
+        <h1>Public evidence. Local resilience.</h1>
+        <p>
+          A real-data-backed platform foundation for healthcare resilience and federated
+          intelligence.
+        </p>
       </div>
     </div>
     <div class="about-hero">
       <app-icon name="network" />
-      <h2>National visibility.<br />Local responsibility.</h2>
+      <h2>India in depth.<br />BRICS in collaboration.</h2>
       <p>
-        HealthNexus AI is an India-only healthcare resource resilience prototype. The product scope
-        includes every state and union territory, with a hierarchy of India → State / UT → District
-        → Facility.
+        India retains all 36 states and union territories and its 207-facility operational showcase.
+        Brazil, Russia, China and South Africa each have representative regional nodes, with
+        country-specific data partitions for future federated learning.
       </p>
-      <span
-        >28 states &nbsp; / &nbsp; 8 union territories &nbsp; / &nbsp; One national network</span
-      >
+      <span>Public health datasets / Calibrated simulation / Traceable provenance</span>
     </div>
     <div class="about-grid">
       <section class="panel prose">
-        <h2>What works today</h2>
+        <h2>Working in Phase 2</h2>
         <ul>
-          <li>Angular command centre connected to a FastAPI backend.</li>
-          <li>Sample facilities in every Indian state and union territory.</li>
-          <li>Regional filters, facility search, inventory, beds, staff and patient footfall.</li>
-          <li>Reconciled synthetic data and explainable stock / attendance alerts.</li>
-          <li>Local data mode, with an optional Firestore repository.</li>
+          <li>Five-country geography and the existing India drill-down.</li>
+          <li>Two real public-source adapters: MoHFW / PIB Health Dynamics summary and WHO GHO.</li>
+          <li>Small verified caches, normalized observations, provenance and offline re-import.</li>
+          <li>Aggregate-anchored workforce and capacity assumptions.</li>
+          <li>
+            Patient syndrome mixes, admissions / discharges and stock ledgers with explicit unmet
+            demand.
+          </li>
+          <li>Resource views and transparent threshold alerts.</li>
         </ul>
-        <a routerLink="/overview" class="inline-link"
-          >Explore the network <app-icon name="arrow"
+        <a routerLink="/data-sources" class="inline-link"
+          >Inspect the evidence <app-icon name="arrow"
         /></a>
       </section>
       <section class="panel prose">
-        <h2>Next implementation milestones</h2>
+        <h2>Next milestones</h2>
         <ol>
-          <li>Evaluated demand forecasting and predictive warnings.</li>
-          <li>Emergency scenarios with causal resource effects.</li>
-          <li>OR-Tools redistribution within and between Indian states.</li>
-          <li>Backend-grounded Gemini administrative assistance.</li>
-          <li>Federated learning across Indian state / regional nodes.</li>
+          <li>Evaluated ML demand forecasts, uncertainty and predictive warnings.</li>
+          <li>Causal emergency scenarios and before/after comparisons.</li>
+          <li>OR-Tools redistribution within each country.</li>
+          <li>Grounded, server-side Gemini explanations.</li>
+          <li>Genuine country-node FedAvg with measured metrics.</li>
         </ol>
-        <p>
-          These capabilities are planned. The current prototype does not run AI inference or
-          federated training.
-        </p>
+        <p>These services have not been implemented or represented as running in Phase 2.</p>
       </section>
     </div>
     <section class="panel prose">
-      <h2>Prototype data notice</h2>
+      <h2>What is real, and what is simulated?</h2>
       <p>
-        All facility-level operational data is synthetic, generated from explicit assumptions about
-        weekly seasonality, seasonal demand, facility capacity and resource consumption. It has not
-        yet been statistically calibrated against verified government health datasets. No patient or
-        employee personally identifiable information is used.
+        The imported public observations are historical, national-level statistics with publisher
+        URLs and reference years. They do not provide live medicine inventory, staff attendance or
+        bed occupancy for the sample facilities.
       </p>
       <p>
-        All 36 states and union territories are represented. The selected districts are illustrative
-        and do not form an exhaustive or current administrative registry. Facility identifiers,
-        coordinates and capacities are fictional. No real government hospital integration is
-        claimed.
+        Facility-level operational values are simulated where real-time public feeds are
+        unavailable. Calibration attaches real aggregate anchors but does not convert generated data
+        into official observations. Names, locations, demand, medicine profiles and delivery
+        behaviour remain illustrative; no real patient or employee identities are used.
       </p>
-      <h3>Public references</h3>
+      <h3>Resource transfers and federation are different</h3>
       <p>
-        <a
-          href="https://www.india.gov.in/explore-india/facts-of-india/states-ut-districts"
-          target="_blank"
-          rel="noopener noreferrer"
-          >National Portal of India — states, union territories and districts ↗</a
-        >
+        Physical redistribution will be domestic. BRICS collaboration will exchange model updates,
+        with operational training data kept at its country node. The local prototype currently
+        demonstrates data partitions, not production national infrastructure or privacy guarantees.
       </p>
+      <h3>Coverage and limitations</h3>
       <p>
-        Future public-data imports must record their source URL, access date, fields and provenance.
-        Government health data and international comparisons have not been imported into this
-        prototype.
-      </p>
-      <h3>Federation stays within India</h3>
-      <p>
-        The planned federation will train models locally at Indian regional nodes and aggregate
-        model updates nationally. Raw records should stay at their source. Federated learning alone
-        does not guarantee privacy; secure aggregation, access control and update leakage need
-        separate evaluation.
+        India's districts and facilities are sampled. Other countries have two representative
+        regions each. The five configured countries are the requested hackathon scope, not an
+        exhaustive list of current BRICS members. Public source years and coverage differ. HMIS live
+        feeds, data.gov.in dataset imports and additional national portals remain planned.
       </p>
     </section>
   `,

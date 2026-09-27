@@ -1,8 +1,70 @@
 export type Status = 'HEALTHY' | 'WATCH' | 'AT_RISK' | 'CRITICAL';
+export interface Country {
+  id: string;
+  iso3: string;
+  name: string;
+  region_label: string;
+  detailed: boolean;
+}
+export interface Provenance {
+  id: string;
+  source_type: string;
+  source_name: string;
+  source_url: string | null;
+  accessed_at: string;
+  license: string | null;
+  geography: string[];
+  is_synthetic: boolean;
+  methodology: string;
+  version: string;
+  input_ids: string[];
+  checksum_sha256: string | null;
+}
+export interface Observation {
+  id: string;
+  country_id: string;
+  indicator: string;
+  label: string;
+  year: number;
+  value: number;
+  unit: string;
+  provenance_id: string;
+  source_record_id: string;
+  note: string;
+}
+export interface Calibration {
+  country_id?: string;
+  public_sources_available?: boolean;
+  inputs?: Observation[];
+  assumptions?: string[];
+  fallbacks?: string[];
+  beds_per_10000?: number;
+  doctors_per_10000?: number;
+  doctors_by_type?: number[];
+  nurses_by_type?: number[];
+}
+export interface DataSource {
+  provenance: Provenance;
+  status: string;
+  cached: boolean;
+  record_count: number;
+  adapter_version: string;
+  fields: string[];
+  reference_years: number[];
+  skipped_records: number;
+}
+export interface SourcesResponse {
+  datasets: DataSource[];
+  records: Observation[];
+  notice: string;
+  calibration: Calibration;
+  expected_adapters: string[];
+}
 export interface Region {
   id: string;
   name: string;
-  kind: 'state' | 'union_territory';
+  country_id: string;
+  kind: 'state' | 'union_territory' | 'province' | 'municipality' | 'federal_subject';
   zone: string;
   latitude: number;
   longitude: number;
@@ -37,7 +99,7 @@ export interface Alert {
   id: string;
   facility_id: string;
   facility_name: string;
-  district_id: string;
+  district_id: string | null;
   state_id: string;
   severity: Status;
   resource: string;
@@ -47,15 +109,34 @@ export interface Alert {
   method: string;
 }
 export interface Overview {
+  country: Country;
+  schema_version: number;
+  calibration: Calibration;
   as_of: string;
   synthetic: boolean;
   summary: Summary;
   history: Activity[];
   alerts: Alert[];
   regions: (Region & Summary)[];
-  coverage: { states: number; union_territories: number; sample_districts: number; notice: string };
+  coverage: {
+    states: number;
+    union_territories: number;
+    sample_districts: number;
+    notice: string;
+    regions: number;
+    complete_regions: boolean;
+  };
 }
 export interface Inventory {
+  ledger: {
+    date: string;
+    opening: number;
+    received: number;
+    requested: number;
+    consumed: number;
+    unmet_demand: number;
+    closing: number;
+  }[];
   medicine_id: string;
   name: string;
   unit: string;
@@ -69,11 +150,14 @@ export interface Inventory {
   status: Status;
 }
 export interface Facility {
+  country_id: string;
+  provenance_id: string;
+  calibration_ids: string[];
   id: string;
   name: string;
   type: string;
   state_id: string;
-  district_id: string;
+  district_id: string | null;
   district_name: string;
   status: Status;
   resilience_score: number;

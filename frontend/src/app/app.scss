@@ -1,6 +1,15 @@
 :host {
   display: block;
 }
+.country-selector {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 650;
+  max-width: 130px;
+  padding: 6px 3px;
+}
 .sidebar {
   width: 244px;
   position: fixed;

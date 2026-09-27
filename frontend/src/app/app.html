@@ -4,7 +4,9 @@
     ><span class="brand-mark"><app-icon name="pulse" /></span
     ><span>HealthNexus<span class="brand-ai">AI</span><small>HEALTHCARE RESILIENCE</small></span></a
   >
-  <div class="workspace-label">COMMAND CENTRE <span>IN</span></div>
+  <div class="workspace-label">
+    COMMAND CENTRE <span>{{ country() }}</span>
+  </div>
   <nav aria-label="Main navigation">
     @for (item of nav; track item.path) {
       <a
@@ -20,14 +22,15 @@
   <div class="workspace-label">PROJECT</div>
   <nav aria-label="Project navigation">
     <a routerLink="/about" routerLinkActive="active" (click)="menuOpen.set(false)"
-      ><app-icon name="layers" />Data & project scope</a
+      ><app-icon name="info" />Project scope</a
     >
   </nav>
   <div class="sidebar-bottom">
     <div class="scope-card">
-      <span class="scope-flag">🇮🇳</span><strong>One connected India</strong>
-      <p>28 states. 8 union territories.<br />Shared intelligence. Local data.</p>
-      <span class="scope-tag">INDIA-ONLY SCOPE</span>
+      <span class="scope-flag"><app-icon name="network" /></span
+      ><strong>Shared intelligence.</strong>
+      <p>Five country nodes.<br />India in depth. Local responsibility.</p>
+      <span class="scope-tag">BRICS RESILIENCE</span>
     </div>
     <div class="operator">
       <span class="avatar">HN</span>
@@ -48,11 +51,20 @@
         (click)="menuOpen.set(!menuOpen())"
       >
         <app-icon name="menu" /></button
-      ><span class="country-flag">🇮🇳</span><strong>India</strong><span class="divider">/</span
-      ><span class="muted">National health network</span>
+      ><label for="country" class="sr-only">Country</label
+      ><select
+        id="country"
+        class="country-selector"
+        [value]="country()"
+        (change)="changeCountry($event)"
+      >
+        @for (c of countries(); track c.id) {
+          <option [value]="c.id">{{ c.name }}</option>
+        }</select
+      ><span class="divider">/</span><span class="muted">National health network</span>
     </div>
     <div class="topbar-right">
-      <span class="demo-label"><span></span>SYNTHETIC DEMO</span
+      <span class="demo-label"><span></span>PUBLIC + SIMULATED</span
       ><a routerLink="/about" class="icon-button" aria-label="About this prototype"
         ><app-icon name="info"
       /></a>
@@ -60,26 +72,36 @@
   </header>
   <div class="scopebar">
     <div class="scope-controls">
-      <app-icon name="filter" /><label class="sr-only" for="state">State or union territory</label
+      <app-icon name="filter" /><label class="sr-only" for="state"
+        >Region / State / Union Territory</label
       ><select id="state" [value]="state()" (change)="changeState($event)">
-        <option value="">All India</option>
+        <option value="">All {{ countryName() }}</option>
         @for (region of regions(); track region.id) {
           <option [value]="region.id">{{ region.name }}</option>
-        }</select
-      ><span class="filter-divider"></span><label class="sr-only" for="district">District</label
-      ><select
-        id="district"
-        [value]="district()"
-        [disabled]="!state()"
-        (change)="changeDistrict($event)"
-      >
-        <option value="">{{ state() ? 'All sample districts' : 'All districts in sample' }}</option>
-        @for (d of availableDistricts(); track d.id) {
-          <option [value]="d.id">{{ d.name }}</option>
         }
       </select>
+      @if (country() === 'IN') {
+        <span class="filter-divider"></span><label class="sr-only" for="district">District</label
+        ><select
+          id="district"
+          [value]="district()"
+          [disabled]="!state()"
+          (change)="changeDistrict($event)"
+        >
+          <option value="">
+            {{ state() ? 'All sample districts' : 'All districts in sample' }}
+          </option>
+          @for (d of availableDistricts(); track d.id) {
+            <option [value]="d.id">{{ d.name }}</option>
+          }
+        </select>
+      }
     </div>
-    <span class="scope-help">National → State / UT → District → Facility</span>
+    <span class="scope-help">{{
+      country() === 'IN'
+        ? 'India → State / UT → District → Facility'
+        : 'Country → Region → Facility'
+    }}</span>
   </div>
   <main id="main">
     @if (regionsError()) {
