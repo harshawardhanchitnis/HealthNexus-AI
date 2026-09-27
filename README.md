@@ -1,41 +1,37 @@
 # HealthNexus AI
 
-**Federated Intelligence for Healthcare Resilience — India**
+**Federated Intelligence for Healthcare Resilience**
 
-An India-only national healthcare resilience prototype. The product scope covers every Indian state and union territory, with national → state/UT → district → facility navigation. Redistribution and future federated learning stay within India.
+A real-data-backed healthcare resilience prototype combining public health statistics with calibrated operational simulation. The configured BRICS scope is India, Brazil, Russia, China and South Africa. India remains the detailed showcase: all 36 states/UTs, 69 illustrative districts and 207 fictional facilities. Each other country has two representative regions and six fictional facilities. These five nodes are the hackathon scope, not an exhaustive list of current BRICS members.
 
-![India command centre](docs/screenshots/overview.png)
+![HealthNexus command centre](docs/screenshots/overview.png)
 
-## Working milestone
+## Working Phase 2
 
-Phase 1 is implemented, with a synthetic network to make the foundation useful:
+- Angular standalone command centre and FastAPI API, retaining India navigation and facility details.
+- Two real public-source adapters: MoHFW/PIB Health Dynamics of India 2022–23 (13 national statistics) and WHO GHO (20 bed/workforce observations across five countries).
+- Attributed raw caches, validated normalized observations, and separate generated operations.
+- Public statistics calibrate synthetic capacity, catchment and staffing. Demand drives medicine requests, admissions and stock ledgers.
+- Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
+- Local offline operation, optional Firestore adapter, Docker scaffolding and 38 backend tests.
 
-- Angular 20 standalone frontend, Router, signals, SCSS and responsive command-centre layout.
-- FastAPI backend, Pydantic models, OpenAPI documentation, CORS configuration and validated filters.
-- 207 fictional facilities across all 28 states and 8 union territories, using 69 illustrative districts.
-- National/regional resource summaries, facility search and pagination, medicine balances, beds, attendance, 28 days of patient demand and deterministic resource alerts.
-- Credential-free local repository and an optional server-side Firestore repository.
-- Reproducible generation and tests for balances, geographic scoping, aggregation, thresholds and error handling.
+**Facility-level operational values are simulated, not real-world live feeds.** Historical public aggregates do not establish the accuracy of an individual fictional facility. Current alerts use rules; forecasting, emergency scenarios, OR-Tools, Gemini and federated training are later milestones. Physical redistribution is designed to stay within each nation; future federation exchanges model updates only.
 
-**This is synthetic sample coverage, not all Indian districts or real healthcare facilities.** No government operational systems are connected. The generator uses explicit assumptions, not calibrated government health statistics. State/UT identifiers are internal prototype codes, not LGD codes.
+## Run locally — Windows PowerShell
 
-ML forecasting, emergency simulation, OR-Tools redistribution, Gemini and state-level FedAvg remain later milestones. Current alerts are threshold calculations, not AI predictions. See [scope](docs/scope.md) and the revised [master build prompt](docs/master-build-prompt.md).
-
-## Run locally (Windows PowerShell)
-
-Requirements: Node.js 22.12+ in the Node 22 line, npm, Python 3.11+ (tested with 3.13).
+Requirements: Python 3.11+ (tested with 3.13), Node.js 22.12+ in the Node 22 line, npm.
 
 From the repository root:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
-Copy-Item .env.example .env
-.\.venv\Scripts\python.exe scripts\generate_data.py --seed 42 --as-of 2026-09-27
+.\.venv\Scripts\python.exe scripts\import_official_data.py
+.\.venv\Scripts\python.exe scripts\generate_data.py --country all --seed 42 --as-of 2026-09-27
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
-In a second terminal:
+In a second terminal, from the repository root:
 
 ```powershell
 cd frontend
@@ -43,74 +39,56 @@ npm ci
 npm start
 ```
 
-Open **http://127.0.0.1:4200**. API docs: **http://127.0.0.1:8000/docs**. Health: **http://127.0.0.1:8000/api/health**.
+Open [the app](http://127.0.0.1:4200) or [API documentation](http://127.0.0.1:8000/docs). The Angular development proxy forwards `/api` to port 8000. Local mode needs no credentials or `.env`; `.env.example` documents optional configuration. On macOS/Linux use `.venv/bin/python`.
 
-The Angular development proxy forwards `/api/**` to port 8000; frontend source contains no cloud secrets. `.env` is optional for local mode. If no generated snapshot exists, the backend creates the deterministic network in memory. A saved snapshot keeps its explicit date; it is never labelled live. Restart the backend after generating a new snapshot.
+The import command above is offline. To refresh from the actual public endpoints:
 
-On macOS/Linux use `.venv/bin/python` instead of `.venv\Scripts\python.exe`.
+```powershell
+.\.venv\Scripts\python.exe scripts\import_official_data.py --refresh
+# Or select one adapter: --source india_hdi or --source who_gho
+```
+
+Regenerate operational snapshots and restart the backend after updating sources. Snapshots retain their explicit date and frozen calibration inputs. If generated files are absent, the backend generates a deterministic country snapshot in memory. Missing public caches are reported as fallback assumptions; invalid caches fail validation.
 
 ## Verify
 
 ```powershell
-# From repository root
 .\.venv\Scripts\python.exe -m pytest backend -q
+.\.venv\Scripts\python.exe -m compileall -q backend\app scripts
 cd frontend
 npm run build
+npx tsc --noEmit -p tsconfig.app.json
 ```
 
-The frontend uses lazy routes and a production build budget. Manual browser QA covers national navigation, Maharashtra → Pune, facility details, search, empty results, supply and warnings. See [validation](docs/validation.md) for the recorded checks.
+See [validation](docs/validation.md) and the [Phase 2 report](docs/phase2-report.md).
 
-## Environment
+## Storage and deployment
 
-| Variable | Default / purpose |
+`HEALTHNEXUS_STORAGE=local` is the default. `HEALTHNEXUS_CORS_ORIGINS` controls allowed local origins. Firestore requires `HEALTHNEXUS_STORAGE=firestore`, `GOOGLE_CLOUD_PROJECT` and server-side application credentials. It fails clearly if unavailable. `GEMINI_API_KEY` and `GEMINI_MODEL` are reserved and unused.
+
+India's existing `data/generated/network.json` path remains compatible. Other nodes use `data/generated/nodes/<country>/network.json`. Legacy schema-1 India snapshots remain readable and are explicitly identified as uncalibrated synthetic data. New schema-2 snapshots include lineage.
+
+Firestore stores `country_nodes/<code>` subcollections for metadata, regions, districts, facilities and alerts; legacy India collections remain a read fallback. To explicitly seed a test project:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\seed_firestore.py --project YOUR_TEST_PROJECT --country IN --confirm-synthetic-upload
+```
+
+This creates/overwrites matching sample IDs and does not remove unrelated documents. Cloud execution has not been validated against a live project. Country partitioning is logical, not an access-control boundary. Authentication and production isolation remain future work.
+
+`docker compose up --build` starts the container scaffold, including public caches, with the frontend at port 4200. Docker runtime deployment has not been verified here. Firebase Hosting and Cloud Run are planned; nothing is published automatically.
+
+## Repository and sources
+
+| Path | Purpose |
 | --- | --- |
-| `HEALTHNEXUS_STORAGE` | `local`; set `firestore` only for the optional cloud store |
-| `HEALTHNEXUS_CORS_ORIGINS` | Local Angular origins, comma-separated |
-| `GOOGLE_CLOUD_PROJECT` | Required when Firestore is selected |
-| `GOOGLE_APPLICATION_CREDENTIALS` | Server-side application credentials, outside the repository |
-| `GEMINI_API_KEY`, `GEMINI_MODEL` | Reserved; no Gemini calls in Phase 1 |
+| `backend/app/data_ingestion/` | Public-source adapters, caching and normalization |
+| `backend/app/simulation/` | Public calibration and causal synthetic generator |
+| `data/official/` | Small attributed raw extracts |
+| `data/normalized/` | Validated public observations |
+| `data/generated/` | Gitignored fictional operations by country |
+| `data/metadata/` | India hierarchy and representative foreign regions |
+| `frontend/` | Country-aware command centre and source explorer |
+| `docs/` | Scope, architecture, sources, model assumptions, API and demo |
 
-An explicitly selected Firestore store fails clearly if unavailable; it never quietly replaces cloud data with synthetic data. Cloud credentials are not required for local mode. The provided brief's Gemini model name must be verified against available Google models at integration time.
-
-## Optional Firestore
-
-The backend reads `network_metadata/india`, `regions`, `districts`, `facilities` and `alerts`. Each facility is a separate document to avoid the Firestore document size limit. Local seeding never writes to Google Cloud.
-
-To explicitly upload this synthetic sample to your own test project:
-
-```powershell
-.\.venv\Scripts\python.exe scripts\seed_firestore.py --project YOUR_TEST_PROJECT --confirm-synthetic-upload
-```
-
-Use an empty test project: this creates/overwrites matching sample document IDs and does not remove pre-existing documents. The adapter is implemented but cloud execution requires your credentials and has not been validated against a live project. Deny direct client access; the Angular application reads through FastAPI. The local prototype does not implement authentication and is not ready for public exposure.
-
-## Containers
-
-```powershell
-docker compose up --build
-```
-
-The frontend is then served at http://127.0.0.1:4200 and proxies `/api` to the backend. The included containers are a deployment scaffold; Docker must be installed separately. See [architecture](docs/architecture.md) for the future Firebase Hosting / Cloud Run target. Nothing is published automatically.
-
-## Repository
-
-```text
-frontend/              Angular command centre
-backend/app/           API, models, storage, summaries, synthetic generation
-backend/tests/         Critical invariants and API behaviour
-data/metadata/         India state/UT reference and illustrative districts
-data/generated/        Reproducible local snapshot (gitignored)
-data/official/         Reserved for documented public-data imports
-scripts/               Data generation and explicit Firestore seeding
-docs/                  Scope, sources, architecture, API, demo, validation
-```
-
-## Google technology plan
-
-Firestore has an optional backend implementation. Gemini, OR-Tools, Firebase Hosting and Cloud Run are planned integrations, not claims of completed production deployment. The system has not been developed entirely in Google AI Studio.
-
-## Privacy and limitations
-
-No patient names, Aadhaar numbers, diagnoses or real employee identities. All facilities are fictional. Rule-based cover does not account for expiry, replenishment schedules, uncertainty or epidemic dynamics. The grid is a region index, not a political boundary map. Federated learning across Indian states is planned and does not itself guarantee privacy.
-
-License: MIT. Government source material, if later imported, retains its source terms.
+Read [data sources and usage terms](docs/data-sources.md), [model assumptions](docs/model-card.md), [scope](docs/scope.md) and [the master build prompt](docs/master-build-prompt.md). The system contains no patient or employee identities. It is not a clinical decision system. Public material retains its source terms; the MIT license applies to project code, not third-party datasets. WHO does not endorse this project.

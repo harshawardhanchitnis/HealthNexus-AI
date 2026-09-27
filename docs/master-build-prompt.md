@@ -1,12 +1,24 @@
-# HealthNexus AI — India-only master build prompt
+# HealthNexus AI — master build prompt
 
-This is the supplied build brief with the geographic change applied throughout.
-The BRICS Resilience track remains hackathon context only; product geography,
-datasets, federation and redistribution are scoped exclusively to India.
+## Current instructions take precedence over the historical brief below
 
-Scope requirement: cover every Indian state and union territory. A synthetic
-sample may be used for initial implementation, but its district/facility coverage
-must be labelled honestly and must not be described as a complete real registry.
+Continue the existing repository; never recreate it or reset completed phases. Phase 1 and the Phase 2 correction are implemented. The configured scope is India, Brazil, Russia, China and South Africa, not an exhaustive current BRICS membership list.
+
+- Preserve all 36 Indian states/UTs, 69 illustrative districts, 207 fictional facilities and original tests.
+- Maintain representative country → region → facility nodes for the other four countries (six fictional facilities each).
+- Keep actual MoHFW/PIB and WHO adapters, attributed raw caches, normalized observations and separate synthetic operations.
+- Preserve official_public, public_international, derived, synthetic and simulation provenance. Historical aggregates are not live facility data.
+- Public statistics calibrate causal generation. Explain assumptions, reference years, missing data and uncertainty.
+- Physical redistribution remains domestic. Future federation shares model updates; do not pool raw operational training datasets.
+- Phase 2 does not implement Gemini, OR-Tools or FedAvg. Existing dashboards are already working; the next practical Phase 3 milestone is temporal forecasting and baseline evaluation, followed by later simulation, optimization and federation work.
+- Treat all named future products/models in the historical brief as intended integrations. Verify actual model availability at integration time; do not claim the proposed Gemini model is already available or integrated.
+- Keep the frontend/API runnable, preserve compatibility and test every milestone. Do not label future features as completed.
+
+See scope.md, data-sources.md, model-card.md and phase2-report.md for the implemented baseline. The original phase numbering and “start Phase 1” directions below are historical context, superseded by this continuation instruction.
+
+---
+
+## Original long-term product brief, with corrected Phase 2 geography
 
 We are starting a new hackathon project called:
 
@@ -19,7 +31,7 @@ This project is for the **Google AI Build / Code for Communities Hackathon** und
 
 ## Official Problem Context
 
-Public healthcare systems across India face persistent supply-chain and resource-management vulnerabilities.
+Public healthcare systems across developing nations face persistent supply-chain and resource-management vulnerabilities.
 
 The challenge is to build a federated AI platform capable of providing national-scale visibility into:
 
@@ -35,7 +47,7 @@ The platform should:
 - Detect potential medicine/resource stock-outs before they happen
 - Generate early warnings during emergencies
 - Recommend automated cross-district resource redistribution
-- Support shared predictive modelling across Indian states and union territories
+- Support shared predictive modelling across BRICS nations
 - Preserve data sovereignty by avoiding unnecessary centralisation of raw sensitive data
 
 ---
@@ -46,11 +58,11 @@ Build:
 
 # HealthNexus AI
 
-An India-only, national-scale AI healthcare resilience and resource-management platform covering all states and union territories.
+A national-scale AI healthcare resilience and resource-management platform.
 
 The core concept is:
 
-> HealthNexus AI continuously observes healthcare-resource conditions across a network of Primary Health Centres and other public facilities, forecasts shortages before they occur, detects emerging health emergencies, calculates optimal redistribution of resources, and allows Indian state and regional nodes to improve predictive models collaboratively without sharing raw operational or patient data.
+> HealthNexus AI continuously observes healthcare-resource conditions across a network of Primary Health Centres and other public facilities, forecasts shortages before they occur, detects emerging health emergencies, calculates optimal redistribution of resources, and allows BRICS nations to improve predictive models collaboratively without sharing raw operational or patient data.
 
 This should NOT become a generic hospital-management CRUD application.
 
@@ -179,8 +191,8 @@ Use:
 
 Model collections cleanly for things such as:
 
-- national configuration (India only)
-- states and union territories
+- countries
+- states
 - districts
 - facilities
 - medicines
@@ -295,7 +307,7 @@ Use:
 
 Goal:
 
-Calculate optimal resource redistribution across facilities within India, including intra-district, inter-district and permitted inter-state transfers.
+Calculate optimal resource redistribution across facilities.
 
 Consider:
 
@@ -331,9 +343,15 @@ Implement a small but genuine federated-learning demonstration.
 
 Concept:
 
-Each participating Indian state or regional node has its own local dataset/model. For a lightweight demo, use five Indian nodes, for example Maharashtra, Karnataka, Tamil Nadu, Uttar Pradesh and Assam. The wider platform must support every Indian state and union territory.
+Each BRICS country has its own local dataset/model:
 
-Raw operational records stay inside each Indian state or regional simulated node.
+- India
+- Brazil
+- Russia
+- China
+- South Africa
+
+Raw operational records stay inside each country's simulated node.
 
 Only model parameters/updates are aggregated.
 
@@ -345,8 +363,8 @@ Local data
 → local training
 → model update
 → central aggregator
-→ shared national model
-→ updated model distributed back to participating Indian nodes
+→ global model
+→ updated model distributed back to countries
 
 The UI should clearly show:
 
@@ -356,7 +374,7 @@ and illustrate that predictive knowledge is shared without centralising raw data
 
 Keep this prototype technically real but computationally lightweight.
 
-Do not pretend that we are running an actual production interstate healthcare infrastructure network.
+Do not pretend that we are running an actual production BRICS infrastructure network.
 
 Clearly identify it as a demonstration/simulation.
 
@@ -386,12 +404,13 @@ Where practical, prepare adapters or documented download/import procedures for p
 - Essential Medicines Lists
 - Aggregated facility/workforce information
 
-### India-wide coverage and provenance
+### International / BRICS
 
-- Verified, dated state/UT and district reference data
-- India-specific workforce, bed-capacity and facility aggregates
-- Documented administrative changes and coverage gaps
-- No foreign-country operational datasets or country-comparison module required
+- WHO Global Health Observatory
+- Country-level health workforce indicators
+- Hospital bed density
+- Facility/infrastructure indicators
+- Other suitable public aggregate BRICS health indicators
 
 Do NOT fabricate government API endpoints.
 
@@ -691,8 +710,8 @@ Display:
 
 Allow drill-down:
 
-India
-→ State / Union Territory
+Country
+→ State
 → District
 → Facility
 
@@ -817,19 +836,17 @@ This is an administrative healthcare-resource assistant.
 
 ---
 
-## H. India Federated Intelligence
+## H. BRICS Federated Intelligence
 
-Show Indian state or regional nodes.
+Show five country nodes.
 
-Example demo UI:
+Example UI:
 
-Maharashtra
-Karnataka
-Tamil Nadu
-Uttar Pradesh
-Assam
-
-Support adding all other Indian states and union territories through configuration.
+India
+Brazil
+Russia
+China
+South Africa
 
 Show:
 
@@ -838,7 +855,7 @@ Show:
 - current training round
 - raw data transferred: 0
 - model update sent
-- shared national model performance
+- global model performance
 
 Allow:
 
@@ -882,7 +899,7 @@ Forecasts
 Early Warnings
 Redistribution
 Emergency Simulator
-India Federation
+BRICS Federation
 AI Copilot
 Data Sources
 About
@@ -918,7 +935,7 @@ Redistribution Plan
 
 Separate federated-learning service/module:
 
-Indian State / Regional Nodes
+BRICS Country Nodes
         |
         v
 Local Training
@@ -927,7 +944,7 @@ Local Training
 FedAvg Aggregator
         |
         v
-Shared National Forecast Model
+Global Forecast Model
 
 Deployment target:
 
@@ -1171,12 +1188,12 @@ The application must run at the end of Phase 1.
 
 ---
 
-## Phase 2 — Synthetic Health Network
+## Phase 2 — Public-data-backed Health Network
 
 Build realistic generators for:
 
-- national configuration (India only)
-- states and union territories
+- countries
+- states
 - districts
 - facilities
 - medicine catalogue
@@ -1187,7 +1204,9 @@ Build realistic generators for:
 
 Seed enough data to make the dashboard meaningful.
 
-Represent every Indian state and union territory from the initial synthetic network milestone. Keep the facility sample lightweight, label incomplete district coverage, and support documented imports of the complete district registry. Maharashtra/Pune remains one drill-down and emergency example, not the product boundary. Do not build foreign-country nodes or a country selector.
+Retain India across all 36 states/UTs and 207 illustrative facilities, including the Maharashtra/Pune vertical slice.
+
+Include representative region/facility nodes for Brazil, Russia, China and South Africa. Integrate real public-source adapters and provenance; calibrate synthetic operations from documented public statistics.
 
 ---
 
@@ -1274,7 +1293,7 @@ Provide a deterministic mock/fallback mode when the API key is absent so local U
 
 ## Phase 9 — Federated Learning
 
-Add five simulated Indian state/regional nodes and a genuine lightweight FedAvg demonstration, using a node registry that can support every Indian state and union territory.
+Add five simulated BRICS nodes and a genuine lightweight FedAvg demonstration.
 
 ---
 
@@ -1320,7 +1339,7 @@ Then continue toward forecasting and simulation.
 The final demo should support this sequence:
 
 1. Open HealthNexus AI.
-2. Show India-wide network health, including all states and union territories.
+2. Show national network health.
 3. Open Maharashtra.
 4. Open Pune.
 5. Show healthy PHCs.
@@ -1333,14 +1352,14 @@ The final demo should support this sequence:
 12. Run OR-Tools redistribution.
 13. Display donor → receiver transfers.
 14. Ask Gemini to explain the response plan.
-15. Open India Federation.
+15. Open BRICS Federation.
 16. Run a federated-learning round.
 17. Show “Raw records shared: 0”.
-18. Show shared national model improvement.
+18. Show global model improvement.
 
 The experience should make the key message obvious:
 
-> **Predict shortages before they become crises. Coordinate resources before facilities fail. Share intelligence across India without sharing raw health data.**
+> **Predict shortages before they become crises. Coordinate resources before facilities fail. Share intelligence across borders without sharing raw health data.**
 
 Now inspect the workspace and **start implementing HealthNexus AI from Phase 1 immediately**.
 

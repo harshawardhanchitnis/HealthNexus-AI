@@ -1,19 +1,27 @@
-# India-only scope
+# Scope and milestone boundaries
 
-The user's geographic change supersedes international features in the supplied brief.
+HealthNexus AI is a real-data-backed healthcare resilience prototype. Public aggregates support operational simulation now; predictive models, domestic optimization and federated learning form the later product.
 
-- Geography: all of India, including every state and union territory.
-- Hierarchy: India → State / Union Territory → District → Facility.
-- No country selector, foreign operational nodes or cross-border transfer flows.
-- Intra-district, inter-district and inter-state redistribution within India; logistics and permissions must be represented when implemented.
-- Federation: Indian state/UT or regional datasets; local training and a national aggregator. Raw records remain at their node.
-- UI naming: India Federated Intelligence; State / Regional Nodes; Shared National Model.
-- Data sources: Indian public health aggregates and verified India-specific data; no international country-comparison requirement.
-- Pune dengue scenario remains one selectable example, not the product's geographic boundary.
-- Broader BRICS Resilience track context may remain in the pitch; it does not expand implementation geography.
+## Configured geography
 
-## Milestone boundaries
+| Node | Hierarchy and implemented coverage |
+| --- | --- |
+| India | Country → all 28 states and 8 UTs → 69 illustrative districts → 207 fictional facilities |
+| Brazil | Country → São Paulo and Rio de Janeiro → 6 fictional facilities |
+| Russia | Country → Moscow and Saint Petersburg → 6 fictional facilities |
+| China | Country → Guangdong and Shanghai → 6 fictional facilities |
+| South Africa | Country → Gauteng and Western Cape → 6 fictional facilities |
 
-Phase 1 is a running Angular/FastAPI foundation with a useful national synthetic sample. All 36 state/UT units are represented; 69 selected districts and 207 fictional facilities are illustrative. Complete, current district and real facility registries require a dated official import, provenance review and reconciliation of administrative changes. Do not describe this sample as exhaustive coverage.
+The five configured countries follow the hackathon brief; they are not an exhaustive statement of current BRICS membership. India's complete state/UT coverage does not imply a complete district or facility registry. Coordinates indicate illustrative locations; identifiers are internal, not official registry codes.
 
-Later phases retain the original order: data calibration, evaluated forecasting, predictive risk, causal emergency simulation, OR-Tools, grounded Gemini, state-node federation, and polish. A federated round must report actual measured metrics; never promise model improvement on every round.
+## Implemented
+
+Country-scoped API and storage; India navigation and original tests; public-source ingestion and offline caches; provenance; aggregate calibration; causal demand, stock and occupancy histories; rule-based alerts; Data Sources and BRICS node pages. Foreign nodes are extensible representative samples.
+
+## Next phases
+
+Phase 3 should build temporal forecasting datasets, transparent demand baselines, stockout-aware targets, held-out evaluation and uncertainty displays. Then add emergency scenarios and domestic redistribution with donor reserves and audit trails. Gemini, OR-Tools and real FedAvg training are not implemented in Phase 2.
+
+Each future learning node owns its local training data. Only model updates and permitted aggregate evaluation statistics go to the federation coordinator; raw operational records must not be pooled for that demonstration. Updates alone do not guarantee privacy: authentication, leakage testing and privacy controls require separate engineering.
+
+Physical resources move domestically. Model learning may cross borders. There are no automatic international medicine transfers. Country selectors and local filesystem partitions are not production sovereignty or security enforcement.

@@ -1,27 +1,21 @@
-# API
+# API — Phase 2
 
-Interactive OpenAPI: http://127.0.0.1:8000/docs
+FastAPI exposes interactive documentation at `/docs`. All routes are read-only. Network routes accept `country_id=IN|BR|RU|CN|ZA`, defaulting to India for compatibility.
 
-| GET endpoint | Purpose |
+| GET route | Behavior |
 | --- | --- |
-| `/api/health` | Readiness, active store, country, snapshot date |
-| `/api/regions` | All 36 regions and illustrative districts |
-| `/api/overview` | Resource totals, regional summaries, 28-day trend, top six alerts |
-| `/api/facilities` | Searchable, paginated facility summaries |
-| `/api/facilities/{id}` | Inventory balances, beds, staff, history and alerts |
-| `/api/inventory` | Medicine totals and local shortage counts |
-| `/api/alerts` | Scoped deterministic stock and attendance alerts |
+| `/api/health` | Selected snapshot date, storage mode and synthetic operations flag |
+| `/api/countries` | Five configured nodes, coverage labels, domestic redistribution scope, federation not implemented |
+| `/api/data-sources` | Public source catalog, normalized records, provenance and current calibration preview; optional country filter |
+| `/api/regions` | Country regions and optional India districts |
+| `/api/overview` | Summary, history, region index, alerts, calibration and honest coverage |
+| `/api/facilities` | Paginated/searchable country-scoped list |
+| `/api/facilities/{id}` | Facility histories, stock ledgers, alerts, provenance registry and frozen calibration inputs |
+| `/api/inventory` | Aggregated stock/consumption/reserve flags |
+| `/api/alerts` | Rule-based resource alerts |
 
-Overview, facilities, inventory and alerts accept optional `state_id` and `district_id`. IDs come from `/api/regions`. A district must belong to the selected state. Invalid scopes return 404, malformed parameters 422, unavailable stores 503 with sanitized error text.
+`state_id` remains the region-filter query name for backward compatibility. India also supports `district_id`. Facility lists accept `search`, `status`, `offset` and `limit` (1–250); alerts accept `severity`. Scope validation rejects foreign regions/facilities with 404 and unknown country codes with 422. Storage failures return 503. There is no cross-country aggregate operational endpoint.
 
-Facilities additionally accept `search`, `status`, `offset` (>=0) and `limit` (1–250). Alerts accept `severity`. Status enums: `HEALTHY`, `WATCH`, `AT_RISK`, `CRITICAL`.
+Examples: `/api/overview?country_id=BR&state_id=BR-SP`, `/api/overview?state_id=MH&district_id=MH-PUNE`, `/api/data-sources?country_id=ZA`.
 
-Examples:
-
-```text
-/api/overview?state_id=MH&district_id=MH-PUNE
-/api/facilities?state_id=MH&search=Pune&limit=15
-/api/alerts?state_id=MH&severity=CRITICAL
-```
-
-There are no write, forecasting, AI or simulator APIs in this phase.
+The sources endpoint keeps the full integrated source catalog visible even when records are country-filtered, because calibration has cross-country public aggregate dependencies. Its current preview may differ from a previously generated facility's frozen inputs. Public records carry reference years; synthetic snapshots carry explicit `as_of` dates. No training, transfer, Gemini or optimization write endpoint exists in Phase 2.
