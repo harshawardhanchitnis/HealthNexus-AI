@@ -1,0 +1,13 @@
+{
+  "adapter": "india_hdi",
+  "source_url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2053070",
+  "accessed_at": "2026-09-27",
+  "version": "699e95adc994",
+  "format": "text/plain",
+  "payload": "As of March 31, 2023, the country has a total of 1,69,615 Sub-Centres (SCs), 31,882 Primary Health Centres (PHCs), 6,359 Community Health Centres (CHCs), 1,340 Sub-Divisional/District Hospitals (SDHs), 714 District Hospitals (DHs), and 362 Medical Colleges (MCs) serving both rural and urban areas.\nThese healthcare infrastructures are supported by 2,39,911 Health Worker (Male + Female) at SCs, 40,583 Doctors/Medical Officers at PHCs, 26,280 Specialists & Medical Officers at CHCs, and 45,027 Doctors and Specialists at SDHs and DHs. Additionally, there are 47,932 Staff Nurses at PHCs, 51,059 Nursing Staff at CHCs, and 1,35,793 Paramedical Staff at SDHs and DHs across the country.",
+  "checksum_sha256": "699e95adc9941ce7445fbb7187acfe93b1f7b9bbfc93a17435bd00191b3d3bab",
+  "requests": [
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2053070"
+  ],
+  "extraction": "Two quantitative paragraphs extracted from the official HTML; statistics as of 2023-03-31. Text whitespace normalized; numbers unchanged."
+}

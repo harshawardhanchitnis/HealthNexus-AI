@@ -5,9 +5,13 @@ from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import Settings
+from app.core.geography import COUNTRIES, COUNTRY_BY_ID
+from app.data_ingestion.catalog import datasets
+from app.models.provenance import CountryCode
 from app.models.network import Snapshot, Status
 from app.services.repository import NetworkRepository, create_repository
 from app.services.summary import aggregate_history, summarize
+from app.simulation.calibration import calibration_for
 
 
 def create_app(repository: NetworkRepository | None = None) -> FastAPI:
@@ -18,47 +22,76 @@ def create_app(repository: NetworkRepository | None = None) -> FastAPI:
         app.state.repository = repository or create_repository(settings)
         yield
 
-    app = FastAPI(title="HealthNexus AI · India", version="0.1.0", lifespan=lifespan)
+    app = FastAPI(title="HealthNexus AI · BRICS", version="0.2.0", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
         allow_credentials=False, allow_methods=["GET"], allow_headers=["Content-Type"])
 
-    def dataset(request: Request) -> Snapshot:
+    def dataset(request: Request, country_id: CountryCode = "IN") -> Snapshot:
         try:
-            return request.app.state.repository.snapshot()
+            repo = request.app.state.repository
+            return repo.snapshot() if country_id == "IN" else repo.country_snapshot(country_id)
         except Exception:
             logging.exception("Unable to read healthcare network")
             raise HTTPException(status_code=503, detail="Network data is unavailable. Check backend storage configuration.")
 
     def filtered(data: Snapshot, state_id: str | None, district_id: str | None):
         if state_id and not any(r.id == state_id for r in data.regions):
-            raise HTTPException(404, "State or union territory not found")
+            raise HTTPException(404, "Region not found in selected country")
         if district_id and not any(d.id == district_id and (not state_id or d.state_id == state_id) for d in data.districts):
             raise HTTPException(404, "District not found in selected scope")
         return [f for f in data.facilities if (not state_id or f.state_id == state_id) and (not district_id or f.district_id == district_id)]
 
     @app.get("/api/health")
     def health(request: Request, data: Snapshot = Depends(dataset)):
-        return {"status": "ok", "service": "HealthNexus AI", "country": "IN",
+        return {"status": "ok", "service": "HealthNexus AI", "country": data.country,
             "storage": request.app.state.repository.mode, "synthetic": True, "as_of": data.as_of}
+
+    @app.get("/api/countries")
+    def countries():
+        return {"items": COUNTRIES, "federation_status": "not_implemented",
+            "scope_note": "Five configured hackathon nodes; not an exhaustive list of current BRICS members.",
+            "redistribution": "domestic_only"}
+
+    @app.get("/api/data-sources")
+    def data_sources(country_id: CountryCode | None = None):
+        try:
+            sources = datasets()
+        except (ValueError, OSError):
+            logging.exception("Public data cache is invalid")
+            raise HTTPException(503, "Public data cache failed validation. Re-import the attributed snapshots.")
+        records = [row for source in sources for row in source.records if not country_id or row.country_id == country_id]
+        return {"datasets": [{"provenance": source.provenance, "status": "Integrated — calibration and public reference",
+                    "cached": True, "record_count": len(source.records), "adapter_version": source.adapter_version,
+                    "fields": sorted({row.indicator for row in source.records}),
+                    "reference_years": sorted({row.year for row in source.records}), "skipped_records": source.skipped_records}
+                for source in sources],
+            "records": records, "expected_adapters": ["india_hdi", "who_gho"],
+            "notice": "Public observations are historical aggregates. Facility operations are simulated; calibration does not make them live or official.",
+            "layers": ["official_public", "public_international", "derived", "synthetic", "simulation"],
+            "simulation_status": "emergency_scenarios_not_implemented",
+            "calibration": calibration_for(country_id or "IN")}
 
     @app.get("/api/regions")
     def regions(data: Snapshot = Depends(dataset)):
-        return {"country": "IN", "regions": data.regions, "districts": data.districts}
+        return {"country": data.country, "regions": data.regions, "districts": data.districts}
 
     @app.get("/api/overview")
     def overview(state_id: str | None = None, district_id: str | None = None, data: Snapshot = Depends(dataset)):
         facilities = filtered(data, state_id, district_id)
         ids = {f.id for f in facilities}
         alerts = [a for a in data.alerts if a.facility_id in ids]
-        return {"as_of": data.as_of, "synthetic": True, "scope": {"state_id": state_id, "district_id": district_id},
+        return {"as_of": data.as_of, "synthetic": True, "country": COUNTRY_BY_ID[data.country],
+            "schema_version": data.schema_version, "calibration": data.calibration,
+            "scope": {"country_id": data.country, "state_id": state_id, "district_id": district_id},
             "summary": {**summarize(facilities), "active_alerts": len(alerts)},
             "history": aggregate_history(facilities), "alerts": alerts[:6],
             "regions": [{**r.model_dump(), **summarize([f for f in facilities if f.state_id == r.id])}
                 for r in data.regions if not state_id or r.id == state_id],
-            "coverage": {"states": sum(r.kind == "state" for r in data.regions),
+            "coverage": {"regions": len(data.regions), "complete_regions": data.country == "IN",
+                "states": sum(r.kind == "state" for r in data.regions),
                 "union_territories": sum(r.kind == "union_territory" for r in data.regions),
                 "sample_districts": len(data.districts),
-                "notice": "Synthetic sample facilities across all states and union territories. District coverage is illustrative, not a complete national facility registry."}}
+                "notice": "All Indian states/UTs; illustrative districts and facilities." if data.country == "IN" else "Representative regional nodes and fictional facilities; not complete national coverage."}}
 
     @app.get("/api/facilities")
     def facilities(state_id: str | None = None, district_id: str | None = None,
@@ -75,7 +108,9 @@ def create_app(repository: NetworkRepository | None = None) -> FastAPI:
         result = next((f for f in data.facilities if f.id == facility_id), None)
         if result is None:
             raise HTTPException(404, "Facility not found")
-        return {"facility": result, "alerts": [a for a in data.alerts if a.facility_id == facility_id], "as_of": data.as_of}
+        return {"facility": result, "alerts": [a for a in data.alerts if a.facility_id == facility_id],
+            "as_of": data.as_of, "country": COUNTRY_BY_ID[data.country], "provenance": data.provenance,
+            "calibration": data.calibration}
 
     @app.get("/api/inventory")
     def inventory(state_id: str | None = None, district_id: str | None = None,
@@ -102,4 +137,3 @@ def create_app(repository: NetworkRepository | None = None) -> FastAPI:
 
 
 app = create_app()
-

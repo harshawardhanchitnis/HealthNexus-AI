@@ -9,8 +9,9 @@ __pycache__/
 .env.*
 !.env.example
 data/generated/*.json
+data/generated/nodes/
+*.tmp
 artifacts/
 *.log
 credentials*.json
 service-account*.json
-

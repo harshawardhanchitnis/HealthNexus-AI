@@ -1,0 +1,9 @@
+country_id,id,name,kind,zone,latitude,longitude
+BR,BR-SP,São Paulo,state,Southeast,-23.55,-46.63
+BR,BR-RJ,Rio de Janeiro,state,Southeast,-22.91,-43.17
+RU,RU-MOW,Moscow,federal_subject,Central,55.75,37.62
+RU,RU-SPE,Saint Petersburg,federal_subject,Northwest,59.93,30.34
+CN,CN-GD,Guangdong,province,South,23.13,113.26
+CN,CN-SH,Shanghai,municipality,East,31.23,121.47
+ZA,ZA-GP,Gauteng,province,Interior,-26.20,28.04
+ZA,ZA-WC,Western Cape,province,Southwest,-33.92,18.42
