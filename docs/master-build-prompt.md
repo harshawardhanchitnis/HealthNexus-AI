@@ -2,7 +2,7 @@
 
 ## Current instructions take precedence over the historical brief below
 
-Continue the existing repository; never recreate it or reset completed phases. Phase 1 and the Phase 2 correction are implemented. The configured scope is India, Brazil, Russia, China and South Africa, not an exhaustive current BRICS membership list.
+Continue the existing repository; never recreate it or reset completed phases. Phases 1–3 are implemented. Phase 3 adds real trained forecasting, chronological evaluation, uncertainty and stock-out intelligence; see phase3-report.md and model-card.md. The next milestone is Phase 4: Early Warning Engine + Emergency Digital Twin. The configured scope is India, Brazil, Russia, China and South Africa, not an exhaustive current BRICS membership list.
 
 - Preserve all 36 Indian states/UTs, 69 illustrative districts, 207 fictional facilities and original tests.
 - Maintain representative country → region → facility nodes for the other four countries (six fictional facilities each).
@@ -10,7 +10,7 @@ Continue the existing repository; never recreate it or reset completed phases. P
 - Preserve official_public, public_international, derived, synthetic and simulation provenance. Historical aggregates are not live facility data.
 - Public statistics calibrate causal generation. Explain assumptions, reference years, missing data and uncertainty.
 - Physical redistribution remains domestic. Future federation shares model updates; do not pool raw operational training datasets.
-- Phase 2 does not implement Gemini, OR-Tools or FedAvg. Existing dashboards are already working; the next practical Phase 3 milestone is temporal forecasting and baseline evaluation, followed by later simulation, optimization and federation work.
+- Phase 3 does not implement Gemini, OR-Tools or FedAvg. Dashboards and evaluated forecasting are working; next consume these outputs in predictive warnings and emergency scenarios, followed by later optimization and federation work.
 - Treat all named future products/models in the historical brief as intended integrations. Verify actual model availability at integration time; do not claim the proposed Gemini model is already available or integrated.
 - Keep the frontend/API runnable, preserve compatibility and test every milestone. Do not label future features as completed.
 

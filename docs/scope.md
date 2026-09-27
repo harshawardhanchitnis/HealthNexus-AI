@@ -16,11 +16,11 @@ The five configured countries follow the hackathon brief; they are not an exhaus
 
 ## Implemented
 
-Country-scoped API and storage; India navigation and original tests; public-source ingestion and offline caches; provenance; aggregate calibration; causal demand, stock and occupancy histories; rule-based alerts; Data Sources and BRICS node pages. Foreign nodes are extensible representative samples.
+Country-scoped API and storage; India navigation and original tests; public-source ingestion and offline caches; provenance; aggregate calibration; causal 540-day histories; rule alerts; trained country-local demand/admissions forecasts; baseline comparison and chronological evaluation; residual intervals and stock-out intelligence; Forecasts, Model Performance, Data Sources and BRICS pages. Foreign nodes are extensible representative samples.
 
 ## Next phases
 
-Phase 3 should build temporal forecasting datasets, transparent demand baselines, stockout-aware targets, held-out evaluation and uncertainty displays. Then add emergency scenarios and domestic redistribution with donor reserves and audit trails. Gemini, OR-Tools and real FedAvg training are not implemented in Phase 2.
+Phase 3 forecasting is implemented. Phase 4 is **Early Warning Engine + Emergency Digital Twin**: consume forecast/stock trajectories to prioritize warnings, introduce explicit scenario deltas and evaluate before/after outcomes. Domestic redistribution with donor reserves/audit trails, Gemini, OR-Tools and real FedAvg remain later work.
 
 Each future learning node owns its local training data. Only model updates and permitted aggregate evaluation statistics go to the federation coordinator; raw operational records must not be pooled for that demonstration. Updates alone do not guarantee privacy: authentication, leakage testing and privacy controls require separate engineering.
 

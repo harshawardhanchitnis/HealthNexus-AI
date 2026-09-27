@@ -1,28 +1,69 @@
-# Operational generator and rule model card
+# Forecasting model card — Phase 3
 
-Version: Phase 2, aggregate-anchors-v2. Purpose: reproducible engineering and hackathon demonstration. This is not a fitted epidemiological model or clinical recommendation system. No forecasting model is trained yet.
+HealthNexus forecasting is intended for healthcare resource planning demonstrations and is not a clinical diagnosis or treatment system. Every displayed forecast comes from the saved, evaluated country-local pipeline, including a simple baseline when that baseline wins model selection.
 
-## Public calibration
+## Problem and data
 
-India's PHC and CHC staffing templates use matching national workforce/facility ratios from MoHFW/PIB. Hospital doctor staffing uses pooled SDH+DH totals. Hospital nurses and other unspecified roles remain assumptions. Foreign care-centre types borrow these templates explicitly.
+Predict daily patient footfall, facility × medicine requested demand, and requested admissions for the next 1, 7 or 14 days. The bed endpoint predicts **admissions requested**, not occupied beds; admissions + unmet admissions avoids treating capacity-constrained admissions as unconstrained demand. Thirty-day support requires increasing the configured direct horizon, recalibration and fresh evaluation; it is not exposed yet.
 
-WHO hospital beds per 10,000 scales illustrative bed capacity: `clamp(sqrt(country density / India density), 0.65, 2.0)`. Foreign doctor staffing uses `clamp(sqrt(country doctor density / India doctor density), 0.7, 2.3)`. These bounded mappings are design assumptions, not empirically fitted relationships.
+The default generator produces 540 daily observations per facility, across 231 fictional facilities. India retains all 207 facilities and 36 states/UTs; each other country has six facilities. Long histories are compressed under `data/generated/history/<country>.json.gz`. The same run publishes matching last-28-day operational snapshots for the existing UI. No patient or employee data is used.
 
-Synthetic catchment = synthetic beds / country bed density × 10,000 × bounded 0.9–1.1 variation. This is not an official population estimate. Calibration retains actual source records, reference years, assumptions and missing-data fallback descriptions. Latest years differ across countries; old source values remain visibly dated.
+Public calibration remains MoHFW/PIB Health Dynamics of India 2022–23 workforce/infrastructure ratios and WHO GHO hospital-bed/doctor densities. See [data sources](data-sources.md). These sources do not provide real facility demand or stock. Aggregates downloaded in September 2026 are held fixed for this retrospective synthetic experiment; this is **not an as-published real-world historical backtest**. Calibration years differ across countries, including South Africa's older bed-density data.
 
-## Causal generation
+## Causal generator and censoring
 
-- Daily visits derive from inferred catchment, care-centre type, assumed daily visit rates (0.011, 0.009 or 0.004), weekday, hemisphere-aware seasonality, a small trend and bounded noise (0.96–1.04).
-- Assumed syndrome shares partition visits. Assumed resource profiles convert those counts into medicine requests; they are not treatment guidance.
-- Occupancy follows previous occupancy + accepted admissions − discharges. Capacity limits admissions; unmet admissions are recorded separately.
-- Staff availability is bounded by scheduled staffing, with controlled absence variation. Scheduling derives from calibrated role templates where public anchors exist.
-- Medicine stock follows previous stock + deliveries − actual consumption. Consumption cannot exceed available supply; requested consumption = actual consumption + unmet demand. Daily closing balances become the next day's opening balance.
-- Weekly replenishment uses trailing requested demand and a 21-day target: seven days each for reserve, review period and logistics buffer. A deterministic subset of facilities misses later deliveries to exercise shortages. There are no transfer events yet.
+Capacity and staffing inherit explicit public aggregate ratios and bounded mapping assumptions. Synthetic catchment derives from beds and bed density. Daily visits follow facility contact rates, weekday, hemisphere-aware seasonality, gradual trend, a persistent autoregressive demand factor and bounded noise. Assumed syndrome shares partition visits and resource profiles generate medicine requests; these profiles are not treatment recommendations.
 
-All operations span 28 days and are deterministic for a given seed, date, code and source cache. Refreshing source data can change outcomes. Public calibration supports plausibility, not validation against observed local operations. There are no real regional disease observations or emergency effects in Phase 2.
+Occupancy evolves through accepted admissions and discharges with capacity limits and explicit unmet admissions. Staff attendance remains within scheduled capacity. Inventory evolves through deliveries and fulfilled consumption. Weekly ordering uses past requested demand, a 21-day target and three-day nominal lead time. A deterministic subset experiences long delivery delays; expected dates are revised only when a due date is missed. Transfers are recorded as zero and are not optimized.
 
-## Current alerts and limitations
+`requested = fulfilled consumption + unmet demand`. Forecast targets use **requested demand**, never stock-censored consumption. In real deployments this latent target is generally unobserved; additional demand measurement or censoring-aware estimation would be required. The prototype's known latent demand is an advantage of simulation and must not be mistaken for an available real-world feed.
 
-Rules flag medicine cover, beds and staffing thresholds. They are not ML predictions. Days of cover uses observed consumption and can be misleading during stockouts, so unmet demand is retained and called out. Expiry, procurement lead-time uncertainty, actual local disease burden and clinical substitution are not modeled. No real patient, employee or operational facility records are ingested.
+## Feature schema
 
-Phase 3 must build temporal train/validation splits, simple forecast baselines and measured errors. Targets should account for censored consumption and source vintage; future observations must not leak into historical evaluation. Report uncertainty and country-level limitations before presenting predictive performance. Federated models must train locally and exchange updates only; privacy is not guaranteed merely by using federation.
+Each row has a frozen forecast origin and direct lead time 1–14. Features include horizon, target weekday, annual sine/cosine, trend; lags 1/2/7/14/28; 7/14-day means, 28-day standard deviation and recent-week growth; historical scale, facility type, inferred catchment, beds, scheduled staffing, latitude and medicine index. Lag/rolling features use only data on or before the origin. Future weekdays and calendar dates are knowable. Same-target values, future syndrome counts, realized future stock receipts and future actual demand are excluded.
+
+Values are normalized by the preceding 28-day mean, floored at one, and converted back to original units for evaluation/inference. This scale uses only pre-origin history. Country membership is enforced by separate training partitions and artifacts; no raw international training pool is created. Region/district/facility IDs remain row context but are not ordinal numeric predictors. No claim of causal feature attribution is made: UI explanations show measured recent trends, censoring totals and the actual selection rule.
+
+## Models and chronology
+
+One `HistGradientBoostingRegressor` candidate per target per country (15 models total), using scikit-learn 1.7.2: absolute-error loss, 100 iterations, 15 leaves, learning rate 0.08, L2=1, seed 42. Internal early stopping is disabled to avoid a random validation split. This lightweight pooled approach avoids per-facility models. A future model interface can replace it without changing the temporal schema or API.
+
+Mandatory baselines freeze the same origin: last observed value, seasonal naive cycling the last seven observed days, and the preceding seven-day mean. All receive identical origin/horizon evaluation rows. The candidate approximates conditional median demand; the API calls all outputs **point forecasts**, including baselines, rather than claiming every champion is a trained conditional median.
+
+| Partition | Target-date window | Role |
+| --- | --- | --- |
+| Warm-up | 2025-04-06–2025-05-03 | 28 days for initial lag features |
+| Training | 2025-05-04–2026-04-18 | Fit candidate models |
+| Selection | 2026-04-19–2026-06-11 | Select lowest WAPE among all four models |
+| Calibration | 2026-06-12–2026-08-04 | Estimate champion residual distributions only |
+| Test | 2026-08-05–2026-09-27 | Final errors and interval coverage only |
+
+Training uses staggered weekly origins across series. Evaluation uses 14-day rolling origins with a final origin aligned to each window's end. That last block can overlap its predecessor by two days; metrics describe forecast-origin/horizon errors, not independent day samples. All target horizons stay inside their partition. Later origins may use earlier held-out observations as history because those are already observable by that origin; model weights remain frozen. There is no random train/test split and no refitting on test data.
+
+Champion selection uses aggregate selection-period WAPE, not test scores. A champion can lose to another model on the later test window; all comparisons remain visible. Models are intentionally not refit after selection so reported interval calibration and held-out metrics apply to the deployed fitted model. The freshest observations enter inference lags, not the model fit.
+
+## Metrics and uncertainty
+
+MAE, RMSE and WAPE are calculated from saved predictions in original units. A zero WAPE denominator yields null. Reports include all models, 1/7/14-day lead-specific metrics, row counts and champion interval coverage per resource. Medicine MAE/RMSE pool mixed medicine units and WAPE weights high-volume series; comparisons are meaningful within a target, not as a universal health score. [Full measured results](phase3-results.md) preserve all five country comparisons and coverage.
+
+For each resource and lead time, use absolute residuals divided by pre-origin scale from the separate calibration period. Conservative finite-sample empirical 80%/95% quantiles define symmetric point-centred daily bands, clipped at zero. Held-out coverage and mean width are measured, not assumed. Dependencies between facilities and across dates violate simple exchangeability assumptions, so these are empirical conformal-style intervals, not distribution-free guaranteed coverage. Representative foreign nodes have small residual pools and unstable coverage. Poor coverage is displayed rather than tuned using the test set.
+
+For cumulative demand and inventory uncertainty, sample 500 entire signed normalized 14-day calibration residual paths with a stable model/facility/resource seed. Whole-vector resampling retains within-path dependence. Add them to point forecasts, scale, and clip negative demand to zero. Aggregate 80%/95% ranges use empirical path-total quantiles; they differ from summing daily interval bounds. Cumulative/stock interval coverage and probability calibration against real-world stockouts have not been validated.
+
+## Stock-out intelligence
+
+Forecast from the matching snapshot's current stock and safety reserve. Include only scheduled receipts whose orders were placed by the origin and whose expected dates fall after the origin. Known lead times are encoded in these dates. Assume these scheduled deliveries arrive on time; do not ingest future realized delay outcomes or invent later replenishment orders. This conservative finite-order scenario is explicitly conditional, not a complete future purchasing policy.
+
+For each day: available = prior nonnegative stock + known receipts; closing = max(0, available − requested demand); unmet demand = max(0, requested demand − available). Unmet demand is lost service, not carried as backlog. Transfers remain zero. The point trajectory reports the first day closing stock is at/below safety reserve and first day at zero. If already breached/exhausted, report the origin date. Null dates mean no crossing within 14 days, not no future risk.
+
+Estimated 3/7/14-day model-based stock-out probability is the fraction of sampled paths reaching zero at least once by that horizon, including already empty stock. This estimates depletion, not the probability that a particular patient receives no medicine. Cover = current stock / mean next-14-day point demand, excluding receipts; it is null for zero demand. The inherited operational safety reserve uses trailing fulfilled consumption and can itself understate desired reserves under censoring. Risk labels are explicit decision thresholds: HIGH at ≥50% seven-day estimated depletion; WATCH for a point safety breach or ≥20% fourteen-day depletion; LOW otherwise. These are demonstration labels, not clinical or procurement policy.
+
+## Artifacts, reproducibility and intended use
+
+`scripts/forecast.py generate|build|train|evaluate` runs each stage deliberately. `artifacts/models/<country>` holds a compressed joblib bundle, integrity checksum and JSON metrics. Bundles store fitted candidate models, champions, feature schema, date windows, last observations, residual paths, public calibration inputs, snapshot fingerprints and dataset/config version hashes. Runtime imports only saved models; it never trains at startup. Missing, corrupted, mismatched or stale artifacts return explicit 503 states. Restart after regeneration/retraining.
+
+Joblib loading is restricted by workflow to trusted locally built artifacts. A checksum detects corruption, not a malicious replacement with a matching checksum. Never load untrusted model files. Raw and training datasets remain in country-local files and no federation occurs in Phase 3. Seeded generation is byte reproducible; same pinned environment/config reproduces numeric training and evaluation. Wall-clock metadata changes between training runs.
+
+Suitable uses: demonstrating data lineage, temporal evaluation, planning interfaces and future warning/scenario integration. Prohibited uses: diagnosis, treatment, real patient triage, autonomous staffing or procurement decisions, or claims of proven live-government predictive accuracy. The simulator is regular and easier to forecast than real operations. No disease outbreak generalization, live feed validation, causal treatment inference or production security is established.
+
+Implementation references: [scikit-learn histogram gradient boosting](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html), [lagged time-series features and temporal evaluation](https://scikit-learn.org/stable/auto_examples/applications/plot_time_series_lagged_features.html).

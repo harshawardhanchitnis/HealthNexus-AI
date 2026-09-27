@@ -4,18 +4,20 @@
 
 A real-data-backed healthcare resilience prototype combining public health statistics with calibrated operational simulation. The configured BRICS scope is India, Brazil, Russia, China and South Africa. India remains the detailed showcase: all 36 states/UTs, 69 illustrative districts and 207 fictional facilities. Each other country has two representative regions and six fictional facilities. These five nodes are the hackathon scope, not an exhaustive list of current BRICS members.
 
-![HealthNexus command centre](docs/screenshots/overview.png)
+![HealthNexus forecasting](docs/screenshots/phase3-forecast.png)
 
-## Working Phase 2
+## Working through Phase 3
+
+Forecasting now includes 540-day causal histories, country-local trained models, three mandatory baselines, chronological selection/calibration/test periods, empirical 80%/95% intervals and calculated stock-out intelligence. Open **Forecasts** and **Model performance**, or the facility **Predictive Outlook**. [Phase 3 report](docs/phase3-report.md) · [Actual model comparisons](docs/phase3-results.md) · [Model card](docs/model-card.md).
 
 - Angular standalone command centre and FastAPI API, retaining India navigation and facility details.
 - Two real public-source adapters: MoHFW/PIB Health Dynamics of India 2022–23 (13 national statistics) and WHO GHO (20 bed/workforce observations across five countries).
 - Attributed raw caches, validated normalized observations, and separate generated operations.
 - Public statistics calibrate synthetic capacity, catchment and staffing. Demand drives medicine requests, admissions and stock ledgers.
 - Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
-- Local offline operation, optional Firestore adapter, Docker scaffolding and 38 backend tests.
+- Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
 
-**Facility-level operational values are simulated, not real-world live feeds.** Historical public aggregates do not establish the accuracy of an individual fictional facility. Current alerts use rules; forecasting, emergency scenarios, OR-Tools, Gemini and federated training are later milestones. Physical redistribution is designed to stay within each nation; future federation exchanges model updates only.
+**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Current alerts use rules; predictive warning workflows, emergency scenarios, OR-Tools, Gemini and federated training remain later milestones. Physical redistribution is designed to stay within each nation; future federation exchanges model updates only.
 
 ## Run locally — Windows PowerShell
 
@@ -27,7 +29,10 @@ From the repository root:
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
 .\.venv\Scripts\python.exe scripts\import_official_data.py
-.\.venv\Scripts\python.exe scripts\generate_data.py --country all --seed 42 --as-of 2026-09-27
+.\.venv\Scripts\python.exe scripts\forecast.py generate --country all --days 540 --seed 42 --as-of 2026-09-27
+.\.venv\Scripts\python.exe scripts\forecast.py build --country all
+.\.venv\Scripts\python.exe scripts\forecast.py train --country all
+.\.venv\Scripts\python.exe scripts\forecast.py evaluate --country all
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
@@ -48,7 +53,7 @@ The import command above is offline. To refresh from the actual public endpoints
 # Or select one adapter: --source india_hdi or --source who_gho
 ```
 
-Regenerate operational snapshots and restart the backend after updating sources. Snapshots retain their explicit date and frozen calibration inputs. If generated files are absent, the backend generates a deterministic country snapshot in memory. Missing public caches are reported as fallback assumptions; invalid caches fail validation.
+Regenerate history, rebuild training tables and retrain after updating sources; restart the backend afterward. Snapshots retain their explicit date and frozen calibration inputs. Missing public caches produce visible assumptions; invalid caches fail validation. Forecasting models are never trained at API startup. Missing/stale models return an explicit unavailable state. The older `scripts/generate_data.py` still creates short operational samples, but overwriting a trained snapshot with one makes its forecasts stale; use the Phase 3 history workflow for forecasting.
 
 ## Verify
 
@@ -60,7 +65,7 @@ npm run build
 npx tsc --noEmit -p tsconfig.app.json
 ```
 
-See [validation](docs/validation.md) and the [Phase 2 report](docs/phase2-report.md).
+See [validation](docs/validation.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
 
 ## Storage and deployment
 
@@ -78,12 +83,16 @@ This creates/overwrites matching sample IDs and does not remove unrelated docume
 
 `docker compose up --build` starts the container scaffold, including public caches, with the frontend at port 4200. Docker runtime deployment has not been verified here. Firebase Hosting and Cloud Run are planned; nothing is published automatically.
 
+For forecasts in containers, first run the host generation/training commands. Compose mounts `data/generated` and `artifacts/models` read-only into the backend. If models are absent, forecasting is explicitly unavailable while the original dashboard remains runnable. Do not import joblib artifacts from untrusted sources.
+
 ## Repository and sources
 
 | Path | Purpose |
 | --- | --- |
 | `backend/app/data_ingestion/` | Public-source adapters, caching and normalization |
 | `backend/app/simulation/` | Public calibration and causal synthetic generator |
+| `backend/app/forecasting/` | Temporal features, training, evaluation, uncertainty, stock projections and typed API |
+| `artifacts/models/` | Gitignored country-local models, metrics and integrity manifests |
 | `data/official/` | Small attributed raw extracts |
 | `data/normalized/` | Validated public observations |
 | `data/generated/` | Gitignored fictional operations by country |

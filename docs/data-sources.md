@@ -38,7 +38,10 @@ Attribution: World Health Organization, Global Health Observatory, hospital beds
 .\.venv\Scripts\python.exe scripts\import_official_data.py
 .\.venv\Scripts\python.exe scripts\import_official_data.py --source india_hdi --refresh
 .\.venv\Scripts\python.exe scripts\import_official_data.py --source who_gho --refresh
-.\.venv\Scripts\python.exe scripts\generate_data.py --country all --seed 42 --as-of 2026-09-27
+.\.venv\Scripts\python.exe scripts\forecast.py generate --country all --days 540 --seed 42 --as-of 2026-09-27
+.\.venv\Scripts\python.exe scripts\forecast.py build --country all
+.\.venv\Scripts\python.exe scripts\forecast.py train --country all
+.\.venv\Scripts\python.exe scripts\forecast.py evaluate --country all
 ```
 
 Restart the backend after regeneration. These adapters intentionally select small subsets. The WHO API documentation describes queries for larger downloads; adapt the selection and review licensing before expanding. The PIB page links the underlying report; the current parser imports only its published summary. Endpoint or publication changes should fail clearly and require an adapter update, not silently create substitute official values.

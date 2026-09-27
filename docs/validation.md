@@ -1,5 +1,17 @@
 # Validation — 2026-09-27
 
+## Phase 3
+
+- **73 backend tests passed**, preserving all original 38. New tests cover history generation, ledgers, latent requested targets, frozen-origin feature leakage, temporal partitions/final evaluation dates, baseline calculations, repeat fitting, saved model reload/integrity, horizon validation, country/facility/resource isolation, empirical intervals and reproducible depletion probabilities.
+- Generated **540 days for all 231 facilities**, built country-local tables, trained 15 pooled candidate models and compared all three mandatory baselines. Independently loaded/evaluated all five saved bundles; metrics reproduced within numerical tolerance. Reports: [all results](phase3-results.md), [full JSON reports](evaluation/IN.json).
+- FastAPI restarted with saved artifacts and without training. Live country-scoped forecast/metrics requests succeed; missing/stale model API states are tested. Original operational APIs remain runnable.
+- Angular production build and strict TypeScript checks pass; initial bundle approximately **337.69 kB raw / 93.94 kB estimated transfer**. Python compilation passes. No standalone lint configuration exists.
+- Desktop browser: India → Maharashtra → Pune → facility → IV fluids, 1/7/14-day horizons, admissions target, interval chart, receipt-aware stock projection and model report; Russia shows six local facilities and the genuine seasonal-naive admissions champion. Facility Predictive Outlook uses API results.
+- Mobile at **390 × 844**: layout, resource/horizon selection and direct-link reloads checked. Reload testing found and fixed dropdown selected-option synchronization for asynchronous geography/resource choices. Temporary viewport was reset.
+- Screenshots: [forecast](screenshots/phase3-forecast.png), [model performance](screenshots/phase3-performance.png), [mobile](screenshots/phase3-mobile.png).
+
+One upstream Starlette/AnyIO deprecation warning remains. Browser checks are manual, not an automated end-to-end suite. Docker/cloud execution and real-world predictive or probability validation remain unverified. No Gemini, OR-Tools, emergency scenario or federated training was run.
+
 ## Phase 2
 
 - **38 backend tests passed**, preserving the original 13. New checks cover cached imports, normalization, null handling, pagination and host restrictions, raw/normalized tampering, offline import, failed-refresh preservation, provenance, country isolation, legacy migration and causal stock/bed/demand consistency.

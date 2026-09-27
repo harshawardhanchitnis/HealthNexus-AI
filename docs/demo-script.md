@@ -1,10 +1,11 @@
-# Five-minute Phase 2 demo
+# Phase 3 demo — forecasting with evidence
 
-1. Open **Data sources**. Show both actual integrations, public record years, source links and terms. Explain that 13 Indian infrastructure/workforce aggregates and 20 WHO observations calibrate the prototype. South Africa's bed reference is 2010; these are historical statistics.
-2. Open **Overview** with India selected. Show 207 fictional facilities and coverage across all 36 states/UTs. Explain that districts and facilities are illustrative, and operational cards are simulated.
-3. Filter Maharashtra → Pune. Open a facility. Show patient history, beds, stock, unserved medicine demand and expandable provenance. Public anchors influence the generator; they do not make this a real facility feed.
-4. Switch to Brazil. Show two representative regions and six fictional facilities. Country-scoped filters and links stay within Brazil. Other countries use the same extensible schema without pretending to cover every facility.
-5. Open **BRICS nodes**. Explain the five configured logical country nodes. Training is not started and metrics are unavailable. Future federation exchanges model updates; domestic redistribution moves physical resources within a country.
-6. Describe offline reproduction: attributed caches → validation/normalization → calibrated generation → read-only API. Refresh is explicit and requires regeneration to change an existing snapshot.
+1. Open **Data Sources**. Show the two real integrations, historical dates and simulated operational distinction. These aggregates calibrate the prototype; they are not live facility feeds.
+2. Open **Forecasts**. Select India → Maharashtra → Pune → Pune PHC 01 → IV fluids. Show the preceding 28 daily observations, future 1/7/14-day forecasts and empirical 80%/95% intervals. The full training history contains 540 days.
+3. Show expected demand, changes from the recent week and the model/version. Explain that medicine targets retain requested demand even when stock limits fulfilled consumption.
+4. Show stock intelligence: current reserve, incoming scheduled receipt, point reserve-breach date, conditional depletion date, 3/7/14-day model-based risks and daily projected inventory. A zero risk means none of the sampled residual paths depleted in this specific scenario; it is not a guarantee.
+5. Open **Model Performance**. Show the chronological training, selection, calibration and test windows; all four model comparisons; actual interval coverage. India ML improves aggregate error; Russia admissions selects seasonal naive. Brazil and China admissions have a baseline with lower test WAPE than their previously selected ML champion—keep this visible.
+6. Open the existing Pune facility detail and its **Predictive Outlook**. Then switch to another country to show local facility scope and separate model evaluation. BRICS federation remains future work; local forecasting training is real.
+7. Explain reproducibility: regenerate history → build temporal tables → train → independently evaluate/reload. Restarting FastAPI does not retrain. Missing/stale artifacts show an explicit unavailable state.
 
-Close with the next milestone: temporal demand forecasting and honest baseline evaluation, followed by emergency scenarios and domestic optimization. Do not claim live government inventory, completed FedAvg, Gemini reasoning, real cloud deployment or clinical validation.
+Phase 4 will connect these typed outputs to predictive warning workflows and an emergency digital twin. No dengue controls, optimizer, Gemini response or FedAvg run is claimed in this milestone.
