@@ -5,6 +5,19 @@
     <p>Change the conditions. Trace the pressure. Compare every outcome against its baseline.</p>
   </div>
   <button class="button secondary" (click)="pune()" [disabled]="running()">Load Pune demo</button>
+  @if (result(); as scenario) {
+    <a
+      class="button"
+      routerLink="/redistribution"
+      [queryParams]="{
+        country_id: country(),
+        state_id: state(),
+        district_id: district(),
+        scenario_id: scenario.scenario.scenario_id,
+      }"
+      >Optimize Redistribution</a
+    >
+  }
 </div>
 <section class="twin-intro">
   <div>

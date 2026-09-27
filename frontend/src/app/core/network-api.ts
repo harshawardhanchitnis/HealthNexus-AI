@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Forecast, Performance } from './forecast-models';
+import { PlanningRequest, PlanningPreview, PlanningResult } from './optimization-models';
 import {
   ScenarioDefinition,
   ScenarioMetadata,
@@ -23,6 +24,22 @@ import {
 @Injectable({ providedIn: 'root' })
 export class NetworkApi {
   private http = inject(HttpClient);
+  planningPreview(body: PlanningRequest) {
+    return this.http.post<PlanningPreview>('/api/optimization/preview', body);
+  }
+  optimize(body: PlanningRequest) {
+    return this.http.post<PlanningResult>('/api/optimization/redistribution', body);
+  }
+  plan(id: string, country: string) {
+    return this.http.get<PlanningResult>('/api/optimization/runs/' + encodeURIComponent(id), {
+      params: this.params({ country_id: country }),
+    });
+  }
+  discardPlan(id: string, country: string) {
+    return this.http.delete<void>('/api/optimization/runs/' + encodeURIComponent(id), {
+      params: this.params({ country_id: country }),
+    });
+  }
   runScenario(body: ScenarioDefinition) {
     return this.http.post<ScenarioResult>('/api/scenarios', body);
   }

@@ -1,0 +1,587 @@
+<div class="page-heading">
+  <div>
+    <div class="eyebrow">DOMESTIC LOGISTICS / DECISION SUPPORT</div>
+    <h1>Redistribution Planner</h1>
+    <p>Resolve resource shortages while preserving each donor’s resilience.</p>
+  </div>
+  <a
+    class="button secondary"
+    routerLink="/emergency"
+    [queryParams]="{
+      country_id: country,
+      state_id: state,
+      district_id: district,
+      scenario_id: scenarioId || null,
+    }"
+    >Emergency Simulator</a
+  >
+</div>
+<section class="twin-intro">
+  <div>
+    <span class="tag">COUNTRY-LOCAL • NON-DESTRUCTIVE</span>
+    <h2>Protect the donor. Support the receiver.</h2>
+    <p>Saved forecasts → projected deficits → constrained transfers → recomputed risks.</p>
+  </div>
+  <div class="twin-scope">
+    <strong>{{ district || state || country }}</strong
+    ><span>14-day planning horizon · {{ scope }} donor search</span>
+  </div>
+</section>
+<section class="panel twin-form">
+  <div class="panel-heading">
+    <div>
+      <h2>Planning context</h2>
+      <p>
+        Navigation filters select receivers. Donor search may extend across the selected country.
+      </p>
+    </div>
+    <span class="tag">GOOGLE OR-TOOLS</span>
+  </div>
+  <fieldset [disabled]="loading() || running()" class="optimizer-fieldset">
+    <div class="twin-fields">
+      <label
+        >Scenario / baseline<select [(ngModel)]="scenarioId" (ngModelChange)="changeScenario()">
+          <option value="">Baseline planning</option>
+          @for (s of scenarios(); track s.scenario_id) {
+            <option [value]="s.scenario_id">
+              {{ s.definition.scenario_type }} ·
+              {{ s.definition.district_id || s.definition.state_id || s.definition.country_id }} ·
+              {{ s.created_at | date: 'shortTime' }}
+            </option>
+          }
+        </select></label
+      >
+      <label
+        >Donor search scope<select [(ngModel)]="scope" (ngModelChange)="loadPreview()">
+          <option value="national">National — same country</option>
+          <option value="state" [disabled]="!state">State / region</option>
+          <option value="district" [disabled]="!district">District</option>
+        </select></label
+      >
+      <label
+        >Resource<select [(ngModel)]="resource" (ngModelChange)="loadPreview()">
+          <option value="">All five medicines</option>
+          <option value="PCM">Paracetamol</option>
+          <option value="IVF">IV fluids</option>
+          <option value="ORS">ORS</option>
+          <option value="AMX">Amoxicillin</option>
+          <option value="IFA">Iron / folic acid</option>
+        </select></label
+      >
+      <label
+        >Solver time budget<select [(ngModel)]="seconds">
+          <option [ngValue]="5">5 seconds</option>
+          <option [ngValue]="10">10 seconds</option>
+          <option [ngValue]="30">30 seconds</option>
+        </select></label
+      >
+    </div>
+  </fieldset>
+  <p class="twin-description">
+    Every transfer must preserve the donor’s safety reserve on all 500 sampled demand paths and keep
+    seven days of current demand cover. Transfers are assumed to arrive before day 1.
+  </p>
+  <button class="button" (click)="optimize()" [disabled]="!preview() || loading() || running()">
+    {{ running() ? 'Calculating plan…' : 'Optimize Redistribution' }}
+  </button>
+</section>
+@if (error()) {
+  <p class="optimizer-notice error" role="alert">{{ error() }}</p>
+}
+@if (loading()) {
+  <p class="optimizer-notice" role="status">
+    Loading saved forecasts and calculating protected donor capacity…
+  </p>
+}
+@if (preview(); as p) {
+  @if (!result()) {
+    <div class="optimizer-kpis">
+      <article>
+        <span>Target deficit</span><strong>{{ p.total_deficit | number }}</strong
+        ><small>Demand, reserve and cover target</small>
+      </article>
+      <article>
+        <span>Safe donor capacity</span><strong>{{ p.safe_capacity | number }}</strong
+        ><small>Units across selected resources</small>
+      </article>
+      <article>
+        <span>Receiver / resource pairs</span><strong>{{ p.receivers.length }}</strong
+        ><small>Within selected receiver geography</small>
+      </article>
+    </div>
+  }
+  @if (result(); as r) {
+    <section class="optimizer-result panel">
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">SOLVER RESULT</span>
+          <h2>
+            {{
+              r.solver.status === 'OPTIMAL'
+                ? 'Optimal Plan'
+                : r.solver.status === 'FEASIBLE'
+                  ? 'Feasible Plan'
+                  : 'No solver plan'
+            }}
+          </h2>
+          <p>
+            {{ r.solver.engine }} {{ r.solver.version }} ·
+            {{ r.solver.elapsed_seconds | number: '1.2-2' }} seconds
+          </p>
+        </div>
+        <span class="tag">{{ r.solver.status }}</span>
+      </div>
+      <p class="optimizer-notice" [class.shortfall]="r.impact.after.target_deficit > 0">
+        {{ r.message }}
+      </p>
+      <p class="optimizer-caption">
+        {{ medicineCount() }} resources transferred · {{ r.transfers.length }} transfers ·
+        {{ r.impact.critical_deficits_resolved }}/{{ r.impact.critical_deficits_total }} critical
+        target deficits fully covered. “Optimal” refers to the constrained policy objective,
+        including permitted unresolved deficits.
+      </p>
+      <div class="optimizer-kpis">
+        <article>
+          <span>Target deficit before → after</span
+          ><strong
+            >{{ r.impact.before.target_deficit | number }} →
+            {{ r.impact.after.target_deficit | number }}</strong
+          ><small
+            >{{ r.impact.percent_deficit_resolved | number: '1.1-1' }}% of target covered</small
+          >
+        </article>
+        <article>
+          <span>Expected unmet demand</span
+          ><strong
+            >{{ r.impact.before.expected_unmet | number: '1.0-1' }} →
+            {{ r.impact.after.expected_unmet | number: '1.0-1' }}</strong
+          ><small>Point-forecast medicine units</small>
+        </article>
+        <article>
+          <span>Critical medicine warnings</span
+          ><strong
+            >{{ r.impact.before.critical_resource_warnings }} →
+            {{ r.impact.after.critical_resource_warnings }}</strong
+          ><small>Receiver resources only</small>
+        </article>
+        <article>
+          <span>Maximum 14-day stock-out risk</span
+          ><strong
+            >{{ r.impact.before.max_stockout_risk | percent: '1.0-0' }} →
+            {{ r.impact.after.max_stockout_risk | percent: '1.0-0' }}</strong
+          ><small>Maximum individual resource risk</small>
+        </article>
+        <article>
+          <span>Facilities at risk</span
+          ><strong
+            >{{ r.impact.before.facilities_at_risk }} →
+            {{ r.impact.after.facilities_at_risk }}</strong
+          ><small>{{ r.impact.facilities_protected }} fully covered by plan</small>
+        </article>
+        <article>
+          <span>New donor risks</span><strong>{{ r.impact.new_donor_risks }}</strong
+          ><small
+            >{{ r.impact.donor_facilities_used }} donors used ·
+            {{ r.impact.donor_safety_violations }} reserve violations</small
+          >
+        </article>
+      </div>
+      <details class="optimizer-details">
+        <summary>Solver evidence, objective and provenance</summary>
+        <p>
+          Lexicographic objective: {{ r.solver.objective?.join(' → ') || 'No incumbent' }} (critical
+          unresolved units → weighted unresolved units → transport cost).
+        </p>
+        <p>
+          {{ r.solver.variables }} variables · {{ r.solver.constraints }} constraints ·
+          {{ r.solver.termination }} · budget {{ r.solver.time_limit_seconds }}s
+        </p>
+        @for (s of r.solver.stages; track s.name) {
+          <p>
+            {{ s.name }}: {{ s.status }} · objective {{ s.objective }} · bound {{ s.best_bound }}
+          </p>
+        }
+        <p>
+          Run: {{ r.run_id }}<br />Snapshot: {{ p.snapshot_id }}<br />Scenario snapshot:
+          {{ p.scenario_snapshot_id || 'Baseline' }}<br />Model: {{ p.model_version }} · Policy:
+          {{ p.config_version }}
+        </p>
+      </details>
+    </section>
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Donor → receiver transfer plan</h2>
+          <p>
+            Straight-line geographic distance used for prototype optimization; not road travel
+            distance.
+          </p>
+        </div>
+        <span class="tag">{{ r.impact.transferred_units | number }} UNITS</span>
+      </div>
+      @for (t of r.transfers; track t.transfer_id) {
+        <article class="optimizer-transfer">
+          <div class="optimizer-route">
+            <div>
+              <span>DONOR</span>
+              <h3>{{ t.donor_name }}</h3>
+              <small>{{ t.donor_id }}</small>
+            </div>
+            <strong class="optimizer-arrow">→</strong>
+            <div>
+              <span>RECEIVER</span>
+              <h3>{{ t.receiver_name }}</h3>
+              <small>{{ t.receiver_id }}</small>
+            </div>
+            <div class="optimizer-quantity">
+              <strong>{{ t.quantity | number }} {{ t.unit }}</strong
+              ><span>{{ t.resource_id }} · {{ t.distance_km | number: '1.1-1' }} km</span>
+            </div>
+          </div>
+          <div class="optimizer-transfer-metrics">
+            <p>
+              Donor stock
+              <b>{{ t.donor_stock_before | number }} → {{ t.donor_stock_after | number }}</b>
+            </p>
+            <p>
+              Worst sampled reserve after
+              <b>{{ t.donor_protected_minimum_after | number: '1.1-1' }}</b> / required
+              {{ t.donor_protected_reserve | number }}
+            </p>
+            <p>
+              Receiver target deficit
+              <b
+                >{{ t.receiver_deficit_before | number }} →
+                {{ t.receiver_deficit_after | number }}</b
+              >
+            </p>
+            <p>
+              Receiver 14-day risk
+              <b
+                >{{ t.receiver_risk_before['14'] | percent }} →
+                {{ t.receiver_risk_after['14'] | percent }}</b
+              >
+            </p>
+          </div>
+          <details class="optimizer-details">
+            <summary>Why this transfer? View calculated factors</summary>
+            <p>
+              Receiver warning: {{ t.receiver_warning_before }} → {{ t.receiver_warning_after }}.
+              Donor 14-day risk: {{ t.donor_risk_before['14'] | percent }} →
+              {{ t.donor_risk_after['14'] | percent }}.
+            </p>
+            @for (factor of t.rationale | keyvalue; track factor.key) {
+              <p>{{ factor.key }}: {{ factor.value }}</p>
+            }
+            @for (factor of t.objective_contribution | keyvalue; track factor.key) {
+              <p>{{ factor.key }}: {{ factor.value | number }}</p>
+            }
+          </details>
+        </article>
+      } @empty {
+        <p class="optimizer-caption">
+          No protected transfer is proposed. Stock has not been moved or invented.
+        </p>
+      }
+    </section>
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <h2>OR-Tools vs nearest-safe-donor greedy</h2>
+          <p>
+            Both use identical candidate edges, donor limits and receiver targets. Results may tie.
+          </p>
+        </div>
+      </div>
+      <div class="optimizer-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Measured outcome</th>
+              <th>OR-Tools</th>
+              <th>Greedy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Unresolved target units</td>
+              <td>{{ r.impact.after.target_deficit | number }}</td>
+              <td>{{ r.greedy.after.target_deficit | number }}</td>
+            </tr>
+            <tr>
+              <td>Total straight-line lane distance (km)</td>
+              <td>{{ r.impact.distance_km | number: '1.1-1' }}</td>
+              <td>{{ r.greedy.distance_km | number: '1.1-1' }}</td>
+            </tr>
+            <tr>
+              <td>Distance × units (km·units)</td>
+              <td>{{ r.impact.distance_weighted_units | number: '1.0-0' }}</td>
+              <td>{{ r.greedy.distance_weighted_units | number: '1.0-0' }}</td>
+            </tr>
+            <tr>
+              <td>Transfers</td>
+              <td>{{ r.impact.transfer_count }}</td>
+              <td>{{ r.greedy.transfer_count }}</td>
+            </tr>
+            <tr>
+              <td>Donor safety violations</td>
+              <td>{{ r.impact.donor_safety_violations }}</td>
+              <td>{{ r.greedy.donor_safety_violations }}</td>
+            </tr>
+            <tr>
+              <td>Critical medicine warnings resolved</td>
+              <td>
+                {{
+                  r.impact.before.critical_resource_warnings -
+                    r.impact.after.critical_resource_warnings
+                }}
+              </td>
+              <td>
+                {{
+                  r.greedy.before.critical_resource_warnings -
+                    r.greedy.after.critical_resource_warnings
+                }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="panel twin-form">
+      <div class="panel-heading">
+        <div>
+          <h2>Post-transfer stock simulation</h2>
+          <p>Exact daily balances recomputed on a copy. Demand and receipts stay unchanged.</p>
+        </div>
+      </div>
+      <div class="twin-fields">
+        <label
+          >Facility<select [ngModel]="selected()" (ngModelChange)="selected.set($event)">
+            @for (f of r.after; track f.facility_id) {
+              <option [value]="f.facility_id">{{ f.facility_name }}</option>
+            }
+          </select></label
+        ><label
+          >Medicine<select
+            [ngModel]="selectedResource()"
+            (ngModelChange)="selectedResource.set($event)"
+          >
+            @for (m of focus()?.resources || []; track m.resource_id) {
+              <option [value]="m.resource_id">{{ m.name }}</option>
+            }
+          </select></label
+        >
+      </div>
+      @if (afterResource(); as after) {
+        @if (beforeResource(); as before) {
+          <div class="optimizer-risk">
+            @for (h of ['3', '7', '14']; track h) {
+              <p>
+                {{ h }}-day stock-out risk
+                <b
+                  >{{ before.stockout.probabilities[h] | percent }} →
+                  {{ after.stockout.probabilities[h] | percent }}</b
+                >
+              </p>
+            }
+          </div>
+          <p class="optimizer-caption">
+            Safety breach: {{ before.stockout.safety_breach_date || 'None' }} →
+            {{ after.stockout.safety_breach_date || 'None' }} · Depletion:
+            {{ before.stockout.stockout_date || 'None' }} →
+            {{ after.stockout.stockout_date || 'None' }}
+          </p>
+          <div class="optimizer-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Receipts</th>
+                  <th>Demand</th>
+                  <th>Stock before</th>
+                  <th>Stock after</th>
+                  <th>Unmet after</th>
+                  <th>After 95% range</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (d of after.stockout.trajectory; track d.date; let i = $index) {
+                  <tr>
+                    <td>{{ d.date | date: 'MMM d' }}</td>
+                    <td>{{ d.expected_receipts | number: '1.0-0' }}</td>
+                    <td>{{ d.demand | number: '1.1-1' }}</td>
+                    <td>{{ before.stockout.trajectory[i].closing_stock | number: '1.1-1' }}</td>
+                    <td>{{ d.closing_stock | number: '1.1-1' }}</td>
+                    <td>{{ d.unmet_demand | number: '1.1-1' }}</td>
+                    <td>{{ d.lower95 | number: '1.1-1' }}–{{ d.upper95 | number: '1.1-1' }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="optimizer-risk">
+            <div>
+              <h3>Warnings before</h3>
+              @for (w of beforeWarnings(); track w.warning_id) {
+                <p>{{ w.warning_type }} · {{ w.severity }}</p>
+              } @empty {
+                <p>No medicine warnings.</p>
+              }
+            </div>
+            <div>
+              <h3>Warnings after</h3>
+              @for (w of afterWarnings(); track w.warning_id) {
+                <p>{{ w.warning_type }} · {{ w.severity }}</p>
+              } @empty {
+                <p>No medicine warnings.</p>
+              }
+            </div>
+          </div>
+        }
+      }
+    </section>
+    <section class="panel twin-form">
+      <div class="panel-heading">
+        <div>
+          <h2>Unresolved targets & conservation</h2>
+          <p>Resource totals at transfer origin, before modeled demand and receipts.</p>
+        </div>
+      </div>
+      <details class="optimizer-details">
+        <summary>View remaining facility deficits and resource totals</summary>
+        @for (u of r.impact.unresolved | keyvalue; track u.key) {
+          <p>{{ u.key }}: {{ u.value | number }} unresolved units</p>
+        }
+        @for (c of r.impact.conservation | keyvalue; track c.key) {
+          <p>{{ c.key }}: {{ c.value.before | number }} → {{ c.value.after | number }}</p>
+        }
+      </details>
+      <button class="button secondary" (click)="discard()" [disabled]="running()">
+        Discard optimization plan
+      </button>
+      <p class="twin-description">
+        Planning only. Discarding this plan leaves the scenario, baseline and saved models
+        unchanged.
+      </p>
+    </section>
+  }
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Facilities needing support</h2>
+        <p>
+          Targets include point-demand coverage, safety reserve and current-cover protection;
+          expected unmet demand is shown separately.
+        </p>
+      </div>
+      <span class="tag">{{ p.receivers.length }} RESOURCE NEEDS</span>
+    </div>
+    <div class="optimizer-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Facility / resource</th>
+            <th>Target deficit</th>
+            <th>Expected unmet</th>
+            <th>Depletion</th>
+            <th>Warning / priority</th>
+            <th>14-day risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of p.receivers.slice(0, receiverLimit()); track c.facility_id + c.resource_id) {
+            <tr>
+              <td>
+                <strong>{{ c.facility_name }}</strong
+                ><small>{{ c.resource_id }} · {{ c.unit }}</small>
+              </td>
+              <td>{{ c.deficit | number }}</td>
+              <td>{{ c.expected_unmet | number: '1.0-1' }}</td>
+              <td>{{ c.depletion_date || 'Not projected' }}</td>
+              <td>{{ c.severity }} · {{ c.priority | number: '1.0-0' }}</td>
+              <td>{{ c.risk['14'] | percent }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6">No selected resource has a target deficit.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+  @if (p.receivers.length > receiverLimit()) {
+    <button class="button secondary" (click)="receiverLimit.set(receiverLimit() + 50)">
+      Show 50 more receiver resources
+    </button>
+  }
+  <section class="panel">
+    <div class="panel-heading">
+      <div>
+        <h2>Safe donor pool</h2>
+        <p>Full 14-day protection, known receipts and every sampled demand path.</p>
+      </div>
+      <span class="tag">{{ p.donors.length }} SAFE RESOURCE POOLS</span>
+    </div>
+    <div class="optimizer-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Donor / resource</th>
+            <th>Safe excess</th>
+            <th>Nearest receiver</th>
+            <th>Reserve after maximum donation</th>
+            <th>Required reserve</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (d of p.donors.slice(0, donorLimit()); track d.facility_id + d.resource_id) {
+            <tr>
+              <td>
+                <strong>{{ d.facility_name }}</strong
+                ><small>{{ d.resource_id }} · {{ d.unit }}</small>
+              </td>
+              <td>{{ d.safe_surplus | number }}</td>
+              <td>
+                {{
+                  d.nearest_receiver_distance_km === null
+                    ? 'No eligible receiver'
+                    : (d.nearest_receiver_distance_km | number: '1.1-1') + ' km'
+                }}
+              </td>
+              <td>{{ d.reserve_after_max_donation | number: '1.1-1' }}</td>
+              <td>{{ d.protected_reserve | number }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5">
+                @if (p.receivers.length) {
+                  No facility can donate while meeting the protection policy. Network resources are
+                  insufficient to completely resolve this shortage.
+                } @else {
+                  No donor pool is needed: the selected resources have no target deficit.
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+  @if (p.donors.length > donorLimit()) {
+    <button class="button secondary" (click)="donorLimit.set(donorLimit() + 50)">
+      Show 50 more donor resources
+    </button>
+  }
+  <details class="panel optimizer-details">
+    <summary>Planning assumptions and limitations</summary>
+    @for (note of p.limitations; track note) {
+      <p>{{ note }}</p>
+    }
+    <p>
+      Medicine units are resource-specific; totals combine heterogeneous units for planning
+      accounting, not clinical equivalence. Critical targets mean expected unmet demand or a
+      CRITICAL medicine warning; this differs from the count of critical warning records.
+    </p>
+  </details>
+}

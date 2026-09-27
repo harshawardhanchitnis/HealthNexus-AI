@@ -30,6 +30,7 @@ export class App {
     { path: '/supply', icon: 'box', label: 'Medicine & supply' },
     { path: '/warnings', icon: 'bell', label: 'Early Warning Centre' },
     { path: '/emergency', icon: 'pulse', label: 'Emergency Simulator' },
+    { path: '/redistribution', icon: 'box', label: 'Redistribution Planner' },
     { path: '/forecasts', icon: 'chart', label: 'Forecasts' },
     { path: '/model-performance', icon: 'shield', label: 'Model performance' },
     { path: '/brics', icon: 'network', label: 'BRICS nodes' },
@@ -93,7 +94,13 @@ export class App {
   }
   private scopeRoute() {
     const path = this.router.url.split('?')[0];
-    return ['/forecasts', '/model-performance', '/emergency', '/warnings'].includes(path)
+    return [
+      '/forecasts',
+      '/model-performance',
+      '/emergency',
+      '/warnings',
+      '/redistribution',
+    ].includes(path)
       ? path
       : '/overview';
   }

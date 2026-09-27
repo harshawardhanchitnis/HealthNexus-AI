@@ -27,7 +27,7 @@ import { Icon } from '../shared/icon';
     </div>
     <div class="about-grid">
       <section class="panel prose">
-        <h2>Working through Phase 4</h2>
+        <h2>Working through Phase 5</h2>
         <ul>
           <li>Five-country geography and the existing India drill-down.</li>
           <li>Two real public-source adapters: MoHFW / PIB Health Dynamics summary and WHO GHO.</li>
@@ -40,7 +40,14 @@ import { Icon } from '../shared/icon';
           <li>Resource views and transparent threshold alerts.</li>
           <li>540-day histories, evaluated country-local forecasting and empirical uncertainty.</li>
           <li>Requested-demand targets and reproducible model-based stock-out estimates.</li>
-          <li>Early Warning Centre and four non-destructive emergency scenarios with baseline comparisons.</li>
+          <li>
+            Early Warning Centre and four non-destructive emergency scenarios with baseline
+            comparisons.
+          </li>
+          <li>
+            Domestic OR-Tools redistribution planning, protected donor reserves and before/after
+            stock simulation.
+          </li>
         </ul>
         <a routerLink="/data-sources" class="inline-link"
           >Inspect the evidence <app-icon name="arrow"
@@ -49,7 +56,6 @@ import { Icon } from '../shared/icon';
       <section class="panel prose">
         <h2>Next milestones</h2>
         <ol>
-          <li>OR-Tools redistribution within each country.</li>
           <li>Grounded, server-side Gemini explanations.</li>
           <li>Genuine country-node FedAvg with measured metrics.</li>
         </ol>
@@ -74,9 +80,10 @@ import { Icon } from '../shared/icon';
       </p>
       <h3>Resource transfers and federation are different</h3>
       <p>
-        Physical redistribution will be domestic. BRICS collaboration will exchange model updates,
-        with operational training data kept at its country node. The local prototype currently
-        demonstrates data partitions, not production national infrastructure or privacy guarantees.
+        Physical redistribution planning is enforced within each country. BRICS collaboration will
+        exchange model updates, with operational training data kept at its country node. The local
+        prototype currently demonstrates data partitions, not production national infrastructure or
+        privacy guarantees.
       </p>
       <h3>Coverage and limitations</h3>
       <p>
