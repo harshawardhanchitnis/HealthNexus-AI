@@ -1,0 +1,38 @@
+id,name,kind,zone,latitude,longitude,districts
+AP,Andhra Pradesh,state,South,15.91,79.74,Guntur|Visakhapatnam
+AR,Arunachal Pradesh,state,Northeast,28.22,94.73,Tawang|Lower Subansiri
+AS,Assam,state,Northeast,26.20,92.94,Kamrup Metropolitan|Dibrugarh
+BR,Bihar,state,East,25.10,85.31,Patna|Gaya
+CG,Chhattisgarh,state,Central,21.28,81.87,Raipur|Bilaspur
+GA,Goa,state,West,15.30,74.12,North Goa|South Goa
+GJ,Gujarat,state,West,22.26,71.19,Ahmedabad|Surat
+HR,Haryana,state,North,29.06,76.09,Gurugram|Hisar
+HP,Himachal Pradesh,state,North,31.10,77.17,Shimla|Kangra
+JH,Jharkhand,state,East,23.61,85.28,Ranchi|Dhanbad
+KA,Karnataka,state,South,15.32,75.71,Bengaluru Urban|Mysuru
+KL,Kerala,state,South,10.85,76.27,Thiruvananthapuram|Ernakulam
+MP,Madhya Pradesh,state,Central,22.97,78.66,Bhopal|Indore
+MH,Maharashtra,state,West,19.75,75.71,Pune|Nagpur
+MN,Manipur,state,Northeast,24.66,93.91,Imphal West|Thoubal
+ML,Meghalaya,state,Northeast,25.47,91.37,East Khasi Hills|West Garo Hills
+MZ,Mizoram,state,Northeast,23.16,92.94,Aizawl|Lunglei
+NL,Nagaland,state,Northeast,26.16,94.56,Kohima|Mokokchung
+OD,Odisha,state,East,20.95,85.09,Khordha|Cuttack
+PB,Punjab,state,North,31.14,75.34,Ludhiana|Amritsar
+RJ,Rajasthan,state,West,27.02,74.22,Jaipur|Jodhpur
+SK,Sikkim,state,Northeast,27.53,88.51,Gangtok|Namchi
+TN,Tamil Nadu,state,South,11.13,78.66,Chennai|Coimbatore
+TS,Telangana,state,South,18.11,79.02,Hyderabad|Nizamabad
+TR,Tripura,state,Northeast,23.94,91.99,West Tripura|Gomati
+UP,Uttar Pradesh,state,North,26.85,80.95,Lucknow|Varanasi
+UK,Uttarakhand,state,North,30.07,79.02,Dehradun|Haridwar
+WB,West Bengal,state,East,22.99,87.85,Kolkata|Howrah
+AN,Andaman and Nicobar Islands,union_territory,Islands,11.74,92.66,South Andaman|Nicobar
+CH,Chandigarh,union_territory,North,30.73,76.78,Chandigarh
+DN,Dadra and Nagar Haveli and Daman and Diu,union_territory,West,20.18,73.02,Dadra and Nagar Haveli|Daman
+DL,Delhi,union_territory,North,28.61,77.21,New Delhi
+JK,Jammu and Kashmir,union_territory,North,33.77,76.58,Jammu|Srinagar
+LA,Ladakh,union_territory,North,34.15,77.58,Leh|Kargil
+LD,Lakshadweep,union_territory,Islands,10.57,72.64,Lakshadweep
+PY,Puducherry,union_territory,South,11.94,79.81,Puducherry|Karaikal
+

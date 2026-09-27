@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.angular/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+.env.*
+!.env.example
+data/generated/*.json
+artifacts/
+*.log
+credentials*.json
+service-account*.json
+
