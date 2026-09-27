@@ -38,3 +38,9 @@ Phase 3 adds an explicit offline path: country history → frozen-origin tempora
 The future federation flow remains local dataset → local training → model update → federated aggregation → global model → local node. Phase 3 performs actual local forecasting training and evaluation; no federated rounds or pooled global operational training dataset exist. The BRICS page links measured local metrics and keeps federation marked not started.
 
 Domestic redistribution will operate within a selected country's boundary and preserve donor reserves. It is separate from federation. Future cloud targets are Firebase Hosting, Cloud Run and Firestore; the Docker setup is a local deployment scaffold. No Gemini, OR-Tools, FedAvg or production cloud deployment is claimed for Phase 2.
+
+## Phase 4 operational resilience
+
+Saved country-local forecasts → selected facility copies → explicit scenario adjustment → conserved inventory/bed/workforce propagation → common warning rules → backend comparison → Angular views. `scenarios/` owns snapshot isolation and bounded process-local runs; `warnings/` owns deterministic facts, deduplication, priority and aggregation. Both reuse the existing forecast service and residual bootstrap. `core/risk_config.py` versions assumptions. Baseline snapshots, histories and fitted artifacts remain unchanged. Cached forecasts and baseline projections are keyed by country, origin, facility hash and model version. Scope validation prevents cross-country scenario reads.
+
+This is an operational resilience digital twin. Dengue is an externally specified fever-demand shock. No epidemiological prediction, resource optimization, Gemini or federated training is present. Scenario storage currently requires one server worker and is not durable. See [Phase 4 report](phase4-report.md).

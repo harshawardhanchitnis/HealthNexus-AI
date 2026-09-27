@@ -1,0 +1,5225 @@
+{
+  "checks": "20 live scenarios; comparison, warnings, detail, summary, cross-country 404, unchanged baseline+forecast, discard 404; invalid severity 422",
+  "records": [
+    {
+      "country_id": "IN",
+      "scenario_type": "DENGUE_SURGE",
+      "seconds": 0.1029,
+      "baseline": {
+        "patient_demand": 14015.399278936,
+        "admissions_requested": 796.1033326790778,
+        "unmet_admissions": 21.624101780754824,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 0.9812932013256469,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 2
+      },
+      "scenario": {
+        "patient_demand": 21023.098918404,
+        "admissions_requested": 1496.8732966258779,
+        "unmet_admissions": 615.9606837284649,
+        "unserved_patients": 4161.58886022603,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 1.4719398019884702,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 3
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5997.472028185159,
+            "scenario": 5997.472028185159,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7747.103259292605,
+            "scenario": 7747.103259292605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2748.5758254530383,
+            "scenario": 4850.885717293439,
+            "absolute": 2102.3098918404003,
+            "percent": 76.48724377083116,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 950.8857172934385,
+            "absolute": 950.8857172934385,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4890.729113712904,
+            "scenario": 5591.499077659704,
+            "absolute": 700.7699639468001,
+            "percent": 14.3285376812619,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19827.3213421858,
+            "scenario": 44354.27008032381,
+            "absolute": 24526.94873813801,
+            "percent": 123.70278523681866,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 16124.270080323804,
+            "absolute": 16124.270080323804,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 19,
+        "WARNING": 18,
+        "CRITICAL": 9
+      },
+      "model_versions": [
+        "forecast-v1-176a752efab3ae4e"
+      ]
+    },
+    {
+      "country_id": "IN",
+      "scenario_type": "DELIVERY_DELAY",
+      "seconds": 0.0813,
+      "baseline": {
+        "patient_demand": 14015.399278936,
+        "admissions_requested": 796.1033326790778,
+        "unmet_admissions": 21.624101780754824,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 0.9812932013256469,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 2
+      },
+      "scenario": {
+        "patient_demand": 14015.399278936,
+        "admissions_requested": 796.1033326790778,
+        "unmet_admissions": 21.624101780754824,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 0.9812932013256469,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 2
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5997.472028185159,
+            "scenario": 5997.472028185159,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7747.103259292605,
+            "scenario": 7747.103259292605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2748.5758254530383,
+            "scenario": 2748.5758254530383,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 36.05371762020531,
+            "absolute": 36.05371762020531,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4890.729113712904,
+            "scenario": 4890.729113712904,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19827.3213421858,
+            "scenario": 19827.3213421858,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 18,
+        "WARNING": 9,
+        "CRITICAL": 2
+      },
+      "model_versions": [
+        "forecast-v1-176a752efab3ae4e"
+      ]
+    },
+    {
+      "country_id": "IN",
+      "scenario_type": "STAFF_SHORTAGE",
+      "seconds": 0.0845,
+      "baseline": {
+        "patient_demand": 14015.399278936,
+        "admissions_requested": 796.1033326790778,
+        "unmet_admissions": 21.624101780754824,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 0.9812932013256469,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 2
+      },
+      "scenario": {
+        "patient_demand": 14015.399278936,
+        "admissions_requested": 796.1033326790778,
+        "unmet_admissions": 21.624101780754824,
+        "unserved_patients": 3754.5354306268773,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 1.6354886688760781,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 3
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5997.472028185159,
+            "scenario": 5997.472028185159,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7747.103259292605,
+            "scenario": 7747.103259292605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2748.5758254530383,
+            "scenario": 2748.5758254530383,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4890.729113712904,
+            "scenario": 4890.729113712904,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19827.3213421858,
+            "scenario": 19827.3213421858,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 4,
+        "CRITICAL": 8
+      },
+      "model_versions": [
+        "forecast-v1-176a752efab3ae4e"
+      ]
+    },
+    {
+      "country_id": "IN",
+      "scenario_type": "FACILITY_DISRUPTION",
+      "seconds": 0.0921,
+      "baseline": {
+        "patient_demand": 14015.399278936,
+        "admissions_requested": 796.1033326790778,
+        "unmet_admissions": 21.624101780754824,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 0.9812932013256469,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 2
+      },
+      "scenario": {
+        "patient_demand": 14015.399278936,
+        "admissions_requested": 796.1033326790778,
+        "unmet_admissions": 435.85906562134886,
+        "unserved_patients": 5439.149278936,
+        "peak_bed_occupancy_percent": 132.5480796345384,
+        "peak_workload_ratio": 1.9625864026512938,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 3
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5997.472028185159,
+            "scenario": 5997.472028185159,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7747.103259292605,
+            "scenario": 7747.103259292605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2748.5758254530383,
+            "scenario": 2748.5758254530383,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4890.729113712904,
+            "scenario": 4890.729113712904,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19827.3213421858,
+            "scenario": 19827.3213421858,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 6,
+        "CRITICAL": 9
+      },
+      "model_versions": [
+        "forecast-v1-176a752efab3ae4e"
+      ]
+    },
+    {
+      "country_id": "BR",
+      "scenario_type": "DENGUE_SURGE",
+      "seconds": 0.6856,
+      "baseline": {
+        "patient_demand": 18505.233705169354,
+        "admissions_requested": 1047.9594874005877,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 56.999310522967065,
+        "peak_workload_ratio": 0.971934605568367,
+        "max_stockout_probability": 0.236,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 27757.85055775403,
+        "admissions_requested": 1973.2211726590556,
+        "unmet_admissions": 27.40854434159318,
+        "unserved_patients": 5451.76113008966,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 1.4579019083525506,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 5
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 8543.14402607537,
+            "scenario": 8543.14402607537,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 10833.17094913257,
+            "scenario": 10833.17094913257,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 23.599999999999998,
+            "scenario": 23.599999999999998,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3144.7050576343477,
+            "scenario": 5920.490113409752,
+            "absolute": 2775.785055775404,
+            "percent": 88.26853408832976,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 1660.4901134097506,
+            "absolute": 1660.4901134097506,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 7.3999999999999995,
+            "scenario": 100.0,
+            "absolute": 92.6,
+            "percent": 1251.3513513513515,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 6314.162701356271,
+            "scenario": 7239.424386614738,
+            "absolute": 925.261685258467,
+            "percent": 14.653751083413201,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 45.13728796342999,
+            "absolute": 45.13728796342999,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 21357.47087714214,
+            "scenario": 53741.629861188514,
+            "absolute": 32384.158984046375,
+            "percent": 151.62918479596553,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 24788.629861188507,
+            "absolute": 24788.629861188507,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 54,
+        "CRITICAL": 6
+      },
+      "model_versions": [
+        "forecast-v1-d6457d5d28468752"
+      ]
+    },
+    {
+      "country_id": "BR",
+      "scenario_type": "DELIVERY_DELAY",
+      "seconds": 0.1917,
+      "baseline": {
+        "patient_demand": 18505.233705169354,
+        "admissions_requested": 1047.9594874005877,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 56.999310522967065,
+        "peak_workload_ratio": 0.971934605568367,
+        "max_stockout_probability": 0.236,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 18505.233705169354,
+        "admissions_requested": 1047.9594874005877,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 56.999310522967065,
+        "peak_workload_ratio": 0.971934605568367,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 0
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 8543.14402607537,
+            "scenario": 8543.14402607537,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 10833.17094913257,
+            "scenario": 10833.17094913257,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 23.599999999999998,
+            "scenario": 23.599999999999998,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3144.7050576343477,
+            "scenario": 3144.7050576343477,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 332.70505763434755,
+            "absolute": 332.70505763434755,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 7.3999999999999995,
+            "scenario": 100.0,
+            "absolute": 92.6,
+            "percent": 1251.3513513513515,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 6314.162701356271,
+            "scenario": 6314.162701356271,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 21357.47087714214,
+            "scenario": 21357.47087714214,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 28,
+        "WARNING": 27,
+        "CRITICAL": 0
+      },
+      "model_versions": [
+        "forecast-v1-d6457d5d28468752"
+      ]
+    },
+    {
+      "country_id": "BR",
+      "scenario_type": "STAFF_SHORTAGE",
+      "seconds": 0.1842,
+      "baseline": {
+        "patient_demand": 18505.233705169354,
+        "admissions_requested": 1047.9594874005877,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 56.999310522967065,
+        "peak_workload_ratio": 0.971934605568367,
+        "max_stockout_probability": 0.236,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 18505.233705169354,
+        "admissions_requested": 1047.9594874005877,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 4930.935991488344,
+        "peak_bed_occupancy_percent": 56.999310522967065,
+        "peak_workload_ratio": 1.6198910092806118,
+        "max_stockout_probability": 0.236,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 8543.14402607537,
+            "scenario": 8543.14402607537,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 10833.17094913257,
+            "scenario": 10833.17094913257,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 23.599999999999998,
+            "scenario": 23.599999999999998,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3144.7050576343477,
+            "scenario": 3144.7050576343477,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 7.3999999999999995,
+            "scenario": 7.3999999999999995,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 6314.162701356271,
+            "scenario": 6314.162701356271,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 21357.47087714214,
+            "scenario": 21357.47087714214,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 26,
+        "WARNING": 15,
+        "CRITICAL": 7
+      },
+      "model_versions": [
+        "forecast-v1-d6457d5d28468752"
+      ]
+    },
+    {
+      "country_id": "BR",
+      "scenario_type": "FACILITY_DISRUPTION",
+      "seconds": 0.1675,
+      "baseline": {
+        "patient_demand": 18505.233705169354,
+        "admissions_requested": 1047.9594874005877,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 56.999310522967065,
+        "peak_workload_ratio": 0.971934605568367,
+        "max_stockout_probability": 0.236,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 18505.233705169354,
+        "admissions_requested": 1047.9594874005877,
+        "unmet_admissions": 18.78551990881026,
+        "unserved_patients": 7161.483705169354,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 1.943869211136734,
+        "max_stockout_probability": 0.236,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 8543.14402607537,
+            "scenario": 8543.14402607537,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 10833.17094913257,
+            "scenario": 10833.17094913257,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 23.599999999999998,
+            "scenario": 23.599999999999998,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3144.7050576343477,
+            "scenario": 3144.7050576343477,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 7.3999999999999995,
+            "scenario": 7.3999999999999995,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 6314.162701356271,
+            "scenario": 6314.162701356271,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 21357.47087714214,
+            "scenario": 21357.47087714214,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 27,
+        "WARNING": 22,
+        "CRITICAL": 14
+      },
+      "model_versions": [
+        "forecast-v1-d6457d5d28468752"
+      ]
+    },
+    {
+      "country_id": "RU",
+      "scenario_type": "DENGUE_SURGE",
+      "seconds": 0.6904,
+      "baseline": {
+        "patient_demand": 13793.574112794498,
+        "admissions_requested": 776.0,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 30.030333670374116,
+        "peak_workload_ratio": 0.972072147836654,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 20690.361169191747,
+        "admissions_requested": 1465.678705639725,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 3895.3272223849613,
+        "peak_bed_occupancy_percent": 58.61943738004204,
+        "peak_workload_ratio": 1.4581082217549808,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5873.8984012377605,
+            "scenario": 5873.8984012377605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 18.06830477938389,
+            "scenario": 18.06830477938389,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 90.60000000000001,
+            "scenario": 90.60000000000001,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7544.46093555432,
+            "scenario": 7544.46093555432,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 71.89348296223483,
+            "scenario": 71.89348296223483,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2685.612195685199,
+            "scenario": 4754.648312604374,
+            "absolute": 2069.036116919175,
+            "percent": 77.04150734210111,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 6.204485987030246,
+            "scenario": 1012.6483126043734,
+            "absolute": 1006.4438266173431,
+            "percent": 16221.228135919662,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 92.0,
+            "scenario": 100.0,
+            "absolute": 8.0,
+            "percent": 8.695652173913038,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4756.852388587006,
+            "scenario": 5446.5310942267315,
+            "absolute": 689.6787056397252,
+            "percent": 14.498635847823515,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 46.73638418836774,
+            "absolute": 46.73638418836774,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 8.4,
+            "scenario": 100.0,
+            "absolute": 91.6,
+            "percent": 1090.4761904761906,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19386.75917553171,
+            "scenario": 43525.51387292208,
+            "absolute": 24138.754697390366,
+            "percent": 124.51155182170011,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 45.32433968656126,
+            "scenario": 16260.513872922085,
+            "absolute": 16215.189533235523,
+            "percent": 35775.89799514135,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 96.39999999999999,
+            "scenario": 100.0,
+            "absolute": 3.6000000000000085,
+            "percent": 3.734439834024905,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 35,
+        "WARNING": 43,
+        "CRITICAL": 6
+      },
+      "model_versions": [
+        "forecast-v1-85e3ab1afc6775dc"
+      ]
+    },
+    {
+      "country_id": "RU",
+      "scenario_type": "DELIVERY_DELAY",
+      "seconds": 0.1785,
+      "baseline": {
+        "patient_demand": 13793.574112794498,
+        "admissions_requested": 776.0,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 30.030333670374116,
+        "peak_workload_ratio": 0.972072147836654,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 13793.574112794498,
+        "admissions_requested": 776.0,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 30.030333670374116,
+        "peak_workload_ratio": 0.972072147836654,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 0
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5873.8984012377605,
+            "scenario": 5873.8984012377605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 18.06830477938389,
+            "scenario": 18.06830477938389,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 90.60000000000001,
+            "scenario": 90.60000000000001,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7544.46093555432,
+            "scenario": 7544.46093555432,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 71.89348296223483,
+            "scenario": 71.89348296223483,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2685.612195685199,
+            "scenario": 2685.612195685199,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 6.204485987030246,
+            "scenario": 179.04519365169432,
+            "absolute": 172.84070766466408,
+            "percent": 2785.737739209459,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 92.0,
+            "scenario": 100.0,
+            "absolute": 8.0,
+            "percent": 8.695652173913038,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4756.852388587006,
+            "scenario": 4756.852388587006,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 8.4,
+            "scenario": 8.4,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19386.75917553171,
+            "scenario": 19386.75917553171,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 45.32433968656126,
+            "scenario": 45.32433968656126,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 96.39999999999999,
+            "scenario": 96.39999999999999,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 31,
+        "WARNING": 27,
+        "CRITICAL": 0
+      },
+      "model_versions": [
+        "forecast-v1-85e3ab1afc6775dc"
+      ]
+    },
+    {
+      "country_id": "RU",
+      "scenario_type": "STAFF_SHORTAGE",
+      "seconds": 0.1776,
+      "baseline": {
+        "patient_demand": 13793.574112794498,
+        "admissions_requested": 776.0,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 30.030333670374116,
+        "peak_workload_ratio": 0.972072147836654,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 13793.574112794498,
+        "admissions_requested": 776.0,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 3575.0276720661645,
+        "peak_bed_occupancy_percent": 30.030333670374116,
+        "peak_workload_ratio": 1.620120246394423,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5873.8984012377605,
+            "scenario": 5873.8984012377605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 18.06830477938389,
+            "scenario": 18.06830477938389,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 90.60000000000001,
+            "scenario": 90.60000000000001,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7544.46093555432,
+            "scenario": 7544.46093555432,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 71.89348296223483,
+            "scenario": 71.89348296223483,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2685.612195685199,
+            "scenario": 2685.612195685199,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 6.204485987030246,
+            "scenario": 6.204485987030246,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 92.0,
+            "scenario": 92.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4756.852388587006,
+            "scenario": 4756.852388587006,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 8.4,
+            "scenario": 8.4,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19386.75917553171,
+            "scenario": 19386.75917553171,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 45.32433968656126,
+            "scenario": 45.32433968656126,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 96.39999999999999,
+            "scenario": 96.39999999999999,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 29,
+        "WARNING": 17,
+        "CRITICAL": 8
+      },
+      "model_versions": [
+        "forecast-v1-85e3ab1afc6775dc"
+      ]
+    },
+    {
+      "country_id": "RU",
+      "scenario_type": "FACILITY_DISRUPTION",
+      "seconds": 0.1617,
+      "baseline": {
+        "patient_demand": 13793.574112794498,
+        "admissions_requested": 776.0,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 30.030333670374116,
+        "peak_workload_ratio": 0.972072147836654,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 13793.574112794498,
+        "admissions_requested": 776.0,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 5234.8241127944975,
+        "peak_bed_occupancy_percent": 60.06066734074823,
+        "peak_workload_ratio": 1.944144295673308,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 5873.8984012377605,
+            "scenario": 5873.8984012377605,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 18.06830477938389,
+            "scenario": 18.06830477938389,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 90.60000000000001,
+            "scenario": 90.60000000000001,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 7544.46093555432,
+            "scenario": 7544.46093555432,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 71.89348296223483,
+            "scenario": 71.89348296223483,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 2685.612195685199,
+            "scenario": 2685.612195685199,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 6.204485987030246,
+            "scenario": 6.204485987030246,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 92.0,
+            "scenario": 92.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 4756.852388587006,
+            "scenario": 4756.852388587006,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 8.4,
+            "scenario": 8.4,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 19386.75917553171,
+            "scenario": 19386.75917553171,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 45.32433968656126,
+            "scenario": 45.32433968656126,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 96.39999999999999,
+            "scenario": 96.39999999999999,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 20,
+        "CRITICAL": 6
+      },
+      "model_versions": [
+        "forecast-v1-85e3ab1afc6775dc"
+      ]
+    },
+    {
+      "country_id": "CN",
+      "scenario_type": "DENGUE_SURGE",
+      "seconds": 0.6029,
+      "baseline": {
+        "patient_demand": 16403.608569457225,
+        "admissions_requested": 936.4449577497231,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 32.650411553835006,
+        "peak_workload_ratio": 0.9771328367322872,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 1
+      },
+      "scenario": {
+        "patient_demand": 24605.412854185834,
+        "admissions_requested": 1756.6253862225844,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 4587.202934907507,
+        "peak_bed_occupancy_percent": 67.29843010697182,
+        "peak_workload_ratio": 1.465699255098431,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 7135.961047470598,
+            "scenario": 7135.961047470598,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 66.34191114639059,
+            "scenario": 66.34191114639059,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 9168.33437038439,
+            "scenario": 9168.33437038439,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 131.3433579418375,
+            "scenario": 131.3433579418375,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3252.6469278939794,
+            "scenario": 5713.188213312563,
+            "absolute": 2460.5412854185834,
+            "percent": 75.64735244755667,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 37.67509471593121,
+            "scenario": 1255.1882133125623,
+            "absolute": 1217.513118596631,
+            "percent": 3231.6126283865615,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 5769.775962842994,
+            "scenario": 6589.956391315855,
+            "absolute": 820.1804284728614,
+            "percent": 14.215117428384971,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 77.0850913519864,
+            "scenario": 147.48701877814426,
+            "absolute": 70.40192742615785,
+            "percent": 91.3301472326058,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23615.68876329198,
+            "scenario": 52322.003759842126,
+            "absolute": 28706.314996550147,
+            "percent": 121.55612010423762,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 276.6618527842802,
+            "scenario": 19981.00375984212,
+            "absolute": 19704.34190705784,
+            "percent": 7122.175214528683,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 34,
+        "WARNING": 42,
+        "CRITICAL": 9
+      },
+      "model_versions": [
+        "forecast-v1-40bd39b1f0f71bf1"
+      ]
+    },
+    {
+      "country_id": "CN",
+      "scenario_type": "DELIVERY_DELAY",
+      "seconds": 0.2022,
+      "baseline": {
+        "patient_demand": 16403.608569457225,
+        "admissions_requested": 936.4449577497231,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 32.650411553835006,
+        "peak_workload_ratio": 0.9771328367322872,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 1
+      },
+      "scenario": {
+        "patient_demand": 16403.608569457225,
+        "admissions_requested": 936.4449577497231,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 32.650411553835006,
+        "peak_workload_ratio": 0.9771328367322872,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 1
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 7135.961047470598,
+            "scenario": 7135.961047470598,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 66.34191114639059,
+            "scenario": 66.34191114639059,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 9168.33437038439,
+            "scenario": 9168.33437038439,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 131.3433579418375,
+            "scenario": 131.3433579418375,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3252.6469278939794,
+            "scenario": 3252.6469278939794,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 37.67509471593121,
+            "scenario": 343.3388368453718,
+            "absolute": 305.6637421294406,
+            "percent": 811.3151259051468,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 5769.775962842994,
+            "scenario": 5769.775962842994,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 77.0850913519864,
+            "scenario": 77.0850913519864,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23615.68876329198,
+            "scenario": 23615.68876329198,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 276.6618527842802,
+            "scenario": 276.6618527842802,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 29,
+        "CRITICAL": 1
+      },
+      "model_versions": [
+        "forecast-v1-40bd39b1f0f71bf1"
+      ]
+    },
+    {
+      "country_id": "CN",
+      "scenario_type": "STAFF_SHORTAGE",
+      "seconds": 0.1858,
+      "baseline": {
+        "patient_demand": 16403.608569457225,
+        "admissions_requested": 936.4449577497231,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 32.650411553835006,
+        "peak_workload_ratio": 0.9771328367322872,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 1
+      },
+      "scenario": {
+        "patient_demand": 16403.608569457225,
+        "admissions_requested": 936.4449577497231,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 4223.877607935692,
+        "peak_bed_occupancy_percent": 32.650411553835006,
+        "peak_workload_ratio": 1.6285547278871455,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 7135.961047470598,
+            "scenario": 7135.961047470598,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 66.34191114639059,
+            "scenario": 66.34191114639059,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 9168.33437038439,
+            "scenario": 9168.33437038439,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 131.3433579418375,
+            "scenario": 131.3433579418375,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3252.6469278939794,
+            "scenario": 3252.6469278939794,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 37.67509471593121,
+            "scenario": 37.67509471593121,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 5769.775962842994,
+            "scenario": 5769.775962842994,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 77.0850913519864,
+            "scenario": 77.0850913519864,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23615.68876329198,
+            "scenario": 23615.68876329198,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 276.6618527842802,
+            "scenario": 276.6618527842802,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 19,
+        "CRITICAL": 8
+      },
+      "model_versions": [
+        "forecast-v1-40bd39b1f0f71bf1"
+      ]
+    },
+    {
+      "country_id": "CN",
+      "scenario_type": "FACILITY_DISRUPTION",
+      "seconds": 0.37,
+      "baseline": {
+        "patient_demand": 16403.608569457225,
+        "admissions_requested": 936.4449577497231,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 32.650411553835006,
+        "peak_workload_ratio": 0.9771328367322872,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 1
+      },
+      "scenario": {
+        "patient_demand": 16403.608569457225,
+        "admissions_requested": 936.4449577497231,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 6209.858569457224,
+        "peak_bed_occupancy_percent": 65.30082310767001,
+        "peak_workload_ratio": 1.9542656734645745,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 7135.961047470598,
+            "scenario": 7135.961047470598,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 66.34191114639059,
+            "scenario": 66.34191114639059,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 9168.33437038439,
+            "scenario": 9168.33437038439,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 131.3433579418375,
+            "scenario": 131.3433579418375,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3252.6469278939794,
+            "scenario": 3252.6469278939794,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 37.67509471593121,
+            "scenario": 37.67509471593121,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 5769.775962842994,
+            "scenario": 5769.775962842994,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 77.0850913519864,
+            "scenario": 77.0850913519864,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23615.68876329198,
+            "scenario": 23615.68876329198,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 276.6618527842802,
+            "scenario": 276.6618527842802,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 100.0,
+            "scenario": 100.0,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 31,
+        "WARNING": 21,
+        "CRITICAL": 7
+      },
+      "model_versions": [
+        "forecast-v1-40bd39b1f0f71bf1"
+      ]
+    },
+    {
+      "country_id": "ZA",
+      "scenario_type": "DENGUE_SURGE",
+      "seconds": 1.3181,
+      "baseline": {
+        "patient_demand": 20701.438730771264,
+        "admissions_requested": 1168.352545729445,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 67.73363092367781,
+        "peak_workload_ratio": 0.9721580936887282,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 31052.158096156894,
+        "admissions_requested": 2203.4244822680084,
+        "unmet_admissions": 118.5499118013187,
+        "unserved_patients": 5716.214249456329,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 1.4582371405330923,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 9532.730869674475,
+            "scenario": 9532.730869674475,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 12107.285250676618,
+            "scenario": 12107.285250676618,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3526.429819775801,
+            "scenario": 6631.645629391491,
+            "absolute": 3105.2158096156895,
+            "percent": 88.05551133336063,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 1746.645629391491,
+            "absolute": 1746.645629391491,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 7073.263340723862,
+            "scenario": 8108.335277262426,
+            "absolute": 1035.071936538564,
+            "percent": 14.633584057010896,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 47.31432448975102,
+            "absolute": 47.31432448975102,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23923.76423613698,
+            "scenario": 60151.28201498669,
+            "absolute": 36227.51777884971,
+            "percent": 151.4290034848606,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 27001.28201498669,
+            "absolute": 27001.28201498669,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 28,
+        "WARNING": 55,
+        "CRITICAL": 15
+      },
+      "model_versions": [
+        "forecast-v1-862d8eb0168f5774"
+      ]
+    },
+    {
+      "country_id": "ZA",
+      "scenario_type": "DELIVERY_DELAY",
+      "seconds": 0.4124,
+      "baseline": {
+        "patient_demand": 20701.438730771264,
+        "admissions_requested": 1168.352545729445,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 67.73363092367781,
+        "peak_workload_ratio": 0.9721580936887282,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 20701.438730771264,
+        "admissions_requested": 1168.352545729445,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 67.73363092367781,
+        "peak_workload_ratio": 0.9721580936887282,
+        "max_stockout_probability": 1.0,
+        "critical_facilities": 0
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 9532.730869674475,
+            "scenario": 9532.730869674475,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 12107.285250676618,
+            "scenario": 12107.285250676618,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3526.429819775801,
+            "scenario": 3526.429819775801,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 573.4298197758012,
+            "absolute": 573.4298197758012,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 100.0,
+            "absolute": 100.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 7073.263340723862,
+            "scenario": 7073.263340723862,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23923.76423613698,
+            "scenario": 23923.76423613698,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 25,
+        "WARNING": 29,
+        "CRITICAL": 0
+      },
+      "model_versions": [
+        "forecast-v1-862d8eb0168f5774"
+      ]
+    },
+    {
+      "country_id": "ZA",
+      "scenario_type": "STAFF_SHORTAGE",
+      "seconds": 0.3893,
+      "baseline": {
+        "patient_demand": 20701.438730771264,
+        "admissions_requested": 1168.352545729445,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 67.73363092367781,
+        "peak_workload_ratio": 0.9721580936887282,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 20701.438730771264,
+        "admissions_requested": 1168.352545729445,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 5288.523785351838,
+        "peak_bed_occupancy_percent": 67.73363092367781,
+        "peak_workload_ratio": 1.6202634894812138,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 9532.730869674475,
+            "scenario": 9532.730869674475,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 12107.285250676618,
+            "scenario": 12107.285250676618,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3526.429819775801,
+            "scenario": 3526.429819775801,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 7073.263340723862,
+            "scenario": 7073.263340723862,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23923.76423613698,
+            "scenario": 23923.76423613698,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 25,
+        "WARNING": 15,
+        "CRITICAL": 7
+      },
+      "model_versions": [
+        "forecast-v1-862d8eb0168f5774"
+      ]
+    },
+    {
+      "country_id": "ZA",
+      "scenario_type": "FACILITY_DISRUPTION",
+      "seconds": 0.4169,
+      "baseline": {
+        "patient_demand": 20701.438730771264,
+        "admissions_requested": 1168.352545729445,
+        "unmet_admissions": 0.0,
+        "unserved_patients": 0.0,
+        "peak_bed_occupancy_percent": 67.73363092367781,
+        "peak_workload_ratio": 0.9721580936887282,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 0
+      },
+      "scenario": {
+        "patient_demand": 20701.438730771264,
+        "admissions_requested": 1168.352545729445,
+        "unmet_admissions": 179.82177881163648,
+        "unserved_patients": 7771.438730771264,
+        "peak_bed_occupancy_percent": 100.00000000000003,
+        "peak_workload_ratio": 1.9443161873774564,
+        "max_stockout_probability": 0.0,
+        "critical_facilities": 6
+      },
+      "resource_impact": [
+        {
+          "resource_id": "AMX",
+          "name": "Amoxicillin 500 mg",
+          "unit": "capsules",
+          "demand": {
+            "baseline": 9532.730869674475,
+            "scenario": 9532.730869674475,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "capsules"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "capsules"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IFA",
+          "name": "Iron and folic acid",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 12107.285250676618,
+            "scenario": 12107.285250676618,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "IVF",
+          "name": "IV fluids",
+          "unit": "bags",
+          "demand": {
+            "baseline": 3526.429819775801,
+            "scenario": 3526.429819775801,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "bags"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "bags"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "ORS",
+          "name": "Oral rehydration salts",
+          "unit": "sachets",
+          "demand": {
+            "baseline": 7073.263340723862,
+            "scenario": 7073.263340723862,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "sachets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "sachets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        },
+        {
+          "resource_id": "PCM",
+          "name": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "demand": {
+            "baseline": 23923.76423613698,
+            "scenario": 23923.76423613698,
+            "absolute": 0.0,
+            "percent": 0.0,
+            "unit": "tablets"
+          },
+          "unmet_demand": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "tablets"
+          },
+          "max_stockout_risk": {
+            "baseline": 0.0,
+            "scenario": 0.0,
+            "absolute": 0.0,
+            "percent": null,
+            "unit": "percentage points"
+          }
+        }
+      ],
+      "warning_counts": {
+        "INFO": 0,
+        "WATCH": 25,
+        "WARNING": 23,
+        "CRITICAL": 18
+      },
+      "model_versions": [
+        "forecast-v1-862d8eb0168f5774"
+      ]
+    }
+  ],
+  "india_national_summary": {
+    "total": 1619,
+    "counts": {
+      "INFO": 0,
+      "WATCH": 1025,
+      "WARNING": 433,
+      "CRITICAL": 161
+    },
+    "facilities_affected": 207,
+    "medicines_at_risk": 5,
+    "bed_warnings": 371,
+    "staff_warnings": 45,
+    "by_country": {
+      "IN": {
+        "INFO": 0,
+        "WATCH": 1025,
+        "WARNING": 433,
+        "CRITICAL": 161
+      }
+    },
+    "by_region": {
+      "SK": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 21,
+        "CRITICAL": 6
+      },
+      "UK": {
+        "INFO": 0,
+        "WATCH": 31,
+        "WARNING": 6,
+        "CRITICAL": 6
+      },
+      "GJ": {
+        "INFO": 0,
+        "WATCH": 31,
+        "WARNING": 20,
+        "CRITICAL": 6
+      },
+      "MP": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 11,
+        "CRITICAL": 5
+      },
+      "ML": {
+        "INFO": 0,
+        "WATCH": 29,
+        "WARNING": 17,
+        "CRITICAL": 6
+      },
+      "TS": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 5,
+        "CRITICAL": 5
+      },
+      "CG": {
+        "INFO": 0,
+        "WATCH": 27,
+        "WARNING": 16,
+        "CRITICAL": 5
+      },
+      "HP": {
+        "INFO": 0,
+        "WATCH": 31,
+        "WARNING": 6,
+        "CRITICAL": 5
+      },
+      "AP": {
+        "INFO": 0,
+        "WATCH": 31,
+        "WARNING": 22,
+        "CRITICAL": 5
+      },
+      "NL": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 7,
+        "CRITICAL": 5
+      },
+      "AS": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 8,
+        "CRITICAL": 5
+      },
+      "RJ": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 5,
+        "CRITICAL": 5
+      },
+      "KA": {
+        "INFO": 0,
+        "WATCH": 25,
+        "WARNING": 13,
+        "CRITICAL": 5
+      },
+      "KL": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 6,
+        "CRITICAL": 5
+      },
+      "AR": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 20,
+        "CRITICAL": 5
+      },
+      "JH": {
+        "INFO": 0,
+        "WATCH": 27,
+        "WARNING": 16,
+        "CRITICAL": 5
+      },
+      "MH": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 14,
+        "CRITICAL": 5
+      },
+      "HR": {
+        "INFO": 0,
+        "WATCH": 26,
+        "WARNING": 17,
+        "CRITICAL": 5
+      },
+      "AN": {
+        "INFO": 0,
+        "WATCH": 27,
+        "WARNING": 15,
+        "CRITICAL": 4
+      },
+      "GA": {
+        "INFO": 0,
+        "WATCH": 34,
+        "WARNING": 4,
+        "CRITICAL": 4
+      },
+      "OD": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 22,
+        "CRITICAL": 4
+      },
+      "UP": {
+        "INFO": 0,
+        "WATCH": 27,
+        "WARNING": 16,
+        "CRITICAL": 4
+      },
+      "DL": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "BR": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 17,
+        "CRITICAL": 4
+      },
+      "MN": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 6,
+        "CRITICAL": 5
+      },
+      "PY": {
+        "INFO": 0,
+        "WATCH": 33,
+        "WARNING": 6,
+        "CRITICAL": 4
+      },
+      "LD": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 12,
+        "CRITICAL": 2
+      },
+      "MZ": {
+        "INFO": 0,
+        "WATCH": 33,
+        "WARNING": 20,
+        "CRITICAL": 4
+      },
+      "DN": {
+        "INFO": 0,
+        "WATCH": 26,
+        "WARNING": 16,
+        "CRITICAL": 4
+      },
+      "PB": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 17,
+        "CRITICAL": 4
+      },
+      "CH": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "WB": {
+        "INFO": 0,
+        "WATCH": 28,
+        "WARNING": 9,
+        "CRITICAL": 4
+      },
+      "LA": {
+        "INFO": 0,
+        "WATCH": 32,
+        "WARNING": 5,
+        "CRITICAL": 4
+      },
+      "TR": {
+        "INFO": 0,
+        "WATCH": 26,
+        "WARNING": 12,
+        "CRITICAL": 4
+      },
+      "JK": {
+        "INFO": 0,
+        "WATCH": 30,
+        "WARNING": 10,
+        "CRITICAL": 4
+      },
+      "TN": {
+        "INFO": 0,
+        "WATCH": 27,
+        "WARNING": 12,
+        "CRITICAL": 4
+      }
+    },
+    "by_district": {
+      "SK-GANGTOK": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 18,
+        "CRITICAL": 3
+      },
+      "UK-DEHRADUN": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "GJ-SURAT": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "UK-HARIDWAR": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "GJ-AHMEDABAD": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 17,
+        "CRITICAL": 3
+      },
+      "MP-INDORE": {
+        "INFO": 0,
+        "WATCH": 18,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "ML-WEST-GARO-HILLS": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "TS-NIZAMABAD": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "CG-BILASPUR": {
+        "INFO": 0,
+        "WATCH": 12,
+        "WARNING": 13,
+        "CRITICAL": 3
+      },
+      "HP-SHIMLA": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "AP-GUNTUR": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 19,
+        "CRITICAL": 3
+      },
+      "NL-KOHIMA": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "AS-KAMRUP-METROPOLITAN": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 4,
+        "CRITICAL": 3
+      },
+      "ML-EAST-KHASI-HILLS": {
+        "INFO": 0,
+        "WATCH": 14,
+        "WARNING": 14,
+        "CRITICAL": 3
+      },
+      "RJ-JODHPUR": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "KA-BENGALURU-URBAN": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "KL-THIRUVANANTHAPURAM": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "AR-LOWER-SUBANSIRI": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 18,
+        "CRITICAL": 3
+      },
+      "SK-NAMCHI": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "JH-DHANBAD": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "MH-NAGPUR": {
+        "INFO": 0,
+        "WATCH": 13,
+        "WARNING": 12,
+        "CRITICAL": 3
+      },
+      "HR-GURUGRAM": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 4,
+        "CRITICAL": 3
+      },
+      "AN-NICOBAR": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 12,
+        "CRITICAL": 2
+      },
+      "HR-HISAR": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 13,
+        "CRITICAL": 2
+      },
+      "MP-BHOPAL": {
+        "INFO": 0,
+        "WATCH": 12,
+        "WARNING": 8,
+        "CRITICAL": 2
+      },
+      "GA-SOUTH-GOA": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "OD-KHORDHA": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 18,
+        "CRITICAL": 2
+      },
+      "UP-LUCKNOW": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "DL-NEW-DELHI": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "BR-GAYA": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "AN-SOUTH-ANDAMAN": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "JH-RANCHI": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 13,
+        "CRITICAL": 2
+      },
+      "BR-PATNA": {
+        "INFO": 0,
+        "WATCH": 13,
+        "WARNING": 14,
+        "CRITICAL": 2
+      },
+      "CG-RAIPUR": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "MN-THOUBAL": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "PY-PUDUCHERRY": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "HP-KANGRA": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "OD-CUTTACK": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 4,
+        "CRITICAL": 2
+      },
+      "LD-LAKSHADWEEP": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 12,
+        "CRITICAL": 2
+      },
+      "MZ-LUNGLEI": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 18,
+        "CRITICAL": 2
+      },
+      "KL-ERNAKULAM": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "DN-DAMAN": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 13,
+        "CRITICAL": 2
+      },
+      "AP-VISAKHAPATNAM": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "PB-AMRITSAR": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 15,
+        "CRITICAL": 2
+      },
+      "AR-TAWANG": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "PY-KARAIKAL": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 4,
+        "CRITICAL": 2
+      },
+      "TS-HYDERABAD": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "AS-DIBRUGARH": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 4,
+        "CRITICAL": 2
+      },
+      "CH-CHANDIGARH": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "WB-HOWRAH": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "LA-KARGIL": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "DN-DADRA-AND-NAGAR-HAVELI": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "GA-NORTH-GOA": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "KA-MYSURU": {
+        "INFO": 0,
+        "WATCH": 10,
+        "WARNING": 10,
+        "CRITICAL": 2
+      },
+      "MZ-AIZAWL": {
+        "INFO": 0,
+        "WATCH": 18,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "TR-GOMATI": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 4,
+        "CRITICAL": 2
+      },
+      "JK-SRINAGAR": {
+        "INFO": 0,
+        "WATCH": 14,
+        "WARNING": 8,
+        "CRITICAL": 2
+      },
+      "PB-LUDHIANA": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "RJ-JAIPUR": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "UP-VARANASI": {
+        "INFO": 0,
+        "WATCH": 12,
+        "WARNING": 13,
+        "CRITICAL": 2
+      },
+      "TR-WEST-TRIPURA": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 8,
+        "CRITICAL": 2
+      },
+      "TN-COIMBATORE": {
+        "INFO": 0,
+        "WATCH": 11,
+        "WARNING": 9,
+        "CRITICAL": 2
+      },
+      "JK-JAMMU": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 2,
+        "CRITICAL": 2
+      },
+      "MN-IMPHAL-WEST": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 3
+      },
+      "WB-KOLKATA": {
+        "INFO": 0,
+        "WATCH": 12,
+        "WARNING": 7,
+        "CRITICAL": 2
+      },
+      "LA-LEH": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "TN-CHENNAI": {
+        "INFO": 0,
+        "WATCH": 16,
+        "WARNING": 3,
+        "CRITICAL": 2
+      },
+      "NL-MOKOKCHUNG": {
+        "INFO": 0,
+        "WATCH": 15,
+        "WARNING": 4,
+        "CRITICAL": 2
+      },
+      "MH-PUNE": {
+        "INFO": 0,
+        "WATCH": 17,
+        "WARNING": 2,
+        "CRITICAL": 2
+      }
+    },
+    "by_facility": {
+      "IN-SK-GANGTOK-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UK-DEHRADUN-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GJ-SURAT-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UK-HARIDWAR-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GJ-AHMEDABAD-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MP-INDORE-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-ML-WEST-GARO-HILLS-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TS-NIZAMABAD-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-CG-BILASPUR-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-HP-SHIMLA-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AP-GUNTUR-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-NL-KOHIMA-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AS-KAMRUP-METROPOLITAN-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-ML-EAST-KHASI-HILLS-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-RJ-JODHPUR-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KA-BENGALURU-URBAN-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KL-THIRUVANANTHAPURAM-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AR-LOWER-SUBANSIRI-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-SK-NAMCHI-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-JH-DHANBAD-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MH-NAGPUR-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-HR-GURUGRAM-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AN-NICOBAR-002": {
+        "INFO": 0,
+        "WATCH": 0,
+        "WARNING": 11,
+        "CRITICAL": 1
+      },
+      "IN-HR-HISAR-002": {
+        "INFO": 0,
+        "WATCH": 0,
+        "WARNING": 11,
+        "CRITICAL": 1
+      },
+      "IN-MP-BHOPAL-002": {
+        "INFO": 0,
+        "WATCH": 1,
+        "WARNING": 7,
+        "CRITICAL": 1
+      },
+      "IN-HP-SHIMLA-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GA-SOUTH-GOA-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UK-DEHRADUN-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-OD-KHORDHA-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 16,
+        "CRITICAL": 1
+      },
+      "IN-UP-LUCKNOW-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-ML-EAST-KHASI-HILLS-002": {
+        "INFO": 0,
+        "WATCH": 4,
+        "WARNING": 12,
+        "CRITICAL": 1
+      },
+      "IN-DL-NEW-DELHI-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-BR-GAYA-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AN-SOUTH-ANDAMAN-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-JH-RANCHI-002": {
+        "INFO": 0,
+        "WATCH": 0,
+        "WARNING": 11,
+        "CRITICAL": 1
+      },
+      "IN-BR-PATNA-002": {
+        "INFO": 0,
+        "WATCH": 3,
+        "WARNING": 12,
+        "CRITICAL": 1
+      },
+      "IN-HR-GURUGRAM-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-CG-RAIPUR-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MN-THOUBAL-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KA-BENGALURU-URBAN-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-PY-PUDUCHERRY-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-HP-KANGRA-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-RJ-JODHPUR-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-OD-CUTTACK-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-MP-INDORE-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-ML-WEST-GARO-HILLS-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-LD-LAKSHADWEEP-002": {
+        "INFO": 0,
+        "WATCH": 0,
+        "WARNING": 11,
+        "CRITICAL": 1
+      },
+      "IN-MZ-LUNGLEI-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 16,
+        "CRITICAL": 1
+      },
+      "IN-KL-THIRUVANANTHAPURAM-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KL-ERNAKULAM-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MH-NAGPUR-002": {
+        "INFO": 0,
+        "WATCH": 3,
+        "WARNING": 10,
+        "CRITICAL": 1
+      },
+      "IN-AP-GUNTUR-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 16,
+        "CRITICAL": 1
+      },
+      "IN-DN-DAMAN-002": {
+        "INFO": 0,
+        "WATCH": 0,
+        "WARNING": 11,
+        "CRITICAL": 1
+      },
+      "IN-AP-VISAKHAPATNAM-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-PB-AMRITSAR-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 13,
+        "CRITICAL": 1
+      },
+      "IN-AR-TAWANG-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-PY-KARAIKAL-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GJ-SURAT-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TS-HYDERABAD-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AS-DIBRUGARH-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-CH-CHANDIGARH-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-WB-HOWRAH-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-LA-KARGIL-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-DN-DADRA-AND-NAGAR-HAVELI-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AS-KAMRUP-METROPOLITAN-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GA-NORTH-GOA-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-CG-BILASPUR-002": {
+        "INFO": 0,
+        "WATCH": 2,
+        "WARNING": 11,
+        "CRITICAL": 1
+      },
+      "IN-AR-LOWER-SUBANSIRI-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 16,
+        "CRITICAL": 1
+      },
+      "IN-TS-NIZAMABAD-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-SK-GANGTOK-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 16,
+        "CRITICAL": 1
+      },
+      "IN-KA-MYSURU-002": {
+        "INFO": 0,
+        "WATCH": 0,
+        "WARNING": 6,
+        "CRITICAL": 1
+      },
+      "IN-MZ-AIZAWL-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TR-GOMATI-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-JK-SRINAGAR-002": {
+        "INFO": 0,
+        "WATCH": 3,
+        "WARNING": 7,
+        "CRITICAL": 1
+      },
+      "IN-PB-LUDHIANA-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-NL-KOHIMA-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-RJ-JAIPUR-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UP-VARANASI-002": {
+        "INFO": 0,
+        "WATCH": 1,
+        "WARNING": 11,
+        "CRITICAL": 1
+      },
+      "IN-TR-WEST-TRIPURA-002": {
+        "INFO": 0,
+        "WATCH": 0,
+        "WARNING": 6,
+        "CRITICAL": 1
+      },
+      "IN-TN-COIMBATORE-002": {
+        "INFO": 0,
+        "WATCH": 1,
+        "WARNING": 6,
+        "CRITICAL": 1
+      },
+      "IN-JK-JAMMU-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MN-IMPHAL-WEST-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-WB-KOLKATA-002": {
+        "INFO": 0,
+        "WATCH": 1,
+        "WARNING": 6,
+        "CRITICAL": 1
+      },
+      "IN-LA-LEH-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GJ-AHMEDABAD-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 15,
+        "CRITICAL": 1
+      },
+      "IN-JH-DHANBAD-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UK-HARIDWAR-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TN-CHENNAI-002": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-SK-NAMCHI-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-NL-MOKOKCHUNG-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MH-PUNE-002": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AR-TAWANG-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-WB-HOWRAH-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KL-THIRUVANANTHAPURAM-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GJ-SURAT-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MH-PUNE-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-PY-KARAIKAL-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KA-MYSURU-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-JH-RANCHI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UK-HARIDWAR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MN-IMPHAL-WEST-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 2
+      },
+      "IN-NL-KOHIMA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MP-INDORE-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-JH-DHANBAD-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AP-GUNTUR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-PB-AMRITSAR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AN-NICOBAR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-ML-EAST-KHASI-HILLS-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-BR-PATNA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-DN-DAMAN-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-RJ-JAIPUR-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-OD-KHORDHA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TR-GOMATI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-AN-SOUTH-ANDAMAN-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-MH-NAGPUR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MZ-LUNGLEI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AP-VISAKHAPATNAM-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-RJ-JODHPUR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-LA-LEH-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AS-DIBRUGARH-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-LA-KARGIL-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-HP-SHIMLA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-LD-LAKSHADWEEP-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UP-LUCKNOW-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KA-BENGALURU-URBAN-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-DL-NEW-DELHI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AS-KAMRUP-METROPOLITAN-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TS-HYDERABAD-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-HR-GURUGRAM-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-UK-DEHRADUN-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-ML-WEST-GARO-HILLS-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GA-SOUTH-GOA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-WB-KOLKATA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-JK-JAMMU-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-SK-GANGTOK-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GA-NORTH-GOA-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-OD-CUTTACK-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-UP-VARANASI-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-CG-RAIPUR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TR-WEST-TRIPURA-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-GJ-AHMEDABAD-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MP-BHOPAL-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-BR-GAYA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-CG-BILASPUR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MN-THOUBAL-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-NL-MOKOKCHUNG-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 1
+      },
+      "IN-TS-NIZAMABAD-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-PY-PUDUCHERRY-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-KL-ERNAKULAM-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-CH-CHANDIGARH-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-HR-HISAR-001": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-JK-SRINAGAR-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-HP-KANGRA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TN-CHENNAI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-SK-NAMCHI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-TN-COIMBATORE-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-DN-DADRA-AND-NAGAR-HAVELI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-MZ-AIZAWL-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-AR-LOWER-SUBANSIRI-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-PB-LUDHIANA-001": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 1
+      },
+      "IN-DN-DAMAN-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-TN-CHENNAI-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-NL-MOKOKCHUNG-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-MZ-LUNGLEI-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-CG-RAIPUR-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-UP-LUCKNOW-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-DN-DADRA-AND-NAGAR-HAVELI-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-MN-IMPHAL-WEST-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-TN-COIMBATORE-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 0
+      },
+      "IN-OD-KHORDHA-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-TR-WEST-TRIPURA-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-TR-GOMATI-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-JH-RANCHI-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-UP-VARANASI-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-PY-KARAIKAL-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 0
+      },
+      "IN-AP-VISAKHAPATNAM-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-KA-MYSURU-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 0
+      },
+      "IN-MN-THOUBAL-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-KL-ERNAKULAM-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-AS-DIBRUGARH-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 2,
+        "CRITICAL": 0
+      },
+      "IN-PB-AMRITSAR-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-OD-CUTTACK-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-LA-LEH-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-BR-PATNA-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-HP-KANGRA-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-HR-HISAR-003": {
+        "INFO": 0,
+        "WATCH": 5,
+        "WARNING": 1,
+        "CRITICAL": 0
+      },
+      "IN-MZ-AIZAWL-003": {
+        "INFO": 0,
+        "WATCH": 7,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-PY-PUDUCHERRY-003": {
+        "INFO": 0,
+        "WATCH": 7,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-JK-JAMMU-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-DL-NEW-DELHI-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-WB-HOWRAH-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-CH-CHANDIGARH-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-JK-SRINAGAR-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-AR-TAWANG-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-MH-PUNE-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-PB-LUDHIANA-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-AN-SOUTH-ANDAMAN-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-GA-SOUTH-GOA-003": {
+        "INFO": 0,
+        "WATCH": 7,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-LD-LAKSHADWEEP-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-BR-GAYA-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-GA-NORTH-GOA-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-MP-BHOPAL-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-WB-KOLKATA-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-AN-NICOBAR-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-RJ-JAIPUR-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-TS-HYDERABAD-003": {
+        "INFO": 0,
+        "WATCH": 7,
+        "WARNING": 0,
+        "CRITICAL": 0
+      },
+      "IN-LA-KARGIL-003": {
+        "INFO": 0,
+        "WATCH": 6,
+        "WARNING": 0,
+        "CRITICAL": 0
+      }
+    }
+  },
+  "india_national_seconds": 19.8798
+}

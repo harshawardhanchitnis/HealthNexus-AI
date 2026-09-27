@@ -34,4 +34,42 @@ All forecast responses use typed Pydantic schemas. Country defaults to `IN`. `ho
 
 Example: `/api/forecasts/facilities/IN-MH-PUNE-001/medicines/IVF?country_id=IN&horizon=7`. Medicine stock intelligence always uses a 14-day projection so its 3/7/14-day probabilities remain comparable when the chart horizon changes. Probabilities are fractions (0–1). Null crossing dates mean no crossing within the horizon; cover is null for zero predicted demand. The `/beds` target is labelled admissions requested in the UI.
 
-Forecast artifacts freeze the historical origin. Regenerate/rebuild/retrain and restart to advance it. Model metrics use the country target evaluation pool, not a claim of individual-facility accuracy. Inference never changes model weights. All runtime endpoints remain read-only.
+Forecast artifacts freeze the historical origin. Regenerate/rebuild/retrain and restart to advance it. Model metrics use the country target evaluation pool, not a claim of individual-facility accuracy. Inference never changes model weights. Phase 3 forecast endpoints remain read-only; Phase 4 adds isolated scenario creation/discard below.
+
+## Phase 4 scenario and warning API
+
+Scenario results are isolated copies. Runtime writes create/discard process-local scenario records; they do not alter baseline snapshots or model artifacts. All scenario IDs are country scoped; supply `country_id` on reads/deletes. Store capacity is 20 completed runs and a server restart clears it.
+
+| Method | Route | Purpose |
+|---|---|---|
+| GET | `/api/scenarios/presets` | Four typed scenario presets and numeric effects |
+| POST | `/api/scenarios` | Create/run, returns 201 with full paired result |
+| GET | `/api/scenarios?country_id=IN` | Metadata for retained runs |
+| GET | `/api/scenarios/{id}?country_id=IN` | Retrieve retained result |
+| GET | `/api/scenarios/{id}/comparison?country_id=IN` | Full baseline/scenario comparison |
+| DELETE | `/api/scenarios/{id}?country_id=IN` | Discard, returns 204; subsequent reads return 404 |
+| GET | `/api/warnings` | Sorted warnings and matching summary |
+| GET | `/api/warnings/summary` | Geographic/severity aggregation |
+| GET | `/api/warnings/{id}` | Structured facts, provenance and severity transition |
+
+Warning list/summary filters: `country_id`, `state_id`, `district_id`, `facility_id`, `severity` (INFO/WATCH/WARNING/CRITICAL), `warning_type`, `category` (medicine/demand/beds/personnel/emergency), `scenario_id`. Omit scenario ID for baseline warnings. Detail supports country/scenario/facility scope. Invalid enums/parameters return 422; unknown/cross-scope geography or discarded runs return 404; missing/stale saved forecasts return 503. Store-full and invalid event windows return 422 with actionable messages.
+
+```json
+{
+  "scenario_type": "DENGUE_SURGE",
+  "country_id": "IN",
+  "state_id": "MH",
+  "district_id": "MH-PUNE",
+  "facility_ids": [],
+  "severity": "severe",
+  "duration": 14,
+  "seed": 42,
+  "parameters": {}
+}
+```
+
+Optional `start_date` must be after the saved origin, with the entire 1–14-day event inside the next 14 days. Other scenario types are DELIVERY_DELAY (`medicine_id`, `delay_days`), STAFF_SHORTAGE (`unavailable_fraction`), FACILITY_DISRUPTION (`capacity_reduction`). Fractions are 0–1, strictly greater than zero. Delay is 1–30 days. Unknown or inapplicable fields are rejected.
+
+Response includes `scenario`, `baseline`, `scenario_result`, `delta`, `resource_impact`, `baseline_warnings`, `warnings_created`. Stock probabilities use fractions; resource-impact risk comparisons explicitly use percentages/percentage points. Maximum risk is a maximum across facilities, not the probability of a network event. Zero capacity yields null ratios and explicit unmet demand/overflow. A null date means no point-trajectory crossing within 14 days. Scenario uncertainty is conditional on fixed assumptions; no outbreak model is trained.
+
+The [Phase 4 report](phase4-report.md) defines exact equations, thresholds and limitations. Interactive OpenAPI is available at `/docs`.

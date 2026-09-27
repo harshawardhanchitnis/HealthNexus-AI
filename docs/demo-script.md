@@ -9,3 +9,9 @@
 7. Explain reproducibility: regenerate history → build temporal tables → train → independently evaluate/reload. Restarting FastAPI does not retrain. Missing/stale artifacts show an explicit unavailable state.
 
 Phase 4 will connect these typed outputs to predictive warning workflows and an emergency digital twin. No dengue controls, optimizer, Gemini response or FedAvg run is claimed in this milestone.
+
+## Phase 4 emergency demo
+
+Use **Emergency Simulator → Load Pune demo → Dengue surge → Severe → 14 days → Run Simulation**. Compare the computed before/after KPIs and resource impacts. Select the district hospital and IV fluids: baseline reserve lasts longer; scenario depletion occurs within the horizon. Inspect bed unmet admissions and personnel pressure. Open scenario warnings, filter severity/category and expand factual explanations. Return to comparison and discard the scenario; baseline endpoints are unchanged.
+
+Additional demos: Medicine delivery delay with Critical (14 days) for IV fluids; Staff shortage with Severe (40% unavailable); Facility/flood disruption with Severe (50% reduced usable beds/service). See [Phase 4 report](phase4-report.md) for exact values, assumptions and full steps. These are operational projections on simulated data, not disease-spread or clinically validated predictions.

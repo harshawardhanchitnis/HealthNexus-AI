@@ -1,6 +1,17 @@
-# Validation — 2026-09-27
+# Validation — 2026-09-28
 
-## Phase 3
+## Phase 4
+
+- **105 backend tests passed** (73 existing + 32 Phase 4 cases); Python compilation passes.
+- Angular strict TypeScript and production build pass, 357.22 kB initial / 98.40 kB estimated transfer.
+- Actual saved bundles loaded across all five countries. Twenty live scenario runs passed comparison, warning list/detail/summary, country isolation, validation, discard and baseline/forecast non-mutation checks. [Recorded results](evaluation/phase4-smoke.json).
+- Keyboard-driven desktop checks: Pune severe dengue, paired KPIs, affected facilities, IV-fluid trajectories, warning navigation/filter/details, scenario reset and preserved baseline navigation.
+- Mobile 390×844: form controls, delay/staff/disruption runs, warning details, responsive curves and contained tables. Measured document width stayed within the viewport; no captured console errors in final checks.
+- District HTTP runs approximately 0.08–1.32 s with models loaded. Cold national warning summary 19.88 s; measured cached summary ~1.72 s.
+- Screenshots: [dengue comparison](screenshots/phase4-dengue.png), [inventory](screenshots/phase4-inventory.png), [warning facts](screenshots/phase4-warning-detail.png), [mobile warnings](screenshots/phase4-mobile-warnings.png).
+- See [Phase 4 report](phase4-report.md) for full methods, thresholds, assumptions and exact commands. No epidemiological/clinical validation, Docker/cloud validation, optimization, Gemini or federated training is claimed. One upstream Starlette/AnyIO deprecation warning remains.
+
+## Historical Phase 3
 
 - **73 backend tests passed**, preserving all original 38. New tests cover history generation, ledgers, latent requested targets, frozen-origin feature leakage, temporal partitions/final evaluation dates, baseline calculations, repeat fitting, saved model reload/integrity, horizon validation, country/facility/resource isolation, empirical intervals and reproducible depletion probabilities.
 - Generated **540 days for all 231 facilities**, built country-local tables, trained 15 pooled candidate models and compared all three mandatory baselines. Independently loaded/evaluated all five saved bundles; metrics reproduced within numerical tolerance. Reports: [all results](phase3-results.md), [full JSON reports](evaluation/IN.json).
@@ -12,7 +23,7 @@
 
 One upstream Starlette/AnyIO deprecation warning remains. Browser checks are manual, not an automated end-to-end suite. Docker/cloud execution and real-world predictive or probability validation remain unverified. No Gemini, OR-Tools, emergency scenario or federated training was run.
 
-## Phase 2
+## Historical Phase 2
 
 - **38 backend tests passed**, preserving the original 13. New checks cover cached imports, normalization, null handling, pagination and host restrictions, raw/normalized tampering, offline import, failed-refresh preservation, provenance, country isolation, legacy migration and causal stock/bed/demand consistency.
 - Actual downloads succeeded for the MoHFW/PIB summary and both WHO indicators. Offline import then succeeded: 13 Indian and 20 WHO observations.
@@ -46,5 +57,5 @@ Screenshot: [overview](screenshots/overview.png).
 - Pytest emits one upstream Starlette/AnyIO deprecation warning; test results pass.
 - Firestore adapter is implemented but has not been exercised against a live or emulator project. No cloud upload or deployment performed.
 - Container/Firebase configurations are scaffolds and have not been deployed or tested with Docker here.
-- No ML forecasts, OR-Tools solves, Gemini responses or FedAvg rounds were executed; those features are subsequent milestones.
+- Phase 1 had no ML forecasts. Current forecasts and emergency projections are tested as described above; OR-Tools, Gemini and FedAvg remain unimplemented.
 - Browser checks were interactive checks, not a committed automated end-to-end test suite.

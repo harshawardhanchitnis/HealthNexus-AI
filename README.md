@@ -4,11 +4,13 @@
 
 A real-data-backed healthcare resilience prototype combining public health statistics with calibrated operational simulation. The configured BRICS scope is India, Brazil, Russia, China and South Africa. India remains the detailed showcase: all 36 states/UTs, 69 illustrative districts and 207 fictional facilities. Each other country has two representative regions and six fictional facilities. These five nodes are the hackathon scope, not an exhaustive list of current BRICS members.
 
-![HealthNexus forecasting](docs/screenshots/phase3-forecast.png)
+![HealthNexus emergency digital twin](docs/screenshots/phase4-dengue.png)
 
-## Working through Phase 3
+## Working through Phase 4
 
-Forecasting now includes 540-day causal histories, country-local trained models, three mandatory baselines, chronological selection/calibration/test periods, empirical 80%/95% intervals and calculated stock-out intelligence. Open **Forecasts** and **Model performance**, or the facility **Predictive Outlook**. [Phase 3 report](docs/phase3-report.md) · [Actual model comparisons](docs/phase3-results.md) · [Model card](docs/model-card.md).
+The **Emergency Simulator** now supports dengue surge, delivery delay, staff shortage and facility disruption, with immutable baselines, paired projections, inventory/bed/workforce propagation and an **Early Warning Centre**. [Phase 4 report](docs/phase4-report.md) · [Live API verification](docs/evaluation/phase4-smoke.json).
+
+Forecasting includes 540-day causal histories, country-local trained models, three mandatory baselines, chronological selection/calibration/test periods, empirical 80%/95% intervals and calculated stock-out intelligence. Open **Forecasts** and **Model performance**, or the facility **Predictive Outlook**. [Phase 3 report](docs/phase3-report.md) · [Actual model comparisons](docs/phase3-results.md) · [Model card](docs/model-card.md).
 
 - Angular standalone command centre and FastAPI API, retaining India navigation and facility details.
 - Two real public-source adapters: MoHFW/PIB Health Dynamics of India 2022–23 (13 national statistics) and WHO GHO (20 bed/workforce observations across five countries).
@@ -17,7 +19,7 @@ Forecasting now includes 540-day causal histories, country-local trained models,
 - Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
 - Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
 
-**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Current alerts use rules; predictive warning workflows, emergency scenarios, OR-Tools, Gemini and federated training remain later milestones. Physical redistribution is designed to stay within each nation; future federation exchanges model updates only.
+**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools, Gemini and federated training remain later milestones. Physical redistribution is designed to stay within each nation; future federation exchanges model updates only.
 
 ## Run locally — Windows PowerShell
 
@@ -65,7 +67,7 @@ npm run build
 npx tsc --noEmit -p tsconfig.app.json
 ```
 
-See [validation](docs/validation.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
+See [validation](docs/validation.md), [Phase 4 report](docs/phase4-report.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
 
 ## Storage and deployment
 
