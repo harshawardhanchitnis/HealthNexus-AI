@@ -1,0 +1,426 @@
+<div class="page-heading">
+  <div>
+    <div class="eyebrow">HEALTHCARE RESILIENCE / {{ scopeName() }}</div>
+    <h1>{{ titles[page()] }}</h1>
+    <p>{{ subtitles[page()] }}</p>
+  </div>
+  <button class="button secondary" (click)="refresh()" [disabled]="loading()">
+    <app-icon name="refresh" />Refresh data
+  </button>
+</div>
+@if (error()) {
+  <div class="empty-state error-state" role="alert">
+    <app-icon name="info" />
+    <h2>Network unavailable</h2>
+    <p>{{ error() }}</p>
+    <div class="button-row">
+      <button class="button primary" (click)="refresh()">Try again</button
+      ><a class="button secondary" routerLink="/overview">Reset to All India</a>
+    </div>
+  </div>
+} @else if (loading()) {
+  <div class="loading-state" role="status">
+    <span class="loader"></span>Loading the healthcare network…
+  </div>
+} @else if (data(); as view) {
+  <div class="snapshot-line">
+    <span class="snapshot-status"><i></i>BACKEND CONNECTED</span
+    ><span>Sample snapshot · {{ view.as_of | date: 'dd MMM yyyy' }} · {{ scopeName() }}</span>
+  </div>
+  @if (page() === 'overview' || page() === 'network') {
+    <div class="kpi-grid">
+      <article class="kpi">
+        <div class="kpi-label">
+          Facilities in sample <span class="kpi-icon green"><app-icon name="hospital" /></span>
+        </div>
+        <div class="kpi-value">{{ view.summary.facilities | number }}</div>
+        <div class="kpi-note">
+          <span class="green-text">{{ view.summary.status_counts.HEALTHY }} healthy</span
+          ><span>across selected scope</span>
+        </div>
+        <div class="mini-bars">
+          @for (s of statuses; track s) {
+            <span [class]="s.toLowerCase()" [style.flex]="view.summary.status_counts[s]"></span>
+          }
+        </div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-label">
+          Medicine availability <span class="kpi-icon blue"><app-icon name="box" /></span>
+        </div>
+        <div class="kpi-value">{{ view.summary.medicine_availability }}<small>%</small></div>
+        <div class="kpi-note">Facility–medicine pairs with ≥7 days cover</div>
+        <div class="progress">
+          <span [style.width.%]="view.summary.medicine_availability"></span>
+        </div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-label">
+          Bed utilisation <span class="kpi-icon amber"><app-icon name="bed" /></span>
+        </div>
+        <div class="kpi-value">{{ view.summary.bed_utilisation }}<small>%</small></div>
+        <div class="kpi-note">
+          <span>{{ view.summary.available_beds | number }} available</span
+          ><span>of {{ view.summary.total_beds | number }} total</span>
+        </div>
+        <div class="progress amber">
+          <span [style.width.%]="view.summary.bed_utilisation"></span>
+        </div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-label">
+          Personnel availability <span class="kpi-icon purple"><app-icon name="users" /></span>
+        </div>
+        <div class="kpi-value">{{ view.summary.staff_availability }}<small>%</small></div>
+        <div class="kpi-note">
+          {{ view.summary.staff_present | number }} of
+          {{ view.summary.staff_scheduled | number }} scheduled
+        </div>
+        <div class="progress purple">
+          <span [style.width.%]="view.summary.staff_availability"></span>
+        </div>
+      </article>
+    </div>
+    <div class="main-grid">
+      <section class="panel network-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>India network coverage</h2>
+            <p>
+              {{ view.coverage.states }} states · {{ view.coverage.union_territories }} union
+              territories
+            </p>
+          </div>
+          <span class="subtle-tag">REGION GRID</span>
+        </div>
+        <div class="region-tiles">
+          @for (region of view.regions; track region.id) {
+            <button
+              [class]="'region-tile ' + severity(region).toLowerCase()"
+              (click)="selectRegion(region.id)"
+              [attr.aria-label]="region.name + ': ' + region.facilities + ' sample facilities'"
+              [title]="
+                region.name +
+                ' · ' +
+                region.facilities +
+                ' facilities · worst facility status: ' +
+                severity(region)
+              "
+            >
+              <strong>{{ region.id }}</strong
+              ><span>{{ region.facilities }}</span>
+            </button>
+          }
+        </div>
+        <div class="legend">
+          @for (s of statuses; track s) {
+            <span><i [class]="s.toLowerCase()"></i>{{ s.replace('_', ' ') }}</span>
+          }
+        </div>
+        <div class="panel-footnote">
+          Each tile is one state / UT, coloured by its highest facility risk. Select a tile to
+          explore. This grid is not a geographic map.
+        </div>
+      </section>
+      <section class="panel readiness-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Network readiness</h2>
+            <p>Facilities by current operating status</p>
+          </div>
+          <app-icon name="shield" />
+        </div>
+        <div class="readiness-count">
+          <strong>{{ view.summary.status_counts.HEALTHY }}</strong>
+          <div>
+            facilities healthy<span>of {{ view.summary.facilities }} in this scope</span>
+          </div>
+        </div>
+        <div class="status-stack">
+          @for (s of statuses; track s) {
+            <div>
+              <span class="readiness-label"
+                ><i [class]="s.toLowerCase()"></i>{{ s.replace('_', ' ') }}</span
+              >
+              <div class="status-track">
+                <span
+                  [class]="s.toLowerCase()"
+                  [style.width.%]="(view.summary.status_counts[s] / view.summary.facilities) * 100"
+                ></span>
+              </div>
+              <strong>{{ view.summary.status_counts[s] }}</strong>
+            </div>
+          }
+        </div>
+        <a class="inline-link readiness-link" routerLink="/alerts" queryParamsHandling="preserve"
+          >Review {{ view.summary.active_alerts }} resource alerts<app-icon name="arrow"
+        /></a>
+      </section>
+    </div>
+  }
+  @if (page() === 'overview') {
+    <div class="main-grid trend-row">
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Patient demand</h2>
+            <p>Daily footfall across the selected network</p>
+          </div>
+          <span class="subtle-tag">LAST 28 DAYS</span>
+        </div>
+        <div class="chart-summary">
+          <strong>{{ view.summary.patient_footfall | number }}</strong
+          ><span>visits in latest sample day</span
+          ><span class="chart-key"><i></i>Patient footfall</span>
+        </div>
+        <app-trend-chart [data]="view.history" />
+      </section>
+      <section class="action-card">
+        <span class="action-icon"><app-icon name="bell" /></span
+        ><span class="eyebrow">EARLY ACTION MATTERS</span>
+        <h2>Spot a shortage.<br />Start a response.</h2>
+        <p>
+          {{ view.summary.active_alerts }} resource alerts need review in this sample. Explore the
+          facilities and see the thresholds behind every signal.
+        </p>
+        <a routerLink="/alerts" queryParamsHandling="preserve" class="button primary"
+          >Explore early warnings <app-icon name="arrow" /></a
+        ><small>Current signals use inventory and attendance rules.</small>
+      </section>
+    </div>
+  }
+  @if (page() === 'network') {
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <h2>States & union territories</h2>
+          <p>Sample coverage, with equal visibility for every region</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Region</th>
+              <th>Zone</th>
+              <th>Facilities</th>
+              <th>Patient visits</th>
+              <th>Bed use</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (r of view.regions; track r.id) {
+              <tr>
+                <td>
+                  <strong>{{ r.name }}</strong
+                  ><small>{{ r.kind.replace('_', ' ') }}</small>
+                </td>
+                <td>{{ r.zone }}</td>
+                <td>{{ r.facilities }}</td>
+                <td>{{ r.patient_footfall | number }}</td>
+                <td>{{ r.bed_utilisation }}%</td>
+                <td><button class="text-button" (click)="selectRegion(r.id)">Explore →</button></td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+  @if (page() === 'overview' || page() === 'facilities') {
+    <section class="panel facilities-panel">
+      <div class="panel-heading">
+        <div>
+          <h2>{{ page() === 'overview' ? 'Facility watchlist' : 'Healthcare facilities' }}</h2>
+          <p>PHCs, community health centres and district hospitals</p>
+        </div>
+        @if (page() === 'overview') {
+          <a class="inline-link" routerLink="/facilities" queryParamsHandling="preserve"
+            >View all facilities <app-icon name="arrow"
+          /></a>
+        }
+      </div>
+      @if (page() === 'facilities') {
+        <form class="table-filters" (submit)="applySearch($event)">
+          <label class="search-field"
+            ><app-icon name="search" /><input
+              aria-label="Search facilities"
+              placeholder="Search facility, district or ID…"
+              [value]="search"
+              (input)="changeSearch($event)" /></label
+          ><button class="button secondary" type="submit">Search</button
+          ><label class="sr-only" for="status">Facility status</label
+          ><select id="status" [value]="status" (change)="changeStatus($event)">
+            <option value="">All statuses</option>
+            @for (s of statuses; track s) {
+              <option [value]="s">{{ s.replace('_', ' ') }}</option>
+            }
+          </select>
+        </form>
+      }
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Facility</th>
+              <th>State / UT</th>
+              <th>Status</th>
+              <th>Patient visits</th>
+              <th>Available beds</th>
+              <th>Staff present</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (f of facilities()?.items; track f.id) {
+              <tr>
+                <td>
+                  <a
+                    class="facility-link"
+                    [routerLink]="['/facilities', f.id]"
+                    queryParamsHandling="preserve"
+                    >{{ f.name }}</a
+                  ><small>{{ f.id }}</small>
+                </td>
+                <td>{{ f.state_id }}</td>
+                <td><app-status [value]="f.status" /></td>
+                <td>{{ f.footfall_today | number }}</td>
+                <td>
+                  {{ f.beds.available }}<span class="muted"> / {{ f.beds.total }}</span>
+                </td>
+                <td>
+                  {{ f.staff.present }}<span class="muted"> / {{ f.staff.scheduled }}</span>
+                </td>
+                <td>
+                  <a
+                    [routerLink]="['/facilities', f.id]"
+                    queryParamsHandling="preserve"
+                    class="icon-button"
+                    [attr.aria-label]="'Open ' + f.name"
+                    ><app-icon name="arrow"
+                  /></a>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="7" class="no-results">No facilities match these filters.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      @if (page() === 'facilities') {
+        <div class="pagination">
+          <span
+            >{{ facilities()?.total ? offset + 1 : 0 }}–{{ lastItem() }} of
+            {{ facilities()?.total }} facilities</span
+          >
+          <div>
+            <button class="button secondary" (click)="paginate(-1)" [disabled]="offset === 0">
+              Previous</button
+            ><button
+              class="button secondary"
+              (click)="paginate(1)"
+              [disabled]="lastItem() >= (facilities()?.total || 0)"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      }
+    </section>
+  }
+  @if (page() === 'supply') {
+    <div class="info-banner">
+      <app-icon name="info" />
+      <div>
+        <strong>Stock cover is a baseline indicator.</strong> It uses the trailing seven-day average
+        consumption. ML forecasts and transfer optimization are planned for later phases.
+      </div>
+    </div>
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <h2>Essential medicine inventory</h2>
+          <p>
+            Stock and consumption aggregated across {{ view.summary.facilities }} sample facilities
+          </p>
+        </div>
+        <span class="subtle-tag">5 MEDICINES</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Medicine</th>
+              <th>Current stock</th>
+              <th>Average daily consumption</th>
+              <th>Facilities below 7-day reserve</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of supply(); track item.medicine_id) {
+              <tr>
+                <td>
+                  <strong>{{ item.name }}</strong
+                  ><small>{{ item.medicine_id }} · {{ item.unit }}</small>
+                </td>
+                <td>{{ item.current_stock | number }}</td>
+                <td>{{ item.daily_consumption | number: '1.0-1' }}</td>
+                <td>
+                  <span [class]="item.facilities_below_reserve ? 'risk-count' : 'green-text'"
+                    >{{ item.facilities_below_reserve }} / {{ item.facilities }}</span
+                  >
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footnote">
+        National surplus can coexist with local shortages. Open a facility to inspect its stock
+        balance and days of cover.
+      </div>
+    </section>
+  }
+  @if (page() === 'alerts') {
+    <div class="alert-summary">
+      <app-icon name="bell" /><strong>{{ alerts().length }} active resource alerts</strong
+      ><span>Sorted by severity · deterministic thresholds</span>
+    </div>
+    <div class="alert-grid">
+      @for (a of visibleAlerts(); track a.id) {
+        <article class="panel alert-card">
+          <div class="alert-card-top">
+            <app-status [value]="a.severity" /><span>{{ a.state_id }}</span>
+          </div>
+          <h2>{{ a.title }}</h2>
+          <a [routerLink]="['/facilities', a.facility_id]" queryParamsHandling="preserve">{{
+            a.facility_name
+          }}</a>
+          <p>{{ a.explanation }}</p>
+          <div class="recommendation">
+            <strong>RECOMMENDED ACTION</strong>
+            <p>{{ a.recommended_action }}</p>
+          </div>
+        </article>
+      } @empty {
+        <div class="empty-state">
+          <app-icon name="check" />
+          <h2>No active alerts</h2>
+          <p>Facilities in this scope are above the configured stock and staff thresholds.</p>
+        </div>
+      }
+    </div>
+  }
+  <div class="data-notice">
+    <app-icon name="shield" />
+    <p>
+      <strong>Prototype data notice.</strong> Operational values and facility locations are
+      synthetic. All states and UTs are represented; district and facility coverage is illustrative.
+      No patient-identifiable data is used.
+    </p>
+    <a routerLink="/about">Learn more</a>
+  </div>
+}
