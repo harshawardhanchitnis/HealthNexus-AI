@@ -1,0 +1,14 @@
+.git
+.venv
+**/node_modules
+**/dist
+**/.angular
+**/__pycache__
+**/.pytest_cache
+.env
+.env.*
+!.env.example
+artifacts
+data/generated
+credentials*.json
+service-account*.json
