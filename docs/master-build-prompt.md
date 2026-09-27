@@ -2,7 +2,7 @@
 
 ## Current instructions take precedence over the historical brief below
 
-Continue the existing repository; never recreate it or reset completed phases. Phases 1–3 are implemented. Phase 3 adds real trained forecasting, chronological evaluation, uncertainty and stock-out intelligence; see phase3-report.md and model-card.md. The next milestone is Phase 4: Early Warning Engine + Emergency Digital Twin. The configured scope is India, Brazil, Russia, China and South Africa, not an exhaustive current BRICS membership list.
+Continue the existing repository; never recreate it or reset completed phases. Phases 1–4 are preserved. Phase 5 implements domestic OR-Tools CP-SAT planning and paired impact simulation. The current Pune snapshot has no safe donor capacity, so its positive-transfer demonstration remains a documented data prerequisite; do not manufacture stock or relax reserve protection to hide this. See phase5-report.md and model-card.md. The proposed next milestone is Phase 6 resilience copilot/tool calling. The configured scope is India, Brazil, Russia, China and South Africa, not an exhaustive current BRICS membership list.
 
 - Preserve all 36 Indian states/UTs, 69 illustrative districts, 207 fictional facilities and original tests.
 - Maintain representative country → region → facility nodes for the other four countries (six fictional facilities each).
@@ -10,7 +10,7 @@ Continue the existing repository; never recreate it or reset completed phases. P
 - Preserve official_public, public_international, derived, synthetic and simulation provenance. Historical aggregates are not live facility data.
 - Public statistics calibrate causal generation. Explain assumptions, reference years, missing data and uncertainty.
 - Physical redistribution remains domestic. Future federation shares model updates; do not pool raw operational training datasets.
-- Phase 3 does not implement Gemini, OR-Tools or FedAvg. Dashboards and evaluated forecasting are working; next consume these outputs in predictive warnings and emergency scenarios, followed by later optimization and federation work.
+- OR-Tools, predictive warnings and emergency scenarios are implemented. Gemini and FedAvg remain future work; never claim unproved solver optimality or invented optimizer superiority.
 - Treat all named future products/models in the historical brief as intended integrations. Verify actual model availability at integration time; do not claim the proposed Gemini model is already available or integrated.
 - Keep the frontend/API runnable, preserve compatibility and test every milestone. Do not label future features as completed.
 
@@ -1367,4 +1367,4 @@ Do not merely return another plan. Create the project, write the files, run/buil
 
 ## Implemented Phase 4
 
-Early Warning Centre and non-destructive Emergency Simulator are implemented. Four country-scoped scenarios reuse saved Phase 3 forecasts and calibration residuals; all effects are explicit operational assumptions. Typed comparisons and warning objects are ready for Phase 5 domestic OR-Tools redistribution. No optimizer, Gemini integration or federated training is implemented. See `docs/phase4-report.md`.
+Early Warning Centre and non-destructive Emergency Simulator are implemented. Four country-scoped scenarios reuse saved Phase 3 forecasts and calibration residuals; all effects are explicit operational assumptions. Phase 5 now consumes these typed comparisons and warnings for domestic OR-Tools redistribution. Gemini integration and federated training remain unimplemented. See `docs/phase4-report.md` and `docs/phase5-report.md`.

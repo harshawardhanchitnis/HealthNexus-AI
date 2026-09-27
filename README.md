@@ -4,9 +4,11 @@
 
 A real-data-backed healthcare resilience prototype combining public health statistics with calibrated operational simulation. The configured BRICS scope is India, Brazil, Russia, China and South Africa. India remains the detailed showcase: all 36 states/UTs, 69 illustrative districts and 207 fictional facilities. Each other country has two representative regions and six fictional facilities. These five nodes are the hackathon scope, not an exhaustive list of current BRICS members.
 
-![HealthNexus emergency digital twin](docs/screenshots/phase4-dengue.png)
+![HealthNexus redistribution planner](docs/screenshots/phase5-planner.png)
 
-## Working through Phase 4
+## Working through Phase 5
+
+The **Redistribution Planner** uses actual Google OR-Tools CP-SAT for country-local integer medicine transfers, full-horizon donor protection, immutable planning simulations and a measured greedy comparison. [Phase 5 report](docs/phase5-report.md) · [Live API verification](docs/evaluation/phase5-smoke.json). **The existing Pune snapshot has no safe donors under full reserve protection, so its honest result is an insufficient-network, zero-transfer plan.** Nonzero transfers are verified in separate solver/impact tests; the report identifies the positive-demo data prerequisite.
 
 The **Emergency Simulator** now supports dengue surge, delivery delay, staff shortage and facility disruption, with immutable baselines, paired projections, inventory/bed/workforce propagation and an **Early Warning Centre**. [Phase 4 report](docs/phase4-report.md) · [Live API verification](docs/evaluation/phase4-smoke.json).
 
@@ -19,7 +21,7 @@ Forecasting includes 540-day causal histories, country-local trained models, thr
 - Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
 - Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
 
-**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools, Gemini and federated training remain later milestones. Physical redistribution is designed to stay within each nation; future federation exchanges model updates only.
+**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning is implemented; Gemini and federated training remain later milestones. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
 
 ## Run locally — Windows PowerShell
 
@@ -67,7 +69,7 @@ npm run build
 npx tsc --noEmit -p tsconfig.app.json
 ```
 
-See [validation](docs/validation.md), [Phase 4 report](docs/phase4-report.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
+See [validation](docs/validation.md), [Phase 5 report](docs/phase5-report.md), [Phase 4 report](docs/phase4-report.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
 
 ## Storage and deployment
 
@@ -94,6 +96,7 @@ For forecasts in containers, first run the host generation/training commands. Co
 | `backend/app/data_ingestion/` | Public-source adapters, caching and normalization |
 | `backend/app/simulation/` | Public calibration and causal synthetic generator |
 | `backend/app/forecasting/` | Temporal features, training, evaluation, uncertainty, stock projections and typed API |
+| `backend/app/optimization/` | Domestic CP-SAT planning, donor protection, paired impact simulation and greedy comparison |
 | `artifacts/models/` | Gitignored country-local models, metrics and integrity manifests |
 | `data/official/` | Small attributed raw extracts |
 | `data/normalized/` | Validated public observations |

@@ -8,10 +8,22 @@
 6. Open the existing Pune facility detail and its **Predictive Outlook**. Then switch to another country to show local facility scope and separate model evaluation. BRICS federation remains future work; local forecasting training is real.
 7. Explain reproducibility: regenerate history → build temporal tables → train → independently evaluate/reload. Restarting FastAPI does not retrain. Missing/stale artifacts show an explicit unavailable state.
 
-Phase 4 will connect these typed outputs to predictive warning workflows and an emergency digital twin. No dengue controls, optimizer, Gemini response or FedAvg run is claimed in this milestone.
+The historical Phase 3 milestone did not include dengue controls, optimization, Gemini or FedAvg. The Phase 4 and Phase 5 demonstrations below now connect its typed outputs to warnings, scenarios and domestic planning.
 
 ## Phase 4 emergency demo
 
 Use **Emergency Simulator → Load Pune demo → Dengue surge → Severe → 14 days → Run Simulation**. Compare the computed before/after KPIs and resource impacts. Select the district hospital and IV fluids: baseline reserve lasts longer; scenario depletion occurs within the horizon. Inspect bed unmet admissions and personnel pressure. Open scenario warnings, filter severity/category and expand factual explanations. Return to comparison and discard the scenario; baseline endpoints are unchanged.
 
 Additional demos: Medicine delivery delay with Critical (14 days) for IV fluids; Staff shortage with Severe (40% unavailable); Facility/flood disruption with Severe (50% reduced usable beds/service). See [Phase 4 report](phase4-report.md) for exact values, assumptions and full steps. These are operational projections on simulated data, not disease-spread or clinically validated predictions.
+
+## Phase 5 redistribution demo
+
+1. Open Emergency Simulator; load India → Maharashtra → Pune, Severe Dengue, 14 days, and Run Simulation.
+2. Select **Optimize Redistribution** on that saved scenario. Receiver scope remains Pune; donor scope defaults to national within India.
+3. Inspect target deficits, expected unmet demand, warning severity, depletion and risk. Inspect the safe donor pool **before** solving.
+4. Click **Optimize Redistribution**. Read actual CP-SAT status, stage evidence, before/after balances and unresolved targets.
+5. With the existing 2026-09-27 snapshot, demonstrate the **insufficient-network** result: 30,230 target units, zero safe donor units, zero transfers, 17,075.1558 expected unmet units. An OPTIMAL constrained result does not mean the shortage disappeared.
+6. Inspect calculated OR-Tools/greedy outcomes: both tie with zero transfer distance and zero donor violations. Inspect a PCM or IVF trajectory and its 3/7/14-day risks.
+7. **Discard optimization plan**; the scenario remains selected and its baseline/forecast values are unchanged. District/state searches and baseline planning are also available.
+
+A positive-transfer Pune showcase cannot honestly be demonstrated from this snapshot under full donor reserve protection. Nonzero solver and impact behavior is verified with explicit test fixtures; do not present those fixtures as Pune results. See [Phase 5 report](phase5-report.md) for measured results and the replenished-data prerequisite.

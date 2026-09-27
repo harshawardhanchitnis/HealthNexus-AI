@@ -1,5 +1,18 @@
 # Validation — 2026-09-28
 
+## Phase 5
+
+- **135 backend tests passed**: all 105 existing tests plus 30 optimization cases. Actual CP-SAT covers multiple donors/receivers, discrete quantities, scarcity, strict-full-service infeasibility, deterministic optimality, critical-priority dominance, no-incumbent timeout and retained-incumbent FEASIBLE classification. The latter uses a controlled wall clock around a real first-stage solve.
+- Donor checks cover demand, future receipts, worst sampled paths, origin stock, reserve and cover. Impact tests execute a 181-tablet transfer, recompute risk/warnings, remove 130 units of expected unmet demand, introduce no donor risk and conserve 1,010 origin units. Baseline/scenario/store copy isolation, scenario identity and country boundaries are checked.
+- Python compilation passes; `pip check` reports no broken requirements with OR-Tools 9.15.6755, NumPy 2.2.6 and existing Firestore dependencies.
+- Strict TypeScript passes. Angular production build passes: 360.34 kB initial raw / 98.90 kB estimated transfer; planner lazy chunk 27.32 kB / 7.44 kB.
+- Live API smoke passes five baseline country plans, foreign-run 404s, exact GET roundtrips, country-aware DELETE, inventory/scenario immutability and Pune district/state/national plans. See [measured output](evaluation/phase5-smoke.json).
+- Desktop browser: Severe Pune Dengue → active scenario optimization link → candidate preview → CP-SAT result → greedy/impact view → discard with scenario retained. Mobile: 390×844 viewport, resource/scope controls and IV-fluid optimization; measured document width equals scroll width (375 CSS px after scrollbar), with tables scrolling internally. Screenshots are in `docs/screenshots/phase5-*.png`.
+- Browser interaction checks use keyboard activation of controls plus select operations; native mouse/touch input and positive-transfer cards against a replenished live snapshot are not established by these checks. No new application console errors were observed in the final check window.
+- **Open demo prerequisite:** the existing snapshot has no protected donor surplus in any country. Pune reports zero transfers, 30,230 target units unresolved, 17,075.1558 expected unmet units and an honest OR-Tools/greedy tie. Nonzero correctness is tested separately; a positive-transfer Pune success demonstration is not claimed complete.
+
+One existing upstream Starlette/AnyIO deprecation warning remains. Forecast preparation lies outside the solver budget (final cold all-India baseline API call 109.50 s; warm Pune national 8.71 s; district 0.24 s). An earlier cold run took 44.23 s, so preparation latency is variable and remains a performance limitation. Docker/cloud execution, production authentication/durability, real logistics and clinical validity remain unverified. No Gemini or federated training is implemented. See [full Phase 5 report](phase5-report.md).
+
 ## Phase 4
 
 - **105 backend tests passed** (73 existing + 32 Phase 4 cases); Python compilation passes.
@@ -57,5 +70,5 @@ Screenshot: [overview](screenshots/overview.png).
 - Pytest emits one upstream Starlette/AnyIO deprecation warning; test results pass.
 - Firestore adapter is implemented but has not been exercised against a live or emulator project. No cloud upload or deployment performed.
 - Container/Firebase configurations are scaffolds and have not been deployed or tested with Docker here.
-- Phase 1 had no ML forecasts. Current forecasts and emergency projections are tested as described above; OR-Tools, Gemini and FedAvg remain unimplemented.
+- Phase 1 had no ML forecasts. Current forecasting, emergency projections and OR-Tools planning are tested as described above; Gemini and FedAvg remain unimplemented.
 - Browser checks were interactive checks, not a committed automated end-to-end test suite.

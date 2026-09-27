@@ -73,3 +73,13 @@ Optional `start_date` must be after the saved origin, with the entire 1–14-day
 Response includes `scenario`, `baseline`, `scenario_result`, `delta`, `resource_impact`, `baseline_warnings`, `warnings_created`. Stock probabilities use fractions; resource-impact risk comparisons explicitly use percentages/percentage points. Maximum risk is a maximum across facilities, not the probability of a network event. Zero capacity yields null ratios and explicit unmet demand/overflow. A null date means no point-trajectory crossing within 14 days. Scenario uncertainty is conditional on fixed assumptions; no outbreak model is trained.
 
 The [Phase 4 report](phase4-report.md) defines exact equations, thresholds and limitations. Interactive OpenAPI is available at `/docs`.
+
+## Phase 5 redistribution API
+
+`POST /api/optimization/preview` returns calculated receiver needs, safe donor pools, feasible domestic edges, snapshot/model identities and policy limitations. `POST /api/optimization/redistribution` returns HTTP 201 with an immutable planning run, actual CP-SAT stages/status/bounds/objective, transfers, unresolved deficits, before/after impact and paired trajectories, warnings, conservation and an independently computed greedy comparison.
+
+Inputs: `country_id` (IN/BR/RU/CN/ZA), optional `state_id`, `district_id`, `scenario_id`, `scope` (district/state/national), canonical `resources` (PCM/IVF/ORS/AMX/IFA), `horizon` (14 only), and `time_limit_seconds` (0.01–30; default 10). Scope restrictions apply to donors and receivers; selected geography narrows receivers even when donor scope is national. A scenario must still match its original snapshot and model version.
+
+`GET /api/optimization/runs/{run_id}?country_id=IN` retrieves a copy. `DELETE` at the same path discards only the plan (204). Missing or foreign-country runs return 404. `GET /api/optimization/config` returns the versioned protection and cost policy. Saved-model unavailability is 503; invalid planning input is 422. Process-local storage holds up to 30 plans and requires a single worker. There is no transfer-execution endpoint.
+
+Insufficient stock is a valid partial-planning result, not HTTP failure or necessarily solver infeasibility. All three lexicographic stages must prove optimality before a plan is labeled OPTIMAL. See [Phase 5 report](phase5-report.md) for formulas, statuses, example input and the current snapshot's empty safe-donor pool.

@@ -1,6 +1,6 @@
 # Scope and milestone boundaries
 
-HealthNexus AI is a real-data-backed healthcare resilience prototype. Public aggregates support operational simulation now; predictive models, domestic optimization and federated learning form the later product.
+HealthNexus AI is a real-data-backed healthcare resilience prototype. Public aggregates support operational simulation, saved forecasting, emergency projections and domestic optimization. Gemini and federated learning remain future work.
 
 ## Configured geography
 
@@ -20,7 +20,7 @@ Country-scoped API and storage; India navigation and original tests; public-sour
 
 ## Next phases
 
-Phase 3 forecasting and Phase 4 **Early Warning Engine + Emergency Digital Twin** are implemented: saved forecasts and stock trajectories feed deterministic warnings and four isolated emergency scenarios with computed before/after outcomes. See [Phase 4 report](phase4-report.md). Domestic redistribution with donor reserves/audit trails, Gemini, OR-Tools and real FedAvg remain later work.
+Phase 3 forecasting and Phase 4 **Early Warning Engine + Emergency Digital Twin** feed the Phase 5 **domestic OR-Tools Redistribution Planner**, with reserve protection, audit evidence and immutable paired stock simulations. See [Phase 5 report](phase5-report.md). The current snapshots have no safe donor capacity; positive-transfer correctness is verified in test fixtures, while the live Pune demo honestly reports insufficient resources. Gemini and real FedAvg remain later work.
 
 Each future learning node owns its local training data. Only model updates and permitted aggregate evaluation statistics go to the federation coordinator; raw operational records must not be pooled for that demonstration. Updates alone do not guarantee privacy: authentication, leakage testing and privacy controls require separate engineering.
 
