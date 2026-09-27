@@ -13,6 +13,9 @@ from app.services.repository import NetworkRepository, create_repository
 from app.services.summary import aggregate_history, summarize
 from app.simulation.calibration import calibration_for
 from app.forecasting.routes import forecast_router
+from app.forecasting.prediction import ForecastService
+from app.scenarios.engine import ScenarioEngine
+from app.scenarios.routes import resilience_router
 
 
 def create_app(repository: NetworkRepository | None = None, forecast_service=None) -> FastAPI:
@@ -23,9 +26,9 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         app.state.repository = repository or create_repository(settings)
         yield
 
-    app = FastAPI(title="HealthNexus AI · BRICS", version="0.3.0", lifespan=lifespan)
+    app = FastAPI(title="HealthNexus AI · BRICS", version="0.4.0", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
-        allow_credentials=False, allow_methods=["GET"], allow_headers=["Content-Type"])
+        allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
 
     def dataset(request: Request, country_id: CountryCode = "IN") -> Snapshot:
         try:
@@ -69,7 +72,7 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
             "records": records, "expected_adapters": ["india_hdi", "who_gho"],
             "notice": "Public observations are historical aggregates. Facility operations are simulated; calibration does not make them live or official.",
             "layers": ["official_public", "public_international", "derived", "synthetic", "simulation"],
-            "simulation_status": "emergency_scenarios_not_implemented",
+            "simulation_status": "operational_resilience_scenarios",
             "calibration": calibration_for(country_id or "IN")}
 
     @app.get("/api/regions")
@@ -134,7 +137,9 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         items = [a for a in data.alerts if a.facility_id in ids and (not severity or a.severity == severity)]
         return {"items": items, "total": len(items)}
 
-    app.include_router(forecast_router(forecast_service))
+    forecasts = forecast_service or ForecastService()
+    app.include_router(forecast_router(forecasts))
+    app.include_router(resilience_router(ScenarioEngine(forecasts)))
     return app
 
 
