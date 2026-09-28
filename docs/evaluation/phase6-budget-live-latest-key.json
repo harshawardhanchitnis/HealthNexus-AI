@@ -1,0 +1,125 @@
+{
+  "mode": "live",
+  "model": "gemini-3.8-flash",
+  "status": "failed",
+  "live_acceptance": true,
+  "timestamp": "2026-09-28T12:22:01.921757+00:00",
+  "identity": {
+    "git_commit": "fc2f51fdfc9bb19102878e192a7b21c0ec91a3a6",
+    "implementation_sha256": "7a1d9a73443b70516c663574a1149011c9b758cc1471b76ef79fcdca9f507e31",
+    "model": "gemini-3.8-flash",
+    "sdk_version": "2.25.0",
+    "system_prompt_version": "healthnexus-system-v3",
+    "system_prompt_sha256": "c75f510cb6953e0ef663fb647ac97440c9cbc769ab0e692b236ad94d31645a7e",
+    "tool_schema_sha256": "3b18ac63d2fed75b5b65943248db0a3113613706d7991c6c825590b035015d42",
+    "profile_version": "inventory-profile-v1",
+    "config_version": "copilot-config-v3",
+    "configuration": {
+      "thinking": "medium",
+      "max_calls": 10,
+      "timeout": 60,
+      "workflow_timeout": 300,
+      "max_output_tokens": 2400
+    },
+    "artifacts": {
+      "constrained": {
+        "snapshot": "f0b5fbb01375d0aec983b3a2665fce7553b8f28b5cbdf3b1cf2648e28a477743",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      },
+      "redistribution-ready": {
+        "snapshot": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      }
+    }
+  },
+  "credential_binding": "Private resumable evidence retains a one-way credential fingerprint; public report omits it.",
+  "selected_case": null,
+  "acceptance": true,
+  "tests": [
+    {
+      "label": "positive",
+      "profile": "redistribution-ready",
+      "status": "failed",
+      "code": "provider_unavailable",
+      "seconds": 44.94483829999808,
+      "diagnostics": {
+        "request_id": "83d88abc-36ae-409e-bd9e-b9b5a6b7adc5",
+        "conversation_id": "5614a5cb-0ce8-4299-830c-d577367395e2",
+        "mode": "gemini",
+        "status": "provider_unavailable",
+        "country_id": "IN",
+        "profile": "redistribution-ready",
+        "model": "gemini-3.8-flash",
+        "latency": 44.94233629999508,
+        "tools": [],
+        "provider_diagnostic": {
+          "exception_type": "InternalServerError",
+          "http_status": 503,
+          "transport_attempts": 2,
+          "quota_kind": null,
+          "retry_after": "30",
+          "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later."
+        },
+        "timings": {
+          "gemini_network_seconds": 44.15665230000741,
+          "tool_seconds": 0.0
+        },
+        "interaction_count": 0,
+        "provider_requests": 2,
+        "local_tool_calls": 0,
+        "execution_sources": [],
+        "request_diagnostics": [
+          {
+            "tool_schema_bytes": 7843,
+            "system_bytes": 2566,
+            "input_bytes": 499,
+            "request_body_bytes": 11086,
+            "input_tokens_estimate": 2894,
+            "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+          }
+        ],
+        "interaction_ids": [],
+        "usage": []
+      }
+    }
+  ],
+  "budget_limit": 10,
+  "expected_provider_requests": 8,
+  "maximum_provider_requests": 10,
+  "local_fixture_tool_calls": 0,
+  "comparison": {
+    "old_suite_expected_provider_requests": 23,
+    "old_cases": {
+      "risk": 4,
+      "positive": 8,
+      "constrained": 8,
+      "provenance": 3
+    },
+    "new_acceptance_expected_provider_requests": 8,
+    "baseline_commit": "914ff4a",
+    "old_schema_bytes_per_turn": 11363,
+    "old_system_bytes_per_turn": 2917,
+    "new_system_bytes_per_turn": 2566,
+    "old_authoritative_result_bytes_by_case": {
+      "risk": 19255,
+      "positive": 67628,
+      "constrained": 46022,
+      "provenance": 5681
+    },
+    "schema_bytes_by_intent": {
+      "network-risk": 4997,
+      "emergency-planning": 7843,
+      "provenance": 1265,
+      "follow-up-plan": 1496,
+      "plan-review": 1777
+    },
+    "token_estimate_method": "characters / 4; estimates are not Gemini token counts"
+  },
+  "resume_invalidated": [],
+  "provider_requests": 2,
+  "daily_ledger_used": 7,
+  "expected_provider_requests_this_run": 8,
+  "local_tool_calls": 0,
+  "retained_pass_cases": [],
+  "capabilities_accepted": []
+}
