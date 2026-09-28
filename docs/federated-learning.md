@@ -90,7 +90,11 @@ Raw operational training records remain local in this prototype; model parameter
 
 Foreign-node performance uses six representative facilities each. Shared simulator regularities and unequal sample counts can make collaborative learning appear substantially easier than real heterogeneous operations. No clinical or international real-world generalization is established. The global model is experimental; current application forecasts, warnings, scenarios and OR-Tools remain authoritative and domestic.
 
-## Gemini compatibility
+## Saved demonstration continuity — Phase 8
+
+The original accepted report and numeric checkpoint are versioned under `data/demo/federation/`. `GET /api/federation/saved-demo` verifies their integrity and metric consistency without training. The UI loads this explicitly labelled saved measured run when no active new experiment is selected. Container restart preserves these canonical assets, while new run indexes remain process-local. This does not replace the Phase 7 model or make workflow storage durable. The final demo verifier independently reloads parameters and re-evaluates country test metrics within documented CPU tolerance. Actual Linux training differences are retained separately in the Phase 8 report.
+
+## Gemini compatibility (preserved Phase 7 behavior)
 
 Phase 6 status remains: **Implementation complete; live provider acceptance pending due to Gemini service availability.** No live Gemini calls, credential changes, billing changes or failover redesign occur in Phase 7. The 13 tools, declarations, system prompt, response schemas, orchestration/failover and verifier are untouched. Future read-only `get_federation_status` and `get_federation_results` adapters exist on the federation service, but are deliberately not registered as Copilot tools.
 

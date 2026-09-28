@@ -31,7 +31,7 @@ import { Performance } from '../core/forecast-models';
       <div class="forecast-notice">
         {{ d.data_type }} · {{ d.country_id }} · Evaluated
         {{ d.evaluated_at | date: 'dd MMM yyyy' }}. Results measure this simulator, not real-world
-        healthcare accuracy.
+        clinical predictive performance.
       </div>
       <div class="split-grid">
         @for (name of windows; track name) {

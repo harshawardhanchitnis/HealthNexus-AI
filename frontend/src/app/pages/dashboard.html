@@ -49,7 +49,7 @@
     <div class="kpi-grid">
       <article class="kpi">
         <div class="kpi-label">
-          Facilities in sample <span class="kpi-icon green"><app-icon name="hospital" /></span>
+          Facilities in scope <span class="kpi-icon green"><app-icon name="hospital" /></span>
         </div>
         <div class="kpi-value">{{ view.summary.facilities | number }}</div>
         <div class="kpi-note">
@@ -99,6 +99,16 @@
         </div>
       </article>
     </div>
+  @if (page() === 'overview') {
+    <section class="command-response panel">
+      <div><span class="eyebrow">PREDICT · PREPARE · COORDINATE</span><h2>Act before resource pressure becomes a crisis.</h2>
+        <p>Operational Profile: <strong>{{apiProfile()}}</strong> · Calibrated Simulated Operations</p>
+        @if(warningSummary(); as warnings) {<p><strong>{{warnings.summary.total}} projected warnings</strong> · 14-day Baseline Forecast · <a routerLink="/warnings" queryParamsHandling="preserve">Review predicted resource stress →</a></p>}
+        @else {<p>{{warningError() ? 'Forecast warnings unavailable. Review trusted artifacts before planning.' : 'Evaluating projected resource warnings…'}}</p>}
+      </div>
+      <div class="demo-actions"><button class="button primary" (click)="loadDemo('redistribution-ready')">Guided demo · Pune</button><button class="button secondary" (click)="loadDemo('constrained')">Network-insufficient demo</button><a class="inline-link" routerLink="/emergency" queryParamsHandling="preserve">Open Emergency Simulator →</a></div>
+    </section>
+  }
     <div class="main-grid">
       <section class="panel network-panel">
         <div class="panel-heading">
@@ -174,8 +184,8 @@
             </div>
           }
         </div>
-        <a class="inline-link readiness-link" routerLink="/alerts" queryParamsHandling="preserve"
-          >Review {{ view.summary.active_alerts }} resource alerts<app-icon name="arrow"
+        <a class="inline-link readiness-link" routerLink="/warnings" queryParamsHandling="preserve"
+          >Review projected resource warnings<app-icon name="arrow"
         /></a>
       </section>
     </div>
@@ -205,7 +215,7 @@
           {{ view.summary.active_alerts }} resource alerts need review in this sample. Explore the
           facilities and see the thresholds behind every signal.
         </p>
-        <a routerLink="/alerts" queryParamsHandling="preserve" class="button primary"
+        <a routerLink="/warnings" queryParamsHandling="preserve" class="button primary"
           >Explore early warnings <app-icon name="arrow" /></a
         ><small>Current signals use inventory and attendance rules.</small>
       </section>
@@ -364,7 +374,7 @@
       <app-icon name="info" />
       <div>
         <strong>Stock cover is a baseline indicator.</strong> It uses the trailing seven-day average
-        consumption. ML forecasts and transfer optimization are planned for later phases.
+        consumption. Open Forecasts for model-based demand and Estimated Stock-Out Risk; use the Redistribution Planner to evaluate Safe Donor Capacity.
       </div>
     </div>
     <section class="panel">

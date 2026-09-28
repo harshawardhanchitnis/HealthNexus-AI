@@ -8,6 +8,7 @@ import { Alert, FacilityList, Overview, Status, Supply } from '../core/models';
 import { Icon } from '../shared/icon';
 import { StatusBadge } from '../shared/status-badge';
 import { TrendChart } from '../shared/trend-chart';
+import { WarningList } from '../core/resilience-models';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,13 +27,15 @@ export class Dashboard {
   facilities = signal<FacilityList | null>(null);
   alerts = signal<Alert[]>([]);
   supply = signal<Supply[]>([]);
+  warningSummary = signal<WarningList | null>(null);
+  warningError = signal(false);
   search = '';
   status = '';
   offset = 0;
   scope: Record<string, string> = {};
   statuses: Status[] = ['HEALTHY', 'WATCH', 'AT_RISK', 'CRITICAL'];
   titles: Record<string, string> = {
-    overview: 'National command centre',
+    overview: 'Command Centre',
     network: 'Country healthcare network',
     facilities: 'Facility explorer',
     supply: 'Medicine & supply',
@@ -62,6 +65,7 @@ export class Dashboard {
           this.loading.set(true);
           this.error.set('');
           this.scope = {
+            profile: this.api.profile(),
             country_id: params.get('country_id') || 'IN',
             state_id: params.get('state_id') || '',
             district_id: params.get('district_id') || '',
@@ -90,7 +94,7 @@ export class Dashboard {
               this.error.set(
                 error.status === 404
                   ? 'This region or district is not in the sample network. Reset the scope to All India.'
-                  : 'The healthcare network could not be loaded. Check that the FastAPI backend is running on port 8000, then retry.',
+                  : 'The healthcare network could not be loaded. Check the backend connection, then retry.',
               );
               return of(null);
             }),
@@ -104,12 +108,22 @@ export class Dashboard {
           this.facilities.set(result.facilities);
           this.alerts.set(result.alerts.items);
           this.supply.set(result.supply.items);
+          this.warningSummary.set(null);
+          this.warningError.set(false);
+          if(this.page()==='overview') {
+            const signature=JSON.stringify(this.scope);
+            this.api.warnings(this.scope).subscribe({next:w=>{if(signature===JSON.stringify(this.scope))this.warningSummary.set(w);},error:()=>this.warningError.set(true)});
+          }
         }
         this.loading.set(false);
       });
   }
   refresh() {
     this.reload$.next();
+  }
+  apiProfile() { return this.api.profile(); }
+  loadDemo(profile: string) {
+    this.router.navigate(['/overview'],{queryParams:{country_id:'IN',state_id:'MH',district_id:'MH-PUNE',profile,demo:'1'}});
   }
   applySearch(event: Event) {
     event.preventDefault();

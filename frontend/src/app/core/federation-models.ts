@@ -19,6 +19,7 @@ export interface FederationRequest {
   rounds: number; local_epochs: number; seed: number; policy: 'sample-weighted' | 'balanced-country';
 }
 export interface FederationRun {
+  saved_demo?: boolean;
   run_id: string; model_version: string; status: string; policy: string; config: FederationRequest;
   current_round: number; current_country: string | null; stage: string; message: string;
   nodes: FederationNode[]; rounds: FederationRound[]; raw_records_shared: number; bytes_exchanged: number;

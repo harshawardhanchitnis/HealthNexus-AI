@@ -144,6 +144,9 @@ export class RedistributionPage {
       queryParamsHandling: 'merge',
     });
   }
+  resetContext() {
+    this.router.navigate([], {relativeTo:this.route,queryParams:{scenario_id:null,run_id:null},queryParamsHandling:'merge'});
+  }
   loadPreview() {
     if (this.route.snapshot.queryParamMap.get('run_id')) {
       this.router.navigate([], {

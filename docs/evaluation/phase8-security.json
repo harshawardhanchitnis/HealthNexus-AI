@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "live_gemini_requests": 0,
+  "secret_scan": {
+    "status": "PASS",
+    "files_scanned": 363,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "protected_files_unchanged": 115,
+  "accepted_federation_report_byte_identical": true,
+  "retained_provider_request_ledger": 12,
+  "tracked_environment_or_dependency_directories": 0,
+  "public_local_links_checked": 78,
+  "public_private_absolute_paths": 0,
+  "npm_production_known_vulnerabilities": 0,
+  "dependency_checks": "Windows and container pip check PASS; production npm audit PASS",
+  "cors": "Explicit configurable origins; no new permissive wildcard",
+  "scope": "Pattern/publication/preservation review; not penetration testing or a guarantee of security"
+}

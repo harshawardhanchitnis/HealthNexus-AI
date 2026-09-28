@@ -24,30 +24,48 @@ export class App {
   district = signal('');
   menuOpen = signal(false);
   regionsError = signal(false);
+  demo = signal(false);
+  journey = [
+    {path:'/overview',label:'1 · Network'}, {path:'/forecasts',label:'2 · Forecast'},
+    {path:'/emergency',label:'3 · Dengue'}, {path:'/warnings',label:'4 · Warnings'},
+    {path:'/redistribution',label:'5 · Redistribute'}, {path:'/brics',label:'6 · Federation'},
+    {path:'/copilot',label:'7 · Offline summary'},
+  ];
   nav = [
-    { path: '/overview', icon: 'dashboard', label: 'Overview' },
+    { path: '/overview', icon: 'dashboard', label: 'Command Centre' },
     { path: '/network', icon: 'network', label: 'Country network' },
     { path: '/facilities', icon: 'hospital', label: 'Facilities' },
     { path: '/supply', icon: 'box', label: 'Medicine & supply' },
-    { path: '/warnings', icon: 'bell', label: 'Early Warning Centre' },
+    { path: '/forecasts', icon: 'chart', label: 'Forecasts' },
+    { path: '/warnings', icon: 'bell', label: 'Early Warnings' },
     { path: '/emergency', icon: 'pulse', label: 'Emergency Simulator' },
     { path: '/redistribution', icon: 'box', label: 'Redistribution Planner' },
     { path: '/copilot', icon: 'network', label: 'Resilience Copilot' },
-    { path: '/forecasts', icon: 'chart', label: 'Forecasts' },
-    { path: '/model-performance', icon: 'shield', label: 'Model performance' },
     { path: '/brics', icon: 'network', label: 'Federated Intelligence' },
-    { path: '/data-sources', icon: 'layers', label: 'Data sources' },
+    { path: '/model-performance', icon: 'shield', label: 'Model Performance' },
+    { path: '/data-sources', icon: 'layers', label: 'Data Sources' },
   ];
   constructor() {
     this.router.routerState.root.queryParamMap.subscribe((params) => {
       const nextCountry = params.get('country_id') || 'IN';
       const changed = nextCountry !== this.country();
       this.profile.set(params.get('profile') || 'constrained');
+      this.demo.set(params.get('demo') === '1');
       this.country.set(nextCountry);
       this.state.set(params.get('state_id') || '');
       this.district.set(params.get('district_id') || '');
       if (changed || !this.regions().length) this.loadRegions();
     });
+  }
+  loadDemo(profile: string) {
+    this.router.navigate(['/overview'], {queryParams:{country_id:'IN',state_id:'MH',district_id:'MH-PUNE',profile,demo:'1'}});
+  }
+  exitDemo() { this.router.navigate([], {queryParams:{demo:null},queryParamsHandling:'merge'}); }
+  skipToContent(event: Event) {
+    event.preventDefault();
+    const main = document.getElementById('main');
+    main?.focus();
+    main?.scrollIntoView({block:'start'});
   }
   loadRegions() {
     this.regionsError.set(false);

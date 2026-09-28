@@ -1,4 +1,10 @@
-# API — through Phase 6
+# API — current prototype
+
+## Liveness, readiness and saved demonstration
+
+`GET /health` returns fast process liveness without loading data or calling a provider. `GET /readiness` validates ten operational country/profile artifact partitions and the canonical saved federation result. It returns 200 when ready or 503 when degraded, safe capability flags and explicit process-local workflow storage. Capability results cache for 30 seconds. Gemini configured/enabled/runtime/acceptance status is reported without secrets or inference; this is not a live availability probe.
+
+`GET /api/federation/saved-demo` returns the original accepted completed run with `saved_demo: true` after report/checkpoint integrity and metric validation. Missing/corrupt assets return 503. This endpoint never trains, does not create a run ID in transient storage and cannot be discarded through the run-delete route. The UI labels it a saved measured run. Newly trained run IDs below still expire across restart.
 
 Current Copilot endpoints and explicit mode/permission contracts appear in the Phase 6 section below. The following Phase 3 endpoints retain their original read-only behaviour; later scenario/optimizer/Copilot endpoints perform bounded, non-destructive planning.
 
@@ -7,7 +13,7 @@ FastAPI exposes interactive documentation at `/docs`. The network routes below a
 | GET route | Behavior |
 | --- | --- |
 | `/api/health` | Selected snapshot date, storage mode and synthetic operations flag |
-| `/api/countries` | Five configured nodes, coverage labels, domestic redistribution scope, federation not implemented |
+| `/api/countries` | Five configured nodes, coverage labels and domestic redistribution scope; separate experimental federation endpoints below |
 | `/api/data-sources` | Public source catalog, normalized records, provenance and current calibration preview; optional country filter |
 | `/api/regions` | Country regions and optional India districts |
 | `/api/overview` | Summary, history, region index, alerts, calibration and honest coverage |

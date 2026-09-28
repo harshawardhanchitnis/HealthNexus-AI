@@ -87,6 +87,7 @@
 </section>
 @if (error()) {
   <p class="optimizer-notice error" role="alert">{{ error() }}</p>
+  <div class="demo-actions"><button class="button secondary" (click)="resetContext()">Reset planning context</button><a class="button secondary" routerLink="/emergency" [queryParams]="{country_id:country,profile:profile,state_id:state,district_id:district}">Run a new scenario</a></div>
 }
 @if (loading()) {
   <p class="optimizer-notice" role="status">
@@ -217,7 +218,7 @@
             distance.
           </p>
         </div>
-        <span class="tag">{{ r.impact.transferred_units | number }} UNITS</span>
+        <span class="tag">{{ r.impact.transferred_units | number }} ACCOUNTING ITEMS</span>
       </div>
       @for (t of r.transfers; track t.transfer_id) {
         <article class="optimizer-transfer">

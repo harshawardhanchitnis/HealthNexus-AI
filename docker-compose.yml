@@ -4,17 +4,19 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:${HEALTHNEXUS_BACKEND_PORT:-8000}:8000"
     environment:
       HEALTHNEXUS_STORAGE: local
-    volumes:
-      - ./data/generated:/workspace/data/generated:ro
-      - ./artifacts/models:/workspace/artifacts/models:ro
+      GEMINI_ENABLED: "false"
+      HEALTHNEXUS_CORS_ORIGINS: ${HEALTHNEXUS_CORS_ORIGINS:-http://localhost:4200,http://127.0.0.1:4200}
+    restart: unless-stopped
   frontend:
     build:
       context: .
       dockerfile: frontend/Dockerfile
     ports:
-      - "127.0.0.1:4200:80"
+      - "127.0.0.1:${HEALTHNEXUS_FRONTEND_PORT:-4200}:80"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

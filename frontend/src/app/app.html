@@ -1,4 +1,4 @@
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main" (click)="skipToContent($event)">Skip to content</a>
 <aside class="sidebar" [class.open]="menuOpen()">
   <a routerLink="/overview" queryParamsHandling="preserve" class="brand" aria-label="HealthNexus AI home"
     ><span class="brand-mark"><app-icon name="pulse" /></span
@@ -22,7 +22,7 @@
   <div class="workspace-label">PROJECT</div>
   <nav aria-label="Project navigation">
     <a routerLink="/about" queryParamsHandling="preserve" routerLinkActive="active" (click)="menuOpen.set(false)"
-      ><app-icon name="info" />Project scope</a
+      ><app-icon name="info" />About</a
     >
   </nav>
   <div class="sidebar-bottom">
@@ -112,12 +112,21 @@
     <details><summary>Data notice</summary><p>
       {{ profile() === 'redistribution-ready'
         ? 'This profile intentionally models uneven resource distribution across facilities to evaluate shortage detection and domestic redistribution.'
-        : 'This profile preserves the under-resourced Phase 5 network. Redistribution cannot replace missing network supply.' }}
+        : 'This profile preserves the under-resourced network. Redistribution cannot replace missing network supply.' }}
       Facility-level inventory is simulated and calibrated, not a live government stock feed.
       Hackathon logistics stress-test.
     </p></details>
   </div>
-  <main id="main">
+  <main id="main" tabindex="-1">
+    @if (demo()) {
+      <section class="demo-journey" aria-label="Guided demo">
+        <div><strong>Guided demo · Pune</strong><span>Real engine calculations · {{profile()}} simulation</span></div>
+        <nav aria-label="Demo steps">@for (step of journey; track step.path) {
+          <a [routerLink]="step.path" queryParamsHandling="preserve" routerLinkActive="current">{{step.label}}</a>
+        }</nav>
+        <div class="demo-actions"><button class="text-button" (click)="loadDemo('redistribution-ready')">Redistribution possible</button><button class="text-button" (click)="loadDemo('constrained')">Network insufficient</button><button class="text-button" (click)="exitDemo()">Exit guide</button></div>
+      </section>
+    }
     @if (regionsError()) {
       <div class="info-banner" role="alert">
         Region filters could not be loaded.<button class="text-button" (click)="loadRegions()">

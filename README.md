@@ -1,129 +1,176 @@
 # HealthNexus AI
 
-**Federated Intelligence for Healthcare Resilience**
+**Predict shortages. Coordinate safe resources. Share intelligence.**
 
-A real-data-backed healthcare resilience prototype combining public health statistics with calibrated operational simulation. The configured BRICS scope is India, Brazil, Russia, China and South Africa. India remains the detailed showcase: all 36 states/UTs, 69 illustrative districts and 207 fictional facilities. Each other country has two representative regions and six fictional facilities. These five nodes are the hackathon scope, not an exhaustive list of current BRICS members.
+HealthNexus is a healthcare resource decision-support prototype. It combines Official Public Data, Calibrated Simulated Operations, evaluated forecasts, an Emergency Digital Twin, Google OR-Tools redistribution and experimental five-country federated learning.
 
-![HealthNexus redistribution planner](docs/screenshots/phase5-planner.png)
+India is the detailed showcase: **36 states/UTs, 69 illustrative districts, 207 fictional facilities**. Brazil, Russia, China and South Africa each have six representative facilities. These are five configured logical nodes, not connected government systems or exhaustive BRICS coverage.
 
-## Resilience Copilot — Phase 6 implementation
+![Command Centre](docs/screenshots/final-command-centre.png)
 
-**Resilience Copilot** uses official `google-genai==2.25.0` Interactions with Gemini 3.8 Flash primary and availability failover through 3.7 Flash, 3.6 Flash, 3.5 Flash and 3.5 Flash-Lite. Thirteen shared tools, typed evidence, safe local handoff and sticky conversations retain server-owned forecasts and OR-Tools results. The UI shows the effective model and explicit offline option. [Setup](docs/gemini.md) · [Failover evidence](docs/phase6-failover-report.md). **Implementation complete; live provider acceptance pending due to Gemini service availability.** All five candidates returned live 503 HIGH DEMAND in retained evidence. The ledger remains 12/14; Phase 7 makes zero live Gemini calls.
+## Problem
 
-## Federated Intelligence — Phase 7
+Resource imbalances can leave one facility short while another retains a safe buffer. Administrators need to see likely medicine, bed and workforce pressure, distinguish redistributable shortages from systemic insufficiency, and inspect the evidence behind a recommendation.
 
-Five logical country clients train a separate **417-parameter PyTorch footfall MLP** on their own existing histories. Standard FedAvg averages actual parameter tensors by training sample count; optional balanced-country averaging is explicitly labelled. **Raw operational training records shared: 0.** Model parameters and aggregate metadata cross the logical boundaries. The operational HGB/selected baseline forecasting models remain unchanged.
+## Solution
 
-Open **Federated Intelligence → Run Federated Training** for five rounds with real backend progress, validation metrics, update bytes and country comparisons. Measured CLI run: **4.80 seconds**, **614,235 logical boundary bytes**, **8.9472% held-out global WAPE**. Four representative foreign nodes improve versus their local-only MLPs; India's WAPE degrades slightly. No secure aggregation, differential privacy or production national infrastructure is claimed. [Architecture and commands](docs/federated-learning.md) · [Measured report](docs/phase7-report.md).
+A single Command Centre connects baseline forecasting, early warnings, controlled emergency scenarios and protected domestic redistribution. Every operational profile and projection stays identifiable. The separate federation experiment shares parameters and aggregate metadata across logical country nodes.
 
-## Preserved Phase 5.5 demonstrations
+## Why it matters
 
-Two reproducible operational profiles now demonstrate both outcomes. **Constrained** preserves the original Pune severe-dengue result: 30,230 target units unresolved, no safe donors and no transfers. **Redistribution-ready** replays a separate uneven replenishment policy: two safe Pune donors, 15,679 units moved across 10 solver-selected lanes, and 26,084 target units still unresolved. Donor reserves remain protected; OR-Tools and greedy tie in this measured district case. Both are simulated operations, not government inventory. [Phase 5.5 report](docs/phase55-report.md) · [Measured verification](docs/evaluation/phase55-verification.json).
+Prediction alone does not move supplies. HealthNexus connects resource stress to a measurable response, while reporting remaining shortages honestly. It never invents safe donors to make a demonstration look successful.
 
-In **Emergency Simulator**, choose **Load Redistribution Demo** or **Load Network-Insufficient Demo**, run Severe Dengue for 14 days, inspect donors in **Redistribution Planner**, then run OR-Tools. The profile selector and data notice remain visible throughout the app.
+## Key capabilities
 
-The **Redistribution Planner** uses actual Google OR-Tools CP-SAT for country-local integer medicine transfers, full-horizon donor protection, immutable planning simulations and a measured greedy comparison. [Phase 5 report](docs/phase5-report.md) · [Live API verification](docs/evaluation/phase5-smoke.json). **The existing Pune snapshot has no safe donors under full reserve protection, so its honest result is an insufficient-network, zero-transfer plan.** Phase 5.5 adds the separate reproducible positive profile described above.
+- Command Centre, country/region/district filters, facilities, medicine inventory and provenance.
+- Baseline Forecasts with empirical uncertainty and Estimated Stock-Out Risk.
+- Early Warnings and four non-destructive emergency scenario types.
+- Google OR-Tools CP-SAT plans with safe donor reserves, conservation and a greedy comparison.
+- Two reproducible Operational Profiles: constrained and redistribution-ready.
+- Resilience Copilot with 13 authoritative tools, native Gemini function calling and explicit offline summaries.
+- A separate 417-parameter PyTorch Federated Model with actual FedAvg, country comparisons and measured progress.
 
-The **Emergency Simulator** now supports dengue surge, delivery delay, staff shortage and facility disruption, with immutable baselines, paired projections, inventory/bed/workforce propagation and an **Early Warning Centre**. [Phase 4 report](docs/phase4-report.md) · [Live API verification](docs/evaluation/phase4-smoke.json).
+## Demo
 
-Forecasting includes 540-day causal histories, country-local trained models, three mandatory baselines, chronological selection/calibration/test periods, empirical 80%/95% intervals and calculated stock-out intelligence. Open **Forecasts** and **Model performance**, or the facility **Predictive Outlook**. [Phase 3 report](docs/phase3-report.md) · [Actual model comparisons](docs/phase3-results.md) · [Model card](docs/model-card.md).
+Start **Guided demo · Pune** on Command Centre. Follow Network → Forecast → Dengue → Warnings → Redistribute → Federation → Offline summary. The guide configures geography/profile; it does not load an optimizer answer.
 
-- Angular standalone command centre and FastAPI API, retaining India navigation and facility details.
-- Two real public-source adapters: MoHFW/PIB Health Dynamics of India 2022–23 (13 national statistics) and WHO GHO (20 bed/workforce observations across five countries).
-- Attributed raw caches, validated normalized observations, and separate generated operations.
-- Public statistics calibrate synthetic capacity, catchment and staffing. Demand drives medicine requests, admissions and stock ledgers.
-- Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
-- Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
+| Severe Pune dengue, 14 days | Redistribution-ready | Constrained |
+|---|---:|---:|
+| Receiver target deficit | 41,763 | 30,230 |
+| Safe Donor Capacity | 17,745 | 0 |
+| Accounting items transferred | 15,679 | 0 |
+| Transfer lanes | 10 | 0 |
+| Unresolved target | 26,084 | 30,230 |
+| New donor risks / reserve violations | 0 / 0 | 0 / 0 |
 
-**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning, the Gemini tool integration and experimental FedAvg are implemented; Gemini live acceptance remains blocked on provider availability. Physical redistribution is enforced within each nation; federation exchanges model updates and aggregate metadata only.
+Totals combine resource-specific medicine units for accounting; tablets, bags and sachets are not interchangeable. OR-Tools and greedy tie in this district case. Maximum individual receiver stock-out risk remains 100%; redistribution does not resolve every shortage. [Current measured acceptance](docs/evaluation/phase8-docker.json) · [90-second / 3-minute scripts](docs/final-demo-script.md).
 
-## Run locally — Windows PowerShell
+## Architecture
 
-Requirements: Python 3.11+ (tested with 3.13), Node.js 22.12+ in the Node 22 line, npm.
+Angular → FastAPI → trusted local operational engines. Public-source ingestion and provenance anchor simulation; forecasting drives warnings and scenario projections. OR-Tools independently solves plans. Gemini interprets typed tool evidence when available. Experimental country-local PyTorch models share parameters through FedAvg; they do not replace operational forecasting. [Architecture diagram](docs/architecture.md).
 
-From the repository root:
+## Google Technologies
+
+**Used:** Google OR-Tools, implemented and measured. The Gemini API layer uses the official `google-genai` SDK, Interactions, function results and structured evidence.
+
+**Gemini status:** Implementation complete; live provider acceptance pending due to Gemini service availability. All five configured models previously returned HTTP 503 HIGH DEMAND. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. No live Gemini calls were made in final integration. Offline summaries are clearly labelled and require no key.
+
+**Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
+
+## AI / ML
+
+Operational models use 540-day simulated country-local histories, chronological training/selection/calibration/test periods and three mandatory baselines. India test WAPE: footfall **2.9969%**, pooled medicine demand **3.0799%**, admissions **3.3441%**. These measure simulator performance, not clinical accuracy. [Full comparisons](docs/phase3-results.md) · [Model card](docs/model-card.md).
+
+## Emergency Digital Twin
+
+Dengue surge, delivery delay, staff shortage and facility disruption propagate specified operational assumptions into demand, inventory, admissions, bed pressure and workload. Baseline data/models remain immutable. Scenario Projection is conditional decision support, not an outbreak prediction or clinical diagnosis.
+
+## OR-Tools Optimization
+
+Integer transfers remain domestic. Donors retain full-horizon reserves under all 500 sampled demand paths and current-cover protection. The solver chooses quantities and routes, then the engine recalculates risk and conservation. Straight-line distances, day-1 arrival and known receipts are prototype assumptions. [Optimization policy](docs/phase5-report.md) · [Both profiles](docs/phase55-report.md).
+
+## Federated Learning
+
+Five logical clients train a separate MLP and exchange model parameters plus aggregate metadata. The accepted five-round seed-42 run has **8.9472% global test WAPE**, **4.80 s training**, **614,235 logical boundary bytes**, and **0 raw operational training records shared**. India slightly degrades: **8.9496% → 8.9511% WAPE**. Four representative foreign nodes improve against their local-only MLPs. Federated learning does not guarantee every participant improves.
+
+The integrity-checked accepted report loads after a restart; a new training button runs genuine FedAvg. Linux verification agrees within the documented CPU tolerance, with last-bit checkpoint differences recorded separately. [Accepted experiment](docs/phase7-report.md) · [Method/privacy](docs/federated-learning.md).
+
+## Data Sources
+
+Two attributed caches: MoHFW/PIB Health Dynamics of India 2022–23 summary (13 national observations) and WHO GHO bed/workforce indicators (20 observations across the configured countries). The Data Sources page exposes publishers, years, methodology and calibration. [Source catalogue](docs/data-sources.md).
+
+## Real vs Simulated Data
+
+Official Public Data are historical aggregate observations. Facility names/locations, demand, inventory, bed occupancy and attendance are simulated. Aggregate calibration does not make them official or live. No patient or employee identities are used. Districts/facilities are illustrative; foreign-country coverage is representative.
+
+## Installation
+
+Tested: Python 3.13, Node 22, npm, Docker Desktop Linux containers.
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
-.\.venv\Scripts\python.exe scripts\import_official_data.py
-.\.venv\Scripts\python.exe scripts\forecast.py generate --country all --days 540 --seed 42 --as-of 2026-09-27
-.\.venv\Scripts\python.exe scripts\forecast.py build --country all
-.\.venv\Scripts\python.exe scripts\forecast.py train --country all
-.\.venv\Scripts\python.exe scripts\forecast.py evaluate --country all
-.\.venv\Scripts\python.exe scripts\generate_data.py --profile constrained --country all
-.\.venv\Scripts\python.exe scripts\generate_data.py --profile redistribution-ready --country all
-.\.venv\Scripts\python.exe scripts\prepare_planning.py --profile constrained --country IN
-.\.venv\Scripts\python.exe scripts\prepare_planning.py --profile redistribution-ready --country IN
-.\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
-```
-
-In a second terminal, from the repository root:
-
-```powershell
+.\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r backend/requirements-federation.txt
 cd frontend
 npm ci
+npm run build
+cd ..
+```
+
+Use existing canonical generated/model assets on this checkout. Fresh machines can restore the trusted checksummed demo bundle; the explicit full bootstrap is documented in [deployment](docs/deployment.md). Startup never retrains or regenerates measured data. On macOS/Linux use `.venv/bin/python`.
+
+## Environment Variables
+
+Local operation needs no key. See [.env.example](.env.example): `HEALTHNEXUS_STORAGE=local`, explicit `HEALTHNEXUS_CORS_ORIGINS`, portable `PORT`, optional Compose host port overrides, backend-only Gemini configuration and opt-in Firestore credentials. Operational Profile is explicit in each request/UI selection. Angular's public `runtime-config.js` contains only the API origin; never credentials. Actual `.env` is ignored.
+
+## Run Locally
+
+```powershell
+.\.venv\Scripts\python.exe scripts/prepare_demo.py
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
+# Second terminal:
+cd frontend
 npm start
 ```
 
-Open [the app](http://127.0.0.1:4200) or [API documentation](http://127.0.0.1:8000/docs). The Angular development proxy forwards `/api` to port 8000. Local mode needs no credentials or `.env`; `.env.example` documents optional configuration. On macOS/Linux use `.venv/bin/python`.
-
-The import command above is offline. To refresh from the actual public endpoints:
+Open [localhost:4200](http://127.0.0.1:4200). For the verified container product:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\import_official_data.py --refresh
-# Or select one adapter: --source india_hdi or --source who_gho
+docker compose build
+docker compose up -d
+# Frontend http://127.0.0.1:4200, backend http://127.0.0.1:8000
 ```
 
-Regenerate history, rebuild training tables and retrain after updating sources; restart the backend afterward. Snapshots retain their explicit date and frozen calibration inputs. Missing public caches produce visible assumptions; invalid caches fail validation. Forecasting models are never trained at API startup. Missing/stale models return an explicit unavailable state. `scripts/generate_data.py` now requires an explicit profile and derives it from preserved source history and existing saved models. It never overwrites the original constrained source or trains. After intentional source/model changes, regenerate profile bindings and planning caches. For this existing repository, use the profile/preparation commands directly; rebuilding the original Phase 3 source is unnecessary.
+Compose bakes the trusted assets into the image, installs CPU PyTorch, uses a non-root backend, and deliberately disables Gemini. It does not pass the key. Existing ports can be preserved with `HEALTHNEXUS_FRONTEND_PORT` / `HEALTHNEXUS_BACKEND_PORT` overrides; final acceptance used 14200 / 18000.
 
-## Verify
+## Reproduce Demo
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest backend -q
-.\.venv\Scripts\python.exe -m compileall -q backend\app scripts
-cd frontend
-npm run build
-npx tsc --noEmit -p tsconfig.app.json
+.\.venv\Scripts\python.exe scripts/verify_demo.py
+.\.venv\Scripts\python.exe scripts/smoke_demo.py --base http://127.0.0.1:8000
+.\.venv\Scripts\python.exe scripts/federate.py evaluate --report docs/evaluation/phase7-run.json
 ```
 
-See [Phase 5.5 report](docs/phase55-report.md), [validation](docs/validation.md), [Phase 5 report](docs/phase5-report.md), [Phase 4 report](docs/phase4-report.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
+Verifier checks source caches, all country/profile/model partitions, planning-cache identities, canonical model reload, both newly computed OR-Tools outcomes, offline Copilot, malformed inputs, static frontend assets and secret patterns. It blocks provider transport. `prepare_demo.py` runs these checks without retraining. `package_demo.py` / `restore_demo.py` support laptop portability; restore refuses to overwrite differing measured assets.
 
-## Storage and deployment
+## Model Evaluation
 
-`HEALTHNEXUS_STORAGE=local` is the default. `HEALTHNEXUS_CORS_ORIGINS` controls allowed local origins. Firestore requires `HEALTHNEXUS_STORAGE=firestore`, `GOOGLE_CLOUD_PROJECT` and server-side application credentials. It fails clearly if unavailable. `GEMINI_API_KEY` stays server-side. `GEMINI_MODEL_PRIMARY` and `GEMINI_MODEL_FALLBACKS` select the approved five-model chain; legacy `GEMINI_MODEL` remains supported. See [Copilot setup](docs/gemini.md).
+[Final technical report](docs/final-technical-report.md) is the current source of truth. Historical reports remain available. Final acceptance: **340 backend tests**, Python compilation, dependency sanity, strict TypeScript, Angular production build, actual Docker/API/startup, desktop/mobile review and canonical demo verifier. [Validation](docs/validation.md) · [Verified pitch facts](docs/hackathon-facts.md).
 
-India's existing `data/generated/network.json` path remains compatible. Other nodes use `data/generated/nodes/<country>/network.json`. Legacy schema-1 India snapshots remain readable and are explicitly identified as uncalibrated synthetic data. New schema-2 snapshots include lineage.
+## Privacy & Safety
 
-Firestore stores `country_nodes/<code>` subcollections for metadata, regions, districts, facilities and alerts; legacy India collections remain a read fallback. To explicitly seed a test project:
+Raw training records remain local to each simulated country client. Model parameters and aggregate metadata are exchanged. **Secure aggregation and differential privacy are not implemented; updates can leak information.** This is logical isolation in one service, not a privacy guarantee. Production needs authenticated clients, transport/security controls and durable workflows.
 
-```powershell
-.\.venv\Scripts\python.exe scripts\seed_firestore.py --project YOUR_TEST_PROJECT --country IN --confirm-synthetic-upload
-```
+HealthNexus assists administrative resource planning. It does not diagnose, prescribe, execute transfers or replace professional review. Donor “safe” means protected under the documented simulator policy, not a guarantee about actual care.
 
-This creates/overwrites matching sample IDs and does not remove unrelated documents. Cloud execution has not been validated against a live project. Country partitioning is logical, not an access-control boundary. Authentication and production isolation remain future work.
+## Deployment
 
-`docker compose up --build` starts the container scaffold, including public caches, with the frontend at port 4200. Docker runtime deployment has not been verified here. Firebase Hosting and Cloud Run are planned; nothing is published automatically.
+**Docker verified. Cloud deployment not performed.** Firebase static Hosting is prepared; Cloud Run requires billing, which was not enabled. No live Firestore migration was attempted. Recommended ₹0 submission uses the reproducible local demo and actual captures. [Prerequisites, commands and limitations](docs/deployment.md).
 
-For forecasts in containers, first run the host generation/training commands. Compose mounts `data/generated` and `artifacts/models` read-only into the backend. If models are absent, forecasting is explicitly unavailable while the original dashboard remains runnable. Do not import joblib artifacts from untrusted sources.
+## Limitations
 
-## Repository and sources
+- Simulated operations and representative facility coverage; no live government stock feed.
+- Forecast/scenario risks are model-based and not clinically validated.
+- Mixed medicine totals are accounting sums; distances are straight-line and arrivals assume day 1.
+- Unequal federation sample sizes and simulator similarities limit conclusions; India degradation remains visible.
+- New scenario/plan/conversation/run IDs are process-local and expire at restart; canonical saved evidence persists.
+- No production administrator authentication, distributed job queue, DP, secure aggregation or penetration test is claimed.
+- Gemini real-provider acceptance is pending; the core demo works explicitly offline.
 
-| Path | Purpose |
-| --- | --- |
-| `backend/app/data_ingestion/` | Public-source adapters, caching and normalization |
-| `backend/app/simulation/` | Public calibration and causal synthetic generator |
-| `backend/app/forecasting/` | Temporal features, training, evaluation, uncertainty, stock projections and typed API |
-| `backend/app/profiles/` | Deterministic inventory profiles, validated model bindings and baseline preparation caches |
-| `data/generated/profiles/` | Gitignored profile-local snapshots, histories and compatibility manifests |
-| `artifacts/planning/` | Optional checked compressed baseline caches; never optimizer answers |
-| `backend/app/optimization/` | Domestic CP-SAT planning, donor protection, paired impact simulation and greedy comparison |
-| `artifacts/models/` | Gitignored country-local models, metrics and integrity manifests |
-| `data/official/` | Small attributed raw extracts |
-| `data/normalized/` | Validated public observations |
-| `data/generated/` | Gitignored fictional operations by country |
-| `data/metadata/` | India hierarchy and representative foreign regions |
-| `frontend/` | Country-aware command centre and source explorer |
-| `docs/` | Scope, architecture, sources, model assumptions, API and demo |
+## Repository Structure
 
-Read [data sources and usage terms](docs/data-sources.md), [model assumptions](docs/model-card.md), [scope](docs/scope.md) and [the master build prompt](docs/master-build-prompt.md). The system contains no patient or employee identities. It is not a clinical decision system. Public material retains its source terms; the MIT license applies to project code, not third-party datasets. WHO does not endorse this project.
+| Path | Role |
+|---|---|
+| `frontend/` | Angular Command Centre, guided journey and operational pages |
+| `backend/app/data_ingestion/`, `simulation/` | Public provenance and calibrated operations |
+| `backend/app/forecasting/`, `warnings/`, `scenarios/` | Authoritative forecasting and response engines |
+| `backend/app/optimization/` | Google OR-Tools policy and impact verification |
+| `backend/app/ai/` | Shared Gemini tools, evidence and failover |
+| `backend/app/federation/` | Separate genuine PyTorch/FedAvg experiment |
+| `data/demo/federation/` | Small accepted checkpoint/report with integrity metadata |
+| `scripts/` | Explicit preparation, verification, portability and experiments |
+| `docs/` | Measured reports, sources, deployment decision and demo scripts |
+
+## Hackathon Team
+
+Team and member details have not yet been provided; confirm them before the final submission. No names or affiliations are invented.

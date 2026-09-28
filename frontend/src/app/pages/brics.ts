@@ -43,7 +43,8 @@ import { Icon } from '../shared/icon';
           <app-icon name="network" /> {{ busy() ? 'Training locally…' : 'Run Federated Training' }}
         </button>
       </div>
-      @if (!status()?.available) { <p class="muted">CPU training runtime unavailable. Install the documented federation dependency on the backend.</p> }
+      @if (!status()) { <p role="status">Loading local federation capabilities and saved evidence…</p> }
+      @else if (!status()?.available) { <p class="muted">CPU training runtime unavailable. Install the documented federation dependency on the backend.</p> }
       @if (run(); as current) {
         <div class="run-progress" aria-live="polite"><strong>{{ current.status === 'completed' ? 'Global model updated' : 'Round ' + current.current_round + '/' + current.config.rounds }}</strong>
           <span>{{ current.message }}</span><small>{{ current.policy === 'sample-weighted' ? 'Standard sample-weighted FedAvg' : 'Balanced-country averaging' }} · {{current.run_id}}</small>
@@ -77,7 +78,8 @@ import { Icon } from '../shared/icon';
     @if (run(); as current) {
       <section class="panel federation-results"><div class="results-heading"><div><h2>Measured collaboration</h2>
         <p>{{current.model_version}} · {{current.policy}}</p></div>
-        @if (current.status === 'completed') { <button class="button secondary" (click)="discard()">Discard run</button> }
+        @if (current.saved_demo) { <span class="subtle-tag">SAVED MEASURED RUN · SEED 42</span> }
+        @else if (current.status === 'completed') { <button class="button secondary" (click)="discard()">Discard run</button> }
       </div>
       <div class="run-totals"><span><strong>{{current.training_seconds == null ? 'In progress' : (current.training_seconds | number:'1.2-2') + ' s'}}</strong>Total local run</span>
         <span><strong>{{current.bytes_exchanged | number}} B</strong>Logical boundary traffic</span>
@@ -98,6 +100,7 @@ import { Icon } from '../shared/icon';
           @for (n of current.nodes; track n.country_id) {<tr><td>{{countryName(n.country_id)}}</td><td>{{n.local_only?.wape | percent:'1.4-4'}}</td><td>{{n.initial_global?.wape | percent:'1.4-4'}}</td><td>{{n.federated_global?.wape | percent:'1.4-4'}}</td><td>{{n.change}} ({{(n.wape_change_vs_local ?? 0)*100 | number:'1.4-4'}} pp)</td><td>{{weight(n.country_id) | percent:'1.2-2'}}</td></tr>}
         </tbody></table></div>
         <p class="muted">Local-only models receive the same total local epochs. Test data never selects weights. Global metrics combine aggregate errors; India has substantially more samples. Foreign nodes have six representative facilities each.</p>
+        <p>Federated learning does not guarantee that every participant improves in every run. India's slight degradation remains visible above.</p>
       }
       <details class="training-trace"><summary>Actual training events ({{current.events.length}})</summary>
         <ol>@for (event of current.events; track $index) {<li><strong>Round {{event.round}} · {{event.stage}}</strong> {{event.message}}</li>}</ol>
@@ -121,7 +124,8 @@ export class BricsPage implements OnDestroy {
   constructor() {
     forkJoin({countries:this.api.countries(),nodes:this.api.federationNodes(),status:this.api.federationStatus()}).subscribe({
       next: data => {this.countries.set(data.countries.items);this.nodes.set(data.nodes.items);this.status.set(data.status);
-        if(data.status.active_run_id)this.watch(data.status.active_run_id);},
+        if(data.status.active_run_id)this.watch(data.status.active_run_id);
+        else this.api.savedFederation().subscribe({next:r=>this.run.set(r),error:()=>this.error.set('Saved measured federation evidence is unavailable. Local training remains available when country tables are ready.')});},
       error: () => this.error.set('Federation service is unavailable. Check the backend and country-local training tables.'),
     });
   }

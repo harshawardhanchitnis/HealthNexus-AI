@@ -11,6 +11,11 @@ def federation_router(service):
     @router.get('/nodes')
     def nodes():return {'items':service.nodes()}
 
+    @router.get('/saved-demo')
+    def saved():
+        try:return service.saved()
+        except (OSError,ValueError,KeyError):raise HTTPException(503,'Saved federation evidence is unavailable or incompatible. Run scripts/prepare_demo.py.')
+
     @router.post('/runs',status_code=202)
     def start(request:RunRequest):
         try:return service.start(request)

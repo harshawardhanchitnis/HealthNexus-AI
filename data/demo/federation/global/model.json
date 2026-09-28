@@ -1,0 +1,22 @@
+{
+  "model_version": "federated-footfall-mlp-v1",
+  "features": [
+    "horizon_fraction",
+    "weekday_sin",
+    "weekday_cos",
+    "annual_sin",
+    "annual_cos",
+    "trend_half_years",
+    "lag1_ratio",
+    "lag7_ratio",
+    "lag14_ratio",
+    "mean7_ratio",
+    "mean14_ratio",
+    "std28_ratio",
+    "growth7",
+    "primary",
+    "community",
+    "hospital"
+  ],
+  "parameter_checksum": "d971711083cef53d8b4416eebdf4c76b35d20b94ce62752a3bd4240e4cb42fc8"
+}

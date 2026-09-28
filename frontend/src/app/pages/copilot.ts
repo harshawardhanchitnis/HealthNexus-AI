@@ -13,7 +13,7 @@ export class CopilotPage implements OnDestroy {
   status=signal<CopilotStatus | null>(null); busy=signal(false); phase=signal(''); trace=signal<CopilotTrace[]>([]);
   error=signal(''); replies=signal<{question:string;response:CopilotResponse}[]>([]);
   context=signal<CopilotContext>({country_id:'IN',profile:'constrained'});
-  message=''; mode:CopilotMode='gemini'; allowPlanning=false; compareProfiles=false;
+  message=''; mode:CopilotMode='offline'; allowPlanning=false; compareProfiles=false;
   private conversation?:string; private signature=''; private active?:Subscription; private polling?:Subscription;
   private progress?:Subscription; private parameters:Subscription;
   modelAttempts=signal<{model:string;status:string;http_status?:number;seconds:number}[]>([]);

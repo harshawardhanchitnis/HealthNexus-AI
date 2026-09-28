@@ -1,0 +1,74 @@
+# Deployment decision — ₹0 first
+
+No cloud resources were created, no billing was enabled, and nothing is claimed publicly deployed. This review used official documentation on 2026-09-28. The complete interactive demo is verified locally in Docker.
+
+| Component | Prepared / verified | Billing and decision |
+|---|---|---|
+| Angular / nginx | Production build, lazy routes, API proxy, SPA reload verified in Docker | Local ₹0 demonstration works |
+| Firebase Hosting | `firebase.json`, `/index.html` rewrite, uncached runtime API origin prepared | Static Hosting has Spark no-cost allowances. No project/site was selected or deployed |
+| Cloud Run | Linux container, non-root process, `PORT`, `/health`, `/readiness`, baked assets verified | A linked Cloud Billing account is required even for free usage. Deployment blocked by the no-billing instruction |
+| Firestore | Existing explicit snapshot adapter retained | Spark has a limited free default database; no available project/database/credentials were supplied for acceptance. Migration is unnecessary for this demo |
+| Gemini | Five-model implementation retained, optional backend configuration | No live calls; prior real-provider acceptance blocked by HTTP 503 HIGH DEMAND |
+
+Sources: [Firebase plans](https://firebase.google.com/docs/projects/billing/firebase-pricing-plans), [Hosting with Cloud Run and billing requirement](https://firebase.google.com/docs/hosting/cloud-run), [Firestore free quota](https://firebase.google.com/docs/firestore/quotas), [Cloud Run container contract](https://cloud.google.com/run/docs/container-contract). A free allowance is not a spending cap or a promise of a ₹0 invoice.
+
+## Recommended hackathon route
+
+Use the verified local Docker product, current screenshots and a screen recording. This requires no cloud account, network inference, billing or Firestore migration. A static Firebase page alone cannot run FastAPI, OR-Tools or PyTorch. Publishing the Angular dashboard without a reachable HTTPS backend would produce unavailable-data states, not a complete hosted demonstration.
+
+Firebase Hosting is a feasible later static target on Spark, subject to project ownership, current plan and quotas. The following are reviewable commands only; **none were executed**:
+
+```powershell
+cd frontend
+npm ci
+npm run build
+cd ..
+# Only after an HTTPS backend is selected:
+.\.venv\Scripts\python.exe scripts/configure_frontend.py --api-base https://YOUR_APPROVED_API_ORIGIN
+# Select an existing Spark project/site; verify its plan before publishing:
+npx firebase-tools deploy --only hosting --project YOUR_APPROVED_PROJECT_ID
+```
+
+The public API origin goes in the built `runtime-config.js`. It contains no credentials. The backend must allow exactly the approved Hosting origins through `HEALTHNEXUS_CORS_ORIGINS`. No Cloud Run rewrite is present in `firebase.json`: that integration would require billing. Base href is `/`; nginx and Hosting both rewrite deep routes to the SPA. Hashed nginx JS/CSS assets cache immutably; the runtime configuration stays uncached.
+
+## Cloud Run: prepared, not activated
+
+Before any Cloud Run action, a separate decision must approve billing, project, region, registry/build charges, IAM and spending controls. The current instruction forbids billing, so this work stops at configuration and documentation. A future deployment could build the verified Dockerfile and deploy an **existing approved image** using:
+
+```sh
+# FUTURE ONLY — requires a billing-enabled project; do not execute under the ₹0 restriction.
+gcloud run deploy healthnexus-api --image APPROVED_IMAGE_URI --project APPROVED_PROJECT_ID \
+  --region APPROVED_REGION --port 8000 --cpu 2 --memory 2Gi --concurrency 1 \
+  --min-instances 0 --max-instances 1 --no-allow-unauthenticated \
+  --set-env-vars HEALTHNEXUS_STORAGE=local,GEMINI_ENABLED=false
+```
+
+This intentionally does not grant public API access. The Angular-to-private-backend authentication design is not implemented. Building/pushing through Google services may incur costs too. No claim is made that the above command alone gives a secure, production-ready hosted system.
+
+`backend/start.py` listens on `0.0.0.0:$PORT` with one process. Linux assets use repository-relative paths. `/health` is fast liveness; `/readiness` checks ten profile/model partitions and saved federation evidence, caches the capability check for 30 seconds, and never probes Gemini. Forecasts are never trained at startup. Trusted assets are owned by root; the runtime user can write only the federation experiment directory among application assets.
+
+Measured image size: backend **2,159,139,278 bytes**, final frontend **94,430,376 bytes**. CPU PyTorch and scientific/Google dependencies dominate the backend. Canonical generated data are about 104 MB and operational bundles about 2.1 MB. A cold restart reached `/health` in **4.61 s**; an observed post-readiness backend memory reading was **328.5 MiB**, not a peak guarantee. Training/container behavior must be capacity-tested on the actual cloud machine; no cloud latency is asserted.
+
+The experimental federation worker runs in the background. Request-based Cloud Run CPU allocation can suspend work after the start response; instance-based CPU or a job/queue design would be needed for reliable cloud training. That introduces another deployment/billing decision. Use saved, integrity-checked federation evidence for presentations. Scenarios, plans, conversations and new run indexes remain bounded process-local state; restart loses their IDs. Do not scale this prototype across replicas without durable state. Firestore's existing snapshot adapter does **not** solve those workflow/queue requirements.
+
+## Laptop reset and portability
+
+On this existing checkout:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/prepare_demo.py
+docker compose build
+docker compose up -d
+.\.venv\Scripts\python.exe scripts/smoke_demo.py --base http://127.0.0.1:8000
+```
+
+`prepare_demo.py` is a verifier, not a reseeder. It retains all measured snapshots, models and the accepted experiment. For a fresh machine, `scripts/package_demo.py` produces an ignored `artifacts/demo-assets.zip` with all canonical generated/model/planning assets and SHA-256 entries, never `.env`. The current bundle is 72,340,666 bytes. Transfer only this trusted simulated-data bundle and the repository, then run:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/restore_demo.py PATH_TO_TRUSTED_DEMO_BUNDLE.zip
+.\.venv\Scripts\python.exe scripts/prepare_demo.py
+```
+
+Restore validates every path/hash before writing missing files, and refuses to overwrite differing measured assets. Only trust bundles you generated or whose external SHA-256 you verified; a self-contained checksum is not an authenticity signature. The canonical small federation checkpoint/report is versioned under `data/demo/federation/` and survives backend restarts.
+
+If the bundle is unavailable on a fresh clone, the historical explicit workflow remains: offline public import; `forecast.py generate --country all --days 540 --seed 42 --as-of 2026-09-27`; `build`, `train`, `evaluate`; both `generate_data.py --profile ... --country all`; both India `prepare_planning.py` commands. This is a full rebuild, **not** the normal startup/reset path. Rebuilding can change artifact identities and last-bit numeric results across platforms. It must pass compatibility checks and a separately recorded federation evaluation; never silently rebind the preserved Phase 7 evidence to different tables.

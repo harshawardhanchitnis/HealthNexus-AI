@@ -32,7 +32,7 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         yield
         app.state.federation.close()
 
-    app = FastAPI(title="HealthNexus AI · BRICS", version="0.7.0", lifespan=lifespan)
+    app = FastAPI(title="HealthNexus AI", version="0.8.0", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
         allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
 
@@ -171,6 +171,22 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
     from app.federation.routes import federation_router
     app.state.federation = federation_service or FederationService()
     app.include_router(federation_router(app.state.federation))
+    @app.get('/health')
+    def liveness():
+        return {'status':'ok', 'service':'HealthNexus AI'}
+
+    from threading import Lock
+    from time import monotonic
+    readiness_cache, readiness_lock = {}, Lock()
+    @app.get('/readiness')
+    def readiness():
+        from app.core.config import ROOT
+        from app.core.readiness import capabilities
+        with readiness_lock:
+            if monotonic()-readiness_cache.get('checked_at',-1000)>30:
+                readiness_cache.update(result=capabilities(ROOT,app.state.copilot,app.state.federation),checked_at=monotonic())
+            result = readiness_cache['result']
+        return JSONResponse(status_code=200 if result['status']=='ready' else 503,content=result)
     return app
 
 

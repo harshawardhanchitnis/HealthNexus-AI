@@ -1,0 +1,2 @@
+# Preserve the original measured report bytes used by its integrity manifest.
+data/demo/federation/report.json -text whitespace=cr-at-eol

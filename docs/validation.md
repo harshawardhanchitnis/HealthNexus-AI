@@ -1,5 +1,16 @@
 # Validation — 2026-09-28
 
+## Phase 8 — current final integration
+
+- **340 backend tests pass in 54.88 s**, retaining all 332 earlier cases and adding eight capability/saved-artifact checks. Python compilation, Windows and Linux-container `pip check`, strict TypeScript and production Angular build pass. Initial bundle 370.25 kB / estimated 101.28 kB transfer. One existing upstream Starlette/AnyIO deprecation warning remains.
+- Actual Docker build/up, liveness/readiness, ten compatible forecast/profile partitions, real scenarios/warnings/OR-Tools, five-round CPU training, explicit offline summaries and restart/saved-model reload pass. No cloud deployment is claimed. New Linux training/checkpoint differences are reported separately; the accepted Phase 7 experiment remains unchanged.
+- The canonical verifier passes: ready Pune 41,763 target, 17,745 safe capacity, 15,679 accounting items / 10 lanes, 26,084 remaining; constrained 30,230 remaining / zero capacity / zero transfers. Donor violations/new risks are zero. Assets and conservation remain intact.
+- Desktop and 390×844 mobile product checks exercise both actual guided solver flows, saved federation, deterministic summaries, empty filters, lazy/deep routes and keyboard navigation. No document overflow or console errors/warnings in the final acceptance tab. Current actual screenshots cover all nine requested pages. The skip target is keyboard-focusable. Manual accessibility review is not WCAG certification.
+- Tracked/non-ignored source and frontend bundle secret checks pass; `.env` is ignored/untracked and unchanged. Production npm audit reports zero known vulnerabilities. This is not penetration testing. All 115 protected operational/Copilot files retain their hashes. No live Gemini calls, key changes, billing changes or cloud resource creation occurred; ledger remains 12.
+- Exact Phase 6 status remains **Implementation complete; live provider acceptance pending due to Gemini service availability.** The core demo uses explicitly labelled offline summaries. Live Gemini remains unverified.
+
+Evidence: [final report](final-technical-report.md), [canonical verifier](evaluation/phase8-demo.json), [actual Docker acceptance](evaluation/phase8-docker.json), [startup](evaluation/phase8-container-startup.json), [reload](evaluation/phase8-federation-reload.json), [browser](evaluation/phase8-browser.json), [publication checks](evaluation/phase8-security.json), [deployment decision](deployment.md). Earlier measurements below remain historical.
+
 ## Phase 7
 
 - **332 backend tests pass** in 105.63 s, retaining all previous 289 and adding 43 federation cases. Actual parameter averaging, shared initialization, local training changes, sample/equal weighting, malformed updates, finite values/checksums, deterministic seed, raw-data contract, client country isolation, numeric save/reload, evaluation, artifact/model immutability, bounded run storage and API/delete are covered.

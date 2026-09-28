@@ -9,6 +9,11 @@
 .env.*
 !.env.example
 artifacts
-data/generated
+!artifacts/models
+!artifacts/models/**
+!artifacts/planning
+!artifacts/planning/**
+docs
+scripts
 credentials*.json
 service-account*.json

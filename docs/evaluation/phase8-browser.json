@@ -1,0 +1,177 @@
+{
+  "desktop": {
+    "commandCentre": {
+      "document": 1265,
+      "heading": "Command Centre",
+      "viewport": 1280
+    },
+    "forecastJourneyHarnessMs": 220,
+    "positiveReload": "PASS",
+    "offline": "PASS: actual deterministic summary",
+    "routes": {
+      "Country network": {
+        "url": "http://127.0.0.1:14200/network?country_id=IN&state_id=MH&district_id=MH-PUNE&profile=constrained&demo=1&scenario_id=3892251f-d5a7-45d4-9d54-a164f14d773b&run_id=48d4da46-702d-4eec-86c8-47c690ef847e",
+        "headings": [
+          "Country healthcare network",
+          "India network coverage",
+          "Network readiness",
+          "State / Union Territory"
+        ]
+      },
+      "Facilities": {
+        "url": "http://127.0.0.1:14200/facilities?country_id=IN&state_id=MH&district_id=MH-PUNE&profile=constrained&demo=1&scenario_id=3892251f-d5a7-45d4-9d54-a164f14d773b&run_id=48d4da46-702d-4eec-86c8-47c690ef847e",
+        "headings": [
+          "Facility explorer",
+          "Healthcare facilities"
+        ]
+      },
+      "Medicine & supply": {
+        "url": "http://127.0.0.1:14200/supply?country_id=IN&state_id=MH&district_id=MH-PUNE&profile=constrained&demo=1&scenario_id=3892251f-d5a7-45d4-9d54-a164f14d773b&run_id=48d4da46-702d-4eec-86c8-47c690ef847e",
+        "headings": [
+          "Medicine & supply",
+          "Essential medicine inventory"
+        ]
+      },
+      "Model Performance": {
+        "url": "http://127.0.0.1:14200/model-performance?country_id=IN&state_id=MH&district_id=MH-PUNE&profile=constrained&demo=1&scenario_id=3892251f-d5a7-45d4-9d54-a164f14d773b&run_id=48d4da46-702d-4eec-86c8-47c690ef847e",
+        "headings": [
+          "Put the forecasts to the test.",
+          "Patient footfall",
+          "Requested medicine demand",
+          "Requested admissions",
+          "How to read these results"
+        ]
+      },
+      "About": {
+        "url": "http://127.0.0.1:14200/about?country_id=IN&state_id=MH&district_id=MH-PUNE&profile=constrained&demo=1&scenario_id=3892251f-d5a7-45d4-9d54-a164f14d773b&run_id=48d4da46-702d-4eec-86c8-47c690ef847e",
+        "headings": [
+          "Public evidence. Local resilience.",
+          "India in depth.BRICS in collaboration.",
+          "Connected decision-support capabilities",
+          "Verification and deployment status",
+          "Google technology in HealthNexus",
+          "What is real, and what is simulated?",
+          "Resource transfers and federation are different",
+          "Coverage and limitations"
+        ]
+      }
+    }
+  },
+  "mobile": {
+    "emptyFilter": "entres and district hospitals\n\nSearch\nFacility status\nAll statuses\nHEALTHY\nWATCH\nAT RISK\nCRITICAL\nFACILITY\tREGION\tSTATUS\tPATIENT VISITS\tAVAILABLE BEDS\tSTAFF PRESENT\t\nNo facilities match these filters.\n0–0 of 0 facilities\nPrevious\nNext\n\nPrototype data notice. Operational values and facility locations are synthetic. All Indian states/UTs; illustrative districts and facilities. Public-source reference years and calibration assumptions are documented separately. No patient-identifiable data is used.",
+    "Command Centre": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Command Centre"
+      ],
+      "width": 390
+    },
+    "Country network": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Country healthcare network"
+      ],
+      "width": 390
+    },
+    "Facilities": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Facility explorer"
+      ],
+      "width": 390
+    },
+    "Medicine & supply": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Medicine & supply"
+      ],
+      "width": 390
+    },
+    "Forecasts": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "See demand before it arrives."
+      ],
+      "width": 390
+    },
+    "Early Warnings": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Early Warning Centre"
+      ],
+      "width": 390
+    },
+    "Emergency Simulator": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Emergency Simulator"
+      ],
+      "width": 390
+    },
+    "Redistribution Planner": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Redistribution Planner"
+      ],
+      "width": 390
+    },
+    "Resilience Copilot": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Resilience Copilot"
+      ],
+      "width": 390
+    },
+    "Federated Intelligence": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Federated Intelligence"
+      ],
+      "width": 390
+    },
+    "Model Performance": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Put the forecasts to the test."
+      ],
+      "width": 390
+    },
+    "Data Sources": {
+      "bodyWidth": 375,
+      "documentWidth": 375,
+      "headings": [
+        "Know what powers the numbers."
+      ],
+      "width": 390
+    },
+    "About": {
+      "documentWidth": 375,
+      "width": 390
+    },
+    "menuKeyboard": "PASS: toggle opened by Enter"
+  },
+  "console": [],
+  "live_gemini_requests": 0,
+  "keyboard": {
+    "focused": "main",
+    "mainTabIndex": "-1",
+    "tag": "MAIN",
+    "contextPreserved": true
+  },
+  "finalBuild": {
+    "initialKB": 370.25,
+    "estimatedTransferKB": 101.28
+  },
+  "screenshots": "Actual viewports; full-page renderer stitching artifacts avoided"
+}

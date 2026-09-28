@@ -1,0 +1,10 @@
+{
+  "restart_to_health_seconds": 4.607062900002347,
+  "saved_run_after_restart": "fdbaaedb-773d-4b67-be50-ad406b130950",
+  "readiness_after_restart": "ready",
+  "image_sizes_bytes": {
+    "backend": 2159139278,
+    "frontend": 94424948
+  },
+  "memory_snapshot_before_training": "backend 328.5 MiB; frontend 17.14 MiB (single observed reading, not a peak bound)"
+}

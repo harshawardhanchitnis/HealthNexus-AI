@@ -1,91 +1,50 @@
-# Architecture
-
-## Phase 6 resilience Copilot
-
-```mermaid
-flowchart LR
-  UI[Copilot context and explicit planning permission] --> C[Bounded Copilot service]
-  C <--> G[Official google-genai Interactions API]
-  C --> V[Strict schemas and country/profile validation]
-  V --> T[13 registered typed tools]
-  T --> E[Existing forecasts / warnings / scenarios / OR-Tools]
-  E --> F[Fresh authoritative evidence]
-  F --> R[Structured answer validation and tool trace]
-  R --> UI
-```
-
-`app/ai` adds orchestration without changing forecasting, warning, scenario, optimization or inventory policies. The existing ScenarioEngine and OptimizationService instances are shared. The five-model Flash-family chain starts at `gemini-3.8-flash`, with medium thinking and official SDK 2.25.0; no provider call occurs at startup. Explicit offline mode uses deterministic templates and the same local tools. Implementation complete; live provider acceptance pending due to Gemini service availability. Credentials stay server-side; all five models returned live 503 in retained evidence.
-
-Pydantic rejects unknown arguments before execution. Registered tools enforce selected geography, profile, scenario snapshot/model identity and explicit non-destructive planning permission. Native function calls return matching call IDs; Interactions continuation carries provider state. Final claims refer to fresh result fields, with numeric checks and a separate authoritative result view. These checks cannot establish the complete semantic truth of arbitrary model prose.
-
-Conversations, request progress and sanitized audit records are bounded in process memory. Provider history is stored for Interactions continuation; deleting a local conversation does not delete provider history. These context partitions do not provide production authentication. See [integration, retention and limitations](gemini.md), [API](api.md) and [measured report](phase6-report.md). Separate Phase 7 FedAvg is described below; its read-only Copilot adapters are not registered.
+# HealthNexus architecture
 
 ```mermaid
 flowchart TD
-  PIB[MoHFW / PIB dated release] --> A[India HDI adapter]
-  WHO[WHO GHO OData] --> B[WHO adapter]
-  A --> R[Attributed raw caches]
-  B --> R
-  R --> N[Validation and normalized public observations]
-  N --> C[Explicit aggregate calibration]
-  C --> IN[India local synthetic snapshot]
-  C --> BR[Brazil local synthetic snapshot]
-  C --> RU[Russia local synthetic snapshot]
-  C --> CN[China local synthetic snapshot]
-  C --> ZA[South Africa local synthetic snapshot]
-  IN --> API[Country-scoped FastAPI repository]
-  BR --> API
-  RU --> API
-  CN --> API
-  ZA --> API
-  API --> UI[Angular command centre]
+    P["Official Public Health Sources"] --> I["Data Ingestion + Provenance"]
+    I --> S["Calibrated Operational Simulation"]
+    S --> F["Operational Forecasting Engine"]
+    F --> W["Risk / Early Warning Engine"]
+    W --> T["Emergency Digital Twin"]
+    F --> T
+    T --> O["Google OR-Tools<br/>Domestic Redistribution Plan"]
+    O --> A["Administrator / Angular Command Centre"]
+    W --> A
+    F --> A
+    O --> E["13 Typed Authoritative Tools + Evidence Validation"]
+    W --> E
+    T --> E
+    E --> G["Gemini Resilience Copilot<br/>Primary + Flash-family Fallbacks"]
+    E --> L["Explicit OFFLINE<br/>Deterministic Local Summaries"]
+    G --> A
+    L --> A
+    S --> D["Country-local Historical FL Datasets"]
+    D --> M["Local PyTorch Models<br/>IN / BR / RU / CN / ZA"]
+    M --> U["Parameter Updates + Aggregate Metadata<br/>Zero Raw Training Rows"]
+    U --> V["FedAvg Aggregator"]
+    V --> Q["Experimental Global Federated Model"]
+    Q --> M
+    Q --> B["Federated Intelligence UI<br/>Measured Comparisons"]
+    B --> A
 ```
 
-`data_ingestion/base.py` defines the adapter contract, raw envelopes, checksums and atomic JSON writes. `india_hdi.py` parses the actual dated PIB summary. `who_gho.py` requests official indicator records, handles bounded pagination on the same HTTPS API host, and rejects foreign-host continuations. `catalog.py` orchestrates imports and verifies raw/normalized correspondence. API routes consume this layer rather than embedding download logic.
+Operational forecasting remains authoritative: saved country-local HGB/selected baselines, empirical uncertainty, 500 residual stock paths and immutable scenarios feed donor policy and OR-Tools. The separate federated MLP does not replace those models. The FedAvg aggregator accepts typed serialized updates, not raw training tables.
 
-Refresh is explicit (`scripts/import_official_data.py --refresh`). Normal reads do not require external network access. Caches have source URLs, actual access dates, terms, payload hashes and adapter versions. Invalid data fails validation; missing data produces visible calibration fallbacks. Per-file replacement is atomic. A refresh can succeed for one source and fail for another; each source's vintage remains visible. If normalization is stale relative to a valid raw cache, the read path reconstructs it offline; edits to normalized records with the same source identity are rejected.
+Gemini selects registered tools and explains validated evidence. It never owns forecasts, risk severity, donor capacity or transfer quantities. Local summaries are a separate explicitly selected mode. **Implementation complete; live provider acceptance pending due to Gemini service availability.**
 
-`data/official` stores small factual extracts, `data/normalized` stores typed observations, and `data/generated` stores fictional operations. Public input observations are frozen into each generated snapshot. Derived geography/calibration, synthetic operations and future simulation have separate provenance categories. A source hash indicates integrity, not external endorsement or completeness.
+Two inventory profiles share compatible demand model weights but keep separate snapshots, hashes, scenarios and caches. `constrained` preserves the insufficient network; `redistribution-ready` models uneven replenishment. Profile identity cannot silently mix across a plan.
 
-India retains its legacy snapshot path and API default. Other country snapshots use separate node paths. New snapshots are schema 2; schema-1 India records migrate to explicit uncalibrated provenance. Foreign facilities do not require districts. Graph validation rejects country/region mismatches, invalid coordinates, inconsistent histories and missing provenance references.
+## Runtime and deployment boundaries
 
-Local storage is the tested default. Optional Firestore uses `country_nodes/<code>/metadata/network`, plus region, district, facility and alert subcollections. Legacy India reads remain available. Server-side credentials stay outside frontend code. These are logical partitions in one service, not independently deployed or authenticated national systems.
+Angular uses relative `/api` locally/nginx, or a public HTTPS origin in `runtime-config.js`. FastAPI runs one bounded process with `/health` and a no-provider `/readiness`. Forecast bundles validate trusted checksums and versions before deserialization; federation checkpoints are numeric NPZ without pickle. Public/simulated assets are baked into the verified Docker image. The backend is non-root; only experiment storage is writable among application assets.
 
-## Planned learning and resource flows
+Scenario/optimization/conversation/new-run indexes are bounded process-local state. The canonical measured federation report/checkpoint is read-only saved evidence and persists across restarts. Firestore's opt-in snapshot adapter is separate from transient workflow storage; no live database acceptance or durable queue is claimed.
 
-Phase 3 adds an explicit offline path: country history → frozen-origin temporal tables → country-local candidate fitting → chronological selection → separate residual calibration → held-out evaluation → saved artifact. Three pooled targets per country share facilities only within that country. `forecasting/` separates features, evaluation, training, prediction, stockout calculations, typed schemas and routes. The read-only API lazily loads trusted saved bundles; it never fits a model at startup. Models and snapshots have matching hashes and dates; mismatches produce a visible unavailable response. See the model card for overlap between rolling evaluation origins and source-vintage limitations.
+Firebase Hosting and Cloud Run remain deployment targets. Cloud Run requires billing; no cloud resources were changed. The verified local Docker demo is the ₹0 route. [Decision and future commands](deployment.md).
 
-Phase 7 implements local dataset → local MLP training → parameter update → FedAvg → global MLP → local node. It leaves the Phase 3 operational HGB/selected-baseline models unchanged and creates no pooled global operational training dataset. The Federated Intelligence page displays actual rounds, progress, byte counts and held-out comparisons.
+## Trust and privacy
 
-## Phase 7 separate collaboration model
+Official Public Data are historical aggregate statistics. Calibrated Simulated Operations are facility-level engineering data, not live government feeds. All geographic coverage and timestamps remain visible. Country-local training is logical separation inside a same-process prototype. Model updates may leak; no differential privacy, secure aggregation, authenticated clients or encrypted federation network is implemented.
 
-```mermaid
-flowchart LR
-  IN[India local history and MLP] -->|Parameters + aggregate metadata| A[Typed update validation / FedAvg]
-  BR[Brazil local history and MLP] -->|Parameters + aggregate metadata| A
-  RU[Russia local history and MLP] -->|Parameters + aggregate metadata| A
-  CN[China local history and MLP] -->|Parameters + aggregate metadata| A
-  ZA[South Africa local history and MLP] -->|Parameters + aggregate metadata| A
-  A --> G[Experimental global footfall MLP]
-  G -->|Global weights| IN
-  G -->|Global weights| BR
-  G -->|Global weights| RU
-  G -->|Global weights| CN
-  G -->|Global weights| ZA
-```
-
-`federation/` separates local loaders/clients, common features/model, strict update schemas, array averaging, aggregate evaluation, numeric artifacts, bounded run storage and routes. The aggregator has no loader/client/raw-data interface. A background coordinator starts actual local training and records real progress. All five nodes are logical clients in one process, not isolated national deployments. The new experimental global model is not used by operational forecasting, warnings, scenarios or OR-Tools. Details, exchanged metadata, byte definitions, privacy limitations and commands are in [federated learning](federated-learning.md).
-
-Domestic redistribution will operate within a selected country's boundary and preserve donor reserves. It is separate from federation. Future cloud targets are Firebase Hosting, Cloud Run and Firestore; the Docker setup is a local deployment scaffold. No Gemini, OR-Tools, FedAvg or production cloud deployment is claimed for Phase 2.
-
-## Phase 4 operational resilience
-
-Saved country-local forecasts → selected facility copies → explicit scenario adjustment → conserved inventory/bed/workforce propagation → common warning rules → backend comparison → Angular views. `scenarios/` owns snapshot isolation and bounded process-local runs; `warnings/` owns deterministic facts, deduplication, priority and aggregation. Both reuse the existing forecast service and residual bootstrap. `core/risk_config.py` versions assumptions. Baseline snapshots, histories and fitted artifacts remain unchanged. Cached forecasts and baseline projections are keyed by country, origin, facility hash and model version. Scope validation prevents cross-country scenario reads.
-
-This is an operational resilience digital twin. Dengue is an externally specified fever-demand shock. Phase 4 did not include optimization; Phase 5 adds it below. No epidemiological prediction, Gemini or federated training is present. Scenario storage currently requires one server worker and is not durable. See [Phase 4 report](phase4-report.md).
-
-## Phase 5 domestic redistribution
-
-The shared ScenarioEngine supplies immutable baseline/scenario projections to `optimization/`. Candidate construction protects every donor across 14 days of point demand and all 500 paired paths, with known receipts and full safety reserves. Country/resource/scope filters build eligible edges; actual OR-Tools CP-SAT solves three lexicographic objectives (critical unmet targets, weighted unmet targets, transport cost). A separate nearest-safe-donor greedy routine uses identical feasibility constraints.
-
-Plans apply integer net transfers to copies at forecast origin, conserve each resource, reuse paired residual paths and recompute stock/warning outcomes. The service verifies scenario snapshot and model identity and rejects donor safety/risk regressions. Bounded run storage supports country-aware GET/DELETE without altering scenarios or models. Angular exposes candidate previews, solver evidence, transfer reasoning, before/after balances and comparison. No dispatch provider or international transfer exists. See [Phase 5 report](phase5-report.md), including the current Pune snapshot's lack of safe surplus and the open positive-demo prerequisite.
+For detailed schemas/identities see [API](api.md), [operational models](model-card.md), [scenario policy](phase4-report.md), [optimizer](phase5-report.md), [profiles/caches](phase55-report.md), [Gemini](gemini.md) and [federation](federated-learning.md).

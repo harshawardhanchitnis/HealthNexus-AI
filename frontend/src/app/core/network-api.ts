@@ -29,6 +29,7 @@ export class NetworkApi {
   private http = inject(HttpClient);
   private router = inject(Router);
   federationStatus() { return this.http.get<FederationStatus>('/api/federation/status'); }
+  savedFederation() { return this.http.get<FederationRun>('/api/federation/saved-demo'); }
   federationNodes() { return this.http.get<{items: FederationNode[]}>('/api/federation/nodes'); }
   startFederation(body: FederationRequest) { return this.http.post<FederationRun>('/api/federation/runs', body); }
   federationRun(id: string) { return this.http.get<FederationRun>('/api/federation/runs/' + encodeURIComponent(id)); }

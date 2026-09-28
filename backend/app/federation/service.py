@@ -78,6 +78,31 @@ class FederationService:
 
     def close(self):self.pool.shutdown(wait=True)
 
+    def saved(self):
+        """Read-only canonical measured experiment, available after a restart."""
+        from app.federation.artifacts import load_model
+        from app.federation.parameters import checksum
+        from app.federation.schemas import Metric
+        from app.forecasting.data import digest
+        folder = self.root/'data/demo/federation'
+        integrity = json.loads((folder/'integrity.json').read_text(encoding='utf-8'))
+        if digest(folder/'report.json')!=integrity['report_sha256']:
+            raise ValueError('Saved federation report integrity mismatch')
+        result = json.loads((folder/'report.json').read_text(encoding='utf-8'))
+        if result['status']!='completed' or result['model_version']!=MODEL_VERSION:
+            raise ValueError('Incompatible saved federation report')
+        if checksum(load_model(folder/'global'))!=result['final_checksum']:
+            raise ValueError('Saved federation report/model mismatch')
+        if result['raw_records_shared']!=0 or len(result['nodes'])!=5:
+            raise ValueError('Invalid federation evidence')
+        for row in result['rounds']:
+            Metric.model_validate(row['global_validation'])
+        for node in result['nodes']:
+            for metric in ('local_only','initial_global','federated_global'):
+                Metric.model_validate(node[metric])
+        Metric.model_validate(result['global_test'])
+        return {**result, 'saved_demo': True}
+
     # Prepared future Copilot interfaces; intentionally absent from the 13-tool registry.
     def get_federation_status(self):return self.status()
     def get_federation_results(self,run_id):return self.store.get(run_id)
