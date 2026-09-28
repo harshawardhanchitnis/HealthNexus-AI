@@ -13,7 +13,7 @@ class Tool:
 
 
 TOOLS = {
-    'get_network_summary': Tool(Scope, 'Read current simulated network KPIs, geographic IDs, selected facilities and baseline warning counts. Discover valid IDs before detail calls; no emergency shock.'),
+    'get_network_summary': Tool(Scope, 'Read simulated network KPIs and IDs when discovery is needed. Explicit validated geography needs no discovery preamble; no emergency shock.'),
     'get_facility_status': Tool(FacilityArgs, 'Read a selected facility current simulated inventory, known receipts, beds, personnel and baseline warnings, with provenance. No full histories.'),
     'get_forecast': Tool(ForecastArgs, 'Read saved ML BASELINE demand forecast, empirical intervals, model evaluation and medicine stock trajectory. Choose horizon 1, 7 or 14. Not a scenario projection; medicine requires resource_id.'),
     'get_warnings': Tool(WarningArgs, 'Search existing 14-day structured warnings, ranked by deterministic priority. Omitted scenario_id uses the active scenario; explicit null selects baseline. Pagination is explicit.'),
@@ -43,9 +43,33 @@ def json_schema(model):
     return expand(schema)
 
 
-def declarations():
+def declarations(names=None):
     return [{'type':'function', 'name':name, 'description':tool.description,
-             'parameters':json_schema(tool.schema)} for name,tool in TOOLS.items()]
+             'parameters':json_schema(tool.schema)} for name,tool in TOOLS.items() if names is None or name in names]
+
+
+SUBSETS = {
+    'network-risk': frozenset(('get_network_summary','get_facility_status','get_forecast',
+        'get_warnings','get_warning_summary','get_scenario_presets')),
+    'emergency-planning': frozenset(('get_scenario_presets','run_emergency_scenario',
+        'get_scenario_comparison','get_warnings','get_warning_summary','get_redistribution_preview',
+        'optimize_redistribution','get_optimization_result')),
+    'provenance': frozenset(('get_data_provenance','get_model_performance')),
+    'follow-up-plan': frozenset(('get_optimization_result','get_facility_status')),
+    'plan-review': frozenset(('get_optimization_result','get_redistribution_preview')),
+}
+
+
+def intent(request):
+    """Server-owned routing only; no request field can supply a tool whitelist."""
+    text = request.message.lower()
+    if any(word in text for word in ('provenance','government inventory','forecast accuracy','forecast reliability')):
+        return 'provenance'
+    if request.allow_planning and any(word in text for word in ('simulate','surge','optimize','redistribution plan')):
+        return 'emergency-planning'
+    if request.optimization_run_id:
+        return 'follow-up-plan' if any(word in text for word in ('why','donors','shortages remain')) else 'plan-review'
+    return 'network-risk'
 
 
 def validated(name, arguments, context):

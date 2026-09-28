@@ -2,7 +2,7 @@ import os
 from dataclasses import dataclass, field
 
 MODEL = 'gemini-3.8-flash'
-VERSION = 'copilot-config-v1'
+VERSION = 'copilot-config-v2'
 
 
 @dataclass(frozen=True)

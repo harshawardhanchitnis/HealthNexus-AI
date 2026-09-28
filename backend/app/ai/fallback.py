@@ -15,10 +15,12 @@ def offline_calls(request):
     if request.compare_profiles:
         return [('get_network_summary',{**args,'profile':p}) for p in ('constrained','redistribution-ready')]
     if any(x in message for x in ('live','government','provenance','data source')):
-        return [('get_data_provenance',args)]
+        calls=[('get_data_provenance',args)]
+        if any(x in message for x in ('accuracy','reliability','performance')):calls.append(('get_model_performance',args))
+        return calls
     if any(x in message for x in ('reliable','accuracy','accurate','performance')):
         return [('get_model_performance',args)]
-    if request.optimization_run_id and ('donor' in message or 'plan' in message):
+    if request.optimization_run_id and any(x in message for x in ('donor','plan','redistribut')):
         return [('get_optimization_result',{**args,'run_id':request.optimization_run_id})]
     if request.allow_planning and any(x in message for x in ('simulate','run','what happens','redistribut','optimiz','plan')):
         calls = [('get_network_summary',args)]
