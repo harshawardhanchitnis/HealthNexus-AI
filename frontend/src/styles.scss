@@ -1,6 +1,7 @@
 @use 'sass:color';
 @use './resilience';
 @use './optimization';
+@use './premium';
 
 :root {
   --ink: #20343d;
@@ -1682,3 +1683,5 @@ td strong {
 :focus-visible {outline:3px solid #227dc0;outline-offset:3px;}
 .table-wrap:focus-visible {outline-offset:-3px;}
 @media(max-width:650px) {.command-response {flex-direction:column;align-items:stretch;padding:18px;} .command-response .demo-actions{max-width:none;}}
+
+@include premium.theme;

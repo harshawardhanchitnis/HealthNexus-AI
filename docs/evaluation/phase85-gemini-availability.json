@@ -1,0 +1,466 @@
+{
+  "timestamp": "2026-09-28T18:42:06.627069+00:00",
+  "mode": "live",
+  "purpose": "availability + grounded model-smoke only",
+  "full_phase6_acceptance": false,
+  "models": [
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "attempts_per_model": 2,
+  "maximum_new_provider_requests": 10,
+  "historical_ledger_preserved": 12,
+  "cross_model_failover": false,
+  "same_model_retries": 0,
+  "sdk_hidden_retries": false,
+  "fresh_interaction_per_attempt": true,
+  "minimum_send_spacing_seconds": 20,
+  "question": "Summarize the current resource resilience status in Pune.",
+  "context": {
+    "country_id": "IN",
+    "state_id": "MH",
+    "district_id": "MH-PUNE",
+    "profile": "redistribution-ready"
+  },
+  "quota_source": "User-confirmed Google AI Studio Free tier headroom; no exact reset timestamp supplied.",
+  "quota_remaining_after_run": null,
+  "quota_notice": "Provider dashboard remains authoritative; local accounting is separate.",
+  "attempts": [
+    {
+      "timestamp": "2026-09-28T18:42:06.627100+00:00",
+      "model": "gemini-3.8-flash",
+      "attempt": 1,
+      "provider_available": false,
+      "grounded_response_accepted": false,
+      "schema_valid": false,
+      "thinking_level": "medium",
+      "http_status": 503,
+      "usage": null,
+      "provider_requests": 1,
+      "provider_seconds": 4.457082900000387,
+      "error_class": "provider_unavailable",
+      "exception_type": "InternalServerError",
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "status": "PROVIDER_UNAVAILABLE",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 1.3636217000021134,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.006074700009776279,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 1.3696964000118896,
+      "total_seconds": 6.126953600003617,
+      "classification": "503_HIGH_DEMAND",
+      "successful_interaction": false
+    },
+    {
+      "timestamp": "2026-09-28T18:42:13.040379+00:00",
+      "model": "gemini-3.8-flash",
+      "attempt": 2,
+      "provider_available": false,
+      "grounded_response_accepted": false,
+      "schema_valid": false,
+      "thinking_level": "medium",
+      "http_status": 503,
+      "usage": null,
+      "provider_requests": 1,
+      "provider_seconds": 13.691867800007458,
+      "error_class": "provider_unavailable",
+      "exception_type": "InternalServerError",
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "status": "PROVIDER_UNAVAILABLE",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.0085185000061756,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.00501530000474304,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.01353380001091864,
+      "total_seconds": 43.643545899991295,
+      "classification": "503_HIGH_DEMAND",
+      "successful_interaction": false
+    },
+    {
+      "timestamp": "2026-09-28T18:42:56.749925+00:00",
+      "model": "gemini-3.7-flash",
+      "attempt": 1,
+      "provider_available": false,
+      "grounded_response_accepted": false,
+      "schema_valid": false,
+      "thinking_level": "medium",
+      "http_status": 503,
+      "usage": null,
+      "provider_requests": 1,
+      "provider_seconds": 4.7990690000006,
+      "error_class": "provider_unavailable",
+      "exception_type": "InternalServerError",
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.7-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "status": "PROVIDER_UNAVAILABLE",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.01115350000327453,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.004985000006854534,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.016138500010129064,
+      "total_seconds": 34.72045970000909,
+      "classification": "503_HIGH_DEMAND",
+      "successful_interaction": false
+    },
+    {
+      "timestamp": "2026-09-28T18:43:31.560510+00:00",
+      "model": "gemini-3.7-flash",
+      "attempt": 2,
+      "provider_available": false,
+      "grounded_response_accepted": false,
+      "schema_valid": false,
+      "thinking_level": "medium",
+      "http_status": 503,
+      "usage": null,
+      "provider_requests": 1,
+      "provider_seconds": 6.527677800011588,
+      "error_class": "provider_unavailable",
+      "exception_type": "InternalServerError",
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.7-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "status": "PROVIDER_UNAVAILABLE",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.008292700003948994,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.005120000001625158,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.013412700005574152,
+      "total_seconds": 36.47119369999564,
+      "classification": "503_HIGH_DEMAND",
+      "successful_interaction": false
+    },
+    {
+      "timestamp": "2026-09-28T18:44:08.102302+00:00",
+      "model": "gemini-3.6-flash",
+      "attempt": 1,
+      "provider_available": true,
+      "grounded_response_accepted": false,
+      "schema_valid": true,
+      "thinking_level": "medium",
+      "http_status": 200,
+      "usage": [
+        {
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 3993
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_input_tokens": 3993,
+          "total_output_tokens": 592,
+          "total_thought_tokens": 1558,
+          "total_tokens": 6143,
+          "total_tool_use_tokens": 0
+        }
+      ],
+      "provider_requests": 1,
+      "provider_seconds": 15.155143199997838,
+      "error_class": "unsupported_number",
+      "status": "PROVIDER_AVAILABLE_APPLICATION_REJECTED",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.007770399999571964,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.006487799997557886,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.01425819999712985,
+      "total_seconds": 45.08326929999748,
+      "classification": "GROUNDING_FAILURE",
+      "successful_interaction": true
+    },
+    {
+      "timestamp": "2026-09-28T18:44:53.273170+00:00",
+      "model": "gemini-3.6-flash",
+      "attempt": 2,
+      "provider_available": false,
+      "grounded_response_accepted": false,
+      "schema_valid": false,
+      "thinking_level": "medium",
+      "http_status": 503,
+      "usage": null,
+      "provider_requests": 1,
+      "provider_seconds": 15.30405449999671,
+      "error_class": "provider_unavailable",
+      "exception_type": "InternalServerError",
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.6-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "status": "PROVIDER_UNAVAILABLE",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.00933709999662824,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.01220620000094641,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.02154329999757465,
+      "total_seconds": 20.094966000004206,
+      "classification": "503_HIGH_DEMAND",
+      "successful_interaction": false
+    },
+    {
+      "timestamp": "2026-09-28T18:45:13.429791+00:00",
+      "model": "gemini-3.5-flash",
+      "attempt": 1,
+      "provider_available": false,
+      "grounded_response_accepted": false,
+      "schema_valid": false,
+      "thinking_level": "medium",
+      "http_status": 503,
+      "usage": null,
+      "provider_requests": 1,
+      "provider_seconds": 3.9812317000032635,
+      "error_class": "provider_unavailable",
+      "exception_type": "InternalServerError",
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.5-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "status": "PROVIDER_UNAVAILABLE",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.2776166999974521,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.008751400004257448,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.28636810000170954,
+      "total_seconds": 33.94884219999949,
+      "classification": "503_HIGH_DEMAND",
+      "successful_interaction": false
+    },
+    {
+      "timestamp": "2026-09-28T18:45:47.435283+00:00",
+      "model": "gemini-3.5-flash",
+      "attempt": 2,
+      "provider_available": false,
+      "grounded_response_accepted": false,
+      "schema_valid": false,
+      "thinking_level": "medium",
+      "http_status": 503,
+      "usage": null,
+      "provider_requests": 1,
+      "provider_seconds": 3.8149991999962367,
+      "error_class": "provider_unavailable",
+      "exception_type": "InternalServerError",
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.5-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "status": "PROVIDER_UNAVAILABLE",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.00781769999593962,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.005110400001285598,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.012928099997225218,
+      "total_seconds": 33.76727519999258,
+      "classification": "503_HIGH_DEMAND",
+      "successful_interaction": false
+    },
+    {
+      "timestamp": "2026-09-28T18:46:21.265821+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 1,
+      "provider_available": true,
+      "grounded_response_accepted": false,
+      "schema_valid": true,
+      "thinking_level": "medium",
+      "http_status": 200,
+      "usage": [
+        {
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 3993
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_input_tokens": 3993,
+          "total_output_tokens": 563,
+          "total_thought_tokens": 508,
+          "total_tokens": 5064,
+          "total_tool_use_tokens": 0
+        }
+      ],
+      "provider_requests": 1,
+      "provider_seconds": 13.525046199996723,
+      "error_class": "unsupported_number",
+      "status": "PROVIDER_AVAILABLE_APPLICATION_REJECTED",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.0073302999953739345,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.00894289999268949,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.016273199988063425,
+      "total_seconds": 43.45126580000215,
+      "classification": "GROUNDING_FAILURE",
+      "successful_interaction": true
+    },
+    {
+      "timestamp": "2026-09-28T18:47:04.800346+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 2,
+      "provider_available": true,
+      "grounded_response_accepted": false,
+      "schema_valid": true,
+      "thinking_level": "medium",
+      "http_status": 200,
+      "usage": [
+        {
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 3993
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_input_tokens": 3993,
+          "total_output_tokens": 540,
+          "total_thought_tokens": 828,
+          "total_tokens": 5361,
+          "total_tool_use_tokens": 0
+        }
+      ],
+      "provider_requests": 1,
+      "provider_seconds": 12.181065299999318,
+      "error_class": "unsupported_number",
+      "status": "PROVIDER_AVAILABLE_APPLICATION_REJECTED",
+      "tool_calls": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.010690700000850484,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.010925399998086505,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.02161609999893699,
+      "total_seconds": 18.577180300009786,
+      "classification": "GROUNDING_FAILURE",
+      "successful_interaction": true
+    }
+  ],
+  "status": "completed",
+  "new_provider_requests": 10,
+  "final_ledger_used": 22,
+  "provider_requests_per_model": {
+    "gemini-3.8-flash": 2,
+    "gemini-3.7-flash": 2,
+    "gemini-3.6-flash": 2,
+    "gemini-3.5-flash": 2,
+    "gemini-3.5-flash-lite": 2
+  }
+}

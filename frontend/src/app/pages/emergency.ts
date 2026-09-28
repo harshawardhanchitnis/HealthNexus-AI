@@ -30,24 +30,24 @@ export class EmergencyPage {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private destroy = inject(DestroyRef);
-  types: { id: ScenarioType; name: string; description: string }[] = [
+  types: { id: ScenarioType; name: string; description: string; category: string; domains: string }[] = [
     {
-      id: 'DENGUE_SURGE',
+      id: 'DENGUE_SURGE', category: 'DEMAND SURGE', domains: 'Patient demand · medicines · beds · workforce',
       name: 'Dengue surge',
       description: 'Additional fever visits flow through medicine demand, admissions and capacity.',
     },
     {
-      id: 'DELIVERY_DELAY',
+      id: 'DELIVERY_DELAY', category: 'SUPPLY CHAIN', domains: 'Known receipts · inventory · reserve protection',
       name: 'Medicine delivery delay',
       description: 'Shift known future receipts and recompute inventory and stock-out risk.',
     },
     {
-      id: 'STAFF_SHORTAGE',
+      id: 'STAFF_SHORTAGE', category: 'WORKFORCE', domains: 'Available staff · service pressure',
       name: 'Staff shortage',
       description: 'Reduce available personnel and measure the resulting service pressure.',
     },
     {
-      id: 'FACILITY_DISRUPTION',
+      id: 'FACILITY_DISRUPTION', category: 'INFRASTRUCTURE', domains: 'Usable beds · service capacity · overflow',
       name: 'Facility / flood disruption',
       description:
         'Reduce usable beds and service capacity; retain existing patients as explicit overflow.',

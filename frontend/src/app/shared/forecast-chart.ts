@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { DecimalPipe, DatePipe } from '@angular/common';
 import { Forecast } from '../core/forecast-models';
 
@@ -8,7 +8,7 @@ import { Forecast } from '../core/forecast-models';
   template: `
     <div class="forecast-legend">
       <span class="actual-key">Historical requested demand</span
-      ><span class="forecast-key">Point forecast</span
+      ><span class="forecast-key">Baseline Forecast</span
       ><span class="band-key">80% / 95% intervals</span>
     </div>
     <div class="forecast-plot">
@@ -33,15 +33,15 @@ import { Forecast } from '../core/forecast-models';
             {{ max() * tick | number: '1.0-0' }}
           </text>
         }
-        <path [attr.d]="band('lower95', 'upper95')" fill="#d8eae6" />
-        <path [attr.d]="band('lower80', 'upper80')" fill="#a9d8cb" />
+        <path [attr.d]="band('lower95', 'upper95')" fill="#dce9f7" />
+        <path [attr.d]="band('lower80', 'upper80')" fill="#b7d2f0" />
         @if (data().horizon === 1) {
           <line
             x1="880"
             x2="880"
             [attr.y1]="y(data().forecast[0].lower95)"
             [attr.y2]="y(data().forecast[0].upper95)"
-            stroke="#9acdbf"
+            stroke="#b7d2f0"
             stroke-width="12"
           />
           <line
@@ -49,12 +49,12 @@ import { Forecast } from '../core/forecast-models';
             x2="880"
             [attr.y1]="y(data().forecast[0].lower80)"
             [attr.y2]="y(data().forecast[0].upper80)"
-            stroke="#439b83"
+            stroke="#6b9cd2"
             stroke-width="6"
           />
         }
         <path [attr.d]="actualPath()" fill="none" stroke="#405868" stroke-width="2.5" />
-        <path [attr.d]="forecastPath()" fill="none" stroke="#087e65" stroke-width="3" />
+        <path [attr.d]="forecastPath()" fill="none" stroke="#2267aa" stroke-width="3" />
         <line
           [attr.x1]="x(data().history.length - 1)"
           [attr.x2]="x(data().history.length - 1)"
@@ -72,6 +72,9 @@ import { Forecast } from '../core/forecast-models';
         >
           Forecast origin
         </text>
+        @for(point of data().forecast; track point.date; let i = $index) {
+          <circle class="forecast-point" [attr.cx]="x(data().history.length + i)" [attr.cy]="y(point.point)" r="4" fill="#2267aa" tabindex="0" (focus)="selected.set(i)" (mouseenter)="selected.set(i)" [attr.aria-label]="point.date + ': ' + point.point + ' ' + data().unit"><title>{{point.date}} · {{point.point | number:'1.2-2'}} {{data().unit}}</title></circle>
+        }
         <text x="50" y="283" fill="#77858e" font-size="11">
           {{ data().history[0].date | date: 'dd MMM' }}
         </text>
@@ -80,6 +83,7 @@ import { Forecast } from '../core/forecast-models';
         </text>
       </svg>
     </div>
+    <div class="chart-readout" aria-live="polite">@if(activePoint(); as point) {<strong>{{point.date | date:'dd MMM yyyy'}}</strong><span>{{point.point | number:'1.2-2'}} {{data().unit}}</span><span>80% {{point.lower80 | number:'1.2-2'}}–{{point.upper80 | number:'1.2-2'}}</span><span>95% {{point.lower95 | number:'1.2-2'}}–{{point.upper95 | number:'1.2-2'}}</span>} @else {Hover or focus a forecast point to inspect exact daily ranges.}</div>
     <p class="chart-footnote">
       Intervals are empirical marginal daily ranges. They are not confidence scores or guarantees.
       Exact daily values are available below.
@@ -88,6 +92,8 @@ import { Forecast } from '../core/forecast-models';
 })
 export class ForecastChart {
   data = input.required<Forecast>();
+  selected = signal<number | null>(null);
+  activePoint = computed(() => this.selected() === null ? null : this.data().forecast[this.selected()!] ?? null);
   max = computed(
     () =>
       Math.max(

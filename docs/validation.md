@@ -1,4 +1,17 @@
-# Validation — 2026-09-28
+# Validation — 2026-09-29
+
+## Phase 8.5 — premium Command Centre redesign
+
+- **340 backend tests pass in 55.88 s** with backend source/tests unchanged; one existing Starlette/AnyIO deprecation warning. Python compilation, Windows/container dependency checks, strict TypeScript and Angular production build pass. No build warnings or new dependencies; production npm audit reports zero known vulnerabilities.
+- Initial bundle **387.99 kB / estimated 104.69 kB transfer**, compared with Phase 8’s **370.25 / 101.28 kB**. Shared design system, accessible mobile drawer, real priority signals, functional four-family Scenario Library, protected transfer-lane cards, precise federation country comparisons and offline/evidence Copilot workspace are implemented. Five additional final guide checks pass after scoping sidebar styles; Next preserves Pune/profile context.
+- **70 browser checks** cover 14 routes at 1440×900, 1280×800, 1024×768, 768×1024 and 390×844. Zero document overflow, application alerts or captured console warnings/errors. Keyboard drawer, skip link, real forecast-point readout, profile-preserving guide/warning navigation and all four actual scenario workflows pass.
+- Production frontend Docker build and healthy unchanged backend pass liveness/readiness, all ten country/profile overview partitions, original saved federation and SPA deep routes. No accepted experiment retraining, data generation or cloud deployment occurred.
+- Both original severe Pune plans reproduce exactly: ready **41,763 / 17,745 / 15,679 / 10 / 26,084**, constrained **30,230 / 0 / 0 / 0 / 30,230**. Donor violations/new risks stay zero, critical receiver medicine warnings stay **7 → 0**, maximum stock-out risk stays **100% → 100%**, and per-resource conservation passes. Saved federation evidence remains byte-identical.
+- Before the final matrix, **all 260 protected files**, `.env` and the historical **12-request ledger** are unchanged. Zero live Gemini calls occurred during redesign/browser testing. The end-only authorized two-attempt/five-model diagnostic has a hard ceiling of ten additional sends, no retry/failover/resumed interactions, and preserves historical accounting. Its measured results are recorded separately; smoke acceptance does not complete Phase 6.
+
+- Final controlled live matrix completed **10 actual sends**, preserving the historical 12 and recording 22 total. Provider-available models: 2; accepted grounded smoke models: 0. No full Phase 6 workflow followed; [post-matrix preservation](evaluation/phase85-security.json) passes.
+
+Evidence: [Phase 8.5 report](phase85-report.md), [regressions](evaluation/phase85-regression.json), [canonical engines](evaluation/phase85-demo.json), [browser](evaluation/phase85-browser.json), [current captures](screenshots/README.md), [final Gemini matrix](evaluation/phase85-gemini-availability.json). Earlier phase measurements below remain dated history.
 
 ## Phase 8 — current final integration
 
@@ -110,7 +123,9 @@ Figures below describe the original uncalibrated snapshot and are retained as re
 
 Screenshot: [overview](screenshots/overview.png).
 
-## Limits of verification
+## Historical Phase 1 verification limits
+
+These limitations record the original Phase 1 state. Current verification and remaining limits are described in the Phase 8.5 section and linked report above.
 
 - Pytest emits one upstream Starlette/AnyIO deprecation warning; test results pass.
 - Firestore adapter is implemented but has not been exercised against a live or emulator project. No cloud upload or deployment performed.

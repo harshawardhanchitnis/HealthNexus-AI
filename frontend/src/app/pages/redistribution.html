@@ -1,7 +1,7 @@
 <div class="page-heading">
   <div>
     <div class="eyebrow">DOMESTIC LOGISTICS / DECISION SUPPORT</div>
-    <h1>Redistribution Planner</h1>
+    <h1>Safe Resource Redistribution</h1>
     <p>Resolve resource shortages while preserving each donor’s resilience.</p>
   </div>
   <a
@@ -16,6 +16,21 @@
     >Emergency Simulator</a
   >
 </div>
+@if(result(); as plan) {
+ <div class="optimizer-kpis plan-overview" aria-label="Measured plan outcome">
+  <article><span>Target before</span><strong>{{plan.impact.before.target_deficit | number}}</strong><small>Accounting items</small></article>
+  <article><span>Safe donor capacity</span><strong>{{plan.preview.safe_capacity | number}}</strong><small>Protected surplus only</small></article>
+  <article><span>Recommended transfers</span><strong>{{plan.impact.transferred_units | number}}</strong><small>Accounting items</small></article>
+  <article><span>Transfer lanes</span><strong>{{plan.transfers.length}}</strong><small>Solver-selected routes</small></article>
+  <article><span>Remaining target</span><strong>{{plan.impact.after.target_deficit | number}}</strong><small>Unresolved shortage</small></article>
+  <article><span>Donor violations</span><strong>{{plan.impact.donor_safety_violations}}</strong><small>{{plan.impact.new_donor_risks}} new donor risks</small></article>
+ </div>
+ @if(plan.preview.safe_capacity === 0 && plan.transfers.length === 0 && plan.impact.after.target_deficit > 0) {
+  <section class="outcome-message"><h2>No safe redistribution exists under current reserve constraints.</h2><p>The network is insufficient. An optimal zero-transfer plan preserves donor protection and keeps every unresolved shortage visible.</p></section>
+ } @else if(plan.impact.after.target_deficit > 0) {
+  <section class="outcome-message"><h2>Protected redistribution reduces the shortage. A supply gap remains.</h2><p>{{plan.impact.percent_deficit_resolved | number:'1.1-1'}}% of the target deficit resolved. Resource-specific units and risks are shown below; mixed medicine accounting items are not interchangeable.</p><p>Critical receiver medicine warnings: {{plan.impact.before.critical_resource_warnings}} → {{plan.impact.after.critical_resource_warnings}}. Maximum individual stock-out risk: {{plan.impact.before.max_stockout_risk | percent:'1.0-0'}} → {{plan.impact.after.max_stockout_risk | percent:'1.0-0'}}.</p></section>
+ }
+}
 <section class="twin-intro">
   <div>
     <span class="tag">COUNTRY-LOCAL • NON-DESTRUCTIVE</span>
@@ -27,7 +42,7 @@
     ><span>14-day planning horizon · {{ scope }} donor search</span>
   </div>
 </section>
-<section class="panel twin-form">
+<details class="panel twin-form" [open]="!result()"><summary>Planning context & donor protection policy</summary>
   <div class="panel-heading">
     <div>
       <h2>Planning context</h2>
@@ -44,7 +59,7 @@
           <option value="">Baseline planning</option>
           @for (s of scenarios(); track s.scenario_id) {
             <option [value]="s.scenario_id">
-              {{ s.definition.scenario_type }} ·
+              {{ s.definition.scenario_type.replaceAll('_', ' ').toLowerCase() }} ·
               {{ s.definition.district_id || s.definition.state_id || s.definition.country_id }} ·
               {{ s.created_at | date: 'shortTime' }}
             </option>
@@ -84,7 +99,7 @@
   <button class="button" (click)="optimize()" [disabled]="!preview() || loading() || running()">
     {{ running() ? 'Calculating plan…' : 'Optimize Redistribution' }}
   </button>
-</section>
+</details>
 @if (error()) {
   <p class="optimizer-notice error" role="alert">{{ error() }}</p>
   <div class="demo-actions"><button class="button secondary" (click)="resetContext()">Reset planning context</button><a class="button secondary" routerLink="/emergency" [queryParams]="{country_id:country,profile:profile,state_id:state,district_id:district}">Run a new scenario</a></div>

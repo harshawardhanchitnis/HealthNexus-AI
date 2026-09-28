@@ -13,13 +13,14 @@ import { Performance } from '../core/forecast-models';
     <div class="page-heading">
       <div>
         <div class="eyebrow">MODEL PERFORMANCE / MEASURED, NOT ASSUMED</div>
-        <h1>Put the forecasts to the test.</h1>
+        <h1>Model Performance</h1>
         <p>Three baselines, one trained candidate, and an untouched chronological test window.</p>
       </div>
       <a class="button secondary" routerLink="/forecasts" queryParamsHandling="preserve"
         >Explore forecasts →</a
       >
     </div>
+    <section class="info-banner"><div><strong>Operational forecasting</strong><br />Country-local demand models power the operational tools. WAPE is forecast error, not accuracy.<br /><a routerLink="/brics" queryParamsHandling="preserve">Inspect the separate federated footfall experiment →</a></div></section>
     @if (loading()) {
       <div class="loading-state" role="status">Loading held-out evaluation…</div>
     } @else if (error()) {

@@ -9,10 +9,11 @@ import { Icon } from '../shared/icon';
 import { StatusBadge } from '../shared/status-badge';
 import { TrendChart } from '../shared/trend-chart';
 import { WarningList } from '../core/resilience-models';
+import { WarningCards } from '../shared/warning-cards';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink, DecimalPipe, DatePipe, Icon, StatusBadge, TrendChart],
+  imports: [RouterLink, DecimalPipe, DatePipe, Icon, StatusBadge, TrendChart, WarningCards],
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
@@ -35,14 +36,14 @@ export class Dashboard {
   scope: Record<string, string> = {};
   statuses: Status[] = ['HEALTHY', 'WATCH', 'AT_RISK', 'CRITICAL'];
   titles: Record<string, string> = {
-    overview: 'Command Centre',
-    network: 'Country healthcare network',
+    overview: 'National Health Resilience',
+    network: 'Network Intelligence',
     facilities: 'Facility explorer',
     supply: 'Medicine & supply',
     alerts: 'Early warning centre',
   };
   subtitles: Record<string, string> = {
-    overview: 'A clear view of healthcare readiness, from the nation to the last mile.',
+    overview: 'Observe resources. Anticipate pressure. Coordinate a protected response.',
     network: 'Public-data context and simulated resources within the selected country.',
     facilities: 'Explore capacity, medicine cover and operational readiness.',
     supply: 'Track essential medicine stocks and the facilities below their safety reserve.',

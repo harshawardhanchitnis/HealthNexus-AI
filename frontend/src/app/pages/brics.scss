@@ -42,3 +42,36 @@
   .forecast-controls label,.forecast-controls label:first-child,.forecast-controls button { width: 100%; min-width: 0; flex: auto; }
   .forecast-controls select { width: 100%; min-width: 0; }
 }
+
+.node-grid {grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}
+.node-card {padding:18px;}.node-card h2 {font-size:18px;}
+.node-header {gap:8px;flex-wrap:wrap;}.node-header .subtle-tag {font-size:7px;padding:4px;}
+.node-code {background:#e8f1fb;color:#2e6192;border-radius:8px;}
+.node-card p {font-size:10px;line-height:1.6;}
+.node-card dl>div {display:grid;grid-template-columns:1fr;gap:2px;}
+.node-card dt {font-size:9px;}.node-card dd {font-size:14px;font-variant-numeric:tabular-nums;}
+.node-card .button {padding:8px;font-size:10px;width:100%;}
+.node-outcome {padding:8px;background:#eaf6f0;color:#216b51;border-radius:6px;}
+.node-outcome.degraded {background:#fff2df;color:#8c6123;}
+.node-outcome strong {text-transform:capitalize;}
+.node-training {color:#57728a;}
+.flow-nodes {grid-template-columns:repeat(5,minmax(0,1fr));width:100%;}
+.flow-nodes span {text-align:center;padding:12px 8px;background:#eaf1fa;color:#3a638c;border:1px solid #d7e4f1;}
+.federation-flow {flex-wrap:wrap;background:#f7faff;}
+.flow-arrow {margin-left:24px;}.flow-global {color:#285e95;align-items:center;grid-template-columns:auto auto;}
+.flow-global span {grid-column:2;}.privacy-counter strong {font-size:34px;}
+.run-progress {background:#eef3fa;color:#315675;}
+.round-timeline {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;}
+.round-timeline div {padding:12px;background:#f1f5fa;border-radius:8px;border-top:2px solid #669aca;}
+.round-timeline small,.round-timeline span {display:block;font-size:9px;color:#647b91;}
+.round-timeline strong {display:block;font-size:19px;margin:8px 0;color:#29547b;font-variant-numeric:tabular-nums;}
+.federation-controls {border-top:3px solid #709ac1;}
+.federation-controls summary {cursor:pointer;font-size:12px;font-weight:600;color:#3f6183;}
+.federation-controls[open] summary {margin-bottom:20px;}
+.federation-summary {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px;}
+.federation-summary article {background:white;border:1px solid var(--line);border-radius:12px;padding:18px;}
+.federation-summary span,.federation-summary small {font-size:10px;color:#5e7690;display:block;}
+.federation-summary strong {display:block;font-size:27px;margin:10px 0 6px;font-variant-numeric:tabular-nums;}
+@media(max-width:1400px) {.node-grid {grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:800px) {.node-grid {grid-template-columns:repeat(2,minmax(0,1fr));}.round-timeline {grid-template-columns:repeat(3,minmax(0,1fr));}.flow-nodes {grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:500px) {.node-grid {grid-template-columns:1fr;}.flow-nodes {grid-template-columns:repeat(2,minmax(0,1fr));}.flow-arrow {margin-left:0;}.round-timeline strong {font-size:16px;}.federation-summary {grid-template-columns:repeat(2,minmax(0,1fr));}}

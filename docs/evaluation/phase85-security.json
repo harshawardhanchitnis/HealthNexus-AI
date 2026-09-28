@@ -1,0 +1,221 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-09-28T18:51:19.948081+00:00",
+  "protected_files_checked": 260,
+  "protected_files_unchanged": 259,
+  "only_permitted_change": "Ignored verifier ledger appended with explicitly authorized matrix sends",
+  "historical_ledger_used_preserved": 12,
+  "new_matrix_requests": 10,
+  "final_ledger_used": 22,
+  "environment_unchanged": true,
+  "key_unchanged": true,
+  "ledger_reset_or_deleted": false,
+  "production_fallback_changed": false,
+  "provider_requests_after_matrix": 0,
+  "full_phase6_acceptance": false,
+  "billing_changed": false,
+  "cloud_deployed": false,
+  "new_google_project_or_account": false,
+  "accepted_federation_report_byte_identical": true,
+  "secret_scan": {
+    "status": "PASS",
+    "files_scanned": 410,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "screenshots_validated": 38,
+  "screenshot_dimensions": [
+    {
+      "file": "phase85-about.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-brics.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-command-centre.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-constrained-plan.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-copilot-offline.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-copilot.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-data-sources.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-emergency.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-facilities.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-facility-detail.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-federation-countries.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-forecast-tooltip.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-forecasts.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-guided-demo.jpg",
+      "width": 1265,
+      "height": 712
+    },
+    {
+      "file": "phase85-mobile-about.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-brics.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-constrained-plan.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-copilot.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-data-sources.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-emergency.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-facilities.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-facility-detail.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-forecasts.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-guided-demo.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-model-performance.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-network.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-overview.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-positive-plan.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-redistribution.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-supply.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-mobile-warnings.jpg",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "file": "phase85-model-performance.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-network.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-overview.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-positive-plan.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-redistribution.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-supply.jpg",
+      "width": 1425,
+      "height": 891
+    },
+    {
+      "file": "phase85-warnings.jpg",
+      "width": 1425,
+      "height": 891
+    }
+  ],
+  "staged_scope": "Frontend, Phase 8.5 verifier/docs/evidence/screenshots only"
+}

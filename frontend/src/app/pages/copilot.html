@@ -22,6 +22,9 @@
     <select id="copilot-mode" [(ngModel)]="mode" (ngModelChange)="changeMode()" [disabled]="busy()">
       <option value="gemini">Gemini API</option><option value="offline">Offline / deterministic</option>
     </select>
+    <h3>Evidence used</h3>
+    @if(replies().at(-1); as latest) {<div class="context-evidence">@for(tool of latest.response.tools_used; track $index) {<span>{{label(tool.tool)}} <small>{{tool.status}}</small></span>}</div><small>{{latest.response.evidence.length}} validated evidence fields · {{latest.response.context.profile}}</small>}
+    @else {<p class="scope-note">Validated tool evidence appears here after a response.</p>}
     <h3>Suggested operations</h3>
     <div class="suggestions">
       <button (click)="suggest('risks')" [disabled]="busy()">Summarize current risks</button>
@@ -35,7 +38,7 @@
   </section>
   <div class="conversation">
     @if (!replies().length) {
-      <section class="panel welcome"><div class="eyebrow">EVIDENCE BEFORE EXPLANATION</div><h2>Explore the network’s resilience.</h2>
+      <section class="panel welcome"><div class="eyebrow">EVIDENCE BEFORE EXPLANATION</div><h2>A grounded view of your operational context.</h2>
         <p>Choose geography and profile above. Gemini selects registered HealthNexus tools; forecasts, scenarios and transfers come from the existing engines.</p>
         <p>Offline mode uses limited deterministic templates and actual local tool results. It does not represent a Gemini API response.</p></section>
     }

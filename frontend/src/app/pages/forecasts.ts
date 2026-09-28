@@ -89,6 +89,7 @@ export class ForecastsPage {
       queryParamsHandling: 'merge',
     });
   }
+  facilityName() { return this.facilities().find(f => f.id === this.selected())?.name || this.selected(); }
   label() {
     return this.resources.find((r) => r.id === this.resource())?.name || this.resource();
   }

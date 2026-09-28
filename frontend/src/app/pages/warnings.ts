@@ -21,6 +21,7 @@ import { WarningCards } from '../shared/warning-cards';
         >Open simulator →</a
       >
     </div>
+    <div class="severity-filters" aria-label="Quick severity filters">@for(level of ['', 'CRITICAL', 'WARNING', 'WATCH', 'INFO']; track level) {<button [attr.aria-pressed]="severity() === level" (click)="selectSeverity(level)">{{level || 'All severities'}}</button>}</div>
     <div class="forecast-controls">
       <label
         >Operating context<select
@@ -173,6 +174,7 @@ export class WarningsPage {
         this.loading.set(false);
       });
   }
+  selectSeverity(severity: string) { this.router.navigate([], {relativeTo:this.route,queryParams:{severity:severity || null},queryParamsHandling:'merge'}); }
   change(key: string, event: Event) {
     this.router.navigate([], {
       relativeTo: this.route,

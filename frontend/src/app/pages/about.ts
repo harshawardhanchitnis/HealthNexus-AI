@@ -8,10 +8,9 @@ import { Icon } from '../shared/icon';
     <div class="page-heading">
       <div>
         <div class="eyebrow">HEALTHNEXUS AI / PROJECT SCOPE</div>
-        <h1>Public evidence. Local resilience.</h1>
+        <h1>Built for Resource Resilience</h1>
         <p>
-          A real-data-backed platform foundation for healthcare resilience and federated
-          intelligence.
+          A national health resource and supply-chain decision-support platform with transparent evidence and country-local response.
         </p>
       </div>
     </div>
@@ -25,6 +24,12 @@ import { Icon } from '../shared/icon';
       </p>
       <span>Public health datasets / Calibrated simulation / Traceable provenance</span>
     </div>
+    <section class="architecture-grid" aria-label="System architecture">
+      <article><small>01 / OBSERVE</small><strong>Public evidence & simulation</strong><p>Public aggregates calibrate fictional operational profiles. Source lineage stays attached.</p></article>
+      <article><small>02 / ANTICIPATE</small><strong>Forecast & stress-test</strong><p>Saved models, uncertainty paths and warning rules measure baseline and conditional pressure.</p></article>
+      <article><small>03 / COORDINATE</small><strong>Safe domestic response</strong><p>Google OR-Tools selects protected transfers. Shortages and donor reserves remain visible.</p></article>
+      <article><small>04 / INTERPRET & LEARN</small><strong>Copilot & federation</strong><p>Gemini interprets validated tool evidence. A separate five-node experiment shares model updates.</p></article>
+    </section>
     <div class="about-grid">
       <section class="panel prose">
         <h2>Connected decision-support capabilities</h2>

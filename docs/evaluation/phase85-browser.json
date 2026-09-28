@@ -1,0 +1,708 @@
+{
+  "status": "PASS",
+  "source": "Actual production Angular/nginx browser backed by local Docker API",
+  "timestamp": "2026-09-28T18:28:27.345Z",
+  "live_gemini_requests": 0,
+  "checks": [
+    {
+      "route": "overview",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "National Health Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "network",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Network Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "facilities",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Facility explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "supply",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Medicine & supply",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "forecasts",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Forecast Explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "warnings",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Early Warning Centre",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "emergency",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Emergency Digital Twin",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "redistribution",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Safe Resource Redistribution",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "copilot",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Resilience Copilot",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "brics",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Federated Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "model-performance",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Model Performance",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "data-sources",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Evidence & Data Sources",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "about",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Built for Resource Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "overview",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "National Health Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "network",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Network Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "facilities",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Facility explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "supply",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Medicine & supply",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "forecasts",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Forecast Explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "warnings",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Early Warning Centre",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "emergency",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Emergency Digital Twin",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "redistribution",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Safe Resource Redistribution",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "copilot",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Resilience Copilot",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "brics",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Federated Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "model-performance",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Model Performance",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "data-sources",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Evidence & Data Sources",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "about",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Built for Resource Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "overview",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "National Health Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "network",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Network Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "facilities",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Facility explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "supply",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Medicine & supply",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "forecasts",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Forecast Explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "warnings",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Early Warning Centre",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "emergency",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Emergency Digital Twin",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "redistribution",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Safe Resource Redistribution",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "copilot",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Resilience Copilot",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "brics",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Federated Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "model-performance",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Model Performance",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "data-sources",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Evidence & Data Sources",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "about",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Built for Resource Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "overview",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "National Health Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "network",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Network Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "facilities",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Facility explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "supply",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Medicine & supply",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "forecasts",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Forecast Explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "warnings",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Early Warning Centre",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "emergency",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Emergency Digital Twin",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "redistribution",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Safe Resource Redistribution",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "copilot",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Resilience Copilot",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "brics",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Federated Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "model-performance",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Model Performance",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "data-sources",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Evidence & Data Sources",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "about",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Built for Resource Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "overview",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "National Health Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "network",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Network Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "facilities",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Facility explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "supply",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Medicine & supply",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "forecasts",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Forecast Explorer",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "warnings",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Early Warning Centre",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "emergency",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Emergency Digital Twin",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "redistribution",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Safe Resource Redistribution",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "copilot",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Resilience Copilot",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "brics",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Federated Intelligence",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "model-performance",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Model Performance",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "data-sources",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Evidence & Data Sources",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "about",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Built for Resource Resilience",
+      "mobileContext": "India · PuneRedistribution-ready simulationChange context",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "route": "facility-detail",
+      "size": "1440x900",
+      "alerts": [],
+      "heading": "Pune · District Hospital 03",
+      "scrollWidth": 1425,
+      "width": 1440
+    },
+    {
+      "route": "facility-detail",
+      "size": "1280x800",
+      "alerts": [],
+      "heading": "Pune · District Hospital 03",
+      "scrollWidth": 1265,
+      "width": 1280
+    },
+    {
+      "route": "facility-detail",
+      "size": "1024x768",
+      "alerts": [],
+      "heading": "Pune · District Hospital 03",
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "route": "facility-detail",
+      "size": "768x1024",
+      "alerts": [],
+      "heading": "Pune · District Hospital 03",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "route": "facility-detail",
+      "size": "390x844",
+      "alerts": [],
+      "heading": "Pune · District Hospital 03",
+      "scrollWidth": 375,
+      "width": 390
+    }
+  ],
+  "overflow_failures": [],
+  "application_alerts": [],
+  "console_warnings_errors": [],
+  "keyboard": {
+    "drawer_focus": true,
+    "tab_wrap": true,
+    "escape_focus_return": true,
+    "closed_drawer_inert": true,
+    "skip_link_preserves_context": true,
+    "chart_readout": true
+  },
+  "workflows": {
+    "positive": "41763 target / 17745 safe / 15679 transfer / 10 lanes / 26084 unresolved / 0 donor violations",
+    "constrained": "30230 target / 0 safe / 0 transfer / 0 lanes / 30230 unresolved",
+    "generic_scenarios": [
+      "DENGUE_SURGE",
+      "STAFF_SHORTAGE",
+      "DELIVERY_DELAY",
+      "FACILITY_DISRUPTION"
+    ],
+    "warning_filters": true,
+    "warning_navigation": true,
+    "facility_drill_down": true,
+    "guided_next_preserves_context": true,
+    "offline_copilot": "Explicit offline local tools + validated evidence; runtime provider not_attempted"
+  },
+  "screenshot_method": "Unedited viewport captures; no full-page stitching",
+  "guide_postfix_checks": [
+    {
+      "guideHeight": 155.4791717529297,
+      "height": 900,
+      "navDisplay": "flex",
+      "overflow": false,
+      "profile": "Guided demo · PuneFlagship demand-surge preset · Redistribution-ready simulation",
+      "stepCount": 7,
+      "width": 1440
+    },
+    {
+      "guideHeight": 155.4791717529297,
+      "height": 800,
+      "navDisplay": "flex",
+      "overflow": false,
+      "profile": "Guided demo · PuneFlagship demand-surge preset · Redistribution-ready simulation",
+      "stepCount": 7,
+      "width": 1280
+    },
+    {
+      "guideHeight": 155.4791717529297,
+      "height": 768,
+      "navDisplay": "flex",
+      "overflow": false,
+      "profile": "Guided demo · PuneFlagship demand-surge preset · Redistribution-ready simulation",
+      "stepCount": 7,
+      "width": 1024
+    },
+    {
+      "guideHeight": 155.4791717529297,
+      "height": 1024,
+      "navDisplay": "flex",
+      "overflow": false,
+      "profile": "Guided demo · PuneFlagship demand-surge preset · Redistribution-ready simulation",
+      "stepCount": 7,
+      "width": 768
+    },
+    {
+      "guideHeight": 209.39584350585935,
+      "height": 844,
+      "navDisplay": "flex",
+      "overflow": false,
+      "profile": "Guided demo · PuneFlagship demand-surge preset · Redistribution-ready simulation",
+      "stepCount": 7,
+      "width": 390
+    }
+  ],
+  "guide_postfix_next_preserves_context": true
+}

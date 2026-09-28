@@ -25,7 +25,7 @@ import { Icon } from '../shared/icon';
       forecasts and medicine redistribution remain country-local and unchanged.
     </div></div>
     @if (error()) { <div class="empty-state" role="alert">{{ error() }}</div> }
-    <section class="panel federation-controls">
+    <details class="panel federation-controls" [open]="!run() || busy()"><summary>Federation controls · inspect or run an explicit local experiment</summary>
       <div class="controls-title"><h2>Train across five logical nodes</h2>
         <p>Seed 42 · CPU PyTorch · {{ status()?.parameter_count | number }} parameters</p></div>
       <div class="forecast-controls">
@@ -47,10 +47,16 @@ import { Icon } from '../shared/icon';
       @else if (!status()?.available) { <p class="muted">CPU training runtime unavailable. Install the documented federation dependency on the backend.</p> }
       @if (run(); as current) {
         <div class="run-progress" aria-live="polite"><strong>{{ current.status === 'completed' ? 'Global model updated' : 'Round ' + current.current_round + '/' + current.config.rounds }}</strong>
-          <span>{{ current.message }}</span><small>{{ current.policy === 'sample-weighted' ? 'Standard sample-weighted FedAvg' : 'Balanced-country averaging' }} · {{current.run_id}}</small>
+          <span>{{ current.message }}</span><small>{{ current.policy === 'sample-weighted' ? 'Standard sample-weighted FedAvg' : 'Balanced-country averaging' }} · {{current.config.rounds}} rounds / {{current.config.local_epochs}} local epoch(s)</small><details><summary>Run identity</summary>{{current.run_id}}</details>
         </div>
       }
-    </section>
+    </details>
+    @if(run(); as measured) {<section class="federation-summary" aria-label="Measured federation summary">
+      <article><span>Logical nodes</span><strong>{{measured.nodes.length}}</strong><small>Country-local training</small></article>
+      <article><span>Rounds / epochs</span><strong>{{measured.config.rounds}} / {{measured.config.local_epochs}}</strong><small>Seed {{measured.config.seed}}</small></article>
+      <article><span>Model parameters</span><strong>{{measured.parameter_count | number}}</strong><small>Experimental footfall MLP</small></article>
+      <article><span>Raw records shared</span><strong>{{measured.raw_records_shared}}</strong><small>Parameter updates only</small></article>
+    </section>}
     <section class="federation-flow panel" aria-label="Five countries send model parameters to FedAvg and receive global parameters">
       <div class="flow-nodes">@for (country of countries(); track country.id) {<span>{{country.name}}</span>}</div>
       <div class="flow-arrow"><span>Parameter updates →</span><small>← Global weights</small></div>
@@ -65,11 +71,12 @@ import { Icon } from '../shared/icon';
           @if (node(country.id); as n) {
             <p>{{n.facility_count | number}} fictional facilities · {{n.history_days}} historical days</p>
             <dl><div><dt>Local training examples</dt><dd>{{n.local_samples | number}}</dd></div>
-              <div><dt>Local-only test WAPE</dt><dd>{{n.local_only?.wape == null ? 'Not trained' : (n.local_only?.wape | percent:'1.2-2')}}</dd></div>
-              <div><dt>Federated test WAPE</dt><dd>{{n.federated_global?.wape == null ? 'Not trained' : (n.federated_global?.wape | percent:'1.2-2')}}</dd></div>
+              <div><dt>Local-only test WAPE</dt><dd>{{n.local_only?.wape == null ? 'Not trained' : (n.local_only?.wape | percent:'1.4-4')}}</dd></div>
+              <div><dt>Federated test WAPE</dt><dd>{{n.federated_global?.wape == null ? 'Not trained' : (n.federated_global?.wape | percent:'1.4-4')}}</dd></div>
               <div><dt>Latest model update</dt><dd>{{latestBytes(country.id) | number}} B</dd></div>
               <div><dt>Raw records shared</dt><dd>{{n.raw_records_shared}}</dd></div></dl>
           }
+          @if(node(country.id); as measured) {@if(measured.wape_change_vs_local != null) {<p class="node-outcome" [class.degraded]="measured.change === 'degraded'"><strong>{{measured.change}}</strong> {{measured.wape_change_vs_local! * 100 | number:'1.4-4'}} pp vs local</p>}}
           <p class="node-training">{{nodeState(country.id)}}</p>
           <a routerLink="/overview" [queryParams]="{profile:api.profile(),country_id:country.id}" class="button secondary">Explore {{country.name}} <app-icon name="arrow"/></a>
         </section>
@@ -85,9 +92,10 @@ import { Icon } from '../shared/icon';
         <span><strong>{{current.bytes_exchanged | number}} B</strong>Logical boundary traffic</span>
         <span><strong>{{current.global_test?.wape | percent:'1.2-2'}}</strong>Global held-out test WAPE</span></div>
       @if (current.rounds.length) {
+        <div class="round-timeline" aria-label="Measured federation rounds">@for(round of current.rounds; track round.round) {<div><small>Round {{round.round}}</small><strong>{{round.global_validation.wape | percent:'1.2-2'}}</strong><span>Validation WAPE</span></div>}</div>
         <svg class="round-chart" viewBox="0 0 640 130" role="img" aria-label="Measured global validation WAPE over federation rounds">
           <line x1="20" y1="112" x2="620" y2="112" stroke="#d5e2e3" />
-          <polyline [attr.points]="chartPoints()" fill="none" stroke="#118a71" stroke-width="3" />
+          <polyline [attr.points]="chartPoints()" fill="none" stroke="#266caa" stroke-width="3" />
           <text x="20" y="128">Round 0</text><text x="535" y="128">Round {{current.rounds.length-1}}</text>
         </svg>
         <div class="table-wrap"><table><thead><tr><th>Round</th><th>Global validation WAPE</th><th>Global MAE (visits)</th><th>Update bytes</th><th>Raw records shared</th></tr></thead><tbody>

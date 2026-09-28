@@ -1,9 +1,10 @@
+import { RouterLink } from '@angular/router';
 import { Component, input, signal } from '@angular/core';
 import { DatePipe, DecimalPipe, PercentPipe } from '@angular/common';
 import { WarningItem } from '../core/resilience-models';
 @Component({
   selector: 'app-warning-cards',
-  imports: [DatePipe, DecimalPipe, PercentPipe],
+  imports: [DatePipe, DecimalPipe, PercentPipe, RouterLink],
   template: ` <div class="warning-list">
     @for (w of items().slice(0, limit()); track w.warning_id) {
       <article class="warning-card" [attr.data-severity]="w.severity">
@@ -72,7 +73,8 @@ import { WarningItem } from '../core/resilience-models';
                 </li>
               }
             </ul>
-            <p>{{ w.recommended_next_step }}</p>
+            <p><strong>Recommended next step</strong><br />{{ w.recommended_next_step }}</p>
+            <div class="warning-actions"><a class="button secondary" [routerLink]="['/facilities', w.facility_id]" [queryParams]="{country_id:w.country_id,state_id:w.state_id,district_id:w.district_id}" queryParamsHandling="merge">View facility</a><a class="button secondary" routerLink="/forecasts" [queryParams]="{country_id:w.country_id,state_id:w.state_id,district_id:w.district_id,facility_id:w.facility_id,resource:w.resource_id || 'footfall'}" queryParamsHandling="merge">Review baseline forecast</a><a class="button secondary" routerLink="/redistribution" [queryParams]="{country_id:w.country_id,state_id:w.state_id,district_id:w.district_id,scenario_id:w.scenario_id}" queryParamsHandling="merge">Review redistribution</a></div>
             <small
               >Origin {{ w.forecast_origin }} · {{ w.model_version }} ·
               {{ w.provenance['config_version'] }} · simulated operations</small
@@ -95,7 +97,7 @@ export class WarningCards {
   limit = signal(50);
   open = signal('');
   label(s: string) {
-    return s.replaceAll('_', ' ').toLowerCase();
+    const label = s.replaceAll('_', ' ').toLowerCase(); return label.charAt(0).toUpperCase() + label.slice(1);
   }
   format(value: number | string | undefined) {
     return typeof value === 'number'

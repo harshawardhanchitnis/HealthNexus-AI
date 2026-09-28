@@ -1,9 +1,10 @@
-<div class="page-heading">
+<div class="page-heading" [class.command-hero]="page() === 'overview'">
   <div>
-    <div class="eyebrow">HEALTHCARE RESILIENCE / {{ scopeName() }}</div>
+    <div class="eyebrow">{{page() === 'overview' ? 'HEALTHNEXUS AI / COMMAND CENTRE' : 'OPERATIONAL INTELLIGENCE'}} · {{ scopeName() }}</div>
     <h1>{{ titles[page()] }}</h1>
     <p>{{ subtitles[page()] }}</p>
   </div>
+  @if(page() === 'overview') {<div class="hero-actions"><button class="button primary" (click)="loadDemo('redistribution-ready')">Guided Pune Demo <app-icon name="arrow" /></button><a class="button secondary" routerLink="/emergency" queryParamsHandling="preserve">Simulate Emergency</a></div>}
   <button class="button secondary" (click)="refresh()" [disabled]="loading()">
     <app-icon name="refresh" />Refresh data
   </button>
@@ -27,12 +28,12 @@
     <span class="snapshot-status"><i></i>BACKEND CONNECTED</span
     ><span>Simulated operations · {{ view.as_of | date: 'dd MMM yyyy' }} · {{ scopeName() }}</span>
   </div>
-  <div class="info-banner source-context">
+  <div class="info-banner source-context" [class.trust-strip]="page() === 'overview'">
     <app-icon name="layers" />
     <div>
       <strong>{{
         view.calibration.public_sources_available
-          ? 'Public-data-backed context. Simulated facility operations.'
+          ? 'Official Public Data + Calibrated Simulated Operations'
           : 'Uncalibrated fallback snapshot.'
       }}</strong
       ><br />{{
@@ -46,7 +47,7 @@
     >
   </div>
   @if (page() === 'overview' || page() === 'network') {
-    <div class="kpi-grid">
+    <div class="kpi-grid" [class.command-kpis]="page() === 'overview'">
       <article class="kpi">
         <div class="kpi-label">
           Facilities in scope <span class="kpi-icon green"><app-icon name="hospital" /></span>
@@ -64,7 +65,7 @@
       </article>
       <article class="kpi">
         <div class="kpi-label">
-          Medicine availability <span class="kpi-icon blue"><app-icon name="box" /></span>
+          Medicine resilience <span class="kpi-icon blue"><app-icon name="box" /></span>
         </div>
         <div class="kpi-value">{{ view.summary.medicine_availability }}<small>%</small></div>
         <div class="kpi-note">Facility–medicine pairs with ≥7 days cover</div>
@@ -74,7 +75,7 @@
       </article>
       <article class="kpi">
         <div class="kpi-label">
-          Bed utilisation <span class="kpi-icon amber"><app-icon name="bed" /></span>
+          Bed pressure <span class="kpi-icon amber"><app-icon name="bed" /></span>
         </div>
         <div class="kpi-value">{{ view.summary.bed_utilisation }}<small>%</small></div>
         <div class="kpi-note">
@@ -87,7 +88,7 @@
       </article>
       <article class="kpi">
         <div class="kpi-label">
-          Personnel availability <span class="kpi-icon purple"><app-icon name="users" /></span>
+          Workforce availability <span class="kpi-icon purple"><app-icon name="users" /></span>
         </div>
         <div class="kpi-value">{{ view.summary.staff_availability }}<small>%</small></div>
         <div class="kpi-note">
@@ -98,15 +99,12 @@
           <span [style.width.%]="view.summary.staff_availability"></span>
         </div>
       </article>
+      @if(page() === 'overview') {<article class="kpi projected-kpi"><div class="kpi-label">Projected warnings <span class="kpi-icon blue"><app-icon name="bell" /></span></div><div class="kpi-value">{{warningSummary()?.summary?.total ?? '—'}}</div><div class="kpi-note">14-day Baseline Forecast · <a routerLink="/warnings" queryParamsHandling="preserve">Review queue →</a></div><div class="kpi-context">{{warningError() ? 'Forecast unavailable' : warningSummary() ? 'Model-based + rule-derived' : 'Preparing outlook…'}}</div></article>}
     </div>
   @if (page() === 'overview') {
-    <section class="command-response panel">
-      <div><span class="eyebrow">PREDICT · PREPARE · COORDINATE</span><h2>Act before resource pressure becomes a crisis.</h2>
-        <p>Operational Profile: <strong>{{apiProfile()}}</strong> · Calibrated Simulated Operations</p>
-        @if(warningSummary(); as warnings) {<p><strong>{{warnings.summary.total}} projected warnings</strong> · 14-day Baseline Forecast · <a routerLink="/warnings" queryParamsHandling="preserve">Review predicted resource stress →</a></p>}
-        @else {<p>{{warningError() ? 'Forecast warnings unavailable. Review trusted artifacts before planning.' : 'Evaluating projected resource warnings…'}}</p>}
-      </div>
-      <div class="demo-actions"><button class="button primary" (click)="loadDemo('redistribution-ready')">Guided demo · Pune</button><button class="button secondary" (click)="loadDemo('constrained')">Network-insufficient demo</button><a class="inline-link" routerLink="/emergency" queryParamsHandling="preserve">Open Emergency Simulator →</a></div>
+    <section class="command-response panel operational-pipeline" aria-label="Operational decision pipeline">
+      <div><span class="eyebrow">FROM SIGNAL TO RESPONSE</span><h2>One connected operational picture.</h2><p>Current resources above · projected pressure below · {{apiProfile()}} simulation</p></div>
+      <nav aria-label="Operational workflow"><a routerLink="/network" queryParamsHandling="preserve">01 <strong>Observe</strong></a><a routerLink="/forecasts" queryParamsHandling="preserve">02 <strong>Forecast</strong></a><a routerLink="/warnings" queryParamsHandling="preserve">03 <strong>Detect risk</strong></a><a routerLink="/emergency" queryParamsHandling="preserve">04 <strong>Stress-test</strong></a><a routerLink="/redistribution" queryParamsHandling="preserve">05 <strong>Optimize</strong></a></nav>
     </section>
   }
     <div class="main-grid">
@@ -157,7 +155,7 @@
       <section class="panel readiness-panel">
         <div class="panel-heading">
           <div>
-            <h2>Network readiness</h2>
+            <h2>Current network resilience</h2>
             <p>Facilities by current operating status</p>
           </div>
           <app-icon name="shield" />
@@ -191,6 +189,7 @@
     </div>
   }
   @if (page() === 'overview') {
+    @if(warningSummary(); as projected) {<section class="panel predictive-signals"><div class="panel-heading"><div><span class="eyebrow">LOOK AHEAD / BASELINE FORECAST</span><h2>Priority signals</h2><p>Highest-priority warnings in the selected scope. Review the evidence before choosing a response.</p></div><a class="button secondary" routerLink="/warnings" queryParamsHandling="preserve">View all {{projected.summary.total}} warnings →</a></div><app-warning-cards [items]="projected.items.slice(0,3)" /></section>}
     <div class="main-grid trend-row">
       <section class="panel">
         <div class="panel-heading">

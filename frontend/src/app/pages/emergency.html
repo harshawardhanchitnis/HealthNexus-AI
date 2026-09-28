@@ -1,7 +1,7 @@
 <div class="page-heading">
   <div>
     <div class="eyebrow">EMERGENCY DIGITAL TWIN / OPERATIONAL RESILIENCE</div>
-    <h1>Emergency Simulator</h1>
+    <h1>Emergency Digital Twin</h1>
     <p>Change the conditions. Trace the pressure. Compare every outcome against its baseline.</p>
   </div>
   <div class="demo-actions">
@@ -27,19 +27,27 @@
     <span class="tag">NON-DESTRUCTIVE SCENARIO</span>
     <h2>A controlled shock. A measurable response.</h2>
     <p>
-      Saved forecasts → explicit emergency assumptions → resource trajectories → structured
+      Baseline forecast → operational shock → resource impact → structured
       warnings.
     </p>
   </div>
   <div class="twin-scope">
     <strong>{{ district() || state() || country() }}</strong
-    ><span>{{ facilities().length }} facilities in selected scope</span>
+    ><span>{{ loading() ? '—' : facilities().length }} facilities in selected scope</span>
   </div>
+</section>
+<section class="scenario-library" aria-label="Scenario library">
+  <h2>Scenario Library <span class="subtle-tag">FOUR OPERATIONAL SHOCKS</span></h2>
+  <div class="scenario-cards">@for (type of types; track type.id) {
+    <button type="button" class="scenario-card" [class.selected]="kind === type.id" [attr.aria-pressed]="kind === type.id" [disabled]="running()" (click)="kind = type.id; changeKind()">
+      <span class="scenario-category">{{type.category}}</span><strong>{{type.name}}</strong><p>{{type.description}}</p><span class="scenario-domains">{{type.domains}}</span>
+    </button>
+  }</div>
 </section>
 <form class="panel twin-form" (ngSubmit)="run()" #form="ngForm">
   <div class="panel-heading">
     <div>
-      <h2>Configure emergency</h2>
+      <h2>Configure operational shock</h2>
       <p>Choose country, region and district in the navigation filters above.</p>
     </div>
     <span class="tag">14-DAY PROJECTION</span>
@@ -198,6 +206,12 @@
     assumptions, not epidemiological predictions. All KPIs cover 14 days; baseline pressure is
     retained.
   </div>
+  <section class="completed-pipeline" aria-label="Completed scenario stages">
+    <span>✓ Baseline loaded</span><span>✓ Operational shock applied</span><span>✓ Resource pressure evaluated</span>
+    @if(r.scenario_result.facilities[0]?.resources?.[0]?.stockout?.simulations; as paths) {<span>✓ {{paths | number}} uncertainty paths per resource evaluated</span>}
+    <span>✓ Warnings generated</span>
+    <a class="inline-link" routerLink="/redistribution" [queryParams]="{profile:profile(),country_id:country(),state_id:state(),district_id:district(),scenario_id:r.scenario.scenario_id}">Analyse Redistribution →</a>
+  </section>
   <div class="twin-kpis">
     @for (k of kpis; track k.key) {
       @let d = r.delta[k.key];
@@ -549,7 +563,7 @@
     <h2>Ready to test resilience</h2>
     <p>
       Run a scenario to see paired demand, inventory, bed and staffing trajectories. The Pune demo
-      starts with a severe 14-day dengue surge.
+      is a flagship severe 14-day demand-surge preset. Delivery, staffing and facility shocks use the same comparison workflow.
     </p>
     <a routerLink="/forecasts" queryParamsHandling="preserve">Inspect baseline forecasts →</a>
   </section>

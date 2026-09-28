@@ -2,11 +2,13 @@
 
 **Predict shortages. Coordinate safe resources. Share intelligence.**
 
-HealthNexus is a healthcare resource decision-support prototype. It combines Official Public Data, Calibrated Simulated Operations, evaluated forecasts, an Emergency Digital Twin, Google OR-Tools redistribution and experimental five-country federated learning.
+HealthNexus is a national-scale healthcare resilience and resource decision-support prototype. Its Command Centre connects Official Public Data, Calibrated Simulated Operations, evaluated forecasts, an Emergency Digital Twin, Google OR-Tools redistribution and experimental five-country federated learning. Demand, supply, workforce and facility disruptions share the same operational pipeline.
 
 India is the detailed showcase: **36 states/UTs, 69 illustrative districts, 207 fictional facilities**. Brazil, Russia, China and South Africa each have six representative facilities. These are five configured logical nodes, not connected government systems or exhaustive BRICS coverage.
 
-![Command Centre](docs/screenshots/final-command-centre.png)
+![National Health Resilience Command Centre](docs/screenshots/phase85-command-centre.jpg)
+
+[Phase 8.5 redesign and measured verification](docs/phase85-report.md) · [Desktop/mobile gallery](docs/screenshots/README.md)
 
 ## Problem
 
@@ -32,7 +34,7 @@ Prediction alone does not move supplies. HealthNexus connects resource stress to
 
 ## Demo
 
-Start **Guided demo · Pune** on Command Centre. Follow Network → Forecast → Dengue → Warnings → Redistribute → Federation → Offline summary. The guide configures geography/profile; it does not load an optimizer answer.
+Start **Guided demo · Pune** on Command Centre. Follow Network → Forecast → Stress-test → Warnings → Redistribute → Federation → Offline summary. Severe 14-day Pune dengue is the flagship demand-surge preset; the Scenario Library also supports delivery delay, staff shortage and facility disruption. The guide configures geography/profile; it does not load an optimizer answer.
 
 | Severe Pune dengue, 14 days | Redistribution-ready | Constrained |
 |---|---:|---:|
@@ -43,7 +45,7 @@ Start **Guided demo · Pune** on Command Centre. Follow Network → Forecast →
 | Unresolved target | 26,084 | 30,230 |
 | New donor risks / reserve violations | 0 / 0 | 0 / 0 |
 
-Totals combine resource-specific medicine units for accounting; tablets, bags and sachets are not interchangeable. OR-Tools and greedy tie in this district case. Maximum individual receiver stock-out risk remains 100%; redistribution does not resolve every shortage. [Current measured acceptance](docs/evaluation/phase8-docker.json) · [90-second / 3-minute scripts](docs/final-demo-script.md).
+Totals combine resource-specific medicine units for accounting; tablets, bags and sachets are not interchangeable. OR-Tools and greedy tie in this district case. Maximum individual receiver stock-out risk remains 100%; redistribution does not resolve every shortage. [Current measured acceptance](docs/evaluation/phase85-demo.json) · [90-second / 3-minute scripts](docs/final-demo-script.md).
 
 ## Architecture
 
@@ -53,7 +55,7 @@ Angular → FastAPI → trusted local operational engines. Public-source ingesti
 
 **Used:** Google OR-Tools, implemented and measured. The Gemini API layer uses the official `google-genai` SDK, Interactions, function results and structured evidence.
 
-**Gemini status:** Implementation complete; live provider acceptance pending due to Gemini service availability. All five configured models previously returned HTTP 503 HIGH DEMAND. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. No live Gemini calls were made in final integration. Offline summaries are clearly labelled and require no key.
+**Gemini status:** Implementation complete; full live provider acceptance remains pending. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. All five previously returned HTTP 503 HIGH DEMAND. Phase 8.5 separates the final controlled availability matrix from full workflow acceptance; [the report](docs/phase85-report.md#gemini-live-availability-matrix) records the actual endpoint and grounding results. Offline summaries are clearly labelled and require no key.
 
 **Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
 

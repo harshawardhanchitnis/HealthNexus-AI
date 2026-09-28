@@ -1,7 +1,7 @@
 <div class="page-heading">
   <div>
     <div class="eyebrow">PREDICTIVE INTELLIGENCE / COUNTRY-LOCAL MODELS</div>
-    <h1>See demand before it arrives.</h1>
+    <h1>Forecast Explorer</h1>
     <p>Measured forecasts. Visible uncertainty. A clearer view of tomorrow’s resources.</p>
   </div>
   <a class="button secondary" routerLink="/model-performance" queryParamsHandling="preserve"
@@ -63,7 +63,7 @@
     <div class="panel-heading">
       <div>
         <h2>{{ label() }}</h2>
-        <p>{{ selected() }} · Origin {{ d.as_of | date: 'dd MMM yyyy' }} · {{ d.unit }}</p>
+        <p>{{ facilityName() }} · Baseline Forecast · Origin {{ d.as_of | date: 'dd MMM yyyy' }} · {{ d.unit }}</p>
       </div>
       <span class="tag">{{ d.provenance.model.replaceAll('_', ' ') }}</span>
     </div>

@@ -14,7 +14,7 @@ import { Icon } from '../shared/icon';
     <div class="page-heading">
       <div>
         <div class="eyebrow">EVIDENCE / PROVENANCE</div>
-        <h1>Know what powers the numbers.</h1>
+        <h1>Evidence & Data Sources</h1>
         <p>Official observations, transparent derivations and clearly labelled simulation.</p>
       </div>
     </div>
@@ -44,6 +44,12 @@ import { Icon } from '../shared/icon';
           fallback assumptions until the cache is restored.
         </div>
       }
+      <section class="provenance-grid" aria-label="Data provenance categories">
+        <article><small>01 / OBSERVED</small><strong>Official Public Data</strong><p>Historical national aggregates from the publishers listed below. Source years and geography remain explicit.</p></article>
+        <article><small>02 / MODELLED</small><strong>Calibrated Simulation</strong><p>Fictional facility inventories, demand, beds and staff. The operational profile controls simulated inventory imbalance.</p></article>
+        <article><small>03 / PREDICTED</small><strong>Model-Based Forecast</strong><p>Country-local evaluated models and empirical uncertainty. Generated forecasts are conditional estimates.</p></article>
+        <article><small>04 / CONDITIONAL</small><strong>Scenario Projection</strong><p>Explicit shocks applied to the baseline. Structured warnings and protected redistribution remain engine-owned.</p></article>
+      </section>
       <div class="source-grid">
         @for (source of sources.datasets; track source.provenance.id) {
           <section class="panel source-card">

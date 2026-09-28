@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { afterNextRender, Component, HostListener, Injector, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NetworkApi } from './core/network-api';
 import { Region, District, Country } from './core/models';
@@ -9,11 +9,12 @@ import { Icon } from './shared/icon';
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive, Icon],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
+  styleUrl: './shell.scss',
 })
 export class App {
   private api = inject(NetworkApi);
   private router = inject(Router);
+  private injector = inject(Injector);
   private regionRequest?: Subscription;
   countries = signal<Country[]>([]);
   country = signal('IN');
@@ -23,11 +24,13 @@ export class App {
   state = signal('');
   district = signal('');
   menuOpen = signal(false);
+  filtersOpen = signal(false);
+  mobile = signal(window.innerWidth < 1100);
   regionsError = signal(false);
   demo = signal(false);
   journey = [
     {path:'/overview',label:'1 · Network'}, {path:'/forecasts',label:'2 · Forecast'},
-    {path:'/emergency',label:'3 · Dengue'}, {path:'/warnings',label:'4 · Warnings'},
+    {path:'/emergency',label:'3 · Stress-test'}, {path:'/warnings',label:'4 · Warnings'},
     {path:'/redistribution',label:'5 · Redistribute'}, {path:'/brics',label:'6 · Federation'},
     {path:'/copilot',label:'7 · Offline summary'},
   ];
@@ -61,6 +64,28 @@ export class App {
     this.router.navigate(['/overview'], {queryParams:{country_id:'IN',state_id:'MH',district_id:'MH-PUNE',profile,demo:'1'}});
   }
   exitDemo() { this.router.navigate([], {queryParams:{demo:null},queryParamsHandling:'merge'}); }
+  nextStep() {
+    const index = this.journey.findIndex(step => this.router.url.split('?')[0] === step.path);
+    return this.journey[index + 1] || null;
+  }
+  @HostListener('window:resize') resize() { this.mobile.set(window.innerWidth < 1100); }
+  toggleMenu() {
+    this.menuOpen.set(!this.menuOpen());
+    afterNextRender(() => {
+      if (this.menuOpen()) (document.querySelector('.sidebar a') as HTMLElement)?.focus();
+      else (document.querySelector('.menu-button') as HTMLElement)?.focus();
+    }, {injector:this.injector});
+  }
+  @HostListener('document:keydown', ['$event']) keyNavigation(event: KeyboardEvent) {
+    if (!this.mobile() || !this.menuOpen()) return;
+    if (event.key === 'Escape') { event.preventDefault(); this.toggleMenu(); }
+    if (event.key === 'Tab') {
+      const links = Array.from(document.querySelectorAll<HTMLElement>('.sidebar a, .drawer-close'));
+      const first = links[0], last = links[links.length-1];
+      if (event.shiftKey && document.activeElement === first) {event.preventDefault(); last?.focus();}
+      else if (!event.shiftKey && document.activeElement === last) {event.preventDefault(); first?.focus();}
+    }
+  }
   skipToContent(event: Event) {
     event.preventDefault();
     const main = document.getElementById('main');
@@ -91,6 +116,10 @@ export class App {
   }
   countryName() {
     return this.countries().find((c) => c.id === this.country())?.name || this.country();
+  }
+  scopeName() {
+    return this.districts().find(d => d.id === this.district())?.name ||
+      this.regions().find(r => r.id === this.state())?.name || 'National scope';
   }
   changeCountry(event: Event) {
     this.router.navigate([this.scopeRoute()], {
