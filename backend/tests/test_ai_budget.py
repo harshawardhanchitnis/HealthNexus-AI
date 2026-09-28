@@ -37,12 +37,17 @@ def test_cannot_configure_above_hard_ten_request_budget(limit):
 
 
 def test_sdk_retry_counts_and_local_denial_never_sends_retry(monkeypatch):
+    from google import genai
+    from google.genai import types
     monkeypatch.setattr('app.ai.client.sleep',lambda _:None)
     transport=GeminiTransport(AIConfig(api_key='unit-test-placeholder'))
     budget=RequestBudget(1);transport.before_request=budget.consume;sent=[]
-    class Unavailable(Exception):code=503
-    def failing(**body):sent.append(body);raise Unavailable()
-    monkeypatch.setattr(transport.client.interactions,'create',failing)
+    def handle(request):
+        sent.append(request)
+        return httpx.Response(503,json={'error':{'code':503,'message':'Mock unavailable','status':'UNAVAILABLE'}})
+    transport.client.close()
+    transport.client=genai.Client(api_key='unit-test-placeholder',http_options=types.HttpOptions(
+        client_args={'transport':httpx.MockTransport(handle)},retry_options=types.HttpRetryOptions(attempts=0)))
     with pytest.raises(CopilotError) as error:transport.create(model=MODEL,input='Test')
     transport.close()
     assert error.value.code=='quota_budget_exhausted_locally'
@@ -53,12 +58,15 @@ def test_sdk_retry_counts_and_local_denial_never_sends_retry(monkeypatch):
     ('limit: 20 requests per day on Free Tier','RPD'),
     ('RequestsPerMinute limit','RPM'),('TokensPerMinute limit','TPM'),('Unknown quota','unknown')])
 def test_distinct_quota_diagnostics_and_no_rpd_retry(monkeypatch,message,kind):
+    from google import genai
+    from google.genai import types
     transport=GeminiTransport(AIConfig(api_key='unit-test-placeholder'));sent=[]
-    class RateLimit(Exception):
-        code=429;body={'error':{'message':message}}
-        response=SimpleNamespace(headers={'retry-after':'59'})
-    def failing(**body):sent.append(body);raise RateLimit()
-    monkeypatch.setattr(transport.client.interactions,'create',failing)
+    def handle(request):
+        sent.append(request)
+        return httpx.Response(429,headers={'retry-after':'59'},json={'error':{'code':429,'message':message,'status':'RESOURCE_EXHAUSTED'}})
+    transport.client.close()
+    transport.client=genai.Client(api_key='unit-test-placeholder',http_options=types.HttpOptions(
+        client_args={'transport':httpx.MockTransport(handle)},retry_options=types.HttpRetryOptions(attempts=0)))
     with pytest.raises(CopilotError) as error:transport.create(model=MODEL,input='Test')
     transport.close()
     assert len(sent)==1 and error.value.diagnostic['quota_kind']==kind

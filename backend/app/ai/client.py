@@ -46,11 +46,16 @@ class GeminiTransport:
         self.config = config
         self.provider_requests = 0
         self.before_request = None
-        # Disable SDK retries; the application permits one retry for 502/503 only.
+        # Legacy retry options alone do not disable the Interactions bridge:
+        # parent normalizes 0 to 1, then bridge interprets 1 as a retry count.
         self.client = genai.Client(api_key=config.api_key, http_options=types.HttpOptions(
-            timeout=int(config.timeout*1000), retry_options=types.HttpRetryOptions(attempts=1)))
+            timeout=int(config.timeout*1000), retry_options=types.HttpRetryOptions(attempts=0)))
 
     def create(self, **body):
+        # Pinned official SDK's generated resource supports nullable retry_config.
+        # Set it on the actual Interactions resource, not just the parent client.
+        # Fail before sending if a future incompatible SDK removes this surface.
+        self.client.interactions.sdk_configuration.retry_config = None
         for attempt in range(2):
             # Outside the catch: a local budget denial must never become a provider failure.
             if self.before_request:
