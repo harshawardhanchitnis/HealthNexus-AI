@@ -1,5 +1,17 @@
 # Validation — 2026-09-28
 
+## Phase 5.5
+
+- **156 backend tests pass**, retaining all 135 Phase 1–5 tests and adding 21 profile/preparation cases. Serial and batched forecasts match exactly in both profiles. Ledger conservation, requested-demand parity, deterministic generation, profile hashes/provenance, safe positive plans, immutable copies, cache keys/invalidation/corruption and API isolation are covered.
+- Both profile generators were run across all five countries with the original seed/origin preserved. Model weights were reused after demand-input and hash compatibility checks; no retraining occurred.
+- Constrained Pune severe dengue remains exactly 30,230 target units unresolved, zero safe donor units, zero transfers and OPTIMAL status. Ready Pune produces 17,745 safe donor units, 15,679 transferred units over 10 lanes and 26,084 unresolved target units. Both use actual OR-Tools; the district comparison ties greedy.
+- Ready expected unmet demand falls from 27,655.2181 to 17,378.1980; total warnings 36 → 25, receiver critical medicine warnings 7 → 0, AMX/IFA/ORS sampled stock-out risk 100% → 0%. IVF/PCM risk and the maximum risk remain 100%. Donor violations/new risks remain zero, and all resource stocks are conserved.
+- National cold baseline planning measured 15.78 s without disk preparation, 10.28 s with it and 4.54 s warm. Warm Pune district is 0.20 s and Maharashtra scope 0.20 s. Actual stage timings and serialization sizes are retained in the report; these are local measurements, not controlled load benchmarks.
+- Python compilation, strict TypeScript and Angular production build pass (362.93 kB initial raw / 99.49 kB estimated transfer). All ten country/profile combinations pass live API model and run-isolation checks, exact GET roundtrips, inventory/scenario immutability and profile validation.
+- Desktop/mobile browser checks exercise profile demo loading, real scenario/solver flow and profile-preserving navigation. The 390×844 mobile layout has no document overflow; tables scroll internally. No application console errors were observed in the final check window. These checks use keyboard/select controls and are manual.
+
+See [Phase 5.5 report](phase55-report.md), [reproducible results](evaluation/phase55-verification.json), [live API results](evaluation/phase55-live-api.json), and `docs/screenshots/phase55-*.png`. One existing upstream Starlette/AnyIO deprecation warning remains. Gemini, cloud/Docker deployment, real inventory and clinical/transport validity are not claimed implemented or validated.
+
 ## Phase 5
 
 - **135 backend tests passed**: all 105 existing tests plus 30 optimization cases. Actual CP-SAT covers multiple donors/receivers, discrete quantities, scarcity, strict-full-service infeasibility, deterministic optimality, critical-priority dominance, no-incumbent timeout and retained-incumbent FEASIBLE classification. The latter uses a controlled wall clock around a real first-stage solve.

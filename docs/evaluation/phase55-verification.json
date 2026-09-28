@@ -1,0 +1,1687 @@
+{
+  "profiles": {
+    "constrained": {
+      "timing": {
+        "wall_seconds": 0.19674870000017108,
+        "response_serialization_seconds": 0.005113499995786697,
+        "response_bytes": 426692,
+        "stages": {
+          "artifact_loading": 0.0009197999970638193,
+          "prepared_memory_loading": 0.004101700003957376,
+          "solver_construction_and_solve": 0.01687079999828711,
+          "post_transfer_simulation": 0.0233241999958409,
+          "solver_only": 0.0076401,
+          "solver_construction": 0.0025795000037760474,
+          "total_service": 0.18146839999826625
+        },
+        "solver_only_seconds": 0.0076401
+      },
+      "deficits": {
+        "PCM": 25870,
+        "IVF": 2304,
+        "ORS": 1054,
+        "AMX": 434,
+        "IFA": 568
+      },
+      "capacity": {
+        "PCM": 0,
+        "IVF": 0,
+        "ORS": 0,
+        "AMX": 0,
+        "IFA": 0
+      },
+      "solver": {
+        "construction_seconds": 0.0025795000037760474,
+        "engine": "Google OR-Tools CP-SAT",
+        "version": "9.15.6755",
+        "status": "OPTIMAL",
+        "termination": "all_lexicographic_stages_proved",
+        "stages": [
+          {
+            "name": "critical_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 28174.0,
+            "best_bound": 28174.0,
+            "seconds": 0.0059594
+          },
+          {
+            "name": "weighted_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 19987301.0,
+            "best_bound": 19987301.0,
+            "seconds": 0.0009178000000000001
+          },
+          {
+            "name": "transport_cost",
+            "status": "OPTIMAL",
+            "objective": 0.0,
+            "best_bound": 0.0,
+            "seconds": 0.0007629000000000001
+          }
+        ],
+        "objective": [
+          28174,
+          19987301,
+          0
+        ],
+        "time_limit_seconds": 10.0,
+        "elapsed_seconds": 0.016696899998351,
+        "variables": 16,
+        "constraints": 18
+      },
+      "impact": {
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 0,
+        "percent_deficit_resolved": 0.0,
+        "critical_deficits_resolved": 0,
+        "critical_deficits_total": 6,
+        "facilities_protected": 0,
+        "donor_facilities_used": 0,
+        "transfer_count": 0,
+        "transferred_units": 0,
+        "distance_km": 0.0,
+        "distance_weighted_units": 0.0,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-001:AMX": 21,
+          "IN-MH-PUNE-001:IFA": 23,
+          "IN-MH-PUNE-001:IVF": 242,
+          "IN-MH-PUNE-001:ORS": 94,
+          "IN-MH-PUNE-001:PCM": 2765,
+          "IN-MH-PUNE-002:AMX": 64,
+          "IN-MH-PUNE-002:IFA": 82,
+          "IN-MH-PUNE-002:IVF": 420,
+          "IN-MH-PUNE-002:ORS": 179,
+          "IN-MH-PUNE-002:PCM": 4754,
+          "IN-MH-PUNE-003:AMX": 349,
+          "IN-MH-PUNE-003:IFA": 463,
+          "IN-MH-PUNE-003:IVF": 1642,
+          "IN-MH-PUNE-003:ORS": 781,
+          "IN-MH-PUNE-003:PCM": 18351
+        },
+        "conservation": {
+          "PCM": {
+            "before": 20174,
+            "after": 20174
+          },
+          "IVF": {
+            "before": 2784,
+            "after": 2784
+          },
+          "ORS": {
+            "before": 4911,
+            "after": 4911
+          },
+          "AMX": {
+            "before": 6021,
+            "after": 6021
+          },
+          "IFA": {
+            "before": 7751,
+            "after": 7751
+          }
+        }
+      },
+      "greedy": {
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 0,
+        "percent_deficit_resolved": 0.0,
+        "critical_deficits_resolved": 0,
+        "critical_deficits_total": 6,
+        "facilities_protected": 0,
+        "donor_facilities_used": 0,
+        "transfer_count": 0,
+        "transferred_units": 0,
+        "distance_km": 0.0,
+        "distance_weighted_units": 0.0,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-001:AMX": 21,
+          "IN-MH-PUNE-001:IFA": 23,
+          "IN-MH-PUNE-001:IVF": 242,
+          "IN-MH-PUNE-001:ORS": 94,
+          "IN-MH-PUNE-001:PCM": 2765,
+          "IN-MH-PUNE-002:AMX": 64,
+          "IN-MH-PUNE-002:IFA": 82,
+          "IN-MH-PUNE-002:IVF": 420,
+          "IN-MH-PUNE-002:ORS": 179,
+          "IN-MH-PUNE-002:PCM": 4754,
+          "IN-MH-PUNE-003:AMX": 349,
+          "IN-MH-PUNE-003:IFA": 463,
+          "IN-MH-PUNE-003:IVF": 1642,
+          "IN-MH-PUNE-003:ORS": 781,
+          "IN-MH-PUNE-003:PCM": 18351
+        },
+        "conservation": {
+          "PCM": {
+            "before": 20174,
+            "after": 20174
+          },
+          "IVF": {
+            "before": 2784,
+            "after": 2784
+          },
+          "ORS": {
+            "before": 4911,
+            "after": 4911
+          },
+          "AMX": {
+            "before": 6021,
+            "after": 6021
+          },
+          "IFA": {
+            "before": 7751,
+            "after": 7751
+          }
+        }
+      },
+      "transfers": [],
+      "warnings_before": {
+        "total": 46,
+        "counts": {
+          "INFO": 0,
+          "WATCH": 19,
+          "WARNING": 18,
+          "CRITICAL": 9
+        },
+        "facilities_affected": 3,
+        "medicines_at_risk": 5,
+        "bed_warnings": 6,
+        "staff_warnings": 4,
+        "by_country": {
+          "IN": {
+            "INFO": 0,
+            "WATCH": 19,
+            "WARNING": 18,
+            "CRITICAL": 9
+          }
+        },
+        "by_region": {
+          "MH": {
+            "INFO": 0,
+            "WATCH": 19,
+            "WARNING": 18,
+            "CRITICAL": 9
+          }
+        },
+        "by_district": {
+          "MH-PUNE": {
+            "INFO": 0,
+            "WATCH": 19,
+            "WARNING": 18,
+            "CRITICAL": 9
+          }
+        },
+        "by_facility": {
+          "IN-MH-PUNE-003": {
+            "INFO": 0,
+            "WATCH": 6,
+            "WARNING": 6,
+            "CRITICAL": 3
+          },
+          "IN-MH-PUNE-002": {
+            "INFO": 0,
+            "WATCH": 6,
+            "WARNING": 6,
+            "CRITICAL": 3
+          },
+          "IN-MH-PUNE-001": {
+            "INFO": 0,
+            "WATCH": 7,
+            "WARNING": 6,
+            "CRITICAL": 3
+          }
+        }
+      },
+      "warnings_after": {
+        "total": 46,
+        "counts": {
+          "INFO": 0,
+          "WATCH": 19,
+          "WARNING": 18,
+          "CRITICAL": 9
+        },
+        "facilities_affected": 3,
+        "medicines_at_risk": 5,
+        "bed_warnings": 6,
+        "staff_warnings": 4,
+        "by_country": {
+          "IN": {
+            "INFO": 0,
+            "WATCH": 19,
+            "WARNING": 18,
+            "CRITICAL": 9
+          }
+        },
+        "by_region": {
+          "MH": {
+            "INFO": 0,
+            "WATCH": 19,
+            "WARNING": 18,
+            "CRITICAL": 9
+          }
+        },
+        "by_district": {
+          "MH-PUNE": {
+            "INFO": 0,
+            "WATCH": 19,
+            "WARNING": 18,
+            "CRITICAL": 9
+          }
+        },
+        "by_facility": {
+          "IN-MH-PUNE-003": {
+            "INFO": 0,
+            "WATCH": 6,
+            "WARNING": 6,
+            "CRITICAL": 3
+          },
+          "IN-MH-PUNE-002": {
+            "INFO": 0,
+            "WATCH": 6,
+            "WARNING": 6,
+            "CRITICAL": 3
+          },
+          "IN-MH-PUNE-001": {
+            "INFO": 0,
+            "WATCH": 7,
+            "WARNING": 6,
+            "CRITICAL": 3
+          }
+        }
+      },
+      "roles": {},
+      "baseline_snapshot_id": "b887bb2077ffad2059d68ef94a6014d72a00f463922e818f7371bcbde433e780",
+      "state_warm": {
+        "wall_seconds": 0.20402720000129193,
+        "response_serialization_seconds": 0.005402000002504792,
+        "response_bytes": 512447,
+        "stages": {
+          "artifact_loading": 0.0006034999969415367,
+          "prepared_memory_loading": 0.005341599993698765,
+          "solver_construction_and_solve": 0.006598600004508626,
+          "post_transfer_simulation": 0.034547099996416364,
+          "solver_only": 0.0025421000000000003,
+          "solver_construction": 0.001247000000148546,
+          "total_service": 0.1880784000022686
+        },
+        "solver_only_seconds": 0.0025421000000000003
+      },
+      "national_warm": {
+        "wall_seconds": 2.6612212999971234,
+        "response_serialization_seconds": 0.0671546000012313,
+        "response_bytes": 5287127,
+        "stages": {
+          "artifact_loading": 0.0008371999938390218,
+          "prepared_memory_loading": 0.2325526999993599,
+          "solver_construction_and_solve": 0.007623599994985852,
+          "post_transfer_simulation": 1.9963833000001614,
+          "solver_only": 0.0023149,
+          "solver_construction": 0.0022294000009424053,
+          "total_service": 2.4701284999973723
+        },
+        "solver_only_seconds": 0.0023149
+      }
+    },
+    "redistribution-ready": {
+      "timing": {
+        "wall_seconds": 0.19910960000561317,
+        "response_serialization_seconds": 0.007250499998917803,
+        "response_bytes": 412902,
+        "stages": {
+          "artifact_loading": 0.000625100001343526,
+          "prepared_memory_loading": 0.0036837999941781163,
+          "solver_construction_and_solve": 0.009550700000545476,
+          "post_transfer_simulation": 0.040905399997427594,
+          "solver_only": 0.005248300000000001,
+          "solver_construction": 0.0017503999988548458,
+          "total_service": 0.18604310000227997
+        },
+        "solver_only_seconds": 0.005248300000000001
+      },
+      "deficits": {
+        "PCM": 28086,
+        "IVF": 3256,
+        "ORS": 3655,
+        "AMX": 3276,
+        "IFA": 3490
+      },
+      "capacity": {
+        "PCM": 5139,
+        "IVF": 1083,
+        "ORS": 2691,
+        "AMX": 4080,
+        "IFA": 4752
+      },
+      "solver": {
+        "construction_seconds": 0.0017503999988548458,
+        "engine": "Google OR-Tools CP-SAT",
+        "version": "9.15.6755",
+        "status": "OPTIMAL",
+        "termination": "all_lexicographic_stages_proved",
+        "stages": [
+          {
+            "name": "critical_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 26084.0,
+            "best_bound": 26084.0,
+            "seconds": 0.0027224000000000003
+          },
+          {
+            "name": "weighted_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 25289060.0,
+            "best_bound": 25289060.0,
+            "seconds": 0.0013448000000000002
+          },
+          {
+            "name": "transport_cost",
+            "status": "OPTIMAL",
+            "objective": 72928.0,
+            "best_bound": 72928.0,
+            "seconds": 0.0011811
+          }
+        ],
+        "objective": [
+          26084,
+          25289060,
+          72928
+        ],
+        "time_limit_seconds": 10.0,
+        "elapsed_seconds": 0.00945260000298731,
+        "variables": 25,
+        "constraints": 38
+      },
+      "impact": {
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 26084,
+          "expected_unmet": 17378.197997959564,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 15679,
+        "percent_deficit_resolved": 37.5428010439863,
+        "critical_deficits_resolved": 2,
+        "critical_deficits_total": 5,
+        "facilities_protected": 0,
+        "donor_facilities_used": 2,
+        "transfer_count": 10,
+        "transferred_units": 15679,
+        "distance_km": 54.591838516215944,
+        "distance_weighted_units": 79247.99067343438,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-003:AMX": 0,
+          "IN-MH-PUNE-003:IFA": 0,
+          "IN-MH-PUNE-003:IVF": 2173,
+          "IN-MH-PUNE-003:ORS": 964,
+          "IN-MH-PUNE-003:PCM": 22947
+        },
+        "conservation": {
+          "PCM": {
+            "before": 22952,
+            "after": 22952
+          },
+          "IVF": {
+            "before": 2951,
+            "after": 2951
+          },
+          "ORS": {
+            "before": 5021,
+            "after": 5021
+          },
+          "AMX": {
+            "before": 7154,
+            "after": 7154
+          },
+          "IFA": {
+            "before": 9467,
+            "after": 9467
+          }
+        }
+      },
+      "greedy": {
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 26084,
+          "expected_unmet": 17378.197997959564,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 15679,
+        "percent_deficit_resolved": 37.5428010439863,
+        "critical_deficits_resolved": 2,
+        "critical_deficits_total": 5,
+        "facilities_protected": 0,
+        "donor_facilities_used": 2,
+        "transfer_count": 10,
+        "transferred_units": 15679,
+        "distance_km": 54.591838516215944,
+        "distance_weighted_units": 79247.99067343438,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-003:AMX": 0,
+          "IN-MH-PUNE-003:IFA": 0,
+          "IN-MH-PUNE-003:IVF": 2173,
+          "IN-MH-PUNE-003:ORS": 964,
+          "IN-MH-PUNE-003:PCM": 22947
+        },
+        "conservation": {
+          "PCM": {
+            "before": 22952,
+            "after": 22952
+          },
+          "IVF": {
+            "before": 2951,
+            "after": 2951
+          },
+          "ORS": {
+            "before": 5021,
+            "after": 5021
+          },
+          "AMX": {
+            "before": 7154,
+            "after": 7154
+          },
+          "IFA": {
+            "before": 9467,
+            "after": 9467
+          }
+        }
+      },
+      "transfers": [
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-0",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-001",
+          "donor_name": "Pune \u00b7 PHC 01",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "AMX",
+          "unit": "capsules",
+          "quantity": 798,
+          "distance_km": 6.440558977049242,
+          "donor_stock_before": 2299,
+          "donor_stock_after": 1501,
+          "donor_protected_reserve": 333,
+          "donor_projected_stock_after": 1179.8866367454143,
+          "donor_protected_minimum_after": 1137.2347601697224,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3276,
+          "receiver_deficit_after": 0,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "NORMAL",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 1602,
+            "receiver_expected_unmet_before": 1230.9780182226204,
+            "receiver_priority": 240.7143,
+            "target_units_supplied_by_this_transfer": 798,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 798,
+            "weighted_units_resolved": 543438,
+            "transport_cost": 4888
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-1",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-001",
+          "donor_name": "Pune \u00b7 PHC 01",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IFA",
+          "unit": "tablets",
+          "quantity": 610,
+          "distance_km": 6.440558977049242,
+          "donor_stock_before": 2703,
+          "donor_stock_after": 2093,
+          "donor_protected_reserve": 428,
+          "donor_projected_stock_after": 1752.6303671425667,
+          "donor_protected_minimum_after": 1690.9198681792977,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3490,
+          "receiver_deficit_after": 0,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "NORMAL",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 1872,
+            "receiver_expected_unmet_before": 844.5187087913197,
+            "receiver_priority": 237.8571,
+            "target_units_supplied_by_this_transfer": 610,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 610,
+            "weighted_units_resolved": 401380,
+            "transport_cost": 3760
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-2",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-001",
+          "donor_name": "Pune \u00b7 PHC 01",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IVF",
+          "unit": "bags",
+          "quantity": 463,
+          "distance_km": 6.440558977049242,
+          "donor_stock_before": 1013,
+          "donor_stock_after": 550,
+          "donor_protected_reserve": 152,
+          "donor_projected_stock_after": 181.4446048497765,
+          "donor_protected_minimum_after": 152.5452527196078,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3256,
+          "receiver_deficit_after": 2173,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 463,
+            "receiver_expected_unmet_before": 2313.10398872695,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 463,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 463,
+            "weighted_units_resolved": 450036,
+            "transport_cost": 2878
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-3",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-001",
+          "donor_name": "Pune \u00b7 PHC 01",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "ORS",
+          "unit": "sachets",
+          "quantity": 1135,
+          "distance_km": 6.440558977049242,
+          "donor_stock_before": 1718,
+          "donor_stock_after": 583,
+          "donor_protected_reserve": 271,
+          "donor_projected_stock_after": 311.3432308870693,
+          "donor_protected_minimum_after": 271.68694840161334,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3655,
+          "receiver_deficit_after": 964,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WATCH",
+          "receiver_risk_before": {
+            "3": 0.388,
+            "7": 0.726,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 1135,
+            "receiver_expected_unmet_before": 1979.5233458528737,
+            "receiver_priority": 335.0,
+            "target_units_supplied_by_this_transfer": 1135,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 1135,
+            "weighted_units_resolved": 1027175,
+            "transport_cost": 6910
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-4",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-001",
+          "donor_name": "Pune \u00b7 PHC 01",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "PCM",
+          "unit": "tablets",
+          "quantity": 1600,
+          "distance_km": 6.440558977049242,
+          "donor_stock_before": 6684,
+          "donor_stock_after": 5084,
+          "donor_protected_reserve": 1100,
+          "donor_projected_stock_after": 1297.0749159697905,
+          "donor_protected_minimum_after": 1100.815405792277,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 28086,
+          "receiver_deficit_after": 22947,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 1600,
+            "receiver_expected_unmet_before": 21287.094009232613,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 1600,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 1600,
+            "weighted_units_resolved": 1555200,
+            "transport_cost": 9700
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-5",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-002",
+          "donor_name": "Pune \u00b7 CHC 02",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "AMX",
+          "unit": "capsules",
+          "quantity": 2478,
+          "distance_km": 4.477808726193947,
+          "donor_stock_before": 3663,
+          "donor_stock_after": 1185,
+          "donor_protected_reserve": 558,
+          "donor_projected_stock_after": 628.6193532920478,
+          "donor_protected_minimum_after": 558.5507564132913,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3276,
+          "receiver_deficit_after": 0,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "NORMAL",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 2478,
+            "receiver_expected_unmet_before": 1230.9780182226204,
+            "receiver_priority": 240.7143,
+            "target_units_supplied_by_this_transfer": 2478,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 2478,
+            "weighted_units_resolved": 1687518,
+            "transport_cost": 10012
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-6",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-002",
+          "donor_name": "Pune \u00b7 CHC 02",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IFA",
+          "unit": "tablets",
+          "quantity": 2880,
+          "distance_km": 4.477808726193947,
+          "donor_stock_before": 4405,
+          "donor_stock_after": 1525,
+          "donor_protected_reserve": 722,
+          "donor_projected_stock_after": 825.7850823561494,
+          "donor_protected_minimum_after": 722.520048669237,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3490,
+          "receiver_deficit_after": 0,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "NORMAL",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 2880,
+            "receiver_expected_unmet_before": 844.5187087913197,
+            "receiver_priority": 237.8571,
+            "target_units_supplied_by_this_transfer": 2880,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 2880,
+            "weighted_units_resolved": 1895040,
+            "transport_cost": 11620
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-7",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-002",
+          "donor_name": "Pune \u00b7 CHC 02",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IVF",
+          "unit": "bags",
+          "quantity": 620,
+          "distance_km": 4.477808726193947,
+          "donor_stock_before": 1578,
+          "donor_stock_after": 958,
+          "donor_protected_reserve": 257,
+          "donor_projected_stock_after": 306.773666583735,
+          "donor_protected_minimum_after": 257.09384385829526,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3256,
+          "receiver_deficit_after": 2173,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 620,
+            "receiver_expected_unmet_before": 2313.10398872695,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 620,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 620,
+            "weighted_units_resolved": 602640,
+            "transport_cost": 2580
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-8",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-002",
+          "donor_name": "Pune \u00b7 CHC 02",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "ORS",
+          "unit": "sachets",
+          "quantity": 1556,
+          "distance_km": 4.477808726193947,
+          "donor_stock_before": 2660,
+          "donor_stock_after": 1104,
+          "donor_protected_reserve": 454,
+          "donor_projected_stock_after": 523.6810373061,
+          "donor_protected_minimum_after": 454.87348819061594,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3655,
+          "receiver_deficit_after": 964,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WATCH",
+          "receiver_risk_before": {
+            "3": 0.388,
+            "7": 0.726,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 1556,
+            "receiver_expected_unmet_before": 1979.5233458528737,
+            "receiver_priority": 335.0,
+            "target_units_supplied_by_this_transfer": 1556,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 1556,
+            "weighted_units_resolved": 1408180,
+            "transport_cost": 6324
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7-9",
+          "optimizer_run_id": "537dc75a-06a7-4d7e-9fea-67d03ad096a7",
+          "donor_id": "IN-MH-PUNE-002",
+          "donor_name": "Pune \u00b7 CHC 02",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "PCM",
+          "unit": "tablets",
+          "quantity": 3539,
+          "distance_km": 4.477808726193947,
+          "donor_stock_before": 12238,
+          "donor_stock_after": 8699,
+          "donor_protected_reserve": 1846,
+          "donor_projected_stock_after": 2204.749012939016,
+          "donor_protected_minimum_after": 1846.5090704858321,
+          "donor_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 28086,
+          "receiver_deficit_after": 22947,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 3539,
+            "receiver_expected_unmet_before": 21287.094009232613,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 3539,
+            "geographic_penalty_per_unit": 0,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 3539,
+            "weighted_units_resolved": 3439908,
+            "transport_cost": 14256
+          },
+          "scenario_id": "8d95f004-27e4-43ba-8e5a-bdd7d92dbfd4",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        }
+      ],
+      "warnings_before": {
+        "total": 36,
+        "counts": {
+          "INFO": 0,
+          "WATCH": 3,
+          "WARNING": 17,
+          "CRITICAL": 16
+        },
+        "facilities_affected": 3,
+        "medicines_at_risk": 5,
+        "bed_warnings": 6,
+        "staff_warnings": 4,
+        "by_country": {
+          "IN": {
+            "INFO": 0,
+            "WATCH": 3,
+            "WARNING": 17,
+            "CRITICAL": 16
+          }
+        },
+        "by_region": {
+          "MH": {
+            "INFO": 0,
+            "WATCH": 3,
+            "WARNING": 17,
+            "CRITICAL": 16
+          }
+        },
+        "by_district": {
+          "MH-PUNE": {
+            "INFO": 0,
+            "WATCH": 3,
+            "WARNING": 17,
+            "CRITICAL": 16
+          }
+        },
+        "by_facility": {
+          "IN-MH-PUNE-003": {
+            "INFO": 0,
+            "WATCH": 2,
+            "WARNING": 13,
+            "CRITICAL": 10
+          },
+          "IN-MH-PUNE-002": {
+            "INFO": 0,
+            "WATCH": 0,
+            "WARNING": 2,
+            "CRITICAL": 3
+          },
+          "IN-MH-PUNE-001": {
+            "INFO": 0,
+            "WATCH": 1,
+            "WARNING": 2,
+            "CRITICAL": 3
+          }
+        }
+      },
+      "warnings_after": {
+        "total": 25,
+        "counts": {
+          "INFO": 0,
+          "WATCH": 3,
+          "WARNING": 13,
+          "CRITICAL": 9
+        },
+        "facilities_affected": 3,
+        "medicines_at_risk": 3,
+        "bed_warnings": 6,
+        "staff_warnings": 4,
+        "by_country": {
+          "IN": {
+            "INFO": 0,
+            "WATCH": 3,
+            "WARNING": 13,
+            "CRITICAL": 9
+          }
+        },
+        "by_region": {
+          "MH": {
+            "INFO": 0,
+            "WATCH": 3,
+            "WARNING": 13,
+            "CRITICAL": 9
+          }
+        },
+        "by_district": {
+          "MH-PUNE": {
+            "INFO": 0,
+            "WATCH": 3,
+            "WARNING": 13,
+            "CRITICAL": 9
+          }
+        },
+        "by_facility": {
+          "IN-MH-PUNE-003": {
+            "INFO": 0,
+            "WATCH": 2,
+            "WARNING": 9,
+            "CRITICAL": 3
+          },
+          "IN-MH-PUNE-002": {
+            "INFO": 0,
+            "WATCH": 0,
+            "WARNING": 2,
+            "CRITICAL": 3
+          },
+          "IN-MH-PUNE-001": {
+            "INFO": 0,
+            "WATCH": 1,
+            "WARNING": 2,
+            "CRITICAL": 3
+          }
+        }
+      },
+      "roles": {
+        "IN-AP-GUNTUR-001": "buffer",
+        "IN-AP-GUNTUR-002": "buffer",
+        "IN-AP-GUNTUR-003": "strained",
+        "IN-AP-VISAKHAPATNAM-001": "balanced",
+        "IN-AP-VISAKHAPATNAM-002": "strained",
+        "IN-AP-VISAKHAPATNAM-003": "balanced",
+        "IN-AR-TAWANG-001": "buffer",
+        "IN-AR-TAWANG-002": "buffer",
+        "IN-AR-TAWANG-003": "strained",
+        "IN-AR-LOWER-SUBANSIRI-001": "balanced",
+        "IN-AR-LOWER-SUBANSIRI-002": "strained",
+        "IN-AR-LOWER-SUBANSIRI-003": "balanced",
+        "IN-AS-KAMRUP-METROPOLITAN-001": "buffer",
+        "IN-AS-KAMRUP-METROPOLITAN-002": "buffer",
+        "IN-AS-KAMRUP-METROPOLITAN-003": "strained",
+        "IN-AS-DIBRUGARH-001": "balanced",
+        "IN-AS-DIBRUGARH-002": "strained",
+        "IN-AS-DIBRUGARH-003": "balanced",
+        "IN-BR-PATNA-001": "buffer",
+        "IN-BR-PATNA-002": "buffer",
+        "IN-BR-PATNA-003": "strained",
+        "IN-BR-GAYA-001": "balanced",
+        "IN-BR-GAYA-002": "strained",
+        "IN-BR-GAYA-003": "balanced",
+        "IN-CG-RAIPUR-001": "buffer",
+        "IN-CG-RAIPUR-002": "buffer",
+        "IN-CG-RAIPUR-003": "strained",
+        "IN-CG-BILASPUR-001": "balanced",
+        "IN-CG-BILASPUR-002": "strained",
+        "IN-CG-BILASPUR-003": "balanced",
+        "IN-GA-NORTH-GOA-001": "buffer",
+        "IN-GA-NORTH-GOA-002": "buffer",
+        "IN-GA-NORTH-GOA-003": "strained",
+        "IN-GA-SOUTH-GOA-001": "balanced",
+        "IN-GA-SOUTH-GOA-002": "strained",
+        "IN-GA-SOUTH-GOA-003": "balanced",
+        "IN-GJ-AHMEDABAD-001": "buffer",
+        "IN-GJ-AHMEDABAD-002": "buffer",
+        "IN-GJ-AHMEDABAD-003": "strained",
+        "IN-GJ-SURAT-001": "balanced",
+        "IN-GJ-SURAT-002": "strained",
+        "IN-GJ-SURAT-003": "balanced",
+        "IN-HR-GURUGRAM-001": "buffer",
+        "IN-HR-GURUGRAM-002": "buffer",
+        "IN-HR-GURUGRAM-003": "strained",
+        "IN-HR-HISAR-001": "balanced",
+        "IN-HR-HISAR-002": "strained",
+        "IN-HR-HISAR-003": "balanced",
+        "IN-HP-SHIMLA-001": "buffer",
+        "IN-HP-SHIMLA-002": "buffer",
+        "IN-HP-SHIMLA-003": "strained",
+        "IN-HP-KANGRA-001": "balanced",
+        "IN-HP-KANGRA-002": "strained",
+        "IN-HP-KANGRA-003": "balanced",
+        "IN-JH-RANCHI-001": "buffer",
+        "IN-JH-RANCHI-002": "buffer",
+        "IN-JH-RANCHI-003": "strained",
+        "IN-JH-DHANBAD-001": "balanced",
+        "IN-JH-DHANBAD-002": "strained",
+        "IN-JH-DHANBAD-003": "balanced",
+        "IN-KA-BENGALURU-URBAN-001": "buffer",
+        "IN-KA-BENGALURU-URBAN-002": "buffer",
+        "IN-KA-BENGALURU-URBAN-003": "strained",
+        "IN-KA-MYSURU-001": "balanced",
+        "IN-KA-MYSURU-002": "strained",
+        "IN-KA-MYSURU-003": "balanced",
+        "IN-KL-THIRUVANANTHAPURAM-001": "buffer",
+        "IN-KL-THIRUVANANTHAPURAM-002": "buffer",
+        "IN-KL-THIRUVANANTHAPURAM-003": "strained",
+        "IN-KL-ERNAKULAM-001": "balanced",
+        "IN-KL-ERNAKULAM-002": "strained",
+        "IN-KL-ERNAKULAM-003": "balanced",
+        "IN-MP-BHOPAL-001": "buffer",
+        "IN-MP-BHOPAL-002": "buffer",
+        "IN-MP-BHOPAL-003": "strained",
+        "IN-MP-INDORE-001": "balanced",
+        "IN-MP-INDORE-002": "strained",
+        "IN-MP-INDORE-003": "balanced",
+        "IN-MH-PUNE-001": "buffer",
+        "IN-MH-PUNE-002": "buffer",
+        "IN-MH-PUNE-003": "strained",
+        "IN-MH-NAGPUR-001": "balanced",
+        "IN-MH-NAGPUR-002": "strained",
+        "IN-MH-NAGPUR-003": "balanced",
+        "IN-MN-IMPHAL-WEST-001": "buffer",
+        "IN-MN-IMPHAL-WEST-002": "buffer",
+        "IN-MN-IMPHAL-WEST-003": "strained",
+        "IN-MN-THOUBAL-001": "balanced",
+        "IN-MN-THOUBAL-002": "strained",
+        "IN-MN-THOUBAL-003": "balanced",
+        "IN-ML-EAST-KHASI-HILLS-001": "buffer",
+        "IN-ML-EAST-KHASI-HILLS-002": "buffer",
+        "IN-ML-EAST-KHASI-HILLS-003": "strained",
+        "IN-ML-WEST-GARO-HILLS-001": "balanced",
+        "IN-ML-WEST-GARO-HILLS-002": "strained",
+        "IN-ML-WEST-GARO-HILLS-003": "balanced",
+        "IN-MZ-AIZAWL-001": "buffer",
+        "IN-MZ-AIZAWL-002": "buffer",
+        "IN-MZ-AIZAWL-003": "strained",
+        "IN-MZ-LUNGLEI-001": "balanced",
+        "IN-MZ-LUNGLEI-002": "strained",
+        "IN-MZ-LUNGLEI-003": "balanced",
+        "IN-NL-KOHIMA-001": "buffer",
+        "IN-NL-KOHIMA-002": "buffer",
+        "IN-NL-KOHIMA-003": "strained",
+        "IN-NL-MOKOKCHUNG-001": "balanced",
+        "IN-NL-MOKOKCHUNG-002": "strained",
+        "IN-NL-MOKOKCHUNG-003": "balanced",
+        "IN-OD-KHORDHA-001": "buffer",
+        "IN-OD-KHORDHA-002": "buffer",
+        "IN-OD-KHORDHA-003": "strained",
+        "IN-OD-CUTTACK-001": "balanced",
+        "IN-OD-CUTTACK-002": "strained",
+        "IN-OD-CUTTACK-003": "balanced",
+        "IN-PB-LUDHIANA-001": "buffer",
+        "IN-PB-LUDHIANA-002": "buffer",
+        "IN-PB-LUDHIANA-003": "strained",
+        "IN-PB-AMRITSAR-001": "balanced",
+        "IN-PB-AMRITSAR-002": "strained",
+        "IN-PB-AMRITSAR-003": "balanced",
+        "IN-RJ-JAIPUR-001": "buffer",
+        "IN-RJ-JAIPUR-002": "buffer",
+        "IN-RJ-JAIPUR-003": "strained",
+        "IN-RJ-JODHPUR-001": "balanced",
+        "IN-RJ-JODHPUR-002": "strained",
+        "IN-RJ-JODHPUR-003": "balanced",
+        "IN-SK-GANGTOK-001": "buffer",
+        "IN-SK-GANGTOK-002": "buffer",
+        "IN-SK-GANGTOK-003": "strained",
+        "IN-SK-NAMCHI-001": "balanced",
+        "IN-SK-NAMCHI-002": "strained",
+        "IN-SK-NAMCHI-003": "balanced",
+        "IN-TN-CHENNAI-001": "buffer",
+        "IN-TN-CHENNAI-002": "buffer",
+        "IN-TN-CHENNAI-003": "strained",
+        "IN-TN-COIMBATORE-001": "balanced",
+        "IN-TN-COIMBATORE-002": "strained",
+        "IN-TN-COIMBATORE-003": "balanced",
+        "IN-TS-HYDERABAD-001": "buffer",
+        "IN-TS-HYDERABAD-002": "buffer",
+        "IN-TS-HYDERABAD-003": "strained",
+        "IN-TS-NIZAMABAD-001": "balanced",
+        "IN-TS-NIZAMABAD-002": "strained",
+        "IN-TS-NIZAMABAD-003": "balanced",
+        "IN-TR-WEST-TRIPURA-001": "buffer",
+        "IN-TR-WEST-TRIPURA-002": "buffer",
+        "IN-TR-WEST-TRIPURA-003": "strained",
+        "IN-TR-GOMATI-001": "balanced",
+        "IN-TR-GOMATI-002": "strained",
+        "IN-TR-GOMATI-003": "balanced",
+        "IN-UP-LUCKNOW-001": "buffer",
+        "IN-UP-LUCKNOW-002": "buffer",
+        "IN-UP-LUCKNOW-003": "strained",
+        "IN-UP-VARANASI-001": "balanced",
+        "IN-UP-VARANASI-002": "strained",
+        "IN-UP-VARANASI-003": "balanced",
+        "IN-UK-DEHRADUN-001": "buffer",
+        "IN-UK-DEHRADUN-002": "buffer",
+        "IN-UK-DEHRADUN-003": "strained",
+        "IN-UK-HARIDWAR-001": "balanced",
+        "IN-UK-HARIDWAR-002": "strained",
+        "IN-UK-HARIDWAR-003": "balanced",
+        "IN-WB-KOLKATA-001": "buffer",
+        "IN-WB-KOLKATA-002": "buffer",
+        "IN-WB-KOLKATA-003": "strained",
+        "IN-WB-HOWRAH-001": "balanced",
+        "IN-WB-HOWRAH-002": "strained",
+        "IN-WB-HOWRAH-003": "balanced",
+        "IN-AN-SOUTH-ANDAMAN-001": "buffer",
+        "IN-AN-SOUTH-ANDAMAN-002": "buffer",
+        "IN-AN-SOUTH-ANDAMAN-003": "strained",
+        "IN-AN-NICOBAR-001": "balanced",
+        "IN-AN-NICOBAR-002": "strained",
+        "IN-AN-NICOBAR-003": "balanced",
+        "IN-CH-CHANDIGARH-001": "buffer",
+        "IN-CH-CHANDIGARH-002": "buffer",
+        "IN-CH-CHANDIGARH-003": "strained",
+        "IN-DN-DADRA-AND-NAGAR-HAVELI-001": "balanced",
+        "IN-DN-DADRA-AND-NAGAR-HAVELI-002": "strained",
+        "IN-DN-DADRA-AND-NAGAR-HAVELI-003": "balanced",
+        "IN-DN-DAMAN-001": "buffer",
+        "IN-DN-DAMAN-002": "buffer",
+        "IN-DN-DAMAN-003": "strained",
+        "IN-DL-NEW-DELHI-001": "balanced",
+        "IN-DL-NEW-DELHI-002": "strained",
+        "IN-DL-NEW-DELHI-003": "balanced",
+        "IN-JK-JAMMU-001": "buffer",
+        "IN-JK-JAMMU-002": "buffer",
+        "IN-JK-JAMMU-003": "strained",
+        "IN-JK-SRINAGAR-001": "balanced",
+        "IN-JK-SRINAGAR-002": "strained",
+        "IN-JK-SRINAGAR-003": "balanced",
+        "IN-LA-LEH-001": "buffer",
+        "IN-LA-LEH-002": "buffer",
+        "IN-LA-LEH-003": "strained",
+        "IN-LA-KARGIL-001": "balanced",
+        "IN-LA-KARGIL-002": "strained",
+        "IN-LA-KARGIL-003": "balanced",
+        "IN-LD-LAKSHADWEEP-001": "buffer",
+        "IN-LD-LAKSHADWEEP-002": "buffer",
+        "IN-LD-LAKSHADWEEP-003": "strained",
+        "IN-PY-PUDUCHERRY-001": "balanced",
+        "IN-PY-PUDUCHERRY-002": "strained",
+        "IN-PY-PUDUCHERRY-003": "balanced",
+        "IN-PY-KARAIKAL-001": "buffer",
+        "IN-PY-KARAIKAL-002": "buffer",
+        "IN-PY-KARAIKAL-003": "strained"
+      },
+      "baseline_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+      "state_warm": {
+        "wall_seconds": 0.27890860000479734,
+        "response_serialization_seconds": 0.006872600002679974,
+        "response_bytes": 705205,
+        "stages": {
+          "artifact_loading": 0.0010776999988593161,
+          "prepared_memory_loading": 0.0057564000017009676,
+          "solver_construction_and_solve": 0.019835500002955087,
+          "post_transfer_simulation": 0.08354620000318391,
+          "solver_only": 0.0136821,
+          "solver_construction": 0.00235130000510253,
+          "total_service": 0.2572130000044126
+        },
+        "solver_only_seconds": 0.0136821
+      },
+      "national_warm": {
+        "wall_seconds": 4.2870354000042425,
+        "response_serialization_seconds": 0.0976403999957256,
+        "response_bytes": 6931933,
+        "stages": {
+          "artifact_loading": 0.0012050000004819594,
+          "prepared_memory_loading": 0.2788319000028423,
+          "solver_construction_and_solve": 0.6722347999966587,
+          "post_transfer_simulation": 2.6970369999980903,
+          "solver_only": 0.5042871,
+          "solver_construction": 0.06916849999834085,
+          "total_service": 3.9274444000038784
+        },
+        "solver_only_seconds": 0.5042871
+      }
+    }
+  },
+  "isolation": [
+    {
+      "country": "IN",
+      "profile": "constrained",
+      "model": "forecast-v1-176a752efab3ae4e",
+      "status": "passed"
+    },
+    {
+      "country": "BR",
+      "profile": "constrained",
+      "model": "forecast-v1-d6457d5d28468752",
+      "status": "passed"
+    },
+    {
+      "country": "RU",
+      "profile": "constrained",
+      "model": "forecast-v1-85e3ab1afc6775dc",
+      "status": "passed"
+    },
+    {
+      "country": "CN",
+      "profile": "constrained",
+      "model": "forecast-v1-40bd39b1f0f71bf1",
+      "status": "passed"
+    },
+    {
+      "country": "ZA",
+      "profile": "constrained",
+      "model": "forecast-v1-862d8eb0168f5774",
+      "status": "passed"
+    },
+    {
+      "country": "IN",
+      "profile": "redistribution-ready",
+      "model": "forecast-v1-176a752efab3ae4e",
+      "status": "passed"
+    },
+    {
+      "country": "BR",
+      "profile": "redistribution-ready",
+      "model": "forecast-v1-d6457d5d28468752",
+      "status": "passed"
+    },
+    {
+      "country": "RU",
+      "profile": "redistribution-ready",
+      "model": "forecast-v1-85e3ab1afc6775dc",
+      "status": "passed"
+    },
+    {
+      "country": "CN",
+      "profile": "redistribution-ready",
+      "model": "forecast-v1-40bd39b1f0f71bf1",
+      "status": "passed"
+    },
+    {
+      "country": "ZA",
+      "profile": "redistribution-ready",
+      "model": "forecast-v1-862d8eb0168f5774",
+      "status": "passed"
+    }
+  ],
+  "performance": {
+    "cold_national": {
+      "wall_seconds": 15.77558119999594,
+      "response_serialization_seconds": 0.36773049999465,
+      "response_bytes": 24525738,
+      "stages": {
+        "artifact_loading": 0.618366699985927,
+        "batched_model_prediction": 1.5107305999990785,
+        "forecast_prediction": 6.293936499969277,
+        "stock_projection_preparation": 0.5234156999795232,
+        "warning_evaluation": 0.34428280006250134,
+        "baseline_forecast_preparation": 9.623117100003583,
+        "stock_path_and_warning_preparation": 0.9752412000016193,
+        "candidate_generation": 0.5624181000021053,
+        "solver_construction_and_solve": 0.14039149999734946,
+        "post_transfer_simulation": 2.284081599995261,
+        "solver_only": 0.0113427,
+        "solver_construction": 0.046135100004903506,
+        "total_service": 14.593301300003077
+      },
+      "solver_only_seconds": 0.0113427
+    },
+    "warm_national": {
+      "wall_seconds": 4.54166979999718,
+      "response_serialization_seconds": 0.31721529999776976,
+      "response_bytes": 24525437,
+      "stages": {
+        "artifact_loading": 0.0007726999974693172,
+        "prepared_memory_loading": 0.3041646999990917,
+        "solver_construction_and_solve": 0.14318600000115111,
+        "post_transfer_simulation": 2.7519678000026033,
+        "solver_only": 0.010822,
+        "solver_construction": 0.035497299999406096,
+        "total_service": 3.385944000001473
+      },
+      "solver_only_seconds": 0.010822
+    },
+    "preparation": {
+      "path": "D:\\Projects\\HealthNexus AI\\artifacts\\planning\\constrained\\IN.json.gz",
+      "disk_bytes": 5251195,
+      "uncompressed_payload_bytes": 28837158,
+      "facilities": 207,
+      "seconds": 7.802509299996018
+    },
+    "prepared_cold_national": {
+      "wall_seconds": 10.27623450000101,
+      "response_serialization_seconds": 0.36733810000441736,
+      "response_bytes": 24525648,
+      "stages": {
+        "artifact_loading": 0.6049337000076775,
+        "prepared_artifact_loading": 2.7475301000013133,
+        "baseline_forecast_preparation": 3.786925699998392,
+        "warning_evaluation": 0.1582492999295937,
+        "stock_path_and_warning_preparation": 0.8930622999978368,
+        "candidate_generation": 0.5141643000024487,
+        "solver_construction_and_solve": 0.1264037000000826,
+        "post_transfer_simulation": 2.7499386000054074,
+        "solver_only": 0.0105372,
+        "solver_construction": 0.027556400003959425,
+        "total_service": 9.123232699996151
+      },
+      "solver_only_seconds": 0.0105372,
+      "disk_hits": 1
+    }
+  },
+  "preserved_original_snapshot_hashes": {
+    "IN": "1eef37f4bd044837ce0115efe6a338d323bdcba1abd65c9f984b0649f456f840",
+    "BR": "f70878d112441cf5e91441d7e20bed27cfe151ae41ab3dc244bfb392454300f7",
+    "RU": "83d3073d34461a172b3209668694fe447e333226495ff61c8a56a41ea9b03a79",
+    "CN": "2080ebc259848ef4c30157ef140c00cbae2766219ce85583a3424b94c3b7000d",
+    "ZA": "94c2e452e1f7df3496707e9649790876a7b541de6fe24982eab0f40a2360ea64"
+  },
+  "checks": [
+    "both real solver demos",
+    "immutable legacy snapshots and scenario",
+    "all five countries in both profiles",
+    "same demand-model weights",
+    "positive donor reserve protection and conservation",
+    "cross-country and cross-profile rejection"
+  ]
+}

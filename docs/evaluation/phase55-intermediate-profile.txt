@@ -1,0 +1,46 @@
+         5384648 function calls (5369500 primitive calls) in 160.704 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1358 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  160.813  160.813 D:\Projects\HealthNexus AI\backend\app\core\diagnostics.py:27(wrapped)
+        1    0.121    0.121  160.813  160.813 D:\Projects\HealthNexus AI\backend\app\optimization\service.py:93(preview)
+        1    0.476    0.476  160.692  160.692 D:\Projects\HealthNexus AI\backend\app\optimization\service.py:28(prepare)
+        1    0.078    0.078  145.580  145.580 D:\Projects\HealthNexus AI\backend\app\scenarios\engine.py:81(baseline)
+      414    0.193    0.000  136.139    0.329 D:\Projects\HealthNexus AI\backend\app\scenarios\engine.py:59(inputs)
+     1449    2.327    0.002  132.331    0.091 D:\Projects\HealthNexus AI\backend\app\forecasting\prediction.py:65(predict)
+     1449    0.137    0.000   89.626    0.062 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\gradient_boosting.py:1806(predict)
+     1449    0.305    0.000   88.669    0.061 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\gradient_boosting.py:1291(_raw_predict)
+     1449   10.551    0.007   81.328    0.056 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\gradient_boosting.py:1331(_predict_iterations)
+   144900   69.365    0.000   70.391    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\predictor.py:46(predict)
+     1864    0.336    0.000   14.031    0.008 D:\Projects\HealthNexus AI\backend\app\forecasting\prediction.py:43(bundle)
+     6831    0.352    0.000    9.035    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4283(quantile)
+     5935    0.103    0.000    8.490    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\pydantic\main.py:243(__init__)
+     5935    7.973    0.001    8.388    0.001 {method 'validate_python' of 'pydantic_core._pydantic_core.SchemaValidator' objects}
+     6831    0.105    0.000    8.103    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4541(_quantile_unchecked)
+     6831    0.201    0.000    7.999    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3834(_ureduce)
+     6831    0.071    0.000    7.731    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4697(_quantile_ureduce_func)
+     6831    1.124    0.000    7.559    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4771(_quantile)
+    27961    0.082    0.000    7.329    0.000 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:510(stat)
+    28515    3.642    0.000    7.289    0.000 {built-in method nt.stat}
+      207    0.720    0.003    6.503    0.031 D:\Projects\HealthNexus AI\backend\app\scenarios\effects.py:29(project)
+     4310    0.081    0.000    5.637    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\pydantic\main.py:479(model_dump_json)
+     2277    0.125    0.000    5.626    0.002 D:\Projects\HealthNexus AI\backend\app\forecasting\data.py:22(facility_hash)
+     1864    0.192    0.000    5.373    0.003 D:\Projects\HealthNexus AI\backend\app\profiles\binding.py:7(bind_profile)
+     4310    5.260    0.001    5.351    0.001 {method 'to_json' of 'pydantic_core._pydantic_core.SchemaSerializer' objects}
+     1035    1.591    0.002    4.690    0.005 D:\Projects\HealthNexus AI\backend\app\forecasting\stockout.py:25(project_stock)
+     2484    2.920    0.001    4.605    0.002 D:\Projects\HealthNexus AI\backend\app\forecasting\stockout.py:17(demand_paths)
+     1449    1.249    0.001    4.561    0.003 D:\Projects\HealthNexus AI\backend\app\forecasting\features.py:14(feature_block)
+    11184    0.173    0.000    4.028    0.000 D:\Projects\HealthNexus AI\backend\app\profiles\binding.py:13(<genexpr>)
+        1    2.379    2.379    3.850    3.850 D:\Projects\HealthNexus AI\backend\app\optimization\candidates.py:23(candidates)
+        1    0.000    0.000    3.702    3.702 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\parallel.py:631(cpu_count)
+        1    0.000    0.000    3.702    3.702 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:78(cpu_count)
+        1    0.000    0.000    3.696    3.696 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:227(_count_physical_cores)
+        1    0.000    0.000    3.696    3.696 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:286(_count_physical_cores_win32)
+        1    0.000    0.000    3.695    3.695 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:514(run)
+    27969    0.109    0.000    3.648    0.000 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:166(__fspath__)
+     2033    0.059    0.000    3.640    0.002 D:\Projects\HealthNexus AI\backend\app\core\diagnostics.py:19(clone)
+        1    0.000    0.000    3.575    3.575 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:1177(communicate)
+        1    0.000    0.000    3.551    3.551 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:1615(_communicate)
+        2    0.000    0.000    3.549    1.774 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\threading.py:1056(join)

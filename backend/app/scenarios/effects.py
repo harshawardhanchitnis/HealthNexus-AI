@@ -82,7 +82,7 @@ def project(facility, forecasts, bundle, origin, request=None, seed=42):
         key = f"{forecast.provenance.model_version}:{f.id}:{code}"
         if seed != 42:
             key += f":scenario-seed-{seed}"
-        paths = demand_paths(point, scale, bundle["residuals"]["medicine"][code], key)
+        paths = None if request is None and seed == 42 else demand_paths(point, scale, bundle["residuals"]["medicine"][code], key)
         orders = []
         for order in item.scheduled_deliveries:
             shifted = order.model_copy(deep=True)
@@ -91,7 +91,7 @@ def project(facility, forecasts, bundle, origin, request=None, seed=42):
                 changes.append(dict(resource_id=code, ordered_at=order.ordered_at, original_date=order.expected_at,
                     projected_date=shifted.expected_at, quantity=order.quantity))
             orders.append(shifted)
-        stock = project_stock(item.current_stock, item.safety_stock, point+extra, paths+extra[None, :], known_receipts(orders, origin), origin)
+        stock = forecast.stockout.model_dump(mode="json") if paths is None else project_stock(item.current_stock, item.safety_stock, point+extra, paths+extra[None, :], known_receipts(orders, origin), origin)
         if request:
             stock["method"] = "Conditional scenario estimate using 500 paired Phase 3 residual paths plus specified demand shock and shifted receipts. Shock and receipt assumptions treated as certain; not validated emergency probabilities."
         resources.append(dict(resource_id=code, name=item.name, unit=item.unit, forecast=adjusted(forecast.forecast, extra),

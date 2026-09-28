@@ -24,6 +24,7 @@ class Parameters(BaseModel):
 class ScenarioRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     scenario_type: ScenarioType
+    profile: Literal["constrained", "redistribution-ready"] = "constrained"
     country_id: CountryCode = "IN"
     state_id: str | None = None
     district_id: str | None = None

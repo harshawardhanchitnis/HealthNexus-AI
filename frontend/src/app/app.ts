@@ -17,6 +17,7 @@ export class App {
   private regionRequest?: Subscription;
   countries = signal<Country[]>([]);
   country = signal('IN');
+  profile = signal('constrained');
   regions = signal<Region[]>([]);
   districts = signal<District[]>([]);
   state = signal('');
@@ -40,6 +41,7 @@ export class App {
     this.router.routerState.root.queryParamMap.subscribe((params) => {
       const nextCountry = params.get('country_id') || 'IN';
       const changed = nextCountry !== this.country();
+      this.profile.set(params.get('profile') || 'constrained');
       this.country.set(nextCountry);
       this.state.set(params.get('state_id') || '');
       this.district.set(params.get('district_id') || '');
@@ -64,12 +66,16 @@ export class App {
       error: () => this.regionsError.set(true),
     });
   }
+  changeProfile(event: Event) {
+    this.router.navigate([], { queryParams: { profile: (event.target as HTMLSelectElement).value,
+      scenario_id: null, run_id: null }, queryParamsHandling: 'merge' });
+  }
   countryName() {
     return this.countries().find((c) => c.id === this.country())?.name || this.country();
   }
   changeCountry(event: Event) {
     this.router.navigate([this.scopeRoute()], {
-      queryParams: { country_id: (event.target as HTMLSelectElement).value },
+      queryParams: { profile: this.profile(), country_id: (event.target as HTMLSelectElement).value },
     });
   }
   availableDistricts() {
@@ -78,6 +84,7 @@ export class App {
   changeState(event: Event) {
     this.router.navigate([this.scopeRoute()], {
       queryParams: {
+        profile: this.profile(),
         country_id: this.country(),
         state_id: (event.target as HTMLSelectElement).value || null,
       },
@@ -86,6 +93,7 @@ export class App {
   changeDistrict(event: Event) {
     this.router.navigate([this.scopeRoute()], {
       queryParams: {
+        profile: this.profile(),
         country_id: this.country(),
         state_id: this.state() || null,
         district_id: (event.target as HTMLSelectElement).value || null,

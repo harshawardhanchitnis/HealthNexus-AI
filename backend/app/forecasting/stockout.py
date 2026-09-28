@@ -30,12 +30,13 @@ def project_stock(current, safety, point, paths, receipts, as_of):
     exhausted = np.full(len(paths), current <= 0, dtype=bool)
     safety_date = str(as_of) if current <= safety else None
     stockout_date = str(as_of) if current <= 0 else None
-    trajectory, risk = [], {}
+    trajectory, risk, simulated_days = [], {}, []
     for day, demand in enumerate(point):
         available = stock + receipts[day]
         unmet = max(0.0, demand-available)
         stock = max(0.0, available-demand)
         simulated = np.maximum(0, simulated + receipts[day]-paths[:, day])
+        simulated_days.append(simulated)
         exhausted |= simulated <= 0
         future = str(as_of+timedelta(days=day+1))
         if safety_date is None and stock <= safety:
@@ -44,9 +45,12 @@ def project_stock(current, safety, point, paths, receipts, as_of):
             stockout_date = future
         trajectory.append({"date": future, "expected_receipts": float(receipts[day]),
             "demand": float(demand), "closing_stock": stock, "unmet_demand": unmet,
-            "lower95": float(np.quantile(simulated, .025)), "upper95": float(np.quantile(simulated, .975))})
+            "lower95": 0., "upper95": 0.})
         if day+1 in (3, 7, 14):
             risk[str(day+1)] = float(exhausted.mean())
+    lower, upper = np.quantile(np.asarray(simulated_days), [.025, .975], axis=1)
+    for day, row in enumerate(trajectory):
+        row["lower95"], row["upper95"] = float(lower[day]), float(upper[day])
     mean = float(point.mean())
     return {"current_stock": current, "safety_stock": safety,
         "days_of_cover": current/mean if mean > 0 else None,

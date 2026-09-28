@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Forecast, Performance } from './forecast-models';
@@ -24,11 +25,15 @@ import {
 @Injectable({ providedIn: 'root' })
 export class NetworkApi {
   private http = inject(HttpClient);
+  private router = inject(Router);
+  profile(): string {
+    return this.router.parseUrl(this.router.url).queryParams['profile'] || 'constrained';
+  }
   planningPreview(body: PlanningRequest) {
-    return this.http.post<PlanningPreview>('/api/optimization/preview', body);
+    return this.http.post<PlanningPreview>('/api/optimization/preview', { ...body, profile: this.profile() });
   }
   optimize(body: PlanningRequest) {
-    return this.http.post<PlanningResult>('/api/optimization/redistribution', body);
+    return this.http.post<PlanningResult>('/api/optimization/redistribution', { ...body, profile: this.profile() });
   }
   plan(id: string, country: string) {
     return this.http.get<PlanningResult>('/api/optimization/runs/' + encodeURIComponent(id), {
@@ -41,7 +46,7 @@ export class NetworkApi {
     });
   }
   runScenario(body: ScenarioDefinition) {
-    return this.http.post<ScenarioResult>('/api/scenarios', body);
+    return this.http.post<ScenarioResult>('/api/scenarios', { ...body, profile: this.profile() });
   }
   scenario(id: string, country: string) {
     return this.http.get<ScenarioResult>('/api/scenarios/' + encodeURIComponent(id), {
@@ -62,7 +67,7 @@ export class NetworkApi {
     return this.http.get<WarningList>('/api/warnings', { params: this.params(scope) });
   }
   private params(scope: Record<string, string | number>) {
-    let params = new HttpParams();
+    let params = new HttpParams().set('profile', this.profile());
     for (const [key, value] of Object.entries(scope))
       if (value !== '') params = params.set(key, value);
     return params;

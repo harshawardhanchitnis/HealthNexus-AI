@@ -40,6 +40,8 @@ class TargetReport(BaseModel):
 
 
 class PerformanceReport(BaseModel):
+    operational_profile: Literal['constrained', 'redistribution-ready'] = 'constrained'
+    profile_version: str = 'inventory-profile-v1'
     country_id: CountryCode
     model_version: str
     evaluated_at: str
@@ -94,6 +96,10 @@ class StockRisk(BaseModel):
 
 
 class ForecastProvenance(BaseModel):
+    model_sha256: str | None = None
+    operational_profile: Literal['constrained', 'redistribution-ready'] = 'constrained'
+    profile_version: str = 'inventory-profile-v1'
+    operational_history_sha256: str | None = None
     data_type: str
     is_synthetic: Literal[True] = True
     model_version: str

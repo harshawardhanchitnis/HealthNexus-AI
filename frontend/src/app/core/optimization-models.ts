@@ -1,5 +1,6 @@
 import { FacilityProjection, WarningList } from './resilience-models';
 export interface PlanningRequest {
+  profile?: string;
   country_id: string;
   state_id?: string;
   district_id?: string;

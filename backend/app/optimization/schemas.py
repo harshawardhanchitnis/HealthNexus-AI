@@ -11,6 +11,7 @@ Status = Literal["OPTIMAL", "FEASIBLE", "INFEASIBLE", "UNKNOWN", "MODEL_INVALID"
 
 class RedistributionRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
+    profile: Literal["constrained", "redistribution-ready"] = "constrained"
     country_id: CountryCode = "IN"
     scenario_id: str | None = None
     state_id: str | None = None
@@ -65,6 +66,7 @@ class Edge(BaseModel):
 
 
 class Preview(BaseModel):
+    diagnostics: dict[str, float] = Field(default_factory=dict)
     request: RedistributionRequest
     snapshot_id: str
     scenario_snapshot_id: str | None
@@ -91,6 +93,7 @@ class SolverStage(BaseModel):
 
 
 class SolverMetadata(BaseModel):
+    construction_seconds: float = 0.
     engine: str
     version: str
     status: Status
@@ -162,6 +165,7 @@ class Transfer(BaseModel):
 
 
 class PlanResult(BaseModel):
+    diagnostics: dict[str, float] = Field(default_factory=dict)
     run_id: str
     created_at: datetime
     preview: Preview

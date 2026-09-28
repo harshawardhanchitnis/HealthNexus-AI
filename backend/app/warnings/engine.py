@@ -12,7 +12,7 @@ def evaluate(facility, origin, scenario_id=None, scenario_type=None, baseline=No
     old = {(w.warning_type.value, w.resource_id): w for w in baseline or [] if w.facility_id == f.facility_id}
 
     def add(kind, category, severity, current, threshold, predicted, event, factors, resource=None, probability=None):
-        identity = f"{f.country_id}:{f.facility_id}:{kind}:{resource}:{scenario_id or 'baseline'}:{origin}"
+        identity = f"{f.provenance.operational_profile}:{f.provenance.profile_version}:" + f"{f.country_id}:{f.facility_id}:{kind}:{resource}:{scenario_id or 'baseline'}:{origin}"
         days = max(0, (event-origin).days) if event else C.HORIZON
         patients = sum(d.footfall for d in f.timeline)
         weights = C.PRIORITY_WEIGHTS
@@ -30,7 +30,7 @@ def evaluate(facility, origin, scenario_id=None, scenario_type=None, baseline=No
             current_value=current, threshold=threshold, predicted_value=predicted, estimated_event_date=event,
             model_based_probability=probability, baseline_or_scenario="scenario" if scenario_id else "baseline", scenario_id=scenario_id,
             explanation_factors=[dict(factor=k, value=v, description=d) for k, v, d in factors],
-            provenance={"config_version": C.CONFIG_VERSION, "is_synthetic": True, "source": "Phase 3 saved forecasts + deterministic operational propagation",
+            provenance={"operational_profile": f.provenance.operational_profile, "profile_version": f.provenance.profile_version, "config_version": C.CONFIG_VERSION, "is_synthetic": True, "source": "Phase 3 saved forecasts + deterministic operational propagation",
                 "baseline_model": f.source_models.get(resource or ("admissions" if category == "beds" else "footfall"), "unknown"),
                 "uncertainty": "conditional_on_scenario" if scenario_id else "empirical_calibration_residuals"},
             model_version=f.provenance.model_version, priority_score=round(priority, 4),

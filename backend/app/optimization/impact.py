@@ -1,3 +1,5 @@
+from app.core.diagnostics import clone, stage, ACTIVE
+from time import perf_counter
 from collections import defaultdict
 import numpy as np
 from app.forecasting.stockout import project_stock
@@ -24,7 +26,7 @@ def apply_plan(projections, paths, preview, quantities, origin, run_id, status, 
         net[(r.facility_id, r.resource_id)] += q
     if any(outgoing[i] > d.safe_surplus for i, d in enumerate(donors)) or any(incoming[i] > r.deficit for i, r in enumerate(receivers)):
         raise ValueError("Plan exceeds donor or receiver capacity")
-    after = [f.model_copy(deep=True) for f in projections]
+    after = [clone(f) for f in projections]
     before_lookup = {(f.facility_id, r.resource_id): r for f in projections for r in f.resources}
     after_lookup = {}
     conservation = {c: {"before": 0, "after": 0} for c in preview.request.resources}
@@ -111,7 +113,7 @@ def apply_plan(projections, paths, preview, quantities, origin, run_id, status, 
                 "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."},
             optimization_status=status, objective_contribution={"critical_units_resolved": q if r.critical else 0,
                 "weighted_units_resolved": q*r.shortage_weight, "transport_cost": q*e.unit_cost+P.transfer_count_penalty},
-            scenario_id=preview.request.scenario_id, provenance={"snapshot_id": preview.snapshot_id,
+            scenario_id=preview.request.scenario_id, provenance={"operational_profile": preview.request.profile, "profile_version": "inventory-profile-v1", "snapshot_id": preview.snapshot_id,
                 "scenario_snapshot_id": preview.scenario_snapshot_id or "baseline", "config_version": P.version,
                 "model_version": preview.model_version, "data_status": "simulated"}))
     return impact, transfers, after, listing(before_warnings), listing(after_warnings)

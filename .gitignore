@@ -12,6 +12,8 @@ data/generated/*.json
 data/generated/nodes/
 data/generated/history/
 data/generated/training/
+data/generated/profiles/
+*.prof
 *.tmp
 artifacts/
 *.log

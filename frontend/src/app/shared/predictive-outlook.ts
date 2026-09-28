@@ -18,7 +18,7 @@ import { Forecast } from '../core/forecast-models';
         </div>
         <a
           routerLink="/forecasts"
-          [queryParams]="{ country_id: country(), facility_id: facility(), resource: 'IVF' }"
+          queryParamsHandling="merge" [queryParams]="{ country_id: country(), facility_id: facility(), resource: 'IVF' }"
           class="inline-link"
           >Explore forecasts →</a
         >

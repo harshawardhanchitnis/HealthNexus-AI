@@ -130,7 +130,7 @@ export class Dashboard {
   }
   selectRegion(id: string) {
     this.router.navigate(['/overview'], {
-      queryParams: { country_id: this.scope['country_id'], state_id: id },
+      queryParams: { profile: this.api.profile(), country_id: this.scope['country_id'], state_id: id },
     });
   }
   severity(region: Overview['regions'][number]): Status {

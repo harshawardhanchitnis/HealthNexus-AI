@@ -62,6 +62,7 @@ export class EmergencyPage {
   medicine = 'IVF';
   custom: number | null = null;
   country = signal('IN');
+  profile = signal('constrained');
   state = signal('');
   district = signal('');
   facilities = signal<Facility[]>([]);
@@ -110,6 +111,7 @@ export class EmergencyPage {
           this.result.set(null);
         }),
         switchMap((p) => {
+          this.profile.set(p.get('profile') || 'constrained');
           this.country.set(p.get('country_id') || 'IN');
           this.state.set(p.get('state_id') || '');
           this.district.set(p.get('district_id') || '');
@@ -175,14 +177,17 @@ export class EmergencyPage {
   changeKind() {
     this.custom = null;
   }
-  pune() {
+  pune(profile = 'constrained') {
+    this.seed = 42;
+    this.facilityFilter = '';
+    this.result.set(null);
     this.startDate = '';
     this.kind = 'DENGUE_SURGE';
     this.severity = 'severe';
     this.duration = 14;
     this.custom = null;
     this.router.navigate(['/emergency'], {
-      queryParams: { country_id: 'IN', state_id: 'MH', district_id: 'MH-PUNE' },
+      queryParams: { profile, country_id: 'IN', state_id: 'MH', district_id: 'MH-PUNE' },
     });
   }
   run() {

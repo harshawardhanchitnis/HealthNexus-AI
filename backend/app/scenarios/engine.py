@@ -1,5 +1,6 @@
+from app.core.diagnostics import stage, clone
 from datetime import datetime, timedelta, timezone
-import hashlib
+from app.profiles.identity import fingerprint
 from threading import RLock
 from uuid import uuid4
 from app.core import risk_config as C
@@ -42,43 +43,72 @@ def select(snapshot, state=None, district=None, facility_ids=None):
 
 
 class ScenarioEngine:
-    def __init__(self, forecasts=None):
+    def __init__(self, forecasts=None, use_prepared=True):
         self.forecasts = forecasts or ForecastService()
         self.store = ScenarioStore()
         self.cache = {}
         self.baseline_cache = {}
         self.lock = RLock()
+        self.disk_attempts = set()
+        self.disk_hits = 0
+        self.use_prepared = use_prepared
+
+    def key(self, snapshot, facility, bundle):
+        return (snapshot.country, snapshot.operational_profile, snapshot.profile_version, str(snapshot.as_of),
+                facility.id, facility_hash(facility), bundle["report"]["model_version"], bundle.get("artifact_sha256"))
+
+    def prepare_inputs(self, snapshot, facilities):
+        bundle=self.forecasts.bundle(snapshot.country,snapshot.operational_profile)
+        attempt=(snapshot.country,snapshot.operational_profile,str(snapshot.as_of),bundle.get('artifact_sha256'),id(snapshot))
+        with self.lock:
+            if self.use_prepared and attempt not in self.disk_attempts:
+                from app.profiles.preparation import restore
+                with stage('prepared_artifact_loading'):
+                    self.disk_hits += int(restore(self,snapshot,bundle))
+                self.disk_attempts.add(attempt)
+            missing=[f for f in facilities if self.key(snapshot,f,bundle) not in self.cache]
+            if missing:
+                with stage('batched_model_prediction'):
+                    self.forecasts.prepare_predictions(snapshot,missing)
 
     def inputs(self, snapshot, facility):
-        bundle = self.forecasts.bundle(snapshot.country)
-        key = (snapshot.country, str(snapshot.as_of), facility.id, facility_hash(facility), bundle["report"]["model_version"])
+        with stage('artifact_loading'):
+            bundle = self.forecasts.bundle(snapshot.country, snapshot.operational_profile)
+        key = self.key(snapshot,facility,bundle)
         with self.lock:
             if key not in self.cache:
-                predictions = {target: self.forecasts.predict(snapshot, facility.id, target, target) for target in ("footfall", "admissions")}
-                predictions.update({i.medicine_id: self.forecasts.predict(snapshot, facility.id, "medicine", i.medicine_id) for i in facility.inventory})
-                if len(self.cache) >= 300:
+                with stage("forecast_prediction"):
+                    predictions = {target: self.forecasts.predict(snapshot, facility.id, target, target, _bundle=bundle) for target in ("footfall", "admissions")}
+                    predictions.update({i.medicine_id: self.forecasts.predict(snapshot, facility.id, "medicine", i.medicine_id, _bundle=bundle) for i in facility.inventory})
+                if len(self.cache) >= 1000:
                     self.cache.clear()
                 self.cache[key] = predictions
             return self.cache[key], bundle
 
     def baseline(self, snapshot, facilities):
+        self.prepare_inputs(snapshot, facilities)
         projections, warnings = [], []
         for f in facilities:
             forecasts, bundle = self.inputs(snapshot, f)
-            key = (snapshot.country, str(snapshot.as_of), f.id, facility_hash(f), bundle["report"]["model_version"])
+            key = self.key(snapshot,f,bundle)
             with self.lock:
                 if key not in self.baseline_cache:
-                    if len(self.baseline_cache) >= 300:
+                    if len(self.baseline_cache) >= 1000:
                         self.baseline_cache.clear()
-                    projected = project(f, forecasts, bundle, snapshot.as_of)
-                    self.baseline_cache[key] = (projected, evaluate(projected, snapshot.as_of))
+                    with stage("stock_projection_preparation"):
+                        projected = project(f, forecasts, bundle, snapshot.as_of)
+                    with stage("warning_evaluation"):
+                        alerts = evaluate(projected, snapshot.as_of)
+                    self.baseline_cache[key] = (projected, alerts)
                 cached, alerts = self.baseline_cache[key]
-                projection = cached.model_copy(deep=True)
+                projection = clone(cached)
             projections.append(projection)
-            warnings.extend(w.model_copy(deep=True) for w in alerts)
+            warnings.extend(clone(w) for w in alerts)
         return outcome(projections, warnings), listing(warnings)
 
     def run(self, snapshot, definition: ScenarioRequest):
+        if definition.profile != snapshot.operational_profile:
+            raise ValueError("Scenario and baseline operational profile mismatch")
         if definition.country_id != snapshot.country:
             raise ValueError("Scenario and baseline country mismatch")
         request = definition.model_copy(deep=True)
@@ -86,6 +116,7 @@ class ScenarioEngine:
         if request.start_date <= snapshot.as_of or (request.start_date-snapshot.as_of).days+request.duration-1 > C.HORIZON:
             raise ValueError("Event must start after the forecast origin and fit entirely within its 14-day horizon")
         facilities = [f.model_copy(deep=True) for f in select(snapshot, request.state_id, request.district_id, request.facility_ids)]
+        self.prepare_inputs(snapshot, facilities)
         scenario_id = str(uuid4())
         base, changed, warnings, base_warnings = [], [], [], []
         for f in facilities:
@@ -99,9 +130,9 @@ class ScenarioEngine:
             warnings.extend(evaluate(s, snapshot.as_of, scenario_id, request.scenario_type.value, w))
         before, after = outcome(base, base_warnings), outcome(changed, warnings)
         deltas, impacts = compare(before, after)
-        fingerprint = hashlib.sha256((str(snapshot.as_of)+snapshot.country+''.join(facility_hash(f) for f in sorted(facilities, key=lambda x: x.id))).encode()).hexdigest()
+        snapshot_id = fingerprint(snapshot, facilities)
         result = ScenarioResult(scenario=ScenarioMetadata(scenario_id=scenario_id, definition=request,
-            created_at=datetime.now(timezone.utc), baseline_snapshot_id=fingerprint, origin=snapshot.as_of,
+            created_at=datetime.now(timezone.utc), baseline_snapshot_id=snapshot_id, origin=snapshot.as_of,
             config_version=C.CONFIG_VERSION, effective_parameters=parameters(request), assumptions=ASSUMPTIONS),
             baseline=before, scenario_result=after, delta=deltas, resource_impact=impacts,
             baseline_warnings=listing(base_warnings), warnings_created=listing(warnings))

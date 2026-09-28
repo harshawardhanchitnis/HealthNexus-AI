@@ -54,6 +54,8 @@ export interface DataSource {
   skipped_records: number;
 }
 export interface SourcesResponse {
+  operational_profile: 'constrained' | 'redistribution-ready';
+  profile_version: string;
   datasets: DataSource[];
   records: Observation[];
   notice: string;

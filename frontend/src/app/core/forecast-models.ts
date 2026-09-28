@@ -39,6 +39,10 @@ export interface Forecast {
     total_upper95: number;
   };
   provenance: {
+    operational_profile: 'constrained' | 'redistribution-ready';
+    profile_version: string;
+    model_sha256: string;
+    operational_history_sha256: string;
     data_type: string;
     model_version: string;
     model: string;

@@ -52,10 +52,14 @@ def solve(donors, receivers, edges, seconds=P.time_limit_seconds, require_full=F
     objectives = [sum(u*P.critical_shortage_weight for r, u in zip(receivers, unmet) if r.critical),
         sum(r.shortage_weight*u for r, u in zip(receivers, unmet)),
         sum(q*e.unit_cost + P.transfer_count_penalty*y for e, q, y in zip(edges, x, used))]
+    construction_seconds = 0.
     stages, incumbent, all_proved = [], None, True
     final_status, termination = "UNKNOWN", "time_limit_no_incumbent"
     for name, expr in zip(("critical_unresolved_units", "weighted_unresolved_units", "transport_cost"), objectives):
-        remaining = seconds-(perf_counter()-start)
+        elapsed = perf_counter()-start
+        if not stages:
+            construction_seconds = elapsed
+        remaining = seconds-elapsed
         if remaining <= 0:
             all_proved = False
             break
@@ -89,7 +93,7 @@ def solve(donors, receivers, edges, seconds=P.time_limit_seconds, require_full=F
         final_status, termination = "FEASIBLE", "time_limit_with_incumbent"
     quantities = incumbent if incumbent is not None else [0]*len(edges)
     return quantities, SolverMetadata(engine="Google OR-Tools CP-SAT", version=ortools.__version__, status=final_status,
-        termination=termination, stages=stages, objective=objective(donors, receivers, edges, quantities) if incumbent is not None else None,
+        termination=termination, stages=stages, construction_seconds=construction_seconds, objective=objective(donors, receivers, edges, quantities) if incumbent is not None else None,
         time_limit_seconds=seconds, elapsed_seconds=perf_counter()-start,
         variables=len(model.proto.variables), constraints=len(model.proto.constraints))
 

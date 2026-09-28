@@ -194,6 +194,10 @@ class Alert(BaseModel):
 
 
 class Snapshot(BaseModel):
+    operational_profile: Literal['constrained', 'redistribution-ready'] = 'constrained'
+    profile_version: str = 'inventory-profile-v1'
+    profile_purpose: str = 'preserved constrained operational simulation'
+    inventory_roles: dict[str, str] = Field(default_factory=dict)
     schema_version: Literal[1, 2] = 2
     country: CountryCode = "IN"
     as_of: date

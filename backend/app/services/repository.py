@@ -20,8 +20,9 @@ class NetworkRepository(Protocol):
 class LocalRepository:
     mode = "local"
 
-    def __init__(self):
-        path = ROOT / "data/generated/network.json"
+    def __init__(self, root=ROOT):
+        self.root, self._profiles = root, {}
+        path = root / "data/generated/network.json"
         self._snapshot = Snapshot.model_validate_json(path.read_text(encoding="utf-8")) if path.exists() else generate_snapshot()
         self._countries = {"IN": self._snapshot}
 
@@ -32,12 +33,28 @@ class LocalRepository:
         if country_id not in COUNTRY_BY_ID:
             raise ValueError("Unsupported country")
         if country_id not in self._countries:
-            path = ROOT / "data/generated/nodes" / country_id / "network.json"
+            path = self.root / "data/generated/nodes" / country_id / "network.json"
             data = Snapshot.model_validate_json(path.read_text(encoding="utf-8")) if path.exists() else generate_snapshot(country_id=country_id)
             if data.country != country_id:
                 raise ValueError("Snapshot is stored under the wrong country node")
             self._countries[country_id] = data
         return self._countries[country_id]
+
+    def profile_snapshot(self, country_id, profile='constrained'):
+        from app.profiles.config import folder
+        path = folder(profile, country_id, self.root)/'network.json'
+        if not path.exists():
+            if profile == 'constrained':
+                return self.country_snapshot(country_id)
+            raise ValueError('Operational profile has not been generated')
+        stamp = (path.stat().st_mtime_ns, path.stat().st_size)
+        key = (country_id, profile)
+        if key not in self._profiles or self._profiles[key][0] != stamp:
+            data = Snapshot.model_validate_json(path.read_bytes())
+            if data.country != country_id or data.operational_profile != profile:
+                raise ValueError('Operational profile partition mismatch')
+            self._profiles[key] = (stamp, data)
+        return self._profiles[key][1]
 
 
 class FirestoreRepository:

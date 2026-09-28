@@ -65,13 +65,13 @@ import { Icon } from '../shared/icon';
           </dl>
           <p class="node-training">
             Federated rounds: not started<br />Local forecast evaluation:
-            <a routerLink="/model-performance" [queryParams]="{ country_id: country.id }"
+            <a routerLink="/model-performance" [queryParams]="{ profile: api.profile(), country_id: country.id }"
               >view saved metrics →</a
             >
           </p>
           <a
             routerLink="/overview"
-            [queryParams]="{ country_id: country.id }"
+            [queryParams]="{ profile: api.profile(), country_id: country.id }"
             class="button secondary"
             >Explore {{ country.name }} <app-icon name="arrow"
           /></a>
@@ -94,7 +94,7 @@ import { Icon } from '../shared/icon';
   `,
 })
 export class BricsPage {
-  private api = inject(NetworkApi);
+  api = inject(NetworkApi);
   countries = signal<Country[]>([]);
   records = signal<Observation[]>([]);
   error = signal('');

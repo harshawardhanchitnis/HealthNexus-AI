@@ -4,12 +4,15 @@
     <h1>Emergency Simulator</h1>
     <p>Change the conditions. Trace the pressure. Compare every outcome against its baseline.</p>
   </div>
-  <button class="button secondary" (click)="pune()" [disabled]="running()">Load Pune demo</button>
+  <div class="demo-actions">
+    <button class="button secondary" (click)="pune('redistribution-ready')" [disabled]="running()">Load Redistribution Demo</button>
+    <button class="button secondary" (click)="pune('constrained')" [disabled]="running()">Load Network-Insufficient Demo</button>
+  </div>
   @if (result(); as scenario) {
     <a
       class="button"
       routerLink="/redistribution"
-      [queryParams]="{
+      [queryParams]="{ profile: profile(),
         country_id: country(),
         state_id: state(),
         district_id: district(),
@@ -178,7 +181,7 @@
       <a
         class="button primary"
         routerLink="/warnings"
-        [queryParams]="{
+        [queryParams]="{ profile: profile(),
           country_id: r.scenario.definition.country_id,
           state_id: r.scenario.definition.state_id,
           district_id: r.scenario.definition.district_id,

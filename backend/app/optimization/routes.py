@@ -1,3 +1,5 @@
+from app.profiles.access import snapshot_for, selected_profile
+from app.profiles.config import ProfileID
 import logging
 from fastapi import APIRouter, HTTPException, Request, Response
 from app.models.provenance import CountryCode
@@ -22,9 +24,7 @@ def optimization_router(service):
             logging.exception("Redistribution failed")
             raise HTTPException(503, "Redistribution unavailable; check saved models and operational snapshot")
 
-    def snapshot(request, country):
-        repo = request.app.state.repository
-        return repo.snapshot() if country == "IN" else repo.country_snapshot(country)
+    snapshot = snapshot_for
 
     @router.get("/config", response_model=Policy)
     def config():
@@ -32,19 +32,19 @@ def optimization_router(service):
 
     @router.post("/preview", response_model=Preview)
     def preview(body: RedistributionRequest, request: Request):
-        return safe(lambda: service.preview(snapshot(request, body.country_id), body))
+        return safe(lambda: service.preview(snapshot(request, body.country_id, body.profile), body))
 
     @router.post("/redistribution", response_model=PlanResult, status_code=201)
     def run(body: RedistributionRequest, request: Request):
-        return safe(lambda: service.run(snapshot(request, body.country_id), body))
+        return safe(lambda: service.run(snapshot(request, body.country_id, body.profile), body))
 
     @router.get("/runs/{run_id}", response_model=PlanResult)
-    def get(run_id: str, country_id: CountryCode = "IN"):
-        return safe(lambda: service.get(run_id, country_id))
+    def get(run_id: str, country_id: CountryCode = "IN", profile: ProfileID = "constrained"):
+        return safe(lambda: service.get(run_id, country_id, profile))
 
     @router.delete("/runs/{run_id}", status_code=204)
-    def discard(run_id: str, country_id: CountryCode = "IN"):
-        safe(lambda: service.discard(run_id, country_id))
+    def discard(run_id: str, country_id: CountryCode = "IN", profile: ProfileID = "constrained"):
+        safe(lambda: service.discard(run_id, country_id, profile))
         return Response(status_code=204)
 
     return router

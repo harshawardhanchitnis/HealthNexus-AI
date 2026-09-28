@@ -6,9 +6,13 @@ A real-data-backed healthcare resilience prototype combining public health stati
 
 ![HealthNexus redistribution planner](docs/screenshots/phase5-planner.png)
 
-## Working through Phase 5
+## Working through Phase 5.5
 
-The **Redistribution Planner** uses actual Google OR-Tools CP-SAT for country-local integer medicine transfers, full-horizon donor protection, immutable planning simulations and a measured greedy comparison. [Phase 5 report](docs/phase5-report.md) · [Live API verification](docs/evaluation/phase5-smoke.json). **The existing Pune snapshot has no safe donors under full reserve protection, so its honest result is an insufficient-network, zero-transfer plan.** Nonzero transfers are verified in separate solver/impact tests; the report identifies the positive-demo data prerequisite.
+Two reproducible operational profiles now demonstrate both outcomes. **Constrained** preserves the original Pune severe-dengue result: 30,230 target units unresolved, no safe donors and no transfers. **Redistribution-ready** replays a separate uneven replenishment policy: two safe Pune donors, 15,679 units moved across 10 solver-selected lanes, and 26,084 target units still unresolved. Donor reserves remain protected; OR-Tools and greedy tie in this measured district case. Both are simulated operations, not government inventory. [Phase 5.5 report](docs/phase55-report.md) · [Measured verification](docs/evaluation/phase55-verification.json).
+
+In **Emergency Simulator**, choose **Load Redistribution Demo** or **Load Network-Insufficient Demo**, run Severe Dengue for 14 days, inspect donors in **Redistribution Planner**, then run OR-Tools. The profile selector and data notice remain visible throughout the app.
+
+The **Redistribution Planner** uses actual Google OR-Tools CP-SAT for country-local integer medicine transfers, full-horizon donor protection, immutable planning simulations and a measured greedy comparison. [Phase 5 report](docs/phase5-report.md) · [Live API verification](docs/evaluation/phase5-smoke.json). **The existing Pune snapshot has no safe donors under full reserve protection, so its honest result is an insufficient-network, zero-transfer plan.** Phase 5.5 adds the separate reproducible positive profile described above.
 
 The **Emergency Simulator** now supports dengue surge, delivery delay, staff shortage and facility disruption, with immutable baselines, paired projections, inventory/bed/workforce propagation and an **Early Warning Centre**. [Phase 4 report](docs/phase4-report.md) · [Live API verification](docs/evaluation/phase4-smoke.json).
 
@@ -37,6 +41,10 @@ python -m venv .venv
 .\.venv\Scripts\python.exe scripts\forecast.py build --country all
 .\.venv\Scripts\python.exe scripts\forecast.py train --country all
 .\.venv\Scripts\python.exe scripts\forecast.py evaluate --country all
+.\.venv\Scripts\python.exe scripts\generate_data.py --profile constrained --country all
+.\.venv\Scripts\python.exe scripts\generate_data.py --profile redistribution-ready --country all
+.\.venv\Scripts\python.exe scripts\prepare_planning.py --profile constrained --country IN
+.\.venv\Scripts\python.exe scripts\prepare_planning.py --profile redistribution-ready --country IN
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
@@ -57,7 +65,7 @@ The import command above is offline. To refresh from the actual public endpoints
 # Or select one adapter: --source india_hdi or --source who_gho
 ```
 
-Regenerate history, rebuild training tables and retrain after updating sources; restart the backend afterward. Snapshots retain their explicit date and frozen calibration inputs. Missing public caches produce visible assumptions; invalid caches fail validation. Forecasting models are never trained at API startup. Missing/stale models return an explicit unavailable state. The older `scripts/generate_data.py` still creates short operational samples, but overwriting a trained snapshot with one makes its forecasts stale; use the Phase 3 history workflow for forecasting.
+Regenerate history, rebuild training tables and retrain after updating sources; restart the backend afterward. Snapshots retain their explicit date and frozen calibration inputs. Missing public caches produce visible assumptions; invalid caches fail validation. Forecasting models are never trained at API startup. Missing/stale models return an explicit unavailable state. `scripts/generate_data.py` now requires an explicit profile and derives it from preserved source history and existing saved models. It never overwrites the original constrained source or trains. After intentional source/model changes, regenerate profile bindings and planning caches. For this existing repository, use the profile/preparation commands directly; rebuilding the original Phase 3 source is unnecessary.
 
 ## Verify
 
@@ -69,7 +77,7 @@ npm run build
 npx tsc --noEmit -p tsconfig.app.json
 ```
 
-See [validation](docs/validation.md), [Phase 5 report](docs/phase5-report.md), [Phase 4 report](docs/phase4-report.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
+See [Phase 5.5 report](docs/phase55-report.md), [validation](docs/validation.md), [Phase 5 report](docs/phase5-report.md), [Phase 4 report](docs/phase4-report.md), [Phase 3 report](docs/phase3-report.md), and the historical [Phase 2 report](docs/phase2-report.md).
 
 ## Storage and deployment
 
@@ -96,6 +104,9 @@ For forecasts in containers, first run the host generation/training commands. Co
 | `backend/app/data_ingestion/` | Public-source adapters, caching and normalization |
 | `backend/app/simulation/` | Public calibration and causal synthetic generator |
 | `backend/app/forecasting/` | Temporal features, training, evaluation, uncertainty, stock projections and typed API |
+| `backend/app/profiles/` | Deterministic inventory profiles, validated model bindings and baseline preparation caches |
+| `data/generated/profiles/` | Gitignored profile-local snapshots, histories and compatibility manifests |
+| `artifacts/planning/` | Optional checked compressed baseline caches; never optimizer answers |
 | `backend/app/optimization/` | Domestic CP-SAT planning, donor protection, paired impact simulation and greedy comparison |
 | `artifacts/models/` | Gitignored country-local models, metrics and integrity manifests |
 | `data/official/` | Small attributed raw extracts |

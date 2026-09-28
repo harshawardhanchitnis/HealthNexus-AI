@@ -1,0 +1,52 @@
+Cold preview seconds: 100.79076650000206
+         33517005 function calls (31424701 primitive calls) in 100.754 seconds
+
+   Ordered by: cumulative time
+   List reduced from 1330 to 45 due to restriction <45>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.081    0.081  100.780  100.780 D:\Projects\HealthNexus AI\backend\app\optimization\service.py:85(preview)
+        1    0.087    0.087  100.699  100.699 D:\Projects\HealthNexus AI\backend\app\optimization\service.py:27(prepare)
+        1    0.020    0.020   92.462   92.462 D:\Projects\HealthNexus AI\backend\app\scenarios\engine.py:64(baseline)
+      414    0.044    0.000   76.950    0.186 D:\Projects\HealthNexus AI\backend\app\scenarios\engine.py:52(inputs)
+     1449    0.541    0.000   76.591    0.053 D:\Projects\HealthNexus AI\backend\app\forecasting\prediction.py:44(predict)
+     1449    0.021    0.000   54.964    0.038 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\threadpoolctl.py:793(__init__)
+     1449    0.010    0.000   54.663    0.038 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\threadpoolctl.py:816(__init__)
+     1449    0.025    0.000   54.501    0.038 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\threadpoolctl.py:967(_load_libraries)
+     1449   42.850    0.030   54.476    0.038 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\threadpoolctl.py:1042(_find_libraries_with_enum_process_module_ex)
+     2070    1.450    0.001   15.466    0.007 D:\Projects\HealthNexus AI\backend\app\forecasting\stockout.py:25(project_stock)
+    63756    0.332    0.000   14.965    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4283(quantile)
+    63756    0.208    0.000   13.507    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4541(_quantile_unchecked)
+    63756    0.339    0.000   13.298    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3834(_ureduce)
+    63756    0.230    0.000   12.877    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4697(_quantile_ureduce_func)
+    63756    2.061    0.000   12.519    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4771(_quantile)
+    20674    0.456    0.000   11.579    0.001 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\pydantic\main.py:387(model_copy)
+   383985    2.040    0.000   11.090    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\threadpoolctl.py:1143(_make_controller_from_path)
+94878/3286    0.633    0.000   10.840    0.003 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\pydantic\main.py:934(__deepcopy__)
+1881116/6572    4.977    0.000   10.767    0.002 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\copy.py:119(deepcopy)
+109745/3286    1.133    0.000   10.734    0.003 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\copy.py:218(_deepcopy_dict)
+8243/4103    0.123    0.000    9.718    0.002 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\copy.py:192(_deepcopy_list)
+      207    0.201    0.001    9.477    0.046 D:\Projects\HealthNexus AI\backend\app\scenarios\effects.py:29(project)
+     1449    0.029    0.000    7.384    0.005 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\gradient_boosting.py:1806(predict)
+     1449    0.108    0.000    7.203    0.005 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\gradient_boosting.py:1291(_raw_predict)
+   383985    0.349    0.000    4.054    0.000 <frozen ntpath>:254(basename)
+   383986    2.460    0.000    3.705    0.000 <frozen ntpath>:222(split)
+     1449    0.993    0.001    3.428    0.002 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\gradient_boosting.py:1331(_predict_iterations)
+  1919925    2.130    0.000    3.357    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\threadpoolctl.py:1201(_check_prefix)
+    63756    1.324    0.000    3.257    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\numpy\lib\_function_base_impl.py:4736(_get_indexes)
+        1    0.000    0.000    2.977    2.977 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\parallel.py:631(cpu_count)
+        1    0.000    0.000    2.977    2.977 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:78(cpu_count)
+        1    0.000    0.000    2.975    2.975 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:227(_count_physical_cores)
+        1    0.000    0.000    2.975    2.975 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\joblib\externals\loky\backend\context.py:286(_count_physical_cores_win32)
+        1    0.000    0.000    2.974    2.974 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:514(run)
+        1    0.000    0.000    2.954    2.954 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:1177(communicate)
+        1    0.000    0.000    2.937    2.937 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:1615(_communicate)
+        2    0.000    0.000    2.937    1.469 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\threading.py:1056(join)
+        2    0.002    0.001    2.936    1.468 {method 'join' of '_thread._ThreadHandle' objects}
+      2/1    0.000    0.000    2.934    2.934 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\threading.py:998(_bootstrap)
+      2/1    0.002    0.001    2.934    2.934 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\threading.py:1025(_bootstrap_inner)
+      2/1    0.000    0.000    2.933    2.933 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\threading.py:981(run)
+      2/1    0.000    0.000    2.933    2.933 C:\Users\HARSH\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:1610(_readerthread)
+      6/5    0.000    0.000    2.931    0.586 {method 'close' of '_io.TextIOWrapper' objects}
+   144900    2.168    0.000    2.311    0.000 D:\Projects\HealthNexus AI\.venv\Lib\site-packages\sklearn\ensemble\_hist_gradient_boosting\predictor.py:46(predict)
+   426801    1.902    0.000    1.902    0.000 {method 'reduce' of 'numpy.ufunc' objects}

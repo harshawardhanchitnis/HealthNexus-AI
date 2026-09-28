@@ -1,0 +1,21 @@
+{
+  "positive_url": "http://127.0.0.1:4200/redistribution?profile=redistribution-ready&country_id=IN&state_id=MH&district_id=MH-PUNE&scenario_id=427fb9e4-146e-4d90-9894-151ac00255e2&run_id=2dc3d72e-bf2d-4628-91da-56fd8158ea1d",
+  "desktop_verified": {
+    "solver": "OPTIMAL",
+    "target_before": 41763,
+    "target_after": 26084,
+    "transferred": 15679,
+    "lanes": 10,
+    "donor_risks": 0,
+    "reserve_violations": 0
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "document_width": 375,
+    "scroll_width": 375
+  },
+  "about_phase55": true,
+  "about_evidence_link_preserves_profile": true,
+  "data_sources_profile": "redistribution-ready",
+  "console_errors": []
+}

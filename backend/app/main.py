@@ -1,3 +1,6 @@
+from app.profiles.access import snapshot_for, selected_profile
+from app.profiles.config import NOTICES, VERSION, ProfileID
+from fastapi.responses import JSONResponse
 import logging
 from contextlib import asynccontextmanager
 
@@ -28,14 +31,28 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         app.state.repository = repository or create_repository(settings)
         yield
 
-    app = FastAPI(title="HealthNexus AI · BRICS", version="0.5.0", lifespan=lifespan)
+    app = FastAPI(title="HealthNexus AI · BRICS", version="0.5.5", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
         allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
 
-    def dataset(request: Request, country_id: CountryCode = "IN") -> Snapshot:
+    @app.middleware("http")
+    async def profile_notice(request, call_next):
         try:
-            repo = request.app.state.repository
-            return repo.snapshot() if country_id == "IN" else repo.country_snapshot(country_id)
+            request.state.operational_profile = selected_profile(request)
+        except HTTPException as exc:
+            return JSONResponse(status_code=exc.status_code, content={"detail":exc.detail})
+        response = await call_next(request)
+        response.headers["X-Operational-Profile"] = request.state.operational_profile
+        response.headers["X-Profile-Version"] = VERSION
+        return response
+
+    @app.get("/api/operational-profiles")
+    def profiles():
+        return {"items":[{"id":p,"version":VERSION,"notice":notice,"data_type":"calibrated simulated operations"} for p,notice in NOTICES.items()]}
+
+    def dataset(request: Request, country_id: CountryCode = "IN", profile: ProfileID = "constrained") -> Snapshot:
+        try:
+            return snapshot_for(request, country_id)
         except Exception:
             logging.exception("Unable to read healthcare network")
             raise HTTPException(status_code=503, detail="Network data is unavailable. Check backend storage configuration.")
@@ -59,14 +76,14 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
             "redistribution": "domestic_only"}
 
     @app.get("/api/data-sources")
-    def data_sources(country_id: CountryCode | None = None):
+    def data_sources(country_id: CountryCode | None = None, profile: ProfileID = "constrained"):
         try:
             sources = datasets()
         except (ValueError, OSError):
             logging.exception("Public data cache is invalid")
             raise HTTPException(503, "Public data cache failed validation. Re-import the attributed snapshots.")
         records = [row for source in sources for row in source.records if not country_id or row.country_id == country_id]
-        return {"datasets": [{"provenance": source.provenance, "status": "Integrated — calibration and public reference",
+        return {"operational_profile": profile, "profile_version": VERSION, "operational_notice": NOTICES[profile], "datasets": [{"provenance": source.provenance, "status": "Integrated — calibration and public reference",
                     "cached": True, "record_count": len(source.records), "adapter_version": source.adapter_version,
                     "fields": sorted({row.indicator for row in source.records}),
                     "reference_years": sorted({row.year for row in source.records}), "skipped_records": source.skipped_records}
@@ -86,7 +103,7 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         facilities = filtered(data, state_id, district_id)
         ids = {f.id for f in facilities}
         alerts = [a for a in data.alerts if a.facility_id in ids]
-        return {"as_of": data.as_of, "synthetic": True, "country": COUNTRY_BY_ID[data.country],
+        return {"operational_profile": data.operational_profile, "profile_version": data.profile_version, "as_of": data.as_of, "synthetic": True, "country": COUNTRY_BY_ID[data.country],
             "schema_version": data.schema_version, "calibration": data.calibration,
             "scope": {"country_id": data.country, "state_id": state_id, "district_id": district_id},
             "summary": {**summarize(facilities), "active_alerts": len(alerts)},
@@ -115,7 +132,7 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         if result is None:
             raise HTTPException(404, "Facility not found")
         return {"facility": result, "alerts": [a for a in data.alerts if a.facility_id == facility_id],
-            "as_of": data.as_of, "country": COUNTRY_BY_ID[data.country], "provenance": data.provenance,
+            "operational_profile": data.operational_profile, "profile_version": data.profile_version, "as_of": data.as_of, "country": COUNTRY_BY_ID[data.country], "provenance": data.provenance,
             "calibration": data.calibration}
 
     @app.get("/api/inventory")

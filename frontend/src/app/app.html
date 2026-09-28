@@ -1,6 +1,6 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <aside class="sidebar" [class.open]="menuOpen()">
-  <a routerLink="/overview" class="brand" aria-label="HealthNexus AI home"
+  <a routerLink="/overview" queryParamsHandling="preserve" class="brand" aria-label="HealthNexus AI home"
     ><span class="brand-mark"><app-icon name="pulse" /></span
     ><span>HealthNexus<span class="brand-ai">AI</span><small>HEALTHCARE RESILIENCE</small></span></a
   >
@@ -21,7 +21,7 @@
   <div class="sidebar-divider"></div>
   <div class="workspace-label">PROJECT</div>
   <nav aria-label="Project navigation">
-    <a routerLink="/about" routerLinkActive="active" (click)="menuOpen.set(false)"
+    <a routerLink="/about" queryParamsHandling="preserve" routerLinkActive="active" (click)="menuOpen.set(false)"
       ><app-icon name="info" />Project scope</a
     >
   </nav>
@@ -65,7 +65,7 @@
     </div>
     <div class="topbar-right">
       <span class="demo-label"><span></span>PUBLIC + SIMULATED</span
-      ><a routerLink="/about" class="icon-button" aria-label="About this prototype"
+      ><a routerLink="/about" queryParamsHandling="preserve" class="icon-button" aria-label="About this prototype"
         ><app-icon name="info"
       /></a>
     </div>
@@ -103,6 +103,20 @@
         : 'Country → Region → Facility'
     }}</span>
   </div>
+  <div class="profile-notice">
+    <label for="operational-profile">Operational profile</label>
+    <select id="operational-profile" [value]="profile()" (change)="changeProfile($event)">
+      <option value="constrained" [selected]="profile() === 'constrained'">Network-insufficient simulation</option>
+      <option value="redistribution-ready" [selected]="profile() === 'redistribution-ready'">Redistribution-ready simulation</option>
+    </select>
+    <details><summary>Data notice</summary><p>
+      {{ profile() === 'redistribution-ready'
+        ? 'This profile intentionally models uneven resource distribution across facilities to evaluate shortage detection and domestic redistribution.'
+        : 'This profile preserves the under-resourced Phase 5 network. Redistribution cannot replace missing network supply.' }}
+      Facility-level inventory is simulated and calibrated, not a live government stock feed.
+      Hackathon logistics stress-test.
+    </p></details>
+  </div>
   <main id="main">
     @if (regionsError()) {
       <div class="info-banner" role="alert">
@@ -115,6 +129,6 @@
   </main>
   <footer class="workspace-footer">
     <span>HealthNexus AI · Federated Intelligence for Healthcare Resilience</span
-    ><a routerLink="/about">Prototype data notice <app-icon name="arrow" /></a>
+    ><a routerLink="/about" queryParamsHandling="preserve">Prototype data notice <app-icon name="arrow" /></a>
   </footer>
 </div>

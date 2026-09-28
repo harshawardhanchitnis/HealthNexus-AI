@@ -2,6 +2,7 @@ import { Forecast } from './forecast-models';
 export type ScenarioType =
   'DENGUE_SURGE' | 'DELIVERY_DELAY' | 'STAFF_SHORTAGE' | 'FACILITY_DISRUPTION';
 export interface ScenarioDefinition {
+  profile?: 'constrained' | 'redistribution-ready';
   scenario_type: ScenarioType;
   country_id: string;
   state_id?: string;

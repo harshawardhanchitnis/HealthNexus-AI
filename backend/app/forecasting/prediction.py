@@ -4,7 +4,8 @@ from pathlib import Path
 import joblib
 import numpy as np
 import sklearn
-from threadpoolctl import threadpool_limits
+from threadpoolctl import ThreadpoolController
+from threading import RLock
 
 from app.core.config import ROOT
 from app.forecasting.data import digest, facility_hash
@@ -29,19 +30,84 @@ def load_bundle(country: str, root: Path = ROOT):
         raise ModelUnavailable(f"Forecast models unavailable for {country}. Run scripts/forecast.py generate, build and train; API startup never trains.")
     if bundle["manifest"]["country_id"] != country:
         raise ModelUnavailable("Model country mismatch")
+    bundle["artifact_sha256"] = integrity["sha256"]
     return bundle
 
 
 class ForecastService:
     def __init__(self, root: Path = ROOT):
         self.root, self.cache = root, {}
+        self.identities, self.bindings = {}, {}
+        self.points = {}
+        self.lock, self.controller = RLock(), None
 
-    def bundle(self, country):
-        if country not in self.cache:
-            self.cache[country] = load_bundle(country, self.root)
-        return self.cache[country]
+    def bundle(self, country, profile='constrained'):
+        from app.profiles.config import folder
+        from app.profiles.binding import bind_profile
+        model_dir = self.root / 'artifacts/models' / country
+        try:
+            identity = tuple((p.stat().st_mtime_ns, p.stat().st_size) for p in
+                             (model_dir/'bundle.joblib', model_dir/'integrity.json'))
+        except FileNotFoundError:
+            return load_bundle(country, self.root)  # consistent actionable error
+        with self.lock:
+            if self.identities.get(country) != identity:
+                self.cache[country] = load_bundle(country, self.root)
+                self.identities[country] = identity
+                self.bindings = {k:v for k,v in self.bindings.items() if k[0] != country}
+                self.points = {k:v for k,v in self.points.items() if k[0] != country}
+                # Discover native libraries once, after loading the model libraries.
+                self.controller = ThreadpoolController()
+            base = self.cache[country]
+            path = folder(profile, country, self.root)/'compatibility.json'
+            if profile == 'constrained' and not path.exists():
+                return base
+            return bind_profile(base, country, profile, self.root, self.bindings, identity)
 
-    def predict(self, snapshot, facility_id, target, resource_id, horizon=14):
+    def point_key(self, snapshot, facility, bundle, target, resource):
+        return (snapshot.country,snapshot.operational_profile,snapshot.profile_version,str(snapshot.as_of),
+                bundle['artifact_sha256'],facility.id,facility_hash(facility),target,resource)
+
+    def prepare_predictions(self, snapshot, facilities):
+        """Batch independent rows through the same champion, without refitting."""
+        bundle=self.bundle(snapshot.country,snapshot.operational_profile)
+        manifest,report=bundle['manifest'],bundle['report']
+        if manifest['as_of'] != str(snapshot.as_of):
+            raise ModelUnavailable('Forecast origin mismatch')
+        for f in facilities:
+            if manifest['facility_hashes'].get(f.id) != facility_hash(f):
+                raise ModelUnavailable('Forecast artifact is stale for this snapshot')
+        with self.lock:
+            for target in ('footfall','admissions','medicine'):
+                contexts={(c['facility_id'],c['resource_id']):c for c in manifest['series'][target]}
+                rows=[]
+                for f in facilities:
+                    for resource in ([i.medicine_id for i in f.inventory] if target=='medicine' else [target]):
+                        key=self.point_key(snapshot,f,bundle,target,resource)
+                        if key in self.points:
+                            continue
+                        context={**contexts[(f.id,resource)],'trend_offset':manifest['days']-28}
+                        x,scale,baseline=feature_block(np.asarray(context['last28']),27,snapshot.as_of-timedelta(days=27),context)
+                        rows.append((key,x,scale,baseline))
+                if not rows:
+                    continue
+                champion=report['targets'][target]['champion']
+                if champion==MODEL_NAMES[-1]:
+                    with self.controller.limit(limits=2):
+                        predicted=np.maximum(0,bundle['models'][target].predict(np.concatenate([r[1] for r in rows])))
+                    points=[predicted[i*14:(i+1)*14]*r[2] for i,r in enumerate(rows)]
+                else:
+                    points=[r[3][:,MODEL_NAMES.index(champion)].astype(float) for r in rows]
+                if len(self.points)+len(rows)>10000:
+                    self.points.clear()
+                for row,point in zip(rows,points):
+                    point.setflags(write=False)
+                    self.points[row[0]]=point
+
+    def predict(self, snapshot, facility_id, target, resource_id, horizon=14, *, _bundle=None):
+        from app.profiles.config import VERSION
+        if snapshot.profile_version != VERSION:
+            raise ModelUnavailable("Unsupported inventory profile version")
         if horizon not in (1, 7, 14):
             raise ValueError("Horizon must be 1, 7 or 14")
         facility = next((f for f in snapshot.facilities if f.id == facility_id), None)
@@ -49,7 +115,7 @@ class ForecastService:
             raise LookupError("Facility not found in selected country")
         if target == "medicine" and not any(i.medicine_id == resource_id for i in facility.inventory):
             raise LookupError("Medicine not found at this facility")
-        bundle = self.bundle(snapshot.country)
+        bundle = _bundle or self.bundle(snapshot.country, snapshot.operational_profile)
         manifest, report = bundle["manifest"], bundle["report"]
         if manifest["as_of"] != str(snapshot.as_of) or manifest["facility_hashes"].get(facility_id) != facility_hash(facility):
             raise ModelUnavailable("Forecast artifact is stale for this snapshot. Rebuild training tables/models from matching history and restart the backend.")
@@ -58,10 +124,19 @@ class ForecastService:
         start = as_of-timedelta(days=27)
         context = {**context, "trend_offset": manifest["days"]-28}
         values = np.asarray(context["last28"])
-        x, scale, baseline = feature_block(values, 27, start, context)
+        prepared = self.points.get(self.point_key(snapshot,facility,bundle,target,resource_id))
+        if prepared is None:
+            x, scale, baseline = feature_block(values, 27, start, context)
+        else:
+            scale = max(1.,float(values.mean()))
         champion = report["targets"][target]["champion"]
-        with threadpool_limits(limits=2):
-            point = np.maximum(0, bundle["models"][target].predict(x))*scale if champion == MODEL_NAMES[-1] else baseline[:, MODEL_NAMES.index(champion)].astype(float)
+        if prepared is not None:
+            point = prepared
+        elif champion == MODEL_NAMES[-1]:
+            with self.lock, self.controller.limit(limits=2):
+                point = np.maximum(0, bundle["models"][target].predict(x))*scale
+        else:
+            point = baseline[:, MODEL_NAMES.index(champion)].astype(float)
         bands = intervals(point, scale, bundle["bands"][target][resource_id])
         paths = demand_paths(point, scale, bundle["residuals"][target][resource_id], f"{report['model_version']}:{facility_id}:{resource_id}")
         total = paths[:, :horizon].sum(axis=1)
@@ -86,7 +161,9 @@ class ForecastService:
                 "forecast_total": float(point[:horizon].sum()), "change_percent": change,
                 "total_lower80": float(np.quantile(total, .1)), "total_upper80": float(np.quantile(total, .9)),
                 "total_lower95": float(np.quantile(total, .025)), "total_upper95": float(np.quantile(total, .975))},
-            provenance={"data_type": manifest["data_type"], "model_version": report["model_version"], "model": champion,
+            provenance={"model_sha256": bundle.get('artifact_sha256'), "operational_profile": snapshot.operational_profile, "profile_version": snapshot.profile_version,
+                "operational_history_sha256": manifest.get('operational_history_sha256', manifest['history_sha256']),
+                "data_type": manifest["data_type"], "model_version": report["model_version"], "model": champion,
                 "trained_through": manifest["windows"]["train"]["end"], "evaluated_at": report["evaluated_at"],
                 "windows": manifest["windows"], "history_sha256": manifest["history_sha256"],
                 "calibration_sources": manifest["calibration"]["inputs"], "source_vintage_note": manifest["source_vintage_note"],

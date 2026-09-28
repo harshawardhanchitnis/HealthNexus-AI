@@ -20,10 +20,12 @@ export class RedistributionPage {
   private destroy = inject(DestroyRef);
   private pending?: Subscription;
   country = 'IN';
+  profile = 'constrained';
   state = '';
   district = '';
   scenarioId = '';
   scope: PlanningRequest['scope'] = 'national';
+  private initializedScope = false;
   resource = '';
   seconds = 10;
   scenarios = signal<ScenarioMetadata[]>([]);
@@ -70,10 +72,15 @@ export class RedistributionPage {
           this.error.set('');
           this.preview.set(null);
           this.result.set(null);
+          this.profile = p.get('profile') || 'constrained';
           this.country = p.get('country_id') || 'IN';
           this.state = p.get('state_id') || '';
           this.district = p.get('district_id') || '';
           this.scenarioId = p.get('scenario_id') || '';
+          if (!this.initializedScope) {
+            this.scope = this.district ? 'district' : 'national';
+            this.initializedScope = true;
+          }
           if (
             (this.scope === 'district' && !this.district) ||
             (this.scope === 'state' && !this.state)
@@ -100,6 +107,7 @@ export class RedistributionPage {
         if (data.plan) {
           const q = data.plan.preview.request;
           if (
+            (q.profile || 'constrained') !== this.profile ||
             q.country_id !== this.country ||
             (q.state_id || '') !== this.state ||
             (q.district_id || '') !== this.district ||

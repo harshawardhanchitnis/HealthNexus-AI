@@ -27,7 +27,7 @@ import { Icon } from '../shared/icon';
     </div>
     <div class="about-grid">
       <section class="panel prose">
-        <h2>Working through Phase 5</h2>
+        <h2>Implemented through Phase 5.5</h2>
         <ul>
           <li>Five-country geography and the existing India drill-down.</li>
           <li>Two real public-source adapters: MoHFW / PIB Health Dynamics summary and WHO GHO.</li>
@@ -48,8 +48,10 @@ import { Icon } from '../shared/icon';
             Domestic OR-Tools redistribution planning, protected donor reserves and before/after
             stock simulation.
           </li>
+          <li>Reproducible constrained and redistribution-ready inventory simulations.</li>
+          <li>Validated forecast preparation and profile-isolated planning caches.</li>
         </ul>
-        <a routerLink="/data-sources" class="inline-link"
+        <a routerLink="/data-sources" queryParamsHandling="preserve" class="inline-link"
           >Inspect the evidence <app-icon name="arrow"
         /></a>
       </section>
