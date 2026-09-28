@@ -25,14 +25,18 @@ export interface CopilotResponse {
   evidence: CopilotEvidence[]; tools_used: CopilotTrace[]; limitations: string[];
   context: CopilotContext; scenario_id: string | null; optimization_run_id: string | null;
   metadata: { total_seconds?: number; gemini_network_seconds?: number; tool_seconds?: number;
-    model?: string | null; interaction_id?: string | null; usage?: unknown[] };
+    model?: string | null; interaction_id?: string | null; usage?: unknown[];
+    requested_model?: string; effective_model?: string | null; fallback_used?: boolean;
+    fallback_reason?: string | null; fallback_chain_attempted?: string[];
+    model_attempts?: {model:string;status:string;http_status?:number;seconds:number}[] };
   operational_results: { evidence_id: string; tool: string; result: Record<string, unknown> }[];
 }
 export interface CopilotStatus {
   configured: boolean; enabled: boolean; model: string; configuration_status: string;
   runtime_status: string; thinking_level: string; setup: string;
 }
-export interface CopilotProgress { status: string; phase: string; tools: CopilotTrace[]; }
+export interface CopilotProgress { status: string; phase: string; tools: CopilotTrace[];
+  model_attempts?: {model:string;status:string;http_status?:number;seconds:number}[]; }
 export interface CopilotPlan {
   run_id: string; scenario_id: string | null; solver: { status: string };
   safe_capacity: number; impact: { before: { target_deficit: number; expected_unmet: number };

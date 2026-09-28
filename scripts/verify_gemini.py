@@ -28,13 +28,14 @@ from app.services.repository import LocalRepository
 from app.scenarios.engine import ScenarioEngine
 from app.optimization.service import OptimizationService
 
-EXPECTED={'positive':4,'followup':1,'constrained':2,'provenance':1,'risk':4}
+EXPECTED={'positive':4,'followup':1,'constrained':2,'provenance':1,'risk':4,'resilience':1}
 QUESTIONS={
     'positive':'Simulate a severe 14-day dengue surge in Pune, identify the most serious resource risks, and find the safest redistribution plan.',
     'followup':'Why were these donors selected, and what shortages remain?',
     'constrained':'Can this constrained Pune scenario be solved by redistribution?',
     'provenance':'Is this live government inventory, and how should I interpret the forecast accuracy?',
     'risk':"Summarize Pune's current resilience risks.",
+    'resilience':'Summarize the current resource resilience status in Pune.',
 }
 
 
@@ -130,7 +131,8 @@ def evidence_identity(config,repo,engine):
         'system_prompt_version':PROMPT_VERSION,'system_prompt_sha256':hashlib.sha256(SYSTEM.encode()).hexdigest(),
         'tool_schema_sha256':hashlib.sha256(json.dumps(declarations(),sort_keys=True).encode()).hexdigest(),
         'profile_version':PROFILE_VERSION,'config_version':CONFIG_VERSION,
-        'configuration':{'thinking':config.thinking,'max_calls':config.max_calls,'timeout':config.timeout,
+        'configuration':{'chain':list(config.chain),'failover_enabled':config.failover_enabled,
+            'thinking':config.thinking,'max_calls':config.max_calls,'timeout':config.timeout,
             'workflow_timeout':config.workflow_timeout,'max_output_tokens':config.max_output_tokens},
         'credential_fingerprint':hashlib.sha256(config.api_key.encode()).hexdigest(),
         'artifacts':{p:{'snapshot':fingerprint(repo.profile_snapshot('IN',p),repo.profile_snapshot('IN',p).facilities),
@@ -223,16 +225,16 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
     engine=ScenarioEngine();planner=OptimizationService(engine);repo=LocalRepository()
     budget=RequestBudget(budget_limit,ROOT/'artifacts/gemini-verification-budget-live.json' if mode=='live' else None)
     initial_used=budget.used;last_request=[None]
-    def before_request():
+    def before_request(model):
         # 5 RPM free tier: space live requests conservatively. No automatic 429 retry.
-        if budget.used>=budget.limit:budget.consume()
+        if budget.used>=budget.limit:budget.consume(model)
         if mode=='live' and last_request[0] is not None:
             delay=13-(monotonic()-last_request[0])
             if delay>0:sleep(delay)
-        budget.consume();last_request[0]=monotonic()
+        budget.consume(model);last_request[0]=monotonic()
     def factory(cfg):
         transport=DemoTransport(cfg) if mode=='mock' else GeminiTransport(cfg)
-        transport.before_request=before_request
+        transport.before_request=lambda:before_request(cfg.model)
         return transport
     service=CopilotService(engine,planner,config,transport_factory=factory)
     identity=evidence_identity(config,repo,engine)
@@ -251,7 +253,7 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
         'resume_invalidated':[]}
     positive=None
     for label in labels:
-        profile='redistribution-ready' if label in ('positive','followup','risk') else 'constrained'
+        profile='redistribution-ready' if label in ('positive','followup','risk','resilience') else 'constrained'
         path=evidence_dir/f'{label}.json'
         saved=json.loads(path.read_text(encoding='utf-8')) if resume and path.exists() else None
         if saved and compatible(saved,identity,mode):
@@ -273,12 +275,15 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
                     # Rebuild current real fixtures when resuming on another day/process.
                     sid,run_id=fixture(service,repo,profile);report['local_fixture_tool_calls']+=2
                     service.conversations[cid]={'key':context_key(request),'origin':str(repo.profile_snapshot('IN',profile).as_of),
-                        'previous':positive['metadata']['interaction_id'],'scenario_id':sid,'run_id':run_id,'updated':monotonic(),'busy':False}
+                        'previous':positive['metadata']['interaction_id'],'effective_model':positive['metadata'].get('effective_model',config.model),
+                        'scenario_id':sid,'run_id':run_id,'updated':monotonic(),'busy':False}
                 request=request.model_copy(update={'conversation_id':cid})
             response=service.run(repo,request)
             validate_response(service,repo,response,label,before)
             if label in ('followup','provenance'):assert response.metadata['provider_requests']==(0 if mode=='offline' else 1)
             entry={'label':label,'profile':profile,'status':'passed','seconds':perf_counter()-began,
+                'quality':{'structured_response_valid':True,'evidence_validation_passed':True,
+                    'invalid_tool_calls':sum(t.status!='success' for t in response.tools_used),'unsupported_numeric_claims':0},
                 'fixture_setup':'actual local scenario + OR-Tools' if label=='constrained' else None,
                 'followup_parent_interaction':positive['metadata']['interaction_id'] if label=='followup' else None,
                 'response':response.model_dump(mode='json')}
@@ -292,6 +297,7 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
                 'diagnostics':dict(service.audit[-1]) if service.audit else {}})
             print(label,'failed',report['tests'][-1]['code'],flush=True);break
     report['provider_requests']=budget.used-initial_used;report['daily_ledger_used']=budget.used
+    report['daily_provider_requests_per_model']=budget.per_model
     reused={t['label'] for t in report['tests'] if t.get('reused')}
     report['expected_provider_requests_this_run']=sum(EXPECTED[l] for l in labels if l not in reused) if mode!='offline' else 0
     report['local_tool_calls']=sum(t.get('response',{}).get('metadata',{}).get('local_tool_calls',
@@ -307,7 +313,7 @@ def parser():
     for mode in ('live','offline','mock'):group.add_argument('--'+mode,action='store_true')
     p.add_argument('--output',type=Path)
     selection=p.add_mutually_exclusive_group()
-    selection.add_argument('--case',choices=['risk','positive','constrained','provenance'])
+    selection.add_argument('--case',choices=['risk','positive','constrained','provenance','resilience'])
     selection.add_argument('--acceptance',action='store_true')
     p.add_argument('--resume',action='store_true',help='Reuse only compatible same-mode PASS evidence')
     p.add_argument('--evidence-dir',type=Path)

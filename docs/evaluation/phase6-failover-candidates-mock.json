@@ -1,0 +1,98 @@
+{
+  "mode": "mock",
+  "live_provider_requests": 0,
+  "simulated_provider_requests": 5,
+  "per_model": [
+    {
+      "model": "gemini-3.8-flash",
+      "transport": "mock",
+      "thinking_level": "medium",
+      "structured_response_valid": true,
+      "evidence_validation_passed": true,
+      "unsupported_numeric_claims": 0,
+      "invalid_tool_calls": 0,
+      "provider_requests": 1,
+      "successful_interactions": 1,
+      "local_tool_calls": 2,
+      "provider_stage_seconds": 0.0006448999920394272,
+      "tool_seconds": 2.7538548999873456,
+      "total_seconds": 2.9910582000011345,
+      "evidence_fields": [
+        "summary.total"
+      ]
+    },
+    {
+      "model": "gemini-3.7-flash",
+      "transport": "mock",
+      "thinking_level": "medium",
+      "structured_response_valid": true,
+      "evidence_validation_passed": true,
+      "unsupported_numeric_claims": 0,
+      "invalid_tool_calls": 0,
+      "provider_requests": 1,
+      "successful_interactions": 1,
+      "local_tool_calls": 2,
+      "provider_stage_seconds": 0.000609799986705184,
+      "tool_seconds": 0.0383305000141263,
+      "total_seconds": 0.04302889999235049,
+      "evidence_fields": [
+        "summary.total"
+      ]
+    },
+    {
+      "model": "gemini-3.6-flash",
+      "transport": "mock",
+      "thinking_level": "medium",
+      "structured_response_valid": true,
+      "evidence_validation_passed": true,
+      "unsupported_numeric_claims": 0,
+      "invalid_tool_calls": 0,
+      "provider_requests": 1,
+      "successful_interactions": 1,
+      "local_tool_calls": 2,
+      "provider_stage_seconds": 0.0006423000013455749,
+      "tool_seconds": 0.0425902999995742,
+      "total_seconds": 0.04716200000257231,
+      "evidence_fields": [
+        "summary.total"
+      ]
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "transport": "mock",
+      "thinking_level": "medium",
+      "structured_response_valid": true,
+      "evidence_validation_passed": true,
+      "unsupported_numeric_claims": 0,
+      "invalid_tool_calls": 0,
+      "provider_requests": 1,
+      "successful_interactions": 1,
+      "local_tool_calls": 2,
+      "provider_stage_seconds": 0.0006689000001642853,
+      "tool_seconds": 0.04389129998162389,
+      "total_seconds": 0.04802940000081435,
+      "evidence_fields": [
+        "summary.total"
+      ]
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "transport": "mock",
+      "thinking_level": "medium",
+      "structured_response_valid": true,
+      "evidence_validation_passed": true,
+      "unsupported_numeric_claims": 0,
+      "invalid_tool_calls": 0,
+      "provider_requests": 1,
+      "successful_interactions": 1,
+      "local_tool_calls": 2,
+      "provider_stage_seconds": 0.00032130000181496143,
+      "tool_seconds": 0.033813799993367866,
+      "total_seconds": 0.0371002000028966,
+      "evidence_fields": [
+        "summary.total"
+      ]
+    }
+  ],
+  "limitation": "Scripted model responses and official SDK HTTP-mock protocol tests do not establish live model compatibility or reasoning quality."
+}

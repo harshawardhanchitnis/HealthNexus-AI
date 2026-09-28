@@ -15,6 +15,7 @@ from app.ai.protocol import compact, byte_size
 from app.ai.tools import ToolExecutor
 from app.ai.citations import build_evidence
 from app.ai.fallback import clinical_request, offline_calls, offline_draft
+from app.ai.failover import FailoverSession, quota_cooldown
 
 
 def context_key(request):
@@ -30,13 +31,21 @@ class CopilotService:
         self.conversations, self.requests = OrderedDict(), OrderedDict()
         self.audit = deque(maxlen=100)
         self.runtime_status = 'not_attempted'
+        self.quality_failures = {}
+        self.quota_blocked_until = {}
 
     def status(self):
         error = self.config.error()
+        with self.lock:
+            quality={m:'UNSUITABLE_FOR_HEALTHNEXUS' for m,n in self.quality_failures.items() if n>=2}
+            exhausted=[m for m,until in self.quota_blocked_until.items() if until>monotonic()]
         return {'model':self.config.model,'sdk':'google-genai','sdk_version':'2.25.0','api':'Interactions',
             'enabled':self.config.enabled,'configured':bool(self.config.api_key),
             'configuration_status':error[0] if error else 'configured',
             'runtime_status':self.runtime_status,'thinking_level':self.config.thinking,
+            'requested_model':self.config.model,'fallback_chain':list(self.config.chain),
+            'failover_enabled':self.config.failover_enabled,
+            'model_quality':quality,'models_with_known_quota_exhaustion':exhausted,
             'offline_available':True,'offline_label':'OFFLINE — deterministic local summaries',
             'system_prompt_version':PROMPT_VERSION,'config_version':CONFIG_VERSION,
             'setup':error[1] if error else 'Configured; availability is confirmed only by a successful runtime request.'}
@@ -70,7 +79,9 @@ class CopilotService:
         if clinical_request(request.message):
             return CopilotResponse(request_id=rid,mode='refusal',status='refused',context=Context.model_validate(request.model_dump(include=set(Context.model_fields))),
                 answer='HealthNexus Copilot supports health-system resource planning, not individual diagnosis, prescribing, treatment or private patient-record interpretation.',limitations=LIMITATIONS,
-                metadata={'system_prompt_version':PROMPT_VERSION,'clinical_input_sent_to_provider':False})
+                metadata={'system_prompt_version':PROMPT_VERSION,'clinical_input_sent_to_provider':False,
+                    'requested_model':self.config.model,'effective_model':None,'fallback_used':False,
+                    'fallback_chain_attempted':[],'fallback_reason':None})
         if not request.message.strip():
             raise CopilotError('empty_message','Enter an operational question.',422)
         if not self.capacity.acquire(blocking=False):
@@ -166,10 +177,39 @@ class CopilotService:
             else:
                 error=self.config.error()
                 if error: raise CopilotError(*error)
-                transport=self.transport_factory(self.config)
+                def handoff():
+                    if any(t.status!='success' for t in traces):
+                        raise CopilotError('tools_unavailable','Cannot hand off failed local tool execution; inspect the application trace.')
+                    data=json.dumps({'question':request.message,
+                        'context':request.model_dump(exclude={'message','request_id','conversation_id'}),
+                        'active_scenario_id':executor.latest_scenario,'active_optimization_id':executor.latest_plan,
+                        'instruction':'Continue using validated local evidence. Completed simulations and optimizations must not be repeated. No hidden provider memory is available. Retrieve fresh tools only for missing facts.',
+                        'server_prefetched_evidence':[{'evidence_id':eid,'tool':r['tool'],
+                            'result':compact(r['tool'],r['payload'])} for eid,r in records.items()]},ensure_ascii=False)
+                    if len(data.encode('utf-8'))>120000:
+                        raise CopilotError('handoff_context_limit','Validated handoff evidence exceeds its bound. Narrow the operational question.',422)
+                    return data
+                def notify(meta):
+                    with self.lock:
+                        self.requests[rid].update(meta)
+                        if meta['model_attempts']:
+                            attempt=meta['model_attempts'][-1]
+                            delay=quota_cooldown(attempt)
+                            if delay:self.quota_blocked_until[attempt['model']]=monotonic()+delay
+                with self.lock:
+                    unsuitable=[m for m,n in self.quality_failures.items() if n>=2]
+                    exhausted=[m for m,until in self.quota_blocked_until.items() if until>monotonic()]
+                transport=FailoverSession(self.config,self.transport_factory,handoff,
+                    sticky=row.get('effective_model'),unsuitable=unsuitable,
+                    deadline=monotonic()+max(0,self.config.workflow_timeout-(perf_counter()-start)),notify=notify,
+                    sticky_reason=row.get('fallback_reason'),
+                    quota_blocked=exhausted)
                 previous=row['previous']
                 input_data=json.dumps({'question':request.message,'context':request.model_dump(exclude={'message','request_id','conversation_id'}),
                     'active_scenario_id':executor.latest_scenario,'active_optimization_id':executor.latest_plan})
+                if previous and row.get('effective_model',self.config.model)!=transport.effective_model:
+                    previous=None
+                    input_data=handoff()
                 def ask(body):
                     nonlocal provider_requests, interaction_count
                     before = getattr(transport,'provider_requests',None)
@@ -190,18 +230,23 @@ class CopilotService:
                     if not response.get('id'):
                         raise CopilotError('response_invalid','Gemini returned no interaction identity.')
                     interaction_ids.append(response['id'])
+                    row.update(previous=response['id'],effective_model=transport.effective_model,
+                        fallback_reason=transport.last_reason)
                     if response.get('usage'): usages.append(response['usage'])
                     return response
 
                 # Read-only synthesis intents need fresh local evidence, not another native discovery loop.
                 # These executions are explicitly audited as server-prefetch, never model-selected calls.
-                prefetched = selected_intent in ('provenance','follow-up-plan')
+                prefetched = selected_intent in ('provenance','follow-up-plan','resilience-summary')
                 if prefetched:
                     scope={k:getattr(request,k) for k in ('country_id','profile','state_id','district_id')}
                     if selected_intent=='provenance':
                         execute('get_data_provenance',scope,'server-prefetch')
                         if any(w in request.message.lower() for w in ('accuracy','reliability','performance')):
                             execute('get_model_performance',scope,'server-prefetch')
+                    elif selected_intent=='resilience-summary':
+                        execute('get_network_summary',scope,'server-prefetch')
+                        execute('get_warning_summary',scope,'server-prefetch')
                     else:
                         execute('get_optimization_result',{**scope,'run_id':executor.latest_plan},'server-prefetch')
                     if any(t.status!='success' for t in traces):
@@ -274,9 +319,11 @@ class CopilotService:
                     'intent':selected_intent,'execution_sources':execution_sources,'request_diagnostics':diagnostics,
                     'tool_payload_diagnostics':[{'tool':r['tool'],'authoritative_bytes':byte_size(r['payload']),
                         'model_payload_bytes':byte_size(compact(r['tool'],r['payload']))} for r in records.values()],
-                    'model':self.config.model if request.mode=='gemini' else None,'configured_model':self.config.model,
+                    **(transport.metadata() if transport else {'requested_model':self.config.model,'effective_model':None,
+                        'fallback_used':False,'fallback_chain_attempted':[],'fallback_reason':None}),
+                    'model':transport.effective_model if transport else None,'configured_model':self.config.model,
                     'sdk_version':'2.25.0','api':'Interactions',
-                    'transport':'offline' if request.mode=='offline' else 'google-genai' if isinstance(transport,GeminiTransport) else 'mock',
+                    'transport':'offline' if request.mode=='offline' else 'google-genai' if transport.official else 'mock',
                     'thinking_level':self.config.thinking if request.mode=='gemini' else None,
                     'interaction_id':interaction_id,'timestamp':datetime.now(timezone.utc).isoformat(),
                     'system_prompt_version':PROMPT_VERSION,'config_version':CONFIG_VERSION,'usage':usages,
@@ -291,9 +338,15 @@ class CopilotService:
                     'mode':request.mode,'model':response.metadata['model'],'status':'completed',
                     'tools':[t.model_dump() for t in traces],'latency':response.metadata['total_seconds'],'usage':usages})
                 self.audit[-1].update(provider_requests=provider_requests,local_tool_calls=len(traces),
-                    execution_sources=execution_sources,request_diagnostics=diagnostics)
+                    execution_sources=execution_sources,request_diagnostics=diagnostics,
+                    **(transport.metadata() if transport else {}))
             return response
         except CopilotError as error:
+            if transport: error.metadata=transport.metadata()
+            if transport and error.code in ('response_schema','evidence_invalid','unsupported_number','solver_terminology','unsafe_claim','malformed_tool_call'):
+                with self.lock:
+                    model=transport.effective_model
+                    self.quality_failures[model]=self.quality_failures.get(model,0)+1
             if request.mode=='gemini':
                 self.runtime_status=error.code
             with self.lock:
@@ -301,12 +354,13 @@ class CopilotService:
                     self.requests[rid].update(status='error',phase=error.message,error_code=error.code)
                     self.audit.append({'request_id':rid,'conversation_id':cid,'mode':request.mode,'status':error.code,
                         'country_id':request.country_id,'profile':request.profile,
-                        'model':self.config.model if request.mode=='gemini' else None,
+                        'model':transport.last_successful_model if transport else None,
                         'latency':perf_counter()-start,'tools':self.requests[rid]['tools'],
                         'provider_diagnostic':getattr(error,'diagnostic',{}),'timings':timing,
                         'interaction_count':interaction_count,'provider_requests':provider_requests,
                         'local_tool_calls':len(self.requests[rid]['tools']),'execution_sources':execution_sources,
                         'request_diagnostics':diagnostics,'interaction_ids':interaction_ids,'usage':usages})
+                    if transport: self.audit[-1].update(transport.metadata())
             raise
         except Exception:
             with self.lock:
@@ -316,6 +370,8 @@ class CopilotService:
             raise CopilotError('copilot_unavailable','Copilot unavailable. Check trusted artifacts and server configuration.') from None
         finally:
             if row and owned:
-                with self.lock: row['busy']=False
+                with self.lock:
+                    row['busy']=False
+                    if 'executor' in locals(): row.update(scenario_id=executor.latest_scenario,run_id=executor.latest_plan)
             if transport: transport.close()
             self.capacity.release()

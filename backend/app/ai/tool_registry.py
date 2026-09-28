@@ -49,6 +49,7 @@ def declarations(names=None):
 
 
 SUBSETS = {
+    'resilience-summary': frozenset(('get_network_summary','get_warning_summary')),
     'network-risk': frozenset(('get_network_summary','get_facility_status','get_forecast',
         'get_warnings','get_warning_summary','get_scenario_presets')),
     'emergency-planning': frozenset(('get_scenario_presets','run_emergency_scenario',
@@ -69,6 +70,8 @@ def intent(request):
         return 'emergency-planning'
     if request.optimization_run_id:
         return 'follow-up-plan' if any(word in text for word in ('why','donors','shortages remain')) else 'plan-review'
+    if 'resource resilience status' in text:
+        return 'resilience-summary'
     return 'network-risk'
 
 

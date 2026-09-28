@@ -11,7 +11,8 @@ def copilot_router(service):
     def safe(action):
         try: return action()
         except CopilotError as error:
-            raise HTTPException(error.status,{'code':error.code,'message':error.message}) from None
+            raise HTTPException(error.status,{'code':error.code,'message':error.message,
+                'metadata':getattr(error,'metadata',{})}) from None
         except (ValueError,LookupError):
             raise HTTPException(422,{'code':'context_invalid','message':'Selected geography, profile or saved result is invalid or stale.'}) from None
         except Exception:

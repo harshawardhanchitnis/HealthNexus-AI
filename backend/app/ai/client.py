@@ -16,11 +16,11 @@ def provider_error(error):
     if code in (401,403):
         return CopilotError('authentication', 'Gemini authentication failed. Check server-side key permissions.')
     if code == 404:
-        return CopilotError('model_unavailable', 'gemini-3.8-flash is unavailable for this API configuration. No substitute was selected.')
+        return CopilotError('model_unavailable', 'The configured Gemini model endpoint is unavailable.')
     if code == 429:
         detail = getattr(error, 'body', {})
         message = str(detail).lower()
-        kind = 'RPD' if any(x in message for x in ('per day', 'perday', 'daily', 'requestsperday')) else 'TPM' if any(x in message for x in ('token', 'tokensperminute')) else 'RPM' if any(x in message for x in ('per minute', 'perminute', 'rpm')) else 'unknown'
+        kind = 'RPD' if any(x in message for x in ('per day', 'perday', 'daily', 'requestsperday', 'rpd')) else 'TPM' if any(x in message for x in ('token', 'tokensperminute', 'tpm')) else 'RPM' if any(x in message for x in ('per minute', 'perminute', 'rpm')) else 'unknown'
         safe = CopilotError('rate_limited',
             'Gemini daily quota exhausted. Resume after the quota resets or select offline mode.' if kind == 'RPD'
             else 'Gemini rate limit reached. Retry later or select offline mode.', 429)
@@ -56,7 +56,7 @@ class GeminiTransport:
         # Set it on the actual Interactions resource, not just the parent client.
         # Fail before sending if a future incompatible SDK removes this surface.
         self.client.interactions.sdk_configuration.retry_config = None
-        for attempt in range(2):
+        for attempt in range(self.config.same_model_attempts):
             # Outside the catch: a local budget denial must never become a provider failure.
             if self.before_request:
                 self.before_request()
@@ -69,7 +69,7 @@ class GeminiTransport:
                 return data
             except Exception as error:
                 code = getattr(error, 'code', None) or getattr(error, 'status_code', None)
-                if attempt == 0 and code in (502,503):
+                if attempt + 1 < self.config.same_model_attempts and code in (502,503):
                     sleep(.25)
                     continue
                 safe=provider_error(error)
@@ -80,8 +80,8 @@ class GeminiTransport:
                 retry_after = headers.get('retry-after') if headers else None
                 if retry_after and len(str(retry_after)) < 80:
                     safe.diagnostic['retry_after'] = str(retry_after)
-                body=getattr(error,'body',{})
-                detail=body.get('error',body) if isinstance(body,dict) else {}
+                error_body=getattr(error,'body',{})
+                detail=error_body.get('error',error_body) if isinstance(error_body,dict) else {}
                 if isinstance(detail,dict):
                     message=detail.get('message','')
                     if isinstance(message,str):
@@ -93,6 +93,16 @@ class GeminiTransport:
                             delay=entry.get('retryDelay')
                             if isinstance(delay,str) and len(delay)<40:
                                 safe.diagnostic['retry_delay']=delay
+                # Require an explicit model quota dimension, not just a model name in a URL/message.
+                quota_details = detail.get('details', []) if isinstance(detail, dict) else []
+                violations = [v for entry in quota_details if isinstance(entry, dict)
+                    for v in entry.get('violations', []) if isinstance(v, dict)]
+                safe.diagnostic['model_specific_quota'] = code == 429 and bool(violations) and all(
+                    isinstance(v.get('quotaDimensions'), dict) and
+                    v['quotaDimensions'].get('model') == body.get('model') for v in violations)
+                msg = str(detail.get('message', '')).lower() if isinstance(detail, dict) else ''
+                safe.diagnostic['model_endpoint_unavailable'] = code == 404 and (
+                    str(body.get('model','')) in msg and 'interaction' not in msg)
                 raise safe from None
 
     def close(self):

@@ -1,13 +1,13 @@
 # Phase 6 — grounded resilience Copilot
 
-The official Gemini integration, registered tools, structured evidence, conversation state and Copilot UI are implemented. **Live acceptance remains pending due to daily Free Tier quota exhaustion.** A server key is configured; earlier exact-model/native-call successes are preserved in [partial live evidence](evaluation/phase6-live-acceptance.json). Current prompt/config are v3/v2. The revised strategy passed with eight mocked provider requests, capped at ten including retries: [current budget/resume report](phase6-budget-report.md). Zero live requests were made during that optimization. Both real local planning outcomes remain unchanged. Phase 7 has not started.
+The existing Copilot now includes availability failover in the exact requested order: 3.8 Flash → 3.7 Flash → 3.6 Flash → 3.5 Flash → 3.5 Flash-Lite. All five are mock/SDK-wire tested. Live automatic failover reached 3.6; the first three models returned HTTP 503 HIGH DEMAND, then the preserved ten-request daily ceiling blocked further sends. No live answer or full live acceptance is claimed. [Measured failover report](phase6-failover-report.md). Local planning outcomes remain unchanged. Phase 7 has not started.
 
 ## Integration and execution
 
-- Official `google-genai==2.25.0`, exact `gemini-3.8-flash`; no substitute model. SDK dependency requires `pydantic==2.13.5`.
+- Official `google-genai==2.25.0`, `gemini-3.8-flash` primary with the approved stable Flash-family chain; effective model is explicit. SDK dependency requires `pydantic==2.13.5`.
 - Recommended stateful Interactions API, native function calls/results and structured JSON answers; previous interaction ID carries conversation state. Tools/system instruction/config are resubmitted on continuation.
-- Medium thinking; maximum 2,400 output tokens, 10 tool calls, 25-second provider timeout, 120-second workflow deadline, two concurrent workflows. Only transient 502/503 receive one bounded retry. Quota/authentication failures are not retried.
-- System prompt `healthnexus-system-v3`, configuration `copilot-config-v2`. Backend `.env` key stays ignored; no browser key or startup inference. Exact model availability/error status is surfaced.
+- Medium thinking; maximum 2,400 output tokens, 10 tool calls, 60-second provider timeout, 300-second cooperative workflow deadline, two concurrent workflows. Failover uses one attempt per model for eligible availability failures. Explicit model-quota 429 may advance; auth/application/grounding failures never do.
+- System prompt `healthnexus-system-v3`, configuration `copilot-config-v4-failover`. Backend `.env` key stays ignored; no browser key or startup inference. Exact model availability/error status is surfaced.
 - Thirteen strict tools call existing repository/forecast/warning/scenario/optimizer services. Geography/profile and snapshot/model identities are checked; new scenario/optimizer creation requires explicit permission. No arbitrary code execution or public web tool is offered to Gemini.
 - Answer claims reference fresh tool-result fields. Numeric and selected status checks reject unsupported evidence. This does not prove all semantic claims; authoritative typed results remain inspectable independently. No patient-level clinical validation is claimed.
 - Sessions/progress/audit are bounded process-local stores, not durable/authenticated production sessions. Google-side stored Interactions history is separate; clearing local state does not delete provider history.
@@ -52,10 +52,14 @@ Historical mock transport durations are recorded in [mock evidence](evaluation/p
 
 ## Verification and remaining acceptance
 
-237 backend tests pass, preserving all original 210 and adding 27 quota/protocol cases. These cover budget/retry counts, subset enforcement, fresh one-request provenance/follow-up, minimal constrained continuation, alternate valid positive ordering and PASS identity/invalidation. Earlier validation of evidence, scope, clinical refusal, actual donor safety and immutable data remains passing. Python compilation, dependency consistency, strict TypeScript and Angular production build pass. New acceptance matrices pass offline and with a mocked model.
+281 backend tests pass, preserving the previous 237 and adding 44 failover cases. These cover budget/retry counts, subset enforcement, fresh one-request provenance/follow-up, minimal constrained continuation, alternate valid positive ordering and PASS identity/invalidation. Earlier validation of evidence, scope, clinical refusal, actual donor safety and immutable data remains passing. Python compilation, dependency consistency, strict TypeScript and Angular production build pass. New acceptance matrices pass offline and with a mocked model.
 
 Strict TypeScript and production build: 366.12 kB initial / 100.24 kB estimated transfer; Copilot lazy chunk 21.32 kB / 6.06 kB. All five original snapshot hashes match the committed Phase 5.5 report; see [preservation evidence](evaluation/phase6-preservation.json).
 
 Desktop/mobile browser checks and screenshots are recorded separately in [browser evidence](evaluation/phase6-browser.json). Tested browser mode is explicitly OFFLINE. This verifies UI/engine integration, not Google reasoning. Final UI displays real transfer/reserve tables and remaining resource risks, supports same-conversation follow-ups and context-scoped optimizer links, and resets conversation on profile changes.
 
 [Historical live status](evaluation/phase6-live.json) records the daily-quota failure. Future live verification is authorized only after actual quota reset and explicit user approval; use `scripts/verify_gemini.py --live --acceptance --resume`. The current verifier writes separate budget reports and retains compatible per-case PASS evidence. Final structured/native protocol acceptance remains pending. No Phase 7 or federated aggregation work was added.
+
+## Current failover validation
+
+See [failover policy, exact live attempt trace, model matrix and limitations](phase6-failover-report.md). Same key/project; no billing change. The latest live smoke sent three provider requests and executed two fresh local reads. There were zero successful interactions or token-usage reports. Positive/constrained Gemini interpretation was not attempted after smoke failed. Both local plans pass mocked and explicit offline acceptance. Provider-stage measurements include verifier pacing. Neither successful live fallback reasoning nor hackathon readiness is asserted yet.

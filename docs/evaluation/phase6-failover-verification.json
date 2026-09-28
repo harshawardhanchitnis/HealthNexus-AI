@@ -1,0 +1,293 @@
+{
+  "timestamp": "2026-09-28T12:59:20.036914+00:00",
+  "chain": [
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "sdk": "google-genai 2.25.0",
+  "configuration_version": "copilot-config-v4-failover",
+  "thinking": "medium",
+  "live_acceptance": "NOT_PASSED",
+  "fully_accepted": false,
+  "hackathon_live_demo_ready": false,
+  "phase7_started": false,
+  "live_smoke": {
+    "status": "failed",
+    "code": "quota_budget_exhausted_locally",
+    "provider_requests": 3,
+    "daily_ledger_used": 10,
+    "model_that_served_answer": null,
+    "successful_interactions": 0,
+    "tools": [
+      "get_network_summary",
+      "get_warning_summary"
+    ],
+    "model_attempts": [
+      {
+        "model": "gemini-3.8-flash",
+        "status": "provider_unavailable",
+        "provider_requests": 1,
+        "seconds": 9.008350999996765,
+        "exception_type": "InternalServerError",
+        "http_status": 503,
+        "transport_attempts": 1,
+        "quota_kind": null,
+        "retry_after": "30",
+        "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+        "model_specific_quota": false,
+        "model_endpoint_unavailable": false,
+        "fallback_reason": "high_demand"
+      },
+      {
+        "model": "gemini-3.7-flash",
+        "status": "provider_unavailable",
+        "provider_requests": 1,
+        "seconds": 6.015218900007312,
+        "exception_type": "InternalServerError",
+        "http_status": 503,
+        "transport_attempts": 1,
+        "quota_kind": null,
+        "retry_after": "30",
+        "provider_message": "gemini-3.7-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+        "model_specific_quota": false,
+        "model_endpoint_unavailable": false,
+        "fallback_reason": "high_demand"
+      },
+      {
+        "model": "gemini-3.6-flash",
+        "status": "provider_unavailable",
+        "provider_requests": 1,
+        "seconds": 19.851025700001628,
+        "exception_type": "InternalServerError",
+        "http_status": 503,
+        "transport_attempts": 1,
+        "quota_kind": null,
+        "retry_after": "30",
+        "provider_message": "gemini-3.6-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+        "model_specific_quota": false,
+        "model_endpoint_unavailable": false,
+        "fallback_reason": "high_demand"
+      },
+      {
+        "model": "gemini-3.5-flash",
+        "status": "quota_budget_exhausted_locally",
+        "provider_requests": 0,
+        "seconds": 0.00017729999672155827,
+        "fallback_reason": null
+      }
+    ],
+    "actual_chain_sent": [
+      "gemini-3.8-flash",
+      "gemini-3.7-flash",
+      "gemini-3.6-flash"
+    ],
+    "model_handoffs": [
+      {
+        "handoff_from_model": "gemini-3.8-flash",
+        "handoff_to_model": "gemini-3.7-flash",
+        "handoff_reason": "high_demand"
+      },
+      {
+        "handoff_from_model": "gemini-3.7-flash",
+        "handoff_to_model": "gemini-3.6-flash",
+        "handoff_reason": "high_demand"
+      },
+      {
+        "handoff_from_model": "gemini-3.6-flash",
+        "handoff_to_model": "gemini-3.5-flash",
+        "handoff_reason": "high_demand"
+      }
+    ],
+    "timings": {
+      "gemini_network_seconds": 35.73247529999935,
+      "tool_seconds": 1.2894912000047043
+    },
+    "case_seconds": 37.31621049999376,
+    "token_usage": null,
+    "live_schema_or_grounding_verified": false,
+    "note": "The raw smoke report used effective_model for the selected candidate before any successful interaction. That historical field is not evidence that 3.5 answered. Current metadata distinguishes selected_model from successful effective_model."
+  },
+  "models_not_sent_live": [
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "mock_protocol_verified_models": [
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "mock_limit": "Scripted and SDK HTTP-mock validation does not establish live model quality or compatibility.",
+  "local_plans": {
+    "positive": {
+      "mode": "actual local engines with scripted Gemini",
+      "scenario_id": "3db11c60-f32b-4bcd-8bf0-e8a677ebd4e4",
+      "optimization_id": "8cbdfc5c-4263-42b0-b663-15d22edd1f40",
+      "safe_capacity": 17745,
+      "solver_status": "OPTIMAL",
+      "impact": {
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 26084,
+          "expected_unmet": 17378.197997959564,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 15679,
+        "percent_deficit_resolved": 37.5428010439863,
+        "critical_deficits_resolved": 2,
+        "critical_deficits_total": 5,
+        "facilities_protected": 0,
+        "donor_facilities_used": 2,
+        "transfer_count": 10,
+        "transferred_units": 15679,
+        "distance_km": 54.591838516215944,
+        "distance_weighted_units": 79247.99067343438,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-003:AMX": 0,
+          "IN-MH-PUNE-003:IFA": 0,
+          "IN-MH-PUNE-003:IVF": 2173,
+          "IN-MH-PUNE-003:ORS": 964,
+          "IN-MH-PUNE-003:PCM": 22947
+        },
+        "conservation": {
+          "PCM": {
+            "before": 22952,
+            "after": 22952
+          },
+          "IVF": {
+            "before": 2951,
+            "after": 2951
+          },
+          "ORS": {
+            "before": 5021,
+            "after": 5021
+          },
+          "AMX": {
+            "before": 7154,
+            "after": 7154
+          },
+          "IFA": {
+            "before": 9467,
+            "after": 9467
+          }
+        }
+      }
+    },
+    "constrained": {
+      "mode": "actual local engines with scripted Gemini",
+      "scenario_id": "cd97d9e0-c631-4080-a7a4-8f57bf571882",
+      "optimization_id": "dfeceb22-cfb9-4dbe-9295-e0e9d01cfa56",
+      "safe_capacity": 0,
+      "solver_status": "OPTIMAL",
+      "impact": {
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 0,
+        "percent_deficit_resolved": 0.0,
+        "critical_deficits_resolved": 0,
+        "critical_deficits_total": 6,
+        "facilities_protected": 0,
+        "donor_facilities_used": 0,
+        "transfer_count": 0,
+        "transferred_units": 0,
+        "distance_km": 0.0,
+        "distance_weighted_units": 0.0,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-001:AMX": 21,
+          "IN-MH-PUNE-001:IFA": 23,
+          "IN-MH-PUNE-001:IVF": 242,
+          "IN-MH-PUNE-001:ORS": 94,
+          "IN-MH-PUNE-001:PCM": 2765,
+          "IN-MH-PUNE-002:AMX": 64,
+          "IN-MH-PUNE-002:IFA": 82,
+          "IN-MH-PUNE-002:IVF": 420,
+          "IN-MH-PUNE-002:ORS": 179,
+          "IN-MH-PUNE-002:PCM": 4754,
+          "IN-MH-PUNE-003:AMX": 349,
+          "IN-MH-PUNE-003:IFA": 463,
+          "IN-MH-PUNE-003:IVF": 1642,
+          "IN-MH-PUNE-003:ORS": 781,
+          "IN-MH-PUNE-003:PCM": 18351
+        },
+        "conservation": {
+          "PCM": {
+            "before": 20174,
+            "after": 20174
+          },
+          "IVF": {
+            "before": 2784,
+            "after": 2784
+          },
+          "ORS": {
+            "before": 4911,
+            "after": 4911
+          },
+          "AMX": {
+            "before": 6021,
+            "after": 6021
+          },
+          "IFA": {
+            "before": 7751,
+            "after": 7751
+          }
+        }
+      }
+    }
+  },
+  "operational_artifacts_unchanged": true,
+  "verification": {
+    "backend_tests": 281,
+    "backend_seconds": 83.56,
+    "new_failover_tests": 44,
+    "python_compilation": "passed",
+    "pip_check": "passed",
+    "strict_typescript": "passed",
+    "angular_production_build": "passed",
+    "mock_acceptance": "passed",
+    "offline_acceptance": "passed",
+    "browser_desktop": "explicit offline verified",
+    "browser_mobile": "390x844; viewport 390; document width 375",
+    "browser_console_errors": 0,
+    "browser_console_warnings": 0,
+    "additional_live_browser_requests": 0
+  },
+  "security": {
+    "env_ignored": true,
+    "env_tracked": false,
+    "key_unchanged_by_agent": true,
+    "key_matches_loaded_configuration": true,
+    "key_matches_in_scanned_files": 0,
+    "files_scanned": 284,
+    "key_in_diff": false,
+    "billing_changed": false,
+    "ledger_reset": false
+  }
+}

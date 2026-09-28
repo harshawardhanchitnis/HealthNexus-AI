@@ -1,0 +1,264 @@
+{
+  "mode": "live",
+  "model": "gemini-3.8-flash",
+  "status": "failed",
+  "live_acceptance": true,
+  "timestamp": "2026-09-28T12:50:25.366420+00:00",
+  "identity": {
+    "git_commit": "8b3df19443245cac8691007cd73cf712ccdbb47a",
+    "implementation_sha256": "c66dcbb0bbeaab3ed2aa33d03408809aca784b0b9926adaea2195dc9ec45abd1",
+    "model": "gemini-3.8-flash",
+    "sdk_version": "2.25.0",
+    "system_prompt_version": "healthnexus-system-v3",
+    "system_prompt_sha256": "c75f510cb6953e0ef663fb647ac97440c9cbc769ab0e692b236ad94d31645a7e",
+    "tool_schema_sha256": "3b18ac63d2fed75b5b65943248db0a3113613706d7991c6c825590b035015d42",
+    "profile_version": "inventory-profile-v1",
+    "config_version": "copilot-config-v4-failover",
+    "configuration": {
+      "chain": [
+        "gemini-3.8-flash",
+        "gemini-3.7-flash",
+        "gemini-3.6-flash",
+        "gemini-3.5-flash",
+        "gemini-3.5-flash-lite"
+      ],
+      "failover_enabled": true,
+      "thinking": "medium",
+      "max_calls": 10,
+      "timeout": 60,
+      "workflow_timeout": 300,
+      "max_output_tokens": 2400
+    },
+    "artifacts": {
+      "constrained": {
+        "snapshot": "f0b5fbb01375d0aec983b3a2665fce7553b8f28b5cbdf3b1cf2648e28a477743",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      },
+      "redistribution-ready": {
+        "snapshot": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      }
+    }
+  },
+  "credential_binding": "Private resumable evidence retains a one-way credential fingerprint; public report omits it.",
+  "selected_case": "resilience",
+  "acceptance": false,
+  "tests": [
+    {
+      "label": "resilience",
+      "profile": "redistribution-ready",
+      "status": "failed",
+      "code": "quota_budget_exhausted_locally",
+      "seconds": 37.31621049999376,
+      "diagnostics": {
+        "request_id": "4b8f7346-3760-4885-aae7-66dfa6308de6",
+        "conversation_id": "17721316-0324-4754-88c6-e92a3353b349",
+        "mode": "gemini",
+        "status": "quota_budget_exhausted_locally",
+        "country_id": "IN",
+        "profile": "redistribution-ready",
+        "model": "gemini-3.8-flash",
+        "latency": 37.3159558000043,
+        "tools": [
+          {
+            "tool": "get_network_summary",
+            "status": "success",
+            "seconds": 1.2831427000055555,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e1"
+          },
+          {
+            "tool": "get_warning_summary",
+            "status": "success",
+            "seconds": 0.006348499999148771,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e2"
+          }
+        ],
+        "provider_diagnostic": {},
+        "timings": {
+          "gemini_network_seconds": 35.73247529999935,
+          "tool_seconds": 1.2894912000047043
+        },
+        "interaction_count": 0,
+        "provider_requests": 3,
+        "local_tool_calls": 2,
+        "execution_sources": [
+          {
+            "tool": "get_network_summary",
+            "source": "server-prefetch"
+          },
+          {
+            "tool": "get_warning_summary",
+            "source": "server-prefetch"
+          }
+        ],
+        "request_diagnostics": [
+          {
+            "tool_schema_bytes": 2,
+            "system_bytes": 2566,
+            "input_bytes": 10008,
+            "request_body_bytes": 15081,
+            "input_tokens_estimate": 3144,
+            "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+          }
+        ],
+        "interaction_ids": [],
+        "usage": [],
+        "requested_model": "gemini-3.8-flash",
+        "effective_model": "gemini-3.5-flash",
+        "fallback_used": true,
+        "fallback_chain_attempted": [
+          "gemini-3.8-flash",
+          "gemini-3.7-flash",
+          "gemini-3.6-flash"
+        ],
+        "fallback_reason": "high_demand",
+        "model_attempts": [
+          {
+            "model": "gemini-3.8-flash",
+            "status": "provider_unavailable",
+            "provider_requests": 1,
+            "seconds": 9.008350999996765,
+            "exception_type": "InternalServerError",
+            "http_status": 503,
+            "transport_attempts": 1,
+            "quota_kind": null,
+            "retry_after": "30",
+            "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+            "model_specific_quota": false,
+            "model_endpoint_unavailable": false,
+            "fallback_reason": "high_demand"
+          },
+          {
+            "model": "gemini-3.7-flash",
+            "status": "provider_unavailable",
+            "provider_requests": 1,
+            "seconds": 6.015218900007312,
+            "exception_type": "InternalServerError",
+            "http_status": 503,
+            "transport_attempts": 1,
+            "quota_kind": null,
+            "retry_after": "30",
+            "provider_message": "gemini-3.7-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+            "model_specific_quota": false,
+            "model_endpoint_unavailable": false,
+            "fallback_reason": "high_demand"
+          },
+          {
+            "model": "gemini-3.6-flash",
+            "status": "provider_unavailable",
+            "provider_requests": 1,
+            "seconds": 19.851025700001628,
+            "exception_type": "InternalServerError",
+            "http_status": 503,
+            "transport_attempts": 1,
+            "quota_kind": null,
+            "retry_after": "30",
+            "provider_message": "gemini-3.6-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+            "model_specific_quota": false,
+            "model_endpoint_unavailable": false,
+            "fallback_reason": "high_demand"
+          },
+          {
+            "model": "gemini-3.5-flash",
+            "status": "quota_budget_exhausted_locally",
+            "provider_requests": 0,
+            "seconds": 0.00017729999672155827,
+            "fallback_reason": null
+          }
+        ],
+        "model_handoffs": [
+          {
+            "handoff_from_model": "gemini-3.8-flash",
+            "handoff_to_model": "gemini-3.7-flash",
+            "handoff_reason": "high_demand"
+          },
+          {
+            "handoff_from_model": "gemini-3.7-flash",
+            "handoff_to_model": "gemini-3.6-flash",
+            "handoff_reason": "high_demand"
+          },
+          {
+            "handoff_from_model": "gemini-3.6-flash",
+            "handoff_to_model": "gemini-3.5-flash",
+            "handoff_reason": "high_demand"
+          }
+        ],
+        "models_skipped": [],
+        "provider_requests_per_model": {
+          "gemini-3.8-flash": {
+            "provider_requests": 1,
+            "successful_interactions": 0,
+            "failed_attempts": 1,
+            "provider_seconds": 9.008350999996765
+          },
+          "gemini-3.7-flash": {
+            "provider_requests": 1,
+            "successful_interactions": 0,
+            "failed_attempts": 1,
+            "provider_seconds": 6.015218900007312
+          },
+          "gemini-3.6-flash": {
+            "provider_requests": 1,
+            "successful_interactions": 0,
+            "failed_attempts": 1,
+            "provider_seconds": 19.851025700001628
+          },
+          "gemini-3.5-flash": {
+            "provider_requests": 0,
+            "successful_interactions": 0,
+            "failed_attempts": 0,
+            "provider_seconds": 0.00017729999672155827
+          }
+        }
+      }
+    }
+  ],
+  "budget_limit": 10,
+  "expected_provider_requests": 1,
+  "maximum_provider_requests": 10,
+  "local_fixture_tool_calls": 0,
+  "comparison": {
+    "old_suite_expected_provider_requests": 23,
+    "old_cases": {
+      "risk": 4,
+      "positive": 8,
+      "constrained": 8,
+      "provenance": 3
+    },
+    "new_acceptance_expected_provider_requests": 8,
+    "baseline_commit": "914ff4a",
+    "old_schema_bytes_per_turn": 11363,
+    "old_system_bytes_per_turn": 2917,
+    "new_system_bytes_per_turn": 2566,
+    "old_authoritative_result_bytes_by_case": {
+      "risk": 19255,
+      "positive": 67628,
+      "constrained": 46022,
+      "provenance": 5681
+    },
+    "schema_bytes_by_intent": {
+      "resilience-summary": 1660,
+      "network-risk": 4997,
+      "emergency-planning": 7843,
+      "provenance": 1265,
+      "follow-up-plan": 1496,
+      "plan-review": 1777
+    },
+    "token_estimate_method": "characters / 4; estimates are not Gemini token counts"
+  },
+  "resume_invalidated": [],
+  "provider_requests": 3,
+  "daily_ledger_used": 10,
+  "daily_provider_requests_per_model": {
+    "legacy-unattributed": 7,
+    "gemini-3.8-flash": 1,
+    "gemini-3.7-flash": 1,
+    "gemini-3.6-flash": 1
+  },
+  "expected_provider_requests_this_run": 1,
+  "local_tool_calls": 2,
+  "retained_pass_cases": [],
+  "capabilities_accepted": []
+}

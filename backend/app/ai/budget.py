@@ -12,20 +12,24 @@ class RequestBudget:
             raise ValueError('Verification budget must be between 1 and 10')
         self.limit, self.ledger = limit, Path(ledger) if ledger else None
         self.used, self.lock = 0, RLock()
+        self.per_model = {}
         self.day = datetime.now(timezone.utc).date().isoformat()
         if self.ledger and self.ledger.exists():
             saved = json.loads(self.ledger.read_text(encoding='utf-8'))
             if saved['day'] == self.day:
                 self.used = int(saved['used'])
+                self.per_model = saved.get('per_model', {'legacy-unattributed':self.used} if self.used else {})
 
-    def consume(self):
+    def consume(self, model=None):
         with self.lock:
             if self.used >= self.limit:
                 raise CopilotError('quota_budget_exhausted_locally',
                     'Verification request budget exhausted locally; no provider request was sent.', 429)
             self.used += 1
+            label=model or 'unspecified'
+            self.per_model[label]=self.per_model.get(label,0)+1
             if self.ledger:
                 self.ledger.parent.mkdir(parents=True, exist_ok=True)
                 temp = self.ledger.with_suffix('.tmp')
-                temp.write_text(json.dumps({'day':self.day, 'used':self.used}), encoding='utf-8')
+                temp.write_text(json.dumps({'day':self.day, 'used':self.used, 'per_model':self.per_model}), encoding='utf-8')
                 temp.replace(self.ledger)

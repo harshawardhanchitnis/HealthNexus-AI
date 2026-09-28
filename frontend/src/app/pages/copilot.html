@@ -2,10 +2,11 @@
   <h1>Resilience Copilot</h1><p>Ask an operational question. Inspect the engines, evidence and remaining gaps.</p></div>
   <button class="button secondary" (click)="reset()" [disabled]="busy()">New conversation</button></div>
 <section class="panel copilot-status">
-  <div><strong>{{ mode === 'offline' ? 'OFFLINE — deterministic local summaries' : 'Gemini 3.8 Flash' }}</strong>
+  <div><strong>{{ mode === 'offline' ? 'OFFLINE — deterministic local summaries' : modelLabel(latestModel()) }}</strong>
+    @if (mode === 'gemini' && fallbackActive()) { <p>Fallback active — primary temporarily unavailable</p> }
     @if (status(); as s) { <p>{{ s.setup }}</p><small>Runtime: {{ s.runtime_status }} · No physical transfers are executed.</small> }
   </div>
-  @if (mode === 'gemini' && status()?.configuration_status !== 'configured') {
+  @if (mode === 'gemini') {
     <button class="button secondary" (click)="offline()" [disabled]="busy()">Use offline summaries</button>
   }
 </section>
@@ -73,6 +74,11 @@
           @for (evidence of item.response.evidence; track $index) {<div class="evidence-row"><strong>{{ evidence.tool }} · {{ evidence.profile }}</strong><code>{{ evidence.evidence_id }} / {{ evidence.field }}</code><pre>{{ evidence.value | json }}</pre></div>}
         </details>
         <details><summary>Tool activity & provenance</summary><ol>@for (tool of item.response.tools_used; track $index) {<li>{{ label(tool.tool) }} · {{ tool.status }} · {{ tool.seconds | number:'1.2-2' }} s<p>{{ tool.summary }}</p></li>}</ol>
+          @if (item.response.metadata.model_attempts?.length) {
+            <p>Provider model trace</p><ol>@for (attempt of item.response.metadata.model_attempts; track $index) {
+              <li>{{ modelLabel(attempt.model) }} · {{ attempt.http_status || attempt.status }} · {{ attempt.seconds | number:'1.2-2' }} s</li>
+            }</ol>
+          }
           <p>Gemini network: {{ item.response.metadata.gemini_network_seconds | number:'1.2-2' }} s · Tools: {{ item.response.metadata.tool_seconds | number:'1.2-2' }} s</p>
           <small>Model: {{ item.response.metadata.model || 'No model call — offline' }} · {{ item.response.context.profile }}</small>
           <details><summary>Bounded structured source results</summary><pre>{{ item.response.operational_results | json }}</pre></details>
@@ -82,6 +88,11 @@
     }
     @if (busy()) { <section class="panel activity" aria-live="polite"><strong>{{ phase() }}</strong><ol>@for (tool of trace(); track $index) {<li>{{ label(tool.tool) }} · {{ tool.status }}</li>}</ol></section> }
     @if (error()) { <div class="panel error-message" role="alert">{{ error() }}</div> }
+    @if ((busy() || error()) && modelAttempts().length) {
+      <details class="panel"><summary>Provider availability trace</summary><ol>@for (attempt of modelAttempts(); track $index) {
+        <li>{{ modelLabel(attempt.model) }} · {{ attempt.http_status || attempt.status }} · {{ attempt.seconds | number:'1.2-2' }} s</li>
+      }</ol></details>
+    }
     <form class="panel composer" (ngSubmit)="send()">
       <label for="copilot-message">Operational question</label><textarea id="copilot-message" name="message" [(ngModel)]="message" maxlength="2000" rows="4" [disabled]="busy()" placeholder="Ask about shortages, forecasts, scenario pressures or safe redistribution…"></textarea>
       <label class="check"><input type="checkbox" name="planning" [(ngModel)]="allowPlanning" [disabled]="busy()" />Allow non-destructive simulations and optimizer plans</label>

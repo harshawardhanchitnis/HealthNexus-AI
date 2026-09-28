@@ -90,3 +90,7 @@ Default new report is `docs/evaluation/phase6-budget-live.json`; old live report
 The ready severe Pune scenario remains 41,763 target / 17,745 safe capacity / 15,679 transferred inventory items over 10 lanes / 26,084 unresolved. Expected unmet demand falls from 27,655.2181 to 17,378.1980; donor risks/violations remain zero. Critical resource warnings fall from 7 to 0, but maximum conditional stock-out risk remains 100%. OR-Tools and greedy tie. Constrained remains **30,230 unresolved, zero safe capacity and zero transfers**, correctly OPTIMAL under the constraints. Baseline/profile data remains immutable.
 
 Phase 6 revised live acceptance is ready for the next authorized quota window, not yet passed. Phase 7 remains deferred.
+
+## Failover extension — 28 September 2026
+
+The preceding measurements describe the historical efficiency change. Current configuration v4 adds the five-model chain and model-aware ledger while keeping the same global ten-request daily ceiling. Three new live attempts (3.8, 3.7, 3.6; one each) returned 503 and exhausted the remaining local allowance. No reset/key/billing change occurred. Completed PASS still requires material identity compatibility including chain/config and credentials. The current resilience smoke is one schema interpretation after two fresh audited local reads. [Current failover report](phase6-failover-report.md).

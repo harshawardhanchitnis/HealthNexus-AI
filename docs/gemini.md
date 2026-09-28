@@ -1,10 +1,10 @@
 # Resilience Copilot — Phase 6
 
-Implemented in the existing repository on 28 September 2026. A server key is configured locally; earlier live checks proved exact-model access and native function calling. **Final live acceptance remains pending because the 20-RPD Free Tier quota was exhausted.** The revised eight-request acceptance matrix is verified only with mocks/local engines. No live calls were made during this efficiency work. See [budget, resume and measured reductions](phase6-budget-report.md).
+HealthNexus uses Gemini 3.8 Flash as its primary reasoning model with Gemini Flash-family availability failover. All five candidates pass deterministic protocol/grounding tests; successful live fallback interpretation is still unverified. The latest automatic live chain received three HTTP 503 HIGH DEMAND responses before the retained daily verification ceiling stopped further requests. See [current failover evidence](phase6-failover-report.md).
 
 ## Model, SDK and setup
 
-The exact model is `gemini-3.8-flash`, using `google-genai==2.25.0` and `from google import genai`. Google lists this model's function calling, structured output and thinking support on its [model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash). The application uses the recommended [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview), native function declarations and `previous_interaction_id`. Default thinking is `medium`; `low` is also accepted. Prompt version: `healthnexus-system-v3`; configuration: `copilot-config-v2`.
+The preferred primary model is `gemini-3.8-flash`, using `google-genai==2.25.0` and `from google import genai`. Google lists this model's function calling, structured output and thinking support on its [model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash). The application uses the recommended [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview), native function declarations and `previous_interaction_id`. Default thinking is `medium`; `low` is also accepted. Prompt version: `healthnexus-system-v3`; configuration: `copilot-config-v4-failover`.
 
 The SDK requires Pydantic 2.12.5 or newer. Requirements pin `pydantic==2.13.5`; all 156 existing tests pass with that upgrade. No retraining or profile regeneration is required.
 
@@ -15,11 +15,14 @@ Install backend requirements and set values in the ignored repository `.env` or 
 ```dotenv
 GEMINI_API_KEY=YOUR_SERVER_SIDE_KEY
 GEMINI_MODEL=gemini-3.8-flash
+GEMINI_MODEL_PRIMARY=gemini-3.8-flash
+GEMINI_MODEL_FALLBACKS=gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini-3.5-flash-lite
+GEMINI_FAILOVER_ENABLED=true
 GEMINI_ENABLED=true
 GEMINI_THINKING_LEVEL=medium
 ```
 
-Restart the backend. Never put keys in Angular, browser configuration, URLs or committed files. Status exposes only a configured boolean and safe labels. No startup inference call occurs. Any other configured model is rejected; runtime 404 becomes `model_unavailable`, without substitution. Missing configuration, configured-but-untried and runtime outcomes remain distinct.
+Restart the backend. Never put keys in Angular, browser configuration, URLs or committed files. Status exposes only a configured boolean and safe labels. No startup inference call occurs. Only the five approved stable Flash-family models are accepted. Primary configuration takes precedence over legacy GEMINI_MODEL; absent new settings, the documented five-model chain is used. The actual ignored .env is never edited by the failover implementation. Missing configuration, configured-but-untried and runtime outcomes remain distinct.
 
 ## Architecture and tools
 
@@ -63,7 +66,7 @@ Interactions use Google's stored history. Provider retention is separate: see [G
 
 Messages: 2,000 characters. Model output: 2,400 tokens per interaction. Tools: maximum 28,000 JSON characters, usually smaller. Facilities/candidates, warnings, transfer and receiver-risk detail are explicitly limited/paginated. No 540-day histories, fitted artifacts, 500 paths or complete national projections are sent. Oversized shaped results request a narrower scope.
 
-Provider timeout is 25 seconds. SDK retries are disabled; the application permits one retry after 250 ms for 502/503 only. Auth, invalid configuration, quota, malformed responses and other errors are not retried. The 120-second deadline is cooperative between calls/tools: an executing deterministic service is not forcibly terminated. Existing solver time bounds remain. Tool time and provider network time are recorded separately. Usage is copied from provider fields; cost/pricing is not fabricated.
+Provider timeout is 60 seconds. SDK retries are disabled. With failover enabled, each model gets one bounded attempt before an eligible availability failure advances the chain. With failover disabled, the legacy single bounded 502/503 retry remains. Authentication and application/grounding failures never trigger model switching. The 300-second deadline is cooperative between calls/tools: an executing deterministic service is not forcibly terminated. Existing solver time bounds remain. Tool time and provider network time are recorded separately. Usage is copied from provider fields; cost/pricing is not fabricated.
 
 Safe errors cover missing/invalid key, disabled configuration, unavailable model, timeout, quota, malformed calls/arguments, stale scenario/profile, unavailable artifacts, invalid evidence and response schema. Failed Gemini requests remain failures; no automatic offline substitution occurs. The UI polls context-scoped progress every 900 ms and shows actual tool states. Fast requests may finish before the first poll; completed traces remain visible.
 
@@ -84,8 +87,31 @@ Most tests use scripted Gemini transport: sequential calls, schemas, whitelist, 
 
 Default verification uses positive planning, its same-conversation donor follow-up, a locally prepared constrained fixture's interpretation and combined provenance/reliability. Mock expectation is eight provider requests. The persistent live daily ledger caps attempts at ten including retries; `GEMINI_DAILY_VERIFICATION_BUDGET` can lower that cap. `--case positive|constrained|provenance`, `--resume` and versioned per-case PASS evidence avoid rerunning compatible checks. A local budget denial sends no request. The report separates provider requests, local tools and fixture setup. See [full strategy, identity/invalidation, rate handling and commands](phase6-budget-report.md).
 
-237 tests pass: all previous 210 plus 27 quota/protocol cases. Compilation, dependency checks, strict TypeScript and production build pass. New [mock](evaluation/phase6-budget-mock.json) and [offline](evaluation/phase6-budget-offline.json) acceptance pass. Mock responses carry `transport: mock`; they are not real Gemini evidence. Earlier [live partial evidence](evaluation/phase6-live-acceptance.json) is preserved; final grounded live answers, revised protocol and complete acceptance remain pending quota reset.
+281 tests pass: the previous 237 plus 44 failover cases. Compilation, dependency checks, strict TypeScript and production build pass. New [mock](evaluation/phase6-budget-mock.json) and [offline](evaluation/phase6-budget-offline.json) acceptance pass. Mock responses carry `transport: mock`; they are not real Gemini evidence. Earlier [live partial evidence](evaluation/phase6-live-acceptance.json) is preserved; final grounded live answers, revised protocol and complete acceptance remain pending successful live provider availability and verification budget.
 
 The ready Pune tools reproduce 41,763 target, 17,745 safe capacity, 15,679 transferred accounting items / 10 lanes and 26,084 unresolved, with zero donor risks/violations. Constrained remains 30,230 unresolved / zero capacity / zero transfers. OR-Tools and greedy tie. IVF/PCM retain shortage and 100% conditional 14-day risk; AMX/IFA/ORS risk improves to zero. These values come from the unchanged engines and are absent from the system prompt.
 
 See [Phase 6 report](phase6-report.md) for earlier browser/performance evidence and [the efficiency report](phase6-budget-report.md) for current verification. No FedAvg is implemented. Phase 7 remains deferred until Phase 6 acceptance is completed.
+
+## Availability failover
+
+Exact default order: **gemini-3.8-flash → gemini-3.7-flash → gemini-3.6-flash → gemini-3.5-flash → gemini-3.5-flash-lite**. There is no 3.1/2.5/Pro/preview/non-Google fallback. Every candidate uses the same project/key, registry, strict tool schemas, local engines and claim validation. All use medium thinking for acceptance, supported by [official thinking documentation](https://ai.google.dev/gemini-api/docs/thinking). No model-specific answer templates or calculations are introduced.
+
+Eligible triggers are 503/high demand, bounded provider timeout, explicitly unavailable configured model endpoint (404), and a classified RPM/TPM/RPD 429 whose quota violations all explicitly identify the current model. Ambiguous/project-wide 429, missing interaction 404, 401/403, 400, bad schema/evidence, clinical refusal, incompatible geography/profile and local tool failures remain visible failures. All eligible models unavailable returns provider_unavailable_all_models; a local budget refusal retains quota_budget_exhausted_locally. Offline mode is always explicit.
+
+Model switching starts a fresh interaction without foreign previous_interaction_id or function-result call IDs. A bounded (120 kB UTF-8) handoff contains validated context, current scenario/plan IDs and compact current-request evidence. Full local objects stay unchanged. The successful model remains sticky within the conversation. A new conversation normally tries primary again. Known model-specific quota exhaustion is held in a process-local circuit: RPD until next Pacific midnight, RPM/TPM for at least 60 seconds or the supplied delay. This does not claim remaining quota; AI Studio remains authoritative. Google documents [project quotas and model-specific limits](https://ai.google.dev/gemini-api/docs/rate-limits).
+
+Two repeated schema/evidence/grounding failures mark a model UNSUITABLE_FOR_HEALTHNEXUS in this process and exclude it from automatic selection. The failing request is not retried on another model. Status and response metadata expose exclusions. This is a limited process-local quality guard, not live quality certification or a durable production registry.
+
+Answers/progress/audit include requested/effective model, attempted chain, reasons, handoffs, requests/interactions/failures/timings per model. Effective model is null when no interaction succeeded; selected_model separately identifies the candidate. The UI displays the actual answering model, a subtle fallback indicator and provider trace. No hidden reasoning, headers or secrets are exposed. Resilience-status summaries use two audited fresh server-prefetch tools and one schema-only interpretation request; positive planning retains native function calling.
+
+Verifier attempts across all models share the same persistent ten-request ceiling. Old ledger counts remain as legacy-unattributed rather than inventing per-model attribution. Model chain/config/implementation identity participates in PASS invalidation; resumed donor follow-up retains the saved effective model.
+
+```powershell
+# First live smoke, only within the retained available budget:
+.\.venv\Scripts\python.exe scripts\verify_gemini.py --live --case resilience --resume
+# Only after smoke PASS and when budget permits:
+.\.venv\Scripts\python.exe scripts\verify_gemini.py --live --acceptance --resume
+```
+
+[Measured failover report](phase6-failover-report.md) distinguishes scripted compatibility from live 503 evidence. Phase 6 remains incompletely accepted; Phase 7 has not started.

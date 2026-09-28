@@ -8,7 +8,7 @@ A real-data-backed healthcare resilience prototype combining public health stati
 
 ## Resilience Copilot — Phase 6 implementation
 
-**Resilience Copilot** adds the official `google-genai==2.25.0` Interactions integration for exactly `gemini-3.8-flash`, thirteen validated tools, server-owned intent subsets, typed evidence and actual tool activity. Select **Use offline summaries** for labelled deterministic demonstrations. [Setup](docs/gemini.md) · [Phase 6 report](docs/phase6-report.md) · [Eight-request acceptance and resume](docs/phase6-budget-report.md). **Earlier live model/native-call checks passed, but final acceptance is pending daily quota reset. Mock/offline results are separate evidence. Phase 7 remains deferred.**
+**Resilience Copilot** uses official `google-genai==2.25.0` Interactions with Gemini 3.8 Flash primary and availability failover through 3.7 Flash, 3.6 Flash, 3.5 Flash and 3.5 Flash-Lite. Thirteen shared tools, typed evidence, safe local handoff and sticky conversations retain server-owned forecasts and OR-Tools results. The UI shows the effective model and explicit offline option. [Setup](docs/gemini.md) · [Failover evidence](docs/phase6-failover-report.md). **281 tests pass; live failover received three 503 responses before the retained budget stopped further sends. Successful live fallback acceptance remains pending. Phase 7 is deferred.**
 
 ## Preserved Phase 5.5 demonstrations
 

@@ -16,6 +16,7 @@ export class CopilotPage implements OnDestroy {
   message=''; mode:CopilotMode='gemini'; allowPlanning=false; compareProfiles=false;
   private conversation?:string; private signature=''; private active?:Subscription; private polling?:Subscription;
   private progress?:Subscription; private parameters:Subscription;
+  modelAttempts=signal<{model:string;status:string;http_status?:number;seconds:number}[]>([]);
   constructor() {
     this.refreshStatus();
     this.parameters=this.route.queryParamMap.subscribe(p=>{
@@ -30,7 +31,7 @@ export class CopilotPage implements OnDestroy {
   refreshStatus() { this.api.copilotStatus().subscribe({next:s=>this.status.set(s),error:()=>this.error.set('Copilot status is unavailable. Check the backend connection.')}); }
   clearLocal() {
     this.active?.unsubscribe();this.stopPolling();this.busy.set(false);this.conversation=undefined;
-    this.replies.set([]);this.trace.set([]);this.error.set('');this.allowPlanning=false;this.compareProfiles=false;
+    this.replies.set([]);this.trace.set([]);this.modelAttempts.set([]);this.error.set('');this.allowPlanning=false;this.compareProfiles=false;
   }
   reset() {
     if(this.conversation) this.api.discardConversation(this.conversation,this.context().country_id).subscribe({error:()=>{}});
@@ -47,13 +48,13 @@ export class CopilotPage implements OnDestroy {
   }
   send() {
     if(this.busy()||!this.message.trim()) return;
-    this.busy.set(true);this.error.set('');this.trace.set([]);this.phase.set('Checking context…');
+    this.busy.set(true);this.error.set('');this.trace.set([]);this.modelAttempts.set([]);this.phase.set('Checking context…');
     const question=this.message.trim(), rid=crypto.randomUUID(), context=this.context();
     const body={...context,message:question,mode:this.mode,allow_planning:this.allowPlanning,compare_profiles:this.compareProfiles,
       request_id:rid,conversation_id:this.conversation};
     this.polling=interval(900).subscribe(()=>{
       this.progress?.unsubscribe();
-      this.progress=this.api.copilotProgress(rid,context.country_id).subscribe({next:p=>{this.phase.set(p.phase);this.trace.set(p.tools);},error:()=>{}});
+      this.progress=this.api.copilotProgress(rid,context.country_id).subscribe({next:p=>{this.phase.set(p.phase);this.trace.set(p.tools);this.modelAttempts.set(p.model_attempts||[]);},error:()=>{}});
     });
     this.active=this.api.copilot(body).subscribe({next:response=>{
       this.stopPolling();this.busy.set(false);this.conversation=response.conversation_id||undefined;
@@ -62,6 +63,7 @@ export class CopilotPage implements OnDestroy {
       this.refreshStatus();
     },error:e=>{
       this.stopPolling();this.busy.set(false);const detail=e.error?.detail;
+      this.modelAttempts.set(detail?.metadata?.model_attempts||[]);
       this.error.set(typeof detail==='object'&&detail?.message?detail.message:'Copilot request failed. Check selected context and server configuration.');
       this.refreshStatus();
     }});
@@ -76,5 +78,8 @@ export class CopilotPage implements OnDestroy {
       district_id:reply.context.district_id,scenario_id:reply.scenario_id,run_id:reply.optimization_run_id};
   }
   label(tool:string) { return tool.replace(/_/g,' '); }
+  modelLabel(model?:string|null) { return (model||this.status()?.model||'gemini-3.8-flash').replace('gemini-','Gemini ').replace('-flash-lite',' Flash-Lite').replace('-flash',' Flash'); }
+  latestModel() { return this.replies().at(-1)?.response.metadata.effective_model || this.status()?.model; }
+  fallbackActive() { return !!this.replies().at(-1)?.response.metadata.fallback_used; }
   ngOnDestroy() { this.active?.unsubscribe();this.stopPolling();this.parameters.unsubscribe(); }
 }
