@@ -75,6 +75,8 @@ class CopilotService:
         if not self.capacity.acquire(blocking=False):
             raise CopilotError('busy','Two Copilot workflows are active. Retry shortly.',429)
         cid, row, transport, owned = None, None, None, False
+        timing={'gemini_network_seconds':0.,'tool_seconds':0.}
+        usages=[];interaction_count=0;provider_requests=0;interaction_ids=[]
         try:
             executor = ToolExecutor(repository,self.engine,self.planner,request)
             snapshot = executor.snapshot(request.profile)
@@ -114,8 +116,7 @@ class CopilotService:
                 executor.latest_scenario=request.scenario_id;executor.latest_plan=request.optimization_run_id
                 self.requests[rid]={'request_id':rid,'conversation_id':cid,'country_id':request.country_id,
                     'profile':request.profile,'status':'running','phase':'Checking context','tools':[]}
-            traces, records, usages = [], {}, []
-            timing={'gemini_network_seconds':0.,'tool_seconds':0.}
+            traces, records = [], {}
             def execute(name,args):
                 if len(traces)>=self.config.max_calls:
                     raise CopilotError('tool_limit','Copilot tool-call limit reached. Narrow the question.',422)
@@ -166,22 +167,23 @@ class CopilotService:
                     with self.lock: self.requests[rid]['phase']='Gemini selecting tools / preparing explanation'
                     body={'model':self.config.model,'input':input_data,'system_instruction':SYSTEM,
                         'tools':declarations(),'store':True,
-                        'generation_config':{'thinking_level':self.config.thinking,'max_output_tokens':self.config.max_output_tokens},
-                        'response_format':{'type':'text','mime_type':'application/json','schema':json_schema(DraftAnswer)}}
+                        'generation_config':{'thinking_level':self.config.thinking,'max_output_tokens':self.config.max_output_tokens}}
                     if previous: body['previous_interaction_id']=previous
                     began=perf_counter()
-                    response=transport.create(**body)
-                    timing['gemini_network_seconds']+=perf_counter()-began
+                    provider_requests+=1
+                    try: response=transport.create(**body)
+                    finally: timing['gemini_network_seconds']+=perf_counter()-began
+                    interaction_count+=1
                     self.runtime_status='runtime_successful'
                     previous=interaction_id=response.get('id')
                     if not previous:
                         raise CopilotError('response_invalid','Gemini returned no interaction identity.')
+                    interaction_ids.append(previous)
                     if response.get('usage'): usages.append(response['usage'])
                     calls=[s for s in response.get('steps',[]) if s.get('type')=='function_call']
                     if not calls:
-                        try: draft=DraftAnswer.model_validate_json(response.get('output_text',''))
-                        except (ValidationError,TypeError):
-                            raise CopilotError('response_schema','Gemini response failed the structured output schema.') from None
+                        if response.get('status')=='incomplete':
+                            raise CopilotError('response_incomplete','Gemini reached its response budget before finishing tool gathering.')
                         break
                     input_data=[]
                     for call in calls:
@@ -192,13 +194,39 @@ class CopilotService:
                             'result':[{'type':'text','text':json.dumps(output,ensure_ascii=False)}]})
                 else:
                     raise CopilotError('tool_limit','Copilot tool-call limit reached.',422)
+                if not records:
+                    raise CopilotError('tools_unavailable','Gemini did not retrieve fresh HealthNexus evidence.')
+                if perf_counter()-start>self.config.workflow_timeout:
+                    raise CopilotError('workflow_timeout','Copilot workflow time limit reached.',504)
+                # This live endpoint rejects custom tools together with response_format.
+                # Preserve native state, but request the schema in a separate tool-free turn.
+                with self.lock: self.requests[rid]['phase']='Gemini synthesizing verified evidence'
+                body={'model':self.config.model,'previous_interaction_id':previous,
+                    'input':json.dumps({'instruction':'Now produce the structured administrator answer using only fresh evidence from this request. Preserve remaining shortages and advisory-only status. Cite exact returned fields, not entire large objects.',
+                        'fresh_evidence':[{ 'evidence_id':eid,'tool':r['tool']} for eid,r in records.items()]}),
+                    'system_instruction':SYSTEM,'store':True,
+                    'generation_config':{'thinking_level':self.config.thinking,'max_output_tokens':self.config.max_output_tokens},
+                    'response_format':{'type':'text','mime_type':'application/json','schema':json_schema(DraftAnswer)}}
+                began=perf_counter();provider_requests+=1
+                try: response=transport.create(**body)
+                finally: timing['gemini_network_seconds']+=perf_counter()-began
+                interaction_count+=1
+                interaction_id=response.get('id')
+                if not interaction_id or response.get('status')=='incomplete':
+                    raise CopilotError('response_incomplete','Gemini did not finish structured synthesis within its response budget.')
+                interaction_ids.append(interaction_id)
+                if response.get('usage'):usages.append(response['usage'])
+                try: draft=DraftAnswer.model_validate_json(response.get('output_text',''))
+                except (ValidationError,TypeError):
+                    raise CopilotError('response_schema','Gemini response failed the structured output schema.') from None
             evidence=build_evidence(draft,records)
             results=[{'evidence_id':eid,'tool':r['tool'],'result':r['payload']} for eid,r in records.items()]
             response=CopilotResponse(request_id=rid,conversation_id=cid,mode=request.mode,answer=draft.situation.text,
                 **draft.model_dump(),context=Context.model_validate(request.model_dump(include=set(Context.model_fields))),
                 evidence=evidence,tools_used=traces,limitations=LIMITATIONS,
                 scenario_id=executor.latest_scenario,optimization_run_id=executor.latest_plan,
-                operational_results=results,metadata={**timing,'total_seconds':perf_counter()-start,'tool_calls':len(traces),
+                operational_results=results,metadata={**timing,'total_seconds':perf_counter()-start,'tool_calls':len(traces),'interaction_count':interaction_count,
+                    'provider_requests':provider_requests,'interaction_ids':interaction_ids,
                     'model':self.config.model if request.mode=='gemini' else None,'configured_model':self.config.model,
                     'sdk_version':'2.25.0','api':'Interactions',
                     'transport':'offline' if request.mode=='offline' else 'google-genai' if self.transport_factory is GeminiTransport else 'mock',
@@ -225,7 +253,10 @@ class CopilotService:
                     self.audit.append({'request_id':rid,'conversation_id':cid,'mode':request.mode,'status':error.code,
                         'country_id':request.country_id,'profile':request.profile,
                         'model':self.config.model if request.mode=='gemini' else None,
-                        'latency':perf_counter()-start,'tools':self.requests[rid]['tools']})
+                        'latency':perf_counter()-start,'tools':self.requests[rid]['tools'],
+                        'provider_diagnostic':getattr(error,'diagnostic',{}),'timings':timing,
+                        'interaction_count':interaction_count,'provider_requests':provider_requests,
+                        'interaction_ids':interaction_ids,'usage':usages})
             raise
         except Exception:
             with self.lock:

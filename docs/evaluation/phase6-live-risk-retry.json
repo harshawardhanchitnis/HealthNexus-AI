@@ -1,0 +1,125 @@
+{
+  "mode": "live",
+  "model": "gemini-3.8-flash",
+  "status": "failed",
+  "timestamp": "2026-09-28T06:49:49.943238+00:00",
+  "sdk_version": "2.25.0",
+  "api": "Interactions",
+  "thinking_level": "medium",
+  "selected_case": "risk",
+  "tests": [
+    {
+      "label": "risk",
+      "profile": "redistribution-ready",
+      "status": "failed",
+      "code": "rate_limited",
+      "seconds": 71.23826349999581,
+      "diagnostics": {
+        "request_id": "b248bf04-a64d-4c97-91dd-01b31c6f9dc4",
+        "conversation_id": "b8faeaaf-1873-4a21-b7c4-e2b54b071c5b",
+        "mode": "gemini",
+        "status": "rate_limited",
+        "country_id": "IN",
+        "profile": "redistribution-ready",
+        "model": "gemini-3.8-flash",
+        "latency": 71.2377972999966,
+        "tools": [
+          {
+            "tool": "get_network_summary",
+            "status": "success",
+            "seconds": 1.341486300007091,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e1"
+          },
+          {
+            "tool": "get_warning_summary",
+            "status": "success",
+            "seconds": 0.0055265999981202185,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e2"
+          },
+          {
+            "tool": "get_warnings",
+            "status": "success",
+            "seconds": 0.005506999994395301,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e3"
+          },
+          {
+            "tool": "get_facility_status",
+            "status": "success",
+            "seconds": 0.006683500003418885,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e4"
+          }
+        ],
+        "provider_diagnostic": {
+          "exception_type": "RateLimitError",
+          "http_status": 429,
+          "transport_attempts": 1
+        },
+        "timings": {
+          "gemini_network_seconds": 69.56812880000507,
+          "tool_seconds": 1.3592034000030253
+        },
+        "interaction_count": 3,
+        "provider_requests": 4,
+        "interaction_ids": [
+          "v1_ChdHdzY2YXI2S01xdVBqdU1QMW82Sy1RcxIXR3c2NmFyNktNcXVQanVNUDFvNkstUXM",
+          "v1_ChdHdzY2YXI2S01xdVBqdU1QMW82Sy1RcxIXTGc2NmFveW5Bcy0tanVNUGdheW44QTA",
+          "v1_ChdHdzY2YXI2S01xdVBqdU1QMW82Sy1RcxIXTlE2NmF1cnZDTXVpanVNUDVhYU44QTA"
+        ],
+        "usage": [
+          {
+            "input_tokens_by_modality": [
+              {
+                "modality": "text",
+                "tokens": 4205
+              }
+            ],
+            "total_cached_tokens": 0,
+            "total_input_tokens": 4205,
+            "total_output_tokens": 150,
+            "total_thought_tokens": 310,
+            "total_tokens": 4665,
+            "total_tool_use_tokens": 0
+          },
+          {
+            "cached_tokens_by_modality": [
+              {
+                "modality": "text",
+                "tokens": 12167
+              }
+            ],
+            "input_tokens_by_modality": [
+              {
+                "modality": "text",
+                "tokens": 15159
+              }
+            ],
+            "total_cached_tokens": 12167,
+            "total_input_tokens": 15159,
+            "total_output_tokens": 78,
+            "total_thought_tokens": 2331,
+            "total_tokens": 17568,
+            "total_tool_use_tokens": 0
+          },
+          {
+            "input_tokens_by_modality": [
+              {
+                "modality": "text",
+                "tokens": 20447
+              }
+            ],
+            "total_cached_tokens": 0,
+            "total_input_tokens": 20447,
+            "total_output_tokens": 7,
+            "total_thought_tokens": 213,
+            "total_tokens": 20667,
+            "total_tool_use_tokens": 0
+          }
+        ]
+      }
+    }
+  ]
+}

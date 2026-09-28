@@ -1,0 +1,50 @@
+{
+  "model": "gemini-3.8-flash",
+  "tests": [
+    {
+      "label": "tools_only",
+      "status": "passed",
+      "interaction_id": "v1_ChdFQXk2YXZ5SE02Q2xqdU1QdmU3SnlBURIXRUF5NmF2eUhNNkNsanVNUHZlN0p5QVE",
+      "response_status": "incomplete",
+      "step_types": [],
+      "usage": {
+        "input_tokens_by_modality": [
+          {
+            "modality": "text",
+            "tokens": 3602
+          }
+        ],
+        "total_cached_tokens": 0,
+        "total_input_tokens": 3602,
+        "total_output_tokens": 0,
+        "total_thought_tokens": 173,
+        "total_tokens": 3775,
+        "total_tool_use_tokens": 0
+      }
+    },
+    {
+      "label": "answer_schema_only",
+      "status": "passed",
+      "interaction_id": "v1_ChdHd3k2YW9takQ2VFpqdU1QLVBuRC1BMBIXR3d5NmFvbWpENlRaanVNUC1QbkQtQTA",
+      "response_status": "incomplete",
+      "step_types": [
+        "thought",
+        "model_output"
+      ],
+      "usage": {
+        "input_tokens_by_modality": [
+          {
+            "modality": "text",
+            "tokens": 45
+          }
+        ],
+        "total_cached_tokens": 0,
+        "total_input_tokens": 45,
+        "total_output_tokens": 6,
+        "total_thought_tokens": 118,
+        "total_tokens": 169,
+        "total_tool_use_tokens": 0
+      }
+    }
+  ]
+}

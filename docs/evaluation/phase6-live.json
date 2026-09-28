@@ -1,11 +1,44 @@
 {
   "mode": "live",
-  "status": "not_run",
-  "reason": "missing_server_api_key",
-  "timestamp": "2026-09-28T02:30:51.116403+00:00",
   "model": "gemini-3.8-flash",
+  "status": "failed",
+  "timestamp": "2026-09-28T06:54:55.706051+00:00",
   "sdk_version": "2.25.0",
-  "provider_requests": 0,
-  "usage": null,
-  "note": "Credential absence checked; no live model attempt or substitution."
+  "api": "Interactions",
+  "thinking_level": "medium",
+  "selected_case": null,
+  "tests": [
+    {
+      "label": "risk",
+      "profile": "redistribution-ready",
+      "status": "failed",
+      "code": "rate_limited",
+      "seconds": 4.6060165999952005,
+      "diagnostics": {
+        "request_id": "dec2e9d5-f4d8-4b88-83d4-ae9ce86f855c",
+        "conversation_id": "4d158916-ff5b-4487-b671-c350442eded4",
+        "mode": "gemini",
+        "status": "rate_limited",
+        "country_id": "IN",
+        "profile": "redistribution-ready",
+        "model": "gemini-3.8-flash",
+        "latency": 4.605506399995647,
+        "tools": [],
+        "provider_diagnostic": {
+          "exception_type": "RateLimitError",
+          "http_status": 429,
+          "transport_attempts": 1,
+          "provider_message": "Rate limit exceeded for model gemini-3.8-flash (limit: 20 requests per day on Free Tier). Please retry in 59s or upgrade your tier at https://ai.dev/rate-limit."
+        },
+        "timings": {
+          "gemini_network_seconds": 4.291327900005854,
+          "tool_seconds": 0.0
+        },
+        "interaction_count": 0,
+        "provider_requests": 1,
+        "interaction_ids": [],
+        "usage": []
+      }
+    }
+  ]
 }

@@ -1,0 +1,12 @@
+{
+  "mode": "live",
+  "model": "gemini-3.8-flash",
+  "status": "failed",
+  "tests": [
+    {
+      "label": "risk",
+      "status": "failed",
+      "code": "provider_configuration"
+    }
+  ]
+}

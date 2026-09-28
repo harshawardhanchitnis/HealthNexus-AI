@@ -49,6 +49,10 @@ def final(text='The selected network has resource risks.',field='summary.facilit
         'recommended_actions':[],'remaining_gaps':[]})}
 
 
+def ready():
+    return {'id':'evidence-ready','status':'completed','output_text':'Evidence ready.'}
+
+
 @pytest.mark.parametrize('name',list(TOOLS))
 def test_native_tool_declarations_strict(name):
     declaration=next(d for d in declarations() if d['name']==name)
@@ -77,7 +81,7 @@ def test_no_arbitrary_code_or_unauthorized_planning():
 def test_sequential_interactions_and_fresh_evidence(profiles):
     args={'country_id':'BR','profile':'redistribution-ready'}
     fake=Scripted([turn([call('get_network_summary',args)]),turn([call('get_warning_summary',args)],'interaction2'),
-        final('Structured warnings identify operational pressure.','summary.total','e2')])
+        ready(),final('Structured warnings identify operational pressure.','summary.total','e2')])
     svc,repo=service(profiles,lambda config:fake)
     result=svc.run(repo,request())
     assert [t.tool for t in result.tools_used]==['get_network_summary','get_warning_summary']
@@ -86,7 +90,10 @@ def test_sequential_interactions_and_fresh_evidence(profiles):
     assert fake.bodies[1]['input'][0]['call_id']=='c1'
     assert fake.bodies[2]['previous_interaction_id']=='interaction2'
     assert all(b['model']==MODEL and b['generation_config']['thinking_level']=='medium' for b in fake.bodies)
-    assert all(b['tools'] and b['response_format']['schema'] for b in fake.bodies)
+    assert all(b['tools'] and 'response_format' not in b for b in fake.bodies[:-1])
+    assert 'tools' not in fake.bodies[-1] and fake.bodies[-1]['response_format']['schema']
+    assert fake.bodies[-1]['previous_interaction_id']=='evidence-ready'
+    assert result.metadata['interaction_count']==4
     assert result.metadata['usage'][0]['total_tokens']==18
     assert fake.closed and result.metadata['tool_seconds']>0
     assert result.metadata['interaction_id']=='interaction-final'
@@ -99,7 +106,7 @@ def test_sequential_interactions_and_fresh_evidence(profiles):
 
 def test_bad_tool_call_can_be_corrected_without_execution(profiles):
     args={'country_id':'BR','profile':'redistribution-ready'}
-    fake=Scripted([turn([call('execute_transfer',args)]),turn([call('get_network_summary',args)],'i2'),final()])
+    fake=Scripted([turn([call('execute_transfer',args)]),turn([call('get_network_summary',args)],'i2'),ready(),final()])
     svc,repo=service(profiles,lambda config:fake)
     result=svc.run(repo,request())
     assert result.tools_used[0].status=='error' and result.tools_used[1].status=='success'
@@ -124,7 +131,8 @@ def test_tool_limit_bounds_loop(profiles):
 ])
 def test_invalid_model_outputs_are_rejected(profiles,response,code):
     args={'country_id':'BR','profile':'redistribution-ready'}
-    fake=Scripted([turn([call('get_network_summary',args)]),response])
+    responses=[turn([call('get_network_summary',args)]),response] if code=='malformed_tool_call' else [turn([call('get_network_summary',args)]),ready(),response]
+    fake=Scripted(responses)
     svc,repo=service(profiles,lambda config:fake)
     with pytest.raises(CopilotError) as error: svc.run(repo,request())
     assert error.value.code==code
@@ -223,11 +231,14 @@ def test_official_sdk_wire_payload_without_api_cost(monkeypatch):
     transport.client.close()
     transport.client=genai.Client(api_key='unit-test-placeholder',http_options=types.HttpOptions(
         client_args={'transport':httpx.MockTransport(handle)},retry_options=types.HttpRetryOptions(attempts=1)))
-    result=transport.create(model=MODEL,input='Test schema only',store=True,tools=declarations(),system_instruction='Test',
-        generation_config={'thinking_level':'medium','max_output_tokens':2400},
+    result=transport.create(model=MODEL,input='Test tools only',store=True,tools=declarations(),system_instruction='Test',
+        generation_config={'thinking_level':'medium','max_output_tokens':2400})
+    transport.create(model=MODEL,input='Test schema only',previous_interaction_id=result['id'],store=True,
         response_format={'type':'text','mime_type':'application/json','schema':DraftAnswer.model_json_schema()})
     transport.close()
     assert result['id']=='wire-test' and requests[0]['model']==MODEL and len(requests[0]['tools'])==13
+    assert 'response_format' not in requests[0] and 'tools' not in requests[1]
+    assert requests[1]['previous_interaction_id']=='wire-test' and requests[1]['response_format']['schema']
 
 
 @pytest.mark.parametrize('status,retries',[(503,2),(502,2),(429,1),(401,1),(400,1)])
@@ -257,11 +268,11 @@ def test_workflow_timeout_and_busy_context_are_bounded(profiles):
 
 def test_conversation_state_reuses_interaction_but_refreshes_tools(profiles):
     args={'country_id':'BR','profile':'redistribution-ready'}
-    fake=Scripted([turn([call('get_network_summary',args)]),final(),
-        turn([call('get_network_summary',args)],'fresh-interaction'),final()])
+    fake=Scripted([turn([call('get_network_summary',args)]),ready(),final(),
+        turn([call('get_network_summary',args)],'fresh-interaction'),ready(),final()])
     svc,repo=service(profiles,lambda config:fake)
     first=svc.run(repo,request());second=svc.run(repo,request(conversation_id=first.conversation_id))
-    assert fake.bodies[2]['previous_interaction_id']=='interaction-final'
+    assert fake.bodies[3]['previous_interaction_id']=='interaction-final'
     assert len(second.tools_used)==1 and len(second.evidence)==1
     assert second.metadata['transport']=='mock'
 
@@ -280,3 +291,29 @@ def test_stale_scenario_rejected_by_tool_wrapper(profiles):
         stored=svc.engine.store.results[s['scenario_id']]
         stored.scenario.baseline_snapshot_id='stale'
     with pytest.raises(ValueError):executor.execute('get_scenario_comparison',{**args,'scenario_id':s['scenario_id']})
+
+
+@pytest.mark.parametrize('stage',['gathering','synthesis'])
+def test_incomplete_provider_response_is_not_a_valid_answer(profiles,stage):
+    args={'country_id':'BR','profile':'redistribution-ready'}
+    incomplete={'id':'budget-stop','status':'incomplete','output_text':'Partial answer'}
+    turns=[turn([call('get_network_summary',args)])]
+    if stage=='synthesis':turns.append(ready())
+    turns.append(incomplete)
+    svc,repo=service(profiles,lambda config:Scripted(turns))
+    with pytest.raises(CopilotError) as error:svc.run(repo,request())
+    assert error.value.code=='response_incomplete'
+
+
+def test_wrapped_timeout_and_safe_provider_diagnostics(monkeypatch):
+    transport=GeminiTransport(AIConfig(api_key='unit-test-placeholder'))
+    class WrappedTimeout(Exception):pass
+    def failing(**body):
+        try:raise httpx.ReadTimeout('unit-test-placeholder')
+        except httpx.ReadTimeout as cause:raise WrappedTimeout('No private details') from cause
+    monkeypatch.setattr(transport.client.interactions,'create',failing)
+    with pytest.raises(CopilotError) as error:transport.create(model=MODEL,input='Test')
+    transport.close()
+    assert error.value.code=='provider_timeout'
+    assert error.value.diagnostic['exception_type']=='WrappedTimeout'
+    assert 'unit-test-placeholder' not in str(error.value.diagnostic)

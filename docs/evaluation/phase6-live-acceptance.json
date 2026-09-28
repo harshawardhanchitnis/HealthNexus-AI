@@ -1,0 +1,280 @@
+{
+  "timestamp": "2026-09-28T07:00:03.477762+00:00",
+  "status": "blocked_provider_daily_quota",
+  "fully_accepted": false,
+  "phase7_started": false,
+  "configuration": {
+    "model": "gemini-3.8-flash",
+    "sdk": "google-genai",
+    "sdk_version": "2.25.0",
+    "api": "Interactions",
+    "enabled": true,
+    "configured": true,
+    "configuration_status": "configured",
+    "runtime_status": "not_attempted",
+    "thinking_level": "medium",
+    "offline_available": true,
+    "offline_label": "OFFLINE \u2014 deterministic local summaries",
+    "system_prompt_version": "healthnexus-system-v2",
+    "config_version": "copilot-config-v1",
+    "setup": "Configured; availability is confirmed only by a successful runtime request."
+  },
+  "real_minimal_request": "passed",
+  "real_native_tool_execution": "passed",
+  "real_structured_final_response": "not_verified",
+  "actual_most_advanced_tool_sequence": [
+    "get_network_summary",
+    "get_warning_summary",
+    "get_warnings",
+    "get_facility_status"
+  ],
+  "successful_interactions_in_that_attempt": 3,
+  "provider_requests_in_that_attempt": 4,
+  "performance_for_that_failed_attempt": {
+    "gemini_network_seconds": 69.56812880000507,
+    "tool_seconds": 1.3592034000030253,
+    "total_seconds": 71.2377972999966,
+    "reported_usage_from_successful_interactions_only": {
+      "total_input_tokens": 39811,
+      "total_output_tokens": 235,
+      "total_thought_tokens": 2854,
+      "total_tokens": 42900
+    },
+    "failed_request_usage": "not_reported",
+    "cost": "not_calculated"
+  },
+  "latest_verifier": {
+    "mode": "live",
+    "model": "gemini-3.8-flash",
+    "status": "failed",
+    "timestamp": "2026-09-28T06:54:55.706051+00:00",
+    "sdk_version": "2.25.0",
+    "api": "Interactions",
+    "thinking_level": "medium",
+    "selected_case": null,
+    "tests": [
+      {
+        "label": "risk",
+        "profile": "redistribution-ready",
+        "status": "failed",
+        "code": "rate_limited",
+        "seconds": 4.6060165999952005,
+        "diagnostics": {
+          "request_id": "dec2e9d5-f4d8-4b88-83d4-ae9ce86f855c",
+          "conversation_id": "4d158916-ff5b-4487-b671-c350442eded4",
+          "mode": "gemini",
+          "status": "rate_limited",
+          "country_id": "IN",
+          "profile": "redistribution-ready",
+          "model": "gemini-3.8-flash",
+          "latency": 4.605506399995647,
+          "tools": [],
+          "provider_diagnostic": {
+            "exception_type": "RateLimitError",
+            "http_status": 429,
+            "transport_attempts": 1,
+            "provider_message": "Rate limit exceeded for model gemini-3.8-flash (limit: 20 requests per day on Free Tier). Please retry in 59s or upgrade your tier at https://ai.dev/rate-limit."
+          },
+          "timings": {
+            "gemini_network_seconds": 4.291327900005854,
+            "tool_seconds": 0.0
+          },
+          "interaction_count": 0,
+          "provider_requests": 1,
+          "interaction_ids": [],
+          "usage": []
+        }
+      }
+    ]
+  },
+  "remaining_live_acceptance": [
+    "structured answer and evidence validation",
+    "positive scenario and authoritative numeric grounding",
+    "constrained zero-donor answer",
+    "provenance answer",
+    "forecast reliability answer",
+    "same-conversation donor follow-up",
+    "desktop/mobile live inference workflows"
+  ],
+  "local_engine_rechecks": {
+    "redistribution-ready": {
+      "verification_mode": "offline_actual_local_engines_not_live_gemini",
+      "safe_capacity": 17745,
+      "impact": {
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 26084,
+          "expected_unmet": 17378.197997959564,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 15679,
+        "percent_deficit_resolved": 37.5428010439863,
+        "critical_deficits_resolved": 2,
+        "critical_deficits_total": 5,
+        "facilities_protected": 0,
+        "donor_facilities_used": 2,
+        "transfer_count": 10,
+        "transferred_units": 15679,
+        "distance_km": 54.591838516215944,
+        "distance_weighted_units": 79247.99067343438,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-003:AMX": 0,
+          "IN-MH-PUNE-003:IFA": 0,
+          "IN-MH-PUNE-003:IVF": 2173,
+          "IN-MH-PUNE-003:ORS": 964,
+          "IN-MH-PUNE-003:PCM": 22947
+        },
+        "conservation": {
+          "PCM": {
+            "before": 22952,
+            "after": 22952
+          },
+          "IVF": {
+            "before": 2951,
+            "after": 2951
+          },
+          "ORS": {
+            "before": 5021,
+            "after": 5021
+          },
+          "AMX": {
+            "before": 7154,
+            "after": 7154
+          },
+          "IFA": {
+            "before": 9467,
+            "after": 9467
+          }
+        }
+      },
+      "live_scenario_id": null,
+      "live_optimization_id": null
+    },
+    "constrained": {
+      "verification_mode": "offline_actual_local_engines_not_live_gemini",
+      "safe_capacity": 0,
+      "impact": {
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 0,
+        "percent_deficit_resolved": 0.0,
+        "critical_deficits_resolved": 0,
+        "critical_deficits_total": 6,
+        "facilities_protected": 0,
+        "donor_facilities_used": 0,
+        "transfer_count": 0,
+        "transferred_units": 0,
+        "distance_km": 0.0,
+        "distance_weighted_units": 0.0,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-001:AMX": 21,
+          "IN-MH-PUNE-001:IFA": 23,
+          "IN-MH-PUNE-001:IVF": 242,
+          "IN-MH-PUNE-001:ORS": 94,
+          "IN-MH-PUNE-001:PCM": 2765,
+          "IN-MH-PUNE-002:AMX": 64,
+          "IN-MH-PUNE-002:IFA": 82,
+          "IN-MH-PUNE-002:IVF": 420,
+          "IN-MH-PUNE-002:ORS": 179,
+          "IN-MH-PUNE-002:PCM": 4754,
+          "IN-MH-PUNE-003:AMX": 349,
+          "IN-MH-PUNE-003:IFA": 463,
+          "IN-MH-PUNE-003:IVF": 1642,
+          "IN-MH-PUNE-003:ORS": 781,
+          "IN-MH-PUNE-003:PCM": 18351
+        },
+        "conservation": {
+          "PCM": {
+            "before": 20174,
+            "after": 20174
+          },
+          "IVF": {
+            "before": 2784,
+            "after": 2784
+          },
+          "ORS": {
+            "before": 4911,
+            "after": 4911
+          },
+          "AMX": {
+            "before": 6021,
+            "after": 6021
+          },
+          "IFA": {
+            "before": 7751,
+            "after": 7751
+          }
+        }
+      },
+      "live_scenario_id": null,
+      "live_optimization_id": null
+    }
+  },
+  "regressions": {
+    "backend_tests": 210,
+    "python_compilation": "passed",
+    "pip_check": "passed",
+    "mock_verifier": "passed",
+    "offline_verifier": "passed",
+    "original_five_snapshot_hashes": "unchanged",
+    "typescript": "passed",
+    "production_build": "passed"
+  },
+  "browser": {
+    "mode": "Gemini API configured",
+    "desktop": "configuration_only_checked",
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "document_width": 375,
+    "scroll_width": 375,
+    "inference_cases": "not_run_after_daily_quota_rejection",
+    "console_errors": []
+  },
+  "security": {
+    "env_ignored": true,
+    "env_tracked": false,
+    "env_modified_by_agent": false,
+    "billing_changed": false,
+    "model_substituted": false,
+    "files_scanned": 255,
+    "actual_secret_matches": 0,
+    "git_diff_secret_matches": false,
+    "frontend_bundles_checked": true,
+    "status_endpoint_contains_secret": false,
+    "screenshots": "Configuration-only UI, no key field displayed"
+  },
+  "protocol_change": "native tools first, then a separate tool-free structured synthesis using previous_interaction_id; validation unchanged; final live synthesis remains unverified",
+  "evidence_files": [
+    "phase6-live-minimal.json",
+    "phase6-live-combination-diagnostic.json",
+    "phase6-live-risk.json",
+    "phase6-live-risk-retry.json",
+    "phase6-live.json"
+  ]
+}

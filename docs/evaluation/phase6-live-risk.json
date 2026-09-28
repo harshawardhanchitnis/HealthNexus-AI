@@ -1,0 +1,42 @@
+{
+  "mode": "live",
+  "model": "gemini-3.8-flash",
+  "status": "failed",
+  "timestamp": "2026-09-28T06:45:38.830690+00:00",
+  "sdk_version": "2.25.0",
+  "api": "Interactions",
+  "thinking_level": "medium",
+  "selected_case": "risk",
+  "tests": [
+    {
+      "label": "risk",
+      "profile": "redistribution-ready",
+      "status": "failed",
+      "code": "provider_unavailable",
+      "seconds": 93.17446619999828,
+      "tools": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 1.538332600001013,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.007820300001185387,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        },
+        {
+          "tool": "get_warnings",
+          "status": "success",
+          "seconds": 0.0061483000026782975,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e3"
+        }
+      ]
+    }
+  ]
+}

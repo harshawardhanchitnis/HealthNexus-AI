@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "exception_type": "BadRequestError",
+  "http_status": 400,
+  "provider_message": "Request contains an invalid argument.",
+  "model": "gemini-3.8-flash"
+}

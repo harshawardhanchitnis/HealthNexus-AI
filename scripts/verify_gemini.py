@@ -4,6 +4,7 @@ import json
 import sys
 from pathlib import Path
 from time import perf_counter
+from datetime import datetime, timezone
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'backend'))
 from app.ai.config import AIConfig
 from app.ai.schemas import CopilotRequest
@@ -30,7 +31,7 @@ class DemoTransport:
                 self.sequence=['get_network_summary','run_emergency_scenario','get_scenario_comparison',
                     'get_warnings','get_redistribution_preview','optimize_redistribution']
             else: self.sequence=['get_network_summary','get_warnings']
-        else:
+        elif isinstance(body['input'],list):
             returned=json.loads(body['input'][0]['result'][0]['text'])
             if 'error' in returned: raise AssertionError(returned['error'])
             self.eid=returned['evidence_id'];self.payload=returned['result']
@@ -42,6 +43,8 @@ class DemoTransport:
             if name in ('get_redistribution_preview','optimize_redistribution'):args.update(scope='district',scenario_id=self.sid)
             return {'id':f'mock-interaction-{self.count}','steps':[{'type':'function_call',
                 'name':name,'arguments':args,'id':f'mock-call-{self.count}'}]}
+        if 'response_format' not in body:
+            return {'id':'mock-evidence-ready','status':'completed','output_text':'Evidence ready.'}
         if 'solver' in self.payload:
             text='OR-Tools proved an optimal recommendation under the configured constraints.'
             field='solver.status'
@@ -54,7 +57,7 @@ class DemoTransport:
     def close(self): pass
 
 
-def verify(mode, output):
+def verify(mode, output, case=None):
     config=AIConfig()
     if mode=='live' and config.error():
         report={'mode':'live','status':'not_run','reason':config.error()[0],'model':config.model}
@@ -67,7 +70,10 @@ def verify(mode, output):
         ('positive','redistribution-ready','Simulate severe dengue in Pune for 14 days and find the safest redistribution plan.',True),
         ('constrained','constrained','Simulate severe dengue in Pune for 14 days and find the safest redistribution plan.',True),
         ('provenance','constrained','Is this live government inventory?',False)]
-    report={'mode':mode,'model':config.model if mode!='offline' else None,'status':'passed','tests':[]}
+    if case: tests=[t for t in tests if t[0]==case]
+    report={'mode':mode,'model':config.model if mode!='offline' else None,'status':'passed',
+        'timestamp':datetime.now(timezone.utc).isoformat(),'sdk_version':'2.25.0','api':'Interactions',
+        'thinking_level':config.thinking if mode!='offline' else None,'selected_case':case,'tests':[]}
     for label,profile,message,planning in tests:
         before=repo.profile_snapshot('IN',profile).model_dump_json();began=perf_counter()
         try:
@@ -94,8 +100,10 @@ def verify(mode, output):
             report['tests'].append(entry)
             print(label,profile,'passed',round(entry['seconds'],3),[t.tool for t in response.tools_used],flush=True)
         except (CopilotError,AssertionError) as error:
-            report['status']='failed';report['tests'].append({'label':label,'status':'failed',
-                'code':error.code if isinstance(error,CopilotError) else 'accuracy_failure'})
+            report['status']='failed';report['tests'].append({'label':label,'profile':profile,'status':'failed',
+                'code':error.code if isinstance(error,CopilotError) else 'accuracy_failure',
+                'seconds':perf_counter()-began,'diagnostics':dict(service.audit[-1]) if service.audit else {}})
+            print(label,profile,'failed',report['tests'][-1]['code'],flush=True)
             break
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding='utf-8')
@@ -105,6 +113,8 @@ def verify(mode, output):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);group=p.add_mutually_exclusive_group(required=True)
     for mode in ('live','offline','mock'):group.add_argument('--'+mode,action='store_true')
-    p.add_argument('--output',type=Path);args=p.parse_args()
+    p.add_argument('--output',type=Path)
+    p.add_argument('--case',choices=['risk','positive','constrained','provenance'],help='Run one bounded workflow while diagnosing an integration failure')
+    args=p.parse_args()
     mode=next(m for m in ('live','offline','mock') if getattr(args,m))
-    sys.exit(verify(mode,args.output or Path(f'docs/evaluation/phase6-{mode}.json')))
+    sys.exit(verify(mode,args.output or Path(f'docs/evaluation/phase6-{mode}.json'),args.case))

@@ -2,15 +2,20 @@
   "mode": "offline",
   "model": null,
   "status": "passed",
+  "timestamp": "2026-09-28T06:53:36.075399+00:00",
+  "sdk_version": "2.25.0",
+  "api": "Interactions",
+  "thinking_level": null,
+  "selected_case": null,
   "tests": [
     {
       "label": "risk",
       "profile": "redistribution-ready",
       "status": "passed",
-      "seconds": 1.6865376000059769,
+      "seconds": 1.476660999993328,
       "response": {
-        "request_id": "231ee512-b060-4839-a176-0a15f495280f",
-        "conversation_id": "53e671ed-36a9-47af-93d4-d1e17325f625",
+        "request_id": "66adf257-83e5-4048-9b05-f1242ef3173a",
+        "conversation_id": "d5eea167-609e-4197-89bc-de43e6f29df0",
         "mode": "offline",
         "status": "completed",
         "answer": "The selected network has structured operational results. Review the verified facts and warning evidence below.",
@@ -42,14 +47,14 @@
           {
             "tool": "get_network_summary",
             "status": "success",
-            "seconds": 1.6143742999993265,
+            "seconds": 1.4184702999918954,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e1"
           },
           {
             "tool": "get_warnings",
             "status": "success",
-            "seconds": 0.01026830000046175,
+            "seconds": 0.006688800000119954,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e2"
           }
@@ -73,9 +78,12 @@
         "optimization_run_id": null,
         "metadata": {
           "gemini_network_seconds": 0.0,
-          "tool_seconds": 1.6246425999997882,
-          "total_seconds": 1.625809200006188,
+          "tool_seconds": 1.4251590999920154,
+          "total_seconds": 1.4261999000009382,
           "tool_calls": 2,
+          "interaction_count": 0,
+          "provider_requests": 0,
+          "interaction_ids": [],
           "model": null,
           "configured_model": "gemini-3.8-flash",
           "sdk_version": "2.25.0",
@@ -83,8 +91,8 @@
           "transport": "offline",
           "thinking_level": null,
           "interaction_id": null,
-          "timestamp": "2026-09-28T02:23:03.647748+00:00",
-          "system_prompt_version": "healthnexus-system-v1",
+          "timestamp": "2026-09-28T06:53:37.836651+00:00",
+          "system_prompt_version": "healthnexus-system-v2",
           "config_version": "copilot-config-v1",
           "usage": [],
           "model_versions": [
@@ -1195,10 +1203,10 @@
       "label": "positive",
       "profile": "redistribution-ready",
       "status": "passed",
-      "seconds": 0.39827630000945646,
+      "seconds": 0.36116739999852143,
       "response": {
-        "request_id": "40a66de6-8706-4833-9fff-226e93de0e50",
-        "conversation_id": "69c83685-22a7-47a8-9387-23cb5f63d8bd",
+        "request_id": "f0801e50-7974-4eaa-a453-6db03475685a",
+        "conversation_id": "0f958909-8b68-4fc0-a6ea-b44be9483851",
         "mode": "offline",
         "status": "completed",
         "answer": "OR-Tools proved an optimal recommendation under its configured constraints.",
@@ -1239,7 +1247,7 @@
             "evidence_id": "e6",
             "tool": "optimize_redistribution",
             "source_type": "optimize_redistribution",
-            "source_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+            "source_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
             "field": "solver.status",
             "value": "OPTIMAL",
             "profile": "redistribution-ready",
@@ -1249,7 +1257,7 @@
             "evidence_id": "e6",
             "tool": "optimize_redistribution",
             "source_type": "optimize_redistribution",
-            "source_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+            "source_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
             "field": "impact.transferred_units",
             "value": 15679,
             "profile": "redistribution-ready",
@@ -1259,7 +1267,7 @@
             "evidence_id": "e6",
             "tool": "optimize_redistribution",
             "source_type": "optimize_redistribution",
-            "source_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+            "source_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
             "field": "impact.after.target_deficit",
             "value": 26084,
             "profile": "redistribution-ready",
@@ -1270,42 +1278,42 @@
           {
             "tool": "get_network_summary",
             "status": "success",
-            "seconds": 0.008455599992885254,
+            "seconds": 0.012736600008793175,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e1"
           },
           {
             "tool": "run_emergency_scenario",
             "status": "success",
-            "seconds": 0.051869600007194094,
+            "seconds": 0.04270260001067072,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e2"
           },
           {
             "tool": "get_scenario_comparison",
             "status": "success",
-            "seconds": 0.014296200009994209,
+            "seconds": 0.014002799987792969,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e3"
           },
           {
             "tool": "get_warnings",
             "status": "success",
-            "seconds": 0.023169700012658723,
+            "seconds": 0.015507899996009655,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e4"
           },
           {
             "tool": "get_redistribution_preview",
             "status": "success",
-            "seconds": 0.11477590000140481,
+            "seconds": 0.10099489999993239,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e5"
           },
           {
             "tool": "optimize_redistribution",
             "status": "success",
-            "seconds": 0.13054379999812227,
+            "seconds": 0.11942920000001322,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e6"
           }
@@ -1325,13 +1333,16 @@
           "scenario_id": null,
           "optimization_run_id": null
         },
-        "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
-        "optimization_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+        "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
+        "optimization_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
         "metadata": {
           "gemini_network_seconds": 0.0,
-          "tool_seconds": 0.34311080002225935,
-          "total_seconds": 0.34429169999202713,
+          "tool_seconds": 0.30537400000321213,
+          "total_seconds": 0.30636249999224674,
           "tool_calls": 6,
+          "interaction_count": 0,
+          "provider_requests": 0,
+          "interaction_ids": [],
           "model": null,
           "configured_model": "gemini-3.8-flash",
           "sdk_version": "2.25.0",
@@ -1339,8 +1350,8 @@
           "transport": "offline",
           "thinking_level": null,
           "interaction_id": null,
-          "timestamp": "2026-09-28T02:23:04.111652+00:00",
-          "system_prompt_version": "healthnexus-system-v1",
+          "timestamp": "2026-09-28T06:53:38.241381+00:00",
+          "system_prompt_version": "healthnexus-system-v2",
           "config_version": "copilot-config-v1",
           "usage": [],
           "model_versions": [
@@ -1962,7 +1973,7 @@
                 "origin": "2026-09-27"
               },
               "scenario": {
-                "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                 "definition": {
                   "scenario_type": "DENGUE_SURGE",
                   "profile": "redistribution-ready",
@@ -1981,7 +1992,7 @@
                     "capacity_reduction": null
                   }
                 },
-                "created_at": "2026-09-28T02:23:03.811426Z",
+                "created_at": "2026-09-28T06:53:37.975246Z",
                 "status": "completed",
                 "baseline_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
                 "origin": "2026-09-27",
@@ -2004,7 +2015,7 @@
                 ],
                 "data_status": "simulated_operational_resilience"
               },
-              "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+              "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
               "model_versions": [
                 "forecast-v1-176a752efab3ae4e"
               ],
@@ -2345,7 +2356,7 @@
                 "origin": "2026-09-27"
               },
               "scenario": {
-                "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                 "definition": {
                   "scenario_type": "DENGUE_SURGE",
                   "profile": "redistribution-ready",
@@ -2364,7 +2375,7 @@
                     "capacity_reduction": null
                   }
                 },
-                "created_at": "2026-09-28T02:23:03.811426Z",
+                "created_at": "2026-09-28T06:53:37.975246Z",
                 "status": "completed",
                 "baseline_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
                 "origin": "2026-09-27",
@@ -2387,7 +2398,7 @@
                 ],
                 "data_status": "simulated_operational_resilience"
               },
-              "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+              "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
               "model_versions": [
                 "forecast-v1-176a752efab3ae4e"
               ],
@@ -2788,68 +2799,10 @@
               "model_versions": [
                 "forecast-v1-176a752efab3ae4e"
               ],
-              "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+              "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
               "items": [
                 {
-                  "warning_id": "1b98da374564742ac5ddcd87",
-                  "warning_type": "HIGH_STOCKOUT_RISK",
-                  "category": "medicine",
-                  "severity": "CRITICAL",
-                  "country_id": "IN",
-                  "state_id": "MH",
-                  "district_id": "MH-PUNE",
-                  "facility_id": "IN-MH-PUNE-003",
-                  "facility_name": "Pune · District Hospital 03",
-                  "resource_id": "PCM",
-                  "generated_at": "2026-09-28T02:23:03.808916Z",
-                  "forecast_origin": "2026-09-27",
-                  "horizon": 14,
-                  "current_value": null,
-                  "threshold": 0.2,
-                  "predicted_value": 1.0,
-                  "estimated_event_date": "2026-09-29",
-                  "model_based_probability": 1.0,
-                  "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
-                  "explanation_factors": [
-                    {
-                      "factor": "days_of_cover",
-                      "value": 1.8041067501457762,
-                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
-                    },
-                    {
-                      "factor": "requested_demand",
-                      "value": 31273.094009232616,
-                      "description": "Model-derived 14-day requested demand in tablets."
-                    },
-                    {
-                      "factor": "stockout_risk_7d",
-                      "value": 1.0,
-                      "description": "Fraction of paired residual paths reaching zero within seven days."
-                    },
-                    {
-                      "factor": "risk_horizon_days",
-                      "value": 3.0,
-                      "description": "Severity uses 3-day 80%, 7-day 50%, then 14-day 20% thresholds."
-                    }
-                  ],
-                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
-                  "provenance": {
-                    "operational_profile": "redistribution-ready",
-                    "profile_version": "inventory-profile-v1",
-                    "config_version": "resilience-v1",
-                    "is_synthetic": true,
-                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
-                    "baseline_model": "hist_gradient_boosting",
-                    "uncertainty": "conditional_on_scenario"
-                  },
-                  "model_version": "forecast-v1-176a752efab3ae4e",
-                  "priority_score": 352.1429,
-                  "baseline_severity": "WATCH",
-                  "transition": "worsened"
-                },
-                {
-                  "warning_id": "237f36459360641da30280aa",
+                  "warning_id": "063cb372453631ea5432af5f",
                   "warning_type": "PREDICTED_STOCKOUT",
                   "category": "medicine",
                   "severity": "CRITICAL",
@@ -2859,7 +2812,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": "PCM",
-                  "generated_at": "2026-09-28T02:23:03.808887Z",
+                  "generated_at": "2026-09-28T06:53:37.972958Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 4030.0,
@@ -2868,7 +2821,7 @@
                   "estimated_event_date": "2026-09-29",
                   "model_based_probability": 1.0,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "explanation_factors": [
                     {
                       "factor": "days_of_cover",
@@ -2902,7 +2855,7 @@
                   "transition": "worsened"
                 },
                 {
-                  "warning_id": "46146e0f421a7e4d33782821",
+                  "warning_id": "40451eea2b9d3cc3f663c2e3",
                   "warning_type": "HIGH_STOCKOUT_RISK",
                   "category": "medicine",
                   "severity": "CRITICAL",
@@ -2912,7 +2865,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": "IVF",
-                  "generated_at": "2026-09-28T02:23:03.809006Z",
+                  "generated_at": "2026-09-28T06:53:37.973033Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": null,
@@ -2921,7 +2874,7 @@
                   "estimated_event_date": "2026-09-29",
                   "model_based_probability": 1.0,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "explanation_factors": [
                     {
                       "factor": "days_of_cover",
@@ -2960,7 +2913,65 @@
                   "transition": "worsened"
                 },
                 {
-                  "warning_id": "9b6306239f12cdbdae0538a2",
+                  "warning_id": "60951396872d8616e19d42bb",
+                  "warning_type": "HIGH_STOCKOUT_RISK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "PCM",
+                  "generated_at": "2026-09-28T06:53:37.972975Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": null,
+                  "threshold": 0.2,
+                  "predicted_value": 1.0,
+                  "estimated_event_date": "2026-09-29",
+                  "model_based_probability": 1.0,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.8041067501457762,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 31273.094009232616,
+                      "description": "Model-derived 14-day requested demand in tablets."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    },
+                    {
+                      "factor": "risk_horizon_days",
+                      "value": 3.0,
+                      "description": "Severity uses 3-day 80%, 7-day 50%, then 14-day 20% thresholds."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 352.1429,
+                  "baseline_severity": "WATCH",
+                  "transition": "worsened"
+                },
+                {
+                  "warning_id": "7a9b458e8b1d3ec64809ed63",
                   "warning_type": "PREDICTED_STOCKOUT",
                   "category": "medicine",
                   "severity": "CRITICAL",
@@ -2970,7 +2981,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": "IVF",
-                  "generated_at": "2026-09-28T02:23:03.808984Z",
+                  "generated_at": "2026-09-28T06:53:37.973019Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 360.0,
@@ -2979,7 +2990,7 @@
                   "estimated_event_date": "2026-09-29",
                   "model_based_probability": 1.0,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "explanation_factors": [
                     {
                       "factor": "days_of_cover",
@@ -3013,113 +3024,7 @@
                   "transition": "worsened"
                 },
                 {
-                  "warning_id": "074454af2d737802b66c3a5b",
-                  "warning_type": "LOW_STOCK",
-                  "category": "medicine",
-                  "severity": "CRITICAL",
-                  "country_id": "IN",
-                  "state_id": "MH",
-                  "district_id": "MH-PUNE",
-                  "facility_id": "IN-MH-PUNE-003",
-                  "facility_name": "Pune · District Hospital 03",
-                  "resource_id": "IVF",
-                  "generated_at": "2026-09-28T02:23:03.808942Z",
-                  "forecast_origin": "2026-09-27",
-                  "horizon": 14,
-                  "current_value": 1.4714881698740123,
-                  "threshold": 7.0,
-                  "predicted_value": 1.4714881698740123,
-                  "estimated_event_date": "2026-09-27",
-                  "model_based_probability": null,
-                  "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
-                  "explanation_factors": [
-                    {
-                      "factor": "days_of_cover",
-                      "value": 1.4714881698740123,
-                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
-                    },
-                    {
-                      "factor": "requested_demand",
-                      "value": 3425.1039887269503,
-                      "description": "Model-derived 14-day requested demand in bags."
-                    },
-                    {
-                      "factor": "stockout_risk_7d",
-                      "value": 1.0,
-                      "description": "Fraction of paired residual paths reaching zero within seven days."
-                    }
-                  ],
-                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
-                  "provenance": {
-                    "operational_profile": "redistribution-ready",
-                    "profile_version": "inventory-profile-v1",
-                    "config_version": "resilience-v1",
-                    "is_synthetic": true,
-                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
-                    "baseline_model": "hist_gradient_boosting",
-                    "uncertainty": "conditional_on_scenario"
-                  },
-                  "model_version": "forecast-v1-176a752efab3ae4e",
-                  "priority_score": 335.0,
-                  "baseline_severity": "CRITICAL",
-                  "transition": "unchanged"
-                },
-                {
-                  "warning_id": "3a1ffb243f31a9cbf68dfb87",
-                  "warning_type": "LOW_STOCK",
-                  "category": "medicine",
-                  "severity": "CRITICAL",
-                  "country_id": "IN",
-                  "state_id": "MH",
-                  "district_id": "MH-PUNE",
-                  "facility_id": "IN-MH-PUNE-003",
-                  "facility_name": "Pune · District Hospital 03",
-                  "resource_id": "PCM",
-                  "generated_at": "2026-09-28T02:23:03.808795Z",
-                  "forecast_origin": "2026-09-27",
-                  "horizon": 14,
-                  "current_value": 1.8041067501457762,
-                  "threshold": 7.0,
-                  "predicted_value": 1.8041067501457762,
-                  "estimated_event_date": "2026-09-27",
-                  "model_based_probability": null,
-                  "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
-                  "explanation_factors": [
-                    {
-                      "factor": "days_of_cover",
-                      "value": 1.8041067501457762,
-                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
-                    },
-                    {
-                      "factor": "requested_demand",
-                      "value": 31273.094009232616,
-                      "description": "Model-derived 14-day requested demand in tablets."
-                    },
-                    {
-                      "factor": "stockout_risk_7d",
-                      "value": 1.0,
-                      "description": "Fraction of paired residual paths reaching zero within seven days."
-                    }
-                  ],
-                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
-                  "provenance": {
-                    "operational_profile": "redistribution-ready",
-                    "profile_version": "inventory-profile-v1",
-                    "config_version": "resilience-v1",
-                    "is_synthetic": true,
-                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
-                    "baseline_model": "hist_gradient_boosting",
-                    "uncertainty": "conditional_on_scenario"
-                  },
-                  "model_version": "forecast-v1-176a752efab3ae4e",
-                  "priority_score": 335.0,
-                  "baseline_severity": "WARNING",
-                  "transition": "worsened"
-                },
-                {
-                  "warning_id": "c846be8c5cf828b9e4fe4050",
+                  "warning_id": "1ee9f7daafa25fe43f72ac75",
                   "warning_type": "LOW_STOCK",
                   "category": "medicine",
                   "severity": "CRITICAL",
@@ -3129,7 +3034,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": "ORS",
-                  "generated_at": "2026-09-28T02:23:03.809030Z",
+                  "generated_at": "2026-09-28T06:53:37.973048Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 2.2746549327203036,
@@ -3138,7 +3043,7 @@
                   "estimated_event_date": "2026-09-27",
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "explanation_factors": [
                     {
                       "factor": "days_of_cover",
@@ -3172,7 +3077,113 @@
                   "transition": "unchanged"
                 },
                 {
-                  "warning_id": "38fcc1f81aa4b24e30a7363d",
+                  "warning_id": "9ef7d0b4c200ae054a36a855",
+                  "warning_type": "LOW_STOCK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "IVF",
+                  "generated_at": "2026-09-28T06:53:37.972991Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 1.4714881698740123,
+                  "threshold": 7.0,
+                  "predicted_value": 1.4714881698740123,
+                  "estimated_event_date": "2026-09-27",
+                  "model_based_probability": null,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.4714881698740123,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 3425.1039887269503,
+                      "description": "Model-derived 14-day requested demand in bags."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 335.0,
+                  "baseline_severity": "CRITICAL",
+                  "transition": "unchanged"
+                },
+                {
+                  "warning_id": "ca1c7932554cc1f0609f3493",
+                  "warning_type": "LOW_STOCK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "PCM",
+                  "generated_at": "2026-09-28T06:53:37.972910Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 1.8041067501457762,
+                  "threshold": 7.0,
+                  "predicted_value": 1.8041067501457762,
+                  "estimated_event_date": "2026-09-27",
+                  "model_based_probability": null,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.8041067501457762,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 31273.094009232616,
+                      "description": "Model-derived 14-day requested demand in tablets."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 335.0,
+                  "baseline_severity": "WARNING",
+                  "transition": "worsened"
+                },
+                {
+                  "warning_id": "5d49dd88b4c890c6e2ebe70a",
                   "warning_type": "HIGH_WORKLOAD",
                   "category": "personnel",
                   "severity": "CRITICAL",
@@ -3182,7 +3193,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:03.809485Z",
+                  "generated_at": "2026-09-28T06:53:37.973657Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 0.597864768683274,
@@ -3191,7 +3202,7 @@
                   "estimated_event_date": "2026-09-28",
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "explanation_factors": [
                     {
                       "factor": "unserved_patients",
@@ -3233,7 +3244,7 @@
               "request": {
                 "profile": "redistribution-ready",
                 "country_id": "IN",
-                "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                 "state_id": "MH",
                 "district_id": "MH-PUNE",
                 "scope": "district",
@@ -3660,12 +3671,12 @@
                 "profile_version": "inventory-profile-v1",
                 "origin": "2026-09-27"
               },
-              "run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
-              "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+              "run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
+              "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
               "request": {
                 "profile": "redistribution-ready",
                 "country_id": "IN",
-                "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                 "state_id": "MH",
                 "district_id": "MH-PUNE",
                 "scope": "district",
@@ -3680,7 +3691,7 @@
                 "time_limit_seconds": 10.0
               },
               "solver": {
-                "construction_seconds": 0.002177800008212216,
+                "construction_seconds": 0.0008981999999377877,
                 "engine": "Google OR-Tools CP-SAT",
                 "version": "9.15.6755",
                 "status": "OPTIMAL",
@@ -3691,21 +3702,21 @@
                     "status": "OPTIMAL",
                     "objective": 26084.0,
                     "best_bound": 26084.0,
-                    "seconds": 0.0061056
+                    "seconds": 0.0025522
                   },
                   {
                     "name": "weighted_unresolved_units",
                     "status": "OPTIMAL",
                     "objective": 25289060.0,
                     "best_bound": 25289060.0,
-                    "seconds": 0.0007027
+                    "seconds": 0.0006429000000000001
                   },
                   {
                     "name": "transport_cost",
                     "status": "OPTIMAL",
                     "objective": 72928.0,
                     "best_bound": 72928.0,
-                    "seconds": 0.0010140000000000001
+                    "seconds": 0.0010899
                   }
                 ],
                 "objective": [
@@ -3714,7 +3725,7 @@
                   72928
                 ],
                 "time_limit_seconds": 10.0,
-                "elapsed_seconds": 0.014394900004845113,
+                "elapsed_seconds": 0.007977399989613332,
                 "variables": 25,
                 "constraints": 38
               },
@@ -4056,8 +4067,8 @@
               },
               "transfers": [
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-0",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-0",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-001",
                   "donor_name": "Pune · PHC 01",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4109,7 +4120,7 @@
                     "weighted_units_resolved": 543438,
                     "transport_cost": 4888
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4121,8 +4132,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-1",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-1",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-001",
                   "donor_name": "Pune · PHC 01",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4174,7 +4185,7 @@
                     "weighted_units_resolved": 401380,
                     "transport_cost": 3760
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4186,8 +4197,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-2",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-2",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-001",
                   "donor_name": "Pune · PHC 01",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4239,7 +4250,7 @@
                     "weighted_units_resolved": 450036,
                     "transport_cost": 2878
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4251,8 +4262,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-3",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-3",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-001",
                   "donor_name": "Pune · PHC 01",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4304,7 +4315,7 @@
                     "weighted_units_resolved": 1027175,
                     "transport_cost": 6910
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4316,8 +4327,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-4",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-4",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-001",
                   "donor_name": "Pune · PHC 01",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4369,7 +4380,7 @@
                     "weighted_units_resolved": 1555200,
                     "transport_cost": 9700
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4381,8 +4392,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-5",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-5",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-002",
                   "donor_name": "Pune · CHC 02",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4434,7 +4445,7 @@
                     "weighted_units_resolved": 1687518,
                     "transport_cost": 10012
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4446,8 +4457,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-6",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-6",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-002",
                   "donor_name": "Pune · CHC 02",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4499,7 +4510,7 @@
                     "weighted_units_resolved": 1895040,
                     "transport_cost": 11620
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4511,8 +4522,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-7",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-7",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-002",
                   "donor_name": "Pune · CHC 02",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4564,7 +4575,7 @@
                     "weighted_units_resolved": 602640,
                     "transport_cost": 2580
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4576,8 +4587,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-8",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-8",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-002",
                   "donor_name": "Pune · CHC 02",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4629,7 +4640,7 @@
                     "weighted_units_resolved": 1408180,
                     "transport_cost": 6324
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4641,8 +4652,8 @@
                   }
                 },
                 {
-                  "transfer_id": "41d48a18-aa45-437d-bb6d-f5e53871b229-9",
-                  "optimizer_run_id": "41d48a18-aa45-437d-bb6d-f5e53871b229",
+                  "transfer_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9-9",
+                  "optimizer_run_id": "759e9f8d-ff2b-4665-b0bc-8a3558ab71b9",
                   "donor_id": "IN-MH-PUNE-002",
                   "donor_name": "Pune · CHC 02",
                   "receiver_id": "IN-MH-PUNE-003",
@@ -4694,7 +4705,7 @@
                     "weighted_units_resolved": 3439908,
                     "transport_cost": 14256
                   },
-                  "scenario_id": "34f18b78-4f6c-43a2-9bf6-7c7cd8d496cf",
+                  "scenario_id": "884222a7-ba41-42fa-a95f-1efdf30a8d6a",
                   "provenance": {
                     "operational_profile": "redistribution-ready",
                     "profile_version": "inventory-profile-v1",
@@ -4722,10 +4733,10 @@
       "label": "constrained",
       "profile": "constrained",
       "status": "passed",
-      "seconds": 1.932827600001474,
+      "seconds": 1.6083665999904042,
       "response": {
-        "request_id": "d9d2d799-861e-4dfd-ad67-076ae1b5e526",
-        "conversation_id": "7e0c210d-2504-4d8b-b4b3-1740c55bf222",
+        "request_id": "01318ac7-1669-4b31-8042-f5449e0e7c30",
+        "conversation_id": "47e9dd9e-6dd6-4ab5-a77a-11ad6c493013",
         "mode": "offline",
         "status": "completed",
         "answer": "OR-Tools proved an optimal recommendation under its configured constraints. No safe donor capacity is available; no transfers are proposed and the shortage remains unresolved.",
@@ -4766,7 +4777,7 @@
             "evidence_id": "e6",
             "tool": "optimize_redistribution",
             "source_type": "optimize_redistribution",
-            "source_id": "05260d8b-783a-4e67-99ac-f2c627505be0",
+            "source_id": "82f94375-bdf4-49fb-8fe6-709d62fabbe8",
             "field": "solver.status",
             "value": "OPTIMAL",
             "profile": "constrained",
@@ -4776,7 +4787,7 @@
             "evidence_id": "e6",
             "tool": "optimize_redistribution",
             "source_type": "optimize_redistribution",
-            "source_id": "05260d8b-783a-4e67-99ac-f2c627505be0",
+            "source_id": "82f94375-bdf4-49fb-8fe6-709d62fabbe8",
             "field": "impact.transferred_units",
             "value": 0,
             "profile": "constrained",
@@ -4786,7 +4797,7 @@
             "evidence_id": "e6",
             "tool": "optimize_redistribution",
             "source_type": "optimize_redistribution",
-            "source_id": "05260d8b-783a-4e67-99ac-f2c627505be0",
+            "source_id": "82f94375-bdf4-49fb-8fe6-709d62fabbe8",
             "field": "impact.after.target_deficit",
             "value": 30230,
             "profile": "constrained",
@@ -4797,42 +4808,42 @@
           {
             "tool": "get_network_summary",
             "status": "success",
-            "seconds": 1.5168789999879664,
+            "seconds": 1.2745652000012342,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e1"
           },
           {
             "tool": "run_emergency_scenario",
             "status": "success",
-            "seconds": 0.06951080000726506,
+            "seconds": 0.041260400001192465,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e2"
           },
           {
             "tool": "get_scenario_comparison",
             "status": "success",
-            "seconds": 0.013749299992923625,
+            "seconds": 0.011770199998863973,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e3"
           },
           {
             "tool": "get_warnings",
             "status": "success",
-            "seconds": 0.01880229999369476,
+            "seconds": 0.012912500009406358,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e4"
           },
           {
             "tool": "get_redistribution_preview",
             "status": "success",
-            "seconds": 0.11934289999771863,
+            "seconds": 0.11230030001024716,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e5"
           },
           {
             "tool": "optimize_redistribution",
             "status": "success",
-            "seconds": 0.1216852000070503,
+            "seconds": 0.09436960000311956,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e6"
           }
@@ -4852,13 +4863,16 @@
           "scenario_id": null,
           "optimization_run_id": null
         },
-        "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
-        "optimization_run_id": "05260d8b-783a-4e67-99ac-f2c627505be0",
+        "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
+        "optimization_run_id": "82f94375-bdf4-49fb-8fe6-709d62fabbe8",
         "metadata": {
           "gemini_network_seconds": 0.0,
-          "tool_seconds": 1.8599694999866188,
-          "total_seconds": 1.8608403999969596,
+          "tool_seconds": 1.5471782000240637,
+          "total_seconds": 1.5479233000078239,
           "tool_calls": 6,
+          "interaction_count": 0,
+          "provider_requests": 0,
+          "interaction_ids": [],
           "model": null,
           "configured_model": "gemini-3.8-flash",
           "sdk_version": "2.25.0",
@@ -4866,8 +4880,8 @@
           "transport": "offline",
           "thinking_level": null,
           "interaction_id": null,
-          "timestamp": "2026-09-28T02:23:06.593706+00:00",
-          "system_prompt_version": "healthnexus-system-v1",
+          "timestamp": "2026-09-28T06:53:40.310607+00:00",
+          "system_prompt_version": "healthnexus-system-v2",
           "config_version": "copilot-config-v1",
           "usage": [],
           "model_versions": [
@@ -5489,7 +5503,7 @@
                 "origin": "2026-09-27"
               },
               "scenario": {
-                "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                 "definition": {
                   "scenario_type": "DENGUE_SURGE",
                   "profile": "constrained",
@@ -5508,7 +5522,7 @@
                     "capacity_reduction": null
                   }
                 },
-                "created_at": "2026-09-28T02:23:06.296813Z",
+                "created_at": "2026-09-28T06:53:40.067959Z",
                 "status": "completed",
                 "baseline_snapshot_id": "b887bb2077ffad2059d68ef94a6014d72a00f463922e818f7371bcbde433e780",
                 "origin": "2026-09-27",
@@ -5531,7 +5545,7 @@
                 ],
                 "data_status": "simulated_operational_resilience"
               },
-              "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+              "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
               "model_versions": [
                 "forecast-v1-176a752efab3ae4e"
               ],
@@ -5872,7 +5886,7 @@
                 "origin": "2026-09-27"
               },
               "scenario": {
-                "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                 "definition": {
                   "scenario_type": "DENGUE_SURGE",
                   "profile": "constrained",
@@ -5891,7 +5905,7 @@
                     "capacity_reduction": null
                   }
                 },
-                "created_at": "2026-09-28T02:23:06.296813Z",
+                "created_at": "2026-09-28T06:53:40.067959Z",
                 "status": "completed",
                 "baseline_snapshot_id": "b887bb2077ffad2059d68ef94a6014d72a00f463922e818f7371bcbde433e780",
                 "origin": "2026-09-27",
@@ -5914,7 +5928,7 @@
                 ],
                 "data_status": "simulated_operational_resilience"
               },
-              "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+              "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
               "model_versions": [
                 "forecast-v1-176a752efab3ae4e"
               ],
@@ -6315,10 +6329,10 @@
               "model_versions": [
                 "forecast-v1-176a752efab3ae4e"
               ],
-              "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+              "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
               "items": [
                 {
-                  "warning_id": "1923d2256235aaee17c7633b",
+                  "warning_id": "6a0df852ac2a3c7d9cf20f90",
                   "warning_type": "PREDICTED_BED_CAPACITY_BREACH",
                   "category": "beds",
                   "severity": "CRITICAL",
@@ -6328,7 +6342,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.295098Z",
+                  "generated_at": "2026-09-28T06:53:40.065997Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 197.0,
@@ -6337,7 +6351,7 @@
                   "estimated_event_date": "2026-09-28",
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                   "explanation_factors": [
                     {
                       "factor": "unmet_admissions",
@@ -6366,7 +6380,7 @@
                   "transition": "new"
                 },
                 {
-                  "warning_id": "f9c7edc3f70393f6d46c593a",
+                  "warning_id": "810c889a94898ab148e16a92",
                   "warning_type": "HIGH_WORKLOAD",
                   "category": "personnel",
                   "severity": "CRITICAL",
@@ -6376,7 +6390,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.295137Z",
+                  "generated_at": "2026-09-28T06:53:40.066016Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 0.597864768683274,
@@ -6385,7 +6399,7 @@
                   "estimated_event_date": "2026-09-28",
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                   "explanation_factors": [
                     {
                       "factor": "unserved_patients",
@@ -6409,7 +6423,7 @@
                   "transition": "new"
                 },
                 {
-                  "warning_id": "7c1f0bfcc7fdbab0c225f8f7",
+                  "warning_id": "0f1fd7afa344801c9cf1a855",
                   "warning_type": "PREDICTED_BED_CAPACITY_BREACH",
                   "category": "beds",
                   "severity": "CRITICAL",
@@ -6419,7 +6433,7 @@
                   "facility_id": "IN-MH-PUNE-002",
                   "facility_name": "Pune · CHC 02",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.286204Z",
+                  "generated_at": "2026-09-28T06:53:40.060494Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 26.0,
@@ -6428,7 +6442,7 @@
                   "estimated_event_date": "2026-09-28",
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                   "explanation_factors": [
                     {
                       "factor": "unmet_admissions",
@@ -6457,7 +6471,7 @@
                   "transition": "unchanged"
                 },
                 {
-                  "warning_id": "d95133a92ff4ca2e0b0f4747",
+                  "warning_id": "75cac6643160db29431a079b",
                   "warning_type": "HIGH_WORKLOAD",
                   "category": "personnel",
                   "severity": "CRITICAL",
@@ -6467,7 +6481,7 @@
                   "facility_id": "IN-MH-PUNE-002",
                   "facility_name": "Pune · CHC 02",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.286238Z",
+                  "generated_at": "2026-09-28T06:53:40.060523Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 0.579754601226994,
@@ -6476,7 +6490,7 @@
                   "estimated_event_date": "2026-09-28",
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                   "explanation_factors": [
                     {
                       "factor": "unserved_patients",
@@ -6500,7 +6514,50 @@
                   "transition": "new"
                 },
                 {
-                  "warning_id": "a77cc713b2b887c82cbed2a5",
+                  "warning_id": "8841e238703ca14b77922a55",
+                  "warning_type": "HIGH_WORKLOAD",
+                  "category": "personnel",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-001",
+                  "facility_name": "Pune · PHC 01",
+                  "resource_id": null,
+                  "generated_at": "2026-09-28T06:53:40.051575Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 0.5528205128205128,
+                  "threshold": 1.0,
+                  "predicted_value": 1.401377247115893,
+                  "estimated_event_date": "2026-09-28",
+                  "model_based_probability": null,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
+                  "explanation_factors": [
+                    {
+                      "factor": "unserved_patients",
+                      "value": 398.4728776388108,
+                      "description": "Demand above available operational service capacity; no clinical treatment effect inferred."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "constrained",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 320.8794,
+                  "baseline_severity": null,
+                  "transition": "new"
+                },
+                {
+                  "warning_id": "e5f365b45518a8a69a6237dd",
                   "warning_type": "PREDICTED_BED_CAPACITY_BREACH",
                   "category": "beds",
                   "severity": "CRITICAL",
@@ -6510,7 +6567,7 @@
                   "facility_id": "IN-MH-PUNE-001",
                   "facility_name": "Pune · PHC 01",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.276149Z",
+                  "generated_at": "2026-09-28T06:53:40.051512Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": 10.0,
@@ -6519,7 +6576,7 @@
                   "estimated_event_date": "2026-09-28",
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                   "explanation_factors": [
                     {
                       "factor": "unmet_admissions",
@@ -6548,50 +6605,7 @@
                   "transition": "unchanged"
                 },
                 {
-                  "warning_id": "c06ad68737a6d051799d28dc",
-                  "warning_type": "HIGH_WORKLOAD",
-                  "category": "personnel",
-                  "severity": "CRITICAL",
-                  "country_id": "IN",
-                  "state_id": "MH",
-                  "district_id": "MH-PUNE",
-                  "facility_id": "IN-MH-PUNE-001",
-                  "facility_name": "Pune · PHC 01",
-                  "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.276212Z",
-                  "forecast_origin": "2026-09-27",
-                  "horizon": 14,
-                  "current_value": 0.5528205128205128,
-                  "threshold": 1.0,
-                  "predicted_value": 1.401377247115893,
-                  "estimated_event_date": "2026-09-28",
-                  "model_based_probability": null,
-                  "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
-                  "explanation_factors": [
-                    {
-                      "factor": "unserved_patients",
-                      "value": 398.4728776388108,
-                      "description": "Demand above available operational service capacity; no clinical treatment effect inferred."
-                    }
-                  ],
-                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
-                  "provenance": {
-                    "operational_profile": "constrained",
-                    "profile_version": "inventory-profile-v1",
-                    "config_version": "resilience-v1",
-                    "is_synthetic": true,
-                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
-                    "baseline_model": "hist_gradient_boosting",
-                    "uncertainty": "conditional_on_scenario"
-                  },
-                  "model_version": "forecast-v1-176a752efab3ae4e",
-                  "priority_score": 320.8794,
-                  "baseline_severity": null,
-                  "transition": "new"
-                },
-                {
-                  "warning_id": "df53e39d4566b79953039255",
+                  "warning_id": "b439b063f149dc941b016fe0",
                   "warning_type": "EMERGENCY_ESCALATION",
                   "category": "emergency",
                   "severity": "CRITICAL",
@@ -6601,7 +6615,7 @@
                   "facility_id": "IN-MH-PUNE-003",
                   "facility_name": "Pune · District Hospital 03",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.295166Z",
+                  "generated_at": "2026-09-28T06:53:40.066031Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": null,
@@ -6610,7 +6624,7 @@
                   "estimated_event_date": null,
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                   "explanation_factors": [
                     {
                       "factor": "critical_domains",
@@ -6634,7 +6648,7 @@
                   "transition": "new"
                 },
                 {
-                  "warning_id": "4554d4b64e06dc8f51f66021",
+                  "warning_id": "d983eea46962c2211a9813a7",
                   "warning_type": "EMERGENCY_ESCALATION",
                   "category": "emergency",
                   "severity": "CRITICAL",
@@ -6644,7 +6658,7 @@
                   "facility_id": "IN-MH-PUNE-002",
                   "facility_name": "Pune · CHC 02",
                   "resource_id": null,
-                  "generated_at": "2026-09-28T02:23:06.286286Z",
+                  "generated_at": "2026-09-28T06:53:40.060546Z",
                   "forecast_origin": "2026-09-27",
                   "horizon": 14,
                   "current_value": null,
@@ -6653,7 +6667,7 @@
                   "estimated_event_date": null,
                   "model_based_probability": null,
                   "baseline_or_scenario": "scenario",
-                  "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                  "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                   "explanation_factors": [
                     {
                       "factor": "critical_domains",
@@ -6695,7 +6709,7 @@
               "request": {
                 "profile": "constrained",
                 "country_id": "IN",
-                "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                 "state_id": "MH",
                 "district_id": "MH-PUNE",
                 "scope": "district",
@@ -6981,12 +6995,12 @@
                 "profile_version": "inventory-profile-v1",
                 "origin": "2026-09-27"
               },
-              "run_id": "05260d8b-783a-4e67-99ac-f2c627505be0",
-              "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+              "run_id": "82f94375-bdf4-49fb-8fe6-709d62fabbe8",
+              "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
               "request": {
                 "profile": "constrained",
                 "country_id": "IN",
-                "scenario_id": "13259f95-8dd0-434e-8cb3-4b641a8e9da4",
+                "scenario_id": "4f91eb7f-30ea-4c56-ae84-35330eadcb5f",
                 "state_id": "MH",
                 "district_id": "MH-PUNE",
                 "scope": "district",
@@ -7001,7 +7015,7 @@
                 "time_limit_seconds": 10.0
               },
               "solver": {
-                "construction_seconds": 0.00047199999971780926,
+                "construction_seconds": 0.0004558000073302537,
                 "engine": "Google OR-Tools CP-SAT",
                 "version": "9.15.6755",
                 "status": "OPTIMAL",
@@ -7012,21 +7026,21 @@
                     "status": "OPTIMAL",
                     "objective": 28174.0,
                     "best_bound": 28174.0,
-                    "seconds": 0.00036710000000000003
+                    "seconds": 0.00034060000000000004
                   },
                   {
                     "name": "weighted_unresolved_units",
                     "status": "OPTIMAL",
                     "objective": 19987301.0,
                     "best_bound": 19987301.0,
-                    "seconds": 0.00043660000000000004
+                    "seconds": 0.0001929
                   },
                   {
                     "name": "transport_cost",
                     "status": "OPTIMAL",
                     "objective": 0.0,
                     "best_bound": 0.0,
-                    "seconds": 0.000175
+                    "seconds": 0.0001777
                   }
                 ],
                 "objective": [
@@ -7035,7 +7049,7 @@
                   0
                 ],
                 "time_limit_seconds": 10.0,
-                "elapsed_seconds": 0.00261129999125842,
+                "elapsed_seconds": 0.001892300002509728,
                 "variables": 16,
                 "constraints": 18
               },
@@ -7460,10 +7474,10 @@
       "label": "provenance",
       "profile": "constrained",
       "status": "passed",
-      "seconds": 0.06709320000663865,
+      "seconds": 0.06759570000576787,
       "response": {
-        "request_id": "66672702-61f0-4f02-b6ca-a8be861f45fe",
-        "conversation_id": "feda5c48-bbd8-412f-a4ea-d3494b81de23",
+        "request_id": "c6333d87-d078-4a72-a135-bfaa7cb2be07",
+        "conversation_id": "6e201fa3-2ea7-4f1a-94f9-bf356c256250",
         "mode": "offline",
         "status": "completed",
         "answer": "This is calibrated simulated facility operations, not live government inventory.",
@@ -7495,7 +7509,7 @@
           {
             "tool": "get_data_provenance",
             "status": "success",
-            "seconds": 0.0041221999999834225,
+            "seconds": 0.0034371999936411157,
             "summary": "Validated HealthNexus result; no external action executed.",
             "evidence_id": "e1"
           }
@@ -7519,9 +7533,12 @@
         "optimization_run_id": null,
         "metadata": {
           "gemini_network_seconds": 0.0,
-          "tool_seconds": 0.0041221999999834225,
-          "total_seconds": 0.004601199994795024,
+          "tool_seconds": 0.0034371999936411157,
+          "total_seconds": 0.0038401000056182966,
           "tool_calls": 1,
+          "interaction_count": 0,
+          "provider_requests": 0,
+          "interaction_ids": [],
           "model": null,
           "configured_model": "gemini-3.8-flash",
           "sdk_version": "2.25.0",
@@ -7529,8 +7546,8 @@
           "transport": "offline",
           "thinking_level": null,
           "interaction_id": null,
-          "timestamp": "2026-09-28T02:23:06.751966+00:00",
-          "system_prompt_version": "healthnexus-system-v1",
+          "timestamp": "2026-09-28T06:53:40.449103+00:00",
+          "system_prompt_version": "healthnexus-system-v2",
           "config_version": "copilot-config-v1",
           "usage": [],
           "model_versions": [
