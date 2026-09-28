@@ -1,0 +1,407 @@
+{
+  "timestamp": "2026-09-28T13:39:31.734219+00:00",
+  "production_chain": [
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "thinking": "medium",
+  "live_acceptance": "NOT_PASSED",
+  "fully_accepted": false,
+  "hackathon_live_demo_ready": false,
+  "phase7_started": false,
+  "historical_model_attempts": [
+    {
+      "model": "gemini-3.8-flash",
+      "status": "provider_unavailable",
+      "provider_requests": 1,
+      "seconds": 9.008350999996765,
+      "exception_type": "InternalServerError",
+      "http_status": 503,
+      "transport_attempts": 1,
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "model_specific_quota": false,
+      "model_endpoint_unavailable": false,
+      "fallback_reason": "high_demand"
+    },
+    {
+      "model": "gemini-3.7-flash",
+      "status": "provider_unavailable",
+      "provider_requests": 1,
+      "seconds": 6.015218900007312,
+      "exception_type": "InternalServerError",
+      "http_status": 503,
+      "transport_attempts": 1,
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.7-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "model_specific_quota": false,
+      "model_endpoint_unavailable": false,
+      "fallback_reason": "high_demand"
+    },
+    {
+      "model": "gemini-3.6-flash",
+      "status": "provider_unavailable",
+      "provider_requests": 1,
+      "seconds": 19.851025700001628,
+      "exception_type": "InternalServerError",
+      "http_status": 503,
+      "transport_attempts": 1,
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.6-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "model_specific_quota": false,
+      "model_endpoint_unavailable": false,
+      "fallback_reason": "high_demand"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "status": "quota_budget_exhausted_locally",
+      "provider_requests": 0,
+      "seconds": 0.00017729999672155827,
+      "fallback_reason": null
+    }
+  ],
+  "targeted_model_attempts": [
+    {
+      "model": "gemini-3.5-flash",
+      "status": "provider_unavailable",
+      "provider_requests": 1,
+      "seconds": 5.194564099991112,
+      "exception_type": "InternalServerError",
+      "http_status": 503,
+      "transport_attempts": 1,
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.5-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "model_specific_quota": false,
+      "model_endpoint_unavailable": false,
+      "fallback_reason": "high_demand"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "status": "provider_unavailable",
+      "provider_requests": 1,
+      "seconds": 12.982599599999958,
+      "exception_type": "InternalServerError",
+      "http_status": 503,
+      "transport_attempts": 1,
+      "quota_kind": null,
+      "retry_after": "30",
+      "provider_message": "gemini-3.5-flash-lite is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "model_specific_quota": false,
+      "model_endpoint_unavailable": false,
+      "fallback_reason": "high_demand"
+    }
+  ],
+  "effective_model": null,
+  "provider_status": "provider_unavailable_all_models",
+  "budget": {
+    "existing_daily_sends": 10,
+    "explicit_budget_override": true,
+    "newly_authorized_allowance": 4,
+    "budget_limit": 14,
+    "new_provider_sends": 2,
+    "final_cumulative_sends": 12,
+    "daily_provider_requests_per_model": {
+      "legacy-unattributed": 7,
+      "gemini-3.8-flash": 1,
+      "gemini-3.7-flash": 1,
+      "gemini-3.6-flash": 1,
+      "gemini-3.5-flash": 1,
+      "gemini-3.5-flash-lite": 1
+    }
+  },
+  "unused_authorized_sends": 2,
+  "live_tools": [
+    {
+      "tool": "get_network_summary",
+      "status": "success",
+      "seconds": 1.3313882000074955,
+      "summary": "Validated HealthNexus result; no external action executed.",
+      "evidence_id": "e1"
+    },
+    {
+      "tool": "get_warning_summary",
+      "status": "success",
+      "seconds": 0.009265600005164742,
+      "summary": "Validated HealthNexus result; no external action executed.",
+      "evidence_id": "e2"
+    }
+  ],
+  "live_timings": {
+    "gemini_network_seconds": 18.440132200004882,
+    "tool_seconds": 1.3406538000126602
+  },
+  "workflow_latency_seconds": 20.068166299999575,
+  "live_grounding": {
+    "structured_schema": "UNVERIFIED_NO_PROVIDER_ANSWER",
+    "evidence": "UNVERIFIED_NO_PROVIDER_ANSWER",
+    "numeric_claims": "UNVERIFIED_NO_PROVIDER_ANSWER",
+    "token_usage": null
+  },
+  "live_workflows": {
+    "positive": "NOT_ATTEMPTED_SMOKE_FAILED",
+    "constrained": "NOT_ATTEMPTED_SMOKE_FAILED",
+    "provenance": "NOT_ATTEMPTED_SMOKE_FAILED",
+    "browser": "NOT_ATTEMPTED_SMOKE_FAILED"
+  },
+  "unchanged_local_plans": {
+    "positive": {
+      "source": "fresh explicit offline run of actual local engines; no live Gemini interpretation",
+      "profile": "redistribution-ready",
+      "scenario_id": "a173bc5b-7215-4f77-ac44-b6e5556dde9e",
+      "optimization_run_id": "0b865fe0-2d30-4a02-bcd3-fd02d8360b92",
+      "tools": [
+        "get_network_summary",
+        "run_emergency_scenario",
+        "get_scenario_comparison",
+        "get_warnings",
+        "get_redistribution_preview",
+        "optimize_redistribution"
+      ],
+      "solver": {
+        "construction_seconds": 0.0010087999980896711,
+        "engine": "Google OR-Tools CP-SAT",
+        "version": "9.15.6755",
+        "status": "OPTIMAL",
+        "termination": "all_lexicographic_stages_proved",
+        "stages": [
+          {
+            "name": "critical_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 26084.0,
+            "best_bound": 26084.0,
+            "seconds": 0.0028831
+          },
+          {
+            "name": "weighted_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 25289060.0,
+            "best_bound": 25289060.0,
+            "seconds": 0.0005159
+          },
+          {
+            "name": "transport_cost",
+            "status": "OPTIMAL",
+            "objective": 72928.0,
+            "best_bound": 72928.0,
+            "seconds": 0.0004961000000000001
+          }
+        ],
+        "objective": [
+          26084,
+          25289060,
+          72928
+        ],
+        "time_limit_seconds": 10.0,
+        "elapsed_seconds": 0.00724649999756366,
+        "variables": 25,
+        "constraints": 38
+      },
+      "safe_capacity": 17745,
+      "impact": {
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 26084,
+          "expected_unmet": 17378.197997959564,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 15679,
+        "percent_deficit_resolved": 37.5428010439863,
+        "critical_deficits_resolved": 2,
+        "critical_deficits_total": 5,
+        "facilities_protected": 0,
+        "donor_facilities_used": 2,
+        "transfer_count": 10,
+        "transferred_units": 15679,
+        "distance_km": 54.591838516215944,
+        "distance_weighted_units": 79247.99067343438,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-003:AMX": 0,
+          "IN-MH-PUNE-003:IFA": 0,
+          "IN-MH-PUNE-003:IVF": 2173,
+          "IN-MH-PUNE-003:ORS": 964,
+          "IN-MH-PUNE-003:PCM": 22947
+        },
+        "conservation": {
+          "PCM": {
+            "before": 22952,
+            "after": 22952
+          },
+          "IVF": {
+            "before": 2951,
+            "after": 2951
+          },
+          "ORS": {
+            "before": 5021,
+            "after": 5021
+          },
+          "AMX": {
+            "before": 7154,
+            "after": 7154
+          },
+          "IFA": {
+            "before": 9467,
+            "after": 9467
+          }
+        }
+      },
+      "transfer_lanes": 10
+    },
+    "constrained": {
+      "source": "fresh explicit offline run of actual local engines; no live Gemini interpretation",
+      "profile": "constrained",
+      "scenario_id": "08d98504-7b3c-4630-97db-61352447b7a6",
+      "optimization_run_id": "165f87c2-4e17-45b4-a305-24d0cc497a36",
+      "tools": [
+        "get_optimization_result"
+      ],
+      "solver": {
+        "construction_seconds": 0.0005264000064926222,
+        "engine": "Google OR-Tools CP-SAT",
+        "version": "9.15.6755",
+        "status": "OPTIMAL",
+        "termination": "all_lexicographic_stages_proved",
+        "stages": [
+          {
+            "name": "critical_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 28174.0,
+            "best_bound": 28174.0,
+            "seconds": 0.00038710000000000003
+          },
+          {
+            "name": "weighted_unresolved_units",
+            "status": "OPTIMAL",
+            "objective": 19987301.0,
+            "best_bound": 19987301.0,
+            "seconds": 0.0002177
+          },
+          {
+            "name": "transport_cost",
+            "status": "OPTIMAL",
+            "objective": 0.0,
+            "best_bound": 0.0,
+            "seconds": 0.00020480000000000002
+          }
+        ],
+        "objective": [
+          28174,
+          19987301,
+          0
+        ],
+        "time_limit_seconds": 10.0,
+        "elapsed_seconds": 0.0021619000035570934,
+        "variables": 16,
+        "constraints": 18
+      },
+      "safe_capacity": 0,
+      "impact": {
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 0,
+        "percent_deficit_resolved": 0.0,
+        "critical_deficits_resolved": 0,
+        "critical_deficits_total": 6,
+        "facilities_protected": 0,
+        "donor_facilities_used": 0,
+        "transfer_count": 0,
+        "transferred_units": 0,
+        "distance_km": 0.0,
+        "distance_weighted_units": 0.0,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-001:AMX": 21,
+          "IN-MH-PUNE-001:IFA": 23,
+          "IN-MH-PUNE-001:IVF": 242,
+          "IN-MH-PUNE-001:ORS": 94,
+          "IN-MH-PUNE-001:PCM": 2765,
+          "IN-MH-PUNE-002:AMX": 64,
+          "IN-MH-PUNE-002:IFA": 82,
+          "IN-MH-PUNE-002:IVF": 420,
+          "IN-MH-PUNE-002:ORS": 179,
+          "IN-MH-PUNE-002:PCM": 4754,
+          "IN-MH-PUNE-003:AMX": 349,
+          "IN-MH-PUNE-003:IFA": 463,
+          "IN-MH-PUNE-003:IVF": 1642,
+          "IN-MH-PUNE-003:ORS": 781,
+          "IN-MH-PUNE-003:PCM": 18351
+        },
+        "conservation": {
+          "PCM": {
+            "before": 20174,
+            "after": 20174
+          },
+          "IVF": {
+            "before": 2784,
+            "after": 2784
+          },
+          "ORS": {
+            "before": 4911,
+            "after": 4911
+          },
+          "AMX": {
+            "before": 6021,
+            "after": 6021
+          },
+          "IFA": {
+            "before": 7751,
+            "after": 7751
+          }
+        }
+      },
+      "transfer_lanes": 0
+    }
+  },
+  "profile_and_model_hashes_unchanged": true,
+  "regression": {
+    "backend_tests": 289,
+    "backend_seconds": 45.88,
+    "compilation": "PASS",
+    "pip_check": "PASS",
+    "strict_typescript": "PASS",
+    "angular_production_build": "PASS",
+    "initial_bundle_kb": 366.12,
+    "estimated_transfer_kb": 100.26
+  },
+  "security": {
+    "env_ignored": true,
+    "env_untracked": true,
+    "local_key_matches_loaded_configuration": true,
+    "credential_scan_files": 288,
+    "key_or_fingerprint_findings": 0,
+    "env_edited": false,
+    "billing_enabled": false,
+    "key_changed": false,
+    "project_changed": false,
+    "ledger_reset": false
+  }
+}

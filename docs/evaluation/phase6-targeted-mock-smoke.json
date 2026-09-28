@@ -1,0 +1,949 @@
+{
+  "mode": "mock",
+  "model": "gemini-3.8-flash",
+  "status": "passed",
+  "live_acceptance": false,
+  "timestamp": "2026-09-28T13:32:34.894631+00:00",
+  "identity": {
+    "git_commit": "a1169ccfaf9715d2fba455cef5e17b3c622ca30a",
+    "implementation_sha256": "fcc63c45d27bc1e0884e6663e70738a59e6d9e0a561da14dc24df556856ed66d",
+    "model": "gemini-3.8-flash",
+    "sdk_version": "2.25.0",
+    "system_prompt_version": "healthnexus-system-v3",
+    "system_prompt_sha256": "c75f510cb6953e0ef663fb647ac97440c9cbc769ab0e692b236ad94d31645a7e",
+    "tool_schema_sha256": "3b18ac63d2fed75b5b65943248db0a3113613706d7991c6c825590b035015d42",
+    "profile_version": "inventory-profile-v1",
+    "config_version": "copilot-config-v4-failover",
+    "configuration": {
+      "chain": [
+        "gemini-3.8-flash",
+        "gemini-3.7-flash",
+        "gemini-3.6-flash",
+        "gemini-3.5-flash",
+        "gemini-3.5-flash-lite"
+      ],
+      "failover_enabled": true,
+      "thinking": "medium",
+      "max_calls": 10,
+      "timeout": 60,
+      "workflow_timeout": 300,
+      "max_output_tokens": 2400
+    },
+    "artifacts": {
+      "constrained": {
+        "snapshot": "f0b5fbb01375d0aec983b3a2665fce7553b8f28b5cbdf3b1cf2648e28a477743",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      },
+      "redistribution-ready": {
+        "snapshot": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      }
+    },
+    "verification_start_model": "gemini-3.5-flash"
+  },
+  "credential_binding": "Private resumable evidence retains a one-way credential fingerprint; public report omits it.",
+  "selected_case": "model-smoke",
+  "acceptance": false,
+  "tests": [
+    {
+      "label": "model-smoke",
+      "profile": "redistribution-ready",
+      "status": "passed",
+      "seconds": 1.4250574000034248,
+      "quality": {
+        "structured_response_valid": true,
+        "evidence_validation_passed": true,
+        "invalid_tool_calls": 0,
+        "unsupported_numeric_claims": 0
+      },
+      "fixture_setup": null,
+      "followup_parent_interaction": null,
+      "response": {
+        "request_id": "5266df08-8546-4150-91e6-c7d41f3443b8",
+        "conversation_id": "2250017f-223f-4e99-82c5-34cebb1f7d41",
+        "mode": "gemini",
+        "status": "completed",
+        "answer": "Structured warnings identify operational pressure.",
+        "situation": {
+          "text": "Structured warnings identify operational pressure.",
+          "references": [
+            {
+              "evidence_id": "e2",
+              "field": "summary.total"
+            }
+          ]
+        },
+        "key_risks": [],
+        "recommended_actions": [],
+        "remaining_gaps": [],
+        "evidence": [
+          {
+            "evidence_id": "e2",
+            "tool": "get_warning_summary",
+            "source_type": "get_warning_summary",
+            "source_id": null,
+            "field": "summary.total",
+            "value": 26,
+            "profile": "redistribution-ready",
+            "unit": null
+          }
+        ],
+        "tools_used": [
+          {
+            "tool": "get_network_summary",
+            "status": "success",
+            "seconds": 1.3628297000104794,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e1"
+          },
+          {
+            "tool": "get_warning_summary",
+            "status": "success",
+            "seconds": 0.00895920000039041,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e2"
+          }
+        ],
+        "limitations": [
+          "Facility operations are calibrated simulations, not live government inventory.",
+          "Emergency shocks are externally specified assumptions, not epidemiological predictions.",
+          "Plans are decision support; no physical transfer, order or hospital contact is executed.",
+          "Forecast evaluation uses simulated histories; no clinical or real-world operational validation is claimed."
+        ],
+        "context": {
+          "country_id": "IN",
+          "profile": "redistribution-ready",
+          "state_id": "MH",
+          "district_id": "MH-PUNE",
+          "facility_id": null,
+          "scenario_id": null,
+          "optimization_run_id": null
+        },
+        "scenario_id": null,
+        "optimization_run_id": null,
+        "metadata": {
+          "gemini_network_seconds": 0.0002221999893663451,
+          "tool_seconds": 1.3717889000108698,
+          "total_seconds": 1.3739111000031698,
+          "tool_calls": 2,
+          "interaction_count": 1,
+          "provider_requests": 1,
+          "local_tool_calls": 2,
+          "interaction_ids": [
+            "mock-final-c92e7d95-c587-4533-ba98-fad5884b529d"
+          ],
+          "intent": "resilience-summary",
+          "execution_sources": [
+            {
+              "tool": "get_network_summary",
+              "source": "server-prefetch"
+            },
+            {
+              "tool": "get_warning_summary",
+              "source": "server-prefetch"
+            }
+          ],
+          "request_diagnostics": [
+            {
+              "tool_schema_bytes": 2,
+              "system_bytes": 2566,
+              "input_bytes": 10008,
+              "request_body_bytes": 15081,
+              "input_tokens_estimate": 3144,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            }
+          ],
+          "tool_payload_diagnostics": [
+            {
+              "tool": "get_network_summary",
+              "authoritative_bytes": 6428,
+              "model_payload_bytes": 6428
+            },
+            {
+              "tool": "get_warning_summary",
+              "authoritative_bytes": 782,
+              "model_payload_bytes": 782
+            }
+          ],
+          "requested_model": "gemini-3.8-flash",
+          "effective_model": "gemini-3.5-flash",
+          "selected_model": "gemini-3.5-flash",
+          "fallback_used": true,
+          "fallback_chain_attempted": [
+            "gemini-3.5-flash"
+          ],
+          "fallback_reason": "verifier_targeted_candidate",
+          "model_attempts": [
+            {
+              "model": "gemini-3.5-flash",
+              "status": "connected",
+              "provider_requests": 1,
+              "seconds": 0.00010910000128205866
+            }
+          ],
+          "model_handoffs": [],
+          "models_skipped": [],
+          "provider_requests_per_model": {
+            "gemini-3.5-flash": {
+              "provider_requests": 1,
+              "successful_interactions": 1,
+              "failed_attempts": 0,
+              "provider_seconds": 0.00010910000128205866
+            }
+          },
+          "model": "gemini-3.5-flash",
+          "configured_model": "gemini-3.8-flash",
+          "sdk_version": "2.25.0",
+          "api": "Interactions",
+          "transport": "mock",
+          "thinking_level": "medium",
+          "interaction_id": "mock-final-c92e7d95-c587-4533-ba98-fad5884b529d",
+          "timestamp": "2026-09-28T13:32:36.699445+00:00",
+          "system_prompt_version": "healthnexus-system-v3",
+          "config_version": "copilot-config-v4-failover",
+          "usage": [],
+          "model_versions": [
+            "forecast-v1-176a752efab3ae4e"
+          ]
+        },
+        "operational_results": [
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "summary": {
+                "facilities": 3,
+                "status_counts": {
+                  "HEALTHY": 1,
+                  "WATCH": 0,
+                  "AT_RISK": 2,
+                  "CRITICAL": 0
+                },
+                "patient_footfall": 722,
+                "medicine_availability": 66.7,
+                "total_beds": 292,
+                "occupied_beds": 233,
+                "available_beds": 44,
+                "reserved_beds": 15,
+                "bed_utilisation": 79.8,
+                "staff_present": 136,
+                "staff_scheduled": 147,
+                "staff_availability": 92.5
+              },
+              "warnings": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "model_version": "forecast-v1-176a752efab3ae4e",
+              "facilities": [
+                {
+                  "id": "IN-MH-PUNE-001",
+                  "name": "Pune · PHC 01",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-002",
+                  "name": "Pune · CHC 02",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-003",
+                  "name": "Pune · District Hospital 03",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                }
+              ],
+              "facilities_truncated": false,
+              "regions": [
+                {
+                  "id": "AP",
+                  "name": "Andhra Pradesh"
+                },
+                {
+                  "id": "AR",
+                  "name": "Arunachal Pradesh"
+                },
+                {
+                  "id": "AS",
+                  "name": "Assam"
+                },
+                {
+                  "id": "BR",
+                  "name": "Bihar"
+                },
+                {
+                  "id": "CG",
+                  "name": "Chhattisgarh"
+                },
+                {
+                  "id": "GA",
+                  "name": "Goa"
+                },
+                {
+                  "id": "GJ",
+                  "name": "Gujarat"
+                },
+                {
+                  "id": "HR",
+                  "name": "Haryana"
+                },
+                {
+                  "id": "HP",
+                  "name": "Himachal Pradesh"
+                },
+                {
+                  "id": "JH",
+                  "name": "Jharkhand"
+                },
+                {
+                  "id": "KA",
+                  "name": "Karnataka"
+                },
+                {
+                  "id": "KL",
+                  "name": "Kerala"
+                },
+                {
+                  "id": "MP",
+                  "name": "Madhya Pradesh"
+                },
+                {
+                  "id": "MH",
+                  "name": "Maharashtra"
+                },
+                {
+                  "id": "MN",
+                  "name": "Manipur"
+                },
+                {
+                  "id": "ML",
+                  "name": "Meghalaya"
+                },
+                {
+                  "id": "MZ",
+                  "name": "Mizoram"
+                },
+                {
+                  "id": "NL",
+                  "name": "Nagaland"
+                },
+                {
+                  "id": "OD",
+                  "name": "Odisha"
+                },
+                {
+                  "id": "PB",
+                  "name": "Punjab"
+                },
+                {
+                  "id": "RJ",
+                  "name": "Rajasthan"
+                },
+                {
+                  "id": "SK",
+                  "name": "Sikkim"
+                },
+                {
+                  "id": "TN",
+                  "name": "Tamil Nadu"
+                },
+                {
+                  "id": "TS",
+                  "name": "Telangana"
+                },
+                {
+                  "id": "TR",
+                  "name": "Tripura"
+                },
+                {
+                  "id": "UP",
+                  "name": "Uttar Pradesh"
+                },
+                {
+                  "id": "UK",
+                  "name": "Uttarakhand"
+                },
+                {
+                  "id": "WB",
+                  "name": "West Bengal"
+                },
+                {
+                  "id": "AN",
+                  "name": "Andaman and Nicobar Islands"
+                },
+                {
+                  "id": "CH",
+                  "name": "Chandigarh"
+                },
+                {
+                  "id": "DN",
+                  "name": "Dadra and Nagar Haveli and Daman and Diu"
+                },
+                {
+                  "id": "DL",
+                  "name": "Delhi"
+                },
+                {
+                  "id": "JK",
+                  "name": "Jammu and Kashmir"
+                },
+                {
+                  "id": "LA",
+                  "name": "Ladakh"
+                },
+                {
+                  "id": "LD",
+                  "name": "Lakshadweep"
+                },
+                {
+                  "id": "PY",
+                  "name": "Puducherry"
+                }
+              ],
+              "districts": [
+                {
+                  "id": "AP-GUNTUR",
+                  "name": "Guntur",
+                  "state_id": "AP"
+                },
+                {
+                  "id": "AP-VISAKHAPATNAM",
+                  "name": "Visakhapatnam",
+                  "state_id": "AP"
+                },
+                {
+                  "id": "AR-TAWANG",
+                  "name": "Tawang",
+                  "state_id": "AR"
+                },
+                {
+                  "id": "AR-LOWER-SUBANSIRI",
+                  "name": "Lower Subansiri",
+                  "state_id": "AR"
+                },
+                {
+                  "id": "AS-KAMRUP-METROPOLITAN",
+                  "name": "Kamrup Metropolitan",
+                  "state_id": "AS"
+                },
+                {
+                  "id": "AS-DIBRUGARH",
+                  "name": "Dibrugarh",
+                  "state_id": "AS"
+                },
+                {
+                  "id": "BR-PATNA",
+                  "name": "Patna",
+                  "state_id": "BR"
+                },
+                {
+                  "id": "BR-GAYA",
+                  "name": "Gaya",
+                  "state_id": "BR"
+                },
+                {
+                  "id": "CG-RAIPUR",
+                  "name": "Raipur",
+                  "state_id": "CG"
+                },
+                {
+                  "id": "CG-BILASPUR",
+                  "name": "Bilaspur",
+                  "state_id": "CG"
+                },
+                {
+                  "id": "GA-NORTH-GOA",
+                  "name": "North Goa",
+                  "state_id": "GA"
+                },
+                {
+                  "id": "GA-SOUTH-GOA",
+                  "name": "South Goa",
+                  "state_id": "GA"
+                },
+                {
+                  "id": "GJ-AHMEDABAD",
+                  "name": "Ahmedabad",
+                  "state_id": "GJ"
+                },
+                {
+                  "id": "GJ-SURAT",
+                  "name": "Surat",
+                  "state_id": "GJ"
+                },
+                {
+                  "id": "HR-GURUGRAM",
+                  "name": "Gurugram",
+                  "state_id": "HR"
+                },
+                {
+                  "id": "HR-HISAR",
+                  "name": "Hisar",
+                  "state_id": "HR"
+                },
+                {
+                  "id": "HP-SHIMLA",
+                  "name": "Shimla",
+                  "state_id": "HP"
+                },
+                {
+                  "id": "HP-KANGRA",
+                  "name": "Kangra",
+                  "state_id": "HP"
+                },
+                {
+                  "id": "JH-RANCHI",
+                  "name": "Ranchi",
+                  "state_id": "JH"
+                },
+                {
+                  "id": "JH-DHANBAD",
+                  "name": "Dhanbad",
+                  "state_id": "JH"
+                },
+                {
+                  "id": "KA-BENGALURU-URBAN",
+                  "name": "Bengaluru Urban",
+                  "state_id": "KA"
+                },
+                {
+                  "id": "KA-MYSURU",
+                  "name": "Mysuru",
+                  "state_id": "KA"
+                },
+                {
+                  "id": "KL-THIRUVANANTHAPURAM",
+                  "name": "Thiruvananthapuram",
+                  "state_id": "KL"
+                },
+                {
+                  "id": "KL-ERNAKULAM",
+                  "name": "Ernakulam",
+                  "state_id": "KL"
+                },
+                {
+                  "id": "MP-BHOPAL",
+                  "name": "Bhopal",
+                  "state_id": "MP"
+                },
+                {
+                  "id": "MP-INDORE",
+                  "name": "Indore",
+                  "state_id": "MP"
+                },
+                {
+                  "id": "MH-PUNE",
+                  "name": "Pune",
+                  "state_id": "MH"
+                },
+                {
+                  "id": "MH-NAGPUR",
+                  "name": "Nagpur",
+                  "state_id": "MH"
+                },
+                {
+                  "id": "MN-IMPHAL-WEST",
+                  "name": "Imphal West",
+                  "state_id": "MN"
+                },
+                {
+                  "id": "MN-THOUBAL",
+                  "name": "Thoubal",
+                  "state_id": "MN"
+                },
+                {
+                  "id": "ML-EAST-KHASI-HILLS",
+                  "name": "East Khasi Hills",
+                  "state_id": "ML"
+                },
+                {
+                  "id": "ML-WEST-GARO-HILLS",
+                  "name": "West Garo Hills",
+                  "state_id": "ML"
+                },
+                {
+                  "id": "MZ-AIZAWL",
+                  "name": "Aizawl",
+                  "state_id": "MZ"
+                },
+                {
+                  "id": "MZ-LUNGLEI",
+                  "name": "Lunglei",
+                  "state_id": "MZ"
+                },
+                {
+                  "id": "NL-KOHIMA",
+                  "name": "Kohima",
+                  "state_id": "NL"
+                },
+                {
+                  "id": "NL-MOKOKCHUNG",
+                  "name": "Mokokchung",
+                  "state_id": "NL"
+                },
+                {
+                  "id": "OD-KHORDHA",
+                  "name": "Khordha",
+                  "state_id": "OD"
+                },
+                {
+                  "id": "OD-CUTTACK",
+                  "name": "Cuttack",
+                  "state_id": "OD"
+                },
+                {
+                  "id": "PB-LUDHIANA",
+                  "name": "Ludhiana",
+                  "state_id": "PB"
+                },
+                {
+                  "id": "PB-AMRITSAR",
+                  "name": "Amritsar",
+                  "state_id": "PB"
+                },
+                {
+                  "id": "RJ-JAIPUR",
+                  "name": "Jaipur",
+                  "state_id": "RJ"
+                },
+                {
+                  "id": "RJ-JODHPUR",
+                  "name": "Jodhpur",
+                  "state_id": "RJ"
+                },
+                {
+                  "id": "SK-GANGTOK",
+                  "name": "Gangtok",
+                  "state_id": "SK"
+                },
+                {
+                  "id": "SK-NAMCHI",
+                  "name": "Namchi",
+                  "state_id": "SK"
+                },
+                {
+                  "id": "TN-CHENNAI",
+                  "name": "Chennai",
+                  "state_id": "TN"
+                },
+                {
+                  "id": "TN-COIMBATORE",
+                  "name": "Coimbatore",
+                  "state_id": "TN"
+                },
+                {
+                  "id": "TS-HYDERABAD",
+                  "name": "Hyderabad",
+                  "state_id": "TS"
+                },
+                {
+                  "id": "TS-NIZAMABAD",
+                  "name": "Nizamabad",
+                  "state_id": "TS"
+                },
+                {
+                  "id": "TR-WEST-TRIPURA",
+                  "name": "West Tripura",
+                  "state_id": "TR"
+                },
+                {
+                  "id": "TR-GOMATI",
+                  "name": "Gomati",
+                  "state_id": "TR"
+                },
+                {
+                  "id": "UP-LUCKNOW",
+                  "name": "Lucknow",
+                  "state_id": "UP"
+                },
+                {
+                  "id": "UP-VARANASI",
+                  "name": "Varanasi",
+                  "state_id": "UP"
+                },
+                {
+                  "id": "UK-DEHRADUN",
+                  "name": "Dehradun",
+                  "state_id": "UK"
+                },
+                {
+                  "id": "UK-HARIDWAR",
+                  "name": "Haridwar",
+                  "state_id": "UK"
+                },
+                {
+                  "id": "WB-KOLKATA",
+                  "name": "Kolkata",
+                  "state_id": "WB"
+                },
+                {
+                  "id": "WB-HOWRAH",
+                  "name": "Howrah",
+                  "state_id": "WB"
+                },
+                {
+                  "id": "AN-SOUTH-ANDAMAN",
+                  "name": "South Andaman",
+                  "state_id": "AN"
+                },
+                {
+                  "id": "AN-NICOBAR",
+                  "name": "Nicobar",
+                  "state_id": "AN"
+                },
+                {
+                  "id": "CH-CHANDIGARH",
+                  "name": "Chandigarh",
+                  "state_id": "CH"
+                },
+                {
+                  "id": "DN-DADRA-AND-NAGAR-HAVELI",
+                  "name": "Dadra and Nagar Haveli",
+                  "state_id": "DN"
+                },
+                {
+                  "id": "DN-DAMAN",
+                  "name": "Daman",
+                  "state_id": "DN"
+                },
+                {
+                  "id": "DL-NEW-DELHI",
+                  "name": "New Delhi",
+                  "state_id": "DL"
+                },
+                {
+                  "id": "JK-JAMMU",
+                  "name": "Jammu",
+                  "state_id": "JK"
+                },
+                {
+                  "id": "JK-SRINAGAR",
+                  "name": "Srinagar",
+                  "state_id": "JK"
+                },
+                {
+                  "id": "LA-LEH",
+                  "name": "Leh",
+                  "state_id": "LA"
+                },
+                {
+                  "id": "LA-KARGIL",
+                  "name": "Kargil",
+                  "state_id": "LA"
+                },
+                {
+                  "id": "LD-LAKSHADWEEP",
+                  "name": "Lakshadweep",
+                  "state_id": "LD"
+                },
+                {
+                  "id": "PY-PUDUCHERRY",
+                  "name": "Puducherry",
+                  "state_id": "PY"
+                },
+                {
+                  "id": "PY-KARAIKAL",
+                  "name": "Karaikal",
+                  "state_id": "PY"
+                }
+              ]
+            }
+          },
+          {
+            "evidence_id": "e2",
+            "tool": "get_warning_summary",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "summary": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "horizon": 14,
+              "model_versions": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "scenario_id": null
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "verification_start_model": "gemini-3.5-flash",
+  "production_chain": [
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "existing_daily_sends": 0,
+  "explicit_budget_override": true,
+  "newly_authorized_allowance": 14,
+  "budget_limit": 14,
+  "expected_provider_requests": 1,
+  "maximum_provider_requests": 14,
+  "local_fixture_tool_calls": 0,
+  "comparison": {
+    "old_suite_expected_provider_requests": 23,
+    "old_cases": {
+      "risk": 4,
+      "positive": 8,
+      "constrained": 8,
+      "provenance": 3
+    },
+    "new_acceptance_expected_provider_requests": 8,
+    "baseline_commit": "914ff4a",
+    "old_schema_bytes_per_turn": 11363,
+    "old_system_bytes_per_turn": 2917,
+    "new_system_bytes_per_turn": 2566,
+    "old_authoritative_result_bytes_by_case": {
+      "risk": 19255,
+      "positive": 67628,
+      "constrained": 46022,
+      "provenance": 5681
+    },
+    "schema_bytes_by_intent": {
+      "resilience-summary": 1660,
+      "network-risk": 4997,
+      "emergency-planning": 7843,
+      "provenance": 1265,
+      "follow-up-plan": 1496,
+      "plan-review": 1777
+    },
+    "token_estimate_method": "characters / 4; estimates are not Gemini token counts"
+  },
+  "resume_invalidated": [],
+  "provider_requests": 1,
+  "daily_ledger_used": 1,
+  "new_provider_sends": 1,
+  "final_cumulative_sends": 1,
+  "daily_provider_requests_per_model": {
+    "gemini-3.5-flash": 1
+  },
+  "expected_provider_requests_this_run": 1,
+  "local_tool_calls": 2,
+  "retained_pass_cases": [
+    "model-smoke"
+  ],
+  "capabilities_accepted": []
+}

@@ -59,4 +59,33 @@ Actual local OR-Tools status is OPTIMAL, with the preserved greedy tie. Ready ex
 - Desktop and 390×844 mobile UI verified using explicit offline mode. Mobile document width 375 within viewport 390; no console errors/warnings. [Desktop screenshot](screenshots/phase6-failover-desktop-offline.png), [mobile screenshot](screenshots/phase6-failover-mobile-offline.png). Successful live fallback UI rendering has not been observed.
 - Key is ignored/untracked, matches loaded configuration, and absent from scanned tracked source, reports, frontend bundles and diff. Same key/project; no billing change or quota-ledger reset.
 
-The layer is ready for a subsequent authorized live smoke when the retained verification budget naturally becomes available. Successful fallback native orchestration, grounded final answers, full positive/constrained acceptance and hackathon live readiness are still pending. Explicit deterministic demos remain available. **Phase 6 is not fully accepted; Phase 7 remains deferred.**
+Successful fallback native orchestration, grounded final answers, full positive/constrained acceptance and hackathon live readiness are still pending. Explicit deterministic demos remain available. **Phase 6 is not fully accepted; Phase 7 remains deferred.**
+
+## Targeted remaining-model acceptance — 28 September 2026
+
+The user explicitly authorized a verifier-only cumulative ceiling of 14 and targeted testing of the previously unsent models. The existing ten sends were retained. Production configuration and its five-model order were unchanged; no 3.8/3.7/3.6 request was repeated. Command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\verify_gemini.py --live --case model-smoke --model gemini-3.5-flash --budget 14 --resume --output docs/evaluation/phase6-targeted-live-smoke.json
+```
+
+The same Pune redistribution-ready resilience question executed two fresh authoritative read-only tools, `get_network_summary` and `get_warning_summary`. Schema-only interpretation first attempted 3.5 Flash; its eligible 503 automatically advanced to Flash-Lite, starting a fresh interaction without any foreign provider ID.
+
+| Model | Actual new sends | Successful interactions | Google result | Provider stage seconds |
+|---|---:|---:|---|---:|
+| 3.5 Flash | 1 | 0 | HTTP 503 HIGH DEMAND | 5.1946 |
+| 3.5 Flash-Lite | 1 | 0 | HTTP 503 HIGH DEMAND | 12.9826 |
+
+Both responses supplied `Retry-After: 30`. Neither returned an interaction or token usage. Aggregate provider stage was 18.4401 s, local tools 1.3407 s and failed workflow latency 20.0682 s. Provider stages include verifier pacing/transport overhead. [Exact new trace](evaluation/phase6-targeted-live-smoke.json) preserves the responses, handoff, timings and original implementation identity; `effective_model` is null, with no answering model. The clean error is `provider_unavailable_all_models` for the selected remaining chain.
+
+Budget: **10 historical sends + 2 new sends = 12 cumulative sends against the explicitly authorized ceiling of 14**. Per-model history is seven legacy-unattributed sends plus one each for all five configured models. Two authorized sends remain unused. The ledger was not reset, and no repeated live attempt, browser request or model-list request followed this outage. This was a provider failure, not local budget rejection; no quota exhaustion or remaining Google quota is inferred.
+
+Live structured schema, evidence and numeric grounding are **unverified**, because no provider answer arrived. The positive, constrained and provenance live interpretations were not attempted: smoke PASS is their prerequisite. Live UI verification was also deferred as instructed. No candidate is marked unsuitable for a quality failure: an availability error supplies no quality evidence.
+
+The normal verifier cap remains 1–10. Only an explicit CLI `--budget` may authorize an extension up to 14; environment settings cannot silently extend the cap. `--model` must be an already configured candidate and seeds verifier-local sticky state without changing production configuration. A compatible successful `model-smoke` PASS can restore its actual effective model for subsequent `--model gemini-3.5-flash --resume` positive acceptance, even when Flash-Lite answered. Saved evidence binds the verifier selection, configuration, implementation, artifacts and credentials privately. Failed results never become resumable PASS evidence.
+
+New deterministic checks cover preserved cumulative history, bounded overrides, allowed CLI models, targeted stickiness, availability-only transition to Lite and schema failure exclusion. Targeted [mock smoke](evaluation/phase6-targeted-mock-smoke.json) and [mock positive](evaluation/phase6-targeted-mock-positive.json) pass; these are scripted provider responses, not live reasoning. [Fresh offline acceptance](evaluation/phase6-targeted-offline.json) reproduces both real local plans, donor protection and immutable snapshots with zero provider requests. The ready result remains **41,763 / 17,745 / 15,679 / 10 / 26,084**, zero new donor risks/violations; constrained remains **30,230 unresolved / zero capacity / zero transfers**. OR-Tools remains OPTIMAL and ties greedy. These engine results do not count as Gemini live acceptance.
+
+The automatic failover path has now been observed across all five candidates in two retained live sessions. All five returned 503. **Phase 6 remains blocked on provider availability and cannot be declared live-accepted or ready as a reliable live Gemini demo.** Explicit deterministic operational demos remain available; Phase 7 has not started.
+
+Current regression: **289 backend tests passed in 45.88 s**, including all previous 281 plus eight targeted-verifier cases. Python compilation, `pip check`, strict TypeScript and Angular production build pass (366.12 kB initial / 100.26 kB estimated transfer). One upstream Starlette/AnyIO deprecation warning remains. No browser test was run during targeted acceptance because the required live smoke did not pass. `.env` remains ignored and untracked; the loaded key matches the unchanged local file and no key or credential fingerprint was found in public source, reports, frontend bundles or Git diff. [Consolidated targeted verification](evaluation/phase6-targeted-verification.json).

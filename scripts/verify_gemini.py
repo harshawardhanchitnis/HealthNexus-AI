@@ -13,7 +13,7 @@ from uuid import uuid4
 from importlib.metadata import version
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'backend'))
-from app.ai.config import AIConfig, VERSION as CONFIG_VERSION
+from app.ai.config import AIConfig, DEFAULT_CHAIN, VERSION as CONFIG_VERSION
 from app.ai.schemas import CopilotRequest
 from app.ai.orchestrator import CopilotService, context_key
 from app.ai.client import CopilotError, GeminiTransport
@@ -28,7 +28,7 @@ from app.services.repository import LocalRepository
 from app.scenarios.engine import ScenarioEngine
 from app.optimization.service import OptimizationService
 
-EXPECTED={'positive':4,'followup':1,'constrained':2,'provenance':1,'risk':4,'resilience':1}
+EXPECTED={'positive':4,'followup':1,'constrained':2,'provenance':1,'risk':4,'resilience':1,'model-smoke':1}
 QUESTIONS={
     'positive':'Simulate a severe 14-day dengue surge in Pune, identify the most serious resource risks, and find the safest redistribution plan.',
     'followup':'Why were these donors selected, and what shortages remain?',
@@ -36,6 +36,7 @@ QUESTIONS={
     'provenance':'Is this live government inventory, and how should I interpret the forecast accuracy?',
     'risk':"Summarize Pune's current resilience risks.",
     'resilience':'Summarize the current resource resilience status in Pune.',
+    'model-smoke':'Summarize the current resource resilience status in Pune.',
 }
 
 
@@ -205,8 +206,23 @@ def validate_response(service,repo,response,label,before):
         assert any(e.tool=='get_model_performance' for e in response.evidence)
 
 
-def verify(mode, output, case=None, acceptance=False, resume=False, evidence_dir=None, budget_limit=10):
+def seed_verifier_conversation(service,repo,request,model,previous=None,conversation_id=None):
+    """Verifier-only starting candidate; production config and default chain stay intact."""
+    cid=conversation_id or str(uuid4())
+    service.conversations[cid]={'key':context_key(request),'origin':str(repo.profile_snapshot(request.country_id,request.profile).as_of),
+        'previous':previous,'effective_model':model,'fallback_reason':'verifier_targeted_candidate',
+        'scenario_id':None,'run_id':None,'updated':monotonic(),'busy':False}
+    return request.model_copy(update={'conversation_id':cid})
+
+
+def verify(mode, output, case=None, acceptance=False, resume=False, evidence_dir=None, budget_limit=10,
+           start_model=None, explicit_budget_override=False):
     config=AIConfig(api_key='unit-test-placeholder') if mode=='mock' else AIConfig()
+    if start_model and (mode=='offline' or start_model not in config.chain):
+        raise ValueError('--model must be a configured Gemini candidate and cannot be used in offline mode')
+    if case=='model-smoke' and not start_model:raise ValueError('model-smoke requires an explicit --model candidate')
+    # Validate bounds before touching the lease, artifacts or provider.
+    RequestBudget(budget_limit,explicit_override=explicit_budget_override)
     if mode=='live' and config.error():
         report={'mode':mode,'status':'not_run','reason':config.error()[0],'model':config.model}
         output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(report,indent=2),encoding='utf-8')
@@ -217,13 +233,14 @@ def verify(mode, output, case=None, acceptance=False, resume=False, evidence_dir
     lease=ROOT/'artifacts/gemini-verifier.lock';lease.parent.mkdir(parents=True,exist_ok=True)
     try:lease.touch(exist_ok=False)
     except FileExistsError:raise ValueError('Another verifier owns the ledger; wait for it to finish')
-    try:return _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
+    try:return _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config,start_model,explicit_budget_override)
     finally:lease.unlink()
 
 
-def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config):
+def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config,start_model,explicit_budget_override):
     engine=ScenarioEngine();planner=OptimizationService(engine);repo=LocalRepository()
-    budget=RequestBudget(budget_limit,ROOT/'artifacts/gemini-verification-budget-live.json' if mode=='live' else None)
+    budget=RequestBudget(budget_limit,ROOT/'artifacts/gemini-verification-budget-live.json' if mode=='live' else None,
+        explicit_override=explicit_budget_override)
     initial_used=budget.used;last_request=[None]
     def before_request(model):
         # 5 RPM free tier: space live requests conservatively. No automatic 429 retry.
@@ -238,12 +255,16 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
         return transport
     service=CopilotService(engine,planner,config,transport_factory=factory)
     identity=evidence_identity(config,repo,engine)
+    identity['verification_start_model']=start_model
     labels=[case] if case else ['positive','followup','constrained','provenance']
     report={'mode':mode,'model':config.model if mode!='offline' else None,'status':'passed',
         'live_acceptance':mode=='live','timestamp':datetime.now(timezone.utc).isoformat(),
         'identity':{k:v for k,v in identity.items() if k!='credential_fingerprint'},
         'credential_binding':'Private resumable evidence retains a one-way credential fingerprint; public report omits it.',
         'selected_case':case,'acceptance':acceptance or case is None,'tests':[],
+        'verification_start_model':start_model,'production_chain':list(config.chain),
+        'existing_daily_sends':initial_used,'explicit_budget_override':explicit_budget_override,
+        'newly_authorized_allowance':max(0,budget_limit-initial_used),
         'budget_limit':budget_limit,'expected_provider_requests':sum(EXPECTED[l] for l in labels) if mode!='offline' else 0,
         'maximum_provider_requests':budget_limit,'local_fixture_tool_calls':0,
         'comparison':{'old_suite_expected_provider_requests':23,'old_cases':{'risk':4,'positive':8,'constrained':8,'provenance':3},
@@ -251,14 +272,21 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
             'schema_bytes_by_intent':{k:byte_size(declarations(v)) for k,v in SUBSETS.items()},
             'token_estimate_method':'characters / 4; estimates are not Gemini token counts'},
         'resume_invalidated':[]}
-    positive=None
+    positive=None;session_model=start_model;smoke=None
+    smoke_path=evidence_dir/'model-smoke.json'
+    if start_model and resume and case!='model-smoke' and smoke_path.exists():
+        candidate=json.loads(smoke_path.read_text(encoding='utf-8'))
+        if compatible(candidate,identity,mode):
+            smoke=candidate['entry']['response'];session_model=smoke['metadata']['effective_model']
+            report['resumed_model_smoke']=True
     for label in labels:
-        profile='redistribution-ready' if label in ('positive','followup','risk','resilience') else 'constrained'
+        profile='redistribution-ready' if label in ('positive','followup','risk','resilience','model-smoke') else 'constrained'
         path=evidence_dir/f'{label}.json'
         saved=json.loads(path.read_text(encoding='utf-8')) if resume and path.exists() else None
         if saved and compatible(saved,identity,mode):
             entry={**saved['entry'],'reused':True};report['tests'].append(entry)
             if label=='positive':positive=entry['response']
+            if start_model:session_model=entry['response']['metadata']['effective_model']
             print(label,'reused compatible',mode,'PASS evidence',flush=True);continue
         if saved:report['resume_invalidated'].append(label)
         before=repo.profile_snapshot('IN',profile).model_dump_json();began=perf_counter()
@@ -278,6 +306,11 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
                         'previous':positive['metadata']['interaction_id'],'effective_model':positive['metadata'].get('effective_model',config.model),
                         'scenario_id':sid,'run_id':run_id,'updated':monotonic(),'busy':False}
                 request=request.model_copy(update={'conversation_id':cid})
+            elif session_model:
+                use_smoke=smoke if label=='positive' else None
+                request=seed_verifier_conversation(service,repo,request,session_model,
+                    previous=use_smoke['metadata']['interaction_id'] if use_smoke else None,
+                    conversation_id=use_smoke['conversation_id'] if use_smoke else None)
             response=service.run(repo,request)
             validate_response(service,repo,response,label,before)
             if label in ('followup','provenance'):assert response.metadata['provider_requests']==(0 if mode=='offline' else 1)
@@ -289,6 +322,7 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
                 'response':response.model_dump(mode='json')}
             report['tests'].append(entry)
             if label=='positive':positive=entry['response']
+            if start_model:session_model=response.metadata['effective_model']
             save_pass(path,mode,identity,entry)
             print(label,profile,'passed',response.metadata['provider_requests'],'provider requests',len(response.tools_used),'local tools',flush=True)
         except (CopilotError,AssertionError) as error:
@@ -297,6 +331,7 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
                 'diagnostics':dict(service.audit[-1]) if service.audit else {}})
             print(label,'failed',report['tests'][-1]['code'],flush=True);break
     report['provider_requests']=budget.used-initial_used;report['daily_ledger_used']=budget.used
+    report['new_provider_sends']=report['provider_requests'];report['final_cumulative_sends']=budget.used
     report['daily_provider_requests_per_model']=budget.per_model
     reused={t['label'] for t in report['tests'] if t.get('reused')}
     report['expected_provider_requests_this_run']=sum(EXPECTED[l] for l in labels if l not in reused) if mode!='offline' else 0
@@ -313,15 +348,17 @@ def parser():
     for mode in ('live','offline','mock'):group.add_argument('--'+mode,action='store_true')
     p.add_argument('--output',type=Path)
     selection=p.add_mutually_exclusive_group()
-    selection.add_argument('--case',choices=['risk','positive','constrained','provenance','resilience'])
+    selection.add_argument('--case',choices=['risk','positive','constrained','provenance','resilience','model-smoke'])
     selection.add_argument('--acceptance',action='store_true')
     p.add_argument('--resume',action='store_true',help='Reuse only compatible same-mode PASS evidence')
     p.add_argument('--evidence-dir',type=Path)
-    p.add_argument('--budget',type=int,default=int(os.getenv('GEMINI_DAILY_VERIFICATION_BUDGET','10')))
+    p.add_argument('--model',choices=DEFAULT_CHAIN,help='Verifier-only sticky starting candidate; production order is unchanged')
+    p.add_argument('--budget',type=int,help='Explicit cumulative ceiling (1–14); omitted uses the normal 1–10 environment/default cap')
     return p
 
 
 if __name__=='__main__':
     args=parser().parse_args();mode=next(m for m in ('live','offline','mock') if getattr(args,m))
+    budget=args.budget if args.budget is not None else int(os.getenv('GEMINI_DAILY_VERIFICATION_BUDGET','10'))
     sys.exit(verify(mode,args.output or ROOT/f'docs/evaluation/phase6-budget-{mode}.json',args.case,
-        args.acceptance,args.resume,args.evidence_dir,args.budget))
+        args.acceptance,args.resume,args.evidence_dir,budget,args.model,args.budget is not None and args.budget>10))

@@ -8,7 +8,7 @@ A real-data-backed healthcare resilience prototype combining public health stati
 
 ## Resilience Copilot — Phase 6 implementation
 
-**Resilience Copilot** uses official `google-genai==2.25.0` Interactions with Gemini 3.8 Flash primary and availability failover through 3.7 Flash, 3.6 Flash, 3.5 Flash and 3.5 Flash-Lite. Thirteen shared tools, typed evidence, safe local handoff and sticky conversations retain server-owned forecasts and OR-Tools results. The UI shows the effective model and explicit offline option. [Setup](docs/gemini.md) · [Failover evidence](docs/phase6-failover-report.md). **281 tests pass; live failover received three 503 responses before the retained budget stopped further sends. Successful live fallback acceptance remains pending. Phase 7 is deferred.**
+**Resilience Copilot** uses official `google-genai==2.25.0` Interactions with Gemini 3.8 Flash primary and availability failover through 3.7 Flash, 3.6 Flash, 3.5 Flash and 3.5 Flash-Lite. Thirteen shared tools, typed evidence, safe local handoff and sticky conversations retain server-owned forecasts and OR-Tools results. The UI shows the effective model and explicit offline option. [Setup](docs/gemini.md) · [Failover evidence](docs/phase6-failover-report.md). **289 tests pass; all five candidates returned live 503 HIGH DEMAND across the retained automatic and targeted sessions. Targeted verification retained ten prior sends and used two more, totaling 12/14. Successful live fallback acceptance remains pending. Phase 7 is deferred.**
 
 ## Preserved Phase 5.5 demonstrations
 
@@ -29,7 +29,7 @@ Forecasting includes 540-day causal histories, country-local trained models, thr
 - Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
 - Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
 
-**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning and the Gemini tool integration are implemented; final live acceptance awaits quota reset and authorization. Federated training remains later work. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
+**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning and the Gemini tool integration are implemented; final live acceptance remains blocked on provider availability. Federated training remains later work. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
 
 ## Run locally — Windows PowerShell
 
@@ -85,7 +85,7 @@ See [Phase 5.5 report](docs/phase55-report.md), [validation](docs/validation.md)
 
 ## Storage and deployment
 
-`HEALTHNEXUS_STORAGE=local` is the default. `HEALTHNEXUS_CORS_ORIGINS` controls allowed local origins. Firestore requires `HEALTHNEXUS_STORAGE=firestore`, `GOOGLE_CLOUD_PROJECT` and server-side application credentials. It fails clearly if unavailable. `GEMINI_API_KEY` stays server-side. `GEMINI_MODEL` must be exactly `gemini-3.8-flash`; see [Copilot setup](docs/gemini.md).
+`HEALTHNEXUS_STORAGE=local` is the default. `HEALTHNEXUS_CORS_ORIGINS` controls allowed local origins. Firestore requires `HEALTHNEXUS_STORAGE=firestore`, `GOOGLE_CLOUD_PROJECT` and server-side application credentials. It fails clearly if unavailable. `GEMINI_API_KEY` stays server-side. `GEMINI_MODEL_PRIMARY` and `GEMINI_MODEL_FALLBACKS` select the approved five-model chain; legacy `GEMINI_MODEL` remains supported. See [Copilot setup](docs/gemini.md).
 
 India's existing `data/generated/network.json` path remains compatible. Other nodes use `data/generated/nodes/<country>/network.json`. Legacy schema-1 India snapshots remain readable and are explicitly identified as uncalibrated synthetic data. New schema-2 snapshots include lineage.
 

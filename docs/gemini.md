@@ -115,3 +115,16 @@ Verifier attempts across all models share the same persistent ten-request ceilin
 ```
 
 [Measured failover report](phase6-failover-report.md) distinguishes scripted compatibility from live 503 evidence. Phase 6 remains incompletely accepted; Phase 7 has not started.
+
+### Targeted verifier override
+
+The normal daily verification cap remains ten cumulative sends. Explicit CLI `--budget 14` permits a bounded extension without deleting or resetting the ledger; an environment value above ten is rejected. `--model` selects only a configured candidate for verification, with production order unchanged. `--case model-smoke` requires that selection and uses two fresh authoritative reads plus one structured interpretation attempt per reached model. All attempts share the same ledger.
+
+```powershell
+# Targeted command executed under explicit user authorization:
+.\.venv\Scripts\python.exe scripts\verify_gemini.py --live --case model-smoke --model gemini-3.5-flash --budget 14 --resume
+# Only after compatible smoke PASS, within remaining authorized budget:
+.\.venv\Scripts\python.exe scripts\verify_gemini.py --live --case positive --model gemini-3.5-flash --budget 14 --resume
+```
+
+Compatible smoke PASS restores the actual successful model, keeping even Flash-Lite sticky in later verification. Availability errors can advance only through the remaining configured suffix; schema/grounding failures remain visible. The targeted live attempt sent one request each to 3.5 Flash and Flash-Lite; both returned 503 HIGH DEMAND. There is no successful live model or validated final response. Historical ten sends plus two new sends total **12/14**; the two unused sends were conserved. [Measured evidence and acceptance limits](phase6-failover-report.md#targeted-remaining-model-acceptance--28-september-2026).

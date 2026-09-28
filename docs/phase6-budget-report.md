@@ -94,3 +94,9 @@ Phase 6 revised live acceptance is ready for the next authorized quota window, n
 ## Failover extension — 28 September 2026
 
 The preceding measurements describe the historical efficiency change. Current configuration v4 adds the five-model chain and model-aware ledger while keeping the same global ten-request daily ceiling. Three new live attempts (3.8, 3.7, 3.6; one each) returned 503 and exhausted the remaining local allowance. No reset/key/billing change occurred. Completed PASS still requires material identity compatibility including chain/config and credentials. The current resilience smoke is one schema interpretation after two fresh audited local reads. [Current failover report](phase6-failover-report.md).
+
+## Explicit targeted extension — 28 September 2026
+
+The user authorized a bounded verifier-only extension to 14 cumulative sends. Default/environment limits remain 1–10; explicit CLI `--budget 14` permits up to 14 while retaining the same daily ledger. `--case model-smoke --model gemini-3.5-flash` skips previously tested models without changing the production order, and reaches Lite only on an eligible availability failure. Model selection is included in PASS identity. Compatible smoke PASS restores the actual effective model for subsequent sticky positive verification.
+
+The targeted live smoke consumed **two** sends: 3.5 Flash and Flash-Lite each returned HTTP 503 HIGH DEMAND. History remains **10 + 2 = 12/14**, with two unused sends. No positive/provenance/constrained live interpretation or browser call followed the failed smoke. [New exact trace](evaluation/phase6-targeted-live-smoke.json). Historical 503 evidence remains unchanged. This extension does not estimate or alter Google quota, change keys/projects, enable billing or reset the ledger.

@@ -6,7 +6,8 @@ from types import SimpleNamespace
 import httpx
 import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'scripts'))
-from verify_gemini import DemoTransport, EXPECTED, compatible, fixture, parser, save_pass
+from verify_gemini import DemoTransport, EXPECTED, compatible, fixture, parser, save_pass, seed_verifier_conversation
+from app.ai.config import DEFAULT_CHAIN
 from test_ai import service, request, Scripted, turn, call, ready, final
 from test_profiles import profiles, trained
 from app.ai.budget import RequestBudget
@@ -225,3 +226,69 @@ def test_selective_and_resumable_cli(case):
     args=parser().parse_args(['--mock','--case',case,'--resume'])
     assert args.case==case and args.resume and not args.acceptance
     assert sum(EXPECTED[k] for k in ('positive','followup','constrained','provenance'))==8
+
+
+def test_explicit_fourteen_ceiling_preserves_cumulative_history(tmp_path):
+    path=tmp_path/'ledger.json';initial=RequestBudget(10,path)
+    for _ in range(10):initial.consume('historical-model')
+    historical=json.loads(path.read_text())
+    with pytest.raises(ValueError):RequestBudget(14,path)
+    extended=RequestBudget(14,path,explicit_override=True)
+    assert extended.used==10 and extended.per_model==historical['per_model']
+    for _ in range(4):extended.consume(DEFAULT_CHAIN[3])
+    with pytest.raises(CopilotError) as e:extended.consume(DEFAULT_CHAIN[4])
+    assert e.value.code=='quota_budget_exhausted_locally'
+    assert extended.used==14 and json.loads(path.read_text())['per_model']=={'historical-model':10,DEFAULT_CHAIN[3]:4}
+
+
+@pytest.mark.parametrize('limit',[0,15,100])
+def test_explicit_override_still_bounded(limit):
+    with pytest.raises(ValueError):RequestBudget(limit,explicit_override=True)
+
+
+def test_targeted_cli_only_exposes_approved_candidate_and_explicit_budget():
+    args=parser().parse_args(['--live','--case','model-smoke','--model',DEFAULT_CHAIN[3],'--budget','14'])
+    assert args.model==DEFAULT_CHAIN[3] and args.budget==14 and args.case=='model-smoke'
+    assert parser().parse_args(['--mock']).budget is None
+    with pytest.raises(SystemExit):parser().parse_args(['--live','--model','gemini-pro'])
+
+
+def test_targeted_smoke_skips_old_models_and_preserves_production_config(profiles):
+    made=[]
+    def factory(cfg):
+        made.append(cfg.model);return DemoTransport(cfg)
+    svc,repo=service(profiles,factory)
+    ctx=scoped(repo,message='Summarize the current resource resilience status in Pune.')
+    original=svc.config;before=repo.profile_snapshot('BR','redistribution-ready').model_dump_json()
+    answer=svc.run(repo,seed_verifier_conversation(svc,repo,ctx,DEFAULT_CHAIN[3]))
+    assert made==[DEFAULT_CHAIN[3]] and svc.config is original and svc.config.chain==DEFAULT_CHAIN
+    assert answer.metadata['provider_requests']==1 and answer.metadata['fallback_used']
+    assert answer.metadata['requested_model']==DEFAULT_CHAIN[0] and answer.metadata['effective_model']==DEFAULT_CHAIN[3]
+    assert repo.profile_snapshot('BR','redistribution-ready').model_dump_json()==before
+    assert answer.evidence and answer.mode=='gemini'
+    followup=svc.run(repo,ctx.model_copy(update={'conversation_id':answer.conversation_id}))
+    assert made==[DEFAULT_CHAIN[3],DEFAULT_CHAIN[3]]
+    assert followup.metadata['effective_model']==DEFAULT_CHAIN[3]
+
+
+def test_targeted_three_five_availability_failure_only_reaches_lite(profiles):
+    from test_ai_failover import Failing, unavailable
+    made=[]
+    def factory(cfg):
+        made.append(cfg.model)
+        return Failing(unavailable()) if cfg.model==DEFAULT_CHAIN[3] else DemoTransport(cfg)
+    svc,repo=service(profiles,factory)
+    ctx=scoped(repo,message='Summarize the current resource resilience status in Pune.')
+    answer=svc.run(repo,seed_verifier_conversation(svc,repo,ctx,DEFAULT_CHAIN[3]))
+    assert made==list(DEFAULT_CHAIN[3:]) and answer.metadata['provider_requests']==2
+    assert answer.metadata['effective_model']==DEFAULT_CHAIN[4] and answer.metadata['fallback_used']
+    assert answer.metadata['fallback_chain_attempted']==list(DEFAULT_CHAIN[3:])
+
+
+def test_targeted_schema_failure_never_tests_lite(profiles):
+    fake=Scripted([{'id':'invalid-final','output_text':'not JSON'}]);made=[]
+    def factory(cfg):made.append(cfg.model);return fake
+    svc,repo=service(profiles,factory)
+    ctx=scoped(repo,message='Summarize the current resource resilience status in Pune.')
+    with pytest.raises(CopilotError) as e:svc.run(repo,seed_verifier_conversation(svc,repo,ctx,DEFAULT_CHAIN[3]))
+    assert e.value.code=='response_schema' and made==[DEFAULT_CHAIN[3]]

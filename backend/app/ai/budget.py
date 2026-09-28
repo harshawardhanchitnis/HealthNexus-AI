@@ -7,9 +7,10 @@ from app.ai.client import CopilotError
 
 
 class RequestBudget:
-    def __init__(self, limit=10, ledger=None):
-        if not 1 <= limit <= 10:
-            raise ValueError('Verification budget must be between 1 and 10')
+    def __init__(self, limit=10, ledger=None, *, explicit_override=False):
+        ceiling = 14 if explicit_override else 10
+        if not 1 <= limit <= ceiling:
+            raise ValueError('Verification budget must be 1–10, or at most 14 with an explicit verifier override')
         self.limit, self.ledger = limit, Path(ledger) if ledger else None
         self.used, self.lock = 0, RLock()
         self.per_model = {}
