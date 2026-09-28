@@ -2,7 +2,7 @@
 
 ## Current instructions take precedence over the historical brief below
 
-Continue the existing repository; never recreate it or reset completed phases. Phases 1–4 are preserved. Phase 5 implements domestic OR-Tools CP-SAT planning and paired impact simulation. The current Pune snapshot has no safe donor capacity, so its positive-transfer demonstration remains a documented data prerequisite; do not manufacture stock or relax reserve protection to hide this. See phase5-report.md and model-card.md. The proposed next milestone is Phase 6 resilience copilot/tool calling. The configured scope is India, Brazil, Russia, China and South Africa, not an exhaustive current BRICS membership list.
+Continue the existing repository; never recreate it or reset completed phases. Phases 1–5.5 are preserved. Two explicit profiles reproduce both legitimate Pune outcomes: constrained (30,230 unresolved, no safe donors/transfers) and redistribution-ready (15,679 transferred item tally, 26,084 unresolved, protected donors). Never manufacture stock or relax reserves to hide a shortage. Phase 6 adds the official google-genai SDK, exact gemini-3.8-flash, 13 validated native tools, evidence and explicit offline summaries. Credentialed live verification remains pending; mocked/offline success is not live Gemini evidence. See phase55-report.md, phase6-report.md and gemini.md. The configured scope is India, Brazil, Russia, China and South Africa, not an exhaustive current BRICS membership list.
 
 - Preserve all 36 Indian states/UTs, 69 illustrative districts, 207 fictional facilities and original tests.
 - Maintain representative country → region → facility nodes for the other four countries (six fictional facilities each).
@@ -10,8 +10,8 @@ Continue the existing repository; never recreate it or reset completed phases. P
 - Preserve official_public, public_international, derived, synthetic and simulation provenance. Historical aggregates are not live facility data.
 - Public statistics calibrate causal generation. Explain assumptions, reference years, missing data and uncertainty.
 - Physical redistribution remains domestic. Future federation shares model updates; do not pool raw operational training datasets.
-- OR-Tools, predictive warnings and emergency scenarios are implemented. Gemini and FedAvg remain future work; never claim unproved solver optimality or invented optimizer superiority.
-- Treat all named future products/models in the historical brief as intended integrations. Verify actual model availability at integration time; do not claim the proposed Gemini model is already available or integrated.
+- OR-Tools, predictive warnings, emergency scenarios and the Gemini integration code are implemented. Live Gemini behaviour remains unverified without credentials. FedAvg remains future work; never claim unproved solver optimality or invented optimizer superiority.
+- Treat historical future-product language as superseded by measured current reports. Exact Gemini 3.8 Flash is documented by Google and configured without substitution; no real inference is claimed until opt-in live verification passes.
 - Keep the frontend/API runnable, preserve compatibility and test every milestone. Do not label future features as completed.
 
 See scope.md, data-sources.md, model-card.md and phase2-report.md for the implemented baseline. The original phase numbering and “start Phase 1” directions below are historical context, superseded by this continuation instruction.

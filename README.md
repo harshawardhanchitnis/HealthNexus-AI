@@ -6,7 +6,11 @@ A real-data-backed healthcare resilience prototype combining public health stati
 
 ![HealthNexus redistribution planner](docs/screenshots/phase5-planner.png)
 
-## Working through Phase 5.5
+## Resilience Copilot — Phase 6 implementation
+
+**Resilience Copilot** adds the official `google-genai==2.25.0` Interactions integration for exactly `gemini-3.8-flash`, thirteen validated tools, bounded orchestration, typed evidence and actual tool activity. Gemini selects/explains existing computations. Server-side configuration is in `.env.example`; model failures remain explicit. Select **Use offline summaries** for labelled deterministic demonstrations. [Setup](docs/gemini.md) · [Phase 6 report](docs/phase6-report.md). **Live Gemini verification is pending credentials; mocks/offline output are not live Gemini evidence.**
+
+## Preserved Phase 5.5 demonstrations
 
 Two reproducible operational profiles now demonstrate both outcomes. **Constrained** preserves the original Pune severe-dengue result: 30,230 target units unresolved, no safe donors and no transfers. **Redistribution-ready** replays a separate uneven replenishment policy: two safe Pune donors, 15,679 units moved across 10 solver-selected lanes, and 26,084 target units still unresolved. Donor reserves remain protected; OR-Tools and greedy tie in this measured district case. Both are simulated operations, not government inventory. [Phase 5.5 report](docs/phase55-report.md) · [Measured verification](docs/evaluation/phase55-verification.json).
 
@@ -25,7 +29,7 @@ Forecasting includes 540-day causal histories, country-local trained models, thr
 - Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
 - Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
 
-**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning is implemented; Gemini and federated training remain later milestones. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
+**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning and the Gemini tool integration are implemented; live Gemini verification requires credentials and federated training remains later work. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
 
 ## Run locally — Windows PowerShell
 
@@ -81,7 +85,7 @@ See [Phase 5.5 report](docs/phase55-report.md), [validation](docs/validation.md)
 
 ## Storage and deployment
 
-`HEALTHNEXUS_STORAGE=local` is the default. `HEALTHNEXUS_CORS_ORIGINS` controls allowed local origins. Firestore requires `HEALTHNEXUS_STORAGE=firestore`, `GOOGLE_CLOUD_PROJECT` and server-side application credentials. It fails clearly if unavailable. `GEMINI_API_KEY` and `GEMINI_MODEL` are reserved and unused.
+`HEALTHNEXUS_STORAGE=local` is the default. `HEALTHNEXUS_CORS_ORIGINS` controls allowed local origins. Firestore requires `HEALTHNEXUS_STORAGE=firestore`, `GOOGLE_CLOUD_PROJECT` and server-side application credentials. It fails clearly if unavailable. `GEMINI_API_KEY` stays server-side. `GEMINI_MODEL` must be exactly `gemini-3.8-flash`; see [Copilot setup](docs/gemini.md).
 
 India's existing `data/generated/network.json` path remains compatible. Other nodes use `data/generated/nodes/<country>/network.json`. Legacy schema-1 India snapshots remain readable and are explicitly identified as uncalibrated synthetic data. New schema-2 snapshots include lineage.
 

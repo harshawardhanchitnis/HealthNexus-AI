@@ -32,6 +32,7 @@ export class App {
     { path: '/warnings', icon: 'bell', label: 'Early Warning Centre' },
     { path: '/emergency', icon: 'pulse', label: 'Emergency Simulator' },
     { path: '/redistribution', icon: 'box', label: 'Redistribution Planner' },
+    { path: '/copilot', icon: 'network', label: 'Resilience Copilot' },
     { path: '/forecasts', icon: 'chart', label: 'Forecasts' },
     { path: '/model-performance', icon: 'shield', label: 'Model performance' },
     { path: '/brics', icon: 'network', label: 'BRICS nodes' },

@@ -1,5 +1,16 @@
 # Validation — 2026-09-28
 
+## Phase 6
+
+- **207 backend tests pass**: all existing 156 plus 51 Copilot cases; final full run 27.23 seconds. Native official-SDK HTTP encoding is verified with a mock transport, not Google network calls.
+- Python compilation and `pip check` pass. Strict TypeScript and Angular production build pass: 366.12 kB initial raw / 100.24 kB estimated transfer; Copilot lazy chunk 21.32 kB / 6.06 kB.
+- Four-case mocked-model and explicit-offline verification passes using actual local forecasting/scenario/OR-Tools engines. Their outputs match authoritative stored plan fields exactly and preserve country/profile, donor safety, conservation and baseline/scenario immutability.
+- Constrained Pune reproduces 30,230 unresolved, zero safe capacity/transfers. Ready Pune reproduces 15,679 transferred accounting items, ten lanes, 26,084 unresolved and zero donor violations/new risks. IVF/PCM remaining stock-out risks remain explicit. All five original snapshot hashes match the committed Phase 5.5 report; protected engine/policy files are unchanged.
+- Desktop browser verifies explicit offline labelling, both actual demo outcomes, six-tool trace, same-conversation retained-plan follow-up, profile reset, actual optimizer-result navigation and simulated/government provenance distinction. Mobile 390×844 has 375 CSS px document/scroll width, contained tables and the same measured plan. No captured application console errors occurred. These checks use keyboard/select interaction; no live model response is claimed.
+- Exact `gemini-3.8-flash` uses the official 2.25.0 SDK / Interactions API with medium thinking. **Live verification is not run because server credentials are absent**; no Google token usage/inference latency is claimed. Explicit `--live` remains available after configuration.
+
+See [Phase 6 report](phase6-report.md), [integration/setup](gemini.md), [mock evidence](evaluation/phase6-mock.json), [offline evidence](evaluation/phase6-offline.json), [live status](evaluation/phase6-live.json), [snapshot preservation](evaluation/phase6-preservation.json) and [browser evidence](evaluation/phase6-browser.json). One existing upstream Starlette/AnyIO deprecation warning remains. FedAvg, production authentication/cloud deployment and real operational/clinical validity remain unimplemented or unverified.
+
 ## Phase 5.5
 
 - **156 backend tests pass**, retaining all 135 Phase 1–5 tests and adding 21 profile/preparation cases. Serial and batched forecasts match exactly in both profiles. Ledger conservation, requested-demand parity, deterministic generation, profile hashes/provenance, safe positive plans, immutable copies, cache keys/invalidation/corruption and API isolation are covered.

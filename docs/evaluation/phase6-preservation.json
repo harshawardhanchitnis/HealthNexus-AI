@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "comparison": "Phase 5.5 committed verification",
+  "legacy_snapshot_hashes": {
+    "IN": "1eef37f4bd044837ce0115efe6a338d323bdcba1abd65c9f984b0649f456f840",
+    "BR": "f70878d112441cf5e91441d7e20bed27cfe151ae41ab3dc244bfb392454300f7",
+    "RU": "83d3073d34461a172b3209668694fe447e333226495ff61c8a56a41ea9b03a79",
+    "CN": "2080ebc259848ef4c30157ef140c00cbae2766219ce85583a3424b94c3b7000d",
+    "ZA": "94c2e452e1f7df3496707e9649790876a7b541de6fe24982eab0f40a2360ea64"
+  },
+  "forecast_warning_scenario_optimizer_profile_policy_files_modified": false
+}

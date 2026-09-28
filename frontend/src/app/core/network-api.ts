@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { CopilotRequest, CopilotResponse, CopilotStatus, CopilotProgress } from './copilot-models';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Forecast, Performance } from './forecast-models';
@@ -26,6 +27,20 @@ import {
 export class NetworkApi {
   private http = inject(HttpClient);
   private router = inject(Router);
+  copilotStatus() { return this.http.get<CopilotStatus>('/api/ai/status'); }
+  copilot(body: CopilotRequest) {
+    return this.http.post<CopilotResponse>('/api/ai/copilot', body);
+  }
+  copilotProgress(id: string, country: string) {
+    return this.http.get<CopilotProgress>('/api/ai/requests/' + encodeURIComponent(id), {
+      params: this.params({country_id: country}),
+    });
+  }
+  discardConversation(id: string, country: string) {
+    return this.http.delete<void>('/api/ai/conversations/' + encodeURIComponent(id), {
+      params: this.params({country_id: country}),
+    });
+  }
   profile(): string {
     return this.router.parseUrl(this.router.url).queryParams['profile'] || 'constrained';
   }

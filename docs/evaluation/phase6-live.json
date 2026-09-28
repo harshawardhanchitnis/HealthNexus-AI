@@ -1,0 +1,11 @@
+{
+  "mode": "live",
+  "status": "not_run",
+  "reason": "missing_server_api_key",
+  "timestamp": "2026-09-28T02:30:51.116403+00:00",
+  "model": "gemini-3.8-flash",
+  "sdk_version": "2.25.0",
+  "provider_requests": 0,
+  "usage": null,
+  "note": "Credential absence checked; no live model attempt or substitution."
+}

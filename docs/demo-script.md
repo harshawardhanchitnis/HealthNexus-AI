@@ -1,4 +1,17 @@
-# Phase 3 demo — forecasting with evidence
+# Phase 6 Copilot demo — current entry point
+
+1. Open **Resilience Copilot**. Select India → Maharashtra → Pune and **Redistribution-ready simulation**. Inspect the profile notice and administrative-only scope.
+2. With no server key, choose **Use offline summaries** explicitly. The page and every response must say OFFLINE; these steps verify local engines, not Gemini reasoning. For live inference, configure the server key as described in [Gemini setup](gemini.md), restart the backend and run the opt-in live verifier first. Do not substitute another model or claim live success from mock/offline evidence.
+3. Select **Simulate dengue & plan redistribution**. Inspect the populated severe 14-day question and explicit planning checkbox, then submit. The six actual tools summarize the network, run the scenario, compare it, inspect warnings, preview donors and optimize.
+4. Read the real result: 41,763 → 26,084 target deficit, 17,745 safe capacity, 15,679 transferred item tally, 10 lanes, zero new donor risks/reserve violations. Inspect individual resource units/reserves. IVF and PCM retain 100% conditional 14-day stock-out risk; some other resources improve. No physical transfer is executed.
+5. Ask **Explain selected donors** in the same conversation. Expand evidence and tool activity. Open **Open actual optimizer result** to inspect the saved authoritative plan and greedy comparison; profile and scenario IDs remain scoped.
+6. Switch to **Network-insufficient simulation**. The conversation resets. Repeat the authorized severe dengue workflow. Read 30,230 unresolved, zero safe capacity, zero transfers and OPTIMAL constrained status. An optimal constrained plan can leave a shortage unresolved.
+7. Ask **Is this live government inventory?**. Show actual calibration/source metadata and the explicit false live-inventory field. Public historical aggregates and simulated facility operations must remain distinct. Review forecast reliability separately from real-world clinical accuracy.
+8. Profile comparison requires its explicit checkbox and keeps independent profile-labelled results. Individual diagnosis or prescribing requests receive a refusal before model/tool calls. New conversation clears local session records; it does not delete Google-side history.
+
+See [measured Phase 6 report](phase6-report.md). The following sections document earlier milestones and retain their historical conditions.
+
+# Historical Phase 3 demo — forecasting with evidence
 
 1. Open **Data Sources**. Show the two real integrations, historical dates and simulated operational distinction. These aggregates calibrate the prototype; they are not live facility feeds.
 2. Open **Forecasts**. Select India → Maharashtra → Pune → Pune PHC 01 → IV fluids. Show the preceding 28 daily observations, future 1/7/14-day forecasts and empirical 80%/95% intervals. The full training history contains 540 days.

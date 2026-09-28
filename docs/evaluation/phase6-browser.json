@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-09-28T02:34:34.822061+00:00",
+  "mode": "offline",
+  "real_google_calls": 0,
+  "desktop": {
+    "positive": {
+      "target_before": 41763,
+      "target_after": 26084,
+      "capacity": 17745,
+      "transferred": 15679,
+      "lanes": 10,
+      "donor_violations": 0,
+      "remaining_ivf_pcm_risk_14": 1
+    },
+    "constrained": {
+      "unresolved": 30230,
+      "capacity": 0,
+      "transfers": 0
+    },
+    "six_actual_tools": "passed",
+    "retained_plan_followup": "passed",
+    "optimizer_link_with_matching_country_profile_scenario_run": "passed",
+    "profile_reset": "passed",
+    "provenance_live_inventory_false": "passed",
+    "conversation_reset": "passed",
+    "clinical_scope_refusal_without_tools": "passed"
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "document_client_width": 375,
+    "document_scroll_width": 375,
+    "positive_plan_verified": true,
+    "tables": "contained horizontal scroll"
+  },
+  "console_errors": [],
+  "interaction": "Keyboard and select controls; no native touch verification",
+  "screenshots": [
+    "phase6-positive-desktop.png",
+    "phase6-constrained-desktop.png",
+    "phase6-positive-mobile.png"
+  ]
+}

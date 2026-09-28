@@ -27,7 +27,7 @@ import { Icon } from '../shared/icon';
     </div>
     <div class="about-grid">
       <section class="panel prose">
-        <h2>Implemented through Phase 5.5</h2>
+        <h2>Phase 6 Copilot implementation</h2>
         <ul>
           <li>Five-country geography and the existing India drill-down.</li>
           <li>Two real public-source adapters: MoHFW / PIB Health Dynamics summary and WHO GHO.</li>
@@ -50,6 +50,8 @@ import { Icon } from '../shared/icon';
           </li>
           <li>Reproducible constrained and redistribution-ready inventory simulations.</li>
           <li>Validated forecast preparation and profile-isolated planning caches.</li>
+          <li>Server-side Gemini integration with thirteen validated operational tools and typed evidence.</li>
+          <li>Explicit offline summaries, tool traces and separate credentialed live verification.</li>
         </ul>
         <a routerLink="/data-sources" queryParamsHandling="preserve" class="inline-link"
           >Inspect the evidence <app-icon name="arrow"
@@ -58,12 +60,12 @@ import { Icon } from '../shared/icon';
       <section class="panel prose">
         <h2>Next milestones</h2>
         <ol>
-          <li>Grounded, server-side Gemini explanations.</li>
+          <li>Credentialed live Gemini verification and operational acceptance.</li>
           <li>Genuine country-node FedAvg with measured metrics.</li>
         </ol>
         <p>
-          These next services remain future work. Forecasts and measured model comparisons are
-          available now when trained artifacts are installed.
+          Live Gemini availability depends on backend credentials and runtime verification. Forecasts,
+          scenarios, optimizer plans and labelled offline summaries are available with saved artifacts.
         </p>
       </section>
     </div>

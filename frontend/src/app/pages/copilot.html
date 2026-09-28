@@ -1,0 +1,93 @@
+<div class="page-heading"><div><div class="eyebrow">OPERATIONS / GROUNDED TOOL ORCHESTRATION</div>
+  <h1>Resilience Copilot</h1><p>Ask an operational question. Inspect the engines, evidence and remaining gaps.</p></div>
+  <button class="button secondary" (click)="reset()" [disabled]="busy()">New conversation</button></div>
+<section class="panel copilot-status">
+  <div><strong>{{ mode === 'offline' ? 'OFFLINE — deterministic local summaries' : 'Gemini 3.8 Flash' }}</strong>
+    @if (status(); as s) { <p>{{ s.setup }}</p><small>Runtime: {{ s.runtime_status }} · No physical transfers are executed.</small> }
+  </div>
+  @if (mode === 'gemini' && status()?.configuration_status !== 'configured') {
+    <button class="button secondary" (click)="offline()" [disabled]="busy()">Use offline summaries</button>
+  }
+</section>
+<div class="copilot-layout">
+  <section class="panel command-panel">
+    <div class="eyebrow">SELECTED CONTEXT</div>
+    <h2>{{ context().district_id || context().state_id || context().country_id }}</h2>
+    <p>{{ context().country_id }} · {{ context().profile }}<br />{{ context().state_id || 'All regions' }} / {{ context().district_id || 'All sample districts' }}</p>
+    @if (context().scenario_id) { <small>Active scenario: {{ context().scenario_id }}</small> }
+    <button class="inline-link" (click)="pune()" [disabled]="busy()">Use Pune context</button>
+    <label for="copilot-mode">Response mode</label>
+    <select id="copilot-mode" [(ngModel)]="mode" (ngModelChange)="changeMode()" [disabled]="busy()">
+      <option value="gemini">Gemini API</option><option value="offline">Offline / deterministic</option>
+    </select>
+    <h3>Suggested operations</h3>
+    <div class="suggestions">
+      <button (click)="suggest('risks')" [disabled]="busy()">Summarize current risks</button>
+      <button (click)="suggest('dengue')" [disabled]="busy()">Simulate dengue & plan redistribution</button>
+      <button (click)="suggest('donors')" [disabled]="busy()">Explain selected donors</button>
+      <button (click)="suggest('provenance')" [disabled]="busy()">Is this live government inventory?</button>
+      <button (click)="suggest('evaluation')" [disabled]="busy()">Review forecast reliability</button>
+      <button (click)="suggest('compare')" [disabled]="busy()">Compare operational profiles</button>
+    </div>
+    <p class="scope-note">Administrative resource planning only. No individual diagnosis, prescribing or patient-record interpretation.</p>
+  </section>
+  <div class="conversation">
+    @if (!replies().length) {
+      <section class="panel welcome"><div class="eyebrow">EVIDENCE BEFORE EXPLANATION</div><h2>Explore the network’s resilience.</h2>
+        <p>Choose geography and profile above. Gemini selects registered HealthNexus tools; forecasts, scenarios and transfers come from the existing engines.</p>
+        <p>Offline mode uses limited deterministic templates and actual local tool results. It does not represent a Gemini API response.</p></section>
+    }
+    @for (item of replies(); track item.response.request_id) {
+      <div class="question"><small>ADMINISTRATOR</small><p>{{ item.question }}</p></div>
+      <article class="panel response">
+        <div class="response-heading"><span class="eyebrow">{{ item.response.mode === 'gemini' ? 'GEMINI / TOOL-GROUNDED RESPONSE' : item.response.mode === 'refusal' ? 'SCOPE NOTICE' : 'OFFLINE / DETERMINISTIC SUMMARY' }}</span>
+          @if (item.response.metadata.total_seconds != null) {<small>{{ item.response.metadata.total_seconds | number:'1.1-1' }} s</small>}</div>
+        <h2>Situation</h2><p>{{ item.response.answer }}</p>
+        @for (group of [{title:'Key risks',claims:item.response.key_risks},{title:'Planning response',claims:item.response.recommended_actions},{title:'Remaining gaps',claims:item.response.remaining_gaps}]; track group.title) {
+          @if (group.claims.length) { <h3>{{ group.title }}</h3><ul>@for (claim of group.claims; track $index) {<li>{{ claim.text }}</li>}</ul> }
+        }
+        @if (plan(item.response); as plan) {
+          <div class="verified-plan"><div class="eyebrow">VERIFIED OR-TOOLS OUTPUT · {{ plan.solver.status }}</div>
+            <div class="plan-metrics"><div><small>Target deficit</small><strong>{{ plan.impact.before.target_deficit | number:'1.0-0' }} → {{ plan.impact.after.target_deficit | number:'1.0-0' }}</strong></div>
+              <div><small>Safe donor capacity</small><strong>{{ plan.safe_capacity | number:'1.0-0' }}</strong></div>
+              <div><small>Transfers / new donor risks</small><strong>{{ plan.impact.transfer_count }} / {{ plan.impact.new_donor_risks }}</strong></div>
+              <div><small>Transferred item tally</small><strong>{{ plan.impact.transferred_units | number:'1.0-0' }}</strong></div>
+              <div><small>Expected unmet demand</small><strong>{{ plan.impact.before.expected_unmet | number:'1.0-0' }} → {{ plan.impact.after.expected_unmet | number:'1.0-0' }}</strong></div>
+              <div><small>Donor reserve violations</small><strong>{{ plan.impact.donor_safety_violations }}</strong></div></div>
+            <p class="scope-note">{{ plan.unit_notice }}</p>
+            <h3>Remaining resource gaps</h3>
+            <div class="table-scroll"><table><thead><tr><th>Receiver / resource</th><th>Unresolved target</th><th>Conditional 14-day stock-out risk</th></tr></thead><tbody>
+              @for (risk of plan.resource_risks; track $index) {<tr><td>{{ risk.resource_id }}<br /><small>{{ risk.facility_id }}</small></td><td>{{ risk.unresolved | number:'1.0-0' }} {{ risk.unit }}</td><td>{{ risk.risk_before['14'] * 100 | number:'1.0-0' }}% → {{ risk.risk_after['14'] * 100 | number:'1.0-0' }}%</td></tr>}
+            </tbody></table></div>
+            @if (plan.resource_risks_truncated) {<p>Receiver/resource detail is limited to the first eight pairs. The planner shows all remaining gaps.</p>}
+            <h3>Protected transfer recommendations</h3>
+            <div class="table-scroll"><table><thead><tr><th>Resource / transfer</th><th>Route</th><th>Protected reserve after / required</th></tr></thead><tbody>
+              @for (transfer of plan.transfers; track $index) {<tr><td><strong>{{ transfer.resource_id }}</strong><br />{{ transfer.quantity | number:'1.0-0' }} {{ transfer.unit }}</td><td>{{ transfer.donor_name }} → {{ transfer.receiver_name }}<br />{{ transfer.distance_km | number:'1.1-1' }} km</td><td>{{ transfer.donor_protected_minimum_after | number:'1.1-1' }} / {{ transfer.donor_protected_reserve | number:'1.0-0' }}</td></tr>}
+              @if (!plan.transfers.length) {<tr><td colspan="3">No safe transfers proposed. The unresolved deficit remains explicit.</td></tr>}
+            </tbody></table></div>
+            @if (plan.transfers_truncated) {<p>Transfer detail is paginated. Open the planner for the complete result.</p>}
+            <p><a class="inline-link" routerLink="/redistribution" [queryParams]="links(item.response)">Open actual optimizer result →</a></p>
+          </div>
+        }
+        <details><summary>Evidence & verified tool fields</summary>
+          @for (evidence of item.response.evidence; track $index) {<div class="evidence-row"><strong>{{ evidence.tool }} · {{ evidence.profile }}</strong><code>{{ evidence.evidence_id }} / {{ evidence.field }}</code><pre>{{ evidence.value | json }}</pre></div>}
+        </details>
+        <details><summary>Tool activity & provenance</summary><ol>@for (tool of item.response.tools_used; track $index) {<li>{{ label(tool.tool) }} · {{ tool.status }} · {{ tool.seconds | number:'1.2-2' }} s<p>{{ tool.summary }}</p></li>}</ol>
+          <p>Gemini network: {{ item.response.metadata.gemini_network_seconds | number:'1.2-2' }} s · Tools: {{ item.response.metadata.tool_seconds | number:'1.2-2' }} s</p>
+          <small>Model: {{ item.response.metadata.model || 'No model call — offline' }} · {{ item.response.context.profile }}</small>
+          <details><summary>Bounded structured source results</summary><pre>{{ item.response.operational_results | json }}</pre></details>
+        </details>
+        <details><summary>Assumptions & limitations</summary><ul>@for (limitation of item.response.limitations; track limitation) {<li>{{ limitation }}</li>}</ul></details>
+      </article>
+    }
+    @if (busy()) { <section class="panel activity" aria-live="polite"><strong>{{ phase() }}</strong><ol>@for (tool of trace(); track $index) {<li>{{ label(tool.tool) }} · {{ tool.status }}</li>}</ol></section> }
+    @if (error()) { <div class="panel error-message" role="alert">{{ error() }}</div> }
+    <form class="panel composer" (ngSubmit)="send()">
+      <label for="copilot-message">Operational question</label><textarea id="copilot-message" name="message" [(ngModel)]="message" maxlength="2000" rows="4" [disabled]="busy()" placeholder="Ask about shortages, forecasts, scenario pressures or safe redistribution…"></textarea>
+      <label class="check"><input type="checkbox" name="planning" [(ngModel)]="allowPlanning" [disabled]="busy()" />Allow non-destructive simulations and optimizer plans</label>
+      <label class="check"><input type="checkbox" name="comparison" [(ngModel)]="compareProfiles" [disabled]="busy()" />Explicitly allow comparing both operational profiles</label>
+      <button class="button" type="submit" [disabled]="busy() || !message.trim()">{{ busy() ? 'Working…' : mode === 'offline' ? 'Run local summary' : 'Ask Gemini Copilot' }}</button>
+      <small>Keys stay on the backend. Clear the conversation when changing response mode.</small>
+    </form>
+  </div>
+</div>

@@ -1,6 +1,8 @@
-# API — through Phase 3
+# API — through Phase 6
 
-FastAPI exposes interactive documentation at `/docs`. All routes are read-only. Network routes accept `country_id=IN|BR|RU|CN|ZA`, defaulting to India for compatibility.
+Current Copilot endpoints and explicit mode/permission contracts appear in the Phase 6 section below. The following Phase 3 endpoints retain their original read-only behaviour; later scenario/optimizer/Copilot endpoints perform bounded, non-destructive planning.
+
+FastAPI exposes interactive documentation at `/docs`. The network routes below are read-only and accept `country_id=IN|BR|RU|CN|ZA`, defaulting to India for compatibility.
 
 | GET route | Behavior |
 | --- | --- |
@@ -83,3 +85,32 @@ Inputs: `country_id` (IN/BR/RU/CN/ZA), optional `state_id`, `district_id`, `scen
 `GET /api/optimization/runs/{run_id}?country_id=IN` retrieves a copy. `DELETE` at the same path discards only the plan (204). Missing or foreign-country runs return 404. `GET /api/optimization/config` returns the versioned protection and cost policy. Saved-model unavailability is 503; invalid planning input is 422. Process-local storage holds up to 30 plans and requires a single worker. There is no transfer-execution endpoint.
 
 Insufficient stock is a valid partial-planning result, not HTTP failure or necessarily solver infeasibility. All three lexicographic stages must prove optimality before a plan is labeled OPTIMAL. See [Phase 5 report](phase5-report.md) for formulas, statuses, example input and the current snapshot's empty safe-donor pool.
+# Phase 6 Copilot endpoints
+
+All operational tool results carry country/profile/origin provenance. `POST` body profile must match any query profile; responses retain `X-Operational-Profile` and `X-Profile-Version` headers. Existing endpoints remain available.
+
+| Method | Route | Purpose |
+|---|---|---|
+| GET | `/api/ai/status` | Configuration and last runtime status; never starts inference |
+| POST | `/api/ai/copilot` | Bounded typed orchestration; explicit `gemini` or `offline` mode |
+| GET | `/api/ai/requests/{request_id}?country_id=IN&profile=constrained` | Actual tool progress, context scoped |
+| DELETE | `/api/ai/conversations/{id}?country_id=IN&profile=constrained` | Clear local conversation/progress/audit; does not delete Google history |
+
+```json
+{
+  "message": "Simulate severe dengue for 14 days and calculate safe redistribution.",
+  "country_id": "IN",
+  "profile": "redistribution-ready",
+  "state_id": "MH",
+  "district_id": "MH-PUNE",
+  "mode": "offline",
+  "allow_planning": true,
+  "compare_profiles": false
+}
+```
+
+Optional UUID `request_id` supports progress polling; optional returned `conversation_id` supports follow-ups. Context may carry `facility_id`, `scenario_id` and `optimization_run_id`. Changing country/profile/geography/mode requires a new conversation. Ordinary questions cannot silently authorize scenario or optimizer creation; `allow_planning` defaults false. Cross-profile tools require explicit `compare_profiles: true` and keep each result's profile identity.
+
+Response fields include typed claims/evidence, actual `tools_used`, bounded `operational_results`, scenario/optimizer IDs and metadata (prompt/config/model versions, provider/tool/total time, reported usage and transport identity). Offline responses have null model/interaction ID and zero provider time. A clinical question returns a scope refusal before inference.
+
+Errors are safe `{ "detail": { "code": "...", "message": "..." } }` responses. Input/schema/profile conflicts return 422; unknown or foreign progress/context returns 404. Missing/disabled configuration, unavailable exact model, quota, timeout, provider failure and invalid generated evidence are distinguished. Gemini failures never automatically become offline answers. See [schemas and limits](gemini.md); this prototype has no production authentication or durable sessions.

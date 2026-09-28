@@ -1,5 +1,25 @@
 # Architecture
 
+## Phase 6 resilience Copilot
+
+```mermaid
+flowchart LR
+  UI[Copilot context and explicit planning permission] --> C[Bounded Copilot service]
+  C <--> G[Official google-genai Interactions API]
+  C --> V[Strict schemas and country/profile validation]
+  V --> T[13 registered typed tools]
+  T --> E[Existing forecasts / warnings / scenarios / OR-Tools]
+  E --> F[Fresh authoritative evidence]
+  F --> R[Structured answer validation and tool trace]
+  R --> UI
+```
+
+`app/ai` adds orchestration without changing forecasting, warning, scenario, optimization or inventory policies. The existing ScenarioEngine and OptimizationService instances are shared. Exact `gemini-3.8-flash`, medium thinking and the official SDK 2.25.0 are configured; no provider call occurs at startup. Explicit offline mode uses deterministic templates and the same local tools. No live Gemini response has been verified because server credentials are absent.
+
+Pydantic rejects unknown arguments before execution. Registered tools enforce selected geography, profile, scenario snapshot/model identity and explicit non-destructive planning permission. Native function calls return matching call IDs; Interactions continuation carries provider state. Final claims refer to fresh result fields, with numeric checks and a separate authoritative result view. These checks cannot establish the complete semantic truth of arbitrary model prose.
+
+Conversations, request progress and sanitized audit records are bounded in process memory. Provider history is stored for Interactions continuation; deleting a local conversation does not delete provider history. These context partitions do not provide production authentication. See [integration, retention and limitations](gemini.md), [API](api.md) and [measured report](phase6-report.md). FedAvg remains future work.
+
 ```mermaid
 flowchart TD
   PIB[MoHFW / PIB dated release] --> A[India HDI adapter]
