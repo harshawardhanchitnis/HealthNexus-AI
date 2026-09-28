@@ -2,7 +2,7 @@ import os
 from dataclasses import dataclass, field
 
 MODEL = 'gemini-3.8-flash'
-VERSION = 'copilot-config-v2'
+VERSION = 'copilot-config-v3'
 
 
 @dataclass(frozen=True)
@@ -12,8 +12,8 @@ class AIConfig:
     enabled: bool = field(default_factory=lambda: os.getenv('GEMINI_ENABLED', 'true').lower() == 'true')
     thinking: str = field(default_factory=lambda: os.getenv('GEMINI_THINKING_LEVEL', 'medium'))
     max_calls: int = 10
-    timeout: float = 25
-    workflow_timeout: float = 120
+    timeout: float = 60
+    workflow_timeout: float = 300
     max_output_tokens: int = 2400
 
     def error(self):

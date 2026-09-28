@@ -1,0 +1,146 @@
+{
+  "timestamp": "2026-09-28T11:59:12.363164+00:00",
+  "status": "failed",
+  "fully_accepted": false,
+  "phase7_ready": false,
+  "phase7_started": false,
+  "model": "gemini-3.8-flash",
+  "sdk_version": "2.25.0",
+  "identity": {
+    "git_commit": "dfcfa59d7870483e1171a893d7933efd04761590",
+    "implementation_sha256": "7a1d9a73443b70516c663574a1149011c9b758cc1471b76ef79fcdca9f507e31",
+    "model": "gemini-3.8-flash",
+    "sdk_version": "2.25.0",
+    "system_prompt_version": "healthnexus-system-v3",
+    "system_prompt_sha256": "c75f510cb6953e0ef663fb647ac97440c9cbc769ab0e692b236ad94d31645a7e",
+    "tool_schema_sha256": "3b18ac63d2fed75b5b65943248db0a3113613706d7991c6c825590b035015d42",
+    "profile_version": "inventory-profile-v1",
+    "config_version": "copilot-config-v3",
+    "configuration": {
+      "thinking": "medium",
+      "max_calls": 10,
+      "timeout": 60,
+      "workflow_timeout": 300,
+      "max_output_tokens": 2400
+    },
+    "artifacts": {
+      "constrained": {
+        "snapshot": "f0b5fbb01375d0aec983b3a2665fce7553b8f28b5cbdf3b1cf2648e28a477743",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      },
+      "redistribution-ready": {
+        "snapshot": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      }
+    }
+  },
+  "credential_safety": {
+    "public_fingerprint_omitted": true,
+    "old_live_pass_cases_reused": false,
+    "local_key_matches_loaded_configuration": true,
+    "key_exposed": false
+  },
+  "budget": {
+    "hard_limit": 10,
+    "ledger_used": 5,
+    "ledger_reset_or_deleted": false
+  },
+  "attempts": [
+    {
+      "evidence": "phase6-budget-live-initial-timeout.json",
+      "status": "failed",
+      "code": "provider_timeout",
+      "provider_requests": 1,
+      "successful_interactions": 0,
+      "local_tool_calls": 0,
+      "provider_stage_seconds": 25.616334500009543,
+      "tool_seconds": 0.0,
+      "case_total_seconds": 25.942906099997344,
+      "provider_diagnostic": {
+        "exception_type": "APITimeoutError",
+        "http_status": null,
+        "transport_attempts": 1,
+        "quota_kind": null,
+        "provider_message": ""
+      }
+    },
+    {
+      "evidence": "phase6-budget-live-high-demand.json",
+      "status": "failed",
+      "code": "provider_unavailable",
+      "provider_requests": 2,
+      "successful_interactions": 0,
+      "local_tool_calls": 0,
+      "provider_stage_seconds": 21.53735929999675,
+      "tool_seconds": 0.0,
+      "case_total_seconds": 21.820121800003108,
+      "provider_diagnostic": {
+        "exception_type": "InternalServerError",
+        "http_status": 503,
+        "transport_attempts": 2,
+        "quota_kind": null,
+        "retry_after": "30",
+        "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later."
+      }
+    },
+    {
+      "evidence": "phase6-budget-live-positive-retry.json",
+      "status": "failed",
+      "code": "provider_unavailable",
+      "provider_requests": 2,
+      "successful_interactions": 0,
+      "local_tool_calls": 0,
+      "provider_stage_seconds": 27.3876414999977,
+      "tool_seconds": 0.0,
+      "case_total_seconds": 27.661658999990323,
+      "provider_diagnostic": {
+        "exception_type": "InternalServerError",
+        "http_status": 503,
+        "transport_attempts": 2,
+        "quota_kind": null,
+        "retry_after": "30",
+        "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later."
+      }
+    }
+  ],
+  "totals": {
+    "provider_requests": 5,
+    "successful_interactions": 0,
+    "local_tool_calls": 0,
+    "provider_stage_seconds": 74.541335300004,
+    "tool_seconds": 0.0,
+    "case_total_seconds": 75.42468689999077
+  },
+  "timing_scope": "Provider stage includes verifier pacing; case totals exclude initial process setup, backend restart and separate 30-second manual retry wait.",
+  "token_usage": "Not reported; no successful Interactions responses.",
+  "positive": {
+    "status": "not_verified",
+    "scenario_id": null,
+    "optimization_run_id": null,
+    "actual_live_tool_sequence": []
+  },
+  "followup": {
+    "status": "not_run"
+  },
+  "constrained": {
+    "status": "not_run"
+  },
+  "provenance_reliability": {
+    "status": "not_run"
+  },
+  "verification": {
+    "targeted_backend_tests_passed": 81,
+    "python_compilation": "passed",
+    "complete_regressions": "Deferred until full live PASS, as instructed. Previous full baseline was 237 passing tests.",
+    "typescript_and_angular_build_this_attempt": "Not rerun: live acceptance failed.",
+    "browser_live_verification": "Not performed."
+  },
+  "changes": {
+    "provider_timeout_seconds": 60,
+    "workflow_timeout_seconds": 300,
+    "config_version": "copilot-config-v3",
+    "private_credential_binding": "Unchanged enforcement; public reports omit the binding.",
+    "model_or_billing_changed": false,
+    "completion_docs_updated": false
+  }
+}

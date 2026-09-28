@@ -238,7 +238,9 @@ def _verify(mode,output,case,acceptance,resume,evidence_dir,budget_limit,config)
     identity=evidence_identity(config,repo,engine)
     labels=[case] if case else ['positive','followup','constrained','provenance']
     report={'mode':mode,'model':config.model if mode!='offline' else None,'status':'passed',
-        'live_acceptance':mode=='live','timestamp':datetime.now(timezone.utc).isoformat(),'identity':identity,
+        'live_acceptance':mode=='live','timestamp':datetime.now(timezone.utc).isoformat(),
+        'identity':{k:v for k,v in identity.items() if k!='credential_fingerprint'},
+        'credential_binding':'Private resumable evidence retains a one-way credential fingerprint; public report omits it.',
         'selected_case':case,'acceptance':acceptance or case is None,'tests':[],
         'budget_limit':budget_limit,'expected_provider_requests':sum(EXPECTED[l] for l in labels) if mode!='offline' else 0,
         'maximum_provider_requests':budget_limit,'local_fixture_tool_calls':0,

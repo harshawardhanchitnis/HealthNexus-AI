@@ -1,0 +1,123 @@
+{
+  "mode": "live",
+  "model": "gemini-3.8-flash",
+  "status": "failed",
+  "live_acceptance": true,
+  "timestamp": "2026-09-28T11:50:52.407998+00:00",
+  "identity": {
+    "git_commit": "dfcfa59d7870483e1171a893d7933efd04761590",
+    "implementation_sha256": "a5009dfab97b9788c4816cec3ebda09bb9a3f4583ea89e60f89881f9f31950a6",
+    "model": "gemini-3.8-flash",
+    "sdk_version": "2.25.0",
+    "system_prompt_version": "healthnexus-system-v3",
+    "system_prompt_sha256": "c75f510cb6953e0ef663fb647ac97440c9cbc769ab0e692b236ad94d31645a7e",
+    "tool_schema_sha256": "3b18ac63d2fed75b5b65943248db0a3113613706d7991c6c825590b035015d42",
+    "profile_version": "inventory-profile-v1",
+    "config_version": "copilot-config-v2",
+    "configuration": {
+      "thinking": "medium",
+      "max_calls": 10,
+      "timeout": 25,
+      "workflow_timeout": 120,
+      "max_output_tokens": 2400
+    },
+    "artifacts": {
+      "constrained": {
+        "snapshot": "f0b5fbb01375d0aec983b3a2665fce7553b8f28b5cbdf3b1cf2648e28a477743",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      },
+      "redistribution-ready": {
+        "snapshot": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      }
+    }
+  },
+  "selected_case": null,
+  "acceptance": true,
+  "tests": [
+    {
+      "label": "positive",
+      "profile": "redistribution-ready",
+      "status": "failed",
+      "code": "provider_timeout",
+      "seconds": 25.942906099997344,
+      "diagnostics": {
+        "request_id": "f1ab7451-5f9e-4b93-88b7-41d67fa4c0ed",
+        "conversation_id": "c625baf3-4ffd-42fe-b280-c7177ae8d197",
+        "mode": "gemini",
+        "status": "provider_timeout",
+        "country_id": "IN",
+        "profile": "redistribution-ready",
+        "model": "gemini-3.8-flash",
+        "latency": 25.94221059999836,
+        "tools": [],
+        "provider_diagnostic": {
+          "exception_type": "APITimeoutError",
+          "http_status": null,
+          "transport_attempts": 1,
+          "quota_kind": null,
+          "provider_message": ""
+        },
+        "timings": {
+          "gemini_network_seconds": 25.616334500009543,
+          "tool_seconds": 0.0
+        },
+        "interaction_count": 0,
+        "provider_requests": 1,
+        "local_tool_calls": 0,
+        "execution_sources": [],
+        "request_diagnostics": [
+          {
+            "tool_schema_bytes": 7843,
+            "system_bytes": 2566,
+            "input_bytes": 499,
+            "request_body_bytes": 11086,
+            "input_tokens_estimate": 2894,
+            "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+          }
+        ],
+        "interaction_ids": [],
+        "usage": []
+      }
+    }
+  ],
+  "budget_limit": 10,
+  "expected_provider_requests": 8,
+  "maximum_provider_requests": 10,
+  "local_fixture_tool_calls": 0,
+  "comparison": {
+    "old_suite_expected_provider_requests": 23,
+    "old_cases": {
+      "risk": 4,
+      "positive": 8,
+      "constrained": 8,
+      "provenance": 3
+    },
+    "new_acceptance_expected_provider_requests": 8,
+    "baseline_commit": "914ff4a",
+    "old_schema_bytes_per_turn": 11363,
+    "old_system_bytes_per_turn": 2917,
+    "new_system_bytes_per_turn": 2566,
+    "old_authoritative_result_bytes_by_case": {
+      "risk": 19255,
+      "positive": 67628,
+      "constrained": 46022,
+      "provenance": 5681
+    },
+    "schema_bytes_by_intent": {
+      "network-risk": 4997,
+      "emergency-planning": 7843,
+      "provenance": 1265,
+      "follow-up-plan": 1496,
+      "plan-review": 1777
+    },
+    "token_estimate_method": "characters / 4; estimates are not Gemini token counts"
+  },
+  "resume_invalidated": [],
+  "provider_requests": 1,
+  "daily_ledger_used": 1,
+  "expected_provider_requests_this_run": 8,
+  "local_tool_calls": 0,
+  "retained_pass_cases": [],
+  "capabilities_accepted": []
+}
