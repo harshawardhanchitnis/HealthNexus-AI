@@ -14,11 +14,11 @@ flowchart LR
   R --> UI
 ```
 
-`app/ai` adds orchestration without changing forecasting, warning, scenario, optimization or inventory policies. The existing ScenarioEngine and OptimizationService instances are shared. Exact `gemini-3.8-flash`, medium thinking and the official SDK 2.25.0 are configured; no provider call occurs at startup. Explicit offline mode uses deterministic templates and the same local tools. No live Gemini response has been verified because server credentials are absent.
+`app/ai` adds orchestration without changing forecasting, warning, scenario, optimization or inventory policies. The existing ScenarioEngine and OptimizationService instances are shared. The five-model Flash-family chain starts at `gemini-3.8-flash`, with medium thinking and official SDK 2.25.0; no provider call occurs at startup. Explicit offline mode uses deterministic templates and the same local tools. Implementation complete; live provider acceptance pending due to Gemini service availability. Credentials stay server-side; all five models returned live 503 in retained evidence.
 
 Pydantic rejects unknown arguments before execution. Registered tools enforce selected geography, profile, scenario snapshot/model identity and explicit non-destructive planning permission. Native function calls return matching call IDs; Interactions continuation carries provider state. Final claims refer to fresh result fields, with numeric checks and a separate authoritative result view. These checks cannot establish the complete semantic truth of arbitrary model prose.
 
-Conversations, request progress and sanitized audit records are bounded in process memory. Provider history is stored for Interactions continuation; deleting a local conversation does not delete provider history. These context partitions do not provide production authentication. See [integration, retention and limitations](gemini.md), [API](api.md) and [measured report](phase6-report.md). FedAvg remains future work.
+Conversations, request progress and sanitized audit records are bounded in process memory. Provider history is stored for Interactions continuation; deleting a local conversation does not delete provider history. These context partitions do not provide production authentication. See [integration, retention and limitations](gemini.md), [API](api.md) and [measured report](phase6-report.md). Separate Phase 7 FedAvg is described below; its read-only Copilot adapters are not registered.
 
 ```mermaid
 flowchart TD
@@ -55,7 +55,26 @@ Local storage is the tested default. Optional Firestore uses `country_nodes/<cod
 
 Phase 3 adds an explicit offline path: country history → frozen-origin temporal tables → country-local candidate fitting → chronological selection → separate residual calibration → held-out evaluation → saved artifact. Three pooled targets per country share facilities only within that country. `forecasting/` separates features, evaluation, training, prediction, stockout calculations, typed schemas and routes. The read-only API lazily loads trusted saved bundles; it never fits a model at startup. Models and snapshots have matching hashes and dates; mismatches produce a visible unavailable response. See the model card for overlap between rolling evaluation origins and source-vintage limitations.
 
-The future federation flow remains local dataset → local training → model update → federated aggregation → global model → local node. Phase 3 performs actual local forecasting training and evaluation; no federated rounds or pooled global operational training dataset exist. The BRICS page links measured local metrics and keeps federation marked not started.
+Phase 7 implements local dataset → local MLP training → parameter update → FedAvg → global MLP → local node. It leaves the Phase 3 operational HGB/selected-baseline models unchanged and creates no pooled global operational training dataset. The Federated Intelligence page displays actual rounds, progress, byte counts and held-out comparisons.
+
+## Phase 7 separate collaboration model
+
+```mermaid
+flowchart LR
+  IN[India local history and MLP] -->|Parameters + aggregate metadata| A[Typed update validation / FedAvg]
+  BR[Brazil local history and MLP] -->|Parameters + aggregate metadata| A
+  RU[Russia local history and MLP] -->|Parameters + aggregate metadata| A
+  CN[China local history and MLP] -->|Parameters + aggregate metadata| A
+  ZA[South Africa local history and MLP] -->|Parameters + aggregate metadata| A
+  A --> G[Experimental global footfall MLP]
+  G -->|Global weights| IN
+  G -->|Global weights| BR
+  G -->|Global weights| RU
+  G -->|Global weights| CN
+  G -->|Global weights| ZA
+```
+
+`federation/` separates local loaders/clients, common features/model, strict update schemas, array averaging, aggregate evaluation, numeric artifacts, bounded run storage and routes. The aggregator has no loader/client/raw-data interface. A background coordinator starts actual local training and records real progress. All five nodes are logical clients in one process, not isolated national deployments. The new experimental global model is not used by operational forecasting, warnings, scenarios or OR-Tools. Details, exchanged metadata, byte definitions, privacy limitations and commands are in [federated learning](federated-learning.md).
 
 Domestic redistribution will operate within a selected country's boundary and preserve donor reserves. It is separate from federation. Future cloud targets are Firebase Hosting, Cloud Run and Firestore; the Docker setup is a local deployment scaffold. No Gemini, OR-Tools, FedAvg or production cloud deployment is claimed for Phase 2.
 

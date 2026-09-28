@@ -84,10 +84,11 @@ import { Icon } from '../shared/icon';
       </p>
       <h3>Resource transfers and federation are different</h3>
       <p>
-        Physical redistribution planning is enforced within each country. BRICS collaboration will
-        exchange model updates, with operational training data kept at its country node. The local
-        prototype currently demonstrates data partitions, not production national infrastructure or
-        privacy guarantees.
+        Physical redistribution planning is enforced within each country. Five logical country
+        nodes train a separate footfall MLP locally and exchange model parameters and aggregate
+        metadata through FedAvg. No raw operational training records are shared with the aggregator.
+        This local prototype has no secure aggregation or differential privacy and does not
+        guarantee privacy. The existing operational forecasting models remain authoritative.
       </p>
       <h3>Coverage and limitations</h3>
       <p>

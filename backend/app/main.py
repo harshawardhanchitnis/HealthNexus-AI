@@ -23,15 +23,16 @@ from app.optimization.service import OptimizationService
 from app.optimization.routes import optimization_router
 
 
-def create_app(repository: NetworkRepository | None = None, forecast_service=None) -> FastAPI:
+def create_app(repository: NetworkRepository | None = None, forecast_service=None, federation_service=None) -> FastAPI:
     settings = Settings()
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         app.state.repository = repository or create_repository(settings)
         yield
+        app.state.federation.close()
 
-    app = FastAPI(title="HealthNexus AI · BRICS", version="0.6.0", lifespan=lifespan)
+    app = FastAPI(title="HealthNexus AI · BRICS", version="0.7.0", lifespan=lifespan)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
         allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
 
@@ -71,7 +72,7 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
 
     @app.get("/api/countries")
     def countries():
-        return {"items": COUNTRIES, "federation_status": "not_implemented",
+        return {"items": COUNTRIES, "federation_status": "experimental_fedavg",
             "scope_note": "Five configured hackathon nodes; not an exhaustive list of current BRICS members.",
             "redistribution": "domestic_only"}
 
@@ -166,6 +167,10 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
     from app.ai.routes import copilot_router
     app.state.copilot = CopilotService(scenarios, planner)
     app.include_router(copilot_router(app.state.copilot))
+    from app.federation.service import FederationService
+    from app.federation.routes import federation_router
+    app.state.federation = federation_service or FederationService()
+    app.include_router(federation_router(app.state.federation))
     return app
 
 

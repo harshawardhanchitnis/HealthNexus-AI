@@ -1,6 +1,6 @@
 # Scope and milestone boundaries
 
-HealthNexus AI is a real-data-backed healthcare resilience prototype. Public aggregates support operational simulation, saved forecasting, emergency projections and domestic optimization. Gemini and federated learning remain future work.
+HealthNexus AI is a real-data-backed healthcare resilience prototype. Public aggregates support operational simulation, saved forecasting, emergency projections and domestic optimization. Phase 6 Gemini implementation is complete; live provider acceptance is pending due to Gemini service availability. Phase 7 adds genuine experimental FedAvg across five logical country nodes.
 
 ## Configured geography
 
@@ -18,10 +18,10 @@ The five configured countries follow the hackathon brief; they are not an exhaus
 
 Country-scoped API and storage; India navigation and original tests; public-source ingestion and offline caches; provenance; aggregate calibration; causal 540-day histories; rule alerts; trained country-local demand/admissions forecasts; baseline comparison and chronological evaluation; residual intervals and stock-out intelligence; Forecasts, Model Performance, Data Sources and BRICS pages. Foreign nodes are extensible representative samples.
 
-## Next phases
+## Operational and collaborative learning
 
-Phase 3 forecasting and Phase 4 **Early Warning Engine + Emergency Digital Twin** feed the Phase 5 **domestic OR-Tools Redistribution Planner**, with reserve protection, audit evidence and immutable paired stock simulations. See [Phase 5 report](phase5-report.md). The current snapshots have no safe donor capacity; positive-transfer correctness is verified in test fixtures, while the live Pune demo honestly reports insufficient resources. Gemini and real FedAvg remain later work.
+Phase 3 forecasting and Phase 4 **Early Warning Engine + Emergency Digital Twin** feed the Phase 5 **domestic OR-Tools Redistribution Planner**, with reserve protection, audit evidence and immutable paired stock simulations. Phase 5.5 preserves constrained Pune's zero-donor result and adds a separate reproducible redistribution-ready simulation with protected positive transfers. See [Phase 5.5 report](phase55-report.md). Phase 6 retains shared authoritative tools and availability failover; no live Gemini calls occur during Phase 7.
 
-Each future learning node owns its local training data. Only model updates and permitted aggregate evaluation statistics go to the federation coordinator; raw operational records must not be pooled for that demonstration. Updates alone do not guarantee privacy: authentication, leakage testing and privacy controls require separate engineering.
+Each Phase 7 learning client loads only its country's existing historical footfall tables. Actual MLP parameter tensors are locally trained and averaged; only updates and aggregate metadata go to the aggregator. No raw operational training records are pooled. The global collaboration MLP is experimental and does not replace operational forecasting. Updates alone do not guarantee privacy: authentication, leakage testing, secure aggregation and differential privacy require separate engineering. See [federated learning](federated-learning.md).
 
 Physical resources move domestically. Model learning may cross borders. There are no automatic international medicine transfers. Country selectors and local filesystem partitions are not production sovereignty or security enforcement.

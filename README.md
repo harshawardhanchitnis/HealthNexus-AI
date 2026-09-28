@@ -8,7 +8,13 @@ A real-data-backed healthcare resilience prototype combining public health stati
 
 ## Resilience Copilot — Phase 6 implementation
 
-**Resilience Copilot** uses official `google-genai==2.25.0` Interactions with Gemini 3.8 Flash primary and availability failover through 3.7 Flash, 3.6 Flash, 3.5 Flash and 3.5 Flash-Lite. Thirteen shared tools, typed evidence, safe local handoff and sticky conversations retain server-owned forecasts and OR-Tools results. The UI shows the effective model and explicit offline option. [Setup](docs/gemini.md) · [Failover evidence](docs/phase6-failover-report.md). **289 tests pass; all five candidates returned live 503 HIGH DEMAND across the retained automatic and targeted sessions. Targeted verification retained ten prior sends and used two more, totaling 12/14. Successful live fallback acceptance remains pending. Phase 7 is deferred.**
+**Resilience Copilot** uses official `google-genai==2.25.0` Interactions with Gemini 3.8 Flash primary and availability failover through 3.7 Flash, 3.6 Flash, 3.5 Flash and 3.5 Flash-Lite. Thirteen shared tools, typed evidence, safe local handoff and sticky conversations retain server-owned forecasts and OR-Tools results. The UI shows the effective model and explicit offline option. [Setup](docs/gemini.md) · [Failover evidence](docs/phase6-failover-report.md). **Implementation complete; live provider acceptance pending due to Gemini service availability.** All five candidates returned live 503 HIGH DEMAND in retained evidence. The ledger remains 12/14; Phase 7 makes zero live Gemini calls.
+
+## Federated Intelligence — Phase 7
+
+Five logical country clients train a separate **417-parameter PyTorch footfall MLP** on their own existing histories. Standard FedAvg averages actual parameter tensors by training sample count; optional balanced-country averaging is explicitly labelled. **Raw operational training records shared: 0.** Model parameters and aggregate metadata cross the logical boundaries. The operational HGB/selected baseline forecasting models remain unchanged.
+
+Open **Federated Intelligence → Run Federated Training** for five rounds with real backend progress, validation metrics, update bytes and country comparisons. Measured CLI run: **4.80 seconds**, **614,235 logical boundary bytes**, **8.9472% held-out global WAPE**. Four representative foreign nodes improve versus their local-only MLPs; India's WAPE degrades slightly. No secure aggregation, differential privacy or production national infrastructure is claimed. [Architecture and commands](docs/federated-learning.md) · [Measured report](docs/phase7-report.md).
 
 ## Preserved Phase 5.5 demonstrations
 
@@ -29,7 +35,7 @@ Forecasting includes 540-day causal histories, country-local trained models, thr
 - Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
 - Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
 
-**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning and the Gemini tool integration are implemented; final live acceptance remains blocked on provider availability. Federated training remains later work. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
+**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning, the Gemini tool integration and experimental FedAvg are implemented; Gemini live acceptance remains blocked on provider availability. Physical redistribution is enforced within each nation; federation exchanges model updates and aggregate metadata only.
 
 ## Run locally — Windows PowerShell
 

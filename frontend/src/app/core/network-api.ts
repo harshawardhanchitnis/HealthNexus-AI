@@ -1,4 +1,5 @@
 import { Router } from '@angular/router';
+import { FederationStatus, FederationNode, FederationRequest, FederationRun } from './federation-models';
 import { CopilotRequest, CopilotResponse, CopilotStatus, CopilotProgress } from './copilot-models';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -27,6 +28,11 @@ import {
 export class NetworkApi {
   private http = inject(HttpClient);
   private router = inject(Router);
+  federationStatus() { return this.http.get<FederationStatus>('/api/federation/status'); }
+  federationNodes() { return this.http.get<{items: FederationNode[]}>('/api/federation/nodes'); }
+  startFederation(body: FederationRequest) { return this.http.post<FederationRun>('/api/federation/runs', body); }
+  federationRun(id: string) { return this.http.get<FederationRun>('/api/federation/runs/' + encodeURIComponent(id)); }
+  discardFederation(id: string) { return this.http.delete<void>('/api/federation/runs/' + encodeURIComponent(id)); }
   copilotStatus() { return this.http.get<CopilotStatus>('/api/ai/status'); }
   copilot(body: CopilotRequest) {
     return this.http.post<CopilotResponse>('/api/ai/copilot', body);

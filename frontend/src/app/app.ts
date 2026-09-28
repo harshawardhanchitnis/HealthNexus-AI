@@ -35,7 +35,7 @@ export class App {
     { path: '/copilot', icon: 'network', label: 'Resilience Copilot' },
     { path: '/forecasts', icon: 'chart', label: 'Forecasts' },
     { path: '/model-performance', icon: 'shield', label: 'Model performance' },
-    { path: '/brics', icon: 'network', label: 'BRICS nodes' },
+    { path: '/brics', icon: 'network', label: 'Federated Intelligence' },
     { path: '/data-sources', icon: 'layers', label: 'Data sources' },
   ];
   constructor() {

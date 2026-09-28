@@ -1,5 +1,16 @@
 # Validation — 2026-09-28
 
+## Phase 7
+
+- **332 backend tests pass** in 105.63 s, retaining all previous 289 and adding 43 federation cases. Actual parameter averaging, shared initialization, local training changes, sample/equal weighting, malformed updates, finite values/checksums, deterministic seed, raw-data contract, client country isolation, numeric save/reload, evaluation, artifact/model immutability, bounded run storage and API/delete are covered.
+- Python compilation, `pip check`, strict TypeScript and Angular production build pass. Initial 366.50 kB / estimated 100.33 kB transfer; federation lazy chunk 18.22 kB / 5.38 kB.
+- Existing country-local preparation, five-round actual CPU MLP/FedAvg run, independent saved-model evaluation and report commands pass. Final CLI training 4.8011 s; 417 parameters, 614,235 logical boundary bytes, zero raw operational records sent. Global test WAPE 8.9472%; foreign nodes improve against independent local-only MLPs and India degrades slightly. No claim of improvement over operational HGB is made.
+- Real local API background training/progress, exact round retrieval, invalid request and delete/404 checks pass. Desktop and 390×844 mobile UI render actual data, zero console errors/warnings, no document overflow; result tables scroll internally. Temporary viewport restored.
+- All 115 protected Copilot/forecast/scenario/optimizer/data/model files retain their hashes. Copilot's 13-tool schema/system prompt/failover/verifier are unchanged; no federation tool registration. Necessary new modules/main routing change the existing broad all-backend evidence digest; its invalidation remains intact and old evidence is preserved.
+- **Zero live Gemini requests** during Phase 7; ledger remains 12, same ignored/untracked key and `.env`, no billing changes. Phase 6 remains: implementation complete; live provider acceptance pending due to Gemini service availability. No deployment, secure aggregation, differential privacy, encrypted network transport or production federation is claimed.
+
+See [Phase 7 measured report](phase7-report.md), [federated model and privacy boundary](federated-learning.md), [actual run](evaluation/phase7-run.json), [API](evaluation/phase7-live-api.json), [browser](evaluation/phase7-browser.json) and [preservation](evaluation/phase7-preservation.json).
+
 ## Phase 6
 
 - **Current targeted verification: 289 backend tests pass in 45.88 s**, preserving the previous 281 and adding eight verifier-selection/budget cases. Python compilation, `pip check`, strict TypeScript and Angular production build pass; initial 366.12 kB / estimated 100.26 kB transfer. Fresh [offline acceptance](evaluation/phase6-targeted-offline.json) reproduces positive and constrained real-engine plans with zero provider requests.

@@ -1,7 +1,21 @@
-# Phase 6 Copilot demo — current entry point
+# Phase 7 Federated Intelligence — current entry point
+
+1. Open **Federated Intelligence**. Show India, Brazil, Russia, China and South Africa; India has 139,524 local training examples and each representative foreign node 4,046, drawn from existing 540-day simulated histories.
+2. Show **Raw operational records shared: 0**. The diagram's arrows represent parameters, not patient data or medicine transfers.
+3. Leave **5 rounds**, **1 local epoch**, **Standard FedAvg · sample weighted**, seed 42. Click **Run Federated Training**. No Gemini call is made.
+4. Observe actual backend local training/progress. Expand training events to show each client, update byte count, aggregation and global distribution. Fast stages may complete between polls; recorded events remain available.
+5. Inspect rounds 0–5 and measured global validation WAPE. The initial untrained model measures 100%; final validation is about 9.3282%. These are measured errors, not classification accuracy.
+6. Read the country held-out comparison. Show India's slight degradation, 8.9496% local-only → 8.9511% global, and four foreign-node improvements. Initial-global is 100% on each. Foreign nodes have only six representative facilities; shared simulator patterns limit generalization.
+7. Show total serialized logical boundary bytes and raw count zero. The measured CLI run uses 614,235 bytes and 4.80 seconds; UI timings/metadata bytes can differ slightly. Only parameters/aggregate metadata cross client boundaries. Global MAE/WAPE are computed from aggregate errors, not averaged accuracy scores.
+8. Explain that the experimental global MLP is separate from authoritative operational HGB forecasts. Redistribution stays domestic. No differential privacy, secure aggregation, production sovereignty or guaranteed privacy is claimed.
+9. Optional: select **Balanced country · equal weights** for an explicitly different demonstration policy. Do not describe it as sample-weighted FedAvg or expect identical metrics.
+
+See [measured Phase 7 report](phase7-report.md) and [reproducible CLI](federated-learning.md). Gemini remains **Implementation complete; live provider acceptance pending due to Gemini service availability**; do not send live Gemini requests during Phase 7.
+
+# Phase 6 Copilot demo — deterministic operational showcase
 
 1. Open **Resilience Copilot**. Select India → Maharashtra → Pune and **Redistribution-ready simulation**. Inspect the profile notice and administrative-only scope.
-2. Choose **Use offline summaries** explicitly while the daily Gemini quota is exhausted. The page and every response must say OFFLINE; these steps verify local engines, not Gemini reasoning. A server key is configured locally, but final live acceptance remains pending. Run the [budgeted/resumable verifier](phase6-budget-report.md) only after actual quota reset and explicit user authorization. Do not substitute another model or claim live success from mock/offline evidence.
+2. Choose **Use offline summaries** explicitly while Gemini service availability blocks live acceptance. The page and every response must say OFFLINE; these steps verify local engines, not Gemini reasoning. All five configured models returned 503 HIGH DEMAND in retained evidence. Do not make live calls during Phase 7 or claim live success from mock/offline evidence.
 3. Select **Simulate dengue & plan redistribution**. Inspect the populated severe 14-day question and explicit planning checkbox, then submit. The six actual tools summarize the network, run the scenario, compare it, inspect warnings, preview donors and optimize.
 4. Read the real result: 41,763 → 26,084 target deficit, 17,745 safe capacity, 15,679 transferred item tally, 10 lanes, zero new donor risks/reserve violations. Inspect individual resource units/reserves. IVF and PCM retain 100% conditional 14-day stock-out risk; some other resources improve. No physical transfer is executed.
 5. Ask **Explain selected donors** in the same conversation. Expand evidence and tool activity. Open **Open actual optimizer result** to inspect the saved authoritative plan and greedy comparison; profile and scenario IDs remain scoped.

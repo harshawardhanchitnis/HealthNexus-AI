@@ -1,0 +1,2286 @@
+{
+  "status": "passed",
+  "actual_progress_observed": [
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "queued",
+      "stage": "queued",
+      "round": 0,
+      "country": null
+    },
+    {
+      "status": "running",
+      "stage": "loading",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-baseline",
+      "round": 0,
+      "country": "ZA"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 1,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 2,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 2,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 3,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 3,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 4,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 4,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 5,
+      "country": "IN"
+    },
+    {
+      "status": "running",
+      "stage": "local-training",
+      "round": 5,
+      "country": "IN"
+    },
+    {
+      "status": "completed",
+      "stage": "completed",
+      "round": 5,
+      "country": null
+    }
+  ],
+  "result": {
+    "run_id": "e3d85dbb-2866-40bf-b7c5-e9531e8a76f3",
+    "model_version": "federated-footfall-mlp-v1",
+    "policy": "sample-weighted",
+    "config": {
+      "rounds": 5,
+      "local_epochs": 1,
+      "seed": 42,
+      "policy": "sample-weighted"
+    },
+    "status": "completed",
+    "created_at": "2026-09-28T14:18:51.914758+00:00",
+    "completed_at": "2026-09-28T14:19:00.968972+00:00",
+    "client_count": 5,
+    "rounds": [
+      {
+        "round": 0,
+        "global_validation": {
+          "samples": 12936,
+          "absolute_error": 3781640.0021390114,
+          "squared_error": 1908131993.0645998,
+          "target_total": 3781640.0021390114,
+          "mae": 292.3345703570664,
+          "rmse": 384.06453276315034,
+          "wape": 1.0,
+          "normalized_mae": 1.0401118807978444
+        },
+        "parameter_checksum": "913d0f9d80e698ce44c64cb960bea0ae426842a68aa03e012e884c15c99fee19",
+        "update_bytes": 0,
+        "downlink_bytes": 45040,
+        "raw_records_shared": 0,
+        "raw_records_sent": 0,
+        "clients": [],
+        "weights": {},
+        "seconds": 0
+      },
+      {
+        "round": 1,
+        "global_validation": {
+          "samples": 12936,
+          "absolute_error": 603273.7677851513,
+          "squared_error": 60889659.90026035,
+          "target_total": 3781640.0021390114,
+          "mae": 46.63526343422629,
+          "rmse": 68.6075278694261,
+          "wape": 0.15952702199149604,
+          "normalized_mae": 0.16239293616313438
+        },
+        "parameter_checksum": "9e742fb0b908751e3311f4faee6c3d052be1ed61d74baf15ba87571c63224717",
+        "update_bytes": 48055,
+        "downlink_bytes": 45045,
+        "raw_records_shared": 0,
+        "raw_records_sent": 0,
+        "clients": [
+          {
+            "country_id": "IN",
+            "round": 1,
+            "sample_count": 139524,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "913d0f9d80e698ce44c64cb960bea0ae426842a68aa03e012e884c15c99fee19",
+            "parameter_checksum": "071a60810a753ec0f9e831b2e822d117a88edf73a6721024dae0431f278be93a",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9612,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 11592,
+              "absolute_error": 352337.6195387859,
+              "squared_error": 30752180.80656379,
+              "target_total": 3502546.001804605,
+              "mae": 30.394894715216175,
+              "rmse": 51.50611266343102,
+              "wape": 0.10059471577454004,
+              "normalized_mae": 0.10341309010982513
+            },
+            "train_loss_before": 1.329579472541809,
+            "train_loss_after": 0.01752692461013794,
+            "local_epochs": 1,
+            "training_seconds": 0.22827019999385811,
+            "global_validation": {
+              "samples": 11592,
+              "absolute_error": 565400.3264038522,
+              "squared_error": 58293062.4877716,
+              "target_total": 3502546.001804605,
+              "mae": 48.77504541096034,
+              "rmse": 70.91355370215942,
+              "wape": 0.1614255247789873,
+              "normalized_mae": 0.16510719060897827
+            }
+          },
+          {
+            "country_id": "BR",
+            "round": 1,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "913d0f9d80e698ce44c64cb960bea0ae426842a68aa03e012e884c15c99fee19",
+            "parameter_checksum": "4742ccd51894658a447cd8b6c79d5329efca86cb829e63c224b54418868b283f",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9609,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 73510.35729178412,
+              "squared_error": 27006109.883490443,
+              "target_total": 84282.00002922222,
+              "mae": 218.78082527316704,
+              "rmse": 283.505426816133,
+              "wape": 0.8721952168469738,
+              "normalized_mae": 0.8500840067863464
+            },
+            "train_loss_before": 1.3384572267532349,
+            "train_loss_after": 0.8000058531761169,
+            "local_epochs": 1,
+            "training_seconds": 0.007718499997281469,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 9973.731489317432,
+              "squared_error": 747073.3775237945,
+              "target_total": 84282.00002922222,
+              "mae": 29.683724670587594,
+              "rmse": 47.153289081481574,
+              "wape": 0.11833762233762064,
+              "normalized_mae": 0.11286638677120209
+            }
+          },
+          {
+            "country_id": "RU",
+            "round": 1,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "913d0f9d80e698ce44c64cb960bea0ae426842a68aa03e012e884c15c99fee19",
+            "parameter_checksum": "a910c3f4d884020cf889db437ac5622a664475dfd8e69be9ca3b91cb75c16669",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9620,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 41618.88303841177,
+              "squared_error": 8989543.688580686,
+              "target_total": 47153.000097042466,
+              "mae": 123.86572332860645,
+              "rmse": 163.5683169542685,
+              "wape": 0.882634889673164,
+              "normalized_mae": 0.9214902520179749
+            },
+            "train_loss_before": 1.3299100399017334,
+            "train_loss_after": 0.795015275478363,
+            "local_epochs": 1,
+            "training_seconds": 0.0060757000028388575,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8011.824337368379,
+              "squared_error": 412426.8343205006,
+              "target_total": 47153.000097042466,
+              "mae": 23.84471528978684,
+              "rmse": 35.0351368832785,
+              "wape": 0.1699112319657238,
+              "normalized_mae": 0.16862919926643372
+            }
+          },
+          {
+            "country_id": "CN",
+            "round": 1,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "913d0f9d80e698ce44c64cb960bea0ae426842a68aa03e012e884c15c99fee19",
+            "parameter_checksum": "d66b62684a7b99136b8f7320a740a496b697684a92de27b19e932bfe3f0d24cb",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9597,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 48556.17318508348,
+              "squared_error": 12340011.463696774,
+              "target_total": 55127.99993136969,
+              "mae": 144.51242019370082,
+              "rmse": 191.64087401787657,
+              "wape": 0.880789675764264,
+              "normalized_mae": 0.9124261140823364
+            },
+            "train_loss_before": 1.329547643661499,
+            "train_loss_after": 0.7946891784667969,
+            "local_epochs": 1,
+            "training_seconds": 0.008856399988871999,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8684.509074087087,
+              "squared_error": 484791.9208017339,
+              "target_total": 55127.99993136969,
+              "mae": 25.84675319668776,
+              "rmse": 37.98464291821378,
+              "wape": 0.15753354166482847,
+              "normalized_mae": 0.16067449748516083
+            }
+          },
+          {
+            "country_id": "ZA",
+            "round": 1,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "913d0f9d80e698ce44c64cb960bea0ae426842a68aa03e012e884c15c99fee19",
+            "parameter_checksum": "324f5608f93defb71d27f34dc9294217ef2f12eea27fedbab6a29c6420857276",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9617,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 80739.53799939348,
+              "squared_error": 33791575.62105846,
+              "target_total": 92531.00027677201,
+              "mae": 240.29624404581392,
+              "rmse": 317.1279955142158,
+              "wape": 0.8725674396460779,
+              "normalized_mae": 0.848757803440094
+            },
+            "train_loss_before": 1.3391751050949097,
+            "train_loss_after": 0.8001082539558411,
+            "local_epochs": 1,
+            "training_seconds": 0.007412699997075833,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 11203.376480526154,
+              "squared_error": 952305.2798427219,
+              "target_total": 92531.00027677201,
+              "mae": 33.343382382518314,
+              "rmse": 53.23759859623474,
+              "wape": 0.12107700605219254,
+              "normalized_mae": 0.11375988274812698
+            }
+          }
+        ],
+        "weights": {
+          "IN": 0.8960618593778098,
+          "BR": 0.025984535155547564,
+          "RU": 0.025984535155547564,
+          "CN": 0.025984535155547564,
+          "ZA": 0.025984535155547564
+        },
+        "seconds": 0.3531507000006968
+      },
+      {
+        "round": 2,
+        "global_validation": {
+          "samples": 12936,
+          "absolute_error": 377116.96321973926,
+          "squared_error": 31625502.01687324,
+          "target_total": 3781640.0021390114,
+          "mae": 29.152517255700314,
+          "rmse": 49.44458209847151,
+          "wape": 0.099723126211493,
+          "normalized_mae": 0.10200054169475258
+        },
+        "parameter_checksum": "66cf251708281d3ece9735062f4544250e094142464477c7ec19a4e17892b2b5",
+        "update_bytes": 48084,
+        "downlink_bytes": 44965,
+        "raw_records_shared": 0,
+        "raw_records_sent": 0,
+        "clients": [
+          {
+            "country_id": "IN",
+            "round": 2,
+            "sample_count": 139524,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "9e742fb0b908751e3311f4faee6c3d052be1ed61d74baf15ba87571c63224717",
+            "parameter_checksum": "767e03e94e22f1ec1f2cad49e09082b14673b2e6881a8c77c58de0ccb5a2431e",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9630,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 11592,
+              "absolute_error": 338881.9496173634,
+              "squared_error": 28889145.653425258,
+              "target_total": 3502546.001804605,
+              "mae": 29.234122637798773,
+              "rmse": 49.92156170883864,
+              "wape": 0.09675303320577727,
+              "normalized_mae": 0.09950180351734161
+            },
+            "train_loss_before": 0.02796413190662861,
+            "train_loss_after": 0.01626460999250412,
+            "local_epochs": 1,
+            "training_seconds": 0.23488290001114365,
+            "global_validation": {
+              "samples": 11592,
+              "absolute_error": 349814.78642672696,
+              "squared_error": 29872187.9140298,
+              "target_total": 3502546.001804605,
+              "mae": 30.177259008516817,
+              "rmse": 50.763824039299664,
+              "wape": 0.09987443027057834,
+              "normalized_mae": 0.1023852527141571
+            }
+          },
+          {
+            "country_id": "BR",
+            "round": 2,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "9e742fb0b908751e3311f4faee6c3d052be1ed61d74baf15ba87571c63224717",
+            "parameter_checksum": "fb88953da99846d6cd06c4b53a938f267b0ae745b35bd1234e438fcd3ab6b670",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9610,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 8528.77602287589,
+              "squared_error": 617251.8657848254,
+              "target_total": 84282.00002922222,
+              "mae": 25.383261972844913,
+              "rmse": 42.860927712306925,
+              "wape": 0.10119332739990504,
+              "normalized_mae": 0.09614187479019165
+            },
+            "train_loss_before": 0.029904374852776527,
+            "train_loss_after": 0.02353956736624241,
+            "local_epochs": 1,
+            "training_seconds": 0.006550999998580664,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8206.715943234361,
+              "squared_error": 585992.1440607363,
+              "target_total": 84282.00002922222,
+              "mae": 24.424749831054648,
+              "rmse": 41.76151623535718,
+              "wape": 0.09737210721611889,
+              "normalized_mae": 0.09519641846418381
+            }
+          },
+          {
+            "country_id": "RU",
+            "round": 2,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "9e742fb0b908751e3311f4faee6c3d052be1ed61d74baf15ba87571c63224717",
+            "parameter_checksum": "fc688b0a3395ab1fc1b6ccf0275f4ee3031bf2163eda3b68cfdbb2c69bcb2468",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9603,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 6853.594592587453,
+              "squared_error": 317427.69425761525,
+              "target_total": 47153.000097042466,
+              "mae": 20.397602954129326,
+              "rmse": 30.736383660551493,
+              "wape": 0.14534800709355766,
+              "normalized_mae": 0.14301487803459167
+            },
+            "train_loss_before": 0.02815193682909012,
+            "train_loss_after": 0.022117072716355324,
+            "local_epochs": 1,
+            "training_seconds": 0.01029789999302011,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 5054.240971417981,
+              "squared_error": 209311.86112144587,
+              "target_total": 47153.000097042466,
+              "mae": 15.042383843505897,
+              "rmse": 24.959005741883043,
+              "wape": 0.10718811021602406,
+              "normalized_mae": 0.1063980832695961
+            }
+          },
+          {
+            "country_id": "CN",
+            "round": 2,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "9e742fb0b908751e3311f4faee6c3d052be1ed61d74baf15ba87571c63224717",
+            "parameter_checksum": "167de55d6ad460ecef6e66d162388b97aa6cb01aa9afdc62db3651f12ba35f8c",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9623,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 7299.305920325165,
+              "squared_error": 370341.24829242576,
+              "target_total": 55127.99993136969,
+              "mae": 21.724124762872513,
+              "rmse": 33.19948939529658,
+              "wape": 0.13240650720890046,
+              "normalized_mae": 0.13467524945735931
+            },
+            "train_loss_before": 0.027768511325120926,
+            "train_loss_after": 0.021724456921219826,
+            "local_epochs": 1,
+            "training_seconds": 0.005542500002775341,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 5249.471657202743,
+              "squared_error": 253362.46584336009,
+              "target_total": 55127.99993136969,
+              "mae": 15.62342755119864,
+              "rmse": 27.460061140994263,
+              "wape": 0.09522332868484162,
+              "normalized_mae": 0.09712523221969604
+            }
+          },
+          {
+            "country_id": "ZA",
+            "round": 2,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "9e742fb0b908751e3311f4faee6c3d052be1ed61d74baf15ba87571c63224717",
+            "parameter_checksum": "e4f5a6d8f02fbd87a1ebe979c8bce7c8a62b15def21631f83238df6b29f3037d",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9618,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 9433.033457173931,
+              "squared_error": 771124.7556403344,
+              "target_total": 92531.00027677201,
+              "mae": 28.074504336827175,
+              "rmse": 47.90630599087631,
+              "wape": 0.10194457456375189,
+              "normalized_mae": 0.09731626510620117
+            },
+            "train_loss_before": 0.02965068817138672,
+            "train_loss_after": 0.023269688710570335,
+            "local_epochs": 1,
+            "training_seconds": 0.008859000008669682,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8791.74822115724,
+              "squared_error": 704647.6318179006,
+              "target_total": 92531.00027677201,
+              "mae": 26.16591732487274,
+              "rmse": 45.794820349976355,
+              "wape": 0.09501408387308038,
+              "normalized_mae": 0.09600990265607834
+            }
+          }
+        ],
+        "weights": {
+          "IN": 0.8960618593778098,
+          "BR": 0.025984535155547564,
+          "RU": 0.025984535155547564,
+          "CN": 0.025984535155547564,
+          "ZA": 0.025984535155547564
+        },
+        "seconds": 0.35983840000699274
+      },
+      {
+        "round": 3,
+        "global_validation": {
+          "samples": 12936,
+          "absolute_error": 359813.89036342077,
+          "squared_error": 29586489.69140849,
+          "target_total": 3781640.0021390114,
+          "mae": 27.814926589627454,
+          "rmse": 47.82409022996773,
+          "wape": 0.09514757887051624,
+          "normalized_mae": 0.09774950601450809
+        },
+        "parameter_checksum": "956b0257700a239fe81a9c64a193aca93e41f138bbc15d28c55e3fbd1774bc60",
+        "update_bytes": 48027,
+        "downlink_bytes": 44955,
+        "raw_records_shared": 0,
+        "raw_records_sent": 0,
+        "clients": [
+          {
+            "country_id": "IN",
+            "round": 3,
+            "sample_count": 139524,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "66cf251708281d3ece9735062f4544250e094142464477c7ec19a4e17892b2b5",
+            "parameter_checksum": "a91ef02b2df3c1b72c61afc00ad70f6c90e5da1e49678a67d982f94bfeab91ea",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9618,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 11592,
+              "absolute_error": 331508.41778661235,
+              "squared_error": 27709511.16261354,
+              "target_total": 3502546.001804605,
+              "mae": 28.598034660680845,
+              "rmse": 48.891712116503115,
+              "wape": 0.09464784120345895,
+              "normalized_mae": 0.09743762761354446
+            },
+            "train_loss_before": 0.016438262537121773,
+            "train_loss_after": 0.015394425950944424,
+            "local_epochs": 1,
+            "training_seconds": 0.24079619999974966,
+            "global_validation": {
+              "samples": 11592,
+              "absolute_error": 332845.1891931376,
+              "squared_error": 27884796.007779248,
+              "target_total": 3502546.001804605,
+              "mae": 28.713353104998067,
+              "rmse": 49.04610794553259,
+              "wape": 0.09502949826259151,
+              "normalized_mae": 0.09779039770364761
+            }
+          },
+          {
+            "country_id": "BR",
+            "round": 3,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "66cf251708281d3ece9735062f4544250e094142464477c7ec19a4e17892b2b5",
+            "parameter_checksum": "280e966d18f0558f3cf2305825c45bcbf1725dab48afa953b2eb9e1d51ba09db",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9592,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 8263.77719660243,
+              "squared_error": 592085.7853479828,
+              "target_total": 84282.00002922222,
+              "mae": 24.594574989888184,
+              "rmse": 41.97809042155711,
+              "wape": 0.09804913497232169,
+              "normalized_mae": 0.09614058583974838
+            },
+            "train_loss_before": 0.018634140491485596,
+            "train_loss_after": 0.01853944920003414,
+            "local_epochs": 1,
+            "training_seconds": 0.008286999989650212,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8282.017518316263,
+              "squared_error": 576218.6397477078,
+              "target_total": 84282.00002922222,
+              "mae": 24.648861661655545,
+              "rmse": 41.41179092747087,
+              "wape": 0.09826555510600989,
+              "normalized_mae": 0.09688947349786758
+            }
+          },
+          {
+            "country_id": "RU",
+            "round": 3,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "66cf251708281d3ece9735062f4544250e094142464477c7ec19a4e17892b2b5",
+            "parameter_checksum": "a26d55ef2b6412f4df1802b43290c8e80f208c18d334d94db21857345946759a",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9619,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 4992.441880914917,
+              "squared_error": 206437.39858392492,
+              "target_total": 47153.000097042466,
+              "mae": 14.858457978913444,
+              "rmse": 24.78703329555626,
+              "wape": 0.10587750239942958,
+              "normalized_mae": 0.10530538856983185
+            },
+            "train_loss_before": 0.016691211611032486,
+            "train_loss_after": 0.01662995107471943,
+            "local_epochs": 1,
+            "training_seconds": 0.011818600003607571,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 4797.460747412437,
+              "squared_error": 194376.99570622706,
+              "target_total": 47153.000097042466,
+              "mae": 14.278156986346538,
+              "rmse": 24.05208854572488,
+              "wape": 0.1017424286373953,
+              "normalized_mae": 0.10161159187555313
+            }
+          },
+          {
+            "country_id": "CN",
+            "round": 3,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "66cf251708281d3ece9735062f4544250e094142464477c7ec19a4e17892b2b5",
+            "parameter_checksum": "c678dc4cd4b9cb1aa6b3d7e16ffec89f47ff3835c76ff60d1a80fb4ebf7234de",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9596,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 5196.195211224209,
+              "squared_error": 250928.20645547245,
+              "target_total": 55127.99993136969,
+              "mae": 15.46486670007205,
+              "rmse": 27.327827177811535,
+              "wape": 0.09425691513737285,
+              "normalized_mae": 0.09615665674209595
+            },
+            "train_loss_before": 0.01630544476211071,
+            "train_loss_after": 0.016244657337665558,
+            "local_epochs": 1,
+            "training_seconds": 0.012834299996029586,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 5043.607663791922,
+              "squared_error": 238146.92375329882,
+              "target_total": 55127.99993136969,
+              "mae": 15.010737094618817,
+              "rmse": 26.622746034333638,
+              "wape": 0.09148903769537882,
+              "normalized_mae": 0.09324990212917328
+            }
+          },
+          {
+            "country_id": "ZA",
+            "round": 3,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "66cf251708281d3ece9735062f4544250e094142464477c7ec19a4e17892b2b5",
+            "parameter_checksum": "2255fa6aac525ccf8ac56ca48065e012a696cb5b9cbcdfd94375f32e1f1733c6",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9602,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 8852.266913491336,
+              "squared_error": 711178.7699614253,
+              "target_total": 92531.00027677201,
+              "mae": 26.346032480628974,
+              "rmse": 46.006559119630445,
+              "wape": 0.09566812081370651,
+              "normalized_mae": 0.0970642939209938
+            },
+            "train_loss_before": 0.01835404895246029,
+            "train_loss_after": 0.018256833776831627,
+            "local_epochs": 1,
+            "training_seconds": 0.012714199998299591,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8845.615240762545,
+              "squared_error": 692951.124422007,
+              "target_total": 92531.00027677201,
+              "mae": 26.326235835602812,
+              "rmse": 45.4131537879749,
+              "wape": 0.09559623492996058,
+              "normalized_mae": 0.09783629328012466
+            }
+          }
+        ],
+        "weights": {
+          "IN": 0.8960618593778098,
+          "BR": 0.025984535155547564,
+          "RU": 0.025984535155547564,
+          "CN": 0.025984535155547564,
+          "ZA": 0.025984535155547564
+        },
+        "seconds": 0.4140157999936491
+      },
+      {
+        "round": 4,
+        "global_validation": {
+          "samples": 12936,
+          "absolute_error": 354155.53118722653,
+          "squared_error": 28569199.9930018,
+          "target_total": 3781640.0021390114,
+          "mae": 27.3775147794702,
+          "rmse": 46.99471673304945,
+          "wape": 0.09365130763026235,
+          "normalized_mae": 0.09641150065830775
+        },
+        "parameter_checksum": "d777e0e66c0e3d7c02458ea001d081335ca76c1bd621694287b129234ca107e3",
+        "update_bytes": 48010,
+        "downlink_bytes": 44970,
+        "raw_records_shared": 0,
+        "raw_records_sent": 0,
+        "clients": [
+          {
+            "country_id": "IN",
+            "round": 4,
+            "sample_count": 139524,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "956b0257700a239fe81a9c64a193aca93e41f138bbc15d28c55e3fbd1774bc60",
+            "parameter_checksum": "295070ea7139421232c9cd0e710652572813c17111eae318c8d1fc088f869aba",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9590,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 11592,
+              "absolute_error": 326771.4590185808,
+              "squared_error": 26808730.633326113,
+              "target_total": 3502546.001804605,
+              "mae": 28.189394325274396,
+              "rmse": 48.09046089076115,
+              "wape": 0.09329540821168927,
+              "normalized_mae": 0.09623277932405472
+            },
+            "train_loss_before": 0.015487168915569782,
+            "train_loss_after": 0.01478883158415556,
+            "local_epochs": 1,
+            "training_seconds": 0.27691060000506695,
+            "global_validation": {
+              "samples": 11592,
+              "absolute_error": 327279.56122728426,
+              "squared_error": 26911042.202813312,
+              "target_total": 3502546.001804605,
+              "mae": 28.233226468882354,
+              "rmse": 48.18213858374869,
+              "wape": 0.09344047474570244,
+              "normalized_mae": 0.09634868800640106
+            }
+          },
+          {
+            "country_id": "BR",
+            "round": 4,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "956b0257700a239fe81a9c64a193aca93e41f138bbc15d28c55e3fbd1774bc60",
+            "parameter_checksum": "baece25aff4fdc23a0f61a8766e64d2b704cceef6f0d1d267004867ffa2e1c57",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9601,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 8304.501676244101,
+              "squared_error": 577921.915857678,
+              "target_total": 84282.00002922222,
+              "mae": 24.71577879834554,
+              "rmse": 41.47295144979888,
+              "wape": 0.09853232805776758,
+              "normalized_mae": 0.09720593690872192
+            },
+            "train_loss_before": 0.018181324005126953,
+            "train_loss_after": 0.018124211579561234,
+            "local_epochs": 1,
+            "training_seconds": 0.007099700000253506,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8308.167557404393,
+              "squared_error": 562186.3894891418,
+              "target_total": 84282.00002922222,
+              "mae": 24.726689158941646,
+              "rmse": 40.90444692501652,
+              "wape": 0.0985758234797915,
+              "normalized_mae": 0.09722217917442322
+            }
+          },
+          {
+            "country_id": "RU",
+            "round": 4,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "956b0257700a239fe81a9c64a193aca93e41f138bbc15d28c55e3fbd1774bc60",
+            "parameter_checksum": "a899e9625eca714a92a88083a5f161842a07e82c91d58b5a1aec3bf5a1d83c49",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9601,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 4794.5245186672055,
+              "squared_error": 194149.59708193166,
+              "target_total": 47153.000097042466,
+              "mae": 14.269418210319063,
+              "rmse": 24.038015346352186,
+              "wape": 0.10168015839501011,
+              "normalized_mae": 0.10155419260263443
+            },
+            "train_loss_before": 0.015739386901259422,
+            "train_loss_after": 0.015712762251496315,
+            "local_epochs": 1,
+            "training_seconds": 0.006677299999864772,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 4689.027198361048,
+              "squared_error": 187247.7292048702,
+              "target_total": 47153.000097042466,
+              "mae": 13.955438090360262,
+              "rmse": 23.60688264781752,
+              "wape": 0.09944281782094187,
+              "normalized_mae": 0.09970682859420776
+            }
+          },
+          {
+            "country_id": "CN",
+            "round": 4,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "956b0257700a239fe81a9c64a193aca93e41f138bbc15d28c55e3fbd1774bc60",
+            "parameter_checksum": "7c9a8c4dbf97310995888dac130d31ea147a38c0992c91a2e6b89f91c182bb6f",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9625,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 5046.577791756887,
+              "squared_error": 238047.89961158432,
+              "target_total": 55127.99993136969,
+              "mae": 15.01957676118121,
+              "rmse": 26.617210441763874,
+              "wape": 0.0915429146357478,
+              "normalized_mae": 0.09328383207321167
+            },
+            "train_loss_before": 0.015355433337390423,
+            "train_loss_after": 0.015329059213399887,
+            "local_epochs": 1,
+            "training_seconds": 0.00739620000240393,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 5012.348516864286,
+              "squared_error": 230672.2914410166,
+              "target_total": 55127.99993136969,
+              "mae": 14.917703919238946,
+              "rmse": 26.201615921690546,
+              "wape": 0.0909220091986702,
+              "normalized_mae": 0.0926322489976883
+            }
+          },
+          {
+            "country_id": "ZA",
+            "round": 4,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "956b0257700a239fe81a9c64a193aca93e41f138bbc15d28c55e3fbd1774bc60",
+            "parameter_checksum": "66151f0adbac3b67c4ba17c65907a963994f3891a3bde14ebda54789970f0102",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9593,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 8863.560478288748,
+              "squared_error": 693961.0429102484,
+              "target_total": 92531.00027677201,
+              "mae": 26.37964428062127,
+              "rmse": 45.446234681837964,
+              "wape": 0.09579017250193674,
+              "normalized_mae": 0.0980910211801529
+            },
+            "train_loss_before": 0.0179312601685524,
+            "train_loss_after": 0.01787649281322956,
+            "local_epochs": 1,
+            "training_seconds": 0.01011270000890363,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8866.426687312527,
+              "squared_error": 678051.3800534592,
+              "target_total": 92531.00027677201,
+              "mae": 26.388174664620617,
+              "rmse": 44.92226685823985,
+              "wape": 0.09582114816431159,
+              "normalized_mae": 0.09825178235769272
+            }
+          }
+        ],
+        "weights": {
+          "IN": 0.8960618593778098,
+          "BR": 0.025984535155547564,
+          "RU": 0.025984535155547564,
+          "CN": 0.025984535155547564,
+          "ZA": 0.025984535155547564
+        },
+        "seconds": 0.42004820000147447
+      },
+      {
+        "round": 5,
+        "global_validation": {
+          "samples": 12936,
+          "absolute_error": 352757.2118351396,
+          "squared_error": 27978393.2992571,
+          "target_total": 3781640.0021390114,
+          "mae": 27.26941959146101,
+          "rmse": 46.50625643607184,
+          "wape": 0.09328154230323599,
+          "normalized_mae": 0.09617166105028871
+        },
+        "parameter_checksum": "d971711083cef53d8b4416eebdf4c76b35d20b94ce62752a3bd4240e4cb42fc8",
+        "update_bytes": 48035,
+        "downlink_bytes": 45015,
+        "raw_records_shared": 0,
+        "raw_records_sent": 0,
+        "clients": [
+          {
+            "country_id": "IN",
+            "round": 5,
+            "sample_count": 139524,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "d777e0e66c0e3d7c02458ea001d081335ca76c1bd621694287b129234ca107e3",
+            "parameter_checksum": "1aa67a1ebd4a01df9da09af48500b7377cf88d2b98d5bc8d5b42813ae4bfd0ef",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9611,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 11592,
+              "absolute_error": 325793.42890621244,
+              "squared_error": 26293871.24617029,
+              "target_total": 3502546.001804605,
+              "mae": 28.10502319756836,
+              "rmse": 47.626435597072,
+              "wape": 0.0930161741596984,
+              "normalized_mae": 0.09609215706586838
+            },
+            "train_loss_before": 0.014852454885840416,
+            "train_loss_after": 0.014385108835995197,
+            "local_epochs": 1,
+            "training_seconds": 0.2667245000047842,
+            "global_validation": {
+              "samples": 11592,
+              "absolute_error": 325904.25730203,
+              "squared_error": 26354801.62766298,
+              "target_total": 3502546.001804605,
+              "mae": 28.114583963253104,
+              "rmse": 47.68158566755272,
+              "wape": 0.09304781639816163,
+              "normalized_mae": 0.09610326588153839
+            }
+          },
+          {
+            "country_id": "BR",
+            "round": 5,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "d777e0e66c0e3d7c02458ea001d081335ca76c1bd621694287b129234ca107e3",
+            "parameter_checksum": "92704a2164f0c4311197920861bd7c7e64eb7d96b43b251d8ceb2c766c37e625",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9598,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 8307.482734988744,
+              "squared_error": 561778.8053150126,
+              "target_total": 84282.00002922222,
+              "mae": 24.72465099699031,
+              "rmse": 40.88961640935513,
+              "wape": 0.09856769811001609,
+              "normalized_mae": 0.09720902144908905
+            },
+            "train_loss_before": 0.017927229404449463,
+            "train_loss_after": 0.017868399620056152,
+            "local_epochs": 1,
+            "training_seconds": 0.009819999992032535,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8306.398079784412,
+              "squared_error": 549459.6575654116,
+              "target_total": 84282.00002922222,
+              "mae": 24.721422856501228,
+              "rmse": 40.43880067332683,
+              "wape": 0.09855482875233645,
+              "normalized_mae": 0.09714337438344955
+            }
+          },
+          {
+            "country_id": "RU",
+            "round": 5,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "d777e0e66c0e3d7c02458ea001d081335ca76c1bd621694287b129234ca107e3",
+            "parameter_checksum": "e962af0ad4097b37817a075a3431d5711447807f9c529c8ed4ae5ea8124bcf41",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9604,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 4696.5827121837265,
+              "squared_error": 187459.2458249931,
+              "target_total": 47153.000097042466,
+              "mae": 13.977924738642043,
+              "rmse": 23.620212151845582,
+              "wape": 0.09960305182105064,
+              "normalized_mae": 0.09981153905391693
+            },
+            "train_loss_before": 0.015099686570465565,
+            "train_loss_after": 0.015080749057233334,
+            "local_epochs": 1,
+            "training_seconds": 0.010358100000303239,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 4644.182577858502,
+              "squared_error": 183314.57459102944,
+              "target_total": 47153.000097042466,
+              "mae": 13.821971957912208,
+              "rmse": 23.3576345344457,
+              "wape": 0.09849177291584028,
+              "normalized_mae": 0.09890417754650116
+            }
+          },
+          {
+            "country_id": "CN",
+            "round": 5,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "d777e0e66c0e3d7c02458ea001d081335ca76c1bd621694287b129234ca107e3",
+            "parameter_checksum": "84e9f72162938f07b8aec5a904a68c920a6872cb24856ab599927bf2edcd48ac",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9609,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 5018.748594902476,
+              "squared_error": 230768.65244995634,
+              "target_total": 55127.99993136969,
+              "mae": 14.936751770543083,
+              "rmse": 26.207088079847217,
+              "wape": 0.09103810406962794,
+              "normalized_mae": 0.09273137152194977
+            },
+            "train_loss_before": 0.014721153303980827,
+            "train_loss_after": 0.01470255944877863,
+            "local_epochs": 1,
+            "training_seconds": 0.007943799995700829,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 5033.479059933827,
+              "squared_error": 226275.20571548378,
+              "target_total": 55127.99993136969,
+              "mae": 14.980592440279246,
+              "rmse": 25.950686161419,
+              "wape": 0.09130530884850055,
+              "normalized_mae": 0.0929432138800621
+            }
+          },
+          {
+            "country_id": "ZA",
+            "round": 5,
+            "sample_count": 4046,
+            "model_version": "federated-footfall-mlp-v1",
+            "starting_checksum": "d777e0e66c0e3d7c02458ea001d081335ca76c1bd621694287b129234ca107e3",
+            "parameter_checksum": "5f3cb4955dcf67251fa9af5841bc689fcdb3412e6ed4c9547c343386cd725058",
+            "parameter_count": 417,
+            "parameter_bytes": 1668,
+            "bytes_transferred": 9613,
+            "raw_records_shared": 0,
+            "validation": {
+              "samples": 336,
+              "absolute_error": 8867.483929490423,
+              "squared_error": 677629.6463732144,
+              "target_total": 92531.00027677201,
+              "mae": 26.391321218721497,
+              "rmse": 44.90829433323293,
+              "wape": 0.09583257398025147,
+              "normalized_mae": 0.09827251732349396
+            },
+            "train_loss_before": 0.01770920306444168,
+            "train_loss_after": 0.017651943489909172,
+            "local_epochs": 1,
+            "training_seconds": 0.007855499992729165,
+            "global_validation": {
+              "samples": 336,
+              "absolute_error": 8868.89481553287,
+              "squared_error": 664542.2337221939,
+              "target_total": 92531.00027677201,
+              "mae": 26.39552028432402,
+              "rmse": 44.47251136410377,
+              "wape": 0.09584782169224235,
+              "normalized_mae": 0.09805551171302795
+            }
+          }
+        ],
+        "weights": {
+          "IN": 0.8960618593778098,
+          "BR": 0.025984535155547564,
+          "RU": 0.025984535155547564,
+          "CN": 0.025984535155547564,
+          "ZA": 0.025984535155547564
+        },
+        "seconds": 0.39398769999388605
+      }
+    ],
+    "nodes": [
+      {
+        "as_of": "2026-09-27",
+        "country_id": "IN",
+        "data_source": "country-local Phase 3 source-history footfall tables",
+        "data_type": "calibrated simulated operations",
+        "facility_count": 207,
+        "history_days": 540,
+        "history_sha256": "29ddde078205291cc0c93e64355be737a209898dca0fd845e37c75af6c938482",
+        "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+        "local_samples": 139524,
+        "table_sha256": "5f5f324c373f1bd93b63456683258e15a833cacc6ccc5fd364d38dce0a483527",
+        "test_samples": 11592,
+        "validation_samples": 11592,
+        "windows": {
+          "calibration": {
+            "end": "2026-08-04",
+            "start": "2026-06-12"
+          },
+          "selection": {
+            "end": "2026-06-11",
+            "start": "2026-04-19"
+          },
+          "test": {
+            "end": "2026-09-27",
+            "start": "2026-08-05"
+          },
+          "train": {
+            "end": "2026-04-18",
+            "start": "2025-05-04"
+          }
+        },
+        "local_only": {
+          "absolute_error": 370672.25366324675,
+          "mae": 31.976557424365662,
+          "normalized_mae": 0.09016507863998413,
+          "rmse": 55.21747367449292,
+          "samples": 11592,
+          "squared_error": 35343653.27313055,
+          "target_total": 4141759.0032627406,
+          "wape": 0.08949633558380471
+        },
+        "initial_global": {
+          "absolute_error": 4141759.0032627406,
+          "mae": 357.2946000054124,
+          "normalized_mae": 1.012660264968872,
+          "rmse": 465.5980771787175,
+          "samples": 11592,
+          "squared_error": 2512931953.3254404,
+          "target_total": 4141759.0032627406,
+          "wape": 1.0
+        },
+        "federated_global": {
+          "absolute_error": 370734.7760455248,
+          "mae": 31.981951004617393,
+          "normalized_mae": 0.09006830304861069,
+          "rmse": 55.454924346966784,
+          "samples": 11592,
+          "squared_error": 35648282.16912797,
+          "target_total": 4141759.0032627406,
+          "wape": 0.08951143119468617
+        },
+        "wape_change_vs_local": 1.5095610881463162e-05,
+        "change": "degraded",
+        "raw_records_shared": 0,
+        "latest_update_bytes": 9611,
+        "local_only_artifact": "country/IN/local-only/parameters.npz",
+        "latest_local_artifact": "country/IN/latest-local/parameters.npz"
+      },
+      {
+        "as_of": "2026-09-27",
+        "country_id": "BR",
+        "data_source": "country-local Phase 3 source-history footfall tables",
+        "data_type": "calibrated simulated operations",
+        "facility_count": 6,
+        "history_days": 540,
+        "history_sha256": "e8f8901a06077ebf8bf31a04aa688f0e6aab16ad65450797ff72e75de0bf3bfc",
+        "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+        "local_samples": 4046,
+        "table_sha256": "4f2c4dae5f6e6bfae89bf58b53404ed0d3414c2f31f3dbfcd05de4b7ad0341e7",
+        "test_samples": 336,
+        "validation_samples": 336,
+        "windows": {
+          "calibration": {
+            "end": "2026-08-04",
+            "start": "2026-06-12"
+          },
+          "selection": {
+            "end": "2026-06-11",
+            "start": "2026-04-19"
+          },
+          "test": {
+            "end": "2026-09-27",
+            "start": "2026-08-05"
+          },
+          "train": {
+            "end": "2026-04-18",
+            "start": "2025-05-04"
+          }
+        },
+        "local_only": {
+          "absolute_error": 19762.628864039052,
+          "mae": 58.81734780964003,
+          "normalized_mae": 0.2651139795780182,
+          "rmse": 84.06901049873416,
+          "samples": 336,
+          "squared_error": 2374713.104815388,
+          "target_total": 73811.00014122234,
+          "wape": 0.2677463904597862
+        },
+        "initial_global": {
+          "absolute_error": 73811.00014122234,
+          "mae": 219.6755956583998,
+          "normalized_mae": 0.9948841333389282,
+          "rmse": 284.0066812787622,
+          "samples": 336,
+          "squared_error": 27101691.123688076,
+          "target_total": 73811.00014122234,
+          "wape": 1.0
+        },
+        "federated_global": {
+          "absolute_error": 6493.497521863345,
+          "mae": 19.325885481736147,
+          "normalized_mae": 0.08837394416332245,
+          "rmse": 33.52366545602822,
+          "samples": 336,
+          "squared_error": 377608.94492418703,
+          "target_total": 73811.00014122234,
+          "wape": 0.08797465837665604
+        },
+        "wape_change_vs_local": -0.1797717320831302,
+        "change": "improved",
+        "raw_records_shared": 0,
+        "latest_update_bytes": 9598,
+        "local_only_artifact": "country/BR/local-only/parameters.npz",
+        "latest_local_artifact": "country/BR/latest-local/parameters.npz"
+      },
+      {
+        "as_of": "2026-09-27",
+        "country_id": "RU",
+        "data_source": "country-local Phase 3 source-history footfall tables",
+        "data_type": "calibrated simulated operations",
+        "facility_count": 6,
+        "history_days": 540,
+        "history_sha256": "e2fea59febe1c54cbfe1ab26b9868675bdb1e3ab403d60c5179fcfae440fa0f6",
+        "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+        "local_samples": 4046,
+        "table_sha256": "1c74920fa48c867163fb74f4cc211d10bc04c4066a0105331ce69992e3e6d4b3",
+        "test_samples": 336,
+        "validation_samples": 336,
+        "windows": {
+          "calibration": {
+            "end": "2026-08-04",
+            "start": "2026-06-12"
+          },
+          "selection": {
+            "end": "2026-06-11",
+            "start": "2026-04-19"
+          },
+          "test": {
+            "end": "2026-09-27",
+            "start": "2026-08-05"
+          },
+          "train": {
+            "end": "2026-04-18",
+            "start": "2025-05-04"
+          }
+        },
+        "local_only": {
+          "absolute_error": 15742.99191744282,
+          "mae": 46.85414261143696,
+          "normalized_mae": 0.28099608421325684,
+          "rmse": 68.25556586320646,
+          "samples": 336,
+          "squared_error": 1565364.2831589887,
+          "target_total": 55499.99998996587,
+          "wape": 0.2836575120772806
+        },
+        "initial_global": {
+          "absolute_error": 55499.99998996587,
+          "mae": 165.17857139870796,
+          "normalized_mae": 1.0099830627441406,
+          "rmse": 217.02774415952996,
+          "samples": 336,
+          "squared_error": 15825950.022951394,
+          "target_total": 55499.99998996587,
+          "wape": 1.0
+        },
+        "federated_global": {
+          "absolute_error": 5020.173405434034,
+          "mae": 14.940992278077482,
+          "normalized_mae": 0.08730515092611313,
+          "rmse": 26.45380720206871,
+          "samples": 336,
+          "squared_error": 235134.1156026987,
+          "target_total": 55499.99998996587,
+          "wape": 0.09045357488903887
+        },
+        "wape_change_vs_local": -0.19320393718824175,
+        "change": "improved",
+        "raw_records_shared": 0,
+        "latest_update_bytes": 9604,
+        "local_only_artifact": "country/RU/local-only/parameters.npz",
+        "latest_local_artifact": "country/RU/latest-local/parameters.npz"
+      },
+      {
+        "as_of": "2026-09-27",
+        "country_id": "CN",
+        "data_source": "country-local Phase 3 source-history footfall tables",
+        "data_type": "calibrated simulated operations",
+        "facility_count": 6,
+        "history_days": 540,
+        "history_sha256": "8bceacd0bb2fc2310317aa5110260693c836c15e703543d0b9105e01c69ecad3",
+        "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+        "local_samples": 4046,
+        "table_sha256": "2d94bec926d633fae48c76dcc6e626fbec4e4d93b00e26b5ac219b8c7db0057c",
+        "test_samples": 336,
+        "validation_samples": 336,
+        "windows": {
+          "calibration": {
+            "end": "2026-08-04",
+            "start": "2026-06-12"
+          },
+          "selection": {
+            "end": "2026-06-11",
+            "start": "2026-04-19"
+          },
+          "test": {
+            "end": "2026-09-27",
+            "start": "2026-08-05"
+          },
+          "train": {
+            "end": "2026-04-18",
+            "start": "2025-05-04"
+          }
+        },
+        "local_only": {
+          "absolute_error": 18501.574043817905,
+          "mae": 55.06420846374377,
+          "normalized_mae": 0.28344446420669556,
+          "rmse": 80.66444233135675,
+          "samples": 336,
+          "squared_error": 2186268.75822727,
+          "target_total": 65180.9998325008,
+          "wape": 0.2838491905825688
+        },
+        "initial_global": {
+          "absolute_error": 65180.9998325008,
+          "mae": 193.9910709300619,
+          "normalized_mae": 1.0125700235366821,
+          "rmse": 256.2801021085928,
+          "samples": 336,
+          "squared_error": 22068308.8875617,
+          "target_total": 65180.9998325008,
+          "wape": 1.0
+        },
+        "federated_global": {
+          "absolute_error": 5835.189816503658,
+          "mae": 17.36663635864184,
+          "normalized_mae": 0.08906349539756775,
+          "rmse": 31.309282761637295,
+          "samples": 336,
+          "squared_error": 329371.1188481812,
+          "target_total": 65180.9998325008,
+          "wape": 0.08952286450804171
+        },
+        "wape_change_vs_local": -0.1943263260745271,
+        "change": "improved",
+        "raw_records_shared": 0,
+        "latest_update_bytes": 9609,
+        "local_only_artifact": "country/CN/local-only/parameters.npz",
+        "latest_local_artifact": "country/CN/latest-local/parameters.npz"
+      },
+      {
+        "as_of": "2026-09-27",
+        "country_id": "ZA",
+        "data_source": "country-local Phase 3 source-history footfall tables",
+        "data_type": "calibrated simulated operations",
+        "facility_count": 6,
+        "history_days": 540,
+        "history_sha256": "e8491c8224aa08fc65000a969e4f4294423044dbe047baef8ddb77e54627056c",
+        "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+        "local_samples": 4046,
+        "table_sha256": "b05cf4d04046e4e6ccb870304c34d3fa533da28c0310ccf9a0d47de3cd90e2c3",
+        "test_samples": 336,
+        "validation_samples": 336,
+        "windows": {
+          "calibration": {
+            "end": "2026-08-04",
+            "start": "2026-06-12"
+          },
+          "selection": {
+            "end": "2026-06-11",
+            "start": "2026-04-19"
+          },
+          "test": {
+            "end": "2026-09-27",
+            "start": "2026-08-05"
+          },
+          "train": {
+            "end": "2026-04-18",
+            "start": "2025-05-04"
+          }
+        },
+        "local_only": {
+          "absolute_error": 21894.430024984427,
+          "mae": 65.16199412197746,
+          "normalized_mae": 0.26507794857025146,
+          "rmse": 94.82892311462912,
+          "samples": 336,
+          "squared_error": 3021488.2854509605,
+          "target_total": 80774.99980835317,
+          "wape": 0.27105453515235123
+        },
+        "initial_global": {
+          "absolute_error": 80774.99980835317,
+          "mae": 240.40178514390823,
+          "normalized_mae": 0.995603084564209,
+          "rmse": 315.7485943908069,
+          "samples": 336,
+          "squared_error": 33498250.752882816,
+          "target_total": 80774.99980835317,
+          "wape": 1.0
+        },
+        "federated_global": {
+          "absolute_error": 7115.268102274383,
+          "mae": 21.1763931615309,
+          "normalized_mae": 0.08917195349931717,
+          "rmse": 35.93839072451966,
+          "samples": 336,
+          "squared_error": 433966.8237637287,
+          "target_total": 80774.99980835317,
+          "wape": 0.08808750379642308
+        },
+        "wape_change_vs_local": -0.18296703135592815,
+        "change": "improved",
+        "raw_records_shared": 0,
+        "latest_update_bytes": 9613,
+        "local_only_artifact": "country/ZA/local-only/parameters.npz",
+        "latest_local_artifact": "country/ZA/latest-local/parameters.npz"
+      }
+    ],
+    "events": [
+      {
+        "timestamp": "2026-09-28T14:18:55.500977+00:00",
+        "stage": "loading",
+        "round": 0,
+        "country_id": "IN",
+        "message": "IN: loading only its own footfall table"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:55.664844+00:00",
+        "stage": "loading",
+        "round": 0,
+        "country_id": "BR",
+        "message": "BR: loading only its own footfall table"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:55.682751+00:00",
+        "stage": "loading",
+        "round": 0,
+        "country_id": "RU",
+        "message": "RU: loading only its own footfall table"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:55.692790+00:00",
+        "stage": "loading",
+        "round": 0,
+        "country_id": "CN",
+        "message": "CN: loading only its own footfall table"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:55.705924+00:00",
+        "stage": "loading",
+        "round": 0,
+        "country_id": "ZA",
+        "message": "ZA: loading only its own footfall table"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:55.756971+00:00",
+        "stage": "initialized",
+        "round": 0,
+        "country_id": null,
+        "message": "Identical initial global weights distributed to all five clients"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:55.757311+00:00",
+        "stage": "local-baseline",
+        "round": 0,
+        "country_id": "IN",
+        "message": "IN: training independent local-only comparator"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:58.770860+00:00",
+        "stage": "local-baseline",
+        "round": 0,
+        "country_id": "BR",
+        "message": "BR: training independent local-only comparator"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:58.830433+00:00",
+        "stage": "local-baseline",
+        "round": 0,
+        "country_id": "RU",
+        "message": "RU: training independent local-only comparator"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:58.888387+00:00",
+        "stage": "local-baseline",
+        "round": 0,
+        "country_id": "CN",
+        "message": "CN: training independent local-only comparator"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:58.938560+00:00",
+        "stage": "local-baseline",
+        "round": 0,
+        "country_id": "ZA",
+        "message": "ZA: training independent local-only comparator"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.005191+00:00",
+        "stage": "local-training",
+        "round": 1,
+        "country_id": "IN",
+        "message": "IN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.258088+00:00",
+        "stage": "update-sent",
+        "round": 1,
+        "country_id": "IN",
+        "message": "IN: 9612 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.258351+00:00",
+        "stage": "local-training",
+        "round": 1,
+        "country_id": "BR",
+        "message": "BR: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.278820+00:00",
+        "stage": "update-sent",
+        "round": 1,
+        "country_id": "BR",
+        "message": "BR: 9609 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.279172+00:00",
+        "stage": "local-training",
+        "round": 1,
+        "country_id": "RU",
+        "message": "RU: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.300196+00:00",
+        "stage": "update-sent",
+        "round": 1,
+        "country_id": "RU",
+        "message": "RU: 9620 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.300453+00:00",
+        "stage": "local-training",
+        "round": 1,
+        "country_id": "CN",
+        "message": "CN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.324280+00:00",
+        "stage": "update-sent",
+        "round": 1,
+        "country_id": "CN",
+        "message": "CN: 9597 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.324558+00:00",
+        "stage": "local-training",
+        "round": 1,
+        "country_id": "ZA",
+        "message": "ZA: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.343162+00:00",
+        "stage": "update-sent",
+        "round": 1,
+        "country_id": "ZA",
+        "message": "ZA: 9617 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.343484+00:00",
+        "stage": "aggregating",
+        "round": 1,
+        "country_id": null,
+        "message": "Averaging model parameters under the selected policy"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.347615+00:00",
+        "stage": "distributing",
+        "round": 1,
+        "country_id": null,
+        "message": "Distributing the new global parameters to each country"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.354542+00:00",
+        "stage": "round-completed",
+        "round": 1,
+        "country_id": null,
+        "message": "Global model updated; validation evaluated locally"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.355504+00:00",
+        "stage": "local-training",
+        "round": 2,
+        "country_id": "IN",
+        "message": "IN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.613384+00:00",
+        "stage": "update-sent",
+        "round": 2,
+        "country_id": "IN",
+        "message": "IN: 9630 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.613803+00:00",
+        "stage": "local-training",
+        "round": 2,
+        "country_id": "BR",
+        "message": "BR: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.632878+00:00",
+        "stage": "update-sent",
+        "round": 2,
+        "country_id": "BR",
+        "message": "BR: 9610 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.633311+00:00",
+        "stage": "local-training",
+        "round": 2,
+        "country_id": "RU",
+        "message": "RU: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.657743+00:00",
+        "stage": "update-sent",
+        "round": 2,
+        "country_id": "RU",
+        "message": "RU: 9603 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.658188+00:00",
+        "stage": "local-training",
+        "round": 2,
+        "country_id": "CN",
+        "message": "CN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.676007+00:00",
+        "stage": "update-sent",
+        "round": 2,
+        "country_id": "CN",
+        "message": "CN: 9623 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.676605+00:00",
+        "stage": "local-training",
+        "round": 2,
+        "country_id": "ZA",
+        "message": "ZA: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.698415+00:00",
+        "stage": "update-sent",
+        "round": 2,
+        "country_id": "ZA",
+        "message": "ZA: 9618 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.698944+00:00",
+        "stage": "aggregating",
+        "round": 2,
+        "country_id": null,
+        "message": "Averaging model parameters under the selected policy"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.705079+00:00",
+        "stage": "distributing",
+        "round": 2,
+        "country_id": null,
+        "message": "Distributing the new global parameters to each country"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.715159+00:00",
+        "stage": "round-completed",
+        "round": 2,
+        "country_id": null,
+        "message": "Global model updated; validation evaluated locally"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.716399+00:00",
+        "stage": "local-training",
+        "round": 3,
+        "country_id": "IN",
+        "message": "IN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.991147+00:00",
+        "stage": "update-sent",
+        "round": 3,
+        "country_id": "IN",
+        "message": "IN: 9618 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:18:59.992474+00:00",
+        "stage": "local-training",
+        "round": 3,
+        "country_id": "BR",
+        "message": "BR: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.017600+00:00",
+        "stage": "update-sent",
+        "round": 3,
+        "country_id": "BR",
+        "message": "BR: 9592 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.019018+00:00",
+        "stage": "local-training",
+        "round": 3,
+        "country_id": "RU",
+        "message": "RU: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.052091+00:00",
+        "stage": "update-sent",
+        "round": 3,
+        "country_id": "RU",
+        "message": "RU: 9619 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.052788+00:00",
+        "stage": "local-training",
+        "round": 3,
+        "country_id": "CN",
+        "message": "CN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.084573+00:00",
+        "stage": "update-sent",
+        "round": 3,
+        "country_id": "CN",
+        "message": "CN: 9596 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.085624+00:00",
+        "stage": "local-training",
+        "round": 3,
+        "country_id": "ZA",
+        "message": "ZA: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.115012+00:00",
+        "stage": "update-sent",
+        "round": 3,
+        "country_id": "ZA",
+        "message": "ZA: 9602 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.116475+00:00",
+        "stage": "aggregating",
+        "round": 3,
+        "country_id": null,
+        "message": "Averaging model parameters under the selected policy"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.122059+00:00",
+        "stage": "distributing",
+        "round": 3,
+        "country_id": null,
+        "message": "Distributing the new global parameters to each country"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.130304+00:00",
+        "stage": "round-completed",
+        "round": 3,
+        "country_id": null,
+        "message": "Global model updated; validation evaluated locally"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.131915+00:00",
+        "stage": "local-training",
+        "round": 4,
+        "country_id": "IN",
+        "message": "IN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.433608+00:00",
+        "stage": "update-sent",
+        "round": 4,
+        "country_id": "IN",
+        "message": "IN: 9590 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.434448+00:00",
+        "stage": "local-training",
+        "round": 4,
+        "country_id": "BR",
+        "message": "BR: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.457459+00:00",
+        "stage": "update-sent",
+        "round": 4,
+        "country_id": "BR",
+        "message": "BR: 9601 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.458349+00:00",
+        "stage": "local-training",
+        "round": 4,
+        "country_id": "RU",
+        "message": "RU: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.482090+00:00",
+        "stage": "update-sent",
+        "round": 4,
+        "country_id": "RU",
+        "message": "RU: 9601 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.483263+00:00",
+        "stage": "local-training",
+        "round": 4,
+        "country_id": "CN",
+        "message": "CN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.506218+00:00",
+        "stage": "update-sent",
+        "round": 4,
+        "country_id": "CN",
+        "message": "CN: 9625 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.507300+00:00",
+        "stage": "local-training",
+        "round": 4,
+        "country_id": "ZA",
+        "message": "ZA: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.536563+00:00",
+        "stage": "update-sent",
+        "round": 4,
+        "country_id": "ZA",
+        "message": "ZA: 9593 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.537772+00:00",
+        "stage": "aggregating",
+        "round": 4,
+        "country_id": null,
+        "message": "Averaging model parameters under the selected policy"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.543555+00:00",
+        "stage": "distributing",
+        "round": 4,
+        "country_id": null,
+        "message": "Distributing the new global parameters to each country"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.552404+00:00",
+        "stage": "round-completed",
+        "round": 4,
+        "country_id": null,
+        "message": "Global model updated; validation evaluated locally"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.553982+00:00",
+        "stage": "local-training",
+        "round": 5,
+        "country_id": "IN",
+        "message": "IN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.841156+00:00",
+        "stage": "update-sent",
+        "round": 5,
+        "country_id": "IN",
+        "message": "IN: 9611 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.842211+00:00",
+        "stage": "local-training",
+        "round": 5,
+        "country_id": "BR",
+        "message": "BR: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.865248+00:00",
+        "stage": "update-sent",
+        "round": 5,
+        "country_id": "BR",
+        "message": "BR: 9598 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.866536+00:00",
+        "stage": "local-training",
+        "round": 5,
+        "country_id": "RU",
+        "message": "RU: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.892335+00:00",
+        "stage": "update-sent",
+        "round": 5,
+        "country_id": "RU",
+        "message": "RU: 9604 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.893753+00:00",
+        "stage": "local-training",
+        "round": 5,
+        "country_id": "CN",
+        "message": "CN: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.913553+00:00",
+        "stage": "update-sent",
+        "round": 5,
+        "country_id": "CN",
+        "message": "CN: 9609 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.915128+00:00",
+        "stage": "local-training",
+        "round": 5,
+        "country_id": "ZA",
+        "message": "ZA: local epoch training"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.934045+00:00",
+        "stage": "update-sent",
+        "round": 5,
+        "country_id": "ZA",
+        "message": "ZA: 9613 update bytes sent; raw records shared 0"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.935218+00:00",
+        "stage": "aggregating",
+        "round": 5,
+        "country_id": null,
+        "message": "Averaging model parameters under the selected policy"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.940109+00:00",
+        "stage": "distributing",
+        "round": 5,
+        "country_id": null,
+        "message": "Distributing the new global parameters to each country"
+      },
+      {
+        "timestamp": "2026-09-28T14:19:00.948096+00:00",
+        "stage": "round-completed",
+        "round": 5,
+        "country_id": null,
+        "message": "Global model updated; validation evaluated locally"
+      }
+    ],
+    "current_round": 5,
+    "current_country": null,
+    "stage": "completed",
+    "message": "Federated training completed",
+    "raw_records_shared": 0,
+    "bytes_exchanged": 614241,
+    "notice": "Raw operational training records remain local in this prototype; model parameters and aggregate metadata are exchanged.",
+    "data_type": "calibrated simulated operations",
+    "logical_prototype": true,
+    "operational_model_replaced": false,
+    "global_test": {
+      "samples": 12936,
+      "absolute_error": 395198.90489160025,
+      "squared_error": 37024363.17226677,
+      "target_total": 4417026.003034783,
+      "mae": 30.55031732309835,
+      "rmse": 53.498769754107975,
+      "wape": 0.08947171798854547,
+      "normalized_mae": 0.0899031428354127
+    },
+    "initial_checksum": "913d0f9d80e698ce44c64cb960bea0ae426842a68aa03e012e884c15c99fee19",
+    "final_checksum": "d971711083cef53d8b4416eebdf4c76b35d20b94ce62752a3bd4240e4cb42fc8",
+    "model_reload_verified": true,
+    "parameter_count": 417,
+    "parameter_bytes": 1668,
+    "features": [
+      "horizon_fraction",
+      "weekday_sin",
+      "weekday_cos",
+      "annual_sin",
+      "annual_cos",
+      "trend_half_years",
+      "lag1_ratio",
+      "lag7_ratio",
+      "lag14_ratio",
+      "mean7_ratio",
+      "mean14_ratio",
+      "std28_ratio",
+      "growth7",
+      "primary",
+      "community",
+      "hospital"
+    ],
+    "update_bytes": 240211,
+    "downlink_bytes": 360045,
+    "aggregate_metadata_bytes": 13985,
+    "training_seconds": 5.466048400005093,
+    "global_artifact": "global/final/parameters.npz",
+    "framework": "PyTorch 2.8.0+cpu CPU",
+    "architecture": "16 \u2192 Dense(16)/ReLU \u2192 Dense(8)/ReLU \u2192 Dense(1)",
+    "training_settings": {
+      "optimizer": "SGD, no momentum",
+      "learning_rate": 0.03,
+      "batch_size": 1024,
+      "cpu_threads": 2,
+      "deterministic_algorithms": true,
+      "target_normalization": "footfall / preceding 28-day mean at frozen forecast origin; minimum scale 1"
+    },
+    "evaluation_note": "Round metrics are selection-window validation; test is excluded from training and tuning. Local-only receives the same total epochs. Overlapping forecast-origin/horizon samples are not IID patient records."
+  },
+  "rounds_roundtrip_exact": true,
+  "invalid_request_rejected": true,
+  "delete_and_404": true,
+  "provider_requests": 0
+}

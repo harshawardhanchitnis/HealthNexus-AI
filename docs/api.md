@@ -114,3 +114,19 @@ Optional UUID `request_id` supports progress polling; optional returned `convers
 Response fields include typed claims/evidence, actual `tools_used`, bounded `operational_results`, scenario/optimizer IDs and metadata (prompt/config/model versions, provider/tool/total time, reported usage and transport identity). Offline responses have null model/interaction ID and zero provider time. A clinical question returns a scope refusal before inference.
 
 Errors are safe `{ "detail": { "code": "...", "message": "..." } }` responses. Input/schema/profile conflicts return 422; unknown or foreign progress/context returns 404. Missing/disabled configuration, unavailable exact model, quota, timeout, provider failure and invalid generated evidence are distinguished. Gemini failures never automatically become offline answers. See [schemas and limits](gemini.md); this prototype has no production authentication or durable sessions.
+
+## Experimental federation — Phase 7
+
+`GET /api/federation/status` reports CPU runtime, model, policy and active-run availability. `GET /api/federation/nodes` returns country-local aggregate preparation metadata for the five fixed participants. It does not return training arrays.
+
+`POST /api/federation/runs` accepts the following strict body and returns HTTP 202 with a run ID and actual queued/running progress:
+
+```json
+{"rounds":5,"local_epochs":1,"seed":42,"policy":"sample-weighted"}
+```
+
+Rounds must be integers 1–10, local epochs 1–5, seed a nonnegative 31-bit integer; unknown fields are rejected. `balanced-country` is the only alternative policy and is explicitly distinct from standard sample-weighted FedAvg. One active run per service; missing optional PyTorch runtime or conflicting run returns 409.
+
+`GET /api/federation/runs/{run_id}` returns metadata, actual events/stage/round, aggregate results and experiment artifact references. `GET /api/federation/runs/{run_id}/rounds` returns its exact measured round table. Unknown IDs return 404. `DELETE /api/federation/runs/{run_id}` returns 204 and removes the run's separate experiment artifacts; active runs return 409. At most eight runs are retained in process-local storage; restart loses API lookup, with completed disk artifacts accessible through the CLI.
+
+Federation uses preserved source-history footfall tables, independent of inventory profile. It never changes operational models, snapshots, scenarios or optimization. Parameters and aggregate metadata are exchanged; no raw training records are returned or sent to the aggregator. Production authentication, secure aggregation, differential privacy and encrypted network transport are not implemented. No Gemini request is made. See [full boundary, models and byte definitions](federated-learning.md).

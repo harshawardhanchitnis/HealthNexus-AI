@@ -68,6 +68,10 @@ Suitable uses: demonstrating data lineage, temporal evaluation, planning interfa
 
 Implementation references: [scikit-learn histogram gradient boosting](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html), [lagged time-series features and temporal evaluation](https://scikit-learn.org/stable/auto_examples/applications/plot_time_series_lagged_features.html).
 
+## Separate Phase 7 federated model
+
+The operational models above remain unchanged. A separate PyTorch 417-parameter MLP learns normalized direct-horizon footfall from existing country-local frozen-origin tables. Standard FedAvg averages locally trained weights by sample count; no tree parameters, raw rows, predictions or final accuracy numbers are averaged as a substitute. Local-only, initial-global and final-global models are evaluated chronologically on simulated histories. Test data is excluded from training and tuning. The seed-42 initial model has 100% WAPE; four representative foreign nodes improve versus their independently trained MLPs while India degrades slightly. This is not evidence that the global MLP outperforms the operational HGB/selected baseline or generalizes clinically. No differential privacy or secure aggregation is implemented. [Full model/features/normalization and limitations](federated-learning.md), [actual measurements](phase7-report.md).
+
 ## Phase 4 scenario projections
 
 Phase 4 reuses these exact saved baseline forecasts and calibration residual vectors. It does not train an outbreak model. Deterministic fever/resource/admission increments translate baseline point forecasts, daily intervals and 500 paired residual paths. Scheduled-receipt shifts change inventory risk; staff/facility scenarios change operational capacity. Empirical Phase 3 test coverage does not validate conditional scenario bands or real outbreak stock-out probabilities. Shock uncertainty is omitted. Source target model names and bundle versions remain attached to projections/warnings. See [Phase 4 report](phase4-report.md) for equations and thresholds.

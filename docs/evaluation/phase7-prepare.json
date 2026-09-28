@@ -1,0 +1,193 @@
+{
+  "model": {
+    "implementation": "experimental_fedavg",
+    "available": true,
+    "model_version": "federated-footfall-mlp-v1",
+    "target": "patient footfall, direct horizons 1\u201314 days",
+    "default_rounds": 5,
+    "default_local_epochs": 1,
+    "default_policy": "sample-weighted",
+    "parameter_count": 417,
+    "client_count": 5,
+    "raw_records_shared": 0,
+    "notice": "Raw operational training records remain local in this prototype; model parameters and aggregate metadata are exchanged.",
+    "active_run_id": null,
+    "differential_privacy": false,
+    "secure_aggregation": false,
+    "encrypted_transport": "not implemented; in-process prototype",
+    "operational_model_replaced": false,
+    "phase6_status": "Implementation complete; live provider acceptance pending due to Gemini service availability."
+  },
+  "nodes": [
+    {
+      "country_id": "IN",
+      "facility_count": 207,
+      "local_samples": 139524,
+      "validation_samples": 11592,
+      "test_samples": 11592,
+      "history_days": 540,
+      "table_sha256": "5f5f324c373f1bd93b63456683258e15a833cacc6ccc5fd364d38dce0a483527",
+      "history_sha256": "29ddde078205291cc0c93e64355be737a209898dca0fd845e37c75af6c938482",
+      "as_of": "2026-09-27",
+      "windows": {
+        "train": {
+          "start": "2025-05-04",
+          "end": "2026-04-18"
+        },
+        "selection": {
+          "start": "2026-04-19",
+          "end": "2026-06-11"
+        },
+        "calibration": {
+          "start": "2026-06-12",
+          "end": "2026-08-04"
+        },
+        "test": {
+          "start": "2026-08-05",
+          "end": "2026-09-27"
+        }
+      },
+      "data_type": "calibrated simulated operations",
+      "data_source": "country-local Phase 3 source-history footfall tables",
+      "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+      "status": "ready",
+      "raw_records_shared": 0
+    },
+    {
+      "country_id": "BR",
+      "facility_count": 6,
+      "local_samples": 4046,
+      "validation_samples": 336,
+      "test_samples": 336,
+      "history_days": 540,
+      "table_sha256": "4f2c4dae5f6e6bfae89bf58b53404ed0d3414c2f31f3dbfcd05de4b7ad0341e7",
+      "history_sha256": "e8f8901a06077ebf8bf31a04aa688f0e6aab16ad65450797ff72e75de0bf3bfc",
+      "as_of": "2026-09-27",
+      "windows": {
+        "train": {
+          "start": "2025-05-04",
+          "end": "2026-04-18"
+        },
+        "selection": {
+          "start": "2026-04-19",
+          "end": "2026-06-11"
+        },
+        "calibration": {
+          "start": "2026-06-12",
+          "end": "2026-08-04"
+        },
+        "test": {
+          "start": "2026-08-05",
+          "end": "2026-09-27"
+        }
+      },
+      "data_type": "calibrated simulated operations",
+      "data_source": "country-local Phase 3 source-history footfall tables",
+      "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+      "status": "ready",
+      "raw_records_shared": 0
+    },
+    {
+      "country_id": "RU",
+      "facility_count": 6,
+      "local_samples": 4046,
+      "validation_samples": 336,
+      "test_samples": 336,
+      "history_days": 540,
+      "table_sha256": "1c74920fa48c867163fb74f4cc211d10bc04c4066a0105331ce69992e3e6d4b3",
+      "history_sha256": "e2fea59febe1c54cbfe1ab26b9868675bdb1e3ab403d60c5179fcfae440fa0f6",
+      "as_of": "2026-09-27",
+      "windows": {
+        "train": {
+          "start": "2025-05-04",
+          "end": "2026-04-18"
+        },
+        "selection": {
+          "start": "2026-04-19",
+          "end": "2026-06-11"
+        },
+        "calibration": {
+          "start": "2026-06-12",
+          "end": "2026-08-04"
+        },
+        "test": {
+          "start": "2026-08-05",
+          "end": "2026-09-27"
+        }
+      },
+      "data_type": "calibrated simulated operations",
+      "data_source": "country-local Phase 3 source-history footfall tables",
+      "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+      "status": "ready",
+      "raw_records_shared": 0
+    },
+    {
+      "country_id": "CN",
+      "facility_count": 6,
+      "local_samples": 4046,
+      "validation_samples": 336,
+      "test_samples": 336,
+      "history_days": 540,
+      "table_sha256": "2d94bec926d633fae48c76dcc6e626fbec4e4d93b00e26b5ac219b8c7db0057c",
+      "history_sha256": "8bceacd0bb2fc2310317aa5110260693c836c15e703543d0b9105e01c69ecad3",
+      "as_of": "2026-09-27",
+      "windows": {
+        "train": {
+          "start": "2025-05-04",
+          "end": "2026-04-18"
+        },
+        "selection": {
+          "start": "2026-04-19",
+          "end": "2026-06-11"
+        },
+        "calibration": {
+          "start": "2026-06-12",
+          "end": "2026-08-04"
+        },
+        "test": {
+          "start": "2026-08-05",
+          "end": "2026-09-27"
+        }
+      },
+      "data_type": "calibrated simulated operations",
+      "data_source": "country-local Phase 3 source-history footfall tables",
+      "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+      "status": "ready",
+      "raw_records_shared": 0
+    },
+    {
+      "country_id": "ZA",
+      "facility_count": 6,
+      "local_samples": 4046,
+      "validation_samples": 336,
+      "test_samples": 336,
+      "history_days": 540,
+      "table_sha256": "b05cf4d04046e4e6ccb870304c34d3fa533da28c0310ccf9a0d47de3cd90e2c3",
+      "history_sha256": "e8491c8224aa08fc65000a969e4f4294423044dbe047baef8ddb77e54627056c",
+      "as_of": "2026-09-27",
+      "windows": {
+        "train": {
+          "start": "2025-05-04",
+          "end": "2026-04-18"
+        },
+        "selection": {
+          "start": "2026-04-19",
+          "end": "2026-06-11"
+        },
+        "calibration": {
+          "start": "2026-06-12",
+          "end": "2026-08-04"
+        },
+        "test": {
+          "start": "2026-08-05",
+          "end": "2026-09-27"
+        }
+      },
+      "data_type": "calibrated simulated operations",
+      "data_source": "country-local Phase 3 source-history footfall tables",
+      "inventory_profile_dependence": "none; operational inventory profiles do not change footfall histories",
+      "status": "ready",
+      "raw_records_shared": 0
+    }
+  ]
+}
