@@ -1,0 +1,3130 @@
+{
+  "mode": "mock",
+  "model": "gemini-3.8-flash",
+  "status": "passed",
+  "live_acceptance": false,
+  "timestamp": "2026-09-28T10:30:31.288302+00:00",
+  "identity": {
+    "git_commit": "a08166581d1990cfbe063a34fa08c96a98a9e281",
+    "implementation_sha256": "a5009dfab97b9788c4816cec3ebda09bb9a3f4583ea89e60f89881f9f31950a6",
+    "model": "gemini-3.8-flash",
+    "sdk_version": "2.25.0",
+    "system_prompt_version": "healthnexus-system-v3",
+    "system_prompt_sha256": "c75f510cb6953e0ef663fb647ac97440c9cbc769ab0e692b236ad94d31645a7e",
+    "tool_schema_sha256": "3b18ac63d2fed75b5b65943248db0a3113613706d7991c6c825590b035015d42",
+    "profile_version": "inventory-profile-v1",
+    "config_version": "copilot-config-v2",
+    "configuration": {
+      "thinking": "medium",
+      "max_calls": 10,
+      "timeout": 25,
+      "workflow_timeout": 120,
+      "max_output_tokens": 2400
+    },
+    "credential_fingerprint": "ab242ca87094cb6816c815fb5fe5ceaea9d14822d9dcca6436cb318f9c086d81",
+    "artifacts": {
+      "constrained": {
+        "snapshot": "f0b5fbb01375d0aec983b3a2665fce7553b8f28b5cbdf3b1cf2648e28a477743",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      },
+      "redistribution-ready": {
+        "snapshot": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      }
+    }
+  },
+  "selected_case": "positive",
+  "acceptance": false,
+  "tests": [
+    {
+      "label": "positive",
+      "profile": "redistribution-ready",
+      "status": "passed",
+      "seconds": 1.6771707000007154,
+      "fixture_setup": null,
+      "followup_parent_interaction": null,
+      "response": {
+        "request_id": "a02b25d4-b3a3-4d2b-aff0-840c3c2f01f5",
+        "conversation_id": "c3ea1842-3df5-4251-8ad7-57174b05fd45",
+        "mode": "gemini",
+        "status": "completed",
+        "answer": "OR-Tools proved an optimal recommendation under the configured constraints.",
+        "situation": {
+          "text": "OR-Tools proved an optimal recommendation under the configured constraints.",
+          "references": [
+            {
+              "evidence_id": "e5",
+              "field": "solver.status"
+            }
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Safe donor capacity is 17745 inventory items.",
+            "references": [
+              {
+                "evidence_id": "e5",
+                "field": "safe_capacity"
+              }
+            ]
+          },
+          {
+            "text": "Transfers total 15679 inventory items.",
+            "references": [
+              {
+                "evidence_id": "e5",
+                "field": "impact.transferred_units"
+              }
+            ]
+          },
+          {
+            "text": "Selected donors retain protected reserves under the configured policy.",
+            "references": [
+              {
+                "evidence_id": "e5",
+                "field": "transfers.0.donor_protected_reserve"
+              }
+            ]
+          }
+        ],
+        "recommended_actions": [],
+        "remaining_gaps": [
+          {
+            "text": "Unresolved target is 26084 inventory items.",
+            "references": [
+              {
+                "evidence_id": "e5",
+                "field": "impact.after.target_deficit"
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "e5",
+            "tool": "optimize_redistribution",
+            "source_type": "optimize_redistribution",
+            "source_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+            "field": "solver.status",
+            "value": "OPTIMAL",
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e5",
+            "tool": "optimize_redistribution",
+            "source_type": "optimize_redistribution",
+            "source_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+            "field": "safe_capacity",
+            "value": 17745,
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e5",
+            "tool": "optimize_redistribution",
+            "source_type": "optimize_redistribution",
+            "source_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+            "field": "impact.transferred_units",
+            "value": 15679,
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e5",
+            "tool": "optimize_redistribution",
+            "source_type": "optimize_redistribution",
+            "source_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+            "field": "transfers.0.donor_protected_reserve",
+            "value": 333,
+            "profile": "redistribution-ready",
+            "unit": "capsules"
+          },
+          {
+            "evidence_id": "e5",
+            "tool": "optimize_redistribution",
+            "source_type": "optimize_redistribution",
+            "source_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+            "field": "impact.after.target_deficit",
+            "value": 26084,
+            "profile": "redistribution-ready",
+            "unit": null
+          }
+        ],
+        "tools_used": [
+          {
+            "tool": "run_emergency_scenario",
+            "status": "success",
+            "seconds": 1.3534540999971796,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e1"
+          },
+          {
+            "tool": "get_scenario_comparison",
+            "status": "success",
+            "seconds": 0.01762369999778457,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e2"
+          },
+          {
+            "tool": "get_warnings",
+            "status": "success",
+            "seconds": 0.013867899993783794,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e3"
+          },
+          {
+            "tool": "get_redistribution_preview",
+            "status": "success",
+            "seconds": 0.10921020001114812,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e4"
+          },
+          {
+            "tool": "optimize_redistribution",
+            "status": "success",
+            "seconds": 0.09905239999352489,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e5"
+          }
+        ],
+        "limitations": [
+          "Facility operations are calibrated simulations, not live government inventory.",
+          "Emergency shocks are externally specified assumptions, not epidemiological predictions.",
+          "Plans are decision support; no physical transfer, order or hospital contact is executed.",
+          "Forecast evaluation uses simulated histories; no clinical or real-world operational validation is claimed."
+        ],
+        "context": {
+          "country_id": "IN",
+          "profile": "redistribution-ready",
+          "state_id": "MH",
+          "district_id": "MH-PUNE",
+          "facility_id": null,
+          "scenario_id": null,
+          "optimization_run_id": null
+        },
+        "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+        "optimization_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+        "metadata": {
+          "gemini_network_seconds": 0.0005319000192685053,
+          "tool_seconds": 1.593208299993421,
+          "total_seconds": 1.609694300001138,
+          "tool_calls": 5,
+          "interaction_count": 4,
+          "provider_requests": 4,
+          "local_tool_calls": 5,
+          "interaction_ids": [
+            "mock-interaction-8194374b-dc01-4879-bdc2-4d14012d1d25",
+            "mock-interaction-deb65bec-faef-433a-a8e5-5b6f4cf3e849",
+            "mock-interaction-b8982a04-98eb-474a-9738-d374f76387d1",
+            "mock-final-9cc553ca-96c1-4412-9d63-95fd1fff4243"
+          ],
+          "intent": "emergency-planning",
+          "execution_sources": [
+            {
+              "tool": "run_emergency_scenario",
+              "source": "model"
+            },
+            {
+              "tool": "get_scenario_comparison",
+              "source": "model"
+            },
+            {
+              "tool": "get_warnings",
+              "source": "model"
+            },
+            {
+              "tool": "get_redistribution_preview",
+              "source": "model"
+            },
+            {
+              "tool": "optimize_redistribution",
+              "source": "model"
+            }
+          ],
+          "request_diagnostics": [
+            {
+              "tool_schema_bytes": 7843,
+              "system_bytes": 2566,
+              "input_bytes": 499,
+              "request_body_bytes": 11086,
+              "input_tokens_estimate": 2894,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            },
+            {
+              "tool_schema_bytes": 7843,
+              "system_bytes": 2566,
+              "input_bytes": 4840,
+              "request_body_bytes": 15509,
+              "input_tokens_estimate": 3982,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            },
+            {
+              "tool_schema_bytes": 7843,
+              "system_bytes": 2566,
+              "input_bytes": 27545,
+              "request_body_bytes": 38214,
+              "input_tokens_estimate": 9679,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            },
+            {
+              "tool_schema_bytes": 2,
+              "system_bytes": 2566,
+              "input_bytes": 10246,
+              "request_body_bytes": 15401,
+              "input_tokens_estimate": 3226,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            }
+          ],
+          "tool_payload_diagnostics": [
+            {
+              "tool": "run_emergency_scenario",
+              "authoritative_bytes": 7617,
+              "model_payload_bytes": 3856
+            },
+            {
+              "tool": "get_scenario_comparison",
+              "authoritative_bytes": 7617,
+              "model_payload_bytes": 3692
+            },
+            {
+              "tool": "get_warnings",
+              "authoritative_bytes": 13284,
+              "model_payload_bytes": 13284
+            },
+            {
+              "tool": "get_redistribution_preview",
+              "authoritative_bytes": 9226,
+              "model_payload_bytes": 6015
+            },
+            {
+              "tool": "optimize_redistribution",
+              "authoritative_bytes": 23311,
+              "model_payload_bytes": 8415
+            }
+          ],
+          "model": "gemini-3.8-flash",
+          "configured_model": "gemini-3.8-flash",
+          "sdk_version": "2.25.0",
+          "api": "Interactions",
+          "transport": "mock",
+          "thinking_level": "medium",
+          "interaction_id": "mock-final-9cc553ca-96c1-4412-9d63-95fd1fff4243",
+          "timestamp": "2026-09-28T10:30:33.292784+00:00",
+          "system_prompt_version": "healthnexus-system-v3",
+          "config_version": "copilot-config-v2",
+          "usage": [],
+          "model_versions": [
+            "forecast-v1-176a752efab3ae4e"
+          ]
+        },
+        "operational_results": [
+          {
+            "evidence_id": "e1",
+            "tool": "run_emergency_scenario",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "scenario": {
+                "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                "definition": {
+                  "scenario_type": "DENGUE_SURGE",
+                  "profile": "redistribution-ready",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_ids": [],
+                  "start_date": "2026-09-28",
+                  "duration": 14,
+                  "severity": "severe",
+                  "seed": 42,
+                  "parameters": {
+                    "medicine_id": null,
+                    "delay_days": null,
+                    "unavailable_fraction": null,
+                    "capacity_reduction": null
+                  }
+                },
+                "created_at": "2026-09-28T10:30:33.028804Z",
+                "status": "completed",
+                "baseline_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                "origin": "2026-09-27",
+                "config_version": "resilience-v1",
+                "effective_parameters": {
+                  "additional_fever_fraction": 0.5,
+                  "extra_fever_admission_rate": 0.1
+                },
+                "assumptions": [
+                  "Operational resilience digital twin using simulated facility records; not an epidemiological or clinically validated model.",
+                  "Baseline forecasts come from saved Phase 3 country-local champions; no model is retrained for scenarios.",
+                  "Dengue adds externally specified fever visits. Existing non-fever demand is unchanged. Extra medicines use existing syndrome/resource coefficients, not treatment guidance.",
+                  "Extra fever admissions use an assumed 0.10 rate. Bed discharge rate is frozen from recent observed flows. Existing occupants above disrupted capacity remain explicit overflow.",
+                  "Service capacity is recent mean visits × 1.25 headroom, scaled by attendance and facility availability. No role-specific or clinical effects are inferred.",
+                  "Medicine requests remain demand-side needs even when service capacity is exceeded. Unserved visits are daily pressure, not a patient queue.",
+                  "Daily projection spans 14 days; shocks apply only inside the selected event window. Inventory/bed effects can persist after it ends.",
+                  "Known receipts only; selected future arrivals shift in delivery-delay scenarios. No future orders, transfers or patient spillover.",
+                  "500 paired residual paths reuse Phase 3 calibration errors. Scenario bands and probabilities condition on fixed assumptions; shock uncertainty and real outbreak accuracy are unvalidated.",
+                  "Process-local scenarios survive navigation, not server restarts; maximum 20 stored runs. Baseline data is never overwritten."
+                ],
+                "data_status": "simulated_operational_resilience"
+              },
+              "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+              "model_versions": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "baseline": {
+                "patient_demand": 14015.399278936,
+                "admissions_requested": 796.1033326790778,
+                "unmet_admissions": 21.624101780754824,
+                "unserved_patients": 0.0,
+                "peak_bed_occupancy_percent": 100.00000000000003,
+                "peak_workload_ratio": 0.9812932013256469,
+                "max_stockout_probability": 1.0,
+                "critical_facilities": 3
+              },
+              "projection": {
+                "patient_demand": 21023.098918404,
+                "admissions_requested": 1496.8732966258779,
+                "unmet_admissions": 615.9606837284649,
+                "unserved_patients": 4161.58886022603,
+                "peak_bed_occupancy_percent": 100.00000000000003,
+                "peak_workload_ratio": 1.4719398019884702,
+                "max_stockout_probability": 1.0,
+                "critical_facilities": 3
+              },
+              "delta": {
+                "patient_demand": {
+                  "baseline": 14015.399278936,
+                  "scenario": 21023.098918404,
+                  "absolute": 7007.699639468001,
+                  "percent": 50.0,
+                  "unit": "count"
+                },
+                "admissions_requested": {
+                  "baseline": 796.1033326790778,
+                  "scenario": 1496.8732966258779,
+                  "absolute": 700.7699639468001,
+                  "percent": 88.02500067278226,
+                  "unit": "count"
+                },
+                "unmet_admissions": {
+                  "baseline": 21.624101780754824,
+                  "scenario": 615.9606837284649,
+                  "absolute": 594.3365819477101,
+                  "percent": 2748.4914193137124,
+                  "unit": "count"
+                },
+                "unserved_patients": {
+                  "baseline": 0.0,
+                  "scenario": 4161.58886022603,
+                  "absolute": 4161.58886022603,
+                  "percent": null,
+                  "unit": "count"
+                },
+                "peak_bed_occupancy_percent": {
+                  "baseline": 100.00000000000003,
+                  "scenario": 100.00000000000003,
+                  "absolute": 0.0,
+                  "percent": 0.0,
+                  "unit": "percentage points"
+                },
+                "peak_workload_ratio": {
+                  "baseline": 0.9812932013256469,
+                  "scenario": 1.4719398019884702,
+                  "absolute": 0.4906466006628233,
+                  "percent": 49.99999999999998,
+                  "unit": "ratio"
+                },
+                "max_stockout_probability": {
+                  "baseline": 1.0,
+                  "scenario": 1.0,
+                  "absolute": 0.0,
+                  "percent": 0.0,
+                  "unit": "probability fraction"
+                },
+                "critical_facilities": {
+                  "baseline": 3.0,
+                  "scenario": 3.0,
+                  "absolute": 0.0,
+                  "percent": 0.0,
+                  "unit": "count"
+                }
+              },
+              "resource_impact": [
+                {
+                  "resource_id": "AMX",
+                  "name": "Amoxicillin 500 mg",
+                  "unit": "capsules",
+                  "demand": {
+                    "baseline": 5997.472028185159,
+                    "scenario": 5997.472028185159,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "capsules"
+                  },
+                  "unmet_demand": {
+                    "baseline": 1230.9780182226204,
+                    "scenario": 1230.9780182226204,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "capsules"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "IFA",
+                  "name": "Iron and folic acid",
+                  "unit": "tablets",
+                  "demand": {
+                    "baseline": 7747.103259292605,
+                    "scenario": 7747.103259292605,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "tablets"
+                  },
+                  "unmet_demand": {
+                    "baseline": 844.5187087913196,
+                    "scenario": 844.5187087913197,
+                    "absolute": 1.1368683772161603e-13,
+                    "percent": 2.220446049250313e-14,
+                    "unit": "tablets"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "IVF",
+                  "name": "IV fluids",
+                  "unit": "bags",
+                  "demand": {
+                    "baseline": 2748.5758254530383,
+                    "scenario": 4850.885717293439,
+                    "absolute": 2102.3098918404003,
+                    "percent": 76.48724377083116,
+                    "unit": "bags"
+                  },
+                  "unmet_demand": {
+                    "baseline": 831.5221078328334,
+                    "scenario": 2313.10398872695,
+                    "absolute": 1481.5818808941165,
+                    "percent": 178.1770883705679,
+                    "unit": "bags"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "ORS",
+                  "name": "Oral rehydration salts",
+                  "unit": "sachets",
+                  "demand": {
+                    "baseline": 4890.729113712904,
+                    "scenario": 5591.499077659704,
+                    "absolute": 700.7699639468001,
+                    "percent": 14.3285376812619,
+                    "unit": "sachets"
+                  },
+                  "unmet_demand": {
+                    "baseline": 1485.662718888168,
+                    "scenario": 1979.5233458528737,
+                    "absolute": 493.8606269647057,
+                    "percent": 33.24177289272618,
+                    "unit": "sachets"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "PCM",
+                  "name": "Paracetamol 500 mg",
+                  "unit": "tablets",
+                  "demand": {
+                    "baseline": 19827.3213421858,
+                    "scenario": 44354.27008032381,
+                    "absolute": 24526.94873813801,
+                    "percent": 123.70278523681866,
+                    "unit": "tablets"
+                  },
+                  "unmet_demand": {
+                    "baseline": 4001.972065467915,
+                    "scenario": 21287.094009232613,
+                    "absolute": 17285.121943764698,
+                    "percent": 431.9151073770352,
+                    "unit": "tablets"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                }
+              ],
+              "warnings_before": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "warnings_after": {
+                "total": 36,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 3,
+                  "WARNING": 17,
+                  "CRITICAL": 16
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 6,
+                "staff_warnings": 4,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 2,
+                    "WARNING": 13,
+                    "CRITICAL": 10
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  }
+                }
+              }
+            }
+          },
+          {
+            "evidence_id": "e2",
+            "tool": "get_scenario_comparison",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "scenario": {
+                "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                "definition": {
+                  "scenario_type": "DENGUE_SURGE",
+                  "profile": "redistribution-ready",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_ids": [],
+                  "start_date": "2026-09-28",
+                  "duration": 14,
+                  "severity": "severe",
+                  "seed": 42,
+                  "parameters": {
+                    "medicine_id": null,
+                    "delay_days": null,
+                    "unavailable_fraction": null,
+                    "capacity_reduction": null
+                  }
+                },
+                "created_at": "2026-09-28T10:30:33.028804Z",
+                "status": "completed",
+                "baseline_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                "origin": "2026-09-27",
+                "config_version": "resilience-v1",
+                "effective_parameters": {
+                  "additional_fever_fraction": 0.5,
+                  "extra_fever_admission_rate": 0.1
+                },
+                "assumptions": [
+                  "Operational resilience digital twin using simulated facility records; not an epidemiological or clinically validated model.",
+                  "Baseline forecasts come from saved Phase 3 country-local champions; no model is retrained for scenarios.",
+                  "Dengue adds externally specified fever visits. Existing non-fever demand is unchanged. Extra medicines use existing syndrome/resource coefficients, not treatment guidance.",
+                  "Extra fever admissions use an assumed 0.10 rate. Bed discharge rate is frozen from recent observed flows. Existing occupants above disrupted capacity remain explicit overflow.",
+                  "Service capacity is recent mean visits × 1.25 headroom, scaled by attendance and facility availability. No role-specific or clinical effects are inferred.",
+                  "Medicine requests remain demand-side needs even when service capacity is exceeded. Unserved visits are daily pressure, not a patient queue.",
+                  "Daily projection spans 14 days; shocks apply only inside the selected event window. Inventory/bed effects can persist after it ends.",
+                  "Known receipts only; selected future arrivals shift in delivery-delay scenarios. No future orders, transfers or patient spillover.",
+                  "500 paired residual paths reuse Phase 3 calibration errors. Scenario bands and probabilities condition on fixed assumptions; shock uncertainty and real outbreak accuracy are unvalidated.",
+                  "Process-local scenarios survive navigation, not server restarts; maximum 20 stored runs. Baseline data is never overwritten."
+                ],
+                "data_status": "simulated_operational_resilience"
+              },
+              "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+              "model_versions": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "baseline": {
+                "patient_demand": 14015.399278936,
+                "admissions_requested": 796.1033326790778,
+                "unmet_admissions": 21.624101780754824,
+                "unserved_patients": 0.0,
+                "peak_bed_occupancy_percent": 100.00000000000003,
+                "peak_workload_ratio": 0.9812932013256469,
+                "max_stockout_probability": 1.0,
+                "critical_facilities": 3
+              },
+              "projection": {
+                "patient_demand": 21023.098918404,
+                "admissions_requested": 1496.8732966258779,
+                "unmet_admissions": 615.9606837284649,
+                "unserved_patients": 4161.58886022603,
+                "peak_bed_occupancy_percent": 100.00000000000003,
+                "peak_workload_ratio": 1.4719398019884702,
+                "max_stockout_probability": 1.0,
+                "critical_facilities": 3
+              },
+              "delta": {
+                "patient_demand": {
+                  "baseline": 14015.399278936,
+                  "scenario": 21023.098918404,
+                  "absolute": 7007.699639468001,
+                  "percent": 50.0,
+                  "unit": "count"
+                },
+                "admissions_requested": {
+                  "baseline": 796.1033326790778,
+                  "scenario": 1496.8732966258779,
+                  "absolute": 700.7699639468001,
+                  "percent": 88.02500067278226,
+                  "unit": "count"
+                },
+                "unmet_admissions": {
+                  "baseline": 21.624101780754824,
+                  "scenario": 615.9606837284649,
+                  "absolute": 594.3365819477101,
+                  "percent": 2748.4914193137124,
+                  "unit": "count"
+                },
+                "unserved_patients": {
+                  "baseline": 0.0,
+                  "scenario": 4161.58886022603,
+                  "absolute": 4161.58886022603,
+                  "percent": null,
+                  "unit": "count"
+                },
+                "peak_bed_occupancy_percent": {
+                  "baseline": 100.00000000000003,
+                  "scenario": 100.00000000000003,
+                  "absolute": 0.0,
+                  "percent": 0.0,
+                  "unit": "percentage points"
+                },
+                "peak_workload_ratio": {
+                  "baseline": 0.9812932013256469,
+                  "scenario": 1.4719398019884702,
+                  "absolute": 0.4906466006628233,
+                  "percent": 49.99999999999998,
+                  "unit": "ratio"
+                },
+                "max_stockout_probability": {
+                  "baseline": 1.0,
+                  "scenario": 1.0,
+                  "absolute": 0.0,
+                  "percent": 0.0,
+                  "unit": "probability fraction"
+                },
+                "critical_facilities": {
+                  "baseline": 3.0,
+                  "scenario": 3.0,
+                  "absolute": 0.0,
+                  "percent": 0.0,
+                  "unit": "count"
+                }
+              },
+              "resource_impact": [
+                {
+                  "resource_id": "AMX",
+                  "name": "Amoxicillin 500 mg",
+                  "unit": "capsules",
+                  "demand": {
+                    "baseline": 5997.472028185159,
+                    "scenario": 5997.472028185159,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "capsules"
+                  },
+                  "unmet_demand": {
+                    "baseline": 1230.9780182226204,
+                    "scenario": 1230.9780182226204,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "capsules"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "IFA",
+                  "name": "Iron and folic acid",
+                  "unit": "tablets",
+                  "demand": {
+                    "baseline": 7747.103259292605,
+                    "scenario": 7747.103259292605,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "tablets"
+                  },
+                  "unmet_demand": {
+                    "baseline": 844.5187087913196,
+                    "scenario": 844.5187087913197,
+                    "absolute": 1.1368683772161603e-13,
+                    "percent": 2.220446049250313e-14,
+                    "unit": "tablets"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "IVF",
+                  "name": "IV fluids",
+                  "unit": "bags",
+                  "demand": {
+                    "baseline": 2748.5758254530383,
+                    "scenario": 4850.885717293439,
+                    "absolute": 2102.3098918404003,
+                    "percent": 76.48724377083116,
+                    "unit": "bags"
+                  },
+                  "unmet_demand": {
+                    "baseline": 831.5221078328334,
+                    "scenario": 2313.10398872695,
+                    "absolute": 1481.5818808941165,
+                    "percent": 178.1770883705679,
+                    "unit": "bags"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "ORS",
+                  "name": "Oral rehydration salts",
+                  "unit": "sachets",
+                  "demand": {
+                    "baseline": 4890.729113712904,
+                    "scenario": 5591.499077659704,
+                    "absolute": 700.7699639468001,
+                    "percent": 14.3285376812619,
+                    "unit": "sachets"
+                  },
+                  "unmet_demand": {
+                    "baseline": 1485.662718888168,
+                    "scenario": 1979.5233458528737,
+                    "absolute": 493.8606269647057,
+                    "percent": 33.24177289272618,
+                    "unit": "sachets"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                },
+                {
+                  "resource_id": "PCM",
+                  "name": "Paracetamol 500 mg",
+                  "unit": "tablets",
+                  "demand": {
+                    "baseline": 19827.3213421858,
+                    "scenario": 44354.27008032381,
+                    "absolute": 24526.94873813801,
+                    "percent": 123.70278523681866,
+                    "unit": "tablets"
+                  },
+                  "unmet_demand": {
+                    "baseline": 4001.972065467915,
+                    "scenario": 21287.094009232613,
+                    "absolute": 17285.121943764698,
+                    "percent": 431.9151073770352,
+                    "unit": "tablets"
+                  },
+                  "max_stockout_risk": {
+                    "baseline": 100.0,
+                    "scenario": 100.0,
+                    "absolute": 0.0,
+                    "percent": 0.0,
+                    "unit": "percentage points"
+                  }
+                }
+              ],
+              "warnings_before": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "warnings_after": {
+                "total": 36,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 3,
+                  "WARNING": 17,
+                  "CRITICAL": 16
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 6,
+                "staff_warnings": 4,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 2,
+                    "WARNING": 13,
+                    "CRITICAL": 10
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  }
+                }
+              }
+            }
+          },
+          {
+            "evidence_id": "e3",
+            "tool": "get_warnings",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "summary": {
+                "total": 36,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 3,
+                  "WARNING": 17,
+                  "CRITICAL": 16
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 6,
+                "staff_warnings": 4,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 2,
+                    "WARNING": 13,
+                    "CRITICAL": 10
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  }
+                }
+              },
+              "horizon": 14,
+              "model_versions": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+              "items": [
+                {
+                  "warning_id": "55e1e26f677164cb9b591f50",
+                  "warning_type": "PREDICTED_STOCKOUT",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "PCM",
+                  "generated_at": "2026-09-28T10:30:33.027278Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 4030.0,
+                  "threshold": 0.0,
+                  "predicted_value": 0.0,
+                  "estimated_event_date": "2026-09-29",
+                  "model_based_probability": 1.0,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.8041067501457762,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 31273.094009232616,
+                      "description": "Model-derived 14-day requested demand in tablets."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 352.1429,
+                  "baseline_severity": "WARNING",
+                  "transition": "worsened"
+                },
+                {
+                  "warning_id": "5f8bbb91604a6f5bd5b8f643",
+                  "warning_type": "HIGH_STOCKOUT_RISK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "IVF",
+                  "generated_at": "2026-09-28T10:30:33.027553Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": null,
+                  "threshold": 0.2,
+                  "predicted_value": 1.0,
+                  "estimated_event_date": "2026-09-29",
+                  "model_based_probability": 1.0,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.4714881698740123,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 3425.1039887269503,
+                      "description": "Model-derived 14-day requested demand in bags."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    },
+                    {
+                      "factor": "risk_horizon_days",
+                      "value": 3.0,
+                      "description": "Severity uses 3-day 80%, 7-day 50%, then 14-day 20% thresholds."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 352.1429,
+                  "baseline_severity": "WATCH",
+                  "transition": "worsened"
+                },
+                {
+                  "warning_id": "94ef4c77f42ce5b1a01a7bd4",
+                  "warning_type": "PREDICTED_STOCKOUT",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "IVF",
+                  "generated_at": "2026-09-28T10:30:33.027339Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 360.0,
+                  "threshold": 0.0,
+                  "predicted_value": 0.0,
+                  "estimated_event_date": "2026-09-29",
+                  "model_based_probability": 1.0,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.4714881698740123,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 3425.1039887269503,
+                      "description": "Model-derived 14-day requested demand in bags."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 352.1429,
+                  "baseline_severity": "WARNING",
+                  "transition": "worsened"
+                },
+                {
+                  "warning_id": "c1a06dd2d67f0f0000e54322",
+                  "warning_type": "HIGH_STOCKOUT_RISK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "PCM",
+                  "generated_at": "2026-09-28T10:30:33.027295Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": null,
+                  "threshold": 0.2,
+                  "predicted_value": 1.0,
+                  "estimated_event_date": "2026-09-29",
+                  "model_based_probability": 1.0,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.8041067501457762,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 31273.094009232616,
+                      "description": "Model-derived 14-day requested demand in tablets."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    },
+                    {
+                      "factor": "risk_horizon_days",
+                      "value": 3.0,
+                      "description": "Severity uses 3-day 80%, 7-day 50%, then 14-day 20% thresholds."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 352.1429,
+                  "baseline_severity": "WATCH",
+                  "transition": "worsened"
+                },
+                {
+                  "warning_id": "1127d350f689e40993c19cdb",
+                  "warning_type": "LOW_STOCK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "ORS",
+                  "generated_at": "2026-09-28T10:30:33.027571Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 2.2746549327203036,
+                  "threshold": 7.0,
+                  "predicted_value": 2.2746549327203036,
+                  "estimated_event_date": "2026-09-27",
+                  "model_based_probability": null,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 2.2746549327203036,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 3957.5233458528737,
+                      "description": "Model-derived 14-day requested demand in sachets."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 0.726,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 335.0,
+                  "baseline_severity": "CRITICAL",
+                  "transition": "unchanged"
+                },
+                {
+                  "warning_id": "2956b178ac4d0cf324d559d8",
+                  "warning_type": "LOW_STOCK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "IVF",
+                  "generated_at": "2026-09-28T10:30:33.027312Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 1.4714881698740123,
+                  "threshold": 7.0,
+                  "predicted_value": 1.4714881698740123,
+                  "estimated_event_date": "2026-09-27",
+                  "model_based_probability": null,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.4714881698740123,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 3425.1039887269503,
+                      "description": "Model-derived 14-day requested demand in bags."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 335.0,
+                  "baseline_severity": "CRITICAL",
+                  "transition": "unchanged"
+                },
+                {
+                  "warning_id": "fd97c9716cebe79dde1ce1d4",
+                  "warning_type": "LOW_STOCK",
+                  "category": "medicine",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": "PCM",
+                  "generated_at": "2026-09-28T10:30:33.027224Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 1.8041067501457762,
+                  "threshold": 7.0,
+                  "predicted_value": 1.8041067501457762,
+                  "estimated_event_date": "2026-09-27",
+                  "model_based_probability": null,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "days_of_cover",
+                      "value": 1.8041067501457762,
+                      "description": "Current inventory / mean 14-day requested demand; receipts excluded."
+                    },
+                    {
+                      "factor": "requested_demand",
+                      "value": 31273.094009232616,
+                      "description": "Model-derived 14-day requested demand in tablets."
+                    },
+                    {
+                      "factor": "stockout_risk_7d",
+                      "value": 1.0,
+                      "description": "Fraction of paired residual paths reaching zero within seven days."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 335.0,
+                  "baseline_severity": "WARNING",
+                  "transition": "worsened"
+                },
+                {
+                  "warning_id": "6da064d05e1e7316fc6fbcf4",
+                  "warning_type": "HIGH_WORKLOAD",
+                  "category": "personnel",
+                  "severity": "CRITICAL",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "resource_id": null,
+                  "generated_at": "2026-09-28T10:30:33.027872Z",
+                  "forecast_origin": "2026-09-27",
+                  "horizon": 14,
+                  "current_value": 0.597864768683274,
+                  "threshold": 1.0,
+                  "predicted_value": 1.4719398019884702,
+                  "estimated_event_date": "2026-09-28",
+                  "model_based_probability": null,
+                  "baseline_or_scenario": "scenario",
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "explanation_factors": [
+                    {
+                      "factor": "unserved_patients",
+                      "value": 3059.92771669219,
+                      "description": "Demand above available operational service capacity; no clinical treatment effect inferred."
+                    }
+                  ],
+                  "recommended_next_step": "Review operational assumptions and local capacity; no automated action has been taken.",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "config_version": "resilience-v1",
+                    "is_synthetic": true,
+                    "source": "Phase 3 saved forecasts + deterministic operational propagation",
+                    "baseline_model": "hist_gradient_boosting",
+                    "uncertainty": "conditional_on_scenario"
+                  },
+                  "model_version": "forecast-v1-176a752efab3ae4e",
+                  "priority_score": 333.5714,
+                  "baseline_severity": null,
+                  "transition": "new"
+                }
+              ],
+              "offset": 0,
+              "limit": 8,
+              "truncated": true
+            }
+          },
+          {
+            "evidence_id": "e4",
+            "tool": "get_redistribution_preview",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "request": {
+                "profile": "redistribution-ready",
+                "country_id": "IN",
+                "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                "state_id": "MH",
+                "district_id": "MH-PUNE",
+                "scope": "district",
+                "resources": [
+                  "PCM",
+                  "IVF",
+                  "ORS",
+                  "AMX",
+                  "IFA"
+                ],
+                "horizon": 14,
+                "time_limit_seconds": 10.0
+              },
+              "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+              "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+              "origin": "2026-09-27",
+              "model_version": "forecast-v1-176a752efab3ae4e",
+              "policy_version": "redistribution-v1",
+              "total_deficit": 41763,
+              "safe_capacity": 17745,
+              "capacity_by_resource": {
+                "PCM": 5139,
+                "IVF": 1083,
+                "ORS": 2691,
+                "AMX": 4080,
+                "IFA": 4752
+              },
+              "deficit_by_resource": {
+                "PCM": 28086,
+                "IVF": 3256,
+                "ORS": 3655,
+                "AMX": 3276,
+                "IFA": 3490
+              },
+              "receiver_pairs": 5,
+              "donor_pairs": 10,
+              "feasible_lanes": 10,
+              "receivers": [
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "AMX",
+                  "unit": "capsules",
+                  "current_stock": 1192,
+                  "protected_reserve": 2045,
+                  "safe_surplus": 0,
+                  "protected_minimum_stock": -1497.910651923759,
+                  "reserve_after_max_donation": -1497.910651923759,
+                  "deficit": 3276,
+                  "expected_unmet": 1230.9780182226204,
+                  "depletion_date": "2026-10-07",
+                  "safety_breach_date": "2026-09-27",
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "severity": "WARNING",
+                  "priority": 240.7143,
+                  "critical": true,
+                  "shortage_weight": 681,
+                  "nearest_receiver_distance_km": null
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "IFA",
+                  "unit": "tablets",
+                  "current_stock": 2359,
+                  "protected_reserve": 2645,
+                  "safe_surplus": 0,
+                  "protected_minimum_stock": -1218.2952082655484,
+                  "reserve_after_max_donation": -1218.2952082655484,
+                  "deficit": 3490,
+                  "expected_unmet": 844.5187087913197,
+                  "depletion_date": "2026-10-09",
+                  "safety_breach_date": "2026-09-27",
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "severity": "WARNING",
+                  "priority": 237.8571,
+                  "critical": true,
+                  "shortage_weight": 658,
+                  "nearest_receiver_distance_km": null
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "IVF",
+                  "unit": "bags",
+                  "current_stock": 360,
+                  "protected_reserve": 942,
+                  "safe_surplus": 0,
+                  "protected_minimum_stock": -2490.92397676657,
+                  "reserve_after_max_donation": -2490.92397676657,
+                  "deficit": 3256,
+                  "expected_unmet": 2313.10398872695,
+                  "depletion_date": "2026-09-29",
+                  "safety_breach_date": "2026-09-27",
+                  "risk": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "severity": "CRITICAL",
+                  "priority": 352.1429,
+                  "critical": true,
+                  "shortage_weight": 972,
+                  "nearest_receiver_distance_km": null
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "ORS",
+                  "unit": "sachets",
+                  "current_stock": 643,
+                  "protected_reserve": 1675,
+                  "safe_surplus": 0,
+                  "protected_minimum_stock": -2245.7506854211942,
+                  "reserve_after_max_donation": -2245.7506854211942,
+                  "deficit": 3655,
+                  "expected_unmet": 1979.5233458528737,
+                  "depletion_date": "2026-10-04",
+                  "safety_breach_date": "2026-09-27",
+                  "risk": {
+                    "3": 0.388,
+                    "7": 0.726,
+                    "14": 1.0
+                  },
+                  "severity": "CRITICAL",
+                  "priority": 335.0,
+                  "critical": true,
+                  "shortage_weight": 905,
+                  "nearest_receiver_distance_km": null
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "facility_name": "Pune · District Hospital 03",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "PCM",
+                  "unit": "tablets",
+                  "current_stock": 4030,
+                  "protected_reserve": 6798,
+                  "safe_surplus": 0,
+                  "protected_minimum_stock": -22731.013270787902,
+                  "reserve_after_max_donation": -22731.013270787902,
+                  "deficit": 28086,
+                  "expected_unmet": 21287.094009232613,
+                  "depletion_date": "2026-09-29",
+                  "safety_breach_date": "2026-09-27",
+                  "risk": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "severity": "CRITICAL",
+                  "priority": 352.1429,
+                  "critical": true,
+                  "shortage_weight": 972,
+                  "nearest_receiver_distance_km": null
+                }
+              ],
+              "donors": [
+                {
+                  "facility_id": "IN-MH-PUNE-001",
+                  "facility_name": "Pune · PHC 01",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "AMX",
+                  "unit": "capsules",
+                  "current_stock": 2299,
+                  "protected_reserve": 333,
+                  "safe_surplus": 1602,
+                  "protected_minimum_stock": 1935.2347601697224,
+                  "reserve_after_max_donation": 333.23476016972245,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 6.440558977049242
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-001",
+                  "facility_name": "Pune · PHC 01",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "IFA",
+                  "unit": "tablets",
+                  "current_stock": 2703,
+                  "protected_reserve": 428,
+                  "safe_surplus": 1872,
+                  "protected_minimum_stock": 2300.9198681792977,
+                  "reserve_after_max_donation": 428.91986817929774,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 6.440558977049242
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-001",
+                  "facility_name": "Pune · PHC 01",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "IVF",
+                  "unit": "bags",
+                  "current_stock": 1013,
+                  "protected_reserve": 152,
+                  "safe_surplus": 463,
+                  "protected_minimum_stock": 615.5452527196078,
+                  "reserve_after_max_donation": 152.5452527196078,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 6.440558977049242
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-001",
+                  "facility_name": "Pune · PHC 01",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "ORS",
+                  "unit": "sachets",
+                  "current_stock": 1718,
+                  "protected_reserve": 271,
+                  "safe_surplus": 1135,
+                  "protected_minimum_stock": 1406.6869484016133,
+                  "reserve_after_max_donation": 271.68694840161334,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 6.440558977049242
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-001",
+                  "facility_name": "Pune · PHC 01",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "PCM",
+                  "unit": "tablets",
+                  "current_stock": 6684,
+                  "protected_reserve": 1100,
+                  "safe_surplus": 1600,
+                  "protected_minimum_stock": 2700.815405792277,
+                  "reserve_after_max_donation": 1100.815405792277,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 6.440558977049242
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-002",
+                  "facility_name": "Pune · CHC 02",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "AMX",
+                  "unit": "capsules",
+                  "current_stock": 3663,
+                  "protected_reserve": 558,
+                  "safe_surplus": 2478,
+                  "protected_minimum_stock": 3036.5507564132913,
+                  "reserve_after_max_donation": 558.5507564132913,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 4.477808726193947
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-002",
+                  "facility_name": "Pune · CHC 02",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "IFA",
+                  "unit": "tablets",
+                  "current_stock": 4405,
+                  "protected_reserve": 722,
+                  "safe_surplus": 2880,
+                  "protected_minimum_stock": 3602.520048669237,
+                  "reserve_after_max_donation": 722.520048669237,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 4.477808726193947
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-002",
+                  "facility_name": "Pune · CHC 02",
+                  "country_id": "IN",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE",
+                  "resource_id": "IVF",
+                  "unit": "bags",
+                  "current_stock": 1578,
+                  "protected_reserve": 257,
+                  "safe_surplus": 620,
+                  "protected_minimum_stock": 877.0938438582953,
+                  "reserve_after_max_donation": 257.09384385829526,
+                  "deficit": 0,
+                  "expected_unmet": 0.0,
+                  "depletion_date": null,
+                  "safety_breach_date": null,
+                  "risk": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "severity": "INFO",
+                  "priority": 0.0,
+                  "critical": false,
+                  "shortage_weight": 100,
+                  "nearest_receiver_distance_km": 4.477808726193947
+                }
+              ],
+              "candidates_truncated": true,
+              "limitations": [
+                "Simulated operational facilities and inventories; emergency assumptions remain unvalidated.",
+                "Straight-line geographic distance used for prototype optimization; not road travel distance.",
+                "Transfers are assumed to arrive before day 1, with no transit loss, vehicle limits or execution provider. Review transport feasibility before acting.",
+                "Donors retain reserve throughout all 14 days under every one of the 500 sampled demand paths, and at least 7 days of current point-demand cover. This is not a guarantee against unsampled demand or delayed receipts.",
+                "Policy weights are prototype assumptions. Decision support only, not an automatic order. No international physical transfers.",
+                "Plans are independent alternatives, not commitments; no plan is executed or stacked on another. Process-local storage is lost on server restart."
+              ]
+            }
+          },
+          {
+            "evidence_id": "e5",
+            "tool": "optimize_redistribution",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+              "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+              "request": {
+                "profile": "redistribution-ready",
+                "country_id": "IN",
+                "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                "state_id": "MH",
+                "district_id": "MH-PUNE",
+                "scope": "district",
+                "resources": [
+                  "PCM",
+                  "IVF",
+                  "ORS",
+                  "AMX",
+                  "IFA"
+                ],
+                "horizon": 14,
+                "time_limit_seconds": 10.0
+              },
+              "solver": {
+                "construction_seconds": 0.000941999998758547,
+                "engine": "Google OR-Tools CP-SAT",
+                "version": "9.15.6755",
+                "status": "OPTIMAL",
+                "termination": "all_lexicographic_stages_proved",
+                "stages": [
+                  {
+                    "name": "critical_unresolved_units",
+                    "status": "OPTIMAL",
+                    "objective": 26084.0,
+                    "best_bound": 26084.0,
+                    "seconds": 0.0034405000000000004
+                  },
+                  {
+                    "name": "weighted_unresolved_units",
+                    "status": "OPTIMAL",
+                    "objective": 25289060.0,
+                    "best_bound": 25289060.0,
+                    "seconds": 0.00046550000000000004
+                  },
+                  {
+                    "name": "transport_cost",
+                    "status": "OPTIMAL",
+                    "objective": 72928.0,
+                    "best_bound": 72928.0,
+                    "seconds": 0.0004246
+                  }
+                ],
+                "objective": [
+                  26084,
+                  25289060,
+                  72928
+                ],
+                "time_limit_seconds": 10.0,
+                "elapsed_seconds": 0.007701499998802319,
+                "variables": 25,
+                "constraints": 38
+              },
+              "model_version": "forecast-v1-176a752efab3ae4e",
+              "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+              "policy_version": "redistribution-v1",
+              "resource_units": {
+                "AMX": "capsules",
+                "IFA": "tablets",
+                "IVF": "bags",
+                "ORS": "sachets",
+                "PCM": "tablets"
+              },
+              "resource_risks": [
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "resource_id": "PCM",
+                  "unit": "tablets",
+                  "risk_before": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "risk_after": {
+                    "3": 0.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "unresolved": 22947
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "resource_id": "IVF",
+                  "unit": "bags",
+                  "risk_before": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "unresolved": 2173
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "resource_id": "ORS",
+                  "unit": "sachets",
+                  "risk_before": {
+                    "3": 0.388,
+                    "7": 0.726,
+                    "14": 1.0
+                  },
+                  "risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "unresolved": 964
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "resource_id": "AMX",
+                  "unit": "capsules",
+                  "risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "unresolved": 0
+                },
+                {
+                  "facility_id": "IN-MH-PUNE-003",
+                  "resource_id": "IFA",
+                  "unit": "tablets",
+                  "risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "unresolved": 0
+                }
+              ],
+              "resource_risks_truncated": false,
+              "safe_capacity": 17745,
+              "capacity_by_resource": {
+                "PCM": 5139,
+                "IVF": 1083,
+                "ORS": 2691,
+                "AMX": 4080,
+                "IFA": 4752
+              },
+              "deficit_by_resource": {
+                "PCM": 28086,
+                "IVF": 3256,
+                "ORS": 3655,
+                "AMX": 3276,
+                "IFA": 3490
+              },
+              "impact": {
+                "before": {
+                  "target_deficit": 41763,
+                  "expected_unmet": 27655.218070826377,
+                  "critical_resource_warnings": 7,
+                  "facilities_at_risk": 1,
+                  "max_stockout_risk": 1.0
+                },
+                "after": {
+                  "target_deficit": 26084,
+                  "expected_unmet": 17378.197997959564,
+                  "critical_resource_warnings": 0,
+                  "facilities_at_risk": 1,
+                  "max_stockout_risk": 1.0
+                },
+                "shortage_units_resolved": 15679,
+                "percent_deficit_resolved": 37.5428010439863,
+                "critical_deficits_resolved": 2,
+                "critical_deficits_total": 5,
+                "facilities_protected": 0,
+                "donor_facilities_used": 2,
+                "transfer_count": 10,
+                "transferred_units": 15679,
+                "distance_km": 54.591838516215944,
+                "distance_weighted_units": 79247.99067343438,
+                "donor_safety_violations": 0,
+                "new_donor_risks": 0,
+                "unresolved": {
+                  "IN-MH-PUNE-003:AMX": 0,
+                  "IN-MH-PUNE-003:IFA": 0,
+                  "IN-MH-PUNE-003:IVF": 2173,
+                  "IN-MH-PUNE-003:ORS": 964,
+                  "IN-MH-PUNE-003:PCM": 22947
+                },
+                "conservation": {
+                  "PCM": {
+                    "before": 22952,
+                    "after": 22952
+                  },
+                  "IVF": {
+                    "before": 2951,
+                    "after": 2951
+                  },
+                  "ORS": {
+                    "before": 5021,
+                    "after": 5021
+                  },
+                  "AMX": {
+                    "before": 7154,
+                    "after": 7154
+                  },
+                  "IFA": {
+                    "before": 9467,
+                    "after": 9467
+                  }
+                }
+              },
+              "greedy": {
+                "before": {
+                  "target_deficit": 41763,
+                  "expected_unmet": 27655.218070826377,
+                  "critical_resource_warnings": 7,
+                  "facilities_at_risk": 1,
+                  "max_stockout_risk": 1.0
+                },
+                "after": {
+                  "target_deficit": 26084,
+                  "expected_unmet": 17378.197997959564,
+                  "critical_resource_warnings": 0,
+                  "facilities_at_risk": 1,
+                  "max_stockout_risk": 1.0
+                },
+                "shortage_units_resolved": 15679,
+                "percent_deficit_resolved": 37.5428010439863,
+                "critical_deficits_resolved": 2,
+                "critical_deficits_total": 5,
+                "facilities_protected": 0,
+                "donor_facilities_used": 2,
+                "transfer_count": 10,
+                "transferred_units": 15679,
+                "distance_km": 54.591838516215944,
+                "distance_weighted_units": 79247.99067343438,
+                "donor_safety_violations": 0,
+                "new_donor_risks": 0,
+                "unresolved": {
+                  "IN-MH-PUNE-003:AMX": 0,
+                  "IN-MH-PUNE-003:IFA": 0,
+                  "IN-MH-PUNE-003:IVF": 2173,
+                  "IN-MH-PUNE-003:ORS": 964,
+                  "IN-MH-PUNE-003:PCM": 22947
+                },
+                "conservation": {
+                  "PCM": {
+                    "before": 22952,
+                    "after": 22952
+                  },
+                  "IVF": {
+                    "before": 2951,
+                    "after": 2951
+                  },
+                  "ORS": {
+                    "before": 5021,
+                    "after": 5021
+                  },
+                  "AMX": {
+                    "before": 7154,
+                    "after": 7154
+                  },
+                  "IFA": {
+                    "before": 9467,
+                    "after": 9467
+                  }
+                }
+              },
+              "warnings_before": {
+                "total": 36,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 3,
+                  "WARNING": 17,
+                  "CRITICAL": 16
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 6,
+                "staff_warnings": 4,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 17,
+                    "CRITICAL": 16
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 2,
+                    "WARNING": 13,
+                    "CRITICAL": 10
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  }
+                }
+              },
+              "warnings_after": {
+                "total": 25,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 3,
+                  "WARNING": 13,
+                  "CRITICAL": 9
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 3,
+                "bed_warnings": 6,
+                "staff_warnings": 4,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 13,
+                    "CRITICAL": 9
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 13,
+                    "CRITICAL": 9
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 3,
+                    "WARNING": 13,
+                    "CRITICAL": 9
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 2,
+                    "WARNING": 9,
+                    "CRITICAL": 3
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 2,
+                    "CRITICAL": 3
+                  }
+                }
+              },
+              "transfers": [
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-0",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-001",
+                  "donor_name": "Pune · PHC 01",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "AMX",
+                  "unit": "capsules",
+                  "quantity": 798,
+                  "distance_km": 6.440558977049242,
+                  "donor_stock_before": 2299,
+                  "donor_stock_after": 1501,
+                  "donor_protected_reserve": 333,
+                  "donor_projected_stock_after": 1179.8866367454143,
+                  "donor_protected_minimum_after": 1137.2347601697224,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3276,
+                  "receiver_deficit_after": 0,
+                  "receiver_warning_before": "WARNING",
+                  "receiver_warning_after": "NORMAL",
+                  "receiver_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 1602,
+                    "receiver_expected_unmet_before": 1230.9780182226204,
+                    "receiver_priority": 240.7143,
+                    "target_units_supplied_by_this_transfer": 798,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 798,
+                    "weighted_units_resolved": 543438,
+                    "transport_cost": 4888
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-1",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-001",
+                  "donor_name": "Pune · PHC 01",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "IFA",
+                  "unit": "tablets",
+                  "quantity": 610,
+                  "distance_km": 6.440558977049242,
+                  "donor_stock_before": 2703,
+                  "donor_stock_after": 2093,
+                  "donor_protected_reserve": 428,
+                  "donor_projected_stock_after": 1752.6303671425667,
+                  "donor_protected_minimum_after": 1690.9198681792977,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3490,
+                  "receiver_deficit_after": 0,
+                  "receiver_warning_before": "WARNING",
+                  "receiver_warning_after": "NORMAL",
+                  "receiver_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 1872,
+                    "receiver_expected_unmet_before": 844.5187087913197,
+                    "receiver_priority": 237.8571,
+                    "target_units_supplied_by_this_transfer": 610,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 610,
+                    "weighted_units_resolved": 401380,
+                    "transport_cost": 3760
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-2",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-001",
+                  "donor_name": "Pune · PHC 01",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "IVF",
+                  "unit": "bags",
+                  "quantity": 463,
+                  "distance_km": 6.440558977049242,
+                  "donor_stock_before": 1013,
+                  "donor_stock_after": 550,
+                  "donor_protected_reserve": 152,
+                  "donor_projected_stock_after": 181.4446048497765,
+                  "donor_protected_minimum_after": 152.5452527196078,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3256,
+                  "receiver_deficit_after": 2173,
+                  "receiver_warning_before": "CRITICAL",
+                  "receiver_warning_after": "WARNING",
+                  "receiver_risk_before": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 463,
+                    "receiver_expected_unmet_before": 2313.10398872695,
+                    "receiver_priority": 352.1429,
+                    "target_units_supplied_by_this_transfer": 463,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 463,
+                    "weighted_units_resolved": 450036,
+                    "transport_cost": 2878
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-3",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-001",
+                  "donor_name": "Pune · PHC 01",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "ORS",
+                  "unit": "sachets",
+                  "quantity": 1135,
+                  "distance_km": 6.440558977049242,
+                  "donor_stock_before": 1718,
+                  "donor_stock_after": 583,
+                  "donor_protected_reserve": 271,
+                  "donor_projected_stock_after": 311.3432308870693,
+                  "donor_protected_minimum_after": 271.68694840161334,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3655,
+                  "receiver_deficit_after": 964,
+                  "receiver_warning_before": "CRITICAL",
+                  "receiver_warning_after": "WATCH",
+                  "receiver_risk_before": {
+                    "3": 0.388,
+                    "7": 0.726,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 1135,
+                    "receiver_expected_unmet_before": 1979.5233458528737,
+                    "receiver_priority": 335.0,
+                    "target_units_supplied_by_this_transfer": 1135,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 1135,
+                    "weighted_units_resolved": 1027175,
+                    "transport_cost": 6910
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-4",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-001",
+                  "donor_name": "Pune · PHC 01",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "PCM",
+                  "unit": "tablets",
+                  "quantity": 1600,
+                  "distance_km": 6.440558977049242,
+                  "donor_stock_before": 6684,
+                  "donor_stock_after": 5084,
+                  "donor_protected_reserve": 1100,
+                  "donor_projected_stock_after": 1297.0749159697905,
+                  "donor_protected_minimum_after": 1100.815405792277,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 28086,
+                  "receiver_deficit_after": 22947,
+                  "receiver_warning_before": "CRITICAL",
+                  "receiver_warning_after": "WARNING",
+                  "receiver_risk_before": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 1600,
+                    "receiver_expected_unmet_before": 21287.094009232613,
+                    "receiver_priority": 352.1429,
+                    "target_units_supplied_by_this_transfer": 1600,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 1600,
+                    "weighted_units_resolved": 1555200,
+                    "transport_cost": 9700
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-5",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-002",
+                  "donor_name": "Pune · CHC 02",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "AMX",
+                  "unit": "capsules",
+                  "quantity": 2478,
+                  "distance_km": 4.477808726193947,
+                  "donor_stock_before": 3663,
+                  "donor_stock_after": 1185,
+                  "donor_protected_reserve": 558,
+                  "donor_projected_stock_after": 628.6193532920478,
+                  "donor_protected_minimum_after": 558.5507564132913,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3276,
+                  "receiver_deficit_after": 0,
+                  "receiver_warning_before": "WARNING",
+                  "receiver_warning_after": "NORMAL",
+                  "receiver_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 2478,
+                    "receiver_expected_unmet_before": 1230.9780182226204,
+                    "receiver_priority": 240.7143,
+                    "target_units_supplied_by_this_transfer": 2478,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 2478,
+                    "weighted_units_resolved": 1687518,
+                    "transport_cost": 10012
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-6",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-002",
+                  "donor_name": "Pune · CHC 02",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "IFA",
+                  "unit": "tablets",
+                  "quantity": 2880,
+                  "distance_km": 4.477808726193947,
+                  "donor_stock_before": 4405,
+                  "donor_stock_after": 1525,
+                  "donor_protected_reserve": 722,
+                  "donor_projected_stock_after": 825.7850823561494,
+                  "donor_protected_minimum_after": 722.520048669237,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3490,
+                  "receiver_deficit_after": 0,
+                  "receiver_warning_before": "WARNING",
+                  "receiver_warning_after": "NORMAL",
+                  "receiver_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 2880,
+                    "receiver_expected_unmet_before": 844.5187087913197,
+                    "receiver_priority": 237.8571,
+                    "target_units_supplied_by_this_transfer": 2880,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 2880,
+                    "weighted_units_resolved": 1895040,
+                    "transport_cost": 11620
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-7",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-002",
+                  "donor_name": "Pune · CHC 02",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "IVF",
+                  "unit": "bags",
+                  "quantity": 620,
+                  "distance_km": 4.477808726193947,
+                  "donor_stock_before": 1578,
+                  "donor_stock_after": 958,
+                  "donor_protected_reserve": 257,
+                  "donor_projected_stock_after": 306.773666583735,
+                  "donor_protected_minimum_after": 257.09384385829526,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3256,
+                  "receiver_deficit_after": 2173,
+                  "receiver_warning_before": "CRITICAL",
+                  "receiver_warning_after": "WARNING",
+                  "receiver_risk_before": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 1.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 620,
+                    "receiver_expected_unmet_before": 2313.10398872695,
+                    "receiver_priority": 352.1429,
+                    "target_units_supplied_by_this_transfer": 620,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 620,
+                    "weighted_units_resolved": 602640,
+                    "transport_cost": 2580
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-8",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-002",
+                  "donor_name": "Pune · CHC 02",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "ORS",
+                  "unit": "sachets",
+                  "quantity": 1556,
+                  "distance_km": 4.477808726193947,
+                  "donor_stock_before": 2660,
+                  "donor_stock_after": 1104,
+                  "donor_protected_reserve": 454,
+                  "donor_projected_stock_after": 523.6810373061,
+                  "donor_protected_minimum_after": 454.87348819061594,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 3655,
+                  "receiver_deficit_after": 964,
+                  "receiver_warning_before": "CRITICAL",
+                  "receiver_warning_after": "WATCH",
+                  "receiver_risk_before": {
+                    "3": 0.388,
+                    "7": 0.726,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 1556,
+                    "receiver_expected_unmet_before": 1979.5233458528737,
+                    "receiver_priority": 335.0,
+                    "target_units_supplied_by_this_transfer": 1556,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 1556,
+                    "weighted_units_resolved": 1408180,
+                    "transport_cost": 6324
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                },
+                {
+                  "transfer_id": "695fa03d-9b72-407d-8035-8b20e2e49b58-9",
+                  "optimizer_run_id": "695fa03d-9b72-407d-8035-8b20e2e49b58",
+                  "donor_id": "IN-MH-PUNE-002",
+                  "donor_name": "Pune · CHC 02",
+                  "receiver_id": "IN-MH-PUNE-003",
+                  "receiver_name": "Pune · District Hospital 03",
+                  "resource_id": "PCM",
+                  "unit": "tablets",
+                  "quantity": 3539,
+                  "distance_km": 4.477808726193947,
+                  "donor_stock_before": 12238,
+                  "donor_stock_after": 8699,
+                  "donor_protected_reserve": 1846,
+                  "donor_projected_stock_after": 2204.749012939016,
+                  "donor_protected_minimum_after": 1846.5090704858321,
+                  "donor_risk_before": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "donor_risk_after": {
+                    "3": 0.0,
+                    "7": 0.0,
+                    "14": 0.0
+                  },
+                  "receiver_deficit_before": 28086,
+                  "receiver_deficit_after": 22947,
+                  "receiver_warning_before": "CRITICAL",
+                  "receiver_warning_after": "WARNING",
+                  "receiver_risk_before": {
+                    "3": 1.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "receiver_risk_after": {
+                    "3": 0.0,
+                    "7": 1.0,
+                    "14": 1.0
+                  },
+                  "rationale": {
+                    "safe_surplus_before": 3539,
+                    "receiver_expected_unmet_before": 21287.094009232613,
+                    "receiver_priority": 352.1429,
+                    "target_units_supplied_by_this_transfer": 3539,
+                    "geographic_penalty_per_unit": 0,
+                    "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+                  },
+                  "optimization_status": "OPTIMAL",
+                  "objective_contribution": {
+                    "critical_units_resolved": 3539,
+                    "weighted_units_resolved": 3439908,
+                    "transport_cost": 14256
+                  },
+                  "scenario_id": "f0e1f8a4-81c6-4820-9090-d21e765f22a8",
+                  "provenance": {
+                    "operational_profile": "redistribution-ready",
+                    "profile_version": "inventory-profile-v1",
+                    "snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+                    "config_version": "redistribution-v1",
+                    "model_version": "forecast-v1-176a752efab3ae4e",
+                    "data_status": "simulated"
+                  }
+                }
+              ],
+              "transfers_total": 10,
+              "offset": 0,
+              "limit": 10,
+              "transfers_truncated": false,
+              "message": "Network resources are insufficient to completely resolve this shortage.",
+              "unit_notice": "Aggregate counts are inventory-item accounting tallies across different resource units, not interchangeable doses."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "budget_limit": 10,
+  "expected_provider_requests": 4,
+  "maximum_provider_requests": 10,
+  "local_fixture_tool_calls": 0,
+  "comparison": {
+    "old_suite_expected_provider_requests": 23,
+    "old_cases": {
+      "risk": 4,
+      "positive": 8,
+      "constrained": 8,
+      "provenance": 3
+    },
+    "new_acceptance_expected_provider_requests": 8,
+    "baseline_commit": "914ff4a",
+    "old_schema_bytes_per_turn": 11363,
+    "old_system_bytes_per_turn": 2917,
+    "new_system_bytes_per_turn": 2566,
+    "old_authoritative_result_bytes_by_case": {
+      "risk": 19255,
+      "positive": 67628,
+      "constrained": 46022,
+      "provenance": 5681
+    },
+    "schema_bytes_by_intent": {
+      "network-risk": 4997,
+      "emergency-planning": 7843,
+      "provenance": 1265,
+      "follow-up-plan": 1496,
+      "plan-review": 1777
+    },
+    "token_estimate_method": "characters / 4; estimates are not Gemini token counts"
+  },
+  "resume_invalidated": [],
+  "provider_requests": 4,
+  "daily_ledger_used": 4,
+  "expected_provider_requests_this_run": 4,
+  "local_tool_calls": 5,
+  "retained_pass_cases": [
+    "positive"
+  ],
+  "capabilities_accepted": []
+}

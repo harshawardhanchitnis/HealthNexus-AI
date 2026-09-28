@@ -1,10 +1,10 @@
 # Resilience Copilot — Phase 6
 
-Implemented in the existing repository on 28 September 2026. Official SDK integration, typed tools, bounded orchestration and the UI are implemented. **Live Gemini verification is pending: no server-side `GEMINI_API_KEY` is configured here.** Mocked orchestration and explicitly labelled offline workflows are verified separately.
+Implemented in the existing repository on 28 September 2026. A server key is configured locally; earlier live checks proved exact-model access and native function calling. **Final live acceptance remains pending because the 20-RPD Free Tier quota was exhausted.** The revised eight-request acceptance matrix is verified only with mocks/local engines. No live calls were made during this efficiency work. See [budget, resume and measured reductions](phase6-budget-report.md).
 
 ## Model, SDK and setup
 
-The exact model is `gemini-3.8-flash`, using `google-genai==2.25.0` and `from google import genai`. Google lists this model's function calling, structured output and thinking support on its [model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash). The application uses the recommended [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview), native function declarations and `previous_interaction_id`. Default thinking is `medium`; `low` is also accepted. Prompt version: `healthnexus-system-v1`; configuration: `copilot-config-v1`.
+The exact model is `gemini-3.8-flash`, using `google-genai==2.25.0` and `from google import genai`. Google lists this model's function calling, structured output and thinking support on its [model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash). The application uses the recommended [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview), native function declarations and `previous_interaction_id`. Default thinking is `medium`; `low` is also accepted. Prompt version: `healthnexus-system-v3`; configuration: `copilot-config-v2`.
 
 The SDK requires Pydantic 2.12.5 or newer. Requirements pin `pydantic==2.13.5`; all 156 existing tests pass with that upgrade. No retraining or profile regeneration is required.
 
@@ -47,7 +47,7 @@ Strict Pydantic declarations require country/profile, enums and bounds. Model ar
 
 ## Native loop, evidence and state
 
-The bounded question/context and whitelist go to `client.interactions.create`. Returned `function_call` steps are validated and executed locally. `function_result` steps preserve each call ID and carry an evidence ID plus shaped authoritative data. Previous interaction ID, system instruction, tools, thinking and response schema are supplied each turn. See Google's [function calling](https://ai.google.dev/gemini-api/docs/function-calling) and [structured outputs](https://ai.google.dev/gemini-api/docs/structured-output) documentation.
+The bounded question/context and a server-selected intent whitelist go to `client.interactions.create`. Returned `function_call` steps are validated against that subset and executed locally. `function_result` steps preserve call IDs and carry evidence IDs plus compact authoritative data. System instruction/config are resubmitted each turn. Tools and answer schema are never sent together: the observed endpoint rejected that combination. A returned plan immediately continues into schema-only synthesis, avoiding the readiness round trip. Provenance/reliability and donor follow-up prefetch fresh read-only tools, explicitly audited as server executions, for one schema-only request. These revised patterns are SDK/mock-tested; actual endpoint acceptance is pending. See Google's [function calling](https://ai.google.dev/gemini-api/docs/function-calling) and [structured outputs](https://ai.google.dev/gemini-api/docs/structured-output) documentation.
 
 The loop permits ten tool calls, including invalid attempts. SDK automatic execution is not used. Final JSON validates as situation, risks, planning actions and remaining gaps. Every claim references exact dot fields in a **fresh current-request tool result**. The server resolves fields into evidence values and rejects nonexistent/oversized references, unsupported numeric literals, overstated optimality and executed-transfer wording. Typed objects are rendered without parsing arbitrary Markdown or HTML.
 
@@ -78,14 +78,14 @@ Most tests use scripted Gemini transport: sequential calls, schemas, whitelist, 
 ```powershell
 .\.venv\Scripts\python.exe scripts\verify_gemini.py --mock
 .\.venv\Scripts\python.exe scripts\verify_gemini.py --offline
-# Explicit opt-in after server key configuration:
-.\.venv\Scripts\python.exe scripts\verify_gemini.py --live
+# Future explicit opt-in ONLY after quota reset and user authorization:
+.\.venv\Scripts\python.exe scripts\verify_gemini.py --live --acceptance --resume
 ```
 
-Live verification makes four bounded workflows: Pune risks, ready severe dengue/redistribution, constrained equivalent, and inventory provenance. It saves sanitized model/tool evidence and checks exact solver/impact/capacity/transfer/context fields against stored engines. It fails on errors rather than hiding them. With no key it writes `not_run` before network access. Preserve failed evidence and do not claim success until it passes.
+Default verification uses positive planning, its same-conversation donor follow-up, a locally prepared constrained fixture's interpretation and combined provenance/reliability. Mock expectation is eight provider requests. The persistent live daily ledger caps attempts at ten including retries; `GEMINI_DAILY_VERIFICATION_BUDGET` can lower that cap. `--case positive|constrained|provenance`, `--resume` and versioned per-case PASS evidence avoid rerunning compatible checks. A local budget denial sends no request. The report separates provider requests, local tools and fixture setup. See [full strategy, identity/invalidation, rate handling and commands](phase6-budget-report.md).
 
-207 tests pass: existing 156 plus 51 Copilot cases. Compilation, dependency checks, strict TypeScript and production build pass. Four-case [mock](evaluation/phase6-mock.json) and [offline](evaluation/phase6-offline.json) verification pass. Mock responses carry `transport: mock`; they are not real Gemini evidence. Live availability, model behaviour, inference latency and token consumption remain **unverified because credentials are absent**.
+237 tests pass: all previous 210 plus 27 quota/protocol cases. Compilation, dependency checks, strict TypeScript and production build pass. New [mock](evaluation/phase6-budget-mock.json) and [offline](evaluation/phase6-budget-offline.json) acceptance pass. Mock responses carry `transport: mock`; they are not real Gemini evidence. Earlier [live partial evidence](evaluation/phase6-live-acceptance.json) is preserved; final grounded live answers, revised protocol and complete acceptance remain pending quota reset.
 
 The ready Pune tools reproduce 41,763 target, 17,745 safe capacity, 15,679 transferred accounting items / 10 lanes and 26,084 unresolved, with zero donor risks/violations. Constrained remains 30,230 unresolved / zero capacity / zero transfers. OR-Tools and greedy tie. IVF/PCM retain shortage and 100% conditional 14-day risk; AMX/IFA/ORS risk improves to zero. These values come from the unchanged engines and are absent from the system prompt.
 
-See [Phase 6 report](phase6-report.md) for final browser/performance evidence. No FedAvg is implemented. The software boundary is ready for Phase 7 country-node development; live Copilot acceptance still requires credentialed verification.
+See [Phase 6 report](phase6-report.md) for earlier browser/performance evidence and [the efficiency report](phase6-budget-report.md) for current verification. No FedAvg is implemented. Phase 7 remains deferred until Phase 6 acceptance is completed.

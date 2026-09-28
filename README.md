@@ -8,7 +8,7 @@ A real-data-backed healthcare resilience prototype combining public health stati
 
 ## Resilience Copilot — Phase 6 implementation
 
-**Resilience Copilot** adds the official `google-genai==2.25.0` Interactions integration for exactly `gemini-3.8-flash`, thirteen validated tools, bounded orchestration, typed evidence and actual tool activity. Gemini selects/explains existing computations. Server-side configuration is in `.env.example`; model failures remain explicit. Select **Use offline summaries** for labelled deterministic demonstrations. [Setup](docs/gemini.md) · [Phase 6 report](docs/phase6-report.md). **Live Gemini verification is pending credentials; mocks/offline output are not live Gemini evidence.**
+**Resilience Copilot** adds the official `google-genai==2.25.0` Interactions integration for exactly `gemini-3.8-flash`, thirteen validated tools, server-owned intent subsets, typed evidence and actual tool activity. Select **Use offline summaries** for labelled deterministic demonstrations. [Setup](docs/gemini.md) · [Phase 6 report](docs/phase6-report.md) · [Eight-request acceptance and resume](docs/phase6-budget-report.md). **Earlier live model/native-call checks passed, but final acceptance is pending daily quota reset. Mock/offline results are separate evidence. Phase 7 remains deferred.**
 
 ## Preserved Phase 5.5 demonstrations
 
@@ -29,7 +29,7 @@ Forecasting includes 540-day causal histories, country-local trained models, thr
 - Country selection, BRICS node view and Data Sources page expose coverage, reference years and provenance.
 - Local offline operation, optional Firestore adapter, Docker scaffolding and a regression/forecasting test suite.
 
-**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning and the Gemini tool integration are implemented; live Gemini verification requires credentials and federated training remains later work. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
+**Facility-level operational values are simulated, not real-world live feeds.** Forecasts are evaluated on this simulator, not validated against real healthcare operations. Warnings use deterministic rules and model-derived conditional risks. Emergency shocks are externally specified operational assumptions, not epidemiological predictions. OR-Tools planning and the Gemini tool integration are implemented; final live acceptance awaits quota reset and authorization. Federated training remains later work. Physical redistribution is enforced within each nation; future federation exchanges model updates only.
 
 ## Run locally — Windows PowerShell
 

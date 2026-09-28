@@ -1,0 +1,1082 @@
+{
+  "mode": "mock",
+  "model": "gemini-3.8-flash",
+  "status": "passed",
+  "live_acceptance": false,
+  "timestamp": "2026-09-28T10:30:43.942025+00:00",
+  "identity": {
+    "git_commit": "a08166581d1990cfbe063a34fa08c96a98a9e281",
+    "implementation_sha256": "a5009dfab97b9788c4816cec3ebda09bb9a3f4583ea89e60f89881f9f31950a6",
+    "model": "gemini-3.8-flash",
+    "sdk_version": "2.25.0",
+    "system_prompt_version": "healthnexus-system-v3",
+    "system_prompt_sha256": "c75f510cb6953e0ef663fb647ac97440c9cbc769ab0e692b236ad94d31645a7e",
+    "tool_schema_sha256": "3b18ac63d2fed75b5b65943248db0a3113613706d7991c6c825590b035015d42",
+    "profile_version": "inventory-profile-v1",
+    "config_version": "copilot-config-v2",
+    "configuration": {
+      "thinking": "medium",
+      "max_calls": 10,
+      "timeout": 25,
+      "workflow_timeout": 120,
+      "max_output_tokens": 2400
+    },
+    "credential_fingerprint": "ab242ca87094cb6816c815fb5fe5ceaea9d14822d9dcca6436cb318f9c086d81",
+    "artifacts": {
+      "constrained": {
+        "snapshot": "f0b5fbb01375d0aec983b3a2665fce7553b8f28b5cbdf3b1cf2648e28a477743",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      },
+      "redistribution-ready": {
+        "snapshot": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a"
+      }
+    }
+  },
+  "selected_case": "provenance",
+  "acceptance": false,
+  "tests": [
+    {
+      "label": "provenance",
+      "profile": "constrained",
+      "status": "passed",
+      "seconds": 0.0517241999914404,
+      "fixture_setup": null,
+      "followup_parent_interaction": null,
+      "response": {
+        "request_id": "507a5544-1b80-4322-8852-71eb270427ec",
+        "conversation_id": "3ac8b2a3-9a48-4d08-bcd0-359c0933fef0",
+        "mode": "gemini",
+        "status": "completed",
+        "answer": "This is calibrated simulation, not live government inventory.",
+        "situation": {
+          "text": "This is calibrated simulation, not live government inventory.",
+          "references": [
+            {
+              "evidence_id": "e1",
+              "field": "live_government_inventory"
+            }
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Forecast evaluation uses simulated operational histories; it does not establish clinical accuracy.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "data_type"
+              }
+            ]
+          },
+          {
+            "text": "Medicine forecast test WAPE is 0.0307987 on simulated histories.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "targets.medicine.models.hist_gradient_boosting.test.wape"
+              }
+            ]
+          }
+        ],
+        "recommended_actions": [],
+        "remaining_gaps": [],
+        "evidence": [
+          {
+            "evidence_id": "e1",
+            "tool": "get_data_provenance",
+            "source_type": "get_data_provenance",
+            "source_id": null,
+            "field": "live_government_inventory",
+            "value": false,
+            "profile": "constrained",
+            "unit": null
+          },
+          {
+            "evidence_id": "e2",
+            "tool": "get_model_performance",
+            "source_type": "get_model_performance",
+            "source_id": null,
+            "field": "data_type",
+            "value": "calibrated simulated operations",
+            "profile": "constrained",
+            "unit": null
+          },
+          {
+            "evidence_id": "e2",
+            "tool": "get_model_performance",
+            "source_type": "get_model_performance",
+            "source_id": null,
+            "field": "targets.medicine.models.hist_gradient_boosting.test.wape",
+            "value": 0.030798650603591108,
+            "profile": "constrained",
+            "unit": null
+          }
+        ],
+        "tools_used": [
+          {
+            "tool": "get_data_provenance",
+            "status": "success",
+            "seconds": 0.003733199991984293,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e1"
+          },
+          {
+            "tool": "get_model_performance",
+            "status": "success",
+            "seconds": 0.0009641999931773171,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e2"
+          }
+        ],
+        "limitations": [
+          "Facility operations are calibrated simulations, not live government inventory.",
+          "Emergency shocks are externally specified assumptions, not epidemiological predictions.",
+          "Plans are decision support; no physical transfer, order or hospital contact is executed.",
+          "Forecast evaluation uses simulated histories; no clinical or real-world operational validation is claimed."
+        ],
+        "context": {
+          "country_id": "IN",
+          "profile": "constrained",
+          "state_id": "MH",
+          "district_id": "MH-PUNE",
+          "facility_id": null,
+          "scenario_id": null,
+          "optimization_run_id": null
+        },
+        "scenario_id": null,
+        "optimization_run_id": null,
+        "metadata": {
+          "gemini_network_seconds": 0.00010639999527484179,
+          "tool_seconds": 0.00469739998516161,
+          "total_seconds": 0.0066565999877639115,
+          "tool_calls": 2,
+          "interaction_count": 1,
+          "provider_requests": 1,
+          "local_tool_calls": 2,
+          "interaction_ids": [
+            "mock-final-c92ccb61-c410-40ad-846d-3f0970e1e90e"
+          ],
+          "intent": "provenance",
+          "execution_sources": [
+            {
+              "tool": "get_data_provenance",
+              "source": "server-prefetch"
+            },
+            {
+              "tool": "get_model_performance",
+              "source": "server-prefetch"
+            }
+          ],
+          "request_diagnostics": [
+            {
+              "tool_schema_bytes": 2,
+              "system_bytes": 2566,
+              "input_bytes": 6793,
+              "request_body_bytes": 11866,
+              "input_tokens_estimate": 2340,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            }
+          ],
+          "tool_payload_diagnostics": [
+            {
+              "tool": "get_data_provenance",
+              "authoritative_bytes": 5681,
+              "model_payload_bytes": 815
+            },
+            {
+              "tool": "get_model_performance",
+              "authoritative_bytes": 10164,
+              "model_payload_bytes": 4511
+            }
+          ],
+          "model": "gemini-3.8-flash",
+          "configured_model": "gemini-3.8-flash",
+          "sdk_version": "2.25.0",
+          "api": "Interactions",
+          "transport": "mock",
+          "thinking_level": "medium",
+          "interaction_id": "mock-final-c92ccb61-c410-40ad-846d-3f0970e1e90e",
+          "timestamp": "2026-09-28T10:30:44.404651+00:00",
+          "system_prompt_version": "healthnexus-system-v3",
+          "config_version": "copilot-config-v2",
+          "usage": [],
+          "model_versions": [
+            "forecast-v1-176a752efab3ae4e"
+          ]
+        },
+        "operational_results": [
+          {
+            "evidence_id": "e1",
+            "tool": "get_data_provenance",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "constrained",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "data_type": "calibrated simulated operations",
+              "purpose": "preserved constrained operational simulation",
+              "seed": 42,
+              "live_government_inventory": false,
+              "calibration": {
+                "version": "aggregate-anchors-v2",
+                "country_id": "IN",
+                "is_synthetic": true,
+                "public_sources_available": true,
+                "beds_per_10000": 15.947148815,
+                "doctors_per_10000": 9.55,
+                "bed_capacity_factor": 1.0,
+                "doctor_staffing_factor": 1.0,
+                "doctors_by_type": [
+                  1.2729126152688037,
+                  4.132725271269067,
+                  21.92161635832522
+                ],
+                "nurses_by_type": [
+                  1.5034188570353177,
+                  8.029407139487342,
+                  38.0
+                ],
+                "inputs": [
+                  {
+                    "id": "hdi-IN-chc_count-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "chc_count",
+                    "label": "Community health centres",
+                    "year": 2023,
+                    "value": 6359.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/chc_count",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-chc_doctors-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "chc_doctors",
+                    "label": "Specialists / medical officers at CHCs",
+                    "year": 2023,
+                    "value": 26280.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/chc_doctors",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-chc_nurses-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "chc_nurses",
+                    "label": "Nursing staff at CHCs",
+                    "year": 2023,
+                    "value": 51059.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/chc_nurses",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-dh_count-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "dh_count",
+                    "label": "District hospitals",
+                    "year": 2023,
+                    "value": 714.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/dh_count",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-phc_count-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "phc_count",
+                    "label": "Primary health centres",
+                    "year": 2023,
+                    "value": 31882.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/phc_count",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-phc_doctors-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "phc_doctors",
+                    "label": "Doctors / medical officers at PHCs",
+                    "year": 2023,
+                    "value": 40583.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/phc_doctors",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-phc_nurses-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "phc_nurses",
+                    "label": "Staff nurses at PHCs",
+                    "year": 2023,
+                    "value": 47932.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/phc_nurses",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-sdh_count-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "sdh_count",
+                    "label": "Sub-divisional hospitals (source wording: SDHs)",
+                    "year": 2023,
+                    "value": 1340.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/sdh_count",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "hdi-IN-sdh_dh_doctors-2023",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "sdh_dh_doctors",
+                    "label": "Doctors / specialists at SDHs and DHs",
+                    "year": 2023,
+                    "value": 45027.0,
+                    "unit": "count",
+                    "provenance_id": "india-hdi-2023",
+                    "source_record_id": "PIB-2053070/sdh_dh_doctors",
+                    "note": "National rural and urban aggregate as of 31 March 2023; not a live facility value."
+                  },
+                  {
+                    "id": "who-IN-HWF_0001-2024",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "HWF_0001",
+                    "label": "Medical doctors per 10,000 population",
+                    "year": 2024,
+                    "value": 9.55,
+                    "unit": "per_10000_population",
+                    "provenance_id": "who-gho-brics",
+                    "source_record_id": "4155893",
+                    "note": "NHWA data portal, December 2025 update; https://apps.who.int/nhwaportal/"
+                  },
+                  {
+                    "id": "who-IN-WHS6_102-2021",
+                    "country_id": "IN",
+                    "region_id": null,
+                    "indicator": "WHS6_102",
+                    "label": "Hospital beds per 10,000 population",
+                    "year": 2021,
+                    "value": 15.947148815,
+                    "unit": "per_10000_population",
+                    "provenance_id": "who-gho-brics",
+                    "source_record_id": "3297252",
+                    "note": "National Health Profile, Central Bureau of Health Intelligence"
+                  }
+                ],
+                "assumptions": [
+                  "India workforce-per-facility ratios are national HDI totals divided by matching facility totals; DH doctors use the pooled SDH+DH ratio.",
+                  "Foreign nodes reuse illustrative care-centre templates; square-root WHO density ratios scale capacity and doctor staffing with explicit bounds.",
+                  "Catchment population = synthetic bed capacity / country bed density * 10,000. It is inferred, not a population estimate for a real facility.",
+                  "Daily visit rates, syndrome mixes, length of stay, medicine profiles, attendance and deliveries remain unvalidated simulation assumptions.",
+                  "Use latest available country observations, not a common year. South Africa bed data may be substantially older; see input years."
+                ],
+                "fallbacks": []
+              },
+              "model_version": "forecast-v1-176a752efab3ae4e",
+              "model_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a",
+              "sources": [
+                {
+                  "name": "MoHFW Health Dynamics of India 2022–23, PIB national summary",
+                  "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2053070",
+                  "data_type": "official_public",
+                  "reference_years": [
+                    2023
+                  ]
+                },
+                {
+                  "name": "WHO Global Health Observatory — bed and doctor density",
+                  "url": "https://www.who.int/data/gho/info/gho-odata-api",
+                  "data_type": "public_international",
+                  "reference_years": [
+                    2008,
+                    2010,
+                    2020,
+                    2021,
+                    2022,
+                    2023,
+                    2024
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "evidence_id": "e2",
+            "tool": "get_model_performance",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "constrained",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "country_id": "IN",
+              "model_version": "forecast-v1-176a752efab3ae4e",
+              "evaluated_at": "2026-09-27T16:19:03.228026+00:00",
+              "windows": {
+                "train": {
+                  "start": "2025-05-04",
+                  "end": "2026-04-18"
+                },
+                "selection": {
+                  "start": "2026-04-19",
+                  "end": "2026-06-11"
+                },
+                "calibration": {
+                  "start": "2026-06-12",
+                  "end": "2026-08-04"
+                },
+                "test": {
+                  "start": "2026-08-05",
+                  "end": "2026-09-27"
+                }
+              },
+              "data_type": "calibrated simulated operations",
+              "history_sha256": "29ddde078205291cc0c93e64355be737a209898dca0fd845e37c75af6c938482",
+              "feature_schema": [
+                "horizon",
+                "weekday",
+                "annual_sin",
+                "annual_cos",
+                "trend",
+                "lag1_ratio",
+                "lag2_ratio",
+                "lag7_ratio",
+                "lag14_ratio",
+                "lag28_ratio",
+                "mean7_ratio",
+                "mean14_ratio",
+                "std28_ratio",
+                "growth7",
+                "log_scale",
+                "facility_type",
+                "log_catchment",
+                "beds",
+                "scheduled_staff",
+                "latitude",
+                "medicine_index"
+              ],
+              "config": {
+                "max_iter": 100,
+                "max_leaf_nodes": 15,
+                "learning_rate": 0.08,
+                "l2_regularization": 1,
+                "loss": "absolute_error",
+                "early_stopping": false,
+                "random_state": 42
+              },
+              "sklearn_version": "1.7.2",
+              "selection_rule": "Lowest selection-window WAPE across all 14 daily horizons; test never selects champion.",
+              "uncertainty_method": "Per-resource/horizon absolute normalized residual quantiles from a separate calibration period; marginal daily 80%/95% intervals, no exchangeability guarantee.",
+              "source_vintage_note": "Public aggregates accessed in 2026 are held fixed for this retrospective synthetic experiment; this is not an as-published real-world backtest.",
+              "targets": {
+                "footfall": {
+                  "champion": "hist_gradient_boosting",
+                  "models": {
+                    "naive": {
+                      "selection": {
+                        "mae": 41.89510006901311,
+                        "rmse": 63.236230999112244,
+                        "wape": 0.13865570930403198,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 54.46713250517598,
+                        "rmse": 94.69300265358996,
+                        "wape": 0.15244320106505474,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 49.36835748792271,
+                          "rmse": 107.55517065348145,
+                          "wape": 0.1282222598636127,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 13.859903381642512,
+                          "rmse": 21.867188046099532,
+                          "wape": 0.039905001338743945,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 14.216183574879228,
+                          "rmse": 22.67809281486886,
+                          "wape": 0.04082956405916142,
+                          "samples": 828
+                        }
+                      }
+                    },
+                    "seasonal_naive": {
+                      "selection": {
+                        "mae": 13.01984126984127,
+                        "rmse": 21.247997510486936,
+                        "wape": 0.04309036912006295,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 14.09187370600414,
+                        "rmse": 22.704102641209605,
+                        "wape": 0.039440488932359415,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 15.041062801932368,
+                          "rmse": 24.34826819819446,
+                          "wape": 0.03906548974585788,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 13.859903381642512,
+                          "rmse": 21.867188046099532,
+                          "wape": 0.039905001338743945,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 14.216183574879228,
+                          "rmse": 22.67809281486886,
+                          "wape": 0.04082956405916142,
+                          "samples": 828
+                        }
+                      }
+                    },
+                    "moving_average": {
+                      "selection": {
+                        "mae": 34.28889383193622,
+                        "rmse": 55.507783239264704,
+                        "wape": 0.11348226612864033,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 38.251269264826696,
+                        "rmse": 64.65733442287213,
+                        "wape": 0.10705806719267613,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 29.721876872334505,
+                          "rmse": 48.54500495491423,
+                          "wape": 0.07719532133292231,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 42.819702682863685,
+                          "rmse": 72.34576139990173,
+                          "wape": 0.1232851518393338,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 43.64044102839226,
+                          "rmse": 72.67095766013307,
+                          "wape": 0.12533744891191273,
+                          "samples": 828
+                        }
+                      }
+                    },
+                    "hist_gradient_boosting": {
+                      "selection": {
+                        "mae": 9.57249406120789,
+                        "rmse": 15.600177532377687,
+                        "wape": 0.03168105462641229,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 10.707876623500212,
+                        "rmse": 17.163377114485463,
+                        "wape": 0.02996932120377223,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 10.341392296283116,
+                          "rmse": 16.210433259441793,
+                          "wape": 0.026859242596636176,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 10.509317991175045,
+                          "rmse": 16.671694663996238,
+                          "wape": 0.03025810043254621,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 10.690357220587774,
+                          "rmse": 16.953541733642957,
+                          "wape": 0.030703220921021027,
+                          "samples": 828
+                        }
+                      }
+                    }
+                  },
+                  "coverage": {
+                    "footfall": {
+                      "0.8": {
+                        "coverage": 0.8198757763975155,
+                        "mean_width": 36.86788724423277,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      },
+                      "0.95": {
+                        "coverage": 0.959023464458247,
+                        "mean_width": 57.342605411281134,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      }
+                    }
+                  },
+                  "train_rows": 139524,
+                  "selection_rows": 11592,
+                  "calibration_rows": 11592,
+                  "test_rows": 11592
+                },
+                "medicine": {
+                  "champion": "hist_gradient_boosting",
+                  "models": {
+                    "naive": {
+                      "selection": {
+                        "mae": 23.91844375431332,
+                        "rmse": 43.25388380779519,
+                        "wape": 0.14270071042938584,
+                        "samples": 57960
+                      },
+                      "test": {
+                        "mae": 32.21789164941339,
+                        "rmse": 69.29028303435747,
+                        "wape": 0.15281022103586622,
+                        "samples": 57960
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 29.256521739130434,
+                          "rmse": 79.09387194789585,
+                          "wape": 0.12875676089396879,
+                          "samples": 4140
+                        },
+                        "7": {
+                          "mae": 8.25072463768116,
+                          "rmse": 16.21061559506654,
+                          "wape": 0.040257588221844554,
+                          "samples": 4140
+                        },
+                        "14": {
+                          "mae": 8.519806763285024,
+                          "rmse": 17.002358461011077,
+                          "wape": 0.04146437228592454,
+                          "samples": 4140
+                        }
+                      }
+                    },
+                    "seasonal_naive": {
+                      "selection": {
+                        "mae": 8.059368530020704,
+                        "rmse": 16.37951756258898,
+                        "wape": 0.04808329616506889,
+                        "samples": 57960
+                      },
+                      "test": {
+                        "mae": 8.431038647342994,
+                        "rmse": 16.966618160819348,
+                        "wape": 0.03998861543399198,
+                        "samples": 57960
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 8.92608695652174,
+                          "rmse": 18.07361490005681,
+                          "wape": 0.03928334523931013,
+                          "samples": 4140
+                        },
+                        "7": {
+                          "mae": 8.25072463768116,
+                          "rmse": 16.21061559506654,
+                          "wape": 0.040257588221844554,
+                          "samples": 4140
+                        },
+                        "14": {
+                          "mae": 8.519806763285024,
+                          "rmse": 17.002358461011077,
+                          "wape": 0.04146437228592454,
+                          "samples": 4140
+                        }
+                      }
+                    },
+                    "moving_average": {
+                      "selection": {
+                        "mae": 19.797015186274272,
+                        "rmse": 38.0371151252034,
+                        "wape": 0.11811170327305369,
+                        "samples": 57960
+                      },
+                      "test": {
+                        "mae": 22.778544273336976,
+                        "rmse": 47.66260342834724,
+                        "wape": 0.10803917348661345,
+                        "samples": 57960
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 17.739164952264314,
+                          "rmse": 35.74170792791862,
+                          "wape": 0.07806934264377983,
+                          "samples": 4140
+                        },
+                        "7": {
+                          "mae": 25.73881965029067,
+                          "rmse": 53.9134540927315,
+                          "wape": 0.12558688458289632,
+                          "samples": 4140
+                        },
+                        "14": {
+                          "mae": 26.379123473052243,
+                          "rmse": 54.62478346751661,
+                          "wape": 0.12838246531324726,
+                          "samples": 4140
+                        }
+                      }
+                    },
+                    "hist_gradient_boosting": {
+                      "selection": {
+                        "mae": 5.901039504172659,
+                        "rmse": 11.965867126873707,
+                        "wape": 0.03520640967142575,
+                        "samples": 57960
+                      },
+                      "test": {
+                        "mae": 6.493463469709546,
+                        "rmse": 12.835365373569243,
+                        "wape": 0.030798650603591108,
+                        "samples": 57960
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 6.210608175769536,
+                          "rmse": 12.024234767626396,
+                          "wape": 0.02733263369528128,
+                          "samples": 4140
+                        },
+                        "7": {
+                          "mae": 6.447406062939252,
+                          "rmse": 12.663804974384185,
+                          "wape": 0.03145869360315728,
+                          "samples": 4140
+                        },
+                        "14": {
+                          "mae": 6.527205915761047,
+                          "rmse": 12.707349486001721,
+                          "wape": 0.03176674114773591,
+                          "samples": 4140
+                        }
+                      }
+                    }
+                  },
+                  "coverage": {
+                    "AMX": {
+                      "0.8": {
+                        "coverage": 0.8019323671497585,
+                        "mean_width": 15.326447097592409,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      },
+                      "0.95": {
+                        "coverage": 0.953416149068323,
+                        "mean_width": 23.637695714496218,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      }
+                    },
+                    "IFA": {
+                      "0.8": {
+                        "coverage": 0.81608005521049,
+                        "mean_width": 21.184019859256647,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      },
+                      "0.95": {
+                        "coverage": 0.9609213250517599,
+                        "mean_width": 32.692147405165876,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      }
+                    },
+                    "IVF": {
+                      "0.8": {
+                        "coverage": 0.8589544513457557,
+                        "mean_width": 8.7444440162835,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      },
+                      "0.95": {
+                        "coverage": 0.9749827467218771,
+                        "mean_width": 13.658602161024303,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      }
+                    },
+                    "ORS": {
+                      "0.8": {
+                        "coverage": 0.8320393374741201,
+                        "mean_width": 14.095643634725771,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      },
+                      "0.95": {
+                        "coverage": 0.9680814354727398,
+                        "mean_width": 22.331262063906642,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      }
+                    },
+                    "PCM": {
+                      "0.8": {
+                        "coverage": 0.880175983436853,
+                        "mean_width": 64.02191419888526,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      },
+                      "0.95": {
+                        "coverage": 0.9786059351276742,
+                        "mean_width": 97.78241707024499,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      }
+                    }
+                  },
+                  "train_rows": 697592,
+                  "selection_rows": 57960,
+                  "calibration_rows": 57960,
+                  "test_rows": 57960
+                },
+                "admissions": {
+                  "champion": "hist_gradient_boosting",
+                  "models": {
+                    "naive": {
+                      "selection": {
+                        "mae": 2.3660282953761214,
+                        "rmse": 3.768249818453112,
+                        "wape": 0.13822351014237116,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 3.0873015873015874,
+                        "rmse": 5.627636258241329,
+                        "wape": 0.1526531308650401,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 2.8115942028985508,
+                          "rmse": 6.396519282953665,
+                          "wape": 0.12901795610729327,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 0.7717391304347826,
+                          "rmse": 1.3374032088323884,
+                          "wape": 0.03924820342730791,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 0.7777777777777778,
+                          "rmse": 1.3935670007241296,
+                          "wape": 0.0394269621648096,
+                          "samples": 828
+                        }
+                      }
+                    },
+                    "seasonal_naive": {
+                      "selection": {
+                        "mae": 0.7285196687370601,
+                        "rmse": 1.3120388045735134,
+                        "wape": 0.04256016127000126,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 0.7934782608695652,
+                        "rmse": 1.4009757025925391,
+                        "wape": 0.039233919126428936,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 0.8514492753623188,
+                          "rmse": 1.5,
+                          "wape": 0.03907115938816227,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 0.7717391304347826,
+                          "rmse": 1.3374032088323884,
+                          "wape": 0.03924820342730791,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 0.7777777777777778,
+                          "rmse": 1.3935670007241296,
+                          "wape": 0.0394269621648096,
+                          "samples": 828
+                        }
+                      }
+                    },
+                    "moving_average": {
+                      "selection": {
+                        "mae": 1.9430025465904721,
+                        "rmse": 3.291303702317882,
+                        "wape": 0.11351032138126119,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 2.2014936409463877,
+                        "rmse": 3.839716024256628,
+                        "wape": 0.10885392546430014,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 1.7182539580524832,
+                          "rmse": 2.890424659157125,
+                          "wape": 0.07884694509351896,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 2.4644582766841574,
+                          "rmse": 4.293454077603326,
+                          "wape": 0.12533452816746407,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 2.4946515041848887,
+                          "rmse": 4.296968813733167,
+                          "wape": 0.12645839631842096,
+                          "samples": 828
+                        }
+                      }
+                    },
+                    "hist_gradient_boosting": {
+                      "selection": {
+                        "mae": 0.6205235468098006,
+                        "rmse": 1.0034686939117685,
+                        "wape": 0.036251021567943596,
+                        "samples": 11592
+                      },
+                      "test": {
+                        "mae": 0.6763259161152563,
+                        "rmse": 1.0672080171741467,
+                        "wape": 0.03344126437300824,
+                        "samples": 11592
+                      },
+                      "test_by_horizon": {
+                        "1": {
+                          "mae": 0.6678942899692893,
+                          "rmse": 1.0250501756230492,
+                          "wape": 0.03064821946877475,
+                          "samples": 828
+                        },
+                        "7": {
+                          "mae": 0.6646160991761446,
+                          "rmse": 1.0236465970980848,
+                          "wape": 0.03380026596141807,
+                          "samples": 828
+                        },
+                        "14": {
+                          "mae": 0.6628853475928831,
+                          "rmse": 1.0433472654354954,
+                          "wape": 0.033602857096051625,
+                          "samples": 828
+                        }
+                      }
+                    }
+                  },
+                  "coverage": {
+                    "admissions": {
+                      "0.8": {
+                        "coverage": 0.820479641131815,
+                        "mean_width": 2.7913104322115725,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      },
+                      "0.95": {
+                        "coverage": 0.974896480331263,
+                        "mean_width": 6.192338000827973,
+                        "samples": 11592,
+                        "calibration_paths": 828
+                      }
+                    }
+                  },
+                  "train_rows": 139524,
+                  "selection_rows": 11592,
+                  "calibration_rows": 11592,
+                  "test_rows": 11592
+                }
+              },
+              "operational_profile": "constrained",
+              "profile_version": "inventory-profile-v1"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "budget_limit": 10,
+  "expected_provider_requests": 1,
+  "maximum_provider_requests": 10,
+  "local_fixture_tool_calls": 0,
+  "comparison": {
+    "old_suite_expected_provider_requests": 23,
+    "old_cases": {
+      "risk": 4,
+      "positive": 8,
+      "constrained": 8,
+      "provenance": 3
+    },
+    "new_acceptance_expected_provider_requests": 8,
+    "baseline_commit": "914ff4a",
+    "old_schema_bytes_per_turn": 11363,
+    "old_system_bytes_per_turn": 2917,
+    "new_system_bytes_per_turn": 2566,
+    "old_authoritative_result_bytes_by_case": {
+      "risk": 19255,
+      "positive": 67628,
+      "constrained": 46022,
+      "provenance": 5681
+    },
+    "schema_bytes_by_intent": {
+      "network-risk": 4997,
+      "emergency-planning": 7843,
+      "provenance": 1265,
+      "follow-up-plan": 1496,
+      "plan-review": 1777
+    },
+    "token_estimate_method": "characters / 4; estimates are not Gemini token counts"
+  },
+  "resume_invalidated": [],
+  "provider_requests": 1,
+  "daily_ledger_used": 1,
+  "expected_provider_requests_this_run": 1,
+  "local_tool_calls": 2,
+  "retained_pass_cases": [
+    "provenance"
+  ],
+  "capabilities_accepted": []
+}
