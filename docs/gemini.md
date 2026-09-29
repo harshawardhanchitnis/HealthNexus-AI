@@ -2,11 +2,11 @@
 
 HealthNexus uses Gemini 3.8 Flash as its primary reasoning model with Gemini Flash-family availability failover. The current provider citation contract uses server-issued request-local fact IDs. All five candidates pass deterministic protocol tests; full live workflow acceptance remains pending. [Current fact-citation evidence](phase6-fact-citations-report.md) supersedes the dated numeric-path and failover measurements below without replacing them.
 
-The [subsequent full workflow attempt](phase6-full-live-report.md) used verifier-selected Flash-Lite only. Native simulation and optimization produced the canonical positive plan; final synthesis returned HTTP 200 / `incomplete` with truncated JSON and was rejected. Verification stopped after three actual sends (25 + 3 = 28), without retry/fallback or later live cases. Production configuration and accepted grounding remain unchanged.
+The [earlier full workflow attempt](phase6-full-live-report.md) proved native simulation and optimization but stopped on incomplete JSON (ledger 28). The [synthesis budget fix](phase6-synthesis-report.md) then used one final-only Lite send at low/4,096 with reconstructed authoritative evidence. It completed JSON in 2.958 seconds with zero thought tokens, but transfer-execution wording failed acceptance. The ledger is 29; no retry/fallback or later live case followed. Native orchestration is PASS; positive final/workflow acceptance remains pending. The exact fact/numeric contract and production chain are unchanged.
 
 ## Model, SDK and setup
 
-The preferred primary model is `gemini-3.8-flash`, using `google-genai==2.25.0` and `from google import genai`. Google lists this model's function calling, structured output and thinking support on its [model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash). The application uses the recommended [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview), native function declarations and `previous_interaction_id`. Default thinking is `medium`; `low` is also accepted. Prompt version: `healthnexus-system-v5-fact-ids`; fact contract: `healthnexus-facts-v1`; configuration: `copilot-config-v4-failover`.
+The configured primary model is `gemini-3.8-flash`, using `google-genai==2.25.0` and `from google import genai`. The application uses the Interactions API, native function declarations and `previous_interaction_id`. Native planning retains **medium / 2,400 tokens**; final structured synthesis uses **low / 4,096 tokens**. The pinned official SDK defines `low`; shared SDK HTTP mocks validate serialization and grounding for Lite and 3.6. Provider compatibility is measured separately in live evidence. Prompt version: `healthnexus-system-v6-compact-synthesis`; fact contract unchanged: `healthnexus-facts-v1`; configuration: `copilot-config-v5-stage-generation`.
 
 The SDK requires Pydantic 2.12.5 or newer. Requirements pin `pydantic==2.13.5`; all 156 existing tests pass with that upgrade. No retraining or profile regeneration is required.
 
@@ -22,6 +22,7 @@ GEMINI_MODEL_FALLBACKS=gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash,gemini
 GEMINI_FAILOVER_ENABLED=true
 GEMINI_ENABLED=true
 GEMINI_THINKING_LEVEL=medium
+GEMINI_SYNTHESIS_THINKING_LEVEL=low
 ```
 
 Restart the backend. Never put keys in Angular, browser configuration, URLs or committed files. Status exposes only a configured boolean and safe labels. No startup inference call occurs. Only the five approved stable Flash-family models are accepted. Primary configuration takes precedence over legacy GEMINI_MODEL; absent new settings, the documented five-model chain is used. The actual ignored .env is never edited by the failover implementation. Missing configuration, configured-but-untried and runtime outcomes remain distinct.
@@ -66,7 +67,7 @@ Interactions use Google's stored history. Provider retention is separate: see [G
 
 ## Bounds, errors and progress
 
-Messages: 2,000 characters. Model output: 2,400 tokens per interaction. Tools: maximum 28,000 JSON characters, usually smaller. Facilities/candidates, warnings, transfer and receiver-risk detail are explicitly limited/paginated. No 540-day histories, fitted artifacts, 500 paths or complete national projections are sent. Oversized shaped results request a narrower scope.
+Messages: 2,000 characters. Native generation: 2,400 tokens; final synthesis: 4,096 tokens. Stage selection is server-owned and preserved through model handoff. Final synthesis normally selects three to five concise claims; authoritative numeric panels stay server-owned. Every claim still uses current fact IDs and unchanged exact numeric/context/semantic validation. Both effective stage configurations are recorded in diagnostics and response metadata. Tools: maximum 28,000 JSON characters, usually smaller. Facilities/candidates, warnings, transfer and receiver-risk detail are explicitly limited/paginated. No 540-day histories, fitted artifacts, 500 paths or complete national projections are sent. Oversized shaped results request a narrower scope.
 
 Provider timeout is 60 seconds. SDK retries are disabled. With failover enabled, each model gets one bounded attempt before an eligible availability failure advances the chain. With failover disabled, the legacy single bounded 502/503 retry remains. Authentication and application/grounding failures never trigger model switching. The 300-second deadline is cooperative between calls/tools: an executing deterministic service is not forcibly terminated. Existing solver time bounds remain. Tool time and provider network time are recorded separately. Usage is copied from provider fields; cost/pricing is not fabricated.
 
@@ -107,7 +108,7 @@ The [fact-citation report](phase6-fact-citations-report.md) records 436 passing 
 
 ## Availability failover
 
-Exact default order: **gemini-3.8-flash → gemini-3.7-flash → gemini-3.6-flash → gemini-3.5-flash → gemini-3.5-flash-lite**. There is no 3.1/2.5/Pro/preview/non-Google fallback. Every candidate uses the same project/key, registry, strict tool schemas, local engines and claim validation. All use medium thinking for acceptance, supported by [official thinking documentation](https://ai.google.dev/gemini-api/docs/thinking). No model-specific answer templates or calculations are introduced.
+Exact default order: **gemini-3.8-flash → gemini-3.7-flash → gemini-3.6-flash → gemini-3.5-flash → gemini-3.5-flash-lite**. There is no 3.1/2.5/Pro/preview/non-Google fallback. Every candidate uses the same project/key, registry, strict tool schemas, local engines and claim validation. Stage configuration is shared: medium for native planning, low for final synthesis. No model-specific answer templates or calculations are introduced. SDK mocks establish local protocol behavior; they do not establish provider availability or live grounding for an untested model.
 
 Eligible triggers are 503/high demand, bounded provider timeout, explicitly unavailable configured model endpoint (404), and a classified RPM/TPM/RPD 429 whose quota violations all explicitly identify the current model. Ambiguous/project-wide 429, missing interaction 404, 401/403, 400, bad schema/evidence, clinical refusal, incompatible geography/profile and local tool failures remain visible failures. All eligible models unavailable returns provider_unavailable_all_models; a local budget refusal retains quota_budget_exhausted_locally. Offline mode is always explicit.
 

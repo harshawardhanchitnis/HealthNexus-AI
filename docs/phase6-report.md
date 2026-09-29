@@ -1,6 +1,14 @@
 # Phase 6 — grounded resilience Copilot
 
-## Latest full live attempt — stopped at synthesis
+## Latest checkpoint — final synthesis budget fix
+
+Native planning remains medium/2,400; final synthesis uses low/4,096 and normally three to five concise claims. Exactly one new Lite request used deterministically reconstructed authoritative evidence, with no native provider calls, retry or fallback. It returned HTTP 200 / completed, complete four-claim JSON, 470 output tokens, zero thought tokens and 11,027 total tokens in 2.958 seconds. The response describes advisory transfers as executed actions and is not accepted. An unnecessary empty-ID guard in the stateless final-only verifier was corrected locally; the original failed trace is retained and no second live request tested the correction. Ledger 28 + 1 = 29. [Measured report and limits](phase6-synthesis-report.md).
+
+Native orchestration: **PASS** from preserved live evidence. Final synthesis: **FAIL**. Positive workflow acceptance: **FAIL**, completion pending. Exact grounding, engines, canonical results, federation, UI and production fallback order remain unchanged. Local regression/security evidence is in [final verification](evaluation/phase6-synthesis-final.json).
+
+**Positive live workflow remains pending because: the completed synthesis describes advisory transfers as executed actions.** Follow-up, constrained and provenance cases were not run live.
+
+## Historical full live attempt — stopped at synthesis
 
 Verifier-selected Flash-Lite performed actual native `run_emergency_scenario → optimize_redistribution`, producing the exact 41,763 / 17,745 / 15,679 / 10 / 26,084 plan with zero donor violations/new risks. The third interaction returned HTTP 200 / `incomplete`, with truncated final JSON; no grounded final answer was accepted. Exactly three sends appended to 25 historical requests (28 total), with no retry, failover or later live case. Accepted fact/numeric grounding, production order, engines, UI, federation and key/project/billing remain unchanged. [Actual evidence and diagnosis](phase6-full-live-report.md).
 

@@ -9,7 +9,7 @@ from pydantic import ValidationError
 from app.ai.config import AIConfig, VERSION as CONFIG_VERSION
 from app.ai.client import GeminiTransport, CopilotError
 from app.ai.schemas import Context, CopilotResponse, FactDraftAnswer, ToolTrace
-from app.ai.system_prompt import SYSTEM, VERSION as PROMPT_VERSION, LIMITATIONS
+from app.ai.system_prompt import SYSTEM, SYNTHESIS, VERSION as PROMPT_VERSION, LIMITATIONS
 from app.ai.tool_registry import declarations, intent, SUBSETS
 from app.ai.protocol import byte_size
 from app.ai.facts import FactCatalogue, VERSION as FACT_VERSION
@@ -217,9 +217,11 @@ class CopilotService:
                     nonlocal provider_requests, interaction_count
                     before = getattr(transport,'provider_requests',None)
                     diagnostics.append({'tool_schema_bytes':byte_size(body.get('tools',[])),
-                        'system_bytes':len(SYSTEM.encode('utf-8')),'input_bytes':byte_size(body['input']),
+                        'generation_stage':'synthesis' if 'response_format' in body else 'native',
+                        'generation_config':body.get('generation_config',{}),
+                        'system_bytes':len(body['system_instruction'].encode('utf-8')),'input_bytes':byte_size(body['input']),
                         'request_body_bytes':byte_size(body),
-                        'input_tokens_estimate':round((len(SYSTEM)+len(json.dumps(body.get('tools',[])))+len(json.dumps(body['input'])))/4),
+                        'input_tokens_estimate':round((len(body['system_instruction'])+len(json.dumps(body.get('tools',[])))+len(json.dumps(body['input'])))/4),
                         'estimate_method':'characters / 4 heuristic, not Gemini token usage'})
                     began=perf_counter()
                     if before is None: provider_requests += 1
@@ -264,7 +266,7 @@ class CopilotService:
                     with self.lock: self.requests[rid]['phase']='Gemini selecting tools / preparing explanation'
                     body={'model':self.config.model,'input':input_data,'system_instruction':SYSTEM,
                         'tools':declarations(allowed),'store':True,
-                        'generation_config':{'thinking_level':self.config.thinking,'max_output_tokens':self.config.max_output_tokens}}
+                        'generation_config':self.config.generation()}
                     if previous: body['previous_interaction_id']=previous
                     response=ask(body)
                     previous=interaction_id=response.get('id')
@@ -298,8 +300,8 @@ class CopilotService:
                     'input':input_data if prefetched or isinstance(input_data,list) else json.dumps({
                         'instruction':'Produce the structured answer from fresh evidence. Preserve remaining shortages and advisory status.',
                         'fresh_evidence':[{'evidence_id':eid,'tool':r['tool']} for eid,r in records.items()]}),
-                    'system_instruction':SYSTEM,'store':True,
-                    'generation_config':{'thinking_level':self.config.thinking,'max_output_tokens':self.config.max_output_tokens},
+                    'system_instruction':SYSTEM+SYNTHESIS,'store':True,
+                    'generation_config':self.config.generation(synthesis=True),
                     'response_format':{'type':'text','mime_type':'application/json','schema':catalogue.schema()}}
                 if previous: body['previous_interaction_id']=previous
                 response=ask(body)
@@ -331,7 +333,8 @@ class CopilotService:
                     'model':transport.effective_model if transport else None,'configured_model':self.config.model,
                     'sdk_version':'2.25.0','api':'Interactions',
                     'transport':'offline' if request.mode=='offline' else 'google-genai' if transport.official else 'mock',
-                    'thinking_level':self.config.thinking if request.mode=='gemini' else None,
+                    'thinking_level':self.config.synthesis_thinking if request.mode=='gemini' else None,
+                    'generation_stages':{'native':self.config.generation(),'synthesis':self.config.generation(True)} if request.mode=='gemini' else None,
                     'interaction_id':interaction_id,'timestamp':datetime.now(timezone.utc).isoformat(),
                     'system_prompt_version':PROMPT_VERSION,'config_version':CONFIG_VERSION,'usage':usages,
                     'model_versions':sorted({r['payload'].get('model_version') or r['payload'].get('provenance',{}).get('model_version')

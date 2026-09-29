@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-09-29T09:09:35.651854+00:00",
+  "status": "PASS",
+  "new_live_requests": 0,
+  "full_backend": "PASS",
+  "backend_tests": 479,
+  "backend_seconds": 70.995,
+  "pytest_report_sha256": "d79838b1fb1c087b920a984a6a27e9448f6038c7c33b14ee18eefde85b3e5504",
+  "mock": "PASS",
+  "compile": "PASS",
+  "dependencies": "PASS",
+  "sdk_version": "2.25.0",
+  "synthesis_thinking_sdk_defined": "low",
+  "generation_stages": {
+    "native": {
+      "thinking_level": "medium",
+      "max_output_tokens": 2400
+    },
+    "synthesis": {
+      "thinking_level": "low",
+      "max_output_tokens": 4096
+    }
+  },
+  "canonical": "PASS",
+  "security": {
+    "status": "PASS",
+    "files_scanned": 452,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "preservation": {
+    "status": "PASS",
+    "original_file_identities": 500,
+    "unchanged_file_identities": 488,
+    "env_unchanged": true,
+    "ui_unchanged": true,
+    "fact_numeric_contract_unchanged": true,
+    "operational_forecasting_ortools_federation_artifacts_unchanged": true,
+    "production_fallback_order_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "frontend": "unchanged; preserved prior successful strict TypeScript/production build",
+  "implementation_sha256": "855de9eb22c0944c61e7b0550346e0c7431cbd40383a711d5fa86028d001f866"
+}

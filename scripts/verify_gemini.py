@@ -20,7 +20,7 @@ from app.ai.client import CopilotError, GeminiTransport
 from app.ai.budget import RequestBudget
 from app.ai.tools import ToolExecutor, plan_summary
 from app.ai.tool_registry import declarations, SUBSETS, TOOLS, json_schema
-from app.ai.system_prompt import VERSION as PROMPT_VERSION, SYSTEM
+from app.ai.system_prompt import VERSION as PROMPT_VERSION, SYSTEM, SYNTHESIS
 from app.ai.protocol import byte_size
 from app.ai.facts import fact_label
 from app.profiles.config import VERSION as PROFILE_VERSION
@@ -136,12 +136,13 @@ def evidence_identity(config,repo,engine):
         digest.update(path.relative_to(ROOT).as_posix().encode());digest.update(path.read_bytes())
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     return {'git_commit':commit,'implementation_sha256':digest.hexdigest(),'model':config.model,'sdk_version':version('google-genai'),
-        'system_prompt_version':PROMPT_VERSION,'system_prompt_sha256':hashlib.sha256(SYSTEM.encode()).hexdigest(),
+        'system_prompt_version':PROMPT_VERSION,'system_prompt_sha256':hashlib.sha256((SYSTEM+SYNTHESIS).encode()).hexdigest(),
         'tool_schema_sha256':hashlib.sha256(json.dumps(declarations(),sort_keys=True).encode()).hexdigest(),
         'profile_version':PROFILE_VERSION,'config_version':CONFIG_VERSION,
         'configuration':{'chain':list(config.chain),'failover_enabled':config.failover_enabled,
             'thinking':config.thinking,'max_calls':config.max_calls,'timeout':config.timeout,
-            'workflow_timeout':config.workflow_timeout,'max_output_tokens':config.max_output_tokens},
+            'workflow_timeout':config.workflow_timeout,'max_output_tokens':config.max_output_tokens,
+            'synthesis_thinking':config.synthesis_thinking,'synthesis_max_output_tokens':config.synthesis_max_output_tokens},
         'credential_fingerprint':hashlib.sha256(config.api_key.encode()).hexdigest(),
         'artifacts':{p:{'snapshot':fingerprint(repo.profile_snapshot('IN',p),repo.profile_snapshot('IN',p).facilities),
             'model_sha256':engine.forecasts.bundle('IN',p)['artifact_sha256']} for p in ('constrained','redistribution-ready')}}

@@ -110,7 +110,9 @@ def test_sequential_interactions_and_fresh_evidence(profiles):
     assert fake.bodies[1]['previous_interaction_id']=='interaction1'
     assert fake.bodies[1]['input'][0]['call_id']=='c1'
     assert fake.bodies[2]['previous_interaction_id']=='interaction2'
-    assert all(b['model']==MODEL and b['generation_config']['thinking_level']=='medium' for b in fake.bodies)
+    assert all(b['model']==MODEL for b in fake.bodies)
+    assert all(b['generation_config']=={'thinking_level':'medium','max_output_tokens':2400} for b in fake.bodies[:-1])
+    assert fake.bodies[-1]['generation_config']=={'thinking_level':'low','max_output_tokens':4096}
     assert all(b['tools'] and 'response_format' not in b for b in fake.bodies[:-1])
     assert 'tools' not in fake.bodies[-1] and fake.bodies[-1]['response_format']['schema']
     assert fake.bodies[-1]['previous_interaction_id']=='evidence-ready'

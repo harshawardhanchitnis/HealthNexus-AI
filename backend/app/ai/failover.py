@@ -72,7 +72,8 @@ class FailoverSession:
                 raise CopilotError('workflow_timeout', 'Copilot workflow time limit reached.', 504)
             model = self.effective_model
             body['model'] = model
-            body['generation_config'] = {**body.get('generation_config', {}), 'thinking_level': self.config.thinking}
+            body['generation_config'] = {**body.get('generation_config', {}),
+                **self.config.generation(synthesis='response_format' in body)}
             counts = self.per_model.setdefault(model, {'provider_requests':0, 'successful_interactions':0,
                 'failed_attempts':0, 'provider_seconds':0.})
             before = getattr(self.transport, 'provider_requests', None)

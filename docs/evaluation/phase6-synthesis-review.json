@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-09-29T09:17:33.812573+00:00",
+  "status": "FAIL",
+  "source_report_sha256": "5d1b69a4cb7d2901628358b8fa52f880ce5c16a5a73fceebe671aebd2764c39b",
+  "native_orchestration": "PASS (previous live calls, independently preserved)",
+  "final_synthesis": "FAIL",
+  "positive_workflow": "FAIL (acceptance pending)",
+  "phase6_complete": false,
+  "provider_completion": "PASS",
+  "generation_configuration_compatibility": "PASS (one actual Lite response)",
+  "structured_json": "PASS",
+  "schema": "PASS (independent local parsing of exact saved live text)",
+  "claim_count": 4,
+  "json_truncation": false,
+  "qualitative_grounding": "FAIL (manual factual review: advisory transfers described as executed actions)",
+  "unsafe_live_claims": [
+    "The redistribution optimizer completed with an optimal status, executing safe transfers across available donor facilities without incurring safety violations.",
+    "Despite executing authorized transfers, a target deficit and remaining unmet resource needs persist at facilities at risk."
+  ],
+  "initial_verifier_error": "response_incomplete",
+  "initial_verifier_error_reason": "Empty interaction ID on stateless store=False request",
+  "verifier_correction": "Final-only completion validation accepts optional empty ID; production stored conversations unchanged",
+  "sdk_evidence": "google-genai==2.25.0, _gaos/types/interactions/interaction.py: id is Optional[str] default empty string",
+  "fact_id_resolution": "NOT_REACHED by initial live verifier; no zero unknown-ID count claimed",
+  "numeric_grounding": "NOT_REACHED by initial live verifier; no zero unsupported-number count claimed",
+  "solver_terminology": "NOT_REACHED by initial live verifier",
+  "unknown_fact_ids": null,
+  "unsupported_numeric_claims": null,
+  "provider_seconds": 2.9582648999930825,
+  "usage": {
+    "input_tokens_by_modality": [
+      {
+        "modality": "text",
+        "tokens": 10557
+      }
+    ],
+    "total_cached_tokens": 0,
+    "total_input_tokens": 10557,
+    "total_output_tokens": 470,
+    "total_thought_tokens": 0,
+    "total_tokens": 11027,
+    "total_tool_use_tokens": 0
+  },
+  "partial_output_length_characters": 1220,
+  "generation_stages": {
+    "native": {
+      "thinking_level": "medium",
+      "max_output_tokens": 2400
+    },
+    "synthesis": {
+      "thinking_level": "low",
+      "max_output_tokens": 4096
+    }
+  },
+  "new_provider_requests": 1,
+  "provider_attempts_per_model": {
+    "gemini-3.5-flash-lite": 1
+  },
+  "historical_requests": 28,
+  "ledger_total": 29,
+  "live_native_provider_requests": 0,
+  "live_followup_constrained_provenance_requests": 0,
+  "retries": 0,
+  "fallbacks": 0,
+  "evidence_reuse": "deterministic reconstructed authoritative evidence (path B)",
+  "preservation": {
+    "status": "PASS",
+    "original_file_identities": 500,
+    "unchanged_file_identities": 487,
+    "env_unchanged": true,
+    "ui_unchanged": true,
+    "fact_numeric_contract_unchanged": true,
+    "operational_forecasting_ortools_federation_artifacts_unchanged": true,
+    "production_fallback_order_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "acceptance_statement": "Positive live workflow remains pending because: the completed synthesis describes advisory transfers as executed actions.",
+  "remaining_cases": [
+    "positive synthesis acceptance",
+    "same-conversation donor follow-up",
+    "constrained interpretation",
+    "provenance/reliability"
+  ]
+}

@@ -1,0 +1,3531 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "timestamp": "2026-09-29T09:13:48.454049+00:00",
+      "case": "positive-final",
+      "mode": "official SDK HTTP mock",
+      "model": "gemini-3.5-flash-lite",
+      "sdk_version": "2.25.0",
+      "fact_contract_version": "healthnexus-facts-v1",
+      "system_prompt_version": "healthnexus-system-v6-compact-synthesis",
+      "generation_stages": {
+        "native": {
+          "thinking_level": "medium",
+          "max_output_tokens": 2400
+        },
+        "synthesis": {
+          "thinking_level": "low",
+          "max_output_tokens": 4096
+        }
+      },
+      "historical_provider_requests": 28,
+      "maximum_new_provider_requests": 1,
+      "new_provider_requests": 0,
+      "native_provider_requests": 0,
+      "retry": false,
+      "fallback": false,
+      "previous_interaction_id": null,
+      "stateless_synthesis": true,
+      "provider_interaction_id_required": false,
+      "fact_catalogue": [
+        {
+          "evidence_id": "e1",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e1_d7e32c2578064614_f001",
+              "label": "Scenario id",
+              "value": "a43611d3-384d-4aac-83d9-4baf582f7b7d",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f002",
+              "label": "Model versions",
+              "value": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "unit": null
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f003",
+              "label": "Model versions / Item 0",
+              "value": "forecast-v1-176a752efab3ae4e",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f004",
+              "label": "Resource impact / Item 0 / Demand / Absolute",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f005",
+              "label": "Resource impact / Item 0 / Demand / Baseline",
+              "value": 5997.472028185159,
+              "unit": "capsules",
+              "quote": "5997.472028185159"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f006",
+              "label": "Resource impact / Item 0 / Demand / Percent",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f007",
+              "label": "Resource impact / Item 0 / Demand / Scenario",
+              "value": 5997.472028185159,
+              "unit": "capsules",
+              "quote": "5997.472028185159"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f008",
+              "label": "Resource impact / Item 0 / Demand / Unit",
+              "value": "capsules",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f009",
+              "label": "Resource impact / Item 0 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f010",
+              "label": "Resource impact / Item 0 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f011",
+              "label": "Resource impact / Item 0 / Max stockout risk / Percent",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f012",
+              "label": "Resource impact / Item 0 / Max stockout risk / Scenario",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f013",
+              "label": "Resource impact / Item 0 / Max stockout risk / Unit",
+              "value": "percentage points",
+              "unit": "fraction"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f014",
+              "label": "Resource impact / Item 0 / Name",
+              "value": "Amoxicillin 500 mg",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f015",
+              "label": "Resource impact / Item 0 / Resource id",
+              "value": "AMX",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f016",
+              "label": "Resource impact / Item 0 / Unit",
+              "value": "capsules",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f017",
+              "label": "Resource impact / Item 0 / Unmet demand / Absolute",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f018",
+              "label": "Resource impact / Item 0 / Unmet demand / Baseline",
+              "value": 1230.9780182226204,
+              "unit": "capsules",
+              "quote": "1230.9780182226204"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f019",
+              "label": "Resource impact / Item 0 / Unmet demand / Percent",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f020",
+              "label": "Resource impact / Item 0 / Unmet demand / Scenario",
+              "value": 1230.9780182226204,
+              "unit": "capsules",
+              "quote": "1230.9780182226204"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f021",
+              "label": "Resource impact / Item 0 / Unmet demand / Unit",
+              "value": "capsules",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f022",
+              "label": "Resource impact / Item 1 / Demand / Absolute",
+              "value": 0.0,
+              "unit": "tablets",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f023",
+              "label": "Resource impact / Item 1 / Demand / Baseline",
+              "value": 7747.103259292605,
+              "unit": "tablets",
+              "quote": "7747.103259292605"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f024",
+              "label": "Resource impact / Item 1 / Demand / Percent",
+              "value": 0.0,
+              "unit": "tablets",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f025",
+              "label": "Resource impact / Item 1 / Demand / Scenario",
+              "value": 7747.103259292605,
+              "unit": "tablets",
+              "quote": "7747.103259292605"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f026",
+              "label": "Resource impact / Item 1 / Demand / Unit",
+              "value": "tablets",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f027",
+              "label": "Resource impact / Item 1 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f028",
+              "label": "Resource impact / Item 1 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f029",
+              "label": "Resource impact / Item 1 / Max stockout risk / Percent",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f030",
+              "label": "Resource impact / Item 1 / Max stockout risk / Scenario",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f031",
+              "label": "Resource impact / Item 1 / Max stockout risk / Unit",
+              "value": "percentage points",
+              "unit": "fraction"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f032",
+              "label": "Resource impact / Item 1 / Name",
+              "value": "Iron and folic acid",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f033",
+              "label": "Resource impact / Item 1 / Resource id",
+              "value": "IFA",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f034",
+              "label": "Resource impact / Item 1 / Unit",
+              "value": "tablets",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f035",
+              "label": "Resource impact / Item 1 / Unmet demand / Absolute",
+              "value": 1.1368683772161603e-13,
+              "unit": "tablets",
+              "quote": "1.1368683772161603e-13"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f036",
+              "label": "Resource impact / Item 1 / Unmet demand / Baseline",
+              "value": 844.5187087913196,
+              "unit": "tablets",
+              "quote": "844.5187087913196"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f037",
+              "label": "Resource impact / Item 1 / Unmet demand / Percent",
+              "value": 2.220446049250313e-14,
+              "unit": "tablets",
+              "quote": "2.220446049250313e-14"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f038",
+              "label": "Resource impact / Item 1 / Unmet demand / Scenario",
+              "value": 844.5187087913197,
+              "unit": "tablets",
+              "quote": "844.5187087913197"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f039",
+              "label": "Resource impact / Item 1 / Unmet demand / Unit",
+              "value": "tablets",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f040",
+              "label": "Resource impact / Item 2 / Demand / Absolute",
+              "value": 2102.3098918404003,
+              "unit": "bags",
+              "quote": "2102.3098918404003"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f041",
+              "label": "Resource impact / Item 2 / Demand / Baseline",
+              "value": 2748.5758254530383,
+              "unit": "bags",
+              "quote": "2748.5758254530383"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f042",
+              "label": "Resource impact / Item 2 / Demand / Percent",
+              "value": 76.48724377083116,
+              "unit": "bags",
+              "quote": "76.48724377083116"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f043",
+              "label": "Resource impact / Item 2 / Demand / Scenario",
+              "value": 4850.885717293439,
+              "unit": "bags",
+              "quote": "4850.885717293439"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f044",
+              "label": "Resource impact / Item 2 / Demand / Unit",
+              "value": "bags",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f045",
+              "label": "Resource impact / Item 2 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f046",
+              "label": "Resource impact / Item 2 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f047",
+              "label": "Resource impact / Item 2 / Max stockout risk / Percent",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f048",
+              "label": "Resource impact / Item 2 / Max stockout risk / Scenario",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f049",
+              "label": "Resource impact / Item 2 / Max stockout risk / Unit",
+              "value": "percentage points",
+              "unit": "fraction"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f050",
+              "label": "Resource impact / Item 2 / Name",
+              "value": "IV fluids",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f051",
+              "label": "Resource impact / Item 2 / Resource id",
+              "value": "IVF",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f052",
+              "label": "Resource impact / Item 2 / Unit",
+              "value": "bags",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f053",
+              "label": "Resource impact / Item 2 / Unmet demand / Absolute",
+              "value": 1481.5818808941165,
+              "unit": "bags",
+              "quote": "1481.5818808941165"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f054",
+              "label": "Resource impact / Item 2 / Unmet demand / Baseline",
+              "value": 831.5221078328334,
+              "unit": "bags",
+              "quote": "831.5221078328334"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f055",
+              "label": "Resource impact / Item 2 / Unmet demand / Percent",
+              "value": 178.1770883705679,
+              "unit": "bags",
+              "quote": "178.1770883705679"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f056",
+              "label": "Resource impact / Item 2 / Unmet demand / Scenario",
+              "value": 2313.10398872695,
+              "unit": "bags",
+              "quote": "2313.10398872695"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f057",
+              "label": "Resource impact / Item 2 / Unmet demand / Unit",
+              "value": "bags",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f058",
+              "label": "Resource impact / Item 3 / Demand / Absolute",
+              "value": 700.7699639468001,
+              "unit": "sachets",
+              "quote": "700.7699639468001"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f059",
+              "label": "Resource impact / Item 3 / Demand / Baseline",
+              "value": 4890.729113712904,
+              "unit": "sachets",
+              "quote": "4890.729113712904"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f060",
+              "label": "Resource impact / Item 3 / Demand / Percent",
+              "value": 14.3285376812619,
+              "unit": "sachets",
+              "quote": "14.3285376812619"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f061",
+              "label": "Resource impact / Item 3 / Demand / Scenario",
+              "value": 5591.499077659704,
+              "unit": "sachets",
+              "quote": "5591.499077659704"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f062",
+              "label": "Resource impact / Item 3 / Demand / Unit",
+              "value": "sachets",
+              "unit": "sachets"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f063",
+              "label": "Resource impact / Item 3 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_d7e32c2578064614_f064",
+              "label": "Resource impact / Item 3 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            }
+          ],
+          "facts_truncated": true,
+          "provenance": {
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e2_d7e32c2578064614_f001",
+              "label": "Solver / Constraints",
+              "value": 38,
+              "unit": null,
+              "quote": "38"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f002",
+              "label": "Solver / Construction seconds",
+              "value": 0.0014678000006824732,
+              "unit": null,
+              "quote": "0.0014678000006824732"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f003",
+              "label": "Solver / Elapsed seconds",
+              "value": 0.0301014999859035,
+              "unit": null,
+              "quote": "0.0301014999859035"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f004",
+              "label": "Solver / Engine",
+              "value": "Google OR-Tools CP-SAT",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f005",
+              "label": "Solver / Objective / Item 0",
+              "value": 26084,
+              "unit": null,
+              "quote": "26084"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f006",
+              "label": "Solver / Objective / Item 1",
+              "value": 25289060,
+              "unit": null,
+              "quote": "25289060"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f007",
+              "label": "Solver / Objective / Item 2",
+              "value": 72928,
+              "unit": null,
+              "quote": "72928"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f008",
+              "label": "Solver / Stages / Item 0 / Best bound",
+              "value": 26084.0,
+              "unit": null,
+              "quote": "26084.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f009",
+              "label": "Solver / Stages / Item 0 / Name",
+              "value": "critical_unresolved_units",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f010",
+              "label": "Solver / Stages / Item 0 / Objective",
+              "value": 26084.0,
+              "unit": null,
+              "quote": "26084.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f011",
+              "label": "Solver / Stages / Item 0 / Seconds",
+              "value": 0.020409100000000003,
+              "unit": null,
+              "quote": "0.020409100000000003"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f012",
+              "label": "Solver / Stages / Item 0 / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f013",
+              "label": "Solver / Stages / Item 1 / Best bound",
+              "value": 25289060.0,
+              "unit": null,
+              "quote": "25289060.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f014",
+              "label": "Solver / Stages / Item 1 / Name",
+              "value": "weighted_unresolved_units",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f015",
+              "label": "Solver / Stages / Item 1 / Objective",
+              "value": 25289060.0,
+              "unit": null,
+              "quote": "25289060.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f016",
+              "label": "Solver / Stages / Item 1 / Seconds",
+              "value": 0.0012874000000000002,
+              "unit": null,
+              "quote": "0.0012874000000000002"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f017",
+              "label": "Solver / Stages / Item 1 / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f018",
+              "label": "Solver / Stages / Item 2 / Best bound",
+              "value": 72928.0,
+              "unit": null,
+              "quote": "72928.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f019",
+              "label": "Solver / Stages / Item 2 / Name",
+              "value": "transport_cost",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f020",
+              "label": "Solver / Stages / Item 2 / Objective",
+              "value": 72928.0,
+              "unit": null,
+              "quote": "72928.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f021",
+              "label": "Solver / Stages / Item 2 / Seconds",
+              "value": 0.0012330000000000002,
+              "unit": null,
+              "quote": "0.0012330000000000002"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f022",
+              "label": "Solver / Stages / Item 2 / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f023",
+              "label": "Solver / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f024",
+              "label": "Solver / Termination",
+              "value": "all_lexicographic_stages_proved",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f025",
+              "label": "Solver / Time limit seconds",
+              "value": 10.0,
+              "unit": null,
+              "quote": "10.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f026",
+              "label": "Solver / Variables",
+              "value": 25,
+              "unit": null,
+              "quote": "25"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f027",
+              "label": "Solver / Version",
+              "value": "9.15.6755",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f028",
+              "label": "Safe capacity",
+              "value": 17745,
+              "unit": "accounting items",
+              "quote": "17745"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f029",
+              "label": "Impact / After / Critical resource warnings",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f030",
+              "label": "Impact / After / Expected unmet",
+              "value": 17378.197997959564,
+              "unit": null,
+              "quote": "17378.197997959564"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f031",
+              "label": "Impact / After / Facilities at risk",
+              "value": 1,
+              "unit": "facilities",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f032",
+              "label": "Impact / After / Max stockout risk",
+              "value": 1.0,
+              "unit": "fraction",
+              "quote": "1.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f033",
+              "label": "Impact / After / Target deficit",
+              "value": 26084,
+              "unit": "accounting items",
+              "quote": "26084"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f034",
+              "label": "Impact / Before / Critical resource warnings",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f035",
+              "label": "Impact / Before / Expected unmet",
+              "value": 27655.218070826377,
+              "unit": null,
+              "quote": "27655.218070826377"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f036",
+              "label": "Impact / Before / Facilities at risk",
+              "value": 1,
+              "unit": "facilities",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f037",
+              "label": "Impact / Before / Max stockout risk",
+              "value": 1.0,
+              "unit": "fraction",
+              "quote": "1.0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f038",
+              "label": "Impact / Before / Target deficit",
+              "value": 41763,
+              "unit": "accounting items",
+              "quote": "41763"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f039",
+              "label": "Impact / Conservation / Amx / After",
+              "value": 7154,
+              "unit": null,
+              "quote": "7154"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f040",
+              "label": "Impact / Conservation / Amx / Before",
+              "value": 7154,
+              "unit": null,
+              "quote": "7154"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f041",
+              "label": "Impact / Conservation / Ifa / After",
+              "value": 9467,
+              "unit": null,
+              "quote": "9467"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f042",
+              "label": "Impact / Conservation / Ifa / Before",
+              "value": 9467,
+              "unit": null,
+              "quote": "9467"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f043",
+              "label": "Impact / Conservation / Ivf / After",
+              "value": 2951,
+              "unit": null,
+              "quote": "2951"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f044",
+              "label": "Impact / Conservation / Ivf / Before",
+              "value": 2951,
+              "unit": null,
+              "quote": "2951"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f045",
+              "label": "Impact / Conservation / Ors / After",
+              "value": 5021,
+              "unit": null,
+              "quote": "5021"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f046",
+              "label": "Impact / Conservation / Ors / Before",
+              "value": 5021,
+              "unit": null,
+              "quote": "5021"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f047",
+              "label": "Impact / Conservation / Pcm / After",
+              "value": 22952,
+              "unit": null,
+              "quote": "22952"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f048",
+              "label": "Impact / Conservation / Pcm / Before",
+              "value": 22952,
+              "unit": null,
+              "quote": "22952"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f049",
+              "label": "Impact / Critical deficits resolved",
+              "value": 2,
+              "unit": null,
+              "quote": "2"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f050",
+              "label": "Impact / Critical deficits total",
+              "value": 5,
+              "unit": null,
+              "quote": "5"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f051",
+              "label": "Impact / Distance km",
+              "value": 54.591838516215944,
+              "unit": null,
+              "quote": "54.591838516215944"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f052",
+              "label": "Impact / Distance weighted units",
+              "value": 79247.99067343438,
+              "unit": null,
+              "quote": "79247.99067343438"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f053",
+              "label": "Impact / Donor facilities used",
+              "value": 2,
+              "unit": null,
+              "quote": "2"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f054",
+              "label": "Impact / Donor safety violations",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f055",
+              "label": "Impact / Facilities protected",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f056",
+              "label": "Impact / New donor risks",
+              "value": 0,
+              "unit": "facilities",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f057",
+              "label": "Impact / Percent deficit resolved",
+              "value": 37.5428010439863,
+              "unit": "%",
+              "quote": "37.5428010439863"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f058",
+              "label": "Impact / Shortage units resolved",
+              "value": 15679,
+              "unit": "accounting items",
+              "quote": "15679"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f059",
+              "label": "Impact / Transfer count",
+              "value": 10,
+              "unit": null,
+              "quote": "10"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f060",
+              "label": "Impact / Transferred units",
+              "value": 15679,
+              "unit": "accounting items",
+              "quote": "15679"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f061",
+              "label": "Impact / Unresolved / In-mh-pune-003:amx",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f062",
+              "label": "Impact / Unresolved / In-mh-pune-003:ifa",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f063",
+              "label": "Impact / Unresolved / In-mh-pune-003:ivf",
+              "value": 2173,
+              "unit": null,
+              "quote": "2173"
+            },
+            {
+              "fact_id": "e2_d7e32c2578064614_f064",
+              "label": "Impact / Unresolved / In-mh-pune-003:ors",
+              "value": 964,
+              "unit": null,
+              "quote": "964"
+            }
+          ],
+          "facts_truncated": true,
+          "provenance": {
+            "origin": "2026-09-27",
+            "model_version": "forecast-v1-176a752efab3ae4e"
+          }
+        }
+      ],
+      "evidence_reuse": {
+        "method": "deterministic reconstructed authoritative evidence (path B)",
+        "original_live_scenario_id": "e0aca1d9-9770-47de-a11c-8f97f17ff6f8",
+        "original_live_optimization_id": "6551b897-f19d-4eaf-b308-e3c3f4b4fb47",
+        "new_scenario_id": "a43611d3-384d-4aac-83d9-4baf582f7b7d",
+        "new_optimization_id": "d829acf5-9e96-498d-b548-5a02cfe82997",
+        "new_objects_not_original_in_memory": true,
+        "source_report_sha256": "65d3126d418f58674c78c1b28bfdd47d32a14ccd5c536074ad2529c89aa6f325",
+        "snapshot_id": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "scoped_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+        "forecast_artifact_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a",
+        "model_version": "forecast-v1-176a752efab3ae4e",
+        "profile": "redistribution-ready",
+        "profile_version": "inventory-profile-v1",
+        "origin": "2026-09-27",
+        "canonical": {
+          "target_before": 41763,
+          "safe_capacity": 17745,
+          "transferred": 15679,
+          "lanes": 10,
+          "unresolved": 26084,
+          "donor_violations": 0,
+          "new_donor_risks": 0,
+          "solver_status": "OPTIMAL"
+        },
+        "impact": {
+          "before": {
+            "target_deficit": 41763,
+            "expected_unmet": 27655.218070826377,
+            "critical_resource_warnings": 7,
+            "facilities_at_risk": 1,
+            "max_stockout_risk": 1.0
+          },
+          "after": {
+            "target_deficit": 26084,
+            "expected_unmet": 17378.197997959564,
+            "critical_resource_warnings": 0,
+            "facilities_at_risk": 1,
+            "max_stockout_risk": 1.0
+          },
+          "shortage_units_resolved": 15679,
+          "percent_deficit_resolved": 37.5428010439863,
+          "critical_deficits_resolved": 2,
+          "critical_deficits_total": 5,
+          "facilities_protected": 0,
+          "donor_facilities_used": 2,
+          "transfer_count": 10,
+          "transferred_units": 15679,
+          "distance_km": 54.591838516215944,
+          "distance_weighted_units": 79247.99067343438,
+          "donor_safety_violations": 0,
+          "new_donor_risks": 0,
+          "unresolved": {
+            "IN-MH-PUNE-003:AMX": 0,
+            "IN-MH-PUNE-003:IFA": 0,
+            "IN-MH-PUNE-003:IVF": 2173,
+            "IN-MH-PUNE-003:ORS": 964,
+            "IN-MH-PUNE-003:PCM": 22947
+          },
+          "conservation": {
+            "PCM": {
+              "before": 22952,
+              "after": 22952
+            },
+            "IVF": {
+              "before": 2951,
+              "after": 2951
+            },
+            "ORS": {
+              "before": 5021,
+              "after": 5021
+            },
+            "AMX": {
+              "before": 7154,
+              "after": 7154
+            },
+            "IFA": {
+              "before": 9467,
+              "after": 9467
+            }
+          }
+        },
+        "baseline_and_scenario_immutable": true,
+        "local_tool_calls": 2,
+        "local_seconds": 2.946622199990088
+      },
+      "preservation": {
+        "status": "PASS",
+        "original_file_identities": 500,
+        "unchanged_file_identities": 487,
+        "env_unchanged": true,
+        "ui_unchanged": true,
+        "fact_numeric_contract_unchanged": true,
+        "operational_forecasting_ortools_federation_artifacts_unchanged": true,
+        "production_fallback_order_unchanged": true,
+        "historical_evidence_unchanged": true
+      },
+      "status": "PASS",
+      "native_orchestration": "PASS (preserved live evidence)",
+      "positive_workflow": "PASS",
+      "phase6_complete": false,
+      "remaining_cases": [
+        "followup",
+        "constrained",
+        "provenance"
+      ],
+      "provider_seconds": 0.052509100001771,
+      "http_status": 200,
+      "provider_status": "completed",
+      "interaction_id": "mock-final",
+      "usage": {},
+      "final_output_text": "{\"situation\": {\"text\": \"OR-Tools proved an optimal advisory plan under the configured constraints.\", \"evidence_refs\": [\"e2_d7e32c2578064614_f023\"]}, \"key_risks\": [{\"text\": \"Safe donor surplus is available for redistribution.\", \"evidence_refs\": [\"e2_d7e32c2578064614_f028\"]}], \"recommended_actions\": [{\"text\": \"The advisory redistribution plan reduces resource pressure.\", \"evidence_refs\": [\"e2_d7e32c2578064614_f060\"]}], \"remaining_gaps\": [{\"text\": \"Substantial unresolved resource deficits remain.\", \"evidence_refs\": [\"e2_d7e32c2578064614_f033\"]}]}",
+      "partial_output_length": 549,
+      "json_truncation": false,
+      "final_synthesis": "PASS",
+      "schema": "PASS",
+      "fact_ids": "PASS",
+      "numeric_grounding": "PASS",
+      "context": "PASS",
+      "solver_terminology": "PASS",
+      "qualitative_grounding": "PASS (automated guard; final manual review also required)",
+      "unknown_fact_ids": 0,
+      "unsupported_numeric_claims": 0,
+      "claim_count": 4,
+      "answer": {
+        "situation": {
+          "text": "OR-Tools proved an optimal advisory plan under the configured constraints.",
+          "references": [
+            {
+              "evidence_id": "e2",
+              "field": "solver.status"
+            }
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Safe donor surplus is available for redistribution.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "safe_capacity"
+              }
+            ]
+          }
+        ],
+        "recommended_actions": [
+          {
+            "text": "The advisory redistribution plan reduces resource pressure.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "impact.transferred_units"
+              }
+            ]
+          }
+        ],
+        "remaining_gaps": [
+          {
+            "text": "Substantial unresolved resource deficits remain.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "impact.after.target_deficit"
+              }
+            ]
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "d829acf5-9e96-498d-b548-5a02cfe82997",
+          "field": "solver.status",
+          "value": "OPTIMAL",
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "d829acf5-9e96-498d-b548-5a02cfe82997",
+          "field": "safe_capacity",
+          "value": 17745,
+          "profile": "redistribution-ready",
+          "unit": "accounting items"
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "d829acf5-9e96-498d-b548-5a02cfe82997",
+          "field": "impact.transferred_units",
+          "value": 15679,
+          "profile": "redistribution-ready",
+          "unit": "accounting items"
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "d829acf5-9e96-498d-b548-5a02cfe82997",
+          "field": "impact.after.target_deficit",
+          "value": 26084,
+          "profile": "redistribution-ready",
+          "unit": "accounting items"
+        }
+      ],
+      "fact_audits": [
+        {
+          "claim_index": 0,
+          "claim_field": "situation.text",
+          "claim_text": "OR-Tools proved an optimal advisory plan under the configured constraints.",
+          "supplied_fact_ids": [
+            "e1_d7e32c2578064614_f001",
+            "e1_d7e32c2578064614_f002",
+            "e1_d7e32c2578064614_f003",
+            "e1_d7e32c2578064614_f004",
+            "e1_d7e32c2578064614_f005",
+            "e1_d7e32c2578064614_f006",
+            "e1_d7e32c2578064614_f007",
+            "e1_d7e32c2578064614_f008",
+            "e1_d7e32c2578064614_f009",
+            "e1_d7e32c2578064614_f010",
+            "e1_d7e32c2578064614_f011",
+            "e1_d7e32c2578064614_f012",
+            "e1_d7e32c2578064614_f013",
+            "e1_d7e32c2578064614_f014",
+            "e1_d7e32c2578064614_f015",
+            "e1_d7e32c2578064614_f016",
+            "e1_d7e32c2578064614_f017",
+            "e1_d7e32c2578064614_f018",
+            "e1_d7e32c2578064614_f019",
+            "e1_d7e32c2578064614_f020",
+            "e1_d7e32c2578064614_f021",
+            "e1_d7e32c2578064614_f022",
+            "e1_d7e32c2578064614_f023",
+            "e1_d7e32c2578064614_f024",
+            "e1_d7e32c2578064614_f025",
+            "e1_d7e32c2578064614_f026",
+            "e1_d7e32c2578064614_f027",
+            "e1_d7e32c2578064614_f028",
+            "e1_d7e32c2578064614_f029",
+            "e1_d7e32c2578064614_f030",
+            "e1_d7e32c2578064614_f031",
+            "e1_d7e32c2578064614_f032",
+            "e1_d7e32c2578064614_f033",
+            "e1_d7e32c2578064614_f034",
+            "e1_d7e32c2578064614_f035",
+            "e1_d7e32c2578064614_f036",
+            "e1_d7e32c2578064614_f037",
+            "e1_d7e32c2578064614_f038",
+            "e1_d7e32c2578064614_f039",
+            "e1_d7e32c2578064614_f040",
+            "e1_d7e32c2578064614_f041",
+            "e1_d7e32c2578064614_f042",
+            "e1_d7e32c2578064614_f043",
+            "e1_d7e32c2578064614_f044",
+            "e1_d7e32c2578064614_f045",
+            "e1_d7e32c2578064614_f046",
+            "e1_d7e32c2578064614_f047",
+            "e1_d7e32c2578064614_f048",
+            "e1_d7e32c2578064614_f049",
+            "e1_d7e32c2578064614_f050",
+            "e1_d7e32c2578064614_f051",
+            "e1_d7e32c2578064614_f052",
+            "e1_d7e32c2578064614_f053",
+            "e1_d7e32c2578064614_f054",
+            "e1_d7e32c2578064614_f055",
+            "e1_d7e32c2578064614_f056",
+            "e1_d7e32c2578064614_f057",
+            "e1_d7e32c2578064614_f058",
+            "e1_d7e32c2578064614_f059",
+            "e1_d7e32c2578064614_f060",
+            "e1_d7e32c2578064614_f061",
+            "e1_d7e32c2578064614_f062",
+            "e1_d7e32c2578064614_f063",
+            "e1_d7e32c2578064614_f064",
+            "e2_d7e32c2578064614_f001",
+            "e2_d7e32c2578064614_f002",
+            "e2_d7e32c2578064614_f003",
+            "e2_d7e32c2578064614_f004",
+            "e2_d7e32c2578064614_f005",
+            "e2_d7e32c2578064614_f006",
+            "e2_d7e32c2578064614_f007",
+            "e2_d7e32c2578064614_f008",
+            "e2_d7e32c2578064614_f009",
+            "e2_d7e32c2578064614_f010",
+            "e2_d7e32c2578064614_f011",
+            "e2_d7e32c2578064614_f012",
+            "e2_d7e32c2578064614_f013",
+            "e2_d7e32c2578064614_f014",
+            "e2_d7e32c2578064614_f015",
+            "e2_d7e32c2578064614_f016",
+            "e2_d7e32c2578064614_f017",
+            "e2_d7e32c2578064614_f018",
+            "e2_d7e32c2578064614_f019",
+            "e2_d7e32c2578064614_f020",
+            "e2_d7e32c2578064614_f021",
+            "e2_d7e32c2578064614_f022",
+            "e2_d7e32c2578064614_f023",
+            "e2_d7e32c2578064614_f024",
+            "e2_d7e32c2578064614_f025",
+            "e2_d7e32c2578064614_f026",
+            "e2_d7e32c2578064614_f027",
+            "e2_d7e32c2578064614_f028",
+            "e2_d7e32c2578064614_f029",
+            "e2_d7e32c2578064614_f030",
+            "e2_d7e32c2578064614_f031",
+            "e2_d7e32c2578064614_f032",
+            "e2_d7e32c2578064614_f033",
+            "e2_d7e32c2578064614_f034",
+            "e2_d7e32c2578064614_f035",
+            "e2_d7e32c2578064614_f036",
+            "e2_d7e32c2578064614_f037",
+            "e2_d7e32c2578064614_f038",
+            "e2_d7e32c2578064614_f039",
+            "e2_d7e32c2578064614_f040",
+            "e2_d7e32c2578064614_f041",
+            "e2_d7e32c2578064614_f042",
+            "e2_d7e32c2578064614_f043",
+            "e2_d7e32c2578064614_f044",
+            "e2_d7e32c2578064614_f045",
+            "e2_d7e32c2578064614_f046",
+            "e2_d7e32c2578064614_f047",
+            "e2_d7e32c2578064614_f048",
+            "e2_d7e32c2578064614_f049",
+            "e2_d7e32c2578064614_f050",
+            "e2_d7e32c2578064614_f051",
+            "e2_d7e32c2578064614_f052",
+            "e2_d7e32c2578064614_f053",
+            "e2_d7e32c2578064614_f054",
+            "e2_d7e32c2578064614_f055",
+            "e2_d7e32c2578064614_f056",
+            "e2_d7e32c2578064614_f057",
+            "e2_d7e32c2578064614_f058",
+            "e2_d7e32c2578064614_f059",
+            "e2_d7e32c2578064614_f060",
+            "e2_d7e32c2578064614_f061",
+            "e2_d7e32c2578064614_f062",
+            "e2_d7e32c2578064614_f063",
+            "e2_d7e32c2578064614_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_d7e32c2578064614_f023"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_d7e32c2578064614_f023",
+              "evidence_id": "e2",
+              "path": "solver.status",
+              "value": "OPTIMAL",
+              "unit": null,
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 1,
+          "claim_field": "key_risks.0.text",
+          "claim_text": "Safe donor surplus is available for redistribution.",
+          "supplied_fact_ids": [
+            "e1_d7e32c2578064614_f001",
+            "e1_d7e32c2578064614_f002",
+            "e1_d7e32c2578064614_f003",
+            "e1_d7e32c2578064614_f004",
+            "e1_d7e32c2578064614_f005",
+            "e1_d7e32c2578064614_f006",
+            "e1_d7e32c2578064614_f007",
+            "e1_d7e32c2578064614_f008",
+            "e1_d7e32c2578064614_f009",
+            "e1_d7e32c2578064614_f010",
+            "e1_d7e32c2578064614_f011",
+            "e1_d7e32c2578064614_f012",
+            "e1_d7e32c2578064614_f013",
+            "e1_d7e32c2578064614_f014",
+            "e1_d7e32c2578064614_f015",
+            "e1_d7e32c2578064614_f016",
+            "e1_d7e32c2578064614_f017",
+            "e1_d7e32c2578064614_f018",
+            "e1_d7e32c2578064614_f019",
+            "e1_d7e32c2578064614_f020",
+            "e1_d7e32c2578064614_f021",
+            "e1_d7e32c2578064614_f022",
+            "e1_d7e32c2578064614_f023",
+            "e1_d7e32c2578064614_f024",
+            "e1_d7e32c2578064614_f025",
+            "e1_d7e32c2578064614_f026",
+            "e1_d7e32c2578064614_f027",
+            "e1_d7e32c2578064614_f028",
+            "e1_d7e32c2578064614_f029",
+            "e1_d7e32c2578064614_f030",
+            "e1_d7e32c2578064614_f031",
+            "e1_d7e32c2578064614_f032",
+            "e1_d7e32c2578064614_f033",
+            "e1_d7e32c2578064614_f034",
+            "e1_d7e32c2578064614_f035",
+            "e1_d7e32c2578064614_f036",
+            "e1_d7e32c2578064614_f037",
+            "e1_d7e32c2578064614_f038",
+            "e1_d7e32c2578064614_f039",
+            "e1_d7e32c2578064614_f040",
+            "e1_d7e32c2578064614_f041",
+            "e1_d7e32c2578064614_f042",
+            "e1_d7e32c2578064614_f043",
+            "e1_d7e32c2578064614_f044",
+            "e1_d7e32c2578064614_f045",
+            "e1_d7e32c2578064614_f046",
+            "e1_d7e32c2578064614_f047",
+            "e1_d7e32c2578064614_f048",
+            "e1_d7e32c2578064614_f049",
+            "e1_d7e32c2578064614_f050",
+            "e1_d7e32c2578064614_f051",
+            "e1_d7e32c2578064614_f052",
+            "e1_d7e32c2578064614_f053",
+            "e1_d7e32c2578064614_f054",
+            "e1_d7e32c2578064614_f055",
+            "e1_d7e32c2578064614_f056",
+            "e1_d7e32c2578064614_f057",
+            "e1_d7e32c2578064614_f058",
+            "e1_d7e32c2578064614_f059",
+            "e1_d7e32c2578064614_f060",
+            "e1_d7e32c2578064614_f061",
+            "e1_d7e32c2578064614_f062",
+            "e1_d7e32c2578064614_f063",
+            "e1_d7e32c2578064614_f064",
+            "e2_d7e32c2578064614_f001",
+            "e2_d7e32c2578064614_f002",
+            "e2_d7e32c2578064614_f003",
+            "e2_d7e32c2578064614_f004",
+            "e2_d7e32c2578064614_f005",
+            "e2_d7e32c2578064614_f006",
+            "e2_d7e32c2578064614_f007",
+            "e2_d7e32c2578064614_f008",
+            "e2_d7e32c2578064614_f009",
+            "e2_d7e32c2578064614_f010",
+            "e2_d7e32c2578064614_f011",
+            "e2_d7e32c2578064614_f012",
+            "e2_d7e32c2578064614_f013",
+            "e2_d7e32c2578064614_f014",
+            "e2_d7e32c2578064614_f015",
+            "e2_d7e32c2578064614_f016",
+            "e2_d7e32c2578064614_f017",
+            "e2_d7e32c2578064614_f018",
+            "e2_d7e32c2578064614_f019",
+            "e2_d7e32c2578064614_f020",
+            "e2_d7e32c2578064614_f021",
+            "e2_d7e32c2578064614_f022",
+            "e2_d7e32c2578064614_f023",
+            "e2_d7e32c2578064614_f024",
+            "e2_d7e32c2578064614_f025",
+            "e2_d7e32c2578064614_f026",
+            "e2_d7e32c2578064614_f027",
+            "e2_d7e32c2578064614_f028",
+            "e2_d7e32c2578064614_f029",
+            "e2_d7e32c2578064614_f030",
+            "e2_d7e32c2578064614_f031",
+            "e2_d7e32c2578064614_f032",
+            "e2_d7e32c2578064614_f033",
+            "e2_d7e32c2578064614_f034",
+            "e2_d7e32c2578064614_f035",
+            "e2_d7e32c2578064614_f036",
+            "e2_d7e32c2578064614_f037",
+            "e2_d7e32c2578064614_f038",
+            "e2_d7e32c2578064614_f039",
+            "e2_d7e32c2578064614_f040",
+            "e2_d7e32c2578064614_f041",
+            "e2_d7e32c2578064614_f042",
+            "e2_d7e32c2578064614_f043",
+            "e2_d7e32c2578064614_f044",
+            "e2_d7e32c2578064614_f045",
+            "e2_d7e32c2578064614_f046",
+            "e2_d7e32c2578064614_f047",
+            "e2_d7e32c2578064614_f048",
+            "e2_d7e32c2578064614_f049",
+            "e2_d7e32c2578064614_f050",
+            "e2_d7e32c2578064614_f051",
+            "e2_d7e32c2578064614_f052",
+            "e2_d7e32c2578064614_f053",
+            "e2_d7e32c2578064614_f054",
+            "e2_d7e32c2578064614_f055",
+            "e2_d7e32c2578064614_f056",
+            "e2_d7e32c2578064614_f057",
+            "e2_d7e32c2578064614_f058",
+            "e2_d7e32c2578064614_f059",
+            "e2_d7e32c2578064614_f060",
+            "e2_d7e32c2578064614_f061",
+            "e2_d7e32c2578064614_f062",
+            "e2_d7e32c2578064614_f063",
+            "e2_d7e32c2578064614_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_d7e32c2578064614_f028"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_d7e32c2578064614_f028",
+              "evidence_id": "e2",
+              "path": "safe_capacity",
+              "value": 17745,
+              "unit": "accounting items",
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 2,
+          "claim_field": "recommended_actions.0.text",
+          "claim_text": "The advisory redistribution plan reduces resource pressure.",
+          "supplied_fact_ids": [
+            "e1_d7e32c2578064614_f001",
+            "e1_d7e32c2578064614_f002",
+            "e1_d7e32c2578064614_f003",
+            "e1_d7e32c2578064614_f004",
+            "e1_d7e32c2578064614_f005",
+            "e1_d7e32c2578064614_f006",
+            "e1_d7e32c2578064614_f007",
+            "e1_d7e32c2578064614_f008",
+            "e1_d7e32c2578064614_f009",
+            "e1_d7e32c2578064614_f010",
+            "e1_d7e32c2578064614_f011",
+            "e1_d7e32c2578064614_f012",
+            "e1_d7e32c2578064614_f013",
+            "e1_d7e32c2578064614_f014",
+            "e1_d7e32c2578064614_f015",
+            "e1_d7e32c2578064614_f016",
+            "e1_d7e32c2578064614_f017",
+            "e1_d7e32c2578064614_f018",
+            "e1_d7e32c2578064614_f019",
+            "e1_d7e32c2578064614_f020",
+            "e1_d7e32c2578064614_f021",
+            "e1_d7e32c2578064614_f022",
+            "e1_d7e32c2578064614_f023",
+            "e1_d7e32c2578064614_f024",
+            "e1_d7e32c2578064614_f025",
+            "e1_d7e32c2578064614_f026",
+            "e1_d7e32c2578064614_f027",
+            "e1_d7e32c2578064614_f028",
+            "e1_d7e32c2578064614_f029",
+            "e1_d7e32c2578064614_f030",
+            "e1_d7e32c2578064614_f031",
+            "e1_d7e32c2578064614_f032",
+            "e1_d7e32c2578064614_f033",
+            "e1_d7e32c2578064614_f034",
+            "e1_d7e32c2578064614_f035",
+            "e1_d7e32c2578064614_f036",
+            "e1_d7e32c2578064614_f037",
+            "e1_d7e32c2578064614_f038",
+            "e1_d7e32c2578064614_f039",
+            "e1_d7e32c2578064614_f040",
+            "e1_d7e32c2578064614_f041",
+            "e1_d7e32c2578064614_f042",
+            "e1_d7e32c2578064614_f043",
+            "e1_d7e32c2578064614_f044",
+            "e1_d7e32c2578064614_f045",
+            "e1_d7e32c2578064614_f046",
+            "e1_d7e32c2578064614_f047",
+            "e1_d7e32c2578064614_f048",
+            "e1_d7e32c2578064614_f049",
+            "e1_d7e32c2578064614_f050",
+            "e1_d7e32c2578064614_f051",
+            "e1_d7e32c2578064614_f052",
+            "e1_d7e32c2578064614_f053",
+            "e1_d7e32c2578064614_f054",
+            "e1_d7e32c2578064614_f055",
+            "e1_d7e32c2578064614_f056",
+            "e1_d7e32c2578064614_f057",
+            "e1_d7e32c2578064614_f058",
+            "e1_d7e32c2578064614_f059",
+            "e1_d7e32c2578064614_f060",
+            "e1_d7e32c2578064614_f061",
+            "e1_d7e32c2578064614_f062",
+            "e1_d7e32c2578064614_f063",
+            "e1_d7e32c2578064614_f064",
+            "e2_d7e32c2578064614_f001",
+            "e2_d7e32c2578064614_f002",
+            "e2_d7e32c2578064614_f003",
+            "e2_d7e32c2578064614_f004",
+            "e2_d7e32c2578064614_f005",
+            "e2_d7e32c2578064614_f006",
+            "e2_d7e32c2578064614_f007",
+            "e2_d7e32c2578064614_f008",
+            "e2_d7e32c2578064614_f009",
+            "e2_d7e32c2578064614_f010",
+            "e2_d7e32c2578064614_f011",
+            "e2_d7e32c2578064614_f012",
+            "e2_d7e32c2578064614_f013",
+            "e2_d7e32c2578064614_f014",
+            "e2_d7e32c2578064614_f015",
+            "e2_d7e32c2578064614_f016",
+            "e2_d7e32c2578064614_f017",
+            "e2_d7e32c2578064614_f018",
+            "e2_d7e32c2578064614_f019",
+            "e2_d7e32c2578064614_f020",
+            "e2_d7e32c2578064614_f021",
+            "e2_d7e32c2578064614_f022",
+            "e2_d7e32c2578064614_f023",
+            "e2_d7e32c2578064614_f024",
+            "e2_d7e32c2578064614_f025",
+            "e2_d7e32c2578064614_f026",
+            "e2_d7e32c2578064614_f027",
+            "e2_d7e32c2578064614_f028",
+            "e2_d7e32c2578064614_f029",
+            "e2_d7e32c2578064614_f030",
+            "e2_d7e32c2578064614_f031",
+            "e2_d7e32c2578064614_f032",
+            "e2_d7e32c2578064614_f033",
+            "e2_d7e32c2578064614_f034",
+            "e2_d7e32c2578064614_f035",
+            "e2_d7e32c2578064614_f036",
+            "e2_d7e32c2578064614_f037",
+            "e2_d7e32c2578064614_f038",
+            "e2_d7e32c2578064614_f039",
+            "e2_d7e32c2578064614_f040",
+            "e2_d7e32c2578064614_f041",
+            "e2_d7e32c2578064614_f042",
+            "e2_d7e32c2578064614_f043",
+            "e2_d7e32c2578064614_f044",
+            "e2_d7e32c2578064614_f045",
+            "e2_d7e32c2578064614_f046",
+            "e2_d7e32c2578064614_f047",
+            "e2_d7e32c2578064614_f048",
+            "e2_d7e32c2578064614_f049",
+            "e2_d7e32c2578064614_f050",
+            "e2_d7e32c2578064614_f051",
+            "e2_d7e32c2578064614_f052",
+            "e2_d7e32c2578064614_f053",
+            "e2_d7e32c2578064614_f054",
+            "e2_d7e32c2578064614_f055",
+            "e2_d7e32c2578064614_f056",
+            "e2_d7e32c2578064614_f057",
+            "e2_d7e32c2578064614_f058",
+            "e2_d7e32c2578064614_f059",
+            "e2_d7e32c2578064614_f060",
+            "e2_d7e32c2578064614_f061",
+            "e2_d7e32c2578064614_f062",
+            "e2_d7e32c2578064614_f063",
+            "e2_d7e32c2578064614_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_d7e32c2578064614_f060"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_d7e32c2578064614_f060",
+              "evidence_id": "e2",
+              "path": "impact.transferred_units",
+              "value": 15679,
+              "unit": "accounting items",
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 3,
+          "claim_field": "remaining_gaps.0.text",
+          "claim_text": "Substantial unresolved resource deficits remain.",
+          "supplied_fact_ids": [
+            "e1_d7e32c2578064614_f001",
+            "e1_d7e32c2578064614_f002",
+            "e1_d7e32c2578064614_f003",
+            "e1_d7e32c2578064614_f004",
+            "e1_d7e32c2578064614_f005",
+            "e1_d7e32c2578064614_f006",
+            "e1_d7e32c2578064614_f007",
+            "e1_d7e32c2578064614_f008",
+            "e1_d7e32c2578064614_f009",
+            "e1_d7e32c2578064614_f010",
+            "e1_d7e32c2578064614_f011",
+            "e1_d7e32c2578064614_f012",
+            "e1_d7e32c2578064614_f013",
+            "e1_d7e32c2578064614_f014",
+            "e1_d7e32c2578064614_f015",
+            "e1_d7e32c2578064614_f016",
+            "e1_d7e32c2578064614_f017",
+            "e1_d7e32c2578064614_f018",
+            "e1_d7e32c2578064614_f019",
+            "e1_d7e32c2578064614_f020",
+            "e1_d7e32c2578064614_f021",
+            "e1_d7e32c2578064614_f022",
+            "e1_d7e32c2578064614_f023",
+            "e1_d7e32c2578064614_f024",
+            "e1_d7e32c2578064614_f025",
+            "e1_d7e32c2578064614_f026",
+            "e1_d7e32c2578064614_f027",
+            "e1_d7e32c2578064614_f028",
+            "e1_d7e32c2578064614_f029",
+            "e1_d7e32c2578064614_f030",
+            "e1_d7e32c2578064614_f031",
+            "e1_d7e32c2578064614_f032",
+            "e1_d7e32c2578064614_f033",
+            "e1_d7e32c2578064614_f034",
+            "e1_d7e32c2578064614_f035",
+            "e1_d7e32c2578064614_f036",
+            "e1_d7e32c2578064614_f037",
+            "e1_d7e32c2578064614_f038",
+            "e1_d7e32c2578064614_f039",
+            "e1_d7e32c2578064614_f040",
+            "e1_d7e32c2578064614_f041",
+            "e1_d7e32c2578064614_f042",
+            "e1_d7e32c2578064614_f043",
+            "e1_d7e32c2578064614_f044",
+            "e1_d7e32c2578064614_f045",
+            "e1_d7e32c2578064614_f046",
+            "e1_d7e32c2578064614_f047",
+            "e1_d7e32c2578064614_f048",
+            "e1_d7e32c2578064614_f049",
+            "e1_d7e32c2578064614_f050",
+            "e1_d7e32c2578064614_f051",
+            "e1_d7e32c2578064614_f052",
+            "e1_d7e32c2578064614_f053",
+            "e1_d7e32c2578064614_f054",
+            "e1_d7e32c2578064614_f055",
+            "e1_d7e32c2578064614_f056",
+            "e1_d7e32c2578064614_f057",
+            "e1_d7e32c2578064614_f058",
+            "e1_d7e32c2578064614_f059",
+            "e1_d7e32c2578064614_f060",
+            "e1_d7e32c2578064614_f061",
+            "e1_d7e32c2578064614_f062",
+            "e1_d7e32c2578064614_f063",
+            "e1_d7e32c2578064614_f064",
+            "e2_d7e32c2578064614_f001",
+            "e2_d7e32c2578064614_f002",
+            "e2_d7e32c2578064614_f003",
+            "e2_d7e32c2578064614_f004",
+            "e2_d7e32c2578064614_f005",
+            "e2_d7e32c2578064614_f006",
+            "e2_d7e32c2578064614_f007",
+            "e2_d7e32c2578064614_f008",
+            "e2_d7e32c2578064614_f009",
+            "e2_d7e32c2578064614_f010",
+            "e2_d7e32c2578064614_f011",
+            "e2_d7e32c2578064614_f012",
+            "e2_d7e32c2578064614_f013",
+            "e2_d7e32c2578064614_f014",
+            "e2_d7e32c2578064614_f015",
+            "e2_d7e32c2578064614_f016",
+            "e2_d7e32c2578064614_f017",
+            "e2_d7e32c2578064614_f018",
+            "e2_d7e32c2578064614_f019",
+            "e2_d7e32c2578064614_f020",
+            "e2_d7e32c2578064614_f021",
+            "e2_d7e32c2578064614_f022",
+            "e2_d7e32c2578064614_f023",
+            "e2_d7e32c2578064614_f024",
+            "e2_d7e32c2578064614_f025",
+            "e2_d7e32c2578064614_f026",
+            "e2_d7e32c2578064614_f027",
+            "e2_d7e32c2578064614_f028",
+            "e2_d7e32c2578064614_f029",
+            "e2_d7e32c2578064614_f030",
+            "e2_d7e32c2578064614_f031",
+            "e2_d7e32c2578064614_f032",
+            "e2_d7e32c2578064614_f033",
+            "e2_d7e32c2578064614_f034",
+            "e2_d7e32c2578064614_f035",
+            "e2_d7e32c2578064614_f036",
+            "e2_d7e32c2578064614_f037",
+            "e2_d7e32c2578064614_f038",
+            "e2_d7e32c2578064614_f039",
+            "e2_d7e32c2578064614_f040",
+            "e2_d7e32c2578064614_f041",
+            "e2_d7e32c2578064614_f042",
+            "e2_d7e32c2578064614_f043",
+            "e2_d7e32c2578064614_f044",
+            "e2_d7e32c2578064614_f045",
+            "e2_d7e32c2578064614_f046",
+            "e2_d7e32c2578064614_f047",
+            "e2_d7e32c2578064614_f048",
+            "e2_d7e32c2578064614_f049",
+            "e2_d7e32c2578064614_f050",
+            "e2_d7e32c2578064614_f051",
+            "e2_d7e32c2578064614_f052",
+            "e2_d7e32c2578064614_f053",
+            "e2_d7e32c2578064614_f054",
+            "e2_d7e32c2578064614_f055",
+            "e2_d7e32c2578064614_f056",
+            "e2_d7e32c2578064614_f057",
+            "e2_d7e32c2578064614_f058",
+            "e2_d7e32c2578064614_f059",
+            "e2_d7e32c2578064614_f060",
+            "e2_d7e32c2578064614_f061",
+            "e2_d7e32c2578064614_f062",
+            "e2_d7e32c2578064614_f063",
+            "e2_d7e32c2578064614_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_d7e32c2578064614_f033"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_d7e32c2578064614_f033",
+              "evidence_id": "e2",
+              "path": "impact.after.target_deficit",
+              "value": 26084,
+              "unit": "accounting items",
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        }
+      ],
+      "mock_http_sends": 1,
+      "provider_attempts_per_model": {}
+    },
+    {
+      "timestamp": "2026-09-29T09:13:55.957432+00:00",
+      "case": "positive-final",
+      "mode": "official SDK HTTP mock",
+      "model": "gemini-3.6-flash",
+      "sdk_version": "2.25.0",
+      "fact_contract_version": "healthnexus-facts-v1",
+      "system_prompt_version": "healthnexus-system-v6-compact-synthesis",
+      "generation_stages": {
+        "native": {
+          "thinking_level": "medium",
+          "max_output_tokens": 2400
+        },
+        "synthesis": {
+          "thinking_level": "low",
+          "max_output_tokens": 4096
+        }
+      },
+      "historical_provider_requests": 28,
+      "maximum_new_provider_requests": 1,
+      "new_provider_requests": 0,
+      "native_provider_requests": 0,
+      "retry": false,
+      "fallback": false,
+      "previous_interaction_id": null,
+      "stateless_synthesis": true,
+      "provider_interaction_id_required": false,
+      "fact_catalogue": [
+        {
+          "evidence_id": "e1",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e1_37a689a7961d4719_f001",
+              "label": "Scenario id",
+              "value": "ef375f5a-8e0a-47a9-9db4-4d8b3cd8a770",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f002",
+              "label": "Model versions",
+              "value": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "unit": null
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f003",
+              "label": "Model versions / Item 0",
+              "value": "forecast-v1-176a752efab3ae4e",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f004",
+              "label": "Resource impact / Item 0 / Demand / Absolute",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f005",
+              "label": "Resource impact / Item 0 / Demand / Baseline",
+              "value": 5997.472028185159,
+              "unit": "capsules",
+              "quote": "5997.472028185159"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f006",
+              "label": "Resource impact / Item 0 / Demand / Percent",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f007",
+              "label": "Resource impact / Item 0 / Demand / Scenario",
+              "value": 5997.472028185159,
+              "unit": "capsules",
+              "quote": "5997.472028185159"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f008",
+              "label": "Resource impact / Item 0 / Demand / Unit",
+              "value": "capsules",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f009",
+              "label": "Resource impact / Item 0 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f010",
+              "label": "Resource impact / Item 0 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f011",
+              "label": "Resource impact / Item 0 / Max stockout risk / Percent",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f012",
+              "label": "Resource impact / Item 0 / Max stockout risk / Scenario",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f013",
+              "label": "Resource impact / Item 0 / Max stockout risk / Unit",
+              "value": "percentage points",
+              "unit": "fraction"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f014",
+              "label": "Resource impact / Item 0 / Name",
+              "value": "Amoxicillin 500 mg",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f015",
+              "label": "Resource impact / Item 0 / Resource id",
+              "value": "AMX",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f016",
+              "label": "Resource impact / Item 0 / Unit",
+              "value": "capsules",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f017",
+              "label": "Resource impact / Item 0 / Unmet demand / Absolute",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f018",
+              "label": "Resource impact / Item 0 / Unmet demand / Baseline",
+              "value": 1230.9780182226204,
+              "unit": "capsules",
+              "quote": "1230.9780182226204"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f019",
+              "label": "Resource impact / Item 0 / Unmet demand / Percent",
+              "value": 0.0,
+              "unit": "capsules",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f020",
+              "label": "Resource impact / Item 0 / Unmet demand / Scenario",
+              "value": 1230.9780182226204,
+              "unit": "capsules",
+              "quote": "1230.9780182226204"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f021",
+              "label": "Resource impact / Item 0 / Unmet demand / Unit",
+              "value": "capsules",
+              "unit": "capsules"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f022",
+              "label": "Resource impact / Item 1 / Demand / Absolute",
+              "value": 0.0,
+              "unit": "tablets",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f023",
+              "label": "Resource impact / Item 1 / Demand / Baseline",
+              "value": 7747.103259292605,
+              "unit": "tablets",
+              "quote": "7747.103259292605"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f024",
+              "label": "Resource impact / Item 1 / Demand / Percent",
+              "value": 0.0,
+              "unit": "tablets",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f025",
+              "label": "Resource impact / Item 1 / Demand / Scenario",
+              "value": 7747.103259292605,
+              "unit": "tablets",
+              "quote": "7747.103259292605"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f026",
+              "label": "Resource impact / Item 1 / Demand / Unit",
+              "value": "tablets",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f027",
+              "label": "Resource impact / Item 1 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f028",
+              "label": "Resource impact / Item 1 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f029",
+              "label": "Resource impact / Item 1 / Max stockout risk / Percent",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f030",
+              "label": "Resource impact / Item 1 / Max stockout risk / Scenario",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f031",
+              "label": "Resource impact / Item 1 / Max stockout risk / Unit",
+              "value": "percentage points",
+              "unit": "fraction"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f032",
+              "label": "Resource impact / Item 1 / Name",
+              "value": "Iron and folic acid",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f033",
+              "label": "Resource impact / Item 1 / Resource id",
+              "value": "IFA",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f034",
+              "label": "Resource impact / Item 1 / Unit",
+              "value": "tablets",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f035",
+              "label": "Resource impact / Item 1 / Unmet demand / Absolute",
+              "value": 1.1368683772161603e-13,
+              "unit": "tablets",
+              "quote": "1.1368683772161603e-13"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f036",
+              "label": "Resource impact / Item 1 / Unmet demand / Baseline",
+              "value": 844.5187087913196,
+              "unit": "tablets",
+              "quote": "844.5187087913196"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f037",
+              "label": "Resource impact / Item 1 / Unmet demand / Percent",
+              "value": 2.220446049250313e-14,
+              "unit": "tablets",
+              "quote": "2.220446049250313e-14"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f038",
+              "label": "Resource impact / Item 1 / Unmet demand / Scenario",
+              "value": 844.5187087913197,
+              "unit": "tablets",
+              "quote": "844.5187087913197"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f039",
+              "label": "Resource impact / Item 1 / Unmet demand / Unit",
+              "value": "tablets",
+              "unit": "tablets"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f040",
+              "label": "Resource impact / Item 2 / Demand / Absolute",
+              "value": 2102.3098918404003,
+              "unit": "bags",
+              "quote": "2102.3098918404003"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f041",
+              "label": "Resource impact / Item 2 / Demand / Baseline",
+              "value": 2748.5758254530383,
+              "unit": "bags",
+              "quote": "2748.5758254530383"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f042",
+              "label": "Resource impact / Item 2 / Demand / Percent",
+              "value": 76.48724377083116,
+              "unit": "bags",
+              "quote": "76.48724377083116"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f043",
+              "label": "Resource impact / Item 2 / Demand / Scenario",
+              "value": 4850.885717293439,
+              "unit": "bags",
+              "quote": "4850.885717293439"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f044",
+              "label": "Resource impact / Item 2 / Demand / Unit",
+              "value": "bags",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f045",
+              "label": "Resource impact / Item 2 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f046",
+              "label": "Resource impact / Item 2 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f047",
+              "label": "Resource impact / Item 2 / Max stockout risk / Percent",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f048",
+              "label": "Resource impact / Item 2 / Max stockout risk / Scenario",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f049",
+              "label": "Resource impact / Item 2 / Max stockout risk / Unit",
+              "value": "percentage points",
+              "unit": "fraction"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f050",
+              "label": "Resource impact / Item 2 / Name",
+              "value": "IV fluids",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f051",
+              "label": "Resource impact / Item 2 / Resource id",
+              "value": "IVF",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f052",
+              "label": "Resource impact / Item 2 / Unit",
+              "value": "bags",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f053",
+              "label": "Resource impact / Item 2 / Unmet demand / Absolute",
+              "value": 1481.5818808941165,
+              "unit": "bags",
+              "quote": "1481.5818808941165"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f054",
+              "label": "Resource impact / Item 2 / Unmet demand / Baseline",
+              "value": 831.5221078328334,
+              "unit": "bags",
+              "quote": "831.5221078328334"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f055",
+              "label": "Resource impact / Item 2 / Unmet demand / Percent",
+              "value": 178.1770883705679,
+              "unit": "bags",
+              "quote": "178.1770883705679"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f056",
+              "label": "Resource impact / Item 2 / Unmet demand / Scenario",
+              "value": 2313.10398872695,
+              "unit": "bags",
+              "quote": "2313.10398872695"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f057",
+              "label": "Resource impact / Item 2 / Unmet demand / Unit",
+              "value": "bags",
+              "unit": "bags"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f058",
+              "label": "Resource impact / Item 3 / Demand / Absolute",
+              "value": 700.7699639468001,
+              "unit": "sachets",
+              "quote": "700.7699639468001"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f059",
+              "label": "Resource impact / Item 3 / Demand / Baseline",
+              "value": 4890.729113712904,
+              "unit": "sachets",
+              "quote": "4890.729113712904"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f060",
+              "label": "Resource impact / Item 3 / Demand / Percent",
+              "value": 14.3285376812619,
+              "unit": "sachets",
+              "quote": "14.3285376812619"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f061",
+              "label": "Resource impact / Item 3 / Demand / Scenario",
+              "value": 5591.499077659704,
+              "unit": "sachets",
+              "quote": "5591.499077659704"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f062",
+              "label": "Resource impact / Item 3 / Demand / Unit",
+              "value": "sachets",
+              "unit": "sachets"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f063",
+              "label": "Resource impact / Item 3 / Max stockout risk / Absolute",
+              "value": 0.0,
+              "unit": "fraction",
+              "quote": "0.0"
+            },
+            {
+              "fact_id": "e1_37a689a7961d4719_f064",
+              "label": "Resource impact / Item 3 / Max stockout risk / Baseline",
+              "value": 100.0,
+              "unit": "fraction",
+              "quote": "100.0"
+            }
+          ],
+          "facts_truncated": true,
+          "provenance": {
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e2_37a689a7961d4719_f001",
+              "label": "Solver / Constraints",
+              "value": 38,
+              "unit": null,
+              "quote": "38"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f002",
+              "label": "Solver / Construction seconds",
+              "value": 0.0014490000030491501,
+              "unit": null,
+              "quote": "0.0014490000030491501"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f003",
+              "label": "Solver / Elapsed seconds",
+              "value": 0.011039200006052852,
+              "unit": null,
+              "quote": "0.011039200006052852"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f004",
+              "label": "Solver / Engine",
+              "value": "Google OR-Tools CP-SAT",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f005",
+              "label": "Solver / Objective / Item 0",
+              "value": 26084,
+              "unit": null,
+              "quote": "26084"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f006",
+              "label": "Solver / Objective / Item 1",
+              "value": 25289060,
+              "unit": null,
+              "quote": "25289060"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f007",
+              "label": "Solver / Objective / Item 2",
+              "value": 72928,
+              "unit": null,
+              "quote": "72928"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f008",
+              "label": "Solver / Stages / Item 0 / Best bound",
+              "value": 26084.0,
+              "unit": null,
+              "quote": "26084.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f009",
+              "label": "Solver / Stages / Item 0 / Name",
+              "value": "critical_unresolved_units",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f010",
+              "label": "Solver / Stages / Item 0 / Objective",
+              "value": 26084.0,
+              "unit": null,
+              "quote": "26084.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f011",
+              "label": "Solver / Stages / Item 0 / Seconds",
+              "value": 0.0028925,
+              "unit": null,
+              "quote": "0.0028925"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f012",
+              "label": "Solver / Stages / Item 0 / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f013",
+              "label": "Solver / Stages / Item 1 / Best bound",
+              "value": 25289060.0,
+              "unit": null,
+              "quote": "25289060.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f014",
+              "label": "Solver / Stages / Item 1 / Name",
+              "value": "weighted_unresolved_units",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f015",
+              "label": "Solver / Stages / Item 1 / Objective",
+              "value": 25289060.0,
+              "unit": null,
+              "quote": "25289060.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f016",
+              "label": "Solver / Stages / Item 1 / Seconds",
+              "value": 0.0015275,
+              "unit": null,
+              "quote": "0.0015275"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f017",
+              "label": "Solver / Stages / Item 1 / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f018",
+              "label": "Solver / Stages / Item 2 / Best bound",
+              "value": 72928.0,
+              "unit": null,
+              "quote": "72928.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f019",
+              "label": "Solver / Stages / Item 2 / Name",
+              "value": "transport_cost",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f020",
+              "label": "Solver / Stages / Item 2 / Objective",
+              "value": 72928.0,
+              "unit": null,
+              "quote": "72928.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f021",
+              "label": "Solver / Stages / Item 2 / Seconds",
+              "value": 0.0013961000000000002,
+              "unit": null,
+              "quote": "0.0013961000000000002"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f022",
+              "label": "Solver / Stages / Item 2 / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f023",
+              "label": "Solver / Status",
+              "value": "OPTIMAL",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f024",
+              "label": "Solver / Termination",
+              "value": "all_lexicographic_stages_proved",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f025",
+              "label": "Solver / Time limit seconds",
+              "value": 10.0,
+              "unit": null,
+              "quote": "10.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f026",
+              "label": "Solver / Variables",
+              "value": 25,
+              "unit": null,
+              "quote": "25"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f027",
+              "label": "Solver / Version",
+              "value": "9.15.6755",
+              "unit": null
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f028",
+              "label": "Safe capacity",
+              "value": 17745,
+              "unit": "accounting items",
+              "quote": "17745"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f029",
+              "label": "Impact / After / Critical resource warnings",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f030",
+              "label": "Impact / After / Expected unmet",
+              "value": 17378.197997959564,
+              "unit": null,
+              "quote": "17378.197997959564"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f031",
+              "label": "Impact / After / Facilities at risk",
+              "value": 1,
+              "unit": "facilities",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f032",
+              "label": "Impact / After / Max stockout risk",
+              "value": 1.0,
+              "unit": "fraction",
+              "quote": "1.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f033",
+              "label": "Impact / After / Target deficit",
+              "value": 26084,
+              "unit": "accounting items",
+              "quote": "26084"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f034",
+              "label": "Impact / Before / Critical resource warnings",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f035",
+              "label": "Impact / Before / Expected unmet",
+              "value": 27655.218070826377,
+              "unit": null,
+              "quote": "27655.218070826377"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f036",
+              "label": "Impact / Before / Facilities at risk",
+              "value": 1,
+              "unit": "facilities",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f037",
+              "label": "Impact / Before / Max stockout risk",
+              "value": 1.0,
+              "unit": "fraction",
+              "quote": "1.0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f038",
+              "label": "Impact / Before / Target deficit",
+              "value": 41763,
+              "unit": "accounting items",
+              "quote": "41763"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f039",
+              "label": "Impact / Conservation / Amx / After",
+              "value": 7154,
+              "unit": null,
+              "quote": "7154"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f040",
+              "label": "Impact / Conservation / Amx / Before",
+              "value": 7154,
+              "unit": null,
+              "quote": "7154"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f041",
+              "label": "Impact / Conservation / Ifa / After",
+              "value": 9467,
+              "unit": null,
+              "quote": "9467"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f042",
+              "label": "Impact / Conservation / Ifa / Before",
+              "value": 9467,
+              "unit": null,
+              "quote": "9467"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f043",
+              "label": "Impact / Conservation / Ivf / After",
+              "value": 2951,
+              "unit": null,
+              "quote": "2951"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f044",
+              "label": "Impact / Conservation / Ivf / Before",
+              "value": 2951,
+              "unit": null,
+              "quote": "2951"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f045",
+              "label": "Impact / Conservation / Ors / After",
+              "value": 5021,
+              "unit": null,
+              "quote": "5021"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f046",
+              "label": "Impact / Conservation / Ors / Before",
+              "value": 5021,
+              "unit": null,
+              "quote": "5021"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f047",
+              "label": "Impact / Conservation / Pcm / After",
+              "value": 22952,
+              "unit": null,
+              "quote": "22952"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f048",
+              "label": "Impact / Conservation / Pcm / Before",
+              "value": 22952,
+              "unit": null,
+              "quote": "22952"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f049",
+              "label": "Impact / Critical deficits resolved",
+              "value": 2,
+              "unit": null,
+              "quote": "2"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f050",
+              "label": "Impact / Critical deficits total",
+              "value": 5,
+              "unit": null,
+              "quote": "5"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f051",
+              "label": "Impact / Distance km",
+              "value": 54.591838516215944,
+              "unit": null,
+              "quote": "54.591838516215944"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f052",
+              "label": "Impact / Distance weighted units",
+              "value": 79247.99067343438,
+              "unit": null,
+              "quote": "79247.99067343438"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f053",
+              "label": "Impact / Donor facilities used",
+              "value": 2,
+              "unit": null,
+              "quote": "2"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f054",
+              "label": "Impact / Donor safety violations",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f055",
+              "label": "Impact / Facilities protected",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f056",
+              "label": "Impact / New donor risks",
+              "value": 0,
+              "unit": "facilities",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f057",
+              "label": "Impact / Percent deficit resolved",
+              "value": 37.5428010439863,
+              "unit": "%",
+              "quote": "37.5428010439863"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f058",
+              "label": "Impact / Shortage units resolved",
+              "value": 15679,
+              "unit": "accounting items",
+              "quote": "15679"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f059",
+              "label": "Impact / Transfer count",
+              "value": 10,
+              "unit": null,
+              "quote": "10"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f060",
+              "label": "Impact / Transferred units",
+              "value": 15679,
+              "unit": "accounting items",
+              "quote": "15679"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f061",
+              "label": "Impact / Unresolved / In-mh-pune-003:amx",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f062",
+              "label": "Impact / Unresolved / In-mh-pune-003:ifa",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f063",
+              "label": "Impact / Unresolved / In-mh-pune-003:ivf",
+              "value": 2173,
+              "unit": null,
+              "quote": "2173"
+            },
+            {
+              "fact_id": "e2_37a689a7961d4719_f064",
+              "label": "Impact / Unresolved / In-mh-pune-003:ors",
+              "value": 964,
+              "unit": null,
+              "quote": "964"
+            }
+          ],
+          "facts_truncated": true,
+          "provenance": {
+            "origin": "2026-09-27",
+            "model_version": "forecast-v1-176a752efab3ae4e"
+          }
+        }
+      ],
+      "evidence_reuse": {
+        "method": "deterministic reconstructed authoritative evidence (path B)",
+        "original_live_scenario_id": "e0aca1d9-9770-47de-a11c-8f97f17ff6f8",
+        "original_live_optimization_id": "6551b897-f19d-4eaf-b308-e3c3f4b4fb47",
+        "new_scenario_id": "ef375f5a-8e0a-47a9-9db4-4d8b3cd8a770",
+        "new_optimization_id": "19cf7bfa-df81-4833-884d-a7c99ed46818",
+        "new_objects_not_original_in_memory": true,
+        "source_report_sha256": "65d3126d418f58674c78c1b28bfdd47d32a14ccd5c536074ad2529c89aa6f325",
+        "snapshot_id": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "scoped_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+        "forecast_artifact_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a",
+        "model_version": "forecast-v1-176a752efab3ae4e",
+        "profile": "redistribution-ready",
+        "profile_version": "inventory-profile-v1",
+        "origin": "2026-09-27",
+        "canonical": {
+          "target_before": 41763,
+          "safe_capacity": 17745,
+          "transferred": 15679,
+          "lanes": 10,
+          "unresolved": 26084,
+          "donor_violations": 0,
+          "new_donor_risks": 0,
+          "solver_status": "OPTIMAL"
+        },
+        "impact": {
+          "before": {
+            "target_deficit": 41763,
+            "expected_unmet": 27655.218070826377,
+            "critical_resource_warnings": 7,
+            "facilities_at_risk": 1,
+            "max_stockout_risk": 1.0
+          },
+          "after": {
+            "target_deficit": 26084,
+            "expected_unmet": 17378.197997959564,
+            "critical_resource_warnings": 0,
+            "facilities_at_risk": 1,
+            "max_stockout_risk": 1.0
+          },
+          "shortage_units_resolved": 15679,
+          "percent_deficit_resolved": 37.5428010439863,
+          "critical_deficits_resolved": 2,
+          "critical_deficits_total": 5,
+          "facilities_protected": 0,
+          "donor_facilities_used": 2,
+          "transfer_count": 10,
+          "transferred_units": 15679,
+          "distance_km": 54.591838516215944,
+          "distance_weighted_units": 79247.99067343438,
+          "donor_safety_violations": 0,
+          "new_donor_risks": 0,
+          "unresolved": {
+            "IN-MH-PUNE-003:AMX": 0,
+            "IN-MH-PUNE-003:IFA": 0,
+            "IN-MH-PUNE-003:IVF": 2173,
+            "IN-MH-PUNE-003:ORS": 964,
+            "IN-MH-PUNE-003:PCM": 22947
+          },
+          "conservation": {
+            "PCM": {
+              "before": 22952,
+              "after": 22952
+            },
+            "IVF": {
+              "before": 2951,
+              "after": 2951
+            },
+            "ORS": {
+              "before": 5021,
+              "after": 5021
+            },
+            "AMX": {
+              "before": 7154,
+              "after": 7154
+            },
+            "IFA": {
+              "before": 9467,
+              "after": 9467
+            }
+          }
+        },
+        "baseline_and_scenario_immutable": true,
+        "local_tool_calls": 2,
+        "local_seconds": 3.1676001000159886
+      },
+      "preservation": {
+        "status": "PASS",
+        "original_file_identities": 500,
+        "unchanged_file_identities": 487,
+        "env_unchanged": true,
+        "ui_unchanged": true,
+        "fact_numeric_contract_unchanged": true,
+        "operational_forecasting_ortools_federation_artifacts_unchanged": true,
+        "production_fallback_order_unchanged": true,
+        "historical_evidence_unchanged": true
+      },
+      "status": "PASS",
+      "native_orchestration": "PASS (preserved live evidence)",
+      "positive_workflow": "PASS",
+      "phase6_complete": false,
+      "remaining_cases": [
+        "followup",
+        "constrained",
+        "provenance"
+      ],
+      "provider_seconds": 0.03642630000831559,
+      "http_status": 200,
+      "provider_status": "completed",
+      "interaction_id": "mock-final",
+      "usage": {},
+      "final_output_text": "{\"situation\": {\"text\": \"OR-Tools proved an optimal advisory plan under the configured constraints.\", \"evidence_refs\": [\"e2_37a689a7961d4719_f023\"]}, \"key_risks\": [{\"text\": \"Safe donor surplus is available for redistribution.\", \"evidence_refs\": [\"e2_37a689a7961d4719_f028\"]}], \"recommended_actions\": [{\"text\": \"The advisory redistribution plan reduces resource pressure.\", \"evidence_refs\": [\"e2_37a689a7961d4719_f060\"]}], \"remaining_gaps\": [{\"text\": \"Substantial unresolved resource deficits remain.\", \"evidence_refs\": [\"e2_37a689a7961d4719_f033\"]}]}",
+      "partial_output_length": 549,
+      "json_truncation": false,
+      "final_synthesis": "PASS",
+      "schema": "PASS",
+      "fact_ids": "PASS",
+      "numeric_grounding": "PASS",
+      "context": "PASS",
+      "solver_terminology": "PASS",
+      "qualitative_grounding": "PASS (automated guard; final manual review also required)",
+      "unknown_fact_ids": 0,
+      "unsupported_numeric_claims": 0,
+      "claim_count": 4,
+      "answer": {
+        "situation": {
+          "text": "OR-Tools proved an optimal advisory plan under the configured constraints.",
+          "references": [
+            {
+              "evidence_id": "e2",
+              "field": "solver.status"
+            }
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Safe donor surplus is available for redistribution.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "safe_capacity"
+              }
+            ]
+          }
+        ],
+        "recommended_actions": [
+          {
+            "text": "The advisory redistribution plan reduces resource pressure.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "impact.transferred_units"
+              }
+            ]
+          }
+        ],
+        "remaining_gaps": [
+          {
+            "text": "Substantial unresolved resource deficits remain.",
+            "references": [
+              {
+                "evidence_id": "e2",
+                "field": "impact.after.target_deficit"
+              }
+            ]
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "19cf7bfa-df81-4833-884d-a7c99ed46818",
+          "field": "solver.status",
+          "value": "OPTIMAL",
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "19cf7bfa-df81-4833-884d-a7c99ed46818",
+          "field": "safe_capacity",
+          "value": 17745,
+          "profile": "redistribution-ready",
+          "unit": "accounting items"
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "19cf7bfa-df81-4833-884d-a7c99ed46818",
+          "field": "impact.transferred_units",
+          "value": 15679,
+          "profile": "redistribution-ready",
+          "unit": "accounting items"
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "optimize_redistribution",
+          "source_type": "optimize_redistribution",
+          "source_id": "19cf7bfa-df81-4833-884d-a7c99ed46818",
+          "field": "impact.after.target_deficit",
+          "value": 26084,
+          "profile": "redistribution-ready",
+          "unit": "accounting items"
+        }
+      ],
+      "fact_audits": [
+        {
+          "claim_index": 0,
+          "claim_field": "situation.text",
+          "claim_text": "OR-Tools proved an optimal advisory plan under the configured constraints.",
+          "supplied_fact_ids": [
+            "e1_37a689a7961d4719_f001",
+            "e1_37a689a7961d4719_f002",
+            "e1_37a689a7961d4719_f003",
+            "e1_37a689a7961d4719_f004",
+            "e1_37a689a7961d4719_f005",
+            "e1_37a689a7961d4719_f006",
+            "e1_37a689a7961d4719_f007",
+            "e1_37a689a7961d4719_f008",
+            "e1_37a689a7961d4719_f009",
+            "e1_37a689a7961d4719_f010",
+            "e1_37a689a7961d4719_f011",
+            "e1_37a689a7961d4719_f012",
+            "e1_37a689a7961d4719_f013",
+            "e1_37a689a7961d4719_f014",
+            "e1_37a689a7961d4719_f015",
+            "e1_37a689a7961d4719_f016",
+            "e1_37a689a7961d4719_f017",
+            "e1_37a689a7961d4719_f018",
+            "e1_37a689a7961d4719_f019",
+            "e1_37a689a7961d4719_f020",
+            "e1_37a689a7961d4719_f021",
+            "e1_37a689a7961d4719_f022",
+            "e1_37a689a7961d4719_f023",
+            "e1_37a689a7961d4719_f024",
+            "e1_37a689a7961d4719_f025",
+            "e1_37a689a7961d4719_f026",
+            "e1_37a689a7961d4719_f027",
+            "e1_37a689a7961d4719_f028",
+            "e1_37a689a7961d4719_f029",
+            "e1_37a689a7961d4719_f030",
+            "e1_37a689a7961d4719_f031",
+            "e1_37a689a7961d4719_f032",
+            "e1_37a689a7961d4719_f033",
+            "e1_37a689a7961d4719_f034",
+            "e1_37a689a7961d4719_f035",
+            "e1_37a689a7961d4719_f036",
+            "e1_37a689a7961d4719_f037",
+            "e1_37a689a7961d4719_f038",
+            "e1_37a689a7961d4719_f039",
+            "e1_37a689a7961d4719_f040",
+            "e1_37a689a7961d4719_f041",
+            "e1_37a689a7961d4719_f042",
+            "e1_37a689a7961d4719_f043",
+            "e1_37a689a7961d4719_f044",
+            "e1_37a689a7961d4719_f045",
+            "e1_37a689a7961d4719_f046",
+            "e1_37a689a7961d4719_f047",
+            "e1_37a689a7961d4719_f048",
+            "e1_37a689a7961d4719_f049",
+            "e1_37a689a7961d4719_f050",
+            "e1_37a689a7961d4719_f051",
+            "e1_37a689a7961d4719_f052",
+            "e1_37a689a7961d4719_f053",
+            "e1_37a689a7961d4719_f054",
+            "e1_37a689a7961d4719_f055",
+            "e1_37a689a7961d4719_f056",
+            "e1_37a689a7961d4719_f057",
+            "e1_37a689a7961d4719_f058",
+            "e1_37a689a7961d4719_f059",
+            "e1_37a689a7961d4719_f060",
+            "e1_37a689a7961d4719_f061",
+            "e1_37a689a7961d4719_f062",
+            "e1_37a689a7961d4719_f063",
+            "e1_37a689a7961d4719_f064",
+            "e2_37a689a7961d4719_f001",
+            "e2_37a689a7961d4719_f002",
+            "e2_37a689a7961d4719_f003",
+            "e2_37a689a7961d4719_f004",
+            "e2_37a689a7961d4719_f005",
+            "e2_37a689a7961d4719_f006",
+            "e2_37a689a7961d4719_f007",
+            "e2_37a689a7961d4719_f008",
+            "e2_37a689a7961d4719_f009",
+            "e2_37a689a7961d4719_f010",
+            "e2_37a689a7961d4719_f011",
+            "e2_37a689a7961d4719_f012",
+            "e2_37a689a7961d4719_f013",
+            "e2_37a689a7961d4719_f014",
+            "e2_37a689a7961d4719_f015",
+            "e2_37a689a7961d4719_f016",
+            "e2_37a689a7961d4719_f017",
+            "e2_37a689a7961d4719_f018",
+            "e2_37a689a7961d4719_f019",
+            "e2_37a689a7961d4719_f020",
+            "e2_37a689a7961d4719_f021",
+            "e2_37a689a7961d4719_f022",
+            "e2_37a689a7961d4719_f023",
+            "e2_37a689a7961d4719_f024",
+            "e2_37a689a7961d4719_f025",
+            "e2_37a689a7961d4719_f026",
+            "e2_37a689a7961d4719_f027",
+            "e2_37a689a7961d4719_f028",
+            "e2_37a689a7961d4719_f029",
+            "e2_37a689a7961d4719_f030",
+            "e2_37a689a7961d4719_f031",
+            "e2_37a689a7961d4719_f032",
+            "e2_37a689a7961d4719_f033",
+            "e2_37a689a7961d4719_f034",
+            "e2_37a689a7961d4719_f035",
+            "e2_37a689a7961d4719_f036",
+            "e2_37a689a7961d4719_f037",
+            "e2_37a689a7961d4719_f038",
+            "e2_37a689a7961d4719_f039",
+            "e2_37a689a7961d4719_f040",
+            "e2_37a689a7961d4719_f041",
+            "e2_37a689a7961d4719_f042",
+            "e2_37a689a7961d4719_f043",
+            "e2_37a689a7961d4719_f044",
+            "e2_37a689a7961d4719_f045",
+            "e2_37a689a7961d4719_f046",
+            "e2_37a689a7961d4719_f047",
+            "e2_37a689a7961d4719_f048",
+            "e2_37a689a7961d4719_f049",
+            "e2_37a689a7961d4719_f050",
+            "e2_37a689a7961d4719_f051",
+            "e2_37a689a7961d4719_f052",
+            "e2_37a689a7961d4719_f053",
+            "e2_37a689a7961d4719_f054",
+            "e2_37a689a7961d4719_f055",
+            "e2_37a689a7961d4719_f056",
+            "e2_37a689a7961d4719_f057",
+            "e2_37a689a7961d4719_f058",
+            "e2_37a689a7961d4719_f059",
+            "e2_37a689a7961d4719_f060",
+            "e2_37a689a7961d4719_f061",
+            "e2_37a689a7961d4719_f062",
+            "e2_37a689a7961d4719_f063",
+            "e2_37a689a7961d4719_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_37a689a7961d4719_f023"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_37a689a7961d4719_f023",
+              "evidence_id": "e2",
+              "path": "solver.status",
+              "value": "OPTIMAL",
+              "unit": null,
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 1,
+          "claim_field": "key_risks.0.text",
+          "claim_text": "Safe donor surplus is available for redistribution.",
+          "supplied_fact_ids": [
+            "e1_37a689a7961d4719_f001",
+            "e1_37a689a7961d4719_f002",
+            "e1_37a689a7961d4719_f003",
+            "e1_37a689a7961d4719_f004",
+            "e1_37a689a7961d4719_f005",
+            "e1_37a689a7961d4719_f006",
+            "e1_37a689a7961d4719_f007",
+            "e1_37a689a7961d4719_f008",
+            "e1_37a689a7961d4719_f009",
+            "e1_37a689a7961d4719_f010",
+            "e1_37a689a7961d4719_f011",
+            "e1_37a689a7961d4719_f012",
+            "e1_37a689a7961d4719_f013",
+            "e1_37a689a7961d4719_f014",
+            "e1_37a689a7961d4719_f015",
+            "e1_37a689a7961d4719_f016",
+            "e1_37a689a7961d4719_f017",
+            "e1_37a689a7961d4719_f018",
+            "e1_37a689a7961d4719_f019",
+            "e1_37a689a7961d4719_f020",
+            "e1_37a689a7961d4719_f021",
+            "e1_37a689a7961d4719_f022",
+            "e1_37a689a7961d4719_f023",
+            "e1_37a689a7961d4719_f024",
+            "e1_37a689a7961d4719_f025",
+            "e1_37a689a7961d4719_f026",
+            "e1_37a689a7961d4719_f027",
+            "e1_37a689a7961d4719_f028",
+            "e1_37a689a7961d4719_f029",
+            "e1_37a689a7961d4719_f030",
+            "e1_37a689a7961d4719_f031",
+            "e1_37a689a7961d4719_f032",
+            "e1_37a689a7961d4719_f033",
+            "e1_37a689a7961d4719_f034",
+            "e1_37a689a7961d4719_f035",
+            "e1_37a689a7961d4719_f036",
+            "e1_37a689a7961d4719_f037",
+            "e1_37a689a7961d4719_f038",
+            "e1_37a689a7961d4719_f039",
+            "e1_37a689a7961d4719_f040",
+            "e1_37a689a7961d4719_f041",
+            "e1_37a689a7961d4719_f042",
+            "e1_37a689a7961d4719_f043",
+            "e1_37a689a7961d4719_f044",
+            "e1_37a689a7961d4719_f045",
+            "e1_37a689a7961d4719_f046",
+            "e1_37a689a7961d4719_f047",
+            "e1_37a689a7961d4719_f048",
+            "e1_37a689a7961d4719_f049",
+            "e1_37a689a7961d4719_f050",
+            "e1_37a689a7961d4719_f051",
+            "e1_37a689a7961d4719_f052",
+            "e1_37a689a7961d4719_f053",
+            "e1_37a689a7961d4719_f054",
+            "e1_37a689a7961d4719_f055",
+            "e1_37a689a7961d4719_f056",
+            "e1_37a689a7961d4719_f057",
+            "e1_37a689a7961d4719_f058",
+            "e1_37a689a7961d4719_f059",
+            "e1_37a689a7961d4719_f060",
+            "e1_37a689a7961d4719_f061",
+            "e1_37a689a7961d4719_f062",
+            "e1_37a689a7961d4719_f063",
+            "e1_37a689a7961d4719_f064",
+            "e2_37a689a7961d4719_f001",
+            "e2_37a689a7961d4719_f002",
+            "e2_37a689a7961d4719_f003",
+            "e2_37a689a7961d4719_f004",
+            "e2_37a689a7961d4719_f005",
+            "e2_37a689a7961d4719_f006",
+            "e2_37a689a7961d4719_f007",
+            "e2_37a689a7961d4719_f008",
+            "e2_37a689a7961d4719_f009",
+            "e2_37a689a7961d4719_f010",
+            "e2_37a689a7961d4719_f011",
+            "e2_37a689a7961d4719_f012",
+            "e2_37a689a7961d4719_f013",
+            "e2_37a689a7961d4719_f014",
+            "e2_37a689a7961d4719_f015",
+            "e2_37a689a7961d4719_f016",
+            "e2_37a689a7961d4719_f017",
+            "e2_37a689a7961d4719_f018",
+            "e2_37a689a7961d4719_f019",
+            "e2_37a689a7961d4719_f020",
+            "e2_37a689a7961d4719_f021",
+            "e2_37a689a7961d4719_f022",
+            "e2_37a689a7961d4719_f023",
+            "e2_37a689a7961d4719_f024",
+            "e2_37a689a7961d4719_f025",
+            "e2_37a689a7961d4719_f026",
+            "e2_37a689a7961d4719_f027",
+            "e2_37a689a7961d4719_f028",
+            "e2_37a689a7961d4719_f029",
+            "e2_37a689a7961d4719_f030",
+            "e2_37a689a7961d4719_f031",
+            "e2_37a689a7961d4719_f032",
+            "e2_37a689a7961d4719_f033",
+            "e2_37a689a7961d4719_f034",
+            "e2_37a689a7961d4719_f035",
+            "e2_37a689a7961d4719_f036",
+            "e2_37a689a7961d4719_f037",
+            "e2_37a689a7961d4719_f038",
+            "e2_37a689a7961d4719_f039",
+            "e2_37a689a7961d4719_f040",
+            "e2_37a689a7961d4719_f041",
+            "e2_37a689a7961d4719_f042",
+            "e2_37a689a7961d4719_f043",
+            "e2_37a689a7961d4719_f044",
+            "e2_37a689a7961d4719_f045",
+            "e2_37a689a7961d4719_f046",
+            "e2_37a689a7961d4719_f047",
+            "e2_37a689a7961d4719_f048",
+            "e2_37a689a7961d4719_f049",
+            "e2_37a689a7961d4719_f050",
+            "e2_37a689a7961d4719_f051",
+            "e2_37a689a7961d4719_f052",
+            "e2_37a689a7961d4719_f053",
+            "e2_37a689a7961d4719_f054",
+            "e2_37a689a7961d4719_f055",
+            "e2_37a689a7961d4719_f056",
+            "e2_37a689a7961d4719_f057",
+            "e2_37a689a7961d4719_f058",
+            "e2_37a689a7961d4719_f059",
+            "e2_37a689a7961d4719_f060",
+            "e2_37a689a7961d4719_f061",
+            "e2_37a689a7961d4719_f062",
+            "e2_37a689a7961d4719_f063",
+            "e2_37a689a7961d4719_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_37a689a7961d4719_f028"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_37a689a7961d4719_f028",
+              "evidence_id": "e2",
+              "path": "safe_capacity",
+              "value": 17745,
+              "unit": "accounting items",
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 2,
+          "claim_field": "recommended_actions.0.text",
+          "claim_text": "The advisory redistribution plan reduces resource pressure.",
+          "supplied_fact_ids": [
+            "e1_37a689a7961d4719_f001",
+            "e1_37a689a7961d4719_f002",
+            "e1_37a689a7961d4719_f003",
+            "e1_37a689a7961d4719_f004",
+            "e1_37a689a7961d4719_f005",
+            "e1_37a689a7961d4719_f006",
+            "e1_37a689a7961d4719_f007",
+            "e1_37a689a7961d4719_f008",
+            "e1_37a689a7961d4719_f009",
+            "e1_37a689a7961d4719_f010",
+            "e1_37a689a7961d4719_f011",
+            "e1_37a689a7961d4719_f012",
+            "e1_37a689a7961d4719_f013",
+            "e1_37a689a7961d4719_f014",
+            "e1_37a689a7961d4719_f015",
+            "e1_37a689a7961d4719_f016",
+            "e1_37a689a7961d4719_f017",
+            "e1_37a689a7961d4719_f018",
+            "e1_37a689a7961d4719_f019",
+            "e1_37a689a7961d4719_f020",
+            "e1_37a689a7961d4719_f021",
+            "e1_37a689a7961d4719_f022",
+            "e1_37a689a7961d4719_f023",
+            "e1_37a689a7961d4719_f024",
+            "e1_37a689a7961d4719_f025",
+            "e1_37a689a7961d4719_f026",
+            "e1_37a689a7961d4719_f027",
+            "e1_37a689a7961d4719_f028",
+            "e1_37a689a7961d4719_f029",
+            "e1_37a689a7961d4719_f030",
+            "e1_37a689a7961d4719_f031",
+            "e1_37a689a7961d4719_f032",
+            "e1_37a689a7961d4719_f033",
+            "e1_37a689a7961d4719_f034",
+            "e1_37a689a7961d4719_f035",
+            "e1_37a689a7961d4719_f036",
+            "e1_37a689a7961d4719_f037",
+            "e1_37a689a7961d4719_f038",
+            "e1_37a689a7961d4719_f039",
+            "e1_37a689a7961d4719_f040",
+            "e1_37a689a7961d4719_f041",
+            "e1_37a689a7961d4719_f042",
+            "e1_37a689a7961d4719_f043",
+            "e1_37a689a7961d4719_f044",
+            "e1_37a689a7961d4719_f045",
+            "e1_37a689a7961d4719_f046",
+            "e1_37a689a7961d4719_f047",
+            "e1_37a689a7961d4719_f048",
+            "e1_37a689a7961d4719_f049",
+            "e1_37a689a7961d4719_f050",
+            "e1_37a689a7961d4719_f051",
+            "e1_37a689a7961d4719_f052",
+            "e1_37a689a7961d4719_f053",
+            "e1_37a689a7961d4719_f054",
+            "e1_37a689a7961d4719_f055",
+            "e1_37a689a7961d4719_f056",
+            "e1_37a689a7961d4719_f057",
+            "e1_37a689a7961d4719_f058",
+            "e1_37a689a7961d4719_f059",
+            "e1_37a689a7961d4719_f060",
+            "e1_37a689a7961d4719_f061",
+            "e1_37a689a7961d4719_f062",
+            "e1_37a689a7961d4719_f063",
+            "e1_37a689a7961d4719_f064",
+            "e2_37a689a7961d4719_f001",
+            "e2_37a689a7961d4719_f002",
+            "e2_37a689a7961d4719_f003",
+            "e2_37a689a7961d4719_f004",
+            "e2_37a689a7961d4719_f005",
+            "e2_37a689a7961d4719_f006",
+            "e2_37a689a7961d4719_f007",
+            "e2_37a689a7961d4719_f008",
+            "e2_37a689a7961d4719_f009",
+            "e2_37a689a7961d4719_f010",
+            "e2_37a689a7961d4719_f011",
+            "e2_37a689a7961d4719_f012",
+            "e2_37a689a7961d4719_f013",
+            "e2_37a689a7961d4719_f014",
+            "e2_37a689a7961d4719_f015",
+            "e2_37a689a7961d4719_f016",
+            "e2_37a689a7961d4719_f017",
+            "e2_37a689a7961d4719_f018",
+            "e2_37a689a7961d4719_f019",
+            "e2_37a689a7961d4719_f020",
+            "e2_37a689a7961d4719_f021",
+            "e2_37a689a7961d4719_f022",
+            "e2_37a689a7961d4719_f023",
+            "e2_37a689a7961d4719_f024",
+            "e2_37a689a7961d4719_f025",
+            "e2_37a689a7961d4719_f026",
+            "e2_37a689a7961d4719_f027",
+            "e2_37a689a7961d4719_f028",
+            "e2_37a689a7961d4719_f029",
+            "e2_37a689a7961d4719_f030",
+            "e2_37a689a7961d4719_f031",
+            "e2_37a689a7961d4719_f032",
+            "e2_37a689a7961d4719_f033",
+            "e2_37a689a7961d4719_f034",
+            "e2_37a689a7961d4719_f035",
+            "e2_37a689a7961d4719_f036",
+            "e2_37a689a7961d4719_f037",
+            "e2_37a689a7961d4719_f038",
+            "e2_37a689a7961d4719_f039",
+            "e2_37a689a7961d4719_f040",
+            "e2_37a689a7961d4719_f041",
+            "e2_37a689a7961d4719_f042",
+            "e2_37a689a7961d4719_f043",
+            "e2_37a689a7961d4719_f044",
+            "e2_37a689a7961d4719_f045",
+            "e2_37a689a7961d4719_f046",
+            "e2_37a689a7961d4719_f047",
+            "e2_37a689a7961d4719_f048",
+            "e2_37a689a7961d4719_f049",
+            "e2_37a689a7961d4719_f050",
+            "e2_37a689a7961d4719_f051",
+            "e2_37a689a7961d4719_f052",
+            "e2_37a689a7961d4719_f053",
+            "e2_37a689a7961d4719_f054",
+            "e2_37a689a7961d4719_f055",
+            "e2_37a689a7961d4719_f056",
+            "e2_37a689a7961d4719_f057",
+            "e2_37a689a7961d4719_f058",
+            "e2_37a689a7961d4719_f059",
+            "e2_37a689a7961d4719_f060",
+            "e2_37a689a7961d4719_f061",
+            "e2_37a689a7961d4719_f062",
+            "e2_37a689a7961d4719_f063",
+            "e2_37a689a7961d4719_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_37a689a7961d4719_f060"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_37a689a7961d4719_f060",
+              "evidence_id": "e2",
+              "path": "impact.transferred_units",
+              "value": 15679,
+              "unit": "accounting items",
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 3,
+          "claim_field": "remaining_gaps.0.text",
+          "claim_text": "Substantial unresolved resource deficits remain.",
+          "supplied_fact_ids": [
+            "e1_37a689a7961d4719_f001",
+            "e1_37a689a7961d4719_f002",
+            "e1_37a689a7961d4719_f003",
+            "e1_37a689a7961d4719_f004",
+            "e1_37a689a7961d4719_f005",
+            "e1_37a689a7961d4719_f006",
+            "e1_37a689a7961d4719_f007",
+            "e1_37a689a7961d4719_f008",
+            "e1_37a689a7961d4719_f009",
+            "e1_37a689a7961d4719_f010",
+            "e1_37a689a7961d4719_f011",
+            "e1_37a689a7961d4719_f012",
+            "e1_37a689a7961d4719_f013",
+            "e1_37a689a7961d4719_f014",
+            "e1_37a689a7961d4719_f015",
+            "e1_37a689a7961d4719_f016",
+            "e1_37a689a7961d4719_f017",
+            "e1_37a689a7961d4719_f018",
+            "e1_37a689a7961d4719_f019",
+            "e1_37a689a7961d4719_f020",
+            "e1_37a689a7961d4719_f021",
+            "e1_37a689a7961d4719_f022",
+            "e1_37a689a7961d4719_f023",
+            "e1_37a689a7961d4719_f024",
+            "e1_37a689a7961d4719_f025",
+            "e1_37a689a7961d4719_f026",
+            "e1_37a689a7961d4719_f027",
+            "e1_37a689a7961d4719_f028",
+            "e1_37a689a7961d4719_f029",
+            "e1_37a689a7961d4719_f030",
+            "e1_37a689a7961d4719_f031",
+            "e1_37a689a7961d4719_f032",
+            "e1_37a689a7961d4719_f033",
+            "e1_37a689a7961d4719_f034",
+            "e1_37a689a7961d4719_f035",
+            "e1_37a689a7961d4719_f036",
+            "e1_37a689a7961d4719_f037",
+            "e1_37a689a7961d4719_f038",
+            "e1_37a689a7961d4719_f039",
+            "e1_37a689a7961d4719_f040",
+            "e1_37a689a7961d4719_f041",
+            "e1_37a689a7961d4719_f042",
+            "e1_37a689a7961d4719_f043",
+            "e1_37a689a7961d4719_f044",
+            "e1_37a689a7961d4719_f045",
+            "e1_37a689a7961d4719_f046",
+            "e1_37a689a7961d4719_f047",
+            "e1_37a689a7961d4719_f048",
+            "e1_37a689a7961d4719_f049",
+            "e1_37a689a7961d4719_f050",
+            "e1_37a689a7961d4719_f051",
+            "e1_37a689a7961d4719_f052",
+            "e1_37a689a7961d4719_f053",
+            "e1_37a689a7961d4719_f054",
+            "e1_37a689a7961d4719_f055",
+            "e1_37a689a7961d4719_f056",
+            "e1_37a689a7961d4719_f057",
+            "e1_37a689a7961d4719_f058",
+            "e1_37a689a7961d4719_f059",
+            "e1_37a689a7961d4719_f060",
+            "e1_37a689a7961d4719_f061",
+            "e1_37a689a7961d4719_f062",
+            "e1_37a689a7961d4719_f063",
+            "e1_37a689a7961d4719_f064",
+            "e2_37a689a7961d4719_f001",
+            "e2_37a689a7961d4719_f002",
+            "e2_37a689a7961d4719_f003",
+            "e2_37a689a7961d4719_f004",
+            "e2_37a689a7961d4719_f005",
+            "e2_37a689a7961d4719_f006",
+            "e2_37a689a7961d4719_f007",
+            "e2_37a689a7961d4719_f008",
+            "e2_37a689a7961d4719_f009",
+            "e2_37a689a7961d4719_f010",
+            "e2_37a689a7961d4719_f011",
+            "e2_37a689a7961d4719_f012",
+            "e2_37a689a7961d4719_f013",
+            "e2_37a689a7961d4719_f014",
+            "e2_37a689a7961d4719_f015",
+            "e2_37a689a7961d4719_f016",
+            "e2_37a689a7961d4719_f017",
+            "e2_37a689a7961d4719_f018",
+            "e2_37a689a7961d4719_f019",
+            "e2_37a689a7961d4719_f020",
+            "e2_37a689a7961d4719_f021",
+            "e2_37a689a7961d4719_f022",
+            "e2_37a689a7961d4719_f023",
+            "e2_37a689a7961d4719_f024",
+            "e2_37a689a7961d4719_f025",
+            "e2_37a689a7961d4719_f026",
+            "e2_37a689a7961d4719_f027",
+            "e2_37a689a7961d4719_f028",
+            "e2_37a689a7961d4719_f029",
+            "e2_37a689a7961d4719_f030",
+            "e2_37a689a7961d4719_f031",
+            "e2_37a689a7961d4719_f032",
+            "e2_37a689a7961d4719_f033",
+            "e2_37a689a7961d4719_f034",
+            "e2_37a689a7961d4719_f035",
+            "e2_37a689a7961d4719_f036",
+            "e2_37a689a7961d4719_f037",
+            "e2_37a689a7961d4719_f038",
+            "e2_37a689a7961d4719_f039",
+            "e2_37a689a7961d4719_f040",
+            "e2_37a689a7961d4719_f041",
+            "e2_37a689a7961d4719_f042",
+            "e2_37a689a7961d4719_f043",
+            "e2_37a689a7961d4719_f044",
+            "e2_37a689a7961d4719_f045",
+            "e2_37a689a7961d4719_f046",
+            "e2_37a689a7961d4719_f047",
+            "e2_37a689a7961d4719_f048",
+            "e2_37a689a7961d4719_f049",
+            "e2_37a689a7961d4719_f050",
+            "e2_37a689a7961d4719_f051",
+            "e2_37a689a7961d4719_f052",
+            "e2_37a689a7961d4719_f053",
+            "e2_37a689a7961d4719_f054",
+            "e2_37a689a7961d4719_f055",
+            "e2_37a689a7961d4719_f056",
+            "e2_37a689a7961d4719_f057",
+            "e2_37a689a7961d4719_f058",
+            "e2_37a689a7961d4719_f059",
+            "e2_37a689a7961d4719_f060",
+            "e2_37a689a7961d4719_f061",
+            "e2_37a689a7961d4719_f062",
+            "e2_37a689a7961d4719_f063",
+            "e2_37a689a7961d4719_f064"
+          ],
+          "cited_fact_ids": [
+            "e2_37a689a7961d4719_f033"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e2_37a689a7961d4719_f033",
+              "evidence_id": "e2",
+              "path": "impact.after.target_deficit",
+              "value": 26084,
+              "unit": "accounting items",
+              "tool": "optimize_redistribution",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        }
+      ],
+      "mock_http_sends": 1,
+      "provider_attempts_per_model": {}
+    }
+  ]
+}

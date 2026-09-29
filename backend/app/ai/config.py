@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 
 MODEL = 'gemini-3.8-flash'
 DEFAULT_CHAIN = (MODEL, 'gemini-3.7-flash', 'gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.5-flash-lite')
-VERSION = 'copilot-config-v4-failover'
+VERSION = 'copilot-config-v5-stage-generation'
 
 
 @dataclass(frozen=True)
@@ -20,6 +20,12 @@ class AIConfig:
     timeout: float = 60
     workflow_timeout: float = 300
     max_output_tokens: int = 2400
+    synthesis_thinking: str = field(default_factory=lambda: os.getenv('GEMINI_SYNTHESIS_THINKING_LEVEL', 'low'))
+    synthesis_max_output_tokens: int = 4096
+
+    def generation(self, synthesis=False):
+        return {'thinking_level':self.synthesis_thinking if synthesis else self.thinking,
+            'max_output_tokens':self.synthesis_max_output_tokens if synthesis else self.max_output_tokens}
 
     @property
     def chain(self):
@@ -30,6 +36,8 @@ class AIConfig:
             return 'model_configuration', 'Configure only approved stable Gemini Flash-family models without duplicate fallbacks.'
         if self.thinking not in ('low', 'medium'):
             return 'thinking_configuration', 'GEMINI_THINKING_LEVEL must be low or medium.'
+        if self.synthesis_thinking not in ('low', 'medium'):
+            return 'thinking_configuration', 'GEMINI_SYNTHESIS_THINKING_LEVEL must be low or medium.'
         if not self.enabled:
             return 'disabled', 'Gemini is disabled. Select explicitly labelled offline mode.'
         if not self.api_key:

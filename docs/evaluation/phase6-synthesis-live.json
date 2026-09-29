@@ -1,0 +1,166 @@
+{
+  "status": "FAIL",
+  "tests": [
+    {
+      "timestamp": "2026-09-29T09:09:50.741009+00:00",
+      "case": "positive-final",
+      "mode": "live",
+      "model": "gemini-3.5-flash-lite",
+      "sdk_version": "2.25.0",
+      "fact_contract_version": "healthnexus-facts-v1",
+      "system_prompt_version": "healthnexus-system-v6-compact-synthesis",
+      "generation_stages": {
+        "native": {
+          "thinking_level": "medium",
+          "max_output_tokens": 2400
+        },
+        "synthesis": {
+          "thinking_level": "low",
+          "max_output_tokens": 4096
+        }
+      },
+      "historical_provider_requests": 28,
+      "maximum_new_provider_requests": 1,
+      "new_provider_requests": 1,
+      "native_provider_requests": 0,
+      "retry": false,
+      "fallback": false,
+      "previous_interaction_id": null,
+      "evidence_reuse": {
+        "method": "deterministic reconstructed authoritative evidence (path B)",
+        "original_live_scenario_id": "e0aca1d9-9770-47de-a11c-8f97f17ff6f8",
+        "original_live_optimization_id": "6551b897-f19d-4eaf-b308-e3c3f4b4fb47",
+        "new_scenario_id": "abca928e-d3f6-41a7-a5d9-708de3f561a6",
+        "new_optimization_id": "e2ea4b73-446b-4909-900b-08f80042f821",
+        "new_objects_not_original_in_memory": true,
+        "source_report_sha256": "65d3126d418f58674c78c1b28bfdd47d32a14ccd5c536074ad2529c89aa6f325",
+        "snapshot_id": "dde355d0f17e907f328c005b2357144221dcc6d4cb85c79c782d4b35017e04cd",
+        "scoped_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+        "forecast_artifact_sha256": "c2bd8f508fb1029874be06ae9cf128023c3e0841fc196e1a31f241c940433f4a",
+        "model_version": "forecast-v1-176a752efab3ae4e",
+        "profile": "redistribution-ready",
+        "profile_version": "inventory-profile-v1",
+        "origin": "2026-09-27",
+        "canonical": {
+          "target_before": 41763,
+          "safe_capacity": 17745,
+          "transferred": 15679,
+          "lanes": 10,
+          "unresolved": 26084,
+          "donor_violations": 0,
+          "new_donor_risks": 0,
+          "solver_status": "OPTIMAL"
+        },
+        "impact": {
+          "before": {
+            "target_deficit": 41763,
+            "expected_unmet": 27655.218070826377,
+            "critical_resource_warnings": 7,
+            "facilities_at_risk": 1,
+            "max_stockout_risk": 1.0
+          },
+          "after": {
+            "target_deficit": 26084,
+            "expected_unmet": 17378.197997959564,
+            "critical_resource_warnings": 0,
+            "facilities_at_risk": 1,
+            "max_stockout_risk": 1.0
+          },
+          "shortage_units_resolved": 15679,
+          "percent_deficit_resolved": 37.5428010439863,
+          "critical_deficits_resolved": 2,
+          "critical_deficits_total": 5,
+          "facilities_protected": 0,
+          "donor_facilities_used": 2,
+          "transfer_count": 10,
+          "transferred_units": 15679,
+          "distance_km": 54.591838516215944,
+          "distance_weighted_units": 79247.99067343438,
+          "donor_safety_violations": 0,
+          "new_donor_risks": 0,
+          "unresolved": {
+            "IN-MH-PUNE-003:AMX": 0,
+            "IN-MH-PUNE-003:IFA": 0,
+            "IN-MH-PUNE-003:IVF": 2173,
+            "IN-MH-PUNE-003:ORS": 964,
+            "IN-MH-PUNE-003:PCM": 22947
+          },
+          "conservation": {
+            "PCM": {
+              "before": 22952,
+              "after": 22952
+            },
+            "IVF": {
+              "before": 2951,
+              "after": 2951
+            },
+            "ORS": {
+              "before": 5021,
+              "after": 5021
+            },
+            "AMX": {
+              "before": 7154,
+              "after": 7154
+            },
+            "IFA": {
+              "before": 9467,
+              "after": 9467
+            }
+          }
+        },
+        "baseline_and_scenario_immutable": true,
+        "local_tool_calls": 2,
+        "local_seconds": 3.0818686000129674
+      },
+      "preservation": {
+        "status": "PASS",
+        "original_file_identities": 500,
+        "unchanged_file_identities": 487,
+        "env_unchanged": true,
+        "ui_unchanged": true,
+        "fact_numeric_contract_unchanged": true,
+        "operational_forecasting_ortools_federation_artifacts_unchanged": true,
+        "production_fallback_order_unchanged": true,
+        "historical_evidence_unchanged": true
+      },
+      "status": "FAIL",
+      "native_orchestration": "PASS (preserved live evidence)",
+      "positive_workflow": "PENDING",
+      "phase6_complete": false,
+      "remaining_cases": [
+        "followup",
+        "constrained",
+        "provenance"
+      ],
+      "provider_seconds": 2.9582648999930825,
+      "http_status": 200,
+      "provider_status": "completed",
+      "interaction_id": "",
+      "usage": {
+        "input_tokens_by_modality": [
+          {
+            "modality": "text",
+            "tokens": 10557
+          }
+        ],
+        "total_cached_tokens": 0,
+        "total_input_tokens": 10557,
+        "total_output_tokens": 470,
+        "total_thought_tokens": 0,
+        "total_tokens": 11027,
+        "total_tool_use_tokens": 0
+      },
+      "final_output_text": "{\n  \"situation\": {\n    \"text\": \"Simulating a severe fourteen-day dengue surge in Pune indicates substantial operational impacts on medical supplies, notably increasing demand and unmet requirements for IV fluids.\",\n    \"evidence_refs\": [\n      \"e1_6a8f4d24285643c0_f043\",\n      \"e1_6a8f4d24285643c0_f056\"\n    ]\n  },\n  \"key_risks\": [\n    {\n      \"text\": \"The simulation reveals severe stockout risks and pronounced unmet demand across critical treatment items.\",\n      \"evidence_refs\": [\n        \"e1_6a8f4d24285643c0_f048\",\n        \"e1_6a8f4d24285643c0_f056\"\n      ]\n    }\n  ],\n  \"recommended_actions\": [\n    {\n      \"text\": \"The redistribution optimizer completed with an optimal status, executing safe transfers across available donor facilities without incurring safety violations.\",\n      \"evidence_refs\": [\n        \"e2_6a8f4d24285643c0_f023\",\n        \"e2_6a8f4d24285643c0_f054\",\n        \"e2_6a8f4d24285643c0_f060\"\n      ]\n    }\n  ],\n  \"remaining_gaps\": [\n    {\n      \"text\": \"Despite executing authorized transfers, a target deficit and remaining unmet resource needs persist at facilities at risk.\",\n      \"evidence_refs\": [\n        \"e2_6a8f4d24285643c0_f031\",\n        \"e2_6a8f4d24285643c0_f033\"\n      ]\n    }\n  ]\n}",
+      "partial_output_length": 1220,
+      "json_truncation": false,
+      "final_synthesis": "FAIL",
+      "error_code": "response_incomplete",
+      "provider_diagnostic": {},
+      "citation_diagnostic": {},
+      "mock_http_sends": 0,
+      "provider_attempts_per_model": {
+        "gemini-3.5-flash-lite": 1
+      }
+    }
+  ]
+}

@@ -113,7 +113,9 @@ def test_each_model_official_sdk_wire_protocol_and_medium(model):
     session.create(input=[{'type':'function_result','name':'test','call_id':'native',
         'result':[{'type':'text','text':'{}'}]}],previous_interaction_id='wire-ok',
         response_format={'type':'text','mime_type':'application/json','schema':{'type':'object'}})
-    assert all(b['model']==model and b['generation_config']['thinking_level']=='medium' for b in sent)
+    assert all(b['model']==model for b in sent)
+    assert sent[0]['generation_config']=={'thinking_level':'medium','max_output_tokens':2400}
+    assert sent[1]['generation_config']=={'thinking_level':'low','max_output_tokens':4096}
     assert sent[1]['input'][0]['call_id']=='native' and sent[1]['previous_interaction_id']=='wire-ok'
     assert session.metadata()['effective_model']==model
     session.close()

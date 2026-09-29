@@ -1,6 +1,14 @@
 # Validation — 2026-09-29
 
-## Phase 6 — full live workflow attempt
+## Phase 6 — final synthesis budget fix
+
+- Pre-live regression passed **479 backend tests in 71.00 seconds**, retaining all 459 previous cases. Shared Lite/3.6 official SDK HTTP mocks, compilation, dependency checks, canonical results, all ten country/profile partitions, saved federation and security/preservation passed. [Preflight](evaluation/phase6-synthesis-preflight.json).
+- Exactly one Lite synthesis send returned HTTP 200 / completed, complete four-claim JSON, 10,557 input / 470 output / 0 thought / 11,027 total tokens in 2.958 seconds at low/4,096. It used deterministic reconstructed local evidence and no native provider planning, previous interaction, retry or fallback. The ledger preserves 28 historical sends and appends one (29 total).
+- The answer's execution wording fails manual factual acceptance. Initial live fact/numeric/solver validation was not reached because the stateless verifier unnecessarily required a nonempty ID. The SDK makes that field optional; local tests fix that check and reject execution variants. Original live evidence is unchanged; no second live send tested the correction. Unknown-ID/unsupported-number counts are not asserted as zero. [Live trace](evaluation/phase6-synthesis-live.json), [independent review](evaluation/phase6-synthesis-review.json).
+- Final local regression passes **484 tests in 120.78 seconds** (459 retained + 25 new), with shared SDK mocks, compilation, dependencies and security/preservation PASS. [Final evidence](evaluation/phase6-synthesis-final.json). Frontend files and their previous successful TypeScript/production build are preserved. No additional live case, deployment, key/project change or billing change occurred. [Detailed report](phase6-synthesis-report.md).
+- **Positive live workflow remains pending because: the completed synthesis describes advisory transfers as executed actions.**
+
+## Phase 6 — historical full live workflow attempt
 
 - Preflight passed **458 backend tests in 70.04 s**, retaining all previous 436 plus 22 verifier cases. Existing fact-ID mocks, all four workflow mocks, canonical plans/federation, compilation, dependencies, TypeScript/build and security passed. Google AI Studio headroom was independently confirmed by the user; no quota was inferred from the ledger.
 - Actual native scenario and optimization calls passed declaration, Pydantic, permission, context/identity and canonical plan checks. Final synthesis returned HTTP 200 / `incomplete` with truncated JSON, producing `response_incomplete`. Schema/fact-ID/qualitative/numeric final validation was not reached; those counts are not reported as zero.
