@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-09-29T10:44:11.936616+00:00",
+  "status": "PASS (local checks/preservation; live acceptance FAIL)",
+  "backend_tests": 587,
+  "previous_cases_retained": 556,
+  "new_cases": 31,
+  "backend_seconds": 201.312,
+  "full_regression_stage": "pre-live gate",
+  "post_success_full_regression": "not triggered because Case A failed; no backend changes after preflight",
+  "post_stop_compile": "PASS",
+  "post_stop_dependencies": "PASS",
+  "shared_mock_cases": [
+    "positive",
+    "followup",
+    "constrained",
+    "provenance"
+  ],
+  "shared_mock_models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.6-flash"
+  ],
+  "new_mock_provider_requests": 0,
+  "frontend": "unchanged; prior successful strict TypeScript/Angular build preserved, not rerun",
+  "preservation": {
+    "status": "PASS",
+    "clean_start": true,
+    "original_file_identities": 551,
+    "unchanged_file_identities": 539,
+    "exact_fact_numeric_context_validation_unchanged": true,
+    "action_semantic_guard_unchanged": true,
+    "env_ui_fallback_engines_artifacts_federation_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 476,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "implementation_sha256": "0916afb9e95da94392ba1bf580e2b6947c7d4e88305f2ca8cf08cfa422b9ea2c",
+  "raw_live_trace_sha256": "5246eb911e34b447b1d6b12264aaccf383d2257cefacd316d929dfcc89bd9823",
+  "starting_ledger": 30,
+  "new_actual_provider_sends": 3,
+  "final_ledger": 33,
+  "sends_per_case": {
+    "positive": 3,
+    "followup": 0,
+    "constrained": 0,
+    "provenance": 0
+  },
+  "retries": 0,
+  "fallbacks": 0,
+  "authorization_terminal_and_replay_blocked": true,
+  "fresh_native_scenario": "PASS",
+  "fresh_native_optimizer": "PASS",
+  "positive_final_synthesis": "FAIL",
+  "positive_live_workflow": "FAIL",
+  "later_cases_not_attempted": true,
+  "phase6_fully_live_accepted": false,
+  "raw_draft_rewritten": false,
+  "completion_commit_created": false,
+  "head": "a62f098",
+  "working_tree": "modified, implementation/tests/reports remain reviewable",
+  "deployment": false,
+  "billing_actions": false,
+  "key_project_changed": false,
+  "ui_changed": false,
+  "engines_canonical_federation_changed": false,
+  "verdict": "Phase 6 remains pending because: the positive synthesis says \u201cDespite executing recommended transfers,\u201d contradicting authoritative physical_execution=false."
+}

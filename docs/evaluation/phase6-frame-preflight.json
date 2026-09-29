@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-09-29T11:28:14.692338+00:00",
+  "status": "PASS",
+  "backend_tests": 627,
+  "backend_seconds": 191.92,
+  "new_provider_requests": 0,
+  "starting_ledger": 33,
+  "maximum_sends": 6,
+  "model": "gemini-3.5-flash-lite",
+  "provider_headroom": {
+    "confirmed_for_this_run": true,
+    "confirmation": "Limits are available use.",
+    "source": "user confirmation of current Google AI Studio Flash-Lite availability",
+    "usage_figures": null,
+    "reset_timestamp": null,
+    "starting_local_ledger": 33,
+    "maximum_new_actual_provider_sends": 6,
+    "model": "gemini-3.5-flash-lite"
+  },
+  "mock_models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.6-flash"
+  ],
+  "shared_mock_cases": [
+    "positive",
+    "followup",
+    "constrained",
+    "provenance"
+  ],
+  "old_failure_reproduction": [
+    {
+      "text": "optimal advisory transfers executed",
+      "status": "REJECTED",
+      "code": "unsafe_claim"
+    },
+    {
+      "text": "executing safe transfers",
+      "status": "REJECTED",
+      "code": "unsafe_claim"
+    },
+    {
+      "text": "Despite executing authorized transfers",
+      "status": "REJECTED",
+      "code": "unsafe_claim"
+    },
+    {
+      "text": "Despite executing recommended transfers",
+      "status": "REJECTED",
+      "code": "unsafe_claim"
+    }
+  ],
+  "compile": "PASS",
+  "dependencies": "PASS",
+  "canonical_and_federation": "PASS",
+  "previous_smoke_2_of_2_preserved": true,
+  "previous_smoke_sha256": "1087afdb961bcfa37d7b6652884de23fcb737cf0014ccffe9f5015bcf89ba040",
+  "preservation": {
+    "status": "PASS",
+    "dirty_start_preserved": true,
+    "original_file_identities": 454,
+    "inherited_ignored_file_identities": 110,
+    "exact_fact_numeric_context_validation_unchanged": true,
+    "action_semantic_guard_unchanged": true,
+    "env_ui_fallback_engines_artifacts_federation_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 485,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "implementation_sha256": "c95fcb571530c8b9c1d85985b1217fc25f386724437498efecae6011f542ce54",
+  "frontend": "unchanged; preserved prior successful strict TypeScript/Angular production build",
+  "provider_quota": "not inferred from local ledger; any provider quota/rate error stops the run"
+}

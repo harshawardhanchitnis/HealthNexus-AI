@@ -14,6 +14,7 @@ from app.ai.budget import RequestBudget
 from app.ai.client import CopilotError, GeminiTransport, provider_error
 from app.ai.config import AIConfig, MODEL
 from app.ai.tool_registry import SUBSETS, intent, declarations
+from app.ai.facts import fact_label
 
 
 def scoped(repo,profile='redistribution-ready',**kwargs):
@@ -106,7 +107,9 @@ def test_one_interaction_provenance_and_performance_with_fresh_evidence(profiles
     assert all(x['source']=='server-prefetch' for x in response.metadata['execution_sources'])
     assert {'get_data_provenance','get_model_performance'}=={e.tool for e in response.evidence}
     assert 'tools' not in fake.bodies[0] and fake.bodies[0]['response_format']
-    assert json.loads(fake.bodies[0]['input'])['server_prefetched_evidence'][0]['result']['live_government_inventory'] is False
+    provenance=json.loads(fake.bodies[0]['input'])['server_prefetched_evidence'][0]
+    assert 'result' not in provenance
+    assert next(f['value'] for f in provenance['facts'] if f['label']==fact_label('live_government_inventory')) is False
 
 
 def test_optimized_positive_and_one_interaction_stateful_followup(profiles):

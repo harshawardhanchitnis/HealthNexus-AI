@@ -1,0 +1,61 @@
+{
+  "status": "PENDING",
+  "phase6_fully_live_accepted": false,
+  "exact_failure": "semantic_frame_invalid: duplicate_kind (RESOURCE_PRESSURE twice)",
+  "backend_tests": 627,
+  "backend_seconds": 191.92,
+  "implementation_sha256": "c95fcb571530c8b9c1d85985b1217fc25f386724437498efecae6011f542ce54",
+  "compile": "PASS",
+  "dependencies": "PASS",
+  "mock_models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.6-flash"
+  ],
+  "mock_cases": [
+    "positive",
+    "followup",
+    "constrained",
+    "provenance"
+  ],
+  "historical_smoke_2_of_2_preserved": true,
+  "new_actual_provider_sends": 3,
+  "model": "gemini-3.5-flash-lite",
+  "historical_ledger_before": 33,
+  "ledger_after": 36,
+  "no_retry_fallback_replay": true,
+  "authorization_terminal": true,
+  "live_cases_not_attempted": [
+    "followup",
+    "constrained",
+    "provenance"
+  ],
+  "frame_schema": "PASS",
+  "individual_fact_selections": "PASS",
+  "whole_semantic_frame": "FAIL",
+  "live_renderer": "NOT RUN",
+  "live_public_answer": "NOT ISSUED",
+  "renderer_mock_cases": "PASS",
+  "canonical_and_federation": "PASS",
+  "preservation": {
+    "status": "PASS",
+    "dirty_start_preserved": true,
+    "original_file_identities": 454,
+    "inherited_ignored_file_identities": 110,
+    "exact_fact_numeric_context_validation_unchanged": true,
+    "action_semantic_guard_unchanged": true,
+    "env_ui_fallback_engines_artifacts_federation_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 488,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "frontend": "unchanged; prior TypeScript/build evidence retained; not rerun",
+  "head": "a62f098",
+  "completion_commit": null,
+  "working_tree": "intentionally modified; prior and new changes retained",
+  "report_sha256": "7a174a9c4fd9110636c28bb43bc490c91f0a4aeda8abcbf6182733ffe969b603"
+}

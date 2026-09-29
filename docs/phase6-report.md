@@ -1,6 +1,16 @@
 # Phase 6 — grounded resilience Copilot
 
-## Latest checkpoint — advisory action-state grounding
+**Phase 6 fully live-accepted (29 September 2026).** Four live cases pass on Gemini 3.5 Flash-Lite with six actual sends, no retries/fallback/replay; ledger 36 -> 42. All 636 backend tests pass before and after live acceptance. Operational/provenance answers use named semantic slots and deterministic server prose. [Completed acceptance report](phase6-final-acceptance-report.md). Earlier failures below are historical and superseded, with raw evidence preserved.
+
+## Historical checkpoint — bounded prose acceptance
+
+Ordinary provider synthesis now explains recommendations and remaining gaps while server-owned action/solver statuses stay available for UI, audit, validation and explicit questions. The full authority/public schema remains intact; a provider-only view selects current facts, and an additional intent-scoped guard rejects unrequested status narration. Existing action, exact numeric, source/context and WAPE rules are unchanged.
+
+Preflight passed **587 tests**, shared Lite/3.6 official SDK mocks for all four cases, compilation/dependencies, canonical plans, all ten partitions, federation and security/preservation. Exactly three actual Lite sends proved fresh native `run_emergency_scenario → optimize_redistribution` and returned completed JSON. The final remaining-gap wording **“Despite executing recommended transfers”** failed the unchanged action guard. The raw draft and additional paracetamol/worded-duration citation limitations are preserved. Ledger **30 + 3 = 33**; no retry, fallback or B/C/D live case. No completion commit or deployment followed the failed gate. [Preserved prose-attempt report](evaluation/phase6-completion-report-preserved.md), [original live trace](evaluation/phase6-completion-live.json), [independent review](evaluation/phase6-completion-review.json).
+
+Phase 6 remains pending because: the positive synthesis says “Despite executing recommended transfers,” contradicting authoritative physical_execution=false.
+
+## Historical checkpoint — advisory action-state grounding
 
 Optimization tools now expose server-owned advisory mode, false physical execution/external authorization/hospital contact, and not-executed transfer status through fact IDs. A bounded deterministic predicate/clause/facet guard rejects unsupported operational actions and preserves valid transfer nouns and negated action statements. Exact numerical and source membership/resolution code is unchanged. Native medium/2,400 and synthesis low/4,096, canonical engines, artifacts, UI, federation and fallback order are preserved.
 
@@ -103,3 +113,23 @@ See [failover policy, exact live attempt trace, model matrix and limitations](ph
 The subsequently authorized targeted smoke tested only 3.5 Flash and Flash-Lite, one request each. Both returned HTTP 503 HIGH DEMAND; no structured answer or successful effective model exists. The existing ten requests were retained and the explicit verifier ceiling extended to 14: final cumulative count **12**, with two unused sends. Schema/evidence/numeric live acceptance, the positive/constrained live workflows and live UI remain pending. [New evidence](evaluation/phase6-targeted-live-smoke.json), [fresh zero-provider offline acceptance](evaluation/phase6-targeted-offline.json). Production order, key, ignored `.env`, engines and model artifacts remain unchanged; Phase 7 remains deferred.
 
 Latest regressions: **289 backend tests pass in 45.88 s**, retaining all 281 previous tests. Python compilation, dependency checks, strict TypeScript and Angular production build pass. [Consolidated targeted verification](evaluation/phase6-targeted-verification.json) separates provider availability, live acceptance gaps and successful local-engine results.
+
+
+## Historical list-frame checkpoint (superseded by named slots)
+
+Operational planning, donor follow-up, plan review and provenance synthesis use `GroundedResponseFrame`. Gemini selects permitted claim kinds and exact request-local fact IDs; it cannot supply operational prose, numbers, names, durations or arbitrary qualifiers. HealthNexus validates the whole frame before its deterministic renderer creates the existing public Claim objects. Invalid kinds, incomplete evidence, stale IDs, changed source identities and incompatible context fail visibly without repair or fallback to prose.
+
+Required fact combinations and predicates cover advisory recommendations, partial relief, residual shortages, protected donors, zero-capacity networks and provenance distinctions. Execution and solver status are available only for explicit status questions. All existing exact-number, action-state, solver, WAPE, source and context validators still run after rendering; legacy/general intents retain their guarded text contract. The public UI and operational engines are unchanged.
+
+Audit separates the exact `provider_semantic_frame` from `server_rendered_claims`, and response metadata identifies the prose author as the HealthNexus deterministic renderer. Rendered wording is not verbatim Gemini wording. Shared SDK mocks use the same protocol on Flash-Lite and 3.6; live acceptance remains pending until all four fresh cases pass. The previous three-send failed free-text run and its citation-gap review remain historical evidence.
+
+The new verifier is `python scripts/verify_phase6_frames.py --mock` / `--preflight` / `--live`. Live mode requires a matching completed local gate, current user-confirmed provider headroom, the preserved 33-request ledger and an unused independent journal. It allows six actual Flash-Lite sends total (3 + 1 + 1 + 1), with no retry, fallback or replay, and stops on the first failure. It never resets the ledger or infers provider quota from it. See [final acceptance report](phase6-final-acceptance-report.md) for the measured verdict.
+
+Historical list-frame live outcome: three actual Flash-Lite sends; native scenario/optimizer and frame schema passed, but repeated `RESOURCE_PRESSURE` caused `duplicate_kind` rejection before rendering. B/C/D were not attempted. Ledger 33 → 36; no retry, fallback, replay or commit. Phase 6 remains pending. See [the preserved frame report](evaluation/phase6-frame-report-preserved.md).
+
+
+## Current named-slot contract and closed acceptance
+
+`GroundedResponseSlots` accepts a strict named claims object containing only current evidence IDs. `grounded-semantic-slots-v2` replaces the provider list; the internal list is used only after structural decoding. Whole-frame validation precedes deterministic rendering. Duplicate JSON properties are errors, not normalized selections. Positive planning exposes four required slots; donor follow-up and constrained explanations expose their three required slots; provenance exposes nine. Raw provider output and rendered prose remain separate audit objects.
+
+`scripts/verify_phase6_slots.py` supplied the new independent six-send acceptance, preserving the prior failed journals and 36 historical requests. Its completed live journal is terminal at six sends; the cumulative ledger is 42. This authorization cannot be replayed. All A/B/C/D cases and final regressions pass; no additional provider calls occurred after D. The final live model was Gemini 3.5 Flash-Lite; primary/fallback production configuration remains unchanged. [Final receipt](evaluation/phase6-slots-final.json).

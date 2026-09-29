@@ -110,6 +110,69 @@ class FactDraftAnswer(Strict):
     remaining_gaps: list[FactClaim] = Field(default_factory=list, max_length=4)
 
 
+AllowedClaimKind = Literal[
+    'NETWORK_PRESSURE', 'ADVISORY_REDISTRIBUTION', 'PARTIAL_RELIEF',
+    'REMAINING_SHORTAGE', 'DONOR_PROTECTION', 'ELIGIBLE_CAPACITY',
+    'NO_SAFE_DONOR_CAPACITY', 'NO_RECOMMENDED_REDISTRIBUTION',
+    'PUBLIC_AGGREGATE_INPUT', 'SIMULATED_FACILITY_OPERATIONS',
+    'MODEL_BASED_FORECAST', 'SCENARIO_PROJECTION', 'ADVISORY_OPTIMIZATION',
+    'WAPE_ERROR_METRIC', 'NOT_CLINICALLY_VALIDATED',
+    'NO_LIVE_GOVERNMENT_CONNECTION', 'EXPERIMENTAL_FEDERATION',
+    'EXECUTION_STATUS', 'SOLVER_STATUS', 'RESOURCE_PRESSURE', 'SCENARIO_DURATION',
+]
+
+
+class GroundedFrameClaim(Strict):
+    kind: AllowedClaimKind
+    evidence_refs: list[FactId] = Field(min_length=1, max_length=4,
+        description='Exact current fact IDs required by the selected semantic kind. No prose or values.')
+
+
+class GroundedResponseFrame(Strict):
+    """Provider selects semantics/evidence; the server alone writes public prose."""
+    claims: list[GroundedFrameClaim] = Field(min_length=1, max_length=15)
+
+
+class FrameEvidence(Strict):
+    evidence_refs: list[FactId] = Field(min_length=1, max_length=4)
+
+
+class ClaimSlots(Strict):
+    """Unique named semantic slots; no provider-authored kind list or prose."""
+    NETWORK_PRESSURE: FrameEvidence | None = None
+    ADVISORY_REDISTRIBUTION: FrameEvidence | None = None
+    PARTIAL_RELIEF: FrameEvidence | None = None
+    DONOR_PROTECTION: FrameEvidence | None = None
+    ELIGIBLE_CAPACITY: FrameEvidence | None = None
+    NO_SAFE_DONOR_CAPACITY: FrameEvidence | None = None
+    NO_RECOMMENDED_REDISTRIBUTION: FrameEvidence | None = None
+    PUBLIC_AGGREGATE_INPUT: FrameEvidence | None = None
+    SIMULATED_FACILITY_OPERATIONS: FrameEvidence | None = None
+    MODEL_BASED_FORECAST: FrameEvidence | None = None
+    SCENARIO_PROJECTION: FrameEvidence | None = None
+    ADVISORY_OPTIMIZATION: FrameEvidence | None = None
+    WAPE_ERROR_METRIC: FrameEvidence | None = None
+    NOT_CLINICALLY_VALIDATED: FrameEvidence | None = None
+    NO_LIVE_GOVERNMENT_CONNECTION: FrameEvidence | None = None
+    EXPERIMENTAL_FEDERATION: FrameEvidence | None = None
+    EXECUTION_STATUS: FrameEvidence | None = None
+    SOLVER_STATUS: FrameEvidence | None = None
+    RESOURCE_PRESSURE: FrameEvidence | None = None
+    SCENARIO_DURATION: FrameEvidence | None = None
+    REMAINING_SHORTAGE: FrameEvidence | None = None
+
+
+class GroundedResponseSlots(Strict):
+    claims: ClaimSlots
+
+    def as_frame(self):
+        # Structural decoding only: never change a kind, add an ID, or remove a
+        # rejected claim. Absent/null optional slots represent no selected claim.
+        return GroundedResponseFrame(claims=[GroundedFrameClaim(kind=kind,
+            evidence_refs=getattr(self.claims, kind).evidence_refs)
+            for kind in ClaimSlots.model_fields if getattr(self.claims, kind) is not None])
+
+
 class Evidence(Strict):
     evidence_id: str
     tool: str

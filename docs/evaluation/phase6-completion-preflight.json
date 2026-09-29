@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-09-29T10:34:24.576614+00:00",
+  "status": "PASS",
+  "backend_tests": 587,
+  "backend_seconds": 201.312,
+  "new_provider_requests": 0,
+  "starting_ledger": 30,
+  "maximum_sends": 6,
+  "model": "gemini-3.5-flash-lite",
+  "mock_models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.6-flash"
+  ],
+  "shared_mock_cases": [
+    "positive",
+    "followup",
+    "constrained",
+    "provenance"
+  ],
+  "old_failure_reproduction": [
+    {
+      "text": "optimal advisory transfers executed",
+      "status": "REJECTED",
+      "code": "unsafe_claim"
+    },
+    {
+      "text": "executing safe transfers",
+      "status": "REJECTED",
+      "code": "unsafe_claim"
+    },
+    {
+      "text": "Despite executing authorized transfers",
+      "status": "REJECTED",
+      "code": "unsafe_claim"
+    }
+  ],
+  "compile": "PASS",
+  "dependencies": "PASS",
+  "canonical_and_federation": "PASS",
+  "previous_smoke_2_of_2_preserved": true,
+  "previous_smoke_sha256": "1087afdb961bcfa37d7b6652884de23fcb737cf0014ccffe9f5015bcf89ba040",
+  "preservation": {
+    "status": "PASS",
+    "clean_start": true,
+    "original_file_identities": 551,
+    "unchanged_file_identities": 540,
+    "exact_fact_numeric_context_validation_unchanged": true,
+    "action_semantic_guard_unchanged": true,
+    "env_ui_fallback_engines_artifacts_federation_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 472,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "implementation_sha256": "0916afb9e95da94392ba1bf580e2b6947c7d4e88305f2ca8cf08cfa422b9ea2c",
+  "frontend": "unchanged; preserved prior successful strict TypeScript/Angular production build",
+  "provider_quota": "not inferred from local ledger; any provider quota/rate error stops the run"
+}

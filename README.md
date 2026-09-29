@@ -59,7 +59,7 @@ Angular → FastAPI → trusted local operational engines. Public-source ingesti
 
 **Live grounded smoke acceptance: PASS 2/2. Full Phase 6 workflow acceptance remains pending.** Both independent Lite smokes passed the configured schema, citation and grounding checks. That checkpoint accepted only the two smokes and did not deploy.
 
-The [bounded full workflow attempt](docs/phase6-full-live-report.md) proved native simulation and OR-Tools; the [synthesis budget fix](docs/phase6-synthesis-report.md) keeps native medium/2,400 and final low/4,096. The latest [advisory action-state checkpoint](docs/phase6-action-state-report.md) adds authoritative action facts and deterministic semantic guards. Its single Lite send completed JSON but was rejected for execution wording and a missing same-claim OPTIMAL citation. Final regression passes 556 tests. The ledger is 30; no retry, fallback, later live case or deployment followed. Native orchestration is PASS; positive synthesis/workflow acceptance and full Phase 6 remain pending. Canonical engines/results, numeric grounding, UI and saved federation are unchanged.
+The latest [bounded final acceptance run](docs/phase6-final-acceptance-report.md) separates ordinary recommendation narrative from server-owned action/solver statuses. Preflight passed **587 tests** and all four shared SDK mock cases on Lite/3.6. Three actual Lite sends proved fresh native simulation and OR-Tools, then completed JSON was rejected for **“Despite executing recommended transfers”**. The ledger is **33**; no retry, fallback, follow-up, constrained/provenance live case or deployment followed. The raw draft and additional citation limitations are preserved. Native orchestration is PASS; positive synthesis/workflow acceptance and full Phase 6 remain pending. Canonical engines/results, exact numeric grounding, UI, fallback order, credentials and federation are unchanged. Earlier [action-state](docs/phase6-action-state-report.md) and [synthesis-budget](docs/phase6-synthesis-report.md) reports remain historical evidence.
 
 **Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
 
@@ -180,3 +180,7 @@ HealthNexus assists administrative resource planning. It does not diagnose, pres
 ## Hackathon Team
 
 Team and member details have not yet been provided; confirm them before the final submission. No names or affiliations are invented.
+
+Phase 6 operational answers now use Gemini-selected semantic frames and exact local evidence IDs, with HealthNexus-rendered prose. The bounded live verdict is recorded in [the final acceptance report](docs/phase6-final-acceptance-report.md).
+
+**Phase 6 fully live-accepted.** Four live cases pass on Gemini 3.5 Flash-Lite with exactly six provider sends. Named semantic slots prevent duplicate kinds; HealthNexus renders grounded advisory prose from validated evidence. All 636 backend tests pass before and after acceptance, and strict TypeScript passes. Positive and constrained engine results remain unchanged. Historical ledger: 42. [Completed acceptance report](docs/phase6-final-acceptance-report.md).

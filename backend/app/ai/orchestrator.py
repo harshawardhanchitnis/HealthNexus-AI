@@ -8,12 +8,14 @@ from uuid import uuid4
 from pydantic import ValidationError
 from app.ai.config import AIConfig, VERSION as CONFIG_VERSION
 from app.ai.client import GeminiTransport, CopilotError
-from app.ai.schemas import Context, CopilotResponse, FactDraftAnswer, ToolTrace
+from app.ai.schemas import Context, CopilotResponse, FactDraftAnswer, GroundedResponseFrame, ToolTrace
+from app.ai import frames
 from app.ai.system_prompt import SYSTEM, SYNTHESIS, VERSION as PROMPT_VERSION, LIMITATIONS
 from app.ai.tool_registry import declarations, intent, SUBSETS
 from app.ai.protocol import byte_size
 from app.ai.facts import FactCatalogue, VERSION as FACT_VERSION
 from app.ai.action_state import VERSION as ACTION_STATE_VERSION
+from app.ai.synthesis import instruction,synthesis_input,validate_narrative,VERSION as NARRATIVE_VERSION
 from app.ai.tools import ToolExecutor
 from app.ai.citations import build_evidence, sanitize_diagnostic
 from app.ai.fallback import clinical_request, offline_calls, offline_draft
@@ -91,7 +93,7 @@ class CopilotService:
         cid, row, transport, owned = None, None, None, False
         timing={'gemini_network_seconds':0.,'tool_seconds':0.}
         usages=[];interaction_count=0;provider_requests=0;interaction_ids=[]
-        diagnostics=[];execution_sources=[]
+        diagnostics=[];execution_sources=[];provider_text=None;frame_protocol=False
         try:
             executor = ToolExecutor(repository,self.engine,self.planner,request)
             snapshot = executor.snapshot(request.profile)
@@ -192,7 +194,7 @@ class CopilotService:
                             summary_only=selected_intent=='resilience-summary').items() if k!='result'} for eid,r in records.items()]},ensure_ascii=False)
                     if len(data.encode('utf-8'))>120000:
                         raise CopilotError('handoff_context_limit','Validated handoff evidence exceeds its bound. Narrow the operational question.',422)
-                    return data
+                    return frames.synthesis(catalogue,request,data)[0] if frame_protocol else data
                 def notify(meta):
                     with self.lock:
                         self.requests[rid].update(meta)
@@ -297,24 +299,28 @@ class CopilotService:
                 # This live endpoint rejects custom tools together with response_format.
                 # Keep native call/result IDs and previous identity; tools and schema never coexist.
                 with self.lock: self.requests[rid]['phase']='Gemini synthesizing verified evidence'
+                frame_protocol=frames.enabled(selected_intent)
+                final_input,final_schema=(frames.synthesis if frame_protocol else synthesis_input)(catalogue,request,input_data)
                 body={'model':self.config.model,
-                    'input':input_data if prefetched or isinstance(input_data,list) else json.dumps({
-                        'instruction':'Produce the structured answer from fresh evidence. Preserve remaining shortages and advisory status.',
-                        'fresh_evidence':[{'evidence_id':eid,'tool':r['tool']} for eid,r in records.items()]}),
-                    'system_instruction':SYSTEM+SYNTHESIS,'store':True,
+                    'input':final_input,
+                    'system_instruction':SYSTEM+(frames.INSTRUCTION if frame_protocol else instruction(request)),'store':True,
                     'generation_config':self.config.generation(synthesis=True),
-                    'response_format':{'type':'text','mime_type':'application/json','schema':catalogue.schema()}}
+                    'response_format':{'type':'text','mime_type':'application/json','schema':final_schema}}
                 if previous: body['previous_interaction_id']=previous
                 response=ask(body)
                 interaction_id=response.get('id')
+                provider_text=sanitize_diagnostic(response.get('output_text',''),self.config.api_key)
+                with self.lock:self.requests[rid]['provider_draft']=provider_text
                 if not interaction_id or response.get('status')=='incomplete':
                     raise CopilotError('response_incomplete','Gemini did not finish structured synthesis within its response budget.')
                 if any(s.get('type')=='function_call' for s in response.get('steps',[])):
                     raise CopilotError('malformed_tool_call','Gemini returned a tool call during schema-only synthesis.')
-                try: provider_draft=FactDraftAnswer.model_validate_json(response.get('output_text',''))
-                except (ValidationError,TypeError):
+                try: provider_draft=(frames.parse(response.get('output_text','')) if frame_protocol else FactDraftAnswer.model_validate_json(response.get('output_text','')))
+                except (ValidationError,TypeError,ValueError):
                     raise CopilotError('response_schema','Gemini response failed the structured output schema.') from None
-                draft,evidence,fact_audits=catalogue.validate(provider_draft,records,context=request,origin=snapshot.as_of)
+                draft,evidence,fact_audits=(frames.resolve_frame(provider_draft,catalogue,records,request,snapshot.as_of)
+                    if frame_protocol else catalogue.validate(provider_draft,records,context=request,origin=snapshot.as_of))
+                validate_narrative(draft,request,records)
             if request.mode=='offline':evidence=build_evidence(draft,records,context=request,origin=snapshot.as_of)
             results=[{'evidence_id':eid,'tool':r['tool'],'result':r['payload']} for eid,r in records.items()]
             response=CopilotResponse(request_id=rid,conversation_id=cid,mode=request.mode,answer=draft.situation.text,
@@ -327,6 +333,9 @@ class CopilotService:
                     'tool_payload_diagnostics':[{'tool':r['tool'],'authoritative_bytes':byte_size(r['payload']),
                         'model_payload_bytes':byte_size(catalogue.envelopes[eid]) if eid in catalogue.envelopes else 0} for eid,r in records.items()],
                     'fact_contract_version':FACT_VERSION,
+                    'narrative_contract_version':NARRATIVE_VERSION,
+                    'semantic_frame_version':frames.VERSION if frame_protocol else None,
+                    'prose_author':'HealthNexus deterministic renderer' if frame_protocol else 'provider' if request.mode=='gemini' else 'local offline',
                     'action_state_validation':{'version':ACTION_STATE_VERSION,'status':'PASS','unsupported_execution_claims':0},
                     'fact_validation':{'catalogue_size':len(catalogue.facts),'resolved_references':sum(len(a['cited_fact_ids']) for a in fact_audits),
                         'unknown_fact_ids':0,'semantic_validation':'PASS','numeric_validation':'PASS'} if request.mode=='gemini' else None,
@@ -354,6 +363,11 @@ class CopilotService:
                     execution_sources=execution_sources,request_diagnostics=diagnostics,
                     **(transport.metadata() if transport else {}))
                 if fact_audits:self.audit[-1]['fact_citations']=sanitize_diagnostic(fact_audits,self.config.api_key)
+                if provider_text is not None:
+                    self.audit[-1]['provider_draft']=provider_text
+                    if frame_protocol:
+                        self.audit[-1]['provider_semantic_frame']=provider_text
+                        self.audit[-1]['server_rendered_claims']=draft.model_dump()
             return response
         except CopilotError as error:
             if hasattr(error,'grounding_diagnostic'):
@@ -362,8 +376,12 @@ class CopilotService:
                 error.citation_diagnostic=sanitize_diagnostic(error.citation_diagnostic,self.config.api_key)
             if hasattr(error,'action_state_diagnostic'):
                 error.action_state_diagnostic=sanitize_diagnostic(error.action_state_diagnostic,self.config.api_key)
+            if hasattr(error,'narrative_diagnostic'):
+                error.narrative_diagnostic=sanitize_diagnostic(error.narrative_diagnostic,self.config.api_key)
+            if hasattr(error,'frame_diagnostic'):
+                error.frame_diagnostic=sanitize_diagnostic(error.frame_diagnostic,self.config.api_key)
             if transport: error.metadata=transport.metadata()
-            if transport and error.code in ('response_schema','evidence_invalid','unsupported_number','solver_terminology','unsafe_claim','malformed_tool_call'):
+            if transport and error.code in ('response_schema','evidence_invalid','unsupported_number','solver_terminology','unsafe_claim','malformed_tool_call','narrative_scope','semantic_frame_invalid'):
                 with self.lock:
                     model=transport.effective_model
                     self.quality_failures[model]=self.quality_failures.get(model,0)+1
@@ -387,6 +405,12 @@ class CopilotService:
                         self.audit[-1]['citation_diagnostic']=error.citation_diagnostic
                     if hasattr(error,'action_state_diagnostic'):
                         self.audit[-1]['action_state_diagnostic']=error.action_state_diagnostic
+                    if hasattr(error,'narrative_diagnostic'):
+                        self.audit[-1]['narrative_diagnostic']=error.narrative_diagnostic
+                    if hasattr(error,'frame_diagnostic'):self.audit[-1]['frame_diagnostic']=error.frame_diagnostic
+                    if provider_text is not None:
+                        self.audit[-1]['provider_draft']=provider_text
+                        if frame_protocol:self.audit[-1]['provider_semantic_frame']=provider_text
             raise
         except Exception:
             with self.lock:

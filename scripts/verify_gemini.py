@@ -78,7 +78,10 @@ class DemoTransport:
                 returned=json.loads(item['result'][0]['text'])
                 if 'error' in returned:raise AssertionError(returned['error'])
                 self.records[returned['evidence_id']]=returned
-                if returned['result'].get('scenario_id'):self.sid=returned['result']['scenario_id']
+                if returned.get('result',{}).get('scenario_id'):self.sid=returned['result']['scenario_id']
+        if 'response_format' in body and 'claims' in body['response_format']['schema'].get('properties',{}):
+            from frame_fixture import mock_frame
+            return {'id':f'mock-final-{uuid4()}','status':'completed','output_text':json.dumps(mock_frame(body))}
         if 'response_format' in body:
             eid,row=next(reversed(self.records.items()));payload=row.get('result',{})
             def value(field,evidence=None):
@@ -90,13 +93,13 @@ class DemoTransport:
                 ids=[fact['fact_id']]
                 if selected['tool'] in ('optimize_redistribution','get_optimization_result'):
                     state=next((f for f in selected['facts'] if f['label']==fact_label('action_state.plan_mode')),None)
-                    if state:ids.append(state['fact_id'])
+                    if state and state['fact_id'] not in ids:ids.append(state['fact_id'])
                 return {'text':text,'evidence_refs':ids}
             risks=[];gaps=[]
             plan=next(((e,r) for e,r in self.records.items() if r['tool'] in ('optimize_redistribution','get_optimization_result')),None)
             if plan:
                 eid,payload=plan
-                situation=claim('OR-Tools proved an optimal recommendation under the configured constraints.','solver.status')
+                situation=claim('The advisory plan recommends redistribution while resource pressure remains.','action_state.plan_mode')
                 risks=[claim(f"Safe donor capacity is {value('safe_capacity')} inventory items.",'safe_capacity')]
                 risks.append(claim(f"Transfers total {value('impact.transferred_units')} inventory items.",'impact.transferred_units'))
                 gaps=[claim(f"Unresolved target is {value('impact.after.target_deficit')} inventory items.",'impact.after.target_deficit')]
@@ -179,7 +182,7 @@ def fixture(service,repo,profile,country='IN',state='MH',district='MH-PUNE'):
     return scenario['scenario_id'],plan['run_id']
 
 
-def validate_response(service,repo,response,label,before):
+def validate_response(service,repo,response,label,before,*,require_all_plan_metrics=True):
     assert response.status=='completed' and response.mode!='refusal'
     assert all(t.status=='success' for t in response.tools_used)
     assert before==repo.profile_snapshot('IN',response.context.profile).model_dump_json()
@@ -207,8 +210,8 @@ def validate_response(service,repo,response,label,before):
     assert response.evidence
     cited={e.field for e in response.evidence}
     if response.mode=='offline':return
-    if label in ('positive','constrained'):
-        assert {'safe_capacity','impact.transferred_units','impact.after.target_deficit','solver.status'} <= cited
+    if require_all_plan_metrics and label in ('positive','constrained'):
+        assert {'safe_capacity','impact.transferred_units','impact.after.target_deficit','action_state.plan_mode'} <= cited
     if label=='followup':
         assert 'impact.after.target_deficit' in cited
         assert any(e.tool=='get_optimization_result' and e.field.startswith('transfers.') and

@@ -1,0 +1,405 @@
+{
+  "status": "REJECTED",
+  "reason": "duplicate_kind",
+  "duplicate_kinds": {
+    "RESOURCE_PRESSURE": 2
+  },
+  "schema": "PASS",
+  "individual_fact_membership_and_kind_compatibility": "PASS",
+  "unknown_fact_ids": 0,
+  "renderer": "NOT RUN",
+  "public_answer": "NOT ISSUED",
+  "provider_free_text_fields": 0,
+  "claim_audits": [
+    {
+      "kind": "SCENARIO_DURATION",
+      "selected_fact_ids": [
+        "e1_2bb1bc4525af4d03_f036"
+      ],
+      "resolved_facts": [
+        {
+          "path": "scenario.definition.duration",
+          "value": 14,
+          "unit": "days",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "RESOURCE_PRESSURE",
+      "selected_fact_ids": [
+        "e1_2bb1bc4525af4d03_f032",
+        "e1_2bb1bc4525af4d03_f031",
+        "e1_2bb1bc4525af4d03_f033",
+        "e1_2bb1bc4525af4d03_f034"
+      ],
+      "resolved_facts": [
+        {
+          "path": "resource_impact.4.resource_id",
+          "value": "PCM",
+          "unit": "tablets",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "resource_impact.4.name",
+          "value": "Paracetamol 500 mg",
+          "unit": "tablets",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "resource_impact.4.unit",
+          "value": "tablets",
+          "unit": "tablets",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "resource_impact.4.unmet_demand.scenario",
+          "value": 21287.094009232613,
+          "unit": "tablets",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "RESOURCE_PRESSURE",
+      "selected_fact_ids": [
+        "e1_2bb1bc4525af4d03_f018",
+        "e1_2bb1bc4525af4d03_f017",
+        "e1_2bb1bc4525af4d03_f019",
+        "e1_2bb1bc4525af4d03_f020"
+      ],
+      "resolved_facts": [
+        {
+          "path": "resource_impact.2.resource_id",
+          "value": "IVF",
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "resource_impact.2.name",
+          "value": "IV fluids",
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "resource_impact.2.unit",
+          "value": "bags",
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "resource_impact.2.unmet_demand.scenario",
+          "value": 2313.10398872695,
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "NETWORK_PRESSURE",
+      "selected_fact_ids": [
+        "e2_2bb1bc4525af4d03_f011"
+      ],
+      "resolved_facts": [
+        {
+          "path": "impact.before.target_deficit",
+          "value": 41763,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "ADVISORY_REDISTRIBUTION",
+      "selected_fact_ids": [
+        "e2_2bb1bc4525af4d03_f005",
+        "e2_2bb1bc4525af4d03_f015",
+        "e2_2bb1bc4525af4d03_f014"
+      ],
+      "resolved_facts": [
+        {
+          "path": "action_state.plan_mode",
+          "value": "advisory",
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "impact.transferred_units",
+          "value": 15679,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "impact.transfer_count",
+          "value": 10,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "PARTIAL_RELIEF",
+      "selected_fact_ids": [
+        "e2_2bb1bc4525af4d03_f005",
+        "e2_2bb1bc4525af4d03_f011",
+        "e2_2bb1bc4525af4d03_f009"
+      ],
+      "resolved_facts": [
+        {
+          "path": "action_state.plan_mode",
+          "value": "advisory",
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "impact.before.target_deficit",
+          "value": 41763,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "impact.after.target_deficit",
+          "value": 26084,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "REMAINING_SHORTAGE",
+      "selected_fact_ids": [
+        "e2_2bb1bc4525af4d03_f005",
+        "e2_2bb1bc4525af4d03_f009",
+        "e2_2bb1bc4525af4d03_f008"
+      ],
+      "resolved_facts": [
+        {
+          "path": "action_state.plan_mode",
+          "value": "advisory",
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "impact.after.target_deficit",
+          "value": 26084,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "impact.after.expected_unmet",
+          "value": 17378.197997959564,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "DONOR_PROTECTION",
+      "selected_fact_ids": [
+        "e2_2bb1bc4525af4d03_f005",
+        "e2_2bb1bc4525af4d03_f019",
+        "e2_2bb1bc4525af4d03_f018",
+        "e2_2bb1bc4525af4d03_f012"
+      ],
+      "resolved_facts": [
+        {
+          "path": "action_state.plan_mode",
+          "value": "advisory",
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "transfers.0.donor_protected_reserve",
+          "value": 333,
+          "unit": "capsules",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "transfers.0.donor_protected_minimum_after",
+          "value": 1137.2347601697224,
+          "unit": "capsules",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "impact.donor_safety_violations",
+          "value": 0,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "ELIGIBLE_CAPACITY",
+      "selected_fact_ids": [
+        "e2_2bb1bc4525af4d03_f005",
+        "e2_2bb1bc4525af4d03_f016"
+      ],
+      "resolved_facts": [
+        {
+          "path": "action_state.plan_mode",
+          "value": "advisory",
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "path": "safe_capacity",
+          "value": 17745,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ]
+    }
+  ],
+  "raw_frame_source": "phase6-frame-live.json",
+  "new_provider_requests": 0
+}

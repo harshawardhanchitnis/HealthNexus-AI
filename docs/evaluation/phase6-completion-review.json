@@ -1,0 +1,306 @@
+{
+  "timestamp": "2026-09-29T10:39:43.603495+00:00",
+  "status": "FAIL",
+  "source_report_sha256": "5246eb911e34b447b1d6b12264aaccf383d2257cefacd316d929dfcc89bd9823",
+  "original_provider_view_and_schema_exactly_rebuilt": true,
+  "schema": "PASS",
+  "current_fact_membership": "PASS",
+  "unknown_fact_ids": 0,
+  "source_scope_and_origin": "PASS",
+  "digit_based_exact_numeric_guard": "PASS (no digit literals)",
+  "unsupported_digit_numeric_literals": 0,
+  "manual_numeric_citation_issue": "uncited worded duration in situation claim; matches actual input but digit-only guard is not exhaustive",
+  "qualitative_grounding": "FAIL",
+  "action_state_semantics": "FAIL",
+  "unsupported_execution_claims": 1,
+  "solver_terminology": "PASS (no solver/optimal language in saved narrative)",
+  "per_claim_review": [
+    {
+      "claim_field": "situation.text",
+      "exact_claim": "Simulating a severe fourteen-day dengue surge in Pune significantly increases demand for critical therapeutics, notably paracetamol and intravenous fluids, intensifying pressure on local health facilities.",
+      "cited_fact_ids": [
+        "e1_6f336ec37d324b97_f043",
+        "e1_6f336ec37d324b97_f044",
+        "e1_6f336ec37d324b97_f056",
+        "e1_6f336ec37d324b97_f061"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e1_6f336ec37d324b97_f043",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.demand.scenario",
+          "value": 4850.885717293439,
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e1_6f336ec37d324b97_f044",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.demand.unit",
+          "value": "bags",
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e1_6f336ec37d324b97_f056",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.unmet_demand.scenario",
+          "value": 2313.10398872695,
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e1_6f336ec37d324b97_f061",
+          "evidence_id": "e1",
+          "path": "resource_impact.3.demand.scenario",
+          "value": 5591.499077659704,
+          "unit": "sachets",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "digit_numeric_literals": 0,
+      "production_validation": "PASS",
+      "action_state_validation": "PASS",
+      "generic_topic_check": "PASS",
+      "manual_resource_citation_review": "FAIL: named paracetamol lacks its resource-specific fact; cited resource rows are IVF/ORS plus aggregate warnings",
+      "manual_duration_citation_review": "The value matches the actual 14-day engine input, but the worded duration lacks a same-claim duration fact citation; digit-only NUMBER does not cover this wording"
+    },
+    {
+      "claim_field": "key_risks.0.text",
+      "exact_claim": "Critical resource warnings and severe unmet demand emerge across facilities, driven by a sharp escalation in paracetamol requirements and intravenous fluid deficits.",
+      "cited_fact_ids": [
+        "e1_6f336ec37d324b97_f056",
+        "e1_6f336ec37d324b97_f061",
+        "e2_6f336ec37d324b97_f050"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e1_6f336ec37d324b97_f056",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.unmet_demand.scenario",
+          "value": 2313.10398872695,
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e1_6f336ec37d324b97_f061",
+          "evidence_id": "e1",
+          "path": "resource_impact.3.demand.scenario",
+          "value": 5591.499077659704,
+          "unit": "sachets",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_6f336ec37d324b97_f050",
+          "evidence_id": "e2",
+          "path": "impact.before.critical_resource_warnings",
+          "value": 7,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "digit_numeric_literals": 0,
+      "production_validation": "PASS",
+      "action_state_validation": "PASS",
+      "generic_topic_check": "PASS",
+      "manual_resource_citation_review": "FAIL: named paracetamol lacks its resource-specific fact; cited resource rows are IVF/ORS plus aggregate warnings"
+    },
+    {
+      "claim_field": "recommended_actions.0.text",
+      "exact_claim": "An advisory redistribution plan proposes multi-item transfers under safe capacity limits, successfully resolving several critical deficits without causing donor safety violations.",
+      "cited_fact_ids": [
+        "e2_6f336ec37d324b97_f005",
+        "e2_6f336ec37d324b97_f012",
+        "e2_6f336ec37d324b97_f015",
+        "e2_6f336ec37d324b97_f063"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e2_6f336ec37d324b97_f005",
+          "evidence_id": "e2",
+          "path": "action_state.plan_mode",
+          "value": "advisory",
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_6f336ec37d324b97_f012",
+          "evidence_id": "e2",
+          "path": "impact.donor_safety_violations",
+          "value": 0,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_6f336ec37d324b97_f015",
+          "evidence_id": "e2",
+          "path": "impact.transferred_units",
+          "value": 15679,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_6f336ec37d324b97_f063",
+          "evidence_id": "e2",
+          "path": "impact.critical_deficits_resolved",
+          "value": 2,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "digit_numeric_literals": 0,
+      "production_validation": "PASS",
+      "action_state_validation": "PASS",
+      "generic_topic_check": "PASS"
+    },
+    {
+      "claim_field": "remaining_gaps.0.text",
+      "exact_claim": "Despite executing recommended transfers, a significant target deficit and expected unmet demand persist across the district, highlighting ongoing operational vulnerability.",
+      "cited_fact_ids": [
+        "e2_6f336ec37d324b97_f008",
+        "e2_6f336ec37d324b97_f009"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e2_6f336ec37d324b97_f008",
+          "evidence_id": "e2",
+          "path": "impact.after.expected_unmet",
+          "value": 17378.197997959564,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_6f336ec37d324b97_f009",
+          "evidence_id": "e2",
+          "path": "impact.after.target_deficit",
+          "value": 26084,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "digit_numeric_literals": 0,
+      "production_validation": "unsafe_claim",
+      "action_state_validation": "FAIL",
+      "action_state_diagnostic": {
+        "reason": "unsupported_execution_or_authorization",
+        "claim_field": "remaining_gaps.0.text",
+        "normalized_claim": "despite executing recommended transfers, a significant target deficit and expected unmet demand persist across the district, highlighting ongoing operational vulnerability.",
+        "failed_phrase": "executing recommended transfers",
+        "authoritative_action_states": [
+          {
+            "plan_mode": "advisory",
+            "physical_execution": false,
+            "externally_authorized": false,
+            "hospital_contacted": false,
+            "real_world_transfer_status": "not_executed"
+          }
+        ]
+      },
+      "generic_topic_check": "PASS"
+    }
+  ],
+  "raw_draft_rewritten": false,
+  "fresh_native_orchestration": "PASS",
+  "final_synthesis": "FAIL",
+  "positive_workflow": "FAIL",
+  "later_cases": "not attempted",
+  "historical_ledger": 30,
+  "new_provider_requests": 3,
+  "ledger_total": 33,
+  "retries": 0,
+  "fallbacks": 0,
+  "preservation": {
+    "status": "PASS",
+    "clean_start": true,
+    "original_file_identities": 551,
+    "unchanged_file_identities": 539,
+    "exact_fact_numeric_context_validation_unchanged": true,
+    "action_semantic_guard_unchanged": true,
+    "env_ui_fallback_engines_artifacts_federation_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "phase6_fully_live_accepted": false,
+  "verdict": "Phase 6 remains pending because: the positive synthesis says \u201cDespite executing recommended transfers,\u201d contradicting authoritative physical_execution=false."
+}

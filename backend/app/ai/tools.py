@@ -183,6 +183,15 @@ class ToolExecutor:
             bundle = self.engine.forecasts.bundle(snapshot.country, snapshot.operational_profile)
             return {'data_type':'calibrated simulated operations','purpose':snapshot.profile_purpose,
                 'seed':snapshot.seed, 'live_government_inventory':False, 'calibration':snapshot.calibration,
+                'interpretation':{
+                    'public_inputs':'official public aggregate source inputs',
+                    'facility_operations':'fictional calibrated simulated facility operations',
+                    'forecast':'derived model-based output; not clinically validated',
+                    'scenario':'externally specified simulated stress-test projection',
+                    'optimization':'advisory optimization recommendation',
+                    'wape':'forecast error metric, not accuracy',
+                    'federation':'experimental federated-learning metrics',
+                    'connections':'no government systems or hospitals connected'},
                 'model_version':bundle['report']['model_version'], 'model_sha256':bundle.get('artifact_sha256'),
                 'sources':[{'name':d.provenance.source_name,'url':d.provenance.source_url,
                     'data_type':d.provenance.source_type,'reference_years':sorted({r.year for r in d.records})} for d in datasets()]}

@@ -67,7 +67,12 @@ class FactCatalogue:
                     root=='action_state' or path in ('solver.status','safe_capacity',
                     'impact.before.target_deficit','impact.after.target_deficit','impact.transferred_units',
                     'impact.transfer_count','impact.donor_safety_violations','impact.new_donor_risks',
-                    'impact.before.expected_unmet','impact.after.expected_unmet')):
+                    'impact.before.expected_unmet','impact.after.expected_unmet',
+                    'capacity_by_resource','transfers.0.donor_protected_reserve',
+                    'transfers.0.donor_protected_minimum_after','transfers.0.resource_id','transfers.0.rationale')):
+                return (-1,path)
+            if tool=='run_emergency_scenario' and (path=='scenario.definition.duration' or
+                    (path.startswith('resource_impact.') and path.endswith(('.resource_id','.name','.unit','.unmet_demand.scenario')))):
                 return (-1,path)
             if tool=='get_model_performance':
                 champion=payload.get('targets',{}).get('medicine',{}).get('champion')
@@ -90,6 +95,8 @@ class FactCatalogue:
             public.append(entry)
         envelope={'evidence_id':eid,'tool':tool,'context':deepcopy(payload.get('context',{})),
             'facts':public,'facts_truncated':len(public)<len(candidates),
+            'source_identity':deepcopy({k:payload[k] for k in ('run_id','scenario_id','snapshot_id',
+                'model_version','model_sha256','policy_version') if k in payload}),
             'provenance':{k:v for k,v in {'origin':payload.get('context',{}).get('origin'),
                 'model_version':payload.get('model_version')}.items() if v is not None}}
         # Native discovery/planning still receives compact operational objects and handles.
