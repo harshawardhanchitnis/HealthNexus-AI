@@ -1,5 +1,13 @@
 # Validation — 2026-09-29
 
+## Phase 6 — full live workflow attempt
+
+- Preflight passed **458 backend tests in 70.04 s**, retaining all previous 436 plus 22 verifier cases. Existing fact-ID mocks, all four workflow mocks, canonical plans/federation, compilation, dependencies, TypeScript/build and security passed. Google AI Studio headroom was independently confirmed by the user; no quota was inferred from the ledger.
+- Actual native scenario and optimization calls passed declaration, Pydantic, permission, context/identity and canonical plan checks. Final synthesis returned HTTP 200 / `incomplete` with truncated JSON, producing `response_incomplete`. Schema/fact-ID/qualitative/numeric final validation was not reached; those counts are not reported as zero.
+- Exactly three new Lite sends preserved the historical 25 (28 total). No retry, failover, later live cases or deployment followed. The accepted 2/2 smoke and all frozen application/engine/UI/federation evidence remain intact. A verifier-only sanitation test follows the stopped attempt; [final local regression/security](evaluation/phase6-workflow-final.json) records it.
+- Final local regression passes **459 tests in 111.96 s**, retaining the original 436 plus 23 verifier cases. Compilation/dependencies and unchanged TypeScript/build pass, with one existing upstream warning. Final preservation/security checks pass; there are no further live sends.
+- **Phase 6 remains pending because: the positive workflow's final structured synthesis returned `incomplete` with truncated JSON (`response_incomplete`).** [Full report](phase6-full-live-report.md), [live trace](evaluation/phase6-workflow-live.json), [diagnosis](evaluation/phase6-workflow-diagnosis.json).
+
 ## Phase 6 — request-local fact citations
 
 - **436 backend tests pass in 119.98 s**, retaining all 385 previous cases and adding 39 fact-contract plus 12 verifier cases. Python compilation, Windows `pip check`, strict TypeScript and Angular production build pass; one existing Starlette/AnyIO deprecation warning remains.

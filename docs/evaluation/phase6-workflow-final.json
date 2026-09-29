@@ -1,0 +1,79 @@
+{
+  "timestamp": "2026-09-29T08:30:09.064795+00:00",
+  "status": "PASS (local regression/security only)",
+  "baseline_commit": "3f5a7b9",
+  "backend": {
+    "passed": 459,
+    "previous_cases_retained": 436,
+    "new_verifier_cases": 23,
+    "seconds": 111.96,
+    "warnings": 1,
+    "warning": "Existing Starlette/AnyIO deprecation"
+  },
+  "python_compilation": "PASS",
+  "pip_check": "PASS",
+  "strict_typescript": "PASS",
+  "angular_production_build": "PASS",
+  "frontend_initial_kb": 387.99,
+  "estimated_transfer_kb": 104.69,
+  "canonical_ready": {
+    "target_before": 41763,
+    "safe_donor_capacity": 17745,
+    "transferred": 15679,
+    "lanes": 10,
+    "unresolved": 26084,
+    "donor_violations": 0,
+    "new_donor_risks": 0
+  },
+  "canonical_constrained": {
+    "target_before": 30230,
+    "safe_capacity": 0,
+    "transfers": 0,
+    "lanes": 0,
+    "unresolved": 30230
+  },
+  "federation_evidence_unchanged": true,
+  "previous_grounded_smoke_evidence": "PASS 2/2; preserved, not rerun",
+  "preservation": {
+    "status": "PASS",
+    "original_file_identities": 486,
+    "unchanged": 481,
+    "fact_and_numeric_contract_unchanged": true,
+    "ui_operational_forecasting_ortools_federation_unchanged": true,
+    "accepted_artifacts_unchanged": true,
+    "env_unchanged": true,
+    "key_project_billing_unchanged": true,
+    "production_fallback_order_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 447,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "env_key_project_billing_unchanged": true,
+  "opaque_provider_signatures_excluded": true,
+  "no_hidden_reasoning_contents": true,
+  "ledger": {
+    "historical_requests": 25,
+    "actual_new_sends": 3,
+    "total": 28,
+    "model": "gemini-3.5-flash-lite",
+    "model_historical": 6,
+    "model_new": 3,
+    "model_total": 9,
+    "all_original_metadata_and_day_preserved": true,
+    "unused_authorized_sends": 5,
+    "provider_quota_remaining": "not inferred"
+  },
+  "live_status": "STOPPED_AFTER_FAILURE",
+  "final_answer_schema": "NOT ACCEPTED; truncated JSON",
+  "fact_id_numeric_qualitative_final_validation": "NOT REACHED",
+  "followup_constrained_provenance_live": "NOT RUN",
+  "no_retries_no_failover": true,
+  "no_deployment": true,
+  "phase6_full_live_accepted": false,
+  "phase6_status": "Phase 6 remains pending because: the positive workflow final synthesis returned incomplete with truncated JSON (response_incomplete)."
+}

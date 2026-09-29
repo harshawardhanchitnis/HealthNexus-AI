@@ -2,6 +2,8 @@
 
 HealthNexus uses Gemini 3.8 Flash as its primary reasoning model with Gemini Flash-family availability failover. The current provider citation contract uses server-issued request-local fact IDs. All five candidates pass deterministic protocol tests; full live workflow acceptance remains pending. [Current fact-citation evidence](phase6-fact-citations-report.md) supersedes the dated numeric-path and failover measurements below without replacing them.
 
+The [subsequent full workflow attempt](phase6-full-live-report.md) used verifier-selected Flash-Lite only. Native simulation and optimization produced the canonical positive plan; final synthesis returned HTTP 200 / `incomplete` with truncated JSON and was rejected. Verification stopped after three actual sends (25 + 3 = 28), without retry/fallback or later live cases. Production configuration and accepted grounding remain unchanged.
+
 ## Model, SDK and setup
 
 The preferred primary model is `gemini-3.8-flash`, using `google-genai==2.25.0` and `from google import genai`. Google lists this model's function calling, structured output and thinking support on its [model page](https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash). The application uses the recommended [Interactions API](https://ai.google.dev/gemini-api/docs/interactions-overview), native function declarations and `previous_interaction_id`. Default thinking is `medium`; `low` is also accepted. Prompt version: `healthnexus-system-v5-fact-ids`; fact contract: `healthnexus-facts-v1`; configuration: `copilot-config-v4-failover`.

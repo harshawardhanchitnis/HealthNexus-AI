@@ -1,0 +1,2024 @@
+{
+  "label": "constrained",
+  "profile": "constrained",
+  "status": "PASS",
+  "provider_attempts": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "actual_http_sends": 0,
+      "http_status": 200,
+      "previous_interaction_id": null,
+      "native_calls": [],
+      "interaction_id": "mock-final-ba323285-0fb5-41ed-bb6f-26e80551fa72",
+      "provider_status": "completed",
+      "usage": null,
+      "native_validation": [],
+      "final_output_text": "{\"situation\": {\"text\": \"OR-Tools proved an optimal recommendation under the configured constraints.\", \"evidence_refs\": [\"e1_5b84fe7446c24ba2_f023\"]}, \"key_risks\": [{\"text\": \"Safe donor capacity is 0 inventory items.\", \"evidence_refs\": [\"e1_5b84fe7446c24ba2_f028\"]}, {\"text\": \"Transfers total 0 inventory items.\", \"evidence_refs\": [\"e1_5b84fe7446c24ba2_f060\"]}, {\"text\": \"No safe reserve-protected surplus is available; the network cannot self-resolve its remaining shortages.\", \"evidence_refs\": [\"e1_5b84fe7446c24ba2_f028\", \"e1_5b84fe7446c24ba2_f033\"]}], \"recommended_actions\": [], \"remaining_gaps\": [{\"text\": \"Unresolved target is 30230 inventory items.\", \"evidence_refs\": [\"e1_5b84fe7446c24ba2_f033\"]}]}",
+      "draft": {
+        "situation": {
+          "text": "OR-Tools proved an optimal recommendation under the configured constraints.",
+          "evidence_refs": [
+            "e1_5b84fe7446c24ba2_f023"
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Safe donor capacity is 0 inventory items.",
+            "evidence_refs": [
+              "e1_5b84fe7446c24ba2_f028"
+            ]
+          },
+          {
+            "text": "Transfers total 0 inventory items.",
+            "evidence_refs": [
+              "e1_5b84fe7446c24ba2_f060"
+            ]
+          },
+          {
+            "text": "No safe reserve-protected surplus is available; the network cannot self-resolve its remaining shortages.",
+            "evidence_refs": [
+              "e1_5b84fe7446c24ba2_f028",
+              "e1_5b84fe7446c24ba2_f033"
+            ]
+          }
+        ],
+        "recommended_actions": [],
+        "remaining_gaps": [
+          {
+            "text": "Unresolved target is 30230 inventory items.",
+            "evidence_refs": [
+              "e1_5b84fe7446c24ba2_f033"
+            ]
+          }
+        ]
+      },
+      "provider_seconds": 0.000739200011594221
+    }
+  ],
+  "catalogues": {
+    "e1": {
+      "evidence_id": "e1",
+      "tool": "get_optimization_result",
+      "context": {
+        "country_id": "IN",
+        "profile": "constrained",
+        "profile_version": "inventory-profile-v1",
+        "origin": "2026-09-27"
+      },
+      "facts": [
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f001",
+          "label": "Solver / Constraints",
+          "value": 18,
+          "unit": null,
+          "quote": "18"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f002",
+          "label": "Solver / Construction seconds",
+          "value": 0.0017906000139191747,
+          "unit": null,
+          "quote": "0.0017906000139191747"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f003",
+          "label": "Solver / Elapsed seconds",
+          "value": 0.006079200014937669,
+          "unit": null,
+          "quote": "0.006079200014937669"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f004",
+          "label": "Solver / Engine",
+          "value": "Google OR-Tools CP-SAT",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f005",
+          "label": "Solver / Objective / Item 0",
+          "value": 28174,
+          "unit": null,
+          "quote": "28174"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f006",
+          "label": "Solver / Objective / Item 1",
+          "value": 19987301,
+          "unit": null,
+          "quote": "19987301"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f007",
+          "label": "Solver / Objective / Item 2",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f008",
+          "label": "Solver / Stages / Item 0 / Best bound",
+          "value": 28174.0,
+          "unit": null,
+          "quote": "28174.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f009",
+          "label": "Solver / Stages / Item 0 / Name",
+          "value": "critical_unresolved_units",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f010",
+          "label": "Solver / Stages / Item 0 / Objective",
+          "value": 28174.0,
+          "unit": null,
+          "quote": "28174.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f011",
+          "label": "Solver / Stages / Item 0 / Seconds",
+          "value": 0.0007479,
+          "unit": null,
+          "quote": "0.0007479"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f012",
+          "label": "Solver / Stages / Item 0 / Status",
+          "value": "OPTIMAL",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f013",
+          "label": "Solver / Stages / Item 1 / Best bound",
+          "value": 19987301.0,
+          "unit": null,
+          "quote": "19987301.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f014",
+          "label": "Solver / Stages / Item 1 / Name",
+          "value": "weighted_unresolved_units",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f015",
+          "label": "Solver / Stages / Item 1 / Objective",
+          "value": 19987301.0,
+          "unit": null,
+          "quote": "19987301.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f016",
+          "label": "Solver / Stages / Item 1 / Seconds",
+          "value": 0.0005744000000000001,
+          "unit": null,
+          "quote": "0.0005744000000000001"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f017",
+          "label": "Solver / Stages / Item 1 / Status",
+          "value": "OPTIMAL",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f018",
+          "label": "Solver / Stages / Item 2 / Best bound",
+          "value": 0.0,
+          "unit": null,
+          "quote": "0.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f019",
+          "label": "Solver / Stages / Item 2 / Name",
+          "value": "transport_cost",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f020",
+          "label": "Solver / Stages / Item 2 / Objective",
+          "value": 0.0,
+          "unit": null,
+          "quote": "0.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f021",
+          "label": "Solver / Stages / Item 2 / Seconds",
+          "value": 0.0005099,
+          "unit": null,
+          "quote": "0.0005099"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f022",
+          "label": "Solver / Stages / Item 2 / Status",
+          "value": "OPTIMAL",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f023",
+          "label": "Solver / Status",
+          "value": "OPTIMAL",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f024",
+          "label": "Solver / Termination",
+          "value": "all_lexicographic_stages_proved",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f025",
+          "label": "Solver / Time limit seconds",
+          "value": 10.0,
+          "unit": null,
+          "quote": "10.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f026",
+          "label": "Solver / Variables",
+          "value": 16,
+          "unit": null,
+          "quote": "16"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f027",
+          "label": "Solver / Version",
+          "value": "9.15.6755",
+          "unit": null
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f028",
+          "label": "Safe capacity",
+          "value": 0,
+          "unit": "accounting items",
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f029",
+          "label": "Impact / After / Critical resource warnings",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f030",
+          "label": "Impact / After / Expected unmet",
+          "value": 17075.155797617244,
+          "unit": null,
+          "quote": "17075.155797617244"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f031",
+          "label": "Impact / After / Facilities at risk",
+          "value": 3,
+          "unit": "facilities",
+          "quote": "3"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f032",
+          "label": "Impact / After / Max stockout risk",
+          "value": 1.0,
+          "unit": "fraction",
+          "quote": "1.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f033",
+          "label": "Impact / After / Target deficit",
+          "value": 30230,
+          "unit": "accounting items",
+          "quote": "30230"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f034",
+          "label": "Impact / Before / Critical resource warnings",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f035",
+          "label": "Impact / Before / Expected unmet",
+          "value": 17075.155797617244,
+          "unit": null,
+          "quote": "17075.155797617244"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f036",
+          "label": "Impact / Before / Facilities at risk",
+          "value": 3,
+          "unit": "facilities",
+          "quote": "3"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f037",
+          "label": "Impact / Before / Max stockout risk",
+          "value": 1.0,
+          "unit": "fraction",
+          "quote": "1.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f038",
+          "label": "Impact / Before / Target deficit",
+          "value": 30230,
+          "unit": "accounting items",
+          "quote": "30230"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f039",
+          "label": "Impact / Conservation / Amx / After",
+          "value": 6021,
+          "unit": null,
+          "quote": "6021"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f040",
+          "label": "Impact / Conservation / Amx / Before",
+          "value": 6021,
+          "unit": null,
+          "quote": "6021"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f041",
+          "label": "Impact / Conservation / Ifa / After",
+          "value": 7751,
+          "unit": null,
+          "quote": "7751"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f042",
+          "label": "Impact / Conservation / Ifa / Before",
+          "value": 7751,
+          "unit": null,
+          "quote": "7751"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f043",
+          "label": "Impact / Conservation / Ivf / After",
+          "value": 2784,
+          "unit": null,
+          "quote": "2784"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f044",
+          "label": "Impact / Conservation / Ivf / Before",
+          "value": 2784,
+          "unit": null,
+          "quote": "2784"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f045",
+          "label": "Impact / Conservation / Ors / After",
+          "value": 4911,
+          "unit": null,
+          "quote": "4911"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f046",
+          "label": "Impact / Conservation / Ors / Before",
+          "value": 4911,
+          "unit": null,
+          "quote": "4911"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f047",
+          "label": "Impact / Conservation / Pcm / After",
+          "value": 20174,
+          "unit": null,
+          "quote": "20174"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f048",
+          "label": "Impact / Conservation / Pcm / Before",
+          "value": 20174,
+          "unit": null,
+          "quote": "20174"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f049",
+          "label": "Impact / Critical deficits resolved",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f050",
+          "label": "Impact / Critical deficits total",
+          "value": 6,
+          "unit": null,
+          "quote": "6"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f051",
+          "label": "Impact / Distance km",
+          "value": 0.0,
+          "unit": null,
+          "quote": "0.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f052",
+          "label": "Impact / Distance weighted units",
+          "value": 0.0,
+          "unit": null,
+          "quote": "0.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f053",
+          "label": "Impact / Donor facilities used",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f054",
+          "label": "Impact / Donor safety violations",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f055",
+          "label": "Impact / Facilities protected",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f056",
+          "label": "Impact / New donor risks",
+          "value": 0,
+          "unit": "facilities",
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f057",
+          "label": "Impact / Percent deficit resolved",
+          "value": 0.0,
+          "unit": "%",
+          "quote": "0.0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f058",
+          "label": "Impact / Shortage units resolved",
+          "value": 0,
+          "unit": "accounting items",
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f059",
+          "label": "Impact / Transfer count",
+          "value": 0,
+          "unit": null,
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f060",
+          "label": "Impact / Transferred units",
+          "value": 0,
+          "unit": "accounting items",
+          "quote": "0"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f061",
+          "label": "Impact / Unresolved / In-mh-pune-001:amx",
+          "value": 21,
+          "unit": null,
+          "quote": "21"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f062",
+          "label": "Impact / Unresolved / In-mh-pune-001:ifa",
+          "value": 23,
+          "unit": null,
+          "quote": "23"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f063",
+          "label": "Impact / Unresolved / In-mh-pune-001:ivf",
+          "value": 242,
+          "unit": null,
+          "quote": "242"
+        },
+        {
+          "fact_id": "e1_5b84fe7446c24ba2_f064",
+          "label": "Impact / Unresolved / In-mh-pune-001:ors",
+          "value": 94,
+          "unit": null,
+          "quote": "94"
+        }
+      ],
+      "facts_truncated": true,
+      "provenance": {
+        "origin": "2026-09-27",
+        "model_version": "forecast-v1-176a752efab3ae4e"
+      },
+      "result": {
+        "context": {
+          "country_id": "IN",
+          "profile": "constrained",
+          "profile_version": "inventory-profile-v1",
+          "origin": "2026-09-27"
+        },
+        "run_id": "940259be-b4f8-4f3f-a6b4-588472599361",
+        "scenario_id": "963d542d-4df6-4907-b932-e1fe202503d3",
+        "model_version": "forecast-v1-176a752efab3ae4e",
+        "policy_version": "redistribution-v1",
+        "solver": {
+          "construction_seconds": 0.0017906000139191747,
+          "engine": "Google OR-Tools CP-SAT",
+          "version": "9.15.6755",
+          "status": "OPTIMAL",
+          "termination": "all_lexicographic_stages_proved",
+          "stages": [
+            {
+              "name": "critical_unresolved_units",
+              "status": "OPTIMAL",
+              "objective": 28174.0,
+              "best_bound": 28174.0,
+              "seconds": 0.0007479
+            },
+            {
+              "name": "weighted_unresolved_units",
+              "status": "OPTIMAL",
+              "objective": 19987301.0,
+              "best_bound": 19987301.0,
+              "seconds": 0.0005744000000000001
+            },
+            {
+              "name": "transport_cost",
+              "status": "OPTIMAL",
+              "objective": 0.0,
+              "best_bound": 0.0,
+              "seconds": 0.0005099
+            }
+          ],
+          "objective": [
+            28174,
+            19987301,
+            0
+          ],
+          "time_limit_seconds": 10.0,
+          "elapsed_seconds": 0.006079200014937669,
+          "variables": 16,
+          "constraints": 18
+        },
+        "safe_capacity": 0,
+        "impact": {
+          "before": {
+            "target_deficit": 30230,
+            "expected_unmet": 17075.155797617244,
+            "critical_resource_warnings": 0,
+            "facilities_at_risk": 3,
+            "max_stockout_risk": 1.0
+          },
+          "after": {
+            "target_deficit": 30230,
+            "expected_unmet": 17075.155797617244,
+            "critical_resource_warnings": 0,
+            "facilities_at_risk": 3,
+            "max_stockout_risk": 1.0
+          },
+          "shortage_units_resolved": 0,
+          "percent_deficit_resolved": 0.0,
+          "critical_deficits_resolved": 0,
+          "critical_deficits_total": 6,
+          "facilities_protected": 0,
+          "donor_facilities_used": 0,
+          "transfer_count": 0,
+          "transferred_units": 0,
+          "distance_km": 0.0,
+          "distance_weighted_units": 0.0,
+          "donor_safety_violations": 0,
+          "new_donor_risks": 0,
+          "unresolved": {
+            "IN-MH-PUNE-001:AMX": 21,
+            "IN-MH-PUNE-001:IFA": 23,
+            "IN-MH-PUNE-001:IVF": 242,
+            "IN-MH-PUNE-001:ORS": 94,
+            "IN-MH-PUNE-001:PCM": 2765,
+            "IN-MH-PUNE-002:AMX": 64,
+            "IN-MH-PUNE-002:IFA": 82,
+            "IN-MH-PUNE-002:IVF": 420,
+            "IN-MH-PUNE-002:ORS": 179,
+            "IN-MH-PUNE-002:PCM": 4754,
+            "IN-MH-PUNE-003:AMX": 349,
+            "IN-MH-PUNE-003:IFA": 463,
+            "IN-MH-PUNE-003:IVF": 1642,
+            "IN-MH-PUNE-003:ORS": 781,
+            "IN-MH-PUNE-003:PCM": 18351
+          },
+          "conservation": {
+            "PCM": {
+              "before": 20174,
+              "after": 20174
+            },
+            "IVF": {
+              "before": 2784,
+              "after": 2784
+            },
+            "ORS": {
+              "before": 4911,
+              "after": 4911
+            },
+            "AMX": {
+              "before": 6021,
+              "after": 6021
+            },
+            "IFA": {
+              "before": 7751,
+              "after": 7751
+            }
+          }
+        },
+        "resource_units": {
+          "AMX": "capsules",
+          "IFA": "tablets",
+          "IVF": "bags",
+          "ORS": "sachets",
+          "PCM": "tablets"
+        },
+        "resource_risks": [
+          {
+            "facility_id": "IN-MH-PUNE-001",
+            "resource_id": "PCM",
+            "unit": "tablets",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "unresolved": 2765
+          },
+          {
+            "facility_id": "IN-MH-PUNE-001",
+            "resource_id": "IVF",
+            "unit": "bags",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "unresolved": 242
+          },
+          {
+            "facility_id": "IN-MH-PUNE-001",
+            "resource_id": "ORS",
+            "unit": "sachets",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "unresolved": 94
+          },
+          {
+            "facility_id": "IN-MH-PUNE-001",
+            "resource_id": "AMX",
+            "unit": "capsules",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "unresolved": 21
+          },
+          {
+            "facility_id": "IN-MH-PUNE-001",
+            "resource_id": "IFA",
+            "unit": "tablets",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "unresolved": 23
+          },
+          {
+            "facility_id": "IN-MH-PUNE-002",
+            "resource_id": "PCM",
+            "unit": "tablets",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "unresolved": 4754
+          },
+          {
+            "facility_id": "IN-MH-PUNE-002",
+            "resource_id": "IVF",
+            "unit": "bags",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 1.0
+            },
+            "unresolved": 420
+          },
+          {
+            "facility_id": "IN-MH-PUNE-002",
+            "resource_id": "ORS",
+            "unit": "sachets",
+            "risk_before": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "risk_after": {
+              "3": 0.0,
+              "7": 0.0,
+              "14": 0.0
+            },
+            "unresolved": 179
+          }
+        ],
+        "transfers": [],
+        "transfers_total": 0,
+        "transfers_truncated": false,
+        "unit_notice": "Aggregate counts are inventory-item accounting tallies across different resource units, not interchangeable doses."
+      }
+    }
+  },
+  "manual_factual_review": "not applicable to scripted evidence",
+  "quality": {
+    "qualitative_acceptance": "PASS",
+    "solver_terminology": "PASS",
+    "unsupported_numeric_claims": 0,
+    "unknown_fact_ids": 0,
+    "schema": "PASS",
+    "fact_ids": "PASS",
+    "context": "PASS"
+  },
+  "response": {
+    "request_id": "d4a72215-2bf1-4a4d-91f9-875b5f898dc0",
+    "conversation_id": "5a8cd5f2-8c53-4883-ad3f-a0dbb8acd691",
+    "mode": "gemini",
+    "status": "completed",
+    "answer": "OR-Tools proved an optimal recommendation under the configured constraints.",
+    "situation": {
+      "text": "OR-Tools proved an optimal recommendation under the configured constraints.",
+      "references": [
+        {
+          "evidence_id": "e1",
+          "field": "solver.status"
+        }
+      ]
+    },
+    "key_risks": [
+      {
+        "text": "Safe donor capacity is 0 inventory items.",
+        "references": [
+          {
+            "evidence_id": "e1",
+            "field": "safe_capacity"
+          }
+        ]
+      },
+      {
+        "text": "Transfers total 0 inventory items.",
+        "references": [
+          {
+            "evidence_id": "e1",
+            "field": "impact.transferred_units"
+          }
+        ]
+      },
+      {
+        "text": "No safe reserve-protected surplus is available; the network cannot self-resolve its remaining shortages.",
+        "references": [
+          {
+            "evidence_id": "e1",
+            "field": "safe_capacity"
+          },
+          {
+            "evidence_id": "e1",
+            "field": "impact.after.target_deficit"
+          }
+        ]
+      }
+    ],
+    "recommended_actions": [],
+    "remaining_gaps": [
+      {
+        "text": "Unresolved target is 30230 inventory items.",
+        "references": [
+          {
+            "evidence_id": "e1",
+            "field": "impact.after.target_deficit"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "e1",
+        "tool": "get_optimization_result",
+        "source_type": "get_optimization_result",
+        "source_id": "940259be-b4f8-4f3f-a6b4-588472599361",
+        "field": "solver.status",
+        "value": "OPTIMAL",
+        "profile": "constrained",
+        "unit": null
+      },
+      {
+        "evidence_id": "e1",
+        "tool": "get_optimization_result",
+        "source_type": "get_optimization_result",
+        "source_id": "940259be-b4f8-4f3f-a6b4-588472599361",
+        "field": "safe_capacity",
+        "value": 0,
+        "profile": "constrained",
+        "unit": "accounting items"
+      },
+      {
+        "evidence_id": "e1",
+        "tool": "get_optimization_result",
+        "source_type": "get_optimization_result",
+        "source_id": "940259be-b4f8-4f3f-a6b4-588472599361",
+        "field": "impact.transferred_units",
+        "value": 0,
+        "profile": "constrained",
+        "unit": "accounting items"
+      },
+      {
+        "evidence_id": "e1",
+        "tool": "get_optimization_result",
+        "source_type": "get_optimization_result",
+        "source_id": "940259be-b4f8-4f3f-a6b4-588472599361",
+        "field": "impact.after.target_deficit",
+        "value": 30230,
+        "profile": "constrained",
+        "unit": "accounting items"
+      }
+    ],
+    "tools_used": [
+      {
+        "tool": "get_optimization_result",
+        "status": "success",
+        "seconds": 0.15734760000486858,
+        "summary": "Validated HealthNexus result; no external action executed.",
+        "evidence_id": "e1"
+      }
+    ],
+    "limitations": [
+      "Facility operations are calibrated simulations, not live government inventory.",
+      "Emergency shocks are externally specified assumptions, not epidemiological predictions.",
+      "Plans are decision support; no physical transfer, order or hospital contact is executed.",
+      "Forecast evaluation uses simulated histories; no clinical or real-world operational validation is claimed."
+    ],
+    "context": {
+      "country_id": "IN",
+      "profile": "constrained",
+      "state_id": "MH",
+      "district_id": "MH-PUNE",
+      "facility_id": null,
+      "scenario_id": "963d542d-4df6-4907-b932-e1fe202503d3",
+      "optimization_run_id": "940259be-b4f8-4f3f-a6b4-588472599361"
+    },
+    "scenario_id": "963d542d-4df6-4907-b932-e1fe202503d3",
+    "optimization_run_id": "940259be-b4f8-4f3f-a6b4-588472599361",
+    "metadata": {
+      "gemini_network_seconds": 0.001131500001065433,
+      "tool_seconds": 0.15734760000486858,
+      "total_seconds": 0.19675089998054318,
+      "tool_calls": 1,
+      "interaction_count": 1,
+      "provider_requests": 1,
+      "local_tool_calls": 1,
+      "interaction_ids": [
+        "mock-final-ba323285-0fb5-41ed-bb6f-26e80551fa72"
+      ],
+      "intent": "follow-up-plan",
+      "execution_sources": [
+        {
+          "tool": "get_optimization_result",
+          "source": "server-prefetch"
+        }
+      ],
+      "request_diagnostics": [
+        {
+          "tool_schema_bytes": 2,
+          "system_bytes": 3867,
+          "input_bytes": 15146,
+          "request_body_bytes": 28509,
+          "input_tokens_estimate": 4754,
+          "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+        }
+      ],
+      "tool_payload_diagnostics": [
+        {
+          "tool": "get_optimization_result",
+          "authoritative_bytes": 6807,
+          "model_payload_bytes": 12090
+        }
+      ],
+      "fact_contract_version": "healthnexus-facts-v1",
+      "fact_validation": {
+        "catalogue_size": 64,
+        "resolved_references": 6,
+        "unknown_fact_ids": 0,
+        "semantic_validation": "PASS",
+        "numeric_validation": "PASS"
+      },
+      "requested_model": "gemini-3.5-flash-lite",
+      "effective_model": "gemini-3.5-flash-lite",
+      "selected_model": "gemini-3.5-flash-lite",
+      "fallback_used": false,
+      "fallback_chain_attempted": [
+        "gemini-3.5-flash-lite"
+      ],
+      "fallback_reason": null,
+      "model_attempts": [
+        {
+          "model": "gemini-3.5-flash-lite",
+          "status": "connected",
+          "provider_requests": 1,
+          "seconds": 0.0009518000006210059
+        }
+      ],
+      "model_handoffs": [],
+      "models_skipped": [],
+      "provider_requests_per_model": {
+        "gemini-3.5-flash-lite": {
+          "provider_requests": 1,
+          "successful_interactions": 1,
+          "failed_attempts": 0,
+          "provider_seconds": 0.0009518000006210059
+        }
+      },
+      "model": "gemini-3.5-flash-lite",
+      "configured_model": "gemini-3.5-flash-lite",
+      "sdk_version": "2.25.0",
+      "api": "Interactions",
+      "transport": "mock",
+      "thinking_level": "medium",
+      "interaction_id": "mock-final-ba323285-0fb5-41ed-bb6f-26e80551fa72",
+      "timestamp": "2026-09-29T08:19:18.823356+00:00",
+      "system_prompt_version": "healthnexus-system-v5-fact-ids",
+      "config_version": "copilot-config-v4-failover",
+      "usage": [],
+      "model_versions": [
+        "forecast-v1-176a752efab3ae4e"
+      ]
+    },
+    "operational_results": [
+      {
+        "evidence_id": "e1",
+        "tool": "get_optimization_result",
+        "result": {
+          "context": {
+            "country_id": "IN",
+            "profile": "constrained",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "run_id": "940259be-b4f8-4f3f-a6b4-588472599361",
+          "scenario_id": "963d542d-4df6-4907-b932-e1fe202503d3",
+          "request": {
+            "profile": "constrained",
+            "country_id": "IN",
+            "scenario_id": "963d542d-4df6-4907-b932-e1fe202503d3",
+            "state_id": "MH",
+            "district_id": "MH-PUNE",
+            "scope": "district",
+            "resources": [
+              "PCM",
+              "IVF",
+              "ORS",
+              "AMX",
+              "IFA"
+            ],
+            "horizon": 14,
+            "time_limit_seconds": 10.0
+          },
+          "solver": {
+            "construction_seconds": 0.0017906000139191747,
+            "engine": "Google OR-Tools CP-SAT",
+            "version": "9.15.6755",
+            "status": "OPTIMAL",
+            "termination": "all_lexicographic_stages_proved",
+            "stages": [
+              {
+                "name": "critical_unresolved_units",
+                "status": "OPTIMAL",
+                "objective": 28174.0,
+                "best_bound": 28174.0,
+                "seconds": 0.0007479
+              },
+              {
+                "name": "weighted_unresolved_units",
+                "status": "OPTIMAL",
+                "objective": 19987301.0,
+                "best_bound": 19987301.0,
+                "seconds": 0.0005744000000000001
+              },
+              {
+                "name": "transport_cost",
+                "status": "OPTIMAL",
+                "objective": 0.0,
+                "best_bound": 0.0,
+                "seconds": 0.0005099
+              }
+            ],
+            "objective": [
+              28174,
+              19987301,
+              0
+            ],
+            "time_limit_seconds": 10.0,
+            "elapsed_seconds": 0.006079200014937669,
+            "variables": 16,
+            "constraints": 18
+          },
+          "model_version": "forecast-v1-176a752efab3ae4e",
+          "snapshot_id": "b887bb2077ffad2059d68ef94a6014d72a00f463922e818f7371bcbde433e780",
+          "policy_version": "redistribution-v1",
+          "resource_units": {
+            "AMX": "capsules",
+            "IFA": "tablets",
+            "IVF": "bags",
+            "ORS": "sachets",
+            "PCM": "tablets"
+          },
+          "resource_risks": [
+            {
+              "facility_id": "IN-MH-PUNE-001",
+              "resource_id": "PCM",
+              "unit": "tablets",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "unresolved": 2765
+            },
+            {
+              "facility_id": "IN-MH-PUNE-001",
+              "resource_id": "IVF",
+              "unit": "bags",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "unresolved": 242
+            },
+            {
+              "facility_id": "IN-MH-PUNE-001",
+              "resource_id": "ORS",
+              "unit": "sachets",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "unresolved": 94
+            },
+            {
+              "facility_id": "IN-MH-PUNE-001",
+              "resource_id": "AMX",
+              "unit": "capsules",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "unresolved": 21
+            },
+            {
+              "facility_id": "IN-MH-PUNE-001",
+              "resource_id": "IFA",
+              "unit": "tablets",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "unresolved": 23
+            },
+            {
+              "facility_id": "IN-MH-PUNE-002",
+              "resource_id": "PCM",
+              "unit": "tablets",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "unresolved": 4754
+            },
+            {
+              "facility_id": "IN-MH-PUNE-002",
+              "resource_id": "IVF",
+              "unit": "bags",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 1.0
+              },
+              "unresolved": 420
+            },
+            {
+              "facility_id": "IN-MH-PUNE-002",
+              "resource_id": "ORS",
+              "unit": "sachets",
+              "risk_before": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "risk_after": {
+                "3": 0.0,
+                "7": 0.0,
+                "14": 0.0
+              },
+              "unresolved": 179
+            }
+          ],
+          "resource_risks_truncated": true,
+          "safe_capacity": 0,
+          "capacity_by_resource": {
+            "PCM": 0,
+            "IVF": 0,
+            "ORS": 0,
+            "AMX": 0,
+            "IFA": 0
+          },
+          "deficit_by_resource": {
+            "PCM": 25870,
+            "IVF": 2304,
+            "ORS": 1054,
+            "AMX": 434,
+            "IFA": 568
+          },
+          "impact": {
+            "before": {
+              "target_deficit": 30230,
+              "expected_unmet": 17075.155797617244,
+              "critical_resource_warnings": 0,
+              "facilities_at_risk": 3,
+              "max_stockout_risk": 1.0
+            },
+            "after": {
+              "target_deficit": 30230,
+              "expected_unmet": 17075.155797617244,
+              "critical_resource_warnings": 0,
+              "facilities_at_risk": 3,
+              "max_stockout_risk": 1.0
+            },
+            "shortage_units_resolved": 0,
+            "percent_deficit_resolved": 0.0,
+            "critical_deficits_resolved": 0,
+            "critical_deficits_total": 6,
+            "facilities_protected": 0,
+            "donor_facilities_used": 0,
+            "transfer_count": 0,
+            "transferred_units": 0,
+            "distance_km": 0.0,
+            "distance_weighted_units": 0.0,
+            "donor_safety_violations": 0,
+            "new_donor_risks": 0,
+            "unresolved": {
+              "IN-MH-PUNE-001:AMX": 21,
+              "IN-MH-PUNE-001:IFA": 23,
+              "IN-MH-PUNE-001:IVF": 242,
+              "IN-MH-PUNE-001:ORS": 94,
+              "IN-MH-PUNE-001:PCM": 2765,
+              "IN-MH-PUNE-002:AMX": 64,
+              "IN-MH-PUNE-002:IFA": 82,
+              "IN-MH-PUNE-002:IVF": 420,
+              "IN-MH-PUNE-002:ORS": 179,
+              "IN-MH-PUNE-002:PCM": 4754,
+              "IN-MH-PUNE-003:AMX": 349,
+              "IN-MH-PUNE-003:IFA": 463,
+              "IN-MH-PUNE-003:IVF": 1642,
+              "IN-MH-PUNE-003:ORS": 781,
+              "IN-MH-PUNE-003:PCM": 18351
+            },
+            "conservation": {
+              "PCM": {
+                "before": 20174,
+                "after": 20174
+              },
+              "IVF": {
+                "before": 2784,
+                "after": 2784
+              },
+              "ORS": {
+                "before": 4911,
+                "after": 4911
+              },
+              "AMX": {
+                "before": 6021,
+                "after": 6021
+              },
+              "IFA": {
+                "before": 7751,
+                "after": 7751
+              }
+            }
+          },
+          "greedy": {
+            "before": {
+              "target_deficit": 30230,
+              "expected_unmet": 17075.155797617244,
+              "critical_resource_warnings": 0,
+              "facilities_at_risk": 3,
+              "max_stockout_risk": 1.0
+            },
+            "after": {
+              "target_deficit": 30230,
+              "expected_unmet": 17075.155797617244,
+              "critical_resource_warnings": 0,
+              "facilities_at_risk": 3,
+              "max_stockout_risk": 1.0
+            },
+            "shortage_units_resolved": 0,
+            "percent_deficit_resolved": 0.0,
+            "critical_deficits_resolved": 0,
+            "critical_deficits_total": 6,
+            "facilities_protected": 0,
+            "donor_facilities_used": 0,
+            "transfer_count": 0,
+            "transferred_units": 0,
+            "distance_km": 0.0,
+            "distance_weighted_units": 0.0,
+            "donor_safety_violations": 0,
+            "new_donor_risks": 0,
+            "unresolved": {
+              "IN-MH-PUNE-001:AMX": 21,
+              "IN-MH-PUNE-001:IFA": 23,
+              "IN-MH-PUNE-001:IVF": 242,
+              "IN-MH-PUNE-001:ORS": 94,
+              "IN-MH-PUNE-001:PCM": 2765,
+              "IN-MH-PUNE-002:AMX": 64,
+              "IN-MH-PUNE-002:IFA": 82,
+              "IN-MH-PUNE-002:IVF": 420,
+              "IN-MH-PUNE-002:ORS": 179,
+              "IN-MH-PUNE-002:PCM": 4754,
+              "IN-MH-PUNE-003:AMX": 349,
+              "IN-MH-PUNE-003:IFA": 463,
+              "IN-MH-PUNE-003:IVF": 1642,
+              "IN-MH-PUNE-003:ORS": 781,
+              "IN-MH-PUNE-003:PCM": 18351
+            },
+            "conservation": {
+              "PCM": {
+                "before": 20174,
+                "after": 20174
+              },
+              "IVF": {
+                "before": 2784,
+                "after": 2784
+              },
+              "ORS": {
+                "before": 4911,
+                "after": 4911
+              },
+              "AMX": {
+                "before": 6021,
+                "after": 6021
+              },
+              "IFA": {
+                "before": 7751,
+                "after": 7751
+              }
+            }
+          },
+          "warnings_before": {
+            "total": 46,
+            "counts": {
+              "INFO": 0,
+              "WATCH": 19,
+              "WARNING": 18,
+              "CRITICAL": 9
+            },
+            "facilities_affected": 3,
+            "medicines_at_risk": 5,
+            "bed_warnings": 6,
+            "staff_warnings": 4,
+            "by_country": {
+              "IN": {
+                "INFO": 0,
+                "WATCH": 19,
+                "WARNING": 18,
+                "CRITICAL": 9
+              }
+            },
+            "by_region": {
+              "MH": {
+                "INFO": 0,
+                "WATCH": 19,
+                "WARNING": 18,
+                "CRITICAL": 9
+              }
+            },
+            "by_district": {
+              "MH-PUNE": {
+                "INFO": 0,
+                "WATCH": 19,
+                "WARNING": 18,
+                "CRITICAL": 9
+              }
+            },
+            "by_facility": {
+              "IN-MH-PUNE-003": {
+                "INFO": 0,
+                "WATCH": 6,
+                "WARNING": 6,
+                "CRITICAL": 3
+              },
+              "IN-MH-PUNE-002": {
+                "INFO": 0,
+                "WATCH": 6,
+                "WARNING": 6,
+                "CRITICAL": 3
+              },
+              "IN-MH-PUNE-001": {
+                "INFO": 0,
+                "WATCH": 7,
+                "WARNING": 6,
+                "CRITICAL": 3
+              }
+            }
+          },
+          "warnings_after": {
+            "total": 46,
+            "counts": {
+              "INFO": 0,
+              "WATCH": 19,
+              "WARNING": 18,
+              "CRITICAL": 9
+            },
+            "facilities_affected": 3,
+            "medicines_at_risk": 5,
+            "bed_warnings": 6,
+            "staff_warnings": 4,
+            "by_country": {
+              "IN": {
+                "INFO": 0,
+                "WATCH": 19,
+                "WARNING": 18,
+                "CRITICAL": 9
+              }
+            },
+            "by_region": {
+              "MH": {
+                "INFO": 0,
+                "WATCH": 19,
+                "WARNING": 18,
+                "CRITICAL": 9
+              }
+            },
+            "by_district": {
+              "MH-PUNE": {
+                "INFO": 0,
+                "WATCH": 19,
+                "WARNING": 18,
+                "CRITICAL": 9
+              }
+            },
+            "by_facility": {
+              "IN-MH-PUNE-003": {
+                "INFO": 0,
+                "WATCH": 6,
+                "WARNING": 6,
+                "CRITICAL": 3
+              },
+              "IN-MH-PUNE-002": {
+                "INFO": 0,
+                "WATCH": 6,
+                "WARNING": 6,
+                "CRITICAL": 3
+              },
+              "IN-MH-PUNE-001": {
+                "INFO": 0,
+                "WATCH": 7,
+                "WARNING": 6,
+                "CRITICAL": 3
+              }
+            }
+          },
+          "transfers": [],
+          "transfers_total": 0,
+          "offset": 0,
+          "limit": 10,
+          "transfers_truncated": false,
+          "message": "Network resources are insufficient to completely resolve this shortage.",
+          "unit_notice": "Aggregate counts are inventory-item accounting tallies across different resource units, not interchangeable doses."
+        }
+      }
+    ]
+  },
+  "audit": {
+    "request_id": "d4a72215-2bf1-4a4d-91f9-875b5f898dc0",
+    "conversation_id": "5a8cd5f2-8c53-4883-ad3f-a0dbb8acd691",
+    "question": "Explain why HealthNexus recommends no redistribution in this scenario.",
+    "country_id": "IN",
+    "profile": "constrained",
+    "state_id": "MH",
+    "district_id": "MH-PUNE",
+    "timestamp": "2026-09-29T08:19:18.823356+00:00",
+    "system_prompt_version": "healthnexus-system-v5-fact-ids",
+    "config_version": "copilot-config-v4-failover",
+    "mode": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "status": "completed",
+    "tools": [
+      {
+        "tool": "get_optimization_result",
+        "status": "success",
+        "seconds": 0.15734760000486858,
+        "summary": "Validated HealthNexus result; no external action executed.",
+        "evidence_id": "e1"
+      }
+    ],
+    "latency": 0.19675089998054318,
+    "usage": [],
+    "provider_requests": 1,
+    "local_tool_calls": 1,
+    "execution_sources": [
+      {
+        "tool": "get_optimization_result",
+        "source": "server-prefetch"
+      }
+    ],
+    "request_diagnostics": [
+      {
+        "tool_schema_bytes": 2,
+        "system_bytes": 3867,
+        "input_bytes": 15146,
+        "request_body_bytes": 28509,
+        "input_tokens_estimate": 4754,
+        "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+      }
+    ],
+    "requested_model": "gemini-3.5-flash-lite",
+    "effective_model": "gemini-3.5-flash-lite",
+    "selected_model": "gemini-3.5-flash-lite",
+    "fallback_used": false,
+    "fallback_chain_attempted": [
+      "gemini-3.5-flash-lite"
+    ],
+    "fallback_reason": null,
+    "model_attempts": [
+      {
+        "model": "gemini-3.5-flash-lite",
+        "status": "connected",
+        "provider_requests": 1,
+        "seconds": 0.0009518000006210059
+      }
+    ],
+    "model_handoffs": [],
+    "models_skipped": [],
+    "provider_requests_per_model": {
+      "gemini-3.5-flash-lite": {
+        "provider_requests": 1,
+        "successful_interactions": 1,
+        "failed_attempts": 0,
+        "provider_seconds": 0.0009518000006210059
+      }
+    },
+    "fact_citations": [
+      {
+        "claim_index": 0,
+        "claim_field": "situation.text",
+        "claim_text": "OR-Tools proved an optimal recommendation under the configured constraints.",
+        "supplied_fact_ids": [
+          "e1_5b84fe7446c24ba2_f001",
+          "e1_5b84fe7446c24ba2_f002",
+          "e1_5b84fe7446c24ba2_f003",
+          "e1_5b84fe7446c24ba2_f004",
+          "e1_5b84fe7446c24ba2_f005",
+          "e1_5b84fe7446c24ba2_f006",
+          "e1_5b84fe7446c24ba2_f007",
+          "e1_5b84fe7446c24ba2_f008",
+          "e1_5b84fe7446c24ba2_f009",
+          "e1_5b84fe7446c24ba2_f010",
+          "e1_5b84fe7446c24ba2_f011",
+          "e1_5b84fe7446c24ba2_f012",
+          "e1_5b84fe7446c24ba2_f013",
+          "e1_5b84fe7446c24ba2_f014",
+          "e1_5b84fe7446c24ba2_f015",
+          "e1_5b84fe7446c24ba2_f016",
+          "e1_5b84fe7446c24ba2_f017",
+          "e1_5b84fe7446c24ba2_f018",
+          "e1_5b84fe7446c24ba2_f019",
+          "e1_5b84fe7446c24ba2_f020",
+          "e1_5b84fe7446c24ba2_f021",
+          "e1_5b84fe7446c24ba2_f022",
+          "e1_5b84fe7446c24ba2_f023",
+          "e1_5b84fe7446c24ba2_f024",
+          "e1_5b84fe7446c24ba2_f025",
+          "e1_5b84fe7446c24ba2_f026",
+          "e1_5b84fe7446c24ba2_f027",
+          "e1_5b84fe7446c24ba2_f028",
+          "e1_5b84fe7446c24ba2_f029",
+          "e1_5b84fe7446c24ba2_f030",
+          "e1_5b84fe7446c24ba2_f031",
+          "e1_5b84fe7446c24ba2_f032",
+          "e1_5b84fe7446c24ba2_f033",
+          "e1_5b84fe7446c24ba2_f034",
+          "e1_5b84fe7446c24ba2_f035",
+          "e1_5b84fe7446c24ba2_f036",
+          "e1_5b84fe7446c24ba2_f037",
+          "e1_5b84fe7446c24ba2_f038",
+          "e1_5b84fe7446c24ba2_f039",
+          "e1_5b84fe7446c24ba2_f040",
+          "e1_5b84fe7446c24ba2_f041",
+          "e1_5b84fe7446c24ba2_f042",
+          "e1_5b84fe7446c24ba2_f043",
+          "e1_5b84fe7446c24ba2_f044",
+          "e1_5b84fe7446c24ba2_f045",
+          "e1_5b84fe7446c24ba2_f046",
+          "e1_5b84fe7446c24ba2_f047",
+          "e1_5b84fe7446c24ba2_f048",
+          "e1_5b84fe7446c24ba2_f049",
+          "e1_5b84fe7446c24ba2_f050",
+          "e1_5b84fe7446c24ba2_f051",
+          "e1_5b84fe7446c24ba2_f052",
+          "e1_5b84fe7446c24ba2_f053",
+          "e1_5b84fe7446c24ba2_f054",
+          "e1_5b84fe7446c24ba2_f055",
+          "e1_5b84fe7446c24ba2_f056",
+          "e1_5b84fe7446c24ba2_f057",
+          "e1_5b84fe7446c24ba2_f058",
+          "e1_5b84fe7446c24ba2_f059",
+          "e1_5b84fe7446c24ba2_f060",
+          "e1_5b84fe7446c24ba2_f061",
+          "e1_5b84fe7446c24ba2_f062",
+          "e1_5b84fe7446c24ba2_f063",
+          "e1_5b84fe7446c24ba2_f064"
+        ],
+        "cited_fact_ids": [
+          "e1_5b84fe7446c24ba2_f023"
+        ],
+        "unknown_fact_ids": [],
+        "resolved_facts": [
+          {
+            "fact_id": "e1_5b84fe7446c24ba2_f023",
+            "evidence_id": "e1",
+            "path": "solver.status",
+            "value": "OPTIMAL",
+            "unit": null,
+            "tool": "get_optimization_result",
+            "context": {
+              "country_id": "IN",
+              "profile": "constrained",
+              "profile_version": "inventory-profile-v1",
+              "origin": "2026-09-27"
+            }
+          }
+        ]
+      },
+      {
+        "claim_index": 1,
+        "claim_field": "key_risks.0.text",
+        "claim_text": "Safe donor capacity is 0 inventory items.",
+        "supplied_fact_ids": [
+          "e1_5b84fe7446c24ba2_f001",
+          "e1_5b84fe7446c24ba2_f002",
+          "e1_5b84fe7446c24ba2_f003",
+          "e1_5b84fe7446c24ba2_f004",
+          "e1_5b84fe7446c24ba2_f005",
+          "e1_5b84fe7446c24ba2_f006",
+          "e1_5b84fe7446c24ba2_f007",
+          "e1_5b84fe7446c24ba2_f008",
+          "e1_5b84fe7446c24ba2_f009",
+          "e1_5b84fe7446c24ba2_f010",
+          "e1_5b84fe7446c24ba2_f011",
+          "e1_5b84fe7446c24ba2_f012",
+          "e1_5b84fe7446c24ba2_f013",
+          "e1_5b84fe7446c24ba2_f014",
+          "e1_5b84fe7446c24ba2_f015",
+          "e1_5b84fe7446c24ba2_f016",
+          "e1_5b84fe7446c24ba2_f017",
+          "e1_5b84fe7446c24ba2_f018",
+          "e1_5b84fe7446c24ba2_f019",
+          "e1_5b84fe7446c24ba2_f020",
+          "e1_5b84fe7446c24ba2_f021",
+          "e1_5b84fe7446c24ba2_f022",
+          "e1_5b84fe7446c24ba2_f023",
+          "e1_5b84fe7446c24ba2_f024",
+          "e1_5b84fe7446c24ba2_f025",
+          "e1_5b84fe7446c24ba2_f026",
+          "e1_5b84fe7446c24ba2_f027",
+          "e1_5b84fe7446c24ba2_f028",
+          "e1_5b84fe7446c24ba2_f029",
+          "e1_5b84fe7446c24ba2_f030",
+          "e1_5b84fe7446c24ba2_f031",
+          "e1_5b84fe7446c24ba2_f032",
+          "e1_5b84fe7446c24ba2_f033",
+          "e1_5b84fe7446c24ba2_f034",
+          "e1_5b84fe7446c24ba2_f035",
+          "e1_5b84fe7446c24ba2_f036",
+          "e1_5b84fe7446c24ba2_f037",
+          "e1_5b84fe7446c24ba2_f038",
+          "e1_5b84fe7446c24ba2_f039",
+          "e1_5b84fe7446c24ba2_f040",
+          "e1_5b84fe7446c24ba2_f041",
+          "e1_5b84fe7446c24ba2_f042",
+          "e1_5b84fe7446c24ba2_f043",
+          "e1_5b84fe7446c24ba2_f044",
+          "e1_5b84fe7446c24ba2_f045",
+          "e1_5b84fe7446c24ba2_f046",
+          "e1_5b84fe7446c24ba2_f047",
+          "e1_5b84fe7446c24ba2_f048",
+          "e1_5b84fe7446c24ba2_f049",
+          "e1_5b84fe7446c24ba2_f050",
+          "e1_5b84fe7446c24ba2_f051",
+          "e1_5b84fe7446c24ba2_f052",
+          "e1_5b84fe7446c24ba2_f053",
+          "e1_5b84fe7446c24ba2_f054",
+          "e1_5b84fe7446c24ba2_f055",
+          "e1_5b84fe7446c24ba2_f056",
+          "e1_5b84fe7446c24ba2_f057",
+          "e1_5b84fe7446c24ba2_f058",
+          "e1_5b84fe7446c24ba2_f059",
+          "e1_5b84fe7446c24ba2_f060",
+          "e1_5b84fe7446c24ba2_f061",
+          "e1_5b84fe7446c24ba2_f062",
+          "e1_5b84fe7446c24ba2_f063",
+          "e1_5b84fe7446c24ba2_f064"
+        ],
+        "cited_fact_ids": [
+          "e1_5b84fe7446c24ba2_f028"
+        ],
+        "unknown_fact_ids": [],
+        "resolved_facts": [
+          {
+            "fact_id": "e1_5b84fe7446c24ba2_f028",
+            "evidence_id": "e1",
+            "path": "safe_capacity",
+            "value": 0,
+            "unit": "accounting items",
+            "tool": "get_optimization_result",
+            "context": {
+              "country_id": "IN",
+              "profile": "constrained",
+              "profile_version": "inventory-profile-v1",
+              "origin": "2026-09-27"
+            }
+          }
+        ]
+      },
+      {
+        "claim_index": 2,
+        "claim_field": "key_risks.1.text",
+        "claim_text": "Transfers total 0 inventory items.",
+        "supplied_fact_ids": [
+          "e1_5b84fe7446c24ba2_f001",
+          "e1_5b84fe7446c24ba2_f002",
+          "e1_5b84fe7446c24ba2_f003",
+          "e1_5b84fe7446c24ba2_f004",
+          "e1_5b84fe7446c24ba2_f005",
+          "e1_5b84fe7446c24ba2_f006",
+          "e1_5b84fe7446c24ba2_f007",
+          "e1_5b84fe7446c24ba2_f008",
+          "e1_5b84fe7446c24ba2_f009",
+          "e1_5b84fe7446c24ba2_f010",
+          "e1_5b84fe7446c24ba2_f011",
+          "e1_5b84fe7446c24ba2_f012",
+          "e1_5b84fe7446c24ba2_f013",
+          "e1_5b84fe7446c24ba2_f014",
+          "e1_5b84fe7446c24ba2_f015",
+          "e1_5b84fe7446c24ba2_f016",
+          "e1_5b84fe7446c24ba2_f017",
+          "e1_5b84fe7446c24ba2_f018",
+          "e1_5b84fe7446c24ba2_f019",
+          "e1_5b84fe7446c24ba2_f020",
+          "e1_5b84fe7446c24ba2_f021",
+          "e1_5b84fe7446c24ba2_f022",
+          "e1_5b84fe7446c24ba2_f023",
+          "e1_5b84fe7446c24ba2_f024",
+          "e1_5b84fe7446c24ba2_f025",
+          "e1_5b84fe7446c24ba2_f026",
+          "e1_5b84fe7446c24ba2_f027",
+          "e1_5b84fe7446c24ba2_f028",
+          "e1_5b84fe7446c24ba2_f029",
+          "e1_5b84fe7446c24ba2_f030",
+          "e1_5b84fe7446c24ba2_f031",
+          "e1_5b84fe7446c24ba2_f032",
+          "e1_5b84fe7446c24ba2_f033",
+          "e1_5b84fe7446c24ba2_f034",
+          "e1_5b84fe7446c24ba2_f035",
+          "e1_5b84fe7446c24ba2_f036",
+          "e1_5b84fe7446c24ba2_f037",
+          "e1_5b84fe7446c24ba2_f038",
+          "e1_5b84fe7446c24ba2_f039",
+          "e1_5b84fe7446c24ba2_f040",
+          "e1_5b84fe7446c24ba2_f041",
+          "e1_5b84fe7446c24ba2_f042",
+          "e1_5b84fe7446c24ba2_f043",
+          "e1_5b84fe7446c24ba2_f044",
+          "e1_5b84fe7446c24ba2_f045",
+          "e1_5b84fe7446c24ba2_f046",
+          "e1_5b84fe7446c24ba2_f047",
+          "e1_5b84fe7446c24ba2_f048",
+          "e1_5b84fe7446c24ba2_f049",
+          "e1_5b84fe7446c24ba2_f050",
+          "e1_5b84fe7446c24ba2_f051",
+          "e1_5b84fe7446c24ba2_f052",
+          "e1_5b84fe7446c24ba2_f053",
+          "e1_5b84fe7446c24ba2_f054",
+          "e1_5b84fe7446c24ba2_f055",
+          "e1_5b84fe7446c24ba2_f056",
+          "e1_5b84fe7446c24ba2_f057",
+          "e1_5b84fe7446c24ba2_f058",
+          "e1_5b84fe7446c24ba2_f059",
+          "e1_5b84fe7446c24ba2_f060",
+          "e1_5b84fe7446c24ba2_f061",
+          "e1_5b84fe7446c24ba2_f062",
+          "e1_5b84fe7446c24ba2_f063",
+          "e1_5b84fe7446c24ba2_f064"
+        ],
+        "cited_fact_ids": [
+          "e1_5b84fe7446c24ba2_f060"
+        ],
+        "unknown_fact_ids": [],
+        "resolved_facts": [
+          {
+            "fact_id": "e1_5b84fe7446c24ba2_f060",
+            "evidence_id": "e1",
+            "path": "impact.transferred_units",
+            "value": 0,
+            "unit": "accounting items",
+            "tool": "get_optimization_result",
+            "context": {
+              "country_id": "IN",
+              "profile": "constrained",
+              "profile_version": "inventory-profile-v1",
+              "origin": "2026-09-27"
+            }
+          }
+        ]
+      },
+      {
+        "claim_index": 3,
+        "claim_field": "key_risks.2.text",
+        "claim_text": "No safe reserve-protected surplus is available; the network cannot self-resolve its remaining shortages.",
+        "supplied_fact_ids": [
+          "e1_5b84fe7446c24ba2_f001",
+          "e1_5b84fe7446c24ba2_f002",
+          "e1_5b84fe7446c24ba2_f003",
+          "e1_5b84fe7446c24ba2_f004",
+          "e1_5b84fe7446c24ba2_f005",
+          "e1_5b84fe7446c24ba2_f006",
+          "e1_5b84fe7446c24ba2_f007",
+          "e1_5b84fe7446c24ba2_f008",
+          "e1_5b84fe7446c24ba2_f009",
+          "e1_5b84fe7446c24ba2_f010",
+          "e1_5b84fe7446c24ba2_f011",
+          "e1_5b84fe7446c24ba2_f012",
+          "e1_5b84fe7446c24ba2_f013",
+          "e1_5b84fe7446c24ba2_f014",
+          "e1_5b84fe7446c24ba2_f015",
+          "e1_5b84fe7446c24ba2_f016",
+          "e1_5b84fe7446c24ba2_f017",
+          "e1_5b84fe7446c24ba2_f018",
+          "e1_5b84fe7446c24ba2_f019",
+          "e1_5b84fe7446c24ba2_f020",
+          "e1_5b84fe7446c24ba2_f021",
+          "e1_5b84fe7446c24ba2_f022",
+          "e1_5b84fe7446c24ba2_f023",
+          "e1_5b84fe7446c24ba2_f024",
+          "e1_5b84fe7446c24ba2_f025",
+          "e1_5b84fe7446c24ba2_f026",
+          "e1_5b84fe7446c24ba2_f027",
+          "e1_5b84fe7446c24ba2_f028",
+          "e1_5b84fe7446c24ba2_f029",
+          "e1_5b84fe7446c24ba2_f030",
+          "e1_5b84fe7446c24ba2_f031",
+          "e1_5b84fe7446c24ba2_f032",
+          "e1_5b84fe7446c24ba2_f033",
+          "e1_5b84fe7446c24ba2_f034",
+          "e1_5b84fe7446c24ba2_f035",
+          "e1_5b84fe7446c24ba2_f036",
+          "e1_5b84fe7446c24ba2_f037",
+          "e1_5b84fe7446c24ba2_f038",
+          "e1_5b84fe7446c24ba2_f039",
+          "e1_5b84fe7446c24ba2_f040",
+          "e1_5b84fe7446c24ba2_f041",
+          "e1_5b84fe7446c24ba2_f042",
+          "e1_5b84fe7446c24ba2_f043",
+          "e1_5b84fe7446c24ba2_f044",
+          "e1_5b84fe7446c24ba2_f045",
+          "e1_5b84fe7446c24ba2_f046",
+          "e1_5b84fe7446c24ba2_f047",
+          "e1_5b84fe7446c24ba2_f048",
+          "e1_5b84fe7446c24ba2_f049",
+          "e1_5b84fe7446c24ba2_f050",
+          "e1_5b84fe7446c24ba2_f051",
+          "e1_5b84fe7446c24ba2_f052",
+          "e1_5b84fe7446c24ba2_f053",
+          "e1_5b84fe7446c24ba2_f054",
+          "e1_5b84fe7446c24ba2_f055",
+          "e1_5b84fe7446c24ba2_f056",
+          "e1_5b84fe7446c24ba2_f057",
+          "e1_5b84fe7446c24ba2_f058",
+          "e1_5b84fe7446c24ba2_f059",
+          "e1_5b84fe7446c24ba2_f060",
+          "e1_5b84fe7446c24ba2_f061",
+          "e1_5b84fe7446c24ba2_f062",
+          "e1_5b84fe7446c24ba2_f063",
+          "e1_5b84fe7446c24ba2_f064"
+        ],
+        "cited_fact_ids": [
+          "e1_5b84fe7446c24ba2_f028",
+          "e1_5b84fe7446c24ba2_f033"
+        ],
+        "unknown_fact_ids": [],
+        "resolved_facts": [
+          {
+            "fact_id": "e1_5b84fe7446c24ba2_f028",
+            "evidence_id": "e1",
+            "path": "safe_capacity",
+            "value": 0,
+            "unit": "accounting items",
+            "tool": "get_optimization_result",
+            "context": {
+              "country_id": "IN",
+              "profile": "constrained",
+              "profile_version": "inventory-profile-v1",
+              "origin": "2026-09-27"
+            }
+          },
+          {
+            "fact_id": "e1_5b84fe7446c24ba2_f033",
+            "evidence_id": "e1",
+            "path": "impact.after.target_deficit",
+            "value": 30230,
+            "unit": "accounting items",
+            "tool": "get_optimization_result",
+            "context": {
+              "country_id": "IN",
+              "profile": "constrained",
+              "profile_version": "inventory-profile-v1",
+              "origin": "2026-09-27"
+            }
+          }
+        ]
+      },
+      {
+        "claim_index": 4,
+        "claim_field": "remaining_gaps.0.text",
+        "claim_text": "Unresolved target is 30230 inventory items.",
+        "supplied_fact_ids": [
+          "e1_5b84fe7446c24ba2_f001",
+          "e1_5b84fe7446c24ba2_f002",
+          "e1_5b84fe7446c24ba2_f003",
+          "e1_5b84fe7446c24ba2_f004",
+          "e1_5b84fe7446c24ba2_f005",
+          "e1_5b84fe7446c24ba2_f006",
+          "e1_5b84fe7446c24ba2_f007",
+          "e1_5b84fe7446c24ba2_f008",
+          "e1_5b84fe7446c24ba2_f009",
+          "e1_5b84fe7446c24ba2_f010",
+          "e1_5b84fe7446c24ba2_f011",
+          "e1_5b84fe7446c24ba2_f012",
+          "e1_5b84fe7446c24ba2_f013",
+          "e1_5b84fe7446c24ba2_f014",
+          "e1_5b84fe7446c24ba2_f015",
+          "e1_5b84fe7446c24ba2_f016",
+          "e1_5b84fe7446c24ba2_f017",
+          "e1_5b84fe7446c24ba2_f018",
+          "e1_5b84fe7446c24ba2_f019",
+          "e1_5b84fe7446c24ba2_f020",
+          "e1_5b84fe7446c24ba2_f021",
+          "e1_5b84fe7446c24ba2_f022",
+          "e1_5b84fe7446c24ba2_f023",
+          "e1_5b84fe7446c24ba2_f024",
+          "e1_5b84fe7446c24ba2_f025",
+          "e1_5b84fe7446c24ba2_f026",
+          "e1_5b84fe7446c24ba2_f027",
+          "e1_5b84fe7446c24ba2_f028",
+          "e1_5b84fe7446c24ba2_f029",
+          "e1_5b84fe7446c24ba2_f030",
+          "e1_5b84fe7446c24ba2_f031",
+          "e1_5b84fe7446c24ba2_f032",
+          "e1_5b84fe7446c24ba2_f033",
+          "e1_5b84fe7446c24ba2_f034",
+          "e1_5b84fe7446c24ba2_f035",
+          "e1_5b84fe7446c24ba2_f036",
+          "e1_5b84fe7446c24ba2_f037",
+          "e1_5b84fe7446c24ba2_f038",
+          "e1_5b84fe7446c24ba2_f039",
+          "e1_5b84fe7446c24ba2_f040",
+          "e1_5b84fe7446c24ba2_f041",
+          "e1_5b84fe7446c24ba2_f042",
+          "e1_5b84fe7446c24ba2_f043",
+          "e1_5b84fe7446c24ba2_f044",
+          "e1_5b84fe7446c24ba2_f045",
+          "e1_5b84fe7446c24ba2_f046",
+          "e1_5b84fe7446c24ba2_f047",
+          "e1_5b84fe7446c24ba2_f048",
+          "e1_5b84fe7446c24ba2_f049",
+          "e1_5b84fe7446c24ba2_f050",
+          "e1_5b84fe7446c24ba2_f051",
+          "e1_5b84fe7446c24ba2_f052",
+          "e1_5b84fe7446c24ba2_f053",
+          "e1_5b84fe7446c24ba2_f054",
+          "e1_5b84fe7446c24ba2_f055",
+          "e1_5b84fe7446c24ba2_f056",
+          "e1_5b84fe7446c24ba2_f057",
+          "e1_5b84fe7446c24ba2_f058",
+          "e1_5b84fe7446c24ba2_f059",
+          "e1_5b84fe7446c24ba2_f060",
+          "e1_5b84fe7446c24ba2_f061",
+          "e1_5b84fe7446c24ba2_f062",
+          "e1_5b84fe7446c24ba2_f063",
+          "e1_5b84fe7446c24ba2_f064"
+        ],
+        "cited_fact_ids": [
+          "e1_5b84fe7446c24ba2_f033"
+        ],
+        "unknown_fact_ids": [],
+        "resolved_facts": [
+          {
+            "fact_id": "e1_5b84fe7446c24ba2_f033",
+            "evidence_id": "e1",
+            "path": "impact.after.target_deficit",
+            "value": 30230,
+            "unit": "accounting items",
+            "tool": "get_optimization_result",
+            "context": {
+              "country_id": "IN",
+              "profile": "constrained",
+              "profile_version": "inventory-profile-v1",
+              "origin": "2026-09-27"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "total_seconds": 3.723356300004525
+}

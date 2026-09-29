@@ -1,0 +1,95 @@
+{
+  "status": "STOPPED_AFTER_FAILURE",
+  "failure_stage": "final structured synthesis",
+  "failure_code": "response_incomplete",
+  "provider_status": "incomplete",
+  "http_status": 200,
+  "schema": "NOT ACCEPTED; truncated JSON",
+  "fact_id_grounding": "NOT REACHED",
+  "numeric_grounding": "NOT REACHED",
+  "qualitative_grounding": "NOT REACHED",
+  "unsupported_number_count": null,
+  "unknown_id_count": null,
+  "model": "gemini-3.5-flash-lite",
+  "actual_new_provider_requests": 3,
+  "historical_requests": 25,
+  "total_local_accounting": 28,
+  "successful_http_interactions": 3,
+  "completed_full_workflow_cases": [],
+  "native_sequence": [
+    "run_emergency_scenario",
+    "optimize_redistribution"
+  ],
+  "native_arguments_and_scope": "PASS; declared, strict Pydantic, geography/profile/permission/identity validated",
+  "scenario_id": "e0aca1d9-9770-47de-a11c-8f97f17ff6f8",
+  "optimization_id": "6551b897-f19d-4eaf-b308-e3c3f4b4fb47",
+  "solver_status": "OPTIMAL",
+  "authoritative_plan_values": {
+    "target_before": 41763,
+    "safe_donor_capacity": 17745,
+    "transferred": 15679,
+    "lanes": 10,
+    "unresolved": 26084,
+    "donor_violations": 0,
+    "new_donor_risks": 0
+  },
+  "conservation": {
+    "PCM": {
+      "before": 22952,
+      "after": 22952
+    },
+    "IVF": {
+      "before": 2951,
+      "after": 2951
+    },
+    "ORS": {
+      "before": 5021,
+      "after": 5021
+    },
+    "AMX": {
+      "before": 7154,
+      "after": 7154
+    },
+    "IFA": {
+      "before": 9467,
+      "after": 9467
+    }
+  },
+  "configured_thinking_level": "medium",
+  "configured_max_output_tokens": 2400,
+  "final_usage": {
+    "input_tokens_by_modality": [
+      {
+        "modality": "text",
+        "tokens": 1268
+      }
+    ],
+    "total_cached_tokens": 0,
+    "total_input_tokens": 1268,
+    "total_output_tokens": 80,
+    "total_thought_tokens": 2303,
+    "total_tokens": 3651,
+    "total_tool_use_tokens": 0
+  },
+  "provider_seconds_excluding_pacing": 22.59398659999715,
+  "provider_seconds_including_pacing": 37.9826035000151,
+  "tool_seconds": 4.177190799964592,
+  "overall_seconds": 42.81552340000053,
+  "total_tokens": 18487,
+  "inference": "The incomplete status and truncated final output are consistent with synthesis exhausting its configured response budget. No separate provider stop reason was supplied.",
+  "no_retry_no_fallback": true,
+  "later_live_cases": "NOT RUN; stopped after required positive failure",
+  "opaque_provider_signatures_excluded": true,
+  "preservation": {
+    "status": "PASS",
+    "original_file_identities": 486,
+    "unchanged": 481,
+    "fact_and_numeric_contract_unchanged": true,
+    "ui_operational_forecasting_ortools_federation_unchanged": true,
+    "accepted_artifacts_unchanged": true,
+    "env_unchanged": true,
+    "key_project_billing_unchanged": true,
+    "production_fallback_order_unchanged": true,
+    "historical_evidence_unchanged": true
+  }
+}

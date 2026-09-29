@@ -57,7 +57,9 @@ Angular → FastAPI → trusted local operational engines. Public-source ingesti
 
 **Gemini status:** Integration implemented; full live workflow acceptance remains pending. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. Gemini now cites server-issued request-local fact IDs; canonical source paths and exact numeric validation remain server-owned. The [current fact-citation report](docs/phase6-fact-citations-report.md) records 436 passing backend tests, shared mocks and the limited authorized Lite smoke results. Earlier provider/grounding evidence remains intact. Offline summaries are clearly labelled and require no key.
 
-**Live grounded smoke acceptance: PASS 2/2. Full Phase 6 workflow acceptance remains pending.** Both independent Lite smokes passed the configured schema, citation and grounding checks. No full live workflow or deployment followed.
+**Live grounded smoke acceptance: PASS 2/2. Full Phase 6 workflow acceptance remains pending.** Both independent Lite smokes passed the configured schema, citation and grounding checks. That checkpoint accepted only the two smokes and did not deploy.
+
+The subsequent [bounded full workflow attempt](docs/phase6-full-live-report.md) ran native simulation and OR-Tools successfully with the canonical plan, then stopped on incomplete final synthesis. Exactly three new sends preserved 25 historical requests (28 total); no retry, fallback or later live case followed. Full Phase 6 acceptance remains pending.
 
 **Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
 

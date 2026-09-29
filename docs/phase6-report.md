@@ -1,5 +1,11 @@
 # Phase 6 — grounded resilience Copilot
 
+## Latest full live attempt — stopped at synthesis
+
+Verifier-selected Flash-Lite performed actual native `run_emergency_scenario → optimize_redistribution`, producing the exact 41,763 / 17,745 / 15,679 / 10 / 26,084 plan with zero donor violations/new risks. The third interaction returned HTTP 200 / `incomplete`, with truncated final JSON; no grounded final answer was accepted. Exactly three sends appended to 25 historical requests (28 total), with no retry, failover or later live case. Accepted fact/numeric grounding, production order, engines, UI, federation and key/project/billing remain unchanged. [Actual evidence and diagnosis](phase6-full-live-report.md).
+
+**Phase 6 remains pending because: the positive workflow's final structured synthesis returned `incomplete` with truncated JSON (`response_incomplete`).**
+
 ## Current checkpoint — request-local fact IDs
 
 Gemini now cites request-local fact IDs; the server owns canonical paths, values, units and provenance and runs the unchanged exact numeric checks. **436 backend tests pass**, including all previous 385 cases and 51 new fact/verifier cases. Lite and 3.6 shared mocks, Python/dependency checks, strict TypeScript and production build pass. Operational results, saved federation, UI, `.env` and production fallback order are preserved. Only the conditional, two-send maximum independent Lite smoke is authorized; full Phase 6 workflow acceptance remains pending. [Current report and live results](phase6-fact-citations-report.md).

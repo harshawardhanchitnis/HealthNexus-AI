@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-09-29T08:21:16.826230+00:00",
+  "status": "PASS",
+  "baseline_commit": "3f5a7b9",
+  "fact_contract_version": "healthnexus-facts-v1",
+  "system_prompt_version": "healthnexus-system-v5-fact-ids",
+  "backend": {
+    "passed": 458,
+    "previous_cases_retained": 436,
+    "new_verifier_cases": 22,
+    "seconds": 70.04,
+    "warning": "Existing Starlette/AnyIO deprecation"
+  },
+  "mock_cases": [
+    "positive",
+    "followup",
+    "constrained",
+    "provenance"
+  ],
+  "workflow_scripted_requests": 7,
+  "existing_fact_id_mocks": "Lite and 3.6 PASS; report copied, original retained byte-identical",
+  "canonical_checks": "PASS; ready/constrained Pune, 10 partitions, saved federation",
+  "python_compilation": "PASS",
+  "pip_check": "PASS",
+  "strict_typescript": "PASS",
+  "angular_production_build": "PASS",
+  "frontend_initial_kb": 387.99,
+  "estimated_transfer_kb": 104.69,
+  "live_requests_before_run": 0,
+  "historical_ledger": 25,
+  "maximum_new_global_provider_requests": 8,
+  "quota": {
+    "timestamp": "2026-09-29T08:21:16.825616+00:00",
+    "source": "user-reported Google AI Studio",
+    "model": "gemini-3.5-flash-lite",
+    "tier": "Free",
+    "rpm": {
+      "used": 3,
+      "limit": 15
+    },
+    "tpm": {
+      "used": 8500,
+      "limit": 250000
+    },
+    "rpd": {
+      "used": 0,
+      "limit": 500
+    },
+    "confirmed_headroom": true,
+    "no_quota_inference_from_local_ledger": true,
+    "exact_reset_timestamp": "not supplied"
+  },
+  "preservation": {
+    "status": "PASS",
+    "original_file_identities": 486,
+    "unchanged": 482,
+    "fact_and_numeric_contract_unchanged": true,
+    "ui_operational_forecasting_ortools_federation_unchanged": true,
+    "accepted_artifacts_unchanged": true,
+    "env_unchanged": true,
+    "key_project_billing_unchanged": true,
+    "production_fallback_order_unchanged": true,
+    "historical_evidence_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 442,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "verifier_sha256": "a5a55be073d234405f48e7acbb6d7616e9f0cf1e5a4628a934e7d7610ce41bf7"
+}
