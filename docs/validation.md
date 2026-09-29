@@ -1,5 +1,16 @@
 # Validation — 2026-09-29
 
+## Phase 6 — request-local fact citations
+
+- **436 backend tests pass in 119.98 s**, retaining all 385 previous cases and adding 39 fact-contract plus 12 verifier cases. Python compilation, Windows `pip check`, strict TypeScript and Angular production build pass; one existing Starlette/AnyIO deprecation warning remains.
+- Shared Lite and 3.6 mocks pass schema, ID, qualitative/numeric grounding and context validation, with zero unknown IDs or unsupported numbers. Official SDK wire mocks verify actual-send accounting and current fact-ID schema enums. No model-specific answer logic is added.
+- The exact requested bed-utilisation migration resolves a server fact ID to `summary.bed_utilisation = 79.8%`; `bed_utilisation` remains rejected, without path repair. Numeric validation, canonical engines, ten country/profile partitions, saved federation, UI and production fallback order remain unchanged.
+- Zero live sends occurred before all local gates passed. The dedicated verifier preserves 23 historical requests, allows one Lite smoke followed by a second only on full PASS, and never retries/fails over. Full Phase 6 workflow acceptance remains pending. [Current report](phase6-fact-citations-report.md), [regression gates](evaluation/phase6-facts-regression.json), [mock evidence](evaluation/phase6-facts-mock.json), [migration](evaluation/phase6-facts-migration.json), [canonical verification](evaluation/phase6-facts-canonical.json).
+
+Earlier dated measurements below are retained history.
+
+**Live grounded smoke acceptance: PASS 2/2. Full Phase 6 workflow acceptance remains pending.** Two independent Lite requests returned HTTP 200, valid schemas and current fact IDs, configured qualitative/numeric/context PASS, and zero unknown IDs or unsupported numbers. Provider times 9.329 / 9.091 s; total tokens 8,546 / 9,304. Historical ledger 23 + exactly two sends = 25; no retry/fallback/full workflow. [Live evidence](evaluation/phase6-facts-live.json), [final security](evaluation/phase6-facts-security.json). Qualitative topic checks do not establish exhaustive natural-language truth.
+
 ## Phase 6 — exact numeric evidence contract
 
 - **385 backend tests pass in 53.36 s**, retaining all original 340 cases and adding 45 grounding/verifier cases. The original pre-live gate passed 382 cases; three final local hardening cases and a full rerun followed the stopped smoke with zero extra live calls. Python compilation, Windows `pip check`, strict TypeScript and unchanged Angular production build pass. One existing Starlette/AnyIO deprecation warning remains.

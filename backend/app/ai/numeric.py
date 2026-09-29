@@ -20,7 +20,8 @@ def field_unit(tool, path, payload):
     if leaf in PERCENT_FIELDS: return '%'
     if leaf=='wape': return 'WAPE fraction'
     if any(p in ('probabilities','risk_before','risk_after','donor_risk_after','receiver_risk_after','max_stockout_risk') for p in path.split('.')): return 'fraction'
-    if leaf in ('facilities_at_risk','new_donor_risks'): return 'facilities'
+    if leaf in ('facilities_at_risk','new_donor_risks','facilities_affected'): return 'facilities'
+    if leaf=='medicines_at_risk': return 'medicine resource types'
     parent=payload
     try:
         for part in path.split('.')[:-1]: parent=parent[int(part)] if isinstance(parent,list) else parent[part]

@@ -11,6 +11,7 @@ from app.ai.tool_registry import TOOLS, declarations, validated
 from app.ai.tools import ToolExecutor
 from app.ai.orchestrator import CopilotService
 from app.ai.citations import build_evidence
+from app.ai.facts import fact_label
 from app.ai.fallback import clinical_request
 from app.forecasting.prediction import ForecastService
 from app.scenarios.engine import ScenarioEngine
@@ -30,9 +31,29 @@ def request(**kwargs):
 
 
 class Scripted:
-    def __init__(self, turns): self.turns=iter(turns);self.bodies=[];self.closed=False
-    def create(self,**body): self.bodies.append(body);return next(self.turns)
+    def __init__(self, turns): self.turns=iter(turns);self.bodies=[];self.closed=False;self.fact_records={}
+    def create(self,**body):
+        self.bodies.append(body)
+        return bind_final(next(self.turns),body,self.fact_records)
     def close(self): self.closed=True
+
+
+def bind_final(response,body,known):
+    """Test provider fixture selects IDs actually supplied in its current tool envelope."""
+    data=body['input']
+    if isinstance(data,str):
+        try:items=json.loads(data).get('server_prefetched_evidence',[])
+        except (ValueError,AttributeError):items=[]
+    else:
+        items=[json.loads(item['result'][0]['text']) for item in data if item.get('type')=='function_result']
+    for item in items:
+        if 'facts' in item:known[item['evidence_id']]=item
+    if '_fixture_selector' not in response:return response
+    response=dict(response);eid,field=response.pop('_fixture_selector')
+    selected=next((f['fact_id'] for f in known.get(eid,{}).get('facts',[]) if f['label']==fact_label(field)),'unknown_fact_id')
+    draft=json.loads(response['output_text']);draft['situation']['evidence_refs']=[selected]
+    response['output_text']=json.dumps(draft)
+    return response
 
 
 def call(name,args,id='c1'):
@@ -43,10 +64,10 @@ def turn(calls,id='interaction1'):
     return {'id':id,'steps':calls,'usage':{'total_input_tokens':11,'total_output_tokens':7,'total_tokens':18}}
 
 
-def final(text='The selected network has resource risks.',field='summary.facilities',eid='e1'):
+def final(text='The selected network has registered facilities.',field='summary.facilities',eid='e1'):
     return {'id':'interaction-final','output_text':json.dumps({'situation':{'text':text,
-        'references':[{'evidence_id':eid,'field':field}]},'key_risks':[],
-        'recommended_actions':[],'remaining_gaps':[]})}
+        'evidence_refs':['test-fixture-pending-id']},'key_risks':[],
+        'recommended_actions':[],'remaining_gaps':[]}), '_fixture_selector':(eid,field)}
 
 
 def ready():

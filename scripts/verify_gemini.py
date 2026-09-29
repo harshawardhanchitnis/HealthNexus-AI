@@ -22,6 +22,7 @@ from app.ai.tools import ToolExecutor, plan_summary
 from app.ai.tool_registry import declarations, SUBSETS, TOOLS, json_schema
 from app.ai.system_prompt import VERSION as PROMPT_VERSION, SYSTEM
 from app.ai.protocol import byte_size
+from app.ai.facts import fact_label
 from app.profiles.config import VERSION as PROFILE_VERSION
 from app.profiles.identity import fingerprint
 from app.services.repository import LocalRepository
@@ -76,30 +77,36 @@ class DemoTransport:
             for item in data:
                 returned=json.loads(item['result'][0]['text'])
                 if 'error' in returned:raise AssertionError(returned['error'])
-                self.records[returned['evidence_id']]={'tool':item['name'],'result':returned['result']}
+                self.records[returned['evidence_id']]=returned
                 if returned['result'].get('scenario_id'):self.sid=returned['result']['scenario_id']
         if 'response_format' in body:
-            eid,row=next(reversed(self.records.items()));payload=row['result']
-            def claim(text,field,evidence=None):return {'text':text,'references':[{'evidence_id':evidence or eid,'field':field}]}
+            eid,row=next(reversed(self.records.items()));payload=row.get('result',{})
+            def value(field,evidence=None):
+                selected=self.records[evidence or eid]
+                return next(f['value'] for f in selected['facts'] if f['label']==fact_label(field))
+            def claim(text,field,evidence=None):
+                selected=self.records[evidence or eid]
+                fact=next(f for f in selected['facts'] if f['label']==fact_label(field))
+                return {'text':text,'evidence_refs':[fact['fact_id']]}
             risks=[];gaps=[]
-            plan=next(((e,r['result']) for e,r in self.records.items() if 'solver' in r['result']),None)
+            plan=next(((e,r) for e,r in self.records.items() if r['tool'] in ('optimize_redistribution','get_optimization_result')),None)
             if plan:
                 eid,payload=plan
                 situation=claim('OR-Tools proved an optimal recommendation under the configured constraints.','solver.status')
-                risks=[claim(f"Safe donor capacity is {payload['safe_capacity']} inventory items.",'safe_capacity')]
-                risks.append(claim(f"Transfers total {payload['impact']['transferred_units']} inventory items.",'impact.transferred_units'))
-                gaps=[claim(f"Unresolved target is {payload['impact']['after']['target_deficit']} inventory items.",'impact.after.target_deficit')]
-                if payload['transfers']:
+                risks=[claim(f"Safe donor capacity is {value('safe_capacity')} inventory items.",'safe_capacity')]
+                risks.append(claim(f"Transfers total {value('impact.transferred_units')} inventory items.",'impact.transferred_units'))
+                gaps=[claim(f"Unresolved target is {value('impact.after.target_deficit')} inventory items.",'impact.after.target_deficit')]
+                if any(f['label']==fact_label('transfers.0.donor_protected_reserve') for f in payload['facts']):
                     risks.append(claim('Selected donors retain protected reserves under the configured policy.','transfers.0.donor_protected_reserve'))
-            elif any('live_government_inventory' in r['result'] for r in self.records.values()):
-                eid,payload=next((e,r['result']) for e,r in self.records.items() if 'live_government_inventory' in r['result'])
+            elif any(r['tool']=='get_data_provenance' for r in self.records.values()):
+                eid,payload=next((e,r) for e,r in self.records.items() if r['tool']=='get_data_provenance')
                 situation=claim('This is calibrated simulation, not live government inventory.','live_government_inventory')
-                performance=next(((e,r['result']) for e,r in self.records.items() if r['tool']=='get_model_performance'),None)
+                performance=next(((e,r) for e,r in self.records.items() if r['tool']=='get_model_performance'),None)
                 if performance:
                     risks=[claim('Forecast evaluation uses simulated operational histories; it does not establish clinical accuracy.','data_type',performance[0])]
-                    champion=performance[1]['targets']['medicine']['champion']
-                    value=performance[1]['targets']['medicine']['models'][champion]['test']['wape']
-                    risks.append(claim(f'Medicine forecast test WAPE is {value} on simulated histories.',
+                    champion=value('targets.medicine.champion',performance[0])
+                    wape=value(f'targets.medicine.models.{champion}.test.wape',performance[0])
+                    risks.append(claim(f'Medicine forecast test WAPE is {wape} on simulated histories.',
                         f'targets.medicine.models.{champion}.test.wape',performance[0]))
             else:situation=claim('Structured warnings identify operational pressure.','summary.total')
             return {'id':f'mock-final-{uuid4()}','status':'completed','output_text':json.dumps({

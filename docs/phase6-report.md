@@ -1,5 +1,13 @@
 # Phase 6 — grounded resilience Copilot
 
+## Current checkpoint — request-local fact IDs
+
+Gemini now cites request-local fact IDs; the server owns canonical paths, values, units and provenance and runs the unchanged exact numeric checks. **436 backend tests pass**, including all previous 385 cases and 51 new fact/verifier cases. Lite and 3.6 shared mocks, Python/dependency checks, strict TypeScript and production build pass. Operational results, saved federation, UI, `.env` and production fallback order are preserved. Only the conditional, two-send maximum independent Lite smoke is authorized; full Phase 6 workflow acceptance remains pending. [Current report and live results](phase6-fact-citations-report.md).
+
+The earlier integration/failover measurements below are retained history.
+
+**Live grounded smoke acceptance: PASS 2/2. Full Phase 6 workflow acceptance remains pending.** Both fresh Flash-Lite smokes returned HTTP 200 and passed schema, fact IDs, configured qualitative/numeric grounding and context checks, with zero unknown IDs or unsupported numeric claims. Exactly two sends appended to the historical 23 (25 total), with no retry/fallback. [Measured live evidence](evaluation/phase6-facts-live.json), [preservation/security](evaluation/phase6-facts-security.json).
+
 The existing Copilot now includes availability failover in the exact requested order: 3.8 Flash → 3.7 Flash → 3.6 Flash → 3.5 Flash → 3.5 Flash-Lite. All five are mock/SDK-wire tested. Live automatic failover reached 3.6; the first three models returned HTTP 503 HIGH DEMAND, then the preserved ten-request daily ceiling blocked further sends. No live answer or full live acceptance is claimed. [Measured failover report](phase6-failover-report.md). Local planning outcomes remain unchanged. Phase 7 has not started.
 
 ## Integration and execution

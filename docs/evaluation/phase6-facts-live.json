@@ -1,0 +1,4584 @@
+{
+  "timestamp": "2026-09-29T07:56:51.107696+00:00",
+  "mode": "live",
+  "baseline_commit": "c526378",
+  "fact_contract_version": "healthnexus-facts-v1",
+  "system_prompt_version": "healthnexus-system-v5-fact-ids",
+  "context": {
+    "country_id": "IN",
+    "state_id": "MH",
+    "district_id": "MH-PUNE",
+    "profile": "redistribution-ready"
+  },
+  "question": "Summarize the current resource resilience status in Pune.",
+  "maximum_new_provider_requests": 2,
+  "historical_ledger_preserved": 23,
+  "failover": false,
+  "same_model_retries": 0,
+  "sdk_hidden_retries": false,
+  "independent_interactions": true,
+  "full_phase6_acceptance": false,
+  "attempts": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 1,
+      "thinking_level": "medium",
+      "timestamp": "2026-09-29T07:56:51.107721+00:00",
+      "http_status": 200,
+      "schema_valid": true,
+      "fact_ids_valid": true,
+      "qualitative_evidence_valid": true,
+      "numeric_grounding_valid": true,
+      "context_valid": true,
+      "unknown_fact_ids": 0,
+      "unsupported_numeric_claims": 0,
+      "actual_http_sends": 1,
+      "provider_requests": 1,
+      "provider_seconds": 9.328739099990344,
+      "supplied_catalogues": [
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f001",
+              "label": "Summary",
+              "value": {
+                "facilities": 3,
+                "status_counts": {
+                  "HEALTHY": 1,
+                  "WATCH": 0,
+                  "AT_RISK": 2,
+                  "CRITICAL": 0
+                },
+                "patient_footfall": 722,
+                "medicine_availability": 66.7,
+                "total_beds": 292,
+                "occupied_beds": 233,
+                "available_beds": 44,
+                "reserved_beds": 15,
+                "bed_utilisation": 79.8,
+                "staff_present": 136,
+                "staff_scheduled": 147,
+                "staff_availability": 92.5
+              },
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f002",
+              "label": "Summary / Available beds",
+              "value": 44,
+              "unit": "beds",
+              "quote": "44"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f003",
+              "label": "Summary / Bed utilisation",
+              "value": 79.8,
+              "unit": "%",
+              "quote": "79.8"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f004",
+              "label": "Summary / Facilities",
+              "value": 3,
+              "unit": "facilities",
+              "quote": "3"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f005",
+              "label": "Summary / Medicine availability",
+              "value": 66.7,
+              "unit": "%",
+              "quote": "66.7"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f006",
+              "label": "Summary / Occupied beds",
+              "value": 233,
+              "unit": "beds",
+              "quote": "233"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f007",
+              "label": "Summary / Patient footfall",
+              "value": 722,
+              "unit": "visits",
+              "quote": "722"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f008",
+              "label": "Summary / Reserved beds",
+              "value": 15,
+              "unit": "beds",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f009",
+              "label": "Summary / Staff availability",
+              "value": 92.5,
+              "unit": "%",
+              "quote": "92.5"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f010",
+              "label": "Summary / Staff present",
+              "value": 136,
+              "unit": "staff",
+              "quote": "136"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f011",
+              "label": "Summary / Staff scheduled",
+              "value": 147,
+              "unit": "staff",
+              "quote": "147"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f012",
+              "label": "Summary / Status counts / At risk",
+              "value": 2,
+              "unit": "facilities",
+              "quote": "2"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f013",
+              "label": "Summary / Status counts / Critical",
+              "value": 0,
+              "unit": "facilities",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f014",
+              "label": "Summary / Status counts / Healthy",
+              "value": 1,
+              "unit": "facilities",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f015",
+              "label": "Summary / Status counts / Watch",
+              "value": 0,
+              "unit": "facilities",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f016",
+              "label": "Summary / Total beds",
+              "value": 292,
+              "unit": "beds",
+              "quote": "292"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f017",
+              "label": "Facilities",
+              "value": [
+                {
+                  "id": "IN-MH-PUNE-001",
+                  "name": "Pune \u00b7 PHC 01",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-002",
+                  "name": "Pune \u00b7 CHC 02",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-003",
+                  "name": "Pune \u00b7 District Hospital 03",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                }
+              ],
+              "unit": "facilities"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f018",
+              "label": "Facilities / Item 0 / District id",
+              "value": "MH-PUNE",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f019",
+              "label": "Facilities / Item 0 / Id",
+              "value": "IN-MH-PUNE-001",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f020",
+              "label": "Facilities / Item 0 / Name",
+              "value": "Pune \u00b7 PHC 01",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f021",
+              "label": "Facilities / Item 0 / State id",
+              "value": "MH",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f022",
+              "label": "Facilities / Item 1 / District id",
+              "value": "MH-PUNE",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f023",
+              "label": "Facilities / Item 1 / Id",
+              "value": "IN-MH-PUNE-002",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f024",
+              "label": "Facilities / Item 1 / Name",
+              "value": "Pune \u00b7 CHC 02",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f025",
+              "label": "Facilities / Item 1 / State id",
+              "value": "MH",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f026",
+              "label": "Facilities / Item 2 / District id",
+              "value": "MH-PUNE",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f027",
+              "label": "Facilities / Item 2 / Id",
+              "value": "IN-MH-PUNE-003",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f028",
+              "label": "Facilities / Item 2 / Name",
+              "value": "Pune \u00b7 District Hospital 03",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f029",
+              "label": "Facilities / Item 2 / State id",
+              "value": "MH",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f030",
+              "label": "Facilities truncated",
+              "value": false,
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f031",
+              "label": "Model version",
+              "value": "forecast-v1-176a752efab3ae4e",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f032",
+              "label": "Warnings / Bed warnings",
+              "value": 5,
+              "unit": null,
+              "quote": "5"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f033",
+              "label": "Warnings / By country / In / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f034",
+              "label": "Warnings / By country / In / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f035",
+              "label": "Warnings / By country / In / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f036",
+              "label": "Warnings / By country / In / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f037",
+              "label": "Warnings / By district / Mh-pune / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f038",
+              "label": "Warnings / By district / Mh-pune / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f039",
+              "label": "Warnings / By district / Mh-pune / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f040",
+              "label": "Warnings / By district / Mh-pune / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f041",
+              "label": "Warnings / By facility / In-mh-pune-001 / Critical",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f042",
+              "label": "Warnings / By facility / In-mh-pune-001 / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f043",
+              "label": "Warnings / By facility / In-mh-pune-001 / Warning",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f044",
+              "label": "Warnings / By facility / In-mh-pune-001 / Watch",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f045",
+              "label": "Warnings / By facility / In-mh-pune-002 / Critical",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f046",
+              "label": "Warnings / By facility / In-mh-pune-002 / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f047",
+              "label": "Warnings / By facility / In-mh-pune-002 / Warning",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f048",
+              "label": "Warnings / By facility / In-mh-pune-002 / Watch",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f049",
+              "label": "Warnings / By facility / In-mh-pune-003 / Critical",
+              "value": 2,
+              "unit": null,
+              "quote": "2"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f050",
+              "label": "Warnings / By facility / In-mh-pune-003 / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f051",
+              "label": "Warnings / By facility / In-mh-pune-003 / Warning",
+              "value": 13,
+              "unit": null,
+              "quote": "13"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f052",
+              "label": "Warnings / By facility / In-mh-pune-003 / Watch",
+              "value": 6,
+              "unit": null,
+              "quote": "6"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f053",
+              "label": "Warnings / By region / Mh / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f054",
+              "label": "Warnings / By region / Mh / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f055",
+              "label": "Warnings / By region / Mh / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f056",
+              "label": "Warnings / By region / Mh / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f057",
+              "label": "Warnings / Counts / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f058",
+              "label": "Warnings / Counts / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f059",
+              "label": "Warnings / Counts / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f060",
+              "label": "Warnings / Counts / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f061",
+              "label": "Warnings / Facilities affected",
+              "value": 3,
+              "unit": "facilities",
+              "quote": "3"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f062",
+              "label": "Warnings / Medicines at risk",
+              "value": 5,
+              "unit": "medicine resource types",
+              "quote": "5"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f063",
+              "label": "Warnings / Staff warnings",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f064",
+              "label": "Warnings / Total",
+              "value": 26,
+              "unit": null,
+              "quote": "26"
+            }
+          ],
+          "facts_truncated": false,
+          "provenance": {
+            "origin": "2026-09-27",
+            "model_version": "forecast-v1-176a752efab3ae4e"
+          }
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "get_warning_summary",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f001",
+              "label": "Summary / Bed warnings",
+              "value": 5,
+              "unit": "warnings",
+              "quote": "5"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f002",
+              "label": "Summary / By country / In / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f003",
+              "label": "Summary / By country / In / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f004",
+              "label": "Summary / By country / In / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f005",
+              "label": "Summary / By country / In / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f006",
+              "label": "Summary / By district / Mh-pune / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f007",
+              "label": "Summary / By district / Mh-pune / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f008",
+              "label": "Summary / By district / Mh-pune / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f009",
+              "label": "Summary / By district / Mh-pune / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f010",
+              "label": "Summary / By facility / In-mh-pune-001 / Critical",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f011",
+              "label": "Summary / By facility / In-mh-pune-001 / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f012",
+              "label": "Summary / By facility / In-mh-pune-001 / Warning",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f013",
+              "label": "Summary / By facility / In-mh-pune-001 / Watch",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f014",
+              "label": "Summary / By facility / In-mh-pune-002 / Critical",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f015",
+              "label": "Summary / By facility / In-mh-pune-002 / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f016",
+              "label": "Summary / By facility / In-mh-pune-002 / Warning",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f017",
+              "label": "Summary / By facility / In-mh-pune-002 / Watch",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f018",
+              "label": "Summary / By facility / In-mh-pune-003 / Critical",
+              "value": 2,
+              "unit": "warnings",
+              "quote": "2"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f019",
+              "label": "Summary / By facility / In-mh-pune-003 / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f020",
+              "label": "Summary / By facility / In-mh-pune-003 / Warning",
+              "value": 13,
+              "unit": "warnings",
+              "quote": "13"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f021",
+              "label": "Summary / By facility / In-mh-pune-003 / Watch",
+              "value": 6,
+              "unit": "warnings",
+              "quote": "6"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f022",
+              "label": "Summary / By region / Mh / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f023",
+              "label": "Summary / By region / Mh / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f024",
+              "label": "Summary / By region / Mh / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f025",
+              "label": "Summary / By region / Mh / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f026",
+              "label": "Summary / Counts / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f027",
+              "label": "Summary / Counts / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f028",
+              "label": "Summary / Counts / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f029",
+              "label": "Summary / Counts / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f030",
+              "label": "Summary / Facilities affected",
+              "value": 3,
+              "unit": "facilities",
+              "quote": "3"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f031",
+              "label": "Summary / Medicines at risk",
+              "value": 5,
+              "unit": "medicine resource types",
+              "quote": "5"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f032",
+              "label": "Summary / Staff warnings",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f033",
+              "label": "Summary / Total",
+              "value": 26,
+              "unit": "warnings",
+              "quote": "26"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f034",
+              "label": "Horizon",
+              "value": 14,
+              "unit": "days",
+              "quote": "14"
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f035",
+              "label": "Model versions",
+              "value": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "unit": null
+            },
+            {
+              "fact_id": "e2_3bb8b4ca20964e23_f036",
+              "label": "Model versions / Item 0",
+              "value": "forecast-v1-176a752efab3ae4e",
+              "unit": null
+            }
+          ],
+          "facts_truncated": false,
+          "provenance": {
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "input_utf8_bytes": 14631,
+      "usage": [
+        {
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 7445
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_input_tokens": 7445,
+          "total_output_tokens": 327,
+          "total_thought_tokens": 774,
+          "total_tokens": 8546,
+          "total_tool_use_tokens": 0
+        }
+      ],
+      "draft": {
+        "situation": {
+          "text": "Pune has multiple operational facilities handling high patient footfall, with a significant portion of facilities categorized as at risk and numerous active warnings spanning beds, staff, and medicines.",
+          "evidence_refs": [
+            "e1_3bb8b4ca20964e23_f001",
+            "e1_3bb8b4ca20964e23_f007",
+            "e1_3bb8b4ca20964e23_f012",
+            "e1_3bb8b4ca20964e23_f064"
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Critical and warning-level alerts are active across multiple facilities, driven by high bed utilization and medicine availability constraints.",
+            "evidence_refs": [
+              "e1_3bb8b4ca20964e23_f003",
+              "e1_3bb8b4ca20964e23_f005",
+              "e1_3bb8b4ca20964e23_f057",
+              "e1_3bb8b4ca20964e23_f059"
+            ]
+          }
+        ],
+        "recommended_actions": [],
+        "remaining_gaps": []
+      },
+      "response": {
+        "request_id": "39545f68-e306-489f-b4ab-2b4005efe8a9",
+        "conversation_id": "ead2ab23-399c-40de-acf3-8c7c8ccb4151",
+        "mode": "gemini",
+        "status": "completed",
+        "answer": "Pune has multiple operational facilities handling high patient footfall, with a significant portion of facilities categorized as at risk and numerous active warnings spanning beds, staff, and medicines.",
+        "situation": {
+          "text": "Pune has multiple operational facilities handling high patient footfall, with a significant portion of facilities categorized as at risk and numerous active warnings spanning beds, staff, and medicines.",
+          "references": [
+            {
+              "evidence_id": "e1",
+              "field": "summary"
+            },
+            {
+              "evidence_id": "e1",
+              "field": "summary.patient_footfall"
+            },
+            {
+              "evidence_id": "e1",
+              "field": "summary.status_counts.AT_RISK"
+            },
+            {
+              "evidence_id": "e1",
+              "field": "warnings.total"
+            }
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Critical and warning-level alerts are active across multiple facilities, driven by high bed utilization and medicine availability constraints.",
+            "references": [
+              {
+                "evidence_id": "e1",
+                "field": "summary.bed_utilisation"
+              },
+              {
+                "evidence_id": "e1",
+                "field": "summary.medicine_availability"
+              },
+              {
+                "evidence_id": "e1",
+                "field": "warnings.counts.CRITICAL"
+              },
+              {
+                "evidence_id": "e1",
+                "field": "warnings.counts.WARNING"
+              }
+            ]
+          }
+        ],
+        "recommended_actions": [],
+        "remaining_gaps": [],
+        "evidence": [
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary",
+            "value": {
+              "facilities": 3,
+              "status_counts": {
+                "HEALTHY": 1,
+                "WATCH": 0,
+                "AT_RISK": 2,
+                "CRITICAL": 0
+              },
+              "patient_footfall": 722,
+              "medicine_availability": 66.7,
+              "total_beds": 292,
+              "occupied_beds": 233,
+              "available_beds": 44,
+              "reserved_beds": 15,
+              "bed_utilisation": 79.8,
+              "staff_present": 136,
+              "staff_scheduled": 147,
+              "staff_availability": 92.5
+            },
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.patient_footfall",
+            "value": 722,
+            "profile": "redistribution-ready",
+            "unit": "visits"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.status_counts.AT_RISK",
+            "value": 2,
+            "profile": "redistribution-ready",
+            "unit": "facilities"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "warnings.total",
+            "value": 26,
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.bed_utilisation",
+            "value": 79.8,
+            "profile": "redistribution-ready",
+            "unit": "%"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.medicine_availability",
+            "value": 66.7,
+            "profile": "redistribution-ready",
+            "unit": "%"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "warnings.counts.CRITICAL",
+            "value": 4,
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "warnings.counts.WARNING",
+            "value": 15,
+            "profile": "redistribution-ready",
+            "unit": null
+          }
+        ],
+        "tools_used": [
+          {
+            "tool": "get_network_summary",
+            "status": "success",
+            "seconds": 3.0820890000031795,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e1"
+          },
+          {
+            "tool": "get_warning_summary",
+            "status": "success",
+            "seconds": 0.016990700009046122,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e2"
+          }
+        ],
+        "limitations": [
+          "Facility operations are calibrated simulations, not live government inventory.",
+          "Emergency shocks are externally specified assumptions, not epidemiological predictions.",
+          "Plans are decision support; no physical transfer, order or hospital contact is executed.",
+          "Forecast evaluation uses simulated histories; no clinical or real-world operational validation is claimed."
+        ],
+        "context": {
+          "country_id": "IN",
+          "profile": "redistribution-ready",
+          "state_id": "MH",
+          "district_id": "MH-PUNE",
+          "facility_id": null,
+          "scenario_id": null,
+          "optimization_run_id": null
+        },
+        "scenario_id": null,
+        "optimization_run_id": null,
+        "metadata": {
+          "gemini_network_seconds": 10.412765500019304,
+          "tool_seconds": 3.0990797000122257,
+          "total_seconds": 13.774278600001708,
+          "tool_calls": 2,
+          "interaction_count": 1,
+          "provider_requests": 1,
+          "local_tool_calls": 2,
+          "interaction_ids": [
+            "v1_ChdVRy03YXBqY0g4djJqdU1Qal9Pbm9BWRIXVUctN2FwamNIOHYyanVNUGpfT25vQVk"
+          ],
+          "intent": "resilience-summary",
+          "execution_sources": [
+            {
+              "tool": "get_network_summary",
+              "source": "server-prefetch"
+            },
+            {
+              "tool": "get_warning_summary",
+              "source": "server-prefetch"
+            }
+          ],
+          "request_diagnostics": [
+            {
+              "tool_schema_bytes": 2,
+              "system_bytes": 3867,
+              "input_bytes": 16495,
+              "request_body_bytes": 33746,
+              "input_tokens_estimate": 5091,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            }
+          ],
+          "tool_payload_diagnostics": [
+            {
+              "tool": "get_network_summary",
+              "authoritative_bytes": 6428,
+              "model_payload_bytes": 8400
+            },
+            {
+              "tool": "get_warning_summary",
+              "authoritative_bytes": 782,
+              "model_payload_bytes": 4790
+            }
+          ],
+          "fact_contract_version": "healthnexus-facts-v1",
+          "fact_validation": {
+            "catalogue_size": 100,
+            "resolved_references": 8,
+            "unknown_fact_ids": 0,
+            "semantic_validation": "PASS",
+            "numeric_validation": "PASS"
+          },
+          "requested_model": "gemini-3.5-flash-lite",
+          "effective_model": "gemini-3.5-flash-lite",
+          "selected_model": "gemini-3.5-flash-lite",
+          "fallback_used": false,
+          "fallback_chain_attempted": [
+            "gemini-3.5-flash-lite"
+          ],
+          "fallback_reason": null,
+          "model_attempts": [
+            {
+              "model": "gemini-3.5-flash-lite",
+              "status": "connected",
+              "provider_requests": 1,
+              "seconds": 10.412322699994547
+            }
+          ],
+          "model_handoffs": [],
+          "models_skipped": [],
+          "provider_requests_per_model": {
+            "gemini-3.5-flash-lite": {
+              "provider_requests": 1,
+              "successful_interactions": 1,
+              "failed_attempts": 0,
+              "provider_seconds": 10.412322699994547
+            }
+          },
+          "model": "gemini-3.5-flash-lite",
+          "configured_model": "gemini-3.5-flash-lite",
+          "sdk_version": "2.25.0",
+          "api": "Interactions",
+          "transport": "google-genai",
+          "thinking_level": "medium",
+          "interaction_id": "v1_ChdVRy03YXBqY0g4djJqdU1Qal9Pbm9BWRIXVUctN2FwamNIOHYyanVNUGpfT25vQVk",
+          "timestamp": "2026-09-29T07:57:05.150121+00:00",
+          "system_prompt_version": "healthnexus-system-v5-fact-ids",
+          "config_version": "copilot-config-v4-failover",
+          "usage": [
+            {
+              "input_tokens_by_modality": [
+                {
+                  "modality": "text",
+                  "tokens": 7445
+                }
+              ],
+              "total_cached_tokens": 0,
+              "total_input_tokens": 7445,
+              "total_output_tokens": 327,
+              "total_thought_tokens": 774,
+              "total_tokens": 8546,
+              "total_tool_use_tokens": 0
+            }
+          ],
+          "model_versions": [
+            "forecast-v1-176a752efab3ae4e"
+          ]
+        },
+        "operational_results": [
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "summary": {
+                "facilities": 3,
+                "status_counts": {
+                  "HEALTHY": 1,
+                  "WATCH": 0,
+                  "AT_RISK": 2,
+                  "CRITICAL": 0
+                },
+                "patient_footfall": 722,
+                "medicine_availability": 66.7,
+                "total_beds": 292,
+                "occupied_beds": 233,
+                "available_beds": 44,
+                "reserved_beds": 15,
+                "bed_utilisation": 79.8,
+                "staff_present": 136,
+                "staff_scheduled": 147,
+                "staff_availability": 92.5
+              },
+              "warnings": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "model_version": "forecast-v1-176a752efab3ae4e",
+              "facilities": [
+                {
+                  "id": "IN-MH-PUNE-001",
+                  "name": "Pune \u00b7 PHC 01",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-002",
+                  "name": "Pune \u00b7 CHC 02",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-003",
+                  "name": "Pune \u00b7 District Hospital 03",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                }
+              ],
+              "facilities_truncated": false,
+              "regions": [
+                {
+                  "id": "AP",
+                  "name": "Andhra Pradesh"
+                },
+                {
+                  "id": "AR",
+                  "name": "Arunachal Pradesh"
+                },
+                {
+                  "id": "AS",
+                  "name": "Assam"
+                },
+                {
+                  "id": "BR",
+                  "name": "Bihar"
+                },
+                {
+                  "id": "CG",
+                  "name": "Chhattisgarh"
+                },
+                {
+                  "id": "GA",
+                  "name": "Goa"
+                },
+                {
+                  "id": "GJ",
+                  "name": "Gujarat"
+                },
+                {
+                  "id": "HR",
+                  "name": "Haryana"
+                },
+                {
+                  "id": "HP",
+                  "name": "Himachal Pradesh"
+                },
+                {
+                  "id": "JH",
+                  "name": "Jharkhand"
+                },
+                {
+                  "id": "KA",
+                  "name": "Karnataka"
+                },
+                {
+                  "id": "KL",
+                  "name": "Kerala"
+                },
+                {
+                  "id": "MP",
+                  "name": "Madhya Pradesh"
+                },
+                {
+                  "id": "MH",
+                  "name": "Maharashtra"
+                },
+                {
+                  "id": "MN",
+                  "name": "Manipur"
+                },
+                {
+                  "id": "ML",
+                  "name": "Meghalaya"
+                },
+                {
+                  "id": "MZ",
+                  "name": "Mizoram"
+                },
+                {
+                  "id": "NL",
+                  "name": "Nagaland"
+                },
+                {
+                  "id": "OD",
+                  "name": "Odisha"
+                },
+                {
+                  "id": "PB",
+                  "name": "Punjab"
+                },
+                {
+                  "id": "RJ",
+                  "name": "Rajasthan"
+                },
+                {
+                  "id": "SK",
+                  "name": "Sikkim"
+                },
+                {
+                  "id": "TN",
+                  "name": "Tamil Nadu"
+                },
+                {
+                  "id": "TS",
+                  "name": "Telangana"
+                },
+                {
+                  "id": "TR",
+                  "name": "Tripura"
+                },
+                {
+                  "id": "UP",
+                  "name": "Uttar Pradesh"
+                },
+                {
+                  "id": "UK",
+                  "name": "Uttarakhand"
+                },
+                {
+                  "id": "WB",
+                  "name": "West Bengal"
+                },
+                {
+                  "id": "AN",
+                  "name": "Andaman and Nicobar Islands"
+                },
+                {
+                  "id": "CH",
+                  "name": "Chandigarh"
+                },
+                {
+                  "id": "DN",
+                  "name": "Dadra and Nagar Haveli and Daman and Diu"
+                },
+                {
+                  "id": "DL",
+                  "name": "Delhi"
+                },
+                {
+                  "id": "JK",
+                  "name": "Jammu and Kashmir"
+                },
+                {
+                  "id": "LA",
+                  "name": "Ladakh"
+                },
+                {
+                  "id": "LD",
+                  "name": "Lakshadweep"
+                },
+                {
+                  "id": "PY",
+                  "name": "Puducherry"
+                }
+              ],
+              "districts": [
+                {
+                  "id": "AP-GUNTUR",
+                  "name": "Guntur",
+                  "state_id": "AP"
+                },
+                {
+                  "id": "AP-VISAKHAPATNAM",
+                  "name": "Visakhapatnam",
+                  "state_id": "AP"
+                },
+                {
+                  "id": "AR-TAWANG",
+                  "name": "Tawang",
+                  "state_id": "AR"
+                },
+                {
+                  "id": "AR-LOWER-SUBANSIRI",
+                  "name": "Lower Subansiri",
+                  "state_id": "AR"
+                },
+                {
+                  "id": "AS-KAMRUP-METROPOLITAN",
+                  "name": "Kamrup Metropolitan",
+                  "state_id": "AS"
+                },
+                {
+                  "id": "AS-DIBRUGARH",
+                  "name": "Dibrugarh",
+                  "state_id": "AS"
+                },
+                {
+                  "id": "BR-PATNA",
+                  "name": "Patna",
+                  "state_id": "BR"
+                },
+                {
+                  "id": "BR-GAYA",
+                  "name": "Gaya",
+                  "state_id": "BR"
+                },
+                {
+                  "id": "CG-RAIPUR",
+                  "name": "Raipur",
+                  "state_id": "CG"
+                },
+                {
+                  "id": "CG-BILASPUR",
+                  "name": "Bilaspur",
+                  "state_id": "CG"
+                },
+                {
+                  "id": "GA-NORTH-GOA",
+                  "name": "North Goa",
+                  "state_id": "GA"
+                },
+                {
+                  "id": "GA-SOUTH-GOA",
+                  "name": "South Goa",
+                  "state_id": "GA"
+                },
+                {
+                  "id": "GJ-AHMEDABAD",
+                  "name": "Ahmedabad",
+                  "state_id": "GJ"
+                },
+                {
+                  "id": "GJ-SURAT",
+                  "name": "Surat",
+                  "state_id": "GJ"
+                },
+                {
+                  "id": "HR-GURUGRAM",
+                  "name": "Gurugram",
+                  "state_id": "HR"
+                },
+                {
+                  "id": "HR-HISAR",
+                  "name": "Hisar",
+                  "state_id": "HR"
+                },
+                {
+                  "id": "HP-SHIMLA",
+                  "name": "Shimla",
+                  "state_id": "HP"
+                },
+                {
+                  "id": "HP-KANGRA",
+                  "name": "Kangra",
+                  "state_id": "HP"
+                },
+                {
+                  "id": "JH-RANCHI",
+                  "name": "Ranchi",
+                  "state_id": "JH"
+                },
+                {
+                  "id": "JH-DHANBAD",
+                  "name": "Dhanbad",
+                  "state_id": "JH"
+                },
+                {
+                  "id": "KA-BENGALURU-URBAN",
+                  "name": "Bengaluru Urban",
+                  "state_id": "KA"
+                },
+                {
+                  "id": "KA-MYSURU",
+                  "name": "Mysuru",
+                  "state_id": "KA"
+                },
+                {
+                  "id": "KL-THIRUVANANTHAPURAM",
+                  "name": "Thiruvananthapuram",
+                  "state_id": "KL"
+                },
+                {
+                  "id": "KL-ERNAKULAM",
+                  "name": "Ernakulam",
+                  "state_id": "KL"
+                },
+                {
+                  "id": "MP-BHOPAL",
+                  "name": "Bhopal",
+                  "state_id": "MP"
+                },
+                {
+                  "id": "MP-INDORE",
+                  "name": "Indore",
+                  "state_id": "MP"
+                },
+                {
+                  "id": "MH-PUNE",
+                  "name": "Pune",
+                  "state_id": "MH"
+                },
+                {
+                  "id": "MH-NAGPUR",
+                  "name": "Nagpur",
+                  "state_id": "MH"
+                },
+                {
+                  "id": "MN-IMPHAL-WEST",
+                  "name": "Imphal West",
+                  "state_id": "MN"
+                },
+                {
+                  "id": "MN-THOUBAL",
+                  "name": "Thoubal",
+                  "state_id": "MN"
+                },
+                {
+                  "id": "ML-EAST-KHASI-HILLS",
+                  "name": "East Khasi Hills",
+                  "state_id": "ML"
+                },
+                {
+                  "id": "ML-WEST-GARO-HILLS",
+                  "name": "West Garo Hills",
+                  "state_id": "ML"
+                },
+                {
+                  "id": "MZ-AIZAWL",
+                  "name": "Aizawl",
+                  "state_id": "MZ"
+                },
+                {
+                  "id": "MZ-LUNGLEI",
+                  "name": "Lunglei",
+                  "state_id": "MZ"
+                },
+                {
+                  "id": "NL-KOHIMA",
+                  "name": "Kohima",
+                  "state_id": "NL"
+                },
+                {
+                  "id": "NL-MOKOKCHUNG",
+                  "name": "Mokokchung",
+                  "state_id": "NL"
+                },
+                {
+                  "id": "OD-KHORDHA",
+                  "name": "Khordha",
+                  "state_id": "OD"
+                },
+                {
+                  "id": "OD-CUTTACK",
+                  "name": "Cuttack",
+                  "state_id": "OD"
+                },
+                {
+                  "id": "PB-LUDHIANA",
+                  "name": "Ludhiana",
+                  "state_id": "PB"
+                },
+                {
+                  "id": "PB-AMRITSAR",
+                  "name": "Amritsar",
+                  "state_id": "PB"
+                },
+                {
+                  "id": "RJ-JAIPUR",
+                  "name": "Jaipur",
+                  "state_id": "RJ"
+                },
+                {
+                  "id": "RJ-JODHPUR",
+                  "name": "Jodhpur",
+                  "state_id": "RJ"
+                },
+                {
+                  "id": "SK-GANGTOK",
+                  "name": "Gangtok",
+                  "state_id": "SK"
+                },
+                {
+                  "id": "SK-NAMCHI",
+                  "name": "Namchi",
+                  "state_id": "SK"
+                },
+                {
+                  "id": "TN-CHENNAI",
+                  "name": "Chennai",
+                  "state_id": "TN"
+                },
+                {
+                  "id": "TN-COIMBATORE",
+                  "name": "Coimbatore",
+                  "state_id": "TN"
+                },
+                {
+                  "id": "TS-HYDERABAD",
+                  "name": "Hyderabad",
+                  "state_id": "TS"
+                },
+                {
+                  "id": "TS-NIZAMABAD",
+                  "name": "Nizamabad",
+                  "state_id": "TS"
+                },
+                {
+                  "id": "TR-WEST-TRIPURA",
+                  "name": "West Tripura",
+                  "state_id": "TR"
+                },
+                {
+                  "id": "TR-GOMATI",
+                  "name": "Gomati",
+                  "state_id": "TR"
+                },
+                {
+                  "id": "UP-LUCKNOW",
+                  "name": "Lucknow",
+                  "state_id": "UP"
+                },
+                {
+                  "id": "UP-VARANASI",
+                  "name": "Varanasi",
+                  "state_id": "UP"
+                },
+                {
+                  "id": "UK-DEHRADUN",
+                  "name": "Dehradun",
+                  "state_id": "UK"
+                },
+                {
+                  "id": "UK-HARIDWAR",
+                  "name": "Haridwar",
+                  "state_id": "UK"
+                },
+                {
+                  "id": "WB-KOLKATA",
+                  "name": "Kolkata",
+                  "state_id": "WB"
+                },
+                {
+                  "id": "WB-HOWRAH",
+                  "name": "Howrah",
+                  "state_id": "WB"
+                },
+                {
+                  "id": "AN-SOUTH-ANDAMAN",
+                  "name": "South Andaman",
+                  "state_id": "AN"
+                },
+                {
+                  "id": "AN-NICOBAR",
+                  "name": "Nicobar",
+                  "state_id": "AN"
+                },
+                {
+                  "id": "CH-CHANDIGARH",
+                  "name": "Chandigarh",
+                  "state_id": "CH"
+                },
+                {
+                  "id": "DN-DADRA-AND-NAGAR-HAVELI",
+                  "name": "Dadra and Nagar Haveli",
+                  "state_id": "DN"
+                },
+                {
+                  "id": "DN-DAMAN",
+                  "name": "Daman",
+                  "state_id": "DN"
+                },
+                {
+                  "id": "DL-NEW-DELHI",
+                  "name": "New Delhi",
+                  "state_id": "DL"
+                },
+                {
+                  "id": "JK-JAMMU",
+                  "name": "Jammu",
+                  "state_id": "JK"
+                },
+                {
+                  "id": "JK-SRINAGAR",
+                  "name": "Srinagar",
+                  "state_id": "JK"
+                },
+                {
+                  "id": "LA-LEH",
+                  "name": "Leh",
+                  "state_id": "LA"
+                },
+                {
+                  "id": "LA-KARGIL",
+                  "name": "Kargil",
+                  "state_id": "LA"
+                },
+                {
+                  "id": "LD-LAKSHADWEEP",
+                  "name": "Lakshadweep",
+                  "state_id": "LD"
+                },
+                {
+                  "id": "PY-PUDUCHERRY",
+                  "name": "Puducherry",
+                  "state_id": "PY"
+                },
+                {
+                  "id": "PY-KARAIKAL",
+                  "name": "Karaikal",
+                  "state_id": "PY"
+                }
+              ]
+            }
+          },
+          {
+            "evidence_id": "e2",
+            "tool": "get_warning_summary",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "summary": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "horizon": 14,
+              "model_versions": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "scenario_id": null
+            }
+          }
+        ]
+      },
+      "tool_seconds": 3.0990797000122257,
+      "fact_citations": [
+        {
+          "claim_index": 0,
+          "claim_field": "situation.text",
+          "claim_text": "Pune has multiple operational facilities handling high patient footfall, with a significant portion of facilities categorized as at risk and numerous active warnings spanning beds, staff, and medicines.",
+          "supplied_fact_ids": [
+            "e1_3bb8b4ca20964e23_f001",
+            "e1_3bb8b4ca20964e23_f002",
+            "e1_3bb8b4ca20964e23_f003",
+            "e1_3bb8b4ca20964e23_f004",
+            "e1_3bb8b4ca20964e23_f005",
+            "e1_3bb8b4ca20964e23_f006",
+            "e1_3bb8b4ca20964e23_f007",
+            "e1_3bb8b4ca20964e23_f008",
+            "e1_3bb8b4ca20964e23_f009",
+            "e1_3bb8b4ca20964e23_f010",
+            "e1_3bb8b4ca20964e23_f011",
+            "e1_3bb8b4ca20964e23_f012",
+            "e1_3bb8b4ca20964e23_f013",
+            "e1_3bb8b4ca20964e23_f014",
+            "e1_3bb8b4ca20964e23_f015",
+            "e1_3bb8b4ca20964e23_f016",
+            "e1_3bb8b4ca20964e23_f017",
+            "e1_3bb8b4ca20964e23_f018",
+            "e1_3bb8b4ca20964e23_f019",
+            "e1_3bb8b4ca20964e23_f020",
+            "e1_3bb8b4ca20964e23_f021",
+            "e1_3bb8b4ca20964e23_f022",
+            "e1_3bb8b4ca20964e23_f023",
+            "e1_3bb8b4ca20964e23_f024",
+            "e1_3bb8b4ca20964e23_f025",
+            "e1_3bb8b4ca20964e23_f026",
+            "e1_3bb8b4ca20964e23_f027",
+            "e1_3bb8b4ca20964e23_f028",
+            "e1_3bb8b4ca20964e23_f029",
+            "e1_3bb8b4ca20964e23_f030",
+            "e1_3bb8b4ca20964e23_f031",
+            "e1_3bb8b4ca20964e23_f032",
+            "e1_3bb8b4ca20964e23_f033",
+            "e1_3bb8b4ca20964e23_f034",
+            "e1_3bb8b4ca20964e23_f035",
+            "e1_3bb8b4ca20964e23_f036",
+            "e1_3bb8b4ca20964e23_f037",
+            "e1_3bb8b4ca20964e23_f038",
+            "e1_3bb8b4ca20964e23_f039",
+            "e1_3bb8b4ca20964e23_f040",
+            "e1_3bb8b4ca20964e23_f041",
+            "e1_3bb8b4ca20964e23_f042",
+            "e1_3bb8b4ca20964e23_f043",
+            "e1_3bb8b4ca20964e23_f044",
+            "e1_3bb8b4ca20964e23_f045",
+            "e1_3bb8b4ca20964e23_f046",
+            "e1_3bb8b4ca20964e23_f047",
+            "e1_3bb8b4ca20964e23_f048",
+            "e1_3bb8b4ca20964e23_f049",
+            "e1_3bb8b4ca20964e23_f050",
+            "e1_3bb8b4ca20964e23_f051",
+            "e1_3bb8b4ca20964e23_f052",
+            "e1_3bb8b4ca20964e23_f053",
+            "e1_3bb8b4ca20964e23_f054",
+            "e1_3bb8b4ca20964e23_f055",
+            "e1_3bb8b4ca20964e23_f056",
+            "e1_3bb8b4ca20964e23_f057",
+            "e1_3bb8b4ca20964e23_f058",
+            "e1_3bb8b4ca20964e23_f059",
+            "e1_3bb8b4ca20964e23_f060",
+            "e1_3bb8b4ca20964e23_f061",
+            "e1_3bb8b4ca20964e23_f062",
+            "e1_3bb8b4ca20964e23_f063",
+            "e1_3bb8b4ca20964e23_f064",
+            "e2_3bb8b4ca20964e23_f001",
+            "e2_3bb8b4ca20964e23_f002",
+            "e2_3bb8b4ca20964e23_f003",
+            "e2_3bb8b4ca20964e23_f004",
+            "e2_3bb8b4ca20964e23_f005",
+            "e2_3bb8b4ca20964e23_f006",
+            "e2_3bb8b4ca20964e23_f007",
+            "e2_3bb8b4ca20964e23_f008",
+            "e2_3bb8b4ca20964e23_f009",
+            "e2_3bb8b4ca20964e23_f010",
+            "e2_3bb8b4ca20964e23_f011",
+            "e2_3bb8b4ca20964e23_f012",
+            "e2_3bb8b4ca20964e23_f013",
+            "e2_3bb8b4ca20964e23_f014",
+            "e2_3bb8b4ca20964e23_f015",
+            "e2_3bb8b4ca20964e23_f016",
+            "e2_3bb8b4ca20964e23_f017",
+            "e2_3bb8b4ca20964e23_f018",
+            "e2_3bb8b4ca20964e23_f019",
+            "e2_3bb8b4ca20964e23_f020",
+            "e2_3bb8b4ca20964e23_f021",
+            "e2_3bb8b4ca20964e23_f022",
+            "e2_3bb8b4ca20964e23_f023",
+            "e2_3bb8b4ca20964e23_f024",
+            "e2_3bb8b4ca20964e23_f025",
+            "e2_3bb8b4ca20964e23_f026",
+            "e2_3bb8b4ca20964e23_f027",
+            "e2_3bb8b4ca20964e23_f028",
+            "e2_3bb8b4ca20964e23_f029",
+            "e2_3bb8b4ca20964e23_f030",
+            "e2_3bb8b4ca20964e23_f031",
+            "e2_3bb8b4ca20964e23_f032",
+            "e2_3bb8b4ca20964e23_f033",
+            "e2_3bb8b4ca20964e23_f034",
+            "e2_3bb8b4ca20964e23_f035",
+            "e2_3bb8b4ca20964e23_f036"
+          ],
+          "cited_fact_ids": [
+            "e1_3bb8b4ca20964e23_f001",
+            "e1_3bb8b4ca20964e23_f007",
+            "e1_3bb8b4ca20964e23_f012",
+            "e1_3bb8b4ca20964e23_f064"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f001",
+              "evidence_id": "e1",
+              "path": "summary",
+              "value": {
+                "facilities": 3,
+                "status_counts": {
+                  "HEALTHY": 1,
+                  "WATCH": 0,
+                  "AT_RISK": 2,
+                  "CRITICAL": 0
+                },
+                "patient_footfall": 722,
+                "medicine_availability": 66.7,
+                "total_beds": 292,
+                "occupied_beds": 233,
+                "available_beds": 44,
+                "reserved_beds": 15,
+                "bed_utilisation": 79.8,
+                "staff_present": 136,
+                "staff_scheduled": 147,
+                "staff_availability": 92.5
+              },
+              "unit": null,
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f007",
+              "evidence_id": "e1",
+              "path": "summary.patient_footfall",
+              "value": 722,
+              "unit": "visits",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f012",
+              "evidence_id": "e1",
+              "path": "summary.status_counts.AT_RISK",
+              "value": 2,
+              "unit": "facilities",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f064",
+              "evidence_id": "e1",
+              "path": "warnings.total",
+              "value": 26,
+              "unit": null,
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 1,
+          "claim_field": "key_risks.0.text",
+          "claim_text": "Critical and warning-level alerts are active across multiple facilities, driven by high bed utilization and medicine availability constraints.",
+          "supplied_fact_ids": [
+            "e1_3bb8b4ca20964e23_f001",
+            "e1_3bb8b4ca20964e23_f002",
+            "e1_3bb8b4ca20964e23_f003",
+            "e1_3bb8b4ca20964e23_f004",
+            "e1_3bb8b4ca20964e23_f005",
+            "e1_3bb8b4ca20964e23_f006",
+            "e1_3bb8b4ca20964e23_f007",
+            "e1_3bb8b4ca20964e23_f008",
+            "e1_3bb8b4ca20964e23_f009",
+            "e1_3bb8b4ca20964e23_f010",
+            "e1_3bb8b4ca20964e23_f011",
+            "e1_3bb8b4ca20964e23_f012",
+            "e1_3bb8b4ca20964e23_f013",
+            "e1_3bb8b4ca20964e23_f014",
+            "e1_3bb8b4ca20964e23_f015",
+            "e1_3bb8b4ca20964e23_f016",
+            "e1_3bb8b4ca20964e23_f017",
+            "e1_3bb8b4ca20964e23_f018",
+            "e1_3bb8b4ca20964e23_f019",
+            "e1_3bb8b4ca20964e23_f020",
+            "e1_3bb8b4ca20964e23_f021",
+            "e1_3bb8b4ca20964e23_f022",
+            "e1_3bb8b4ca20964e23_f023",
+            "e1_3bb8b4ca20964e23_f024",
+            "e1_3bb8b4ca20964e23_f025",
+            "e1_3bb8b4ca20964e23_f026",
+            "e1_3bb8b4ca20964e23_f027",
+            "e1_3bb8b4ca20964e23_f028",
+            "e1_3bb8b4ca20964e23_f029",
+            "e1_3bb8b4ca20964e23_f030",
+            "e1_3bb8b4ca20964e23_f031",
+            "e1_3bb8b4ca20964e23_f032",
+            "e1_3bb8b4ca20964e23_f033",
+            "e1_3bb8b4ca20964e23_f034",
+            "e1_3bb8b4ca20964e23_f035",
+            "e1_3bb8b4ca20964e23_f036",
+            "e1_3bb8b4ca20964e23_f037",
+            "e1_3bb8b4ca20964e23_f038",
+            "e1_3bb8b4ca20964e23_f039",
+            "e1_3bb8b4ca20964e23_f040",
+            "e1_3bb8b4ca20964e23_f041",
+            "e1_3bb8b4ca20964e23_f042",
+            "e1_3bb8b4ca20964e23_f043",
+            "e1_3bb8b4ca20964e23_f044",
+            "e1_3bb8b4ca20964e23_f045",
+            "e1_3bb8b4ca20964e23_f046",
+            "e1_3bb8b4ca20964e23_f047",
+            "e1_3bb8b4ca20964e23_f048",
+            "e1_3bb8b4ca20964e23_f049",
+            "e1_3bb8b4ca20964e23_f050",
+            "e1_3bb8b4ca20964e23_f051",
+            "e1_3bb8b4ca20964e23_f052",
+            "e1_3bb8b4ca20964e23_f053",
+            "e1_3bb8b4ca20964e23_f054",
+            "e1_3bb8b4ca20964e23_f055",
+            "e1_3bb8b4ca20964e23_f056",
+            "e1_3bb8b4ca20964e23_f057",
+            "e1_3bb8b4ca20964e23_f058",
+            "e1_3bb8b4ca20964e23_f059",
+            "e1_3bb8b4ca20964e23_f060",
+            "e1_3bb8b4ca20964e23_f061",
+            "e1_3bb8b4ca20964e23_f062",
+            "e1_3bb8b4ca20964e23_f063",
+            "e1_3bb8b4ca20964e23_f064",
+            "e2_3bb8b4ca20964e23_f001",
+            "e2_3bb8b4ca20964e23_f002",
+            "e2_3bb8b4ca20964e23_f003",
+            "e2_3bb8b4ca20964e23_f004",
+            "e2_3bb8b4ca20964e23_f005",
+            "e2_3bb8b4ca20964e23_f006",
+            "e2_3bb8b4ca20964e23_f007",
+            "e2_3bb8b4ca20964e23_f008",
+            "e2_3bb8b4ca20964e23_f009",
+            "e2_3bb8b4ca20964e23_f010",
+            "e2_3bb8b4ca20964e23_f011",
+            "e2_3bb8b4ca20964e23_f012",
+            "e2_3bb8b4ca20964e23_f013",
+            "e2_3bb8b4ca20964e23_f014",
+            "e2_3bb8b4ca20964e23_f015",
+            "e2_3bb8b4ca20964e23_f016",
+            "e2_3bb8b4ca20964e23_f017",
+            "e2_3bb8b4ca20964e23_f018",
+            "e2_3bb8b4ca20964e23_f019",
+            "e2_3bb8b4ca20964e23_f020",
+            "e2_3bb8b4ca20964e23_f021",
+            "e2_3bb8b4ca20964e23_f022",
+            "e2_3bb8b4ca20964e23_f023",
+            "e2_3bb8b4ca20964e23_f024",
+            "e2_3bb8b4ca20964e23_f025",
+            "e2_3bb8b4ca20964e23_f026",
+            "e2_3bb8b4ca20964e23_f027",
+            "e2_3bb8b4ca20964e23_f028",
+            "e2_3bb8b4ca20964e23_f029",
+            "e2_3bb8b4ca20964e23_f030",
+            "e2_3bb8b4ca20964e23_f031",
+            "e2_3bb8b4ca20964e23_f032",
+            "e2_3bb8b4ca20964e23_f033",
+            "e2_3bb8b4ca20964e23_f034",
+            "e2_3bb8b4ca20964e23_f035",
+            "e2_3bb8b4ca20964e23_f036"
+          ],
+          "cited_fact_ids": [
+            "e1_3bb8b4ca20964e23_f003",
+            "e1_3bb8b4ca20964e23_f005",
+            "e1_3bb8b4ca20964e23_f057",
+            "e1_3bb8b4ca20964e23_f059"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f003",
+              "evidence_id": "e1",
+              "path": "summary.bed_utilisation",
+              "value": 79.8,
+              "unit": "%",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f005",
+              "evidence_id": "e1",
+              "path": "summary.medicine_availability",
+              "value": 66.7,
+              "unit": "%",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f057",
+              "evidence_id": "e1",
+              "path": "warnings.counts.CRITICAL",
+              "value": 4,
+              "unit": null,
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_3bb8b4ca20964e23_f059",
+              "evidence_id": "e1",
+              "path": "warnings.counts.WARNING",
+              "value": 15,
+              "unit": null,
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        }
+      ],
+      "status": "PASS",
+      "total_seconds": 13.921523099998012
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 2,
+      "thinking_level": "medium",
+      "timestamp": "2026-09-29T07:57:05.426506+00:00",
+      "http_status": 200,
+      "schema_valid": true,
+      "fact_ids_valid": true,
+      "qualitative_evidence_valid": true,
+      "numeric_grounding_valid": true,
+      "context_valid": true,
+      "unknown_fact_ids": 0,
+      "unsupported_numeric_claims": 0,
+      "actual_http_sends": 1,
+      "provider_requests": 1,
+      "provider_seconds": 9.090930999984266,
+      "supplied_catalogues": [
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f001",
+              "label": "Summary",
+              "value": {
+                "facilities": 3,
+                "status_counts": {
+                  "HEALTHY": 1,
+                  "WATCH": 0,
+                  "AT_RISK": 2,
+                  "CRITICAL": 0
+                },
+                "patient_footfall": 722,
+                "medicine_availability": 66.7,
+                "total_beds": 292,
+                "occupied_beds": 233,
+                "available_beds": 44,
+                "reserved_beds": 15,
+                "bed_utilisation": 79.8,
+                "staff_present": 136,
+                "staff_scheduled": 147,
+                "staff_availability": 92.5
+              },
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f002",
+              "label": "Summary / Available beds",
+              "value": 44,
+              "unit": "beds",
+              "quote": "44"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f003",
+              "label": "Summary / Bed utilisation",
+              "value": 79.8,
+              "unit": "%",
+              "quote": "79.8"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f004",
+              "label": "Summary / Facilities",
+              "value": 3,
+              "unit": "facilities",
+              "quote": "3"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f005",
+              "label": "Summary / Medicine availability",
+              "value": 66.7,
+              "unit": "%",
+              "quote": "66.7"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f006",
+              "label": "Summary / Occupied beds",
+              "value": 233,
+              "unit": "beds",
+              "quote": "233"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f007",
+              "label": "Summary / Patient footfall",
+              "value": 722,
+              "unit": "visits",
+              "quote": "722"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f008",
+              "label": "Summary / Reserved beds",
+              "value": 15,
+              "unit": "beds",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f009",
+              "label": "Summary / Staff availability",
+              "value": 92.5,
+              "unit": "%",
+              "quote": "92.5"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f010",
+              "label": "Summary / Staff present",
+              "value": 136,
+              "unit": "staff",
+              "quote": "136"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f011",
+              "label": "Summary / Staff scheduled",
+              "value": 147,
+              "unit": "staff",
+              "quote": "147"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f012",
+              "label": "Summary / Status counts / At risk",
+              "value": 2,
+              "unit": "facilities",
+              "quote": "2"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f013",
+              "label": "Summary / Status counts / Critical",
+              "value": 0,
+              "unit": "facilities",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f014",
+              "label": "Summary / Status counts / Healthy",
+              "value": 1,
+              "unit": "facilities",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f015",
+              "label": "Summary / Status counts / Watch",
+              "value": 0,
+              "unit": "facilities",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f016",
+              "label": "Summary / Total beds",
+              "value": 292,
+              "unit": "beds",
+              "quote": "292"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f017",
+              "label": "Facilities",
+              "value": [
+                {
+                  "id": "IN-MH-PUNE-001",
+                  "name": "Pune \u00b7 PHC 01",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-002",
+                  "name": "Pune \u00b7 CHC 02",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-003",
+                  "name": "Pune \u00b7 District Hospital 03",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                }
+              ],
+              "unit": "facilities"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f018",
+              "label": "Facilities / Item 0 / District id",
+              "value": "MH-PUNE",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f019",
+              "label": "Facilities / Item 0 / Id",
+              "value": "IN-MH-PUNE-001",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f020",
+              "label": "Facilities / Item 0 / Name",
+              "value": "Pune \u00b7 PHC 01",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f021",
+              "label": "Facilities / Item 0 / State id",
+              "value": "MH",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f022",
+              "label": "Facilities / Item 1 / District id",
+              "value": "MH-PUNE",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f023",
+              "label": "Facilities / Item 1 / Id",
+              "value": "IN-MH-PUNE-002",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f024",
+              "label": "Facilities / Item 1 / Name",
+              "value": "Pune \u00b7 CHC 02",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f025",
+              "label": "Facilities / Item 1 / State id",
+              "value": "MH",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f026",
+              "label": "Facilities / Item 2 / District id",
+              "value": "MH-PUNE",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f027",
+              "label": "Facilities / Item 2 / Id",
+              "value": "IN-MH-PUNE-003",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f028",
+              "label": "Facilities / Item 2 / Name",
+              "value": "Pune \u00b7 District Hospital 03",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f029",
+              "label": "Facilities / Item 2 / State id",
+              "value": "MH",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f030",
+              "label": "Facilities truncated",
+              "value": false,
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f031",
+              "label": "Model version",
+              "value": "forecast-v1-176a752efab3ae4e",
+              "unit": null
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f032",
+              "label": "Warnings / Bed warnings",
+              "value": 5,
+              "unit": null,
+              "quote": "5"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f033",
+              "label": "Warnings / By country / In / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f034",
+              "label": "Warnings / By country / In / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f035",
+              "label": "Warnings / By country / In / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f036",
+              "label": "Warnings / By country / In / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f037",
+              "label": "Warnings / By district / Mh-pune / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f038",
+              "label": "Warnings / By district / Mh-pune / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f039",
+              "label": "Warnings / By district / Mh-pune / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f040",
+              "label": "Warnings / By district / Mh-pune / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f041",
+              "label": "Warnings / By facility / In-mh-pune-001 / Critical",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f042",
+              "label": "Warnings / By facility / In-mh-pune-001 / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f043",
+              "label": "Warnings / By facility / In-mh-pune-001 / Warning",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f044",
+              "label": "Warnings / By facility / In-mh-pune-001 / Watch",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f045",
+              "label": "Warnings / By facility / In-mh-pune-002 / Critical",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f046",
+              "label": "Warnings / By facility / In-mh-pune-002 / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f047",
+              "label": "Warnings / By facility / In-mh-pune-002 / Warning",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f048",
+              "label": "Warnings / By facility / In-mh-pune-002 / Watch",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f049",
+              "label": "Warnings / By facility / In-mh-pune-003 / Critical",
+              "value": 2,
+              "unit": null,
+              "quote": "2"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f050",
+              "label": "Warnings / By facility / In-mh-pune-003 / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f051",
+              "label": "Warnings / By facility / In-mh-pune-003 / Warning",
+              "value": 13,
+              "unit": null,
+              "quote": "13"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f052",
+              "label": "Warnings / By facility / In-mh-pune-003 / Watch",
+              "value": 6,
+              "unit": null,
+              "quote": "6"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f053",
+              "label": "Warnings / By region / Mh / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f054",
+              "label": "Warnings / By region / Mh / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f055",
+              "label": "Warnings / By region / Mh / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f056",
+              "label": "Warnings / By region / Mh / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f057",
+              "label": "Warnings / Counts / Critical",
+              "value": 4,
+              "unit": null,
+              "quote": "4"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f058",
+              "label": "Warnings / Counts / Info",
+              "value": 0,
+              "unit": null,
+              "quote": "0"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f059",
+              "label": "Warnings / Counts / Warning",
+              "value": 15,
+              "unit": null,
+              "quote": "15"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f060",
+              "label": "Warnings / Counts / Watch",
+              "value": 7,
+              "unit": null,
+              "quote": "7"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f061",
+              "label": "Warnings / Facilities affected",
+              "value": 3,
+              "unit": "facilities",
+              "quote": "3"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f062",
+              "label": "Warnings / Medicines at risk",
+              "value": 5,
+              "unit": "medicine resource types",
+              "quote": "5"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f063",
+              "label": "Warnings / Staff warnings",
+              "value": 1,
+              "unit": null,
+              "quote": "1"
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f064",
+              "label": "Warnings / Total",
+              "value": 26,
+              "unit": null,
+              "quote": "26"
+            }
+          ],
+          "facts_truncated": false,
+          "provenance": {
+            "origin": "2026-09-27",
+            "model_version": "forecast-v1-176a752efab3ae4e"
+          }
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "get_warning_summary",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          },
+          "facts": [
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f001",
+              "label": "Summary / Bed warnings",
+              "value": 5,
+              "unit": "warnings",
+              "quote": "5"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f002",
+              "label": "Summary / By country / In / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f003",
+              "label": "Summary / By country / In / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f004",
+              "label": "Summary / By country / In / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f005",
+              "label": "Summary / By country / In / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f006",
+              "label": "Summary / By district / Mh-pune / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f007",
+              "label": "Summary / By district / Mh-pune / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f008",
+              "label": "Summary / By district / Mh-pune / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f009",
+              "label": "Summary / By district / Mh-pune / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f010",
+              "label": "Summary / By facility / In-mh-pune-001 / Critical",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f011",
+              "label": "Summary / By facility / In-mh-pune-001 / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f012",
+              "label": "Summary / By facility / In-mh-pune-001 / Warning",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f013",
+              "label": "Summary / By facility / In-mh-pune-001 / Watch",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f014",
+              "label": "Summary / By facility / In-mh-pune-002 / Critical",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f015",
+              "label": "Summary / By facility / In-mh-pune-002 / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f016",
+              "label": "Summary / By facility / In-mh-pune-002 / Warning",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f017",
+              "label": "Summary / By facility / In-mh-pune-002 / Watch",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f018",
+              "label": "Summary / By facility / In-mh-pune-003 / Critical",
+              "value": 2,
+              "unit": "warnings",
+              "quote": "2"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f019",
+              "label": "Summary / By facility / In-mh-pune-003 / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f020",
+              "label": "Summary / By facility / In-mh-pune-003 / Warning",
+              "value": 13,
+              "unit": "warnings",
+              "quote": "13"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f021",
+              "label": "Summary / By facility / In-mh-pune-003 / Watch",
+              "value": 6,
+              "unit": "warnings",
+              "quote": "6"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f022",
+              "label": "Summary / By region / Mh / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f023",
+              "label": "Summary / By region / Mh / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f024",
+              "label": "Summary / By region / Mh / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f025",
+              "label": "Summary / By region / Mh / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f026",
+              "label": "Summary / Counts / Critical",
+              "value": 4,
+              "unit": "warnings",
+              "quote": "4"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f027",
+              "label": "Summary / Counts / Info",
+              "value": 0,
+              "unit": "warnings",
+              "quote": "0"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f028",
+              "label": "Summary / Counts / Warning",
+              "value": 15,
+              "unit": "warnings",
+              "quote": "15"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f029",
+              "label": "Summary / Counts / Watch",
+              "value": 7,
+              "unit": "warnings",
+              "quote": "7"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f030",
+              "label": "Summary / Facilities affected",
+              "value": 3,
+              "unit": "facilities",
+              "quote": "3"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f031",
+              "label": "Summary / Medicines at risk",
+              "value": 5,
+              "unit": "medicine resource types",
+              "quote": "5"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f032",
+              "label": "Summary / Staff warnings",
+              "value": 1,
+              "unit": "warnings",
+              "quote": "1"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f033",
+              "label": "Summary / Total",
+              "value": 26,
+              "unit": "warnings",
+              "quote": "26"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f034",
+              "label": "Horizon",
+              "value": 14,
+              "unit": "days",
+              "quote": "14"
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f035",
+              "label": "Model versions",
+              "value": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "unit": null
+            },
+            {
+              "fact_id": "e2_7e8e14d6b2694926_f036",
+              "label": "Model versions / Item 0",
+              "value": "forecast-v1-176a752efab3ae4e",
+              "unit": null
+            }
+          ],
+          "facts_truncated": false,
+          "provenance": {
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "input_utf8_bytes": 14631,
+      "usage": [
+        {
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 7645
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_input_tokens": 7645,
+          "total_output_tokens": 430,
+          "total_thought_tokens": 1229,
+          "total_tokens": 9304,
+          "total_tool_use_tokens": 0
+        }
+      ],
+      "draft": {
+        "situation": {
+          "text": "Pune operates across multiple facilities with notable patient footfall, maintaining high bed utilisation alongside stable staff availability.",
+          "evidence_refs": [
+            "e1_7e8e14d6b2694926_f003",
+            "e1_7e8e14d6b2694926_f004",
+            "e1_7e8e14d6b2694926_f007",
+            "e1_7e8e14d6b2694926_f009"
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Multiple facilities within the district are designated as at risk.",
+            "evidence_refs": [
+              "e1_7e8e14d6b2694926_f012"
+            ]
+          },
+          {
+            "text": "Critical warnings include registered medicine resource types at risk and active bed warnings.",
+            "evidence_refs": [
+              "e1_7e8e14d6b2694926_f032",
+              "e1_7e8e14d6b2694926_f057",
+              "e1_7e8e14d6b2694926_f062"
+            ]
+          }
+        ],
+        "recommended_actions": [],
+        "remaining_gaps": [
+          {
+            "text": "Total warning counts across the network reflect unresolved operational strain.",
+            "evidence_refs": [
+              "e1_7e8e14d6b2694926_f064"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "request_id": "7fafdfda-24f7-4173-aa0c-0aff7cccbacc",
+        "conversation_id": "82f2a1df-18b5-4e08-bef3-6c790f1b3caf",
+        "mode": "gemini",
+        "status": "completed",
+        "answer": "Pune operates across multiple facilities with notable patient footfall, maintaining high bed utilisation alongside stable staff availability.",
+        "situation": {
+          "text": "Pune operates across multiple facilities with notable patient footfall, maintaining high bed utilisation alongside stable staff availability.",
+          "references": [
+            {
+              "evidence_id": "e1",
+              "field": "summary.bed_utilisation"
+            },
+            {
+              "evidence_id": "e1",
+              "field": "summary.facilities"
+            },
+            {
+              "evidence_id": "e1",
+              "field": "summary.patient_footfall"
+            },
+            {
+              "evidence_id": "e1",
+              "field": "summary.staff_availability"
+            }
+          ]
+        },
+        "key_risks": [
+          {
+            "text": "Multiple facilities within the district are designated as at risk.",
+            "references": [
+              {
+                "evidence_id": "e1",
+                "field": "summary.status_counts.AT_RISK"
+              }
+            ]
+          },
+          {
+            "text": "Critical warnings include registered medicine resource types at risk and active bed warnings.",
+            "references": [
+              {
+                "evidence_id": "e1",
+                "field": "warnings.bed_warnings"
+              },
+              {
+                "evidence_id": "e1",
+                "field": "warnings.counts.CRITICAL"
+              },
+              {
+                "evidence_id": "e1",
+                "field": "warnings.medicines_at_risk"
+              }
+            ]
+          }
+        ],
+        "recommended_actions": [],
+        "remaining_gaps": [
+          {
+            "text": "Total warning counts across the network reflect unresolved operational strain.",
+            "references": [
+              {
+                "evidence_id": "e1",
+                "field": "warnings.total"
+              }
+            ]
+          }
+        ],
+        "evidence": [
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.bed_utilisation",
+            "value": 79.8,
+            "profile": "redistribution-ready",
+            "unit": "%"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.facilities",
+            "value": 3,
+            "profile": "redistribution-ready",
+            "unit": "facilities"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.patient_footfall",
+            "value": 722,
+            "profile": "redistribution-ready",
+            "unit": "visits"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.staff_availability",
+            "value": 92.5,
+            "profile": "redistribution-ready",
+            "unit": "%"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "summary.status_counts.AT_RISK",
+            "value": 2,
+            "profile": "redistribution-ready",
+            "unit": "facilities"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "warnings.bed_warnings",
+            "value": 5,
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "warnings.counts.CRITICAL",
+            "value": 4,
+            "profile": "redistribution-ready",
+            "unit": null
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "warnings.medicines_at_risk",
+            "value": 5,
+            "profile": "redistribution-ready",
+            "unit": "medicine resource types"
+          },
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "source_type": "get_network_summary",
+            "source_id": null,
+            "field": "warnings.total",
+            "value": 26,
+            "profile": "redistribution-ready",
+            "unit": null
+          }
+        ],
+        "tools_used": [
+          {
+            "tool": "get_network_summary",
+            "status": "success",
+            "seconds": 0.02924979999079369,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e1"
+          },
+          {
+            "tool": "get_warning_summary",
+            "status": "success",
+            "seconds": 0.01783570001134649,
+            "summary": "Validated HealthNexus result; no external action executed.",
+            "evidence_id": "e2"
+          }
+        ],
+        "limitations": [
+          "Facility operations are calibrated simulations, not live government inventory.",
+          "Emergency shocks are externally specified assumptions, not epidemiological predictions.",
+          "Plans are decision support; no physical transfer, order or hospital contact is executed.",
+          "Forecast evaluation uses simulated histories; no clinical or real-world operational validation is claimed."
+        ],
+        "context": {
+          "country_id": "IN",
+          "profile": "redistribution-ready",
+          "state_id": "MH",
+          "district_id": "MH-PUNE",
+          "facility_id": null,
+          "scenario_id": null,
+          "optimization_run_id": null
+        },
+        "scenario_id": null,
+        "optimization_run_id": null,
+        "metadata": {
+          "gemini_network_seconds": 28.48013889999129,
+          "tool_seconds": 0.04708550000214018,
+          "total_seconds": 29.402134400006616,
+          "tool_calls": 2,
+          "interaction_count": 1,
+          "provider_requests": 1,
+          "local_tool_calls": 2,
+          "interaction_ids": [
+            "v1_ChdibS03YXZQNEdwLV9qdU1QdUk2RHFBYxIXYm0tN2F2UDRHcC1fanVNUHVJNkRxQWM"
+          ],
+          "intent": "resilience-summary",
+          "execution_sources": [
+            {
+              "tool": "get_network_summary",
+              "source": "server-prefetch"
+            },
+            {
+              "tool": "get_warning_summary",
+              "source": "server-prefetch"
+            }
+          ],
+          "request_diagnostics": [
+            {
+              "tool_schema_bytes": 2,
+              "system_bytes": 3867,
+              "input_bytes": 16495,
+              "request_body_bytes": 33746,
+              "input_tokens_estimate": 5091,
+              "estimate_method": "characters / 4 heuristic, not Gemini token usage"
+            }
+          ],
+          "tool_payload_diagnostics": [
+            {
+              "tool": "get_network_summary",
+              "authoritative_bytes": 6428,
+              "model_payload_bytes": 8400
+            },
+            {
+              "tool": "get_warning_summary",
+              "authoritative_bytes": 782,
+              "model_payload_bytes": 4790
+            }
+          ],
+          "fact_contract_version": "healthnexus-facts-v1",
+          "fact_validation": {
+            "catalogue_size": 100,
+            "resolved_references": 9,
+            "unknown_fact_ids": 0,
+            "semantic_validation": "PASS",
+            "numeric_validation": "PASS"
+          },
+          "requested_model": "gemini-3.5-flash-lite",
+          "effective_model": "gemini-3.5-flash-lite",
+          "selected_model": "gemini-3.5-flash-lite",
+          "fallback_used": false,
+          "fallback_chain_attempted": [
+            "gemini-3.5-flash-lite"
+          ],
+          "fallback_reason": null,
+          "model_attempts": [
+            {
+              "model": "gemini-3.5-flash-lite",
+              "status": "connected",
+              "provider_requests": 1,
+              "seconds": 28.479595100012375
+            }
+          ],
+          "model_handoffs": [],
+          "models_skipped": [],
+          "provider_requests_per_model": {
+            "gemini-3.5-flash-lite": {
+              "provider_requests": 1,
+              "successful_interactions": 1,
+              "failed_attempts": 0,
+              "provider_seconds": 28.479595100012375
+            }
+          },
+          "model": "gemini-3.5-flash-lite",
+          "configured_model": "gemini-3.5-flash-lite",
+          "sdk_version": "2.25.0",
+          "api": "Interactions",
+          "transport": "google-genai",
+          "thinking_level": "medium",
+          "interaction_id": "v1_ChdibS03YXZQNEdwLV9qdU1QdUk2RHFBYxIXYm0tN2F2UDRHcC1fanVNUHVJNkRxQWM",
+          "timestamp": "2026-09-29T07:57:34.946820+00:00",
+          "system_prompt_version": "healthnexus-system-v5-fact-ids",
+          "config_version": "copilot-config-v4-failover",
+          "usage": [
+            {
+              "input_tokens_by_modality": [
+                {
+                  "modality": "text",
+                  "tokens": 7645
+                }
+              ],
+              "total_cached_tokens": 0,
+              "total_input_tokens": 7645,
+              "total_output_tokens": 430,
+              "total_thought_tokens": 1229,
+              "total_tokens": 9304,
+              "total_tool_use_tokens": 0
+            }
+          ],
+          "model_versions": [
+            "forecast-v1-176a752efab3ae4e"
+          ]
+        },
+        "operational_results": [
+          {
+            "evidence_id": "e1",
+            "tool": "get_network_summary",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "summary": {
+                "facilities": 3,
+                "status_counts": {
+                  "HEALTHY": 1,
+                  "WATCH": 0,
+                  "AT_RISK": 2,
+                  "CRITICAL": 0
+                },
+                "patient_footfall": 722,
+                "medicine_availability": 66.7,
+                "total_beds": 292,
+                "occupied_beds": 233,
+                "available_beds": 44,
+                "reserved_beds": 15,
+                "bed_utilisation": 79.8,
+                "staff_present": 136,
+                "staff_scheduled": 147,
+                "staff_availability": 92.5
+              },
+              "warnings": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "model_version": "forecast-v1-176a752efab3ae4e",
+              "facilities": [
+                {
+                  "id": "IN-MH-PUNE-001",
+                  "name": "Pune \u00b7 PHC 01",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-002",
+                  "name": "Pune \u00b7 CHC 02",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                },
+                {
+                  "id": "IN-MH-PUNE-003",
+                  "name": "Pune \u00b7 District Hospital 03",
+                  "state_id": "MH",
+                  "district_id": "MH-PUNE"
+                }
+              ],
+              "facilities_truncated": false,
+              "regions": [
+                {
+                  "id": "AP",
+                  "name": "Andhra Pradesh"
+                },
+                {
+                  "id": "AR",
+                  "name": "Arunachal Pradesh"
+                },
+                {
+                  "id": "AS",
+                  "name": "Assam"
+                },
+                {
+                  "id": "BR",
+                  "name": "Bihar"
+                },
+                {
+                  "id": "CG",
+                  "name": "Chhattisgarh"
+                },
+                {
+                  "id": "GA",
+                  "name": "Goa"
+                },
+                {
+                  "id": "GJ",
+                  "name": "Gujarat"
+                },
+                {
+                  "id": "HR",
+                  "name": "Haryana"
+                },
+                {
+                  "id": "HP",
+                  "name": "Himachal Pradesh"
+                },
+                {
+                  "id": "JH",
+                  "name": "Jharkhand"
+                },
+                {
+                  "id": "KA",
+                  "name": "Karnataka"
+                },
+                {
+                  "id": "KL",
+                  "name": "Kerala"
+                },
+                {
+                  "id": "MP",
+                  "name": "Madhya Pradesh"
+                },
+                {
+                  "id": "MH",
+                  "name": "Maharashtra"
+                },
+                {
+                  "id": "MN",
+                  "name": "Manipur"
+                },
+                {
+                  "id": "ML",
+                  "name": "Meghalaya"
+                },
+                {
+                  "id": "MZ",
+                  "name": "Mizoram"
+                },
+                {
+                  "id": "NL",
+                  "name": "Nagaland"
+                },
+                {
+                  "id": "OD",
+                  "name": "Odisha"
+                },
+                {
+                  "id": "PB",
+                  "name": "Punjab"
+                },
+                {
+                  "id": "RJ",
+                  "name": "Rajasthan"
+                },
+                {
+                  "id": "SK",
+                  "name": "Sikkim"
+                },
+                {
+                  "id": "TN",
+                  "name": "Tamil Nadu"
+                },
+                {
+                  "id": "TS",
+                  "name": "Telangana"
+                },
+                {
+                  "id": "TR",
+                  "name": "Tripura"
+                },
+                {
+                  "id": "UP",
+                  "name": "Uttar Pradesh"
+                },
+                {
+                  "id": "UK",
+                  "name": "Uttarakhand"
+                },
+                {
+                  "id": "WB",
+                  "name": "West Bengal"
+                },
+                {
+                  "id": "AN",
+                  "name": "Andaman and Nicobar Islands"
+                },
+                {
+                  "id": "CH",
+                  "name": "Chandigarh"
+                },
+                {
+                  "id": "DN",
+                  "name": "Dadra and Nagar Haveli and Daman and Diu"
+                },
+                {
+                  "id": "DL",
+                  "name": "Delhi"
+                },
+                {
+                  "id": "JK",
+                  "name": "Jammu and Kashmir"
+                },
+                {
+                  "id": "LA",
+                  "name": "Ladakh"
+                },
+                {
+                  "id": "LD",
+                  "name": "Lakshadweep"
+                },
+                {
+                  "id": "PY",
+                  "name": "Puducherry"
+                }
+              ],
+              "districts": [
+                {
+                  "id": "AP-GUNTUR",
+                  "name": "Guntur",
+                  "state_id": "AP"
+                },
+                {
+                  "id": "AP-VISAKHAPATNAM",
+                  "name": "Visakhapatnam",
+                  "state_id": "AP"
+                },
+                {
+                  "id": "AR-TAWANG",
+                  "name": "Tawang",
+                  "state_id": "AR"
+                },
+                {
+                  "id": "AR-LOWER-SUBANSIRI",
+                  "name": "Lower Subansiri",
+                  "state_id": "AR"
+                },
+                {
+                  "id": "AS-KAMRUP-METROPOLITAN",
+                  "name": "Kamrup Metropolitan",
+                  "state_id": "AS"
+                },
+                {
+                  "id": "AS-DIBRUGARH",
+                  "name": "Dibrugarh",
+                  "state_id": "AS"
+                },
+                {
+                  "id": "BR-PATNA",
+                  "name": "Patna",
+                  "state_id": "BR"
+                },
+                {
+                  "id": "BR-GAYA",
+                  "name": "Gaya",
+                  "state_id": "BR"
+                },
+                {
+                  "id": "CG-RAIPUR",
+                  "name": "Raipur",
+                  "state_id": "CG"
+                },
+                {
+                  "id": "CG-BILASPUR",
+                  "name": "Bilaspur",
+                  "state_id": "CG"
+                },
+                {
+                  "id": "GA-NORTH-GOA",
+                  "name": "North Goa",
+                  "state_id": "GA"
+                },
+                {
+                  "id": "GA-SOUTH-GOA",
+                  "name": "South Goa",
+                  "state_id": "GA"
+                },
+                {
+                  "id": "GJ-AHMEDABAD",
+                  "name": "Ahmedabad",
+                  "state_id": "GJ"
+                },
+                {
+                  "id": "GJ-SURAT",
+                  "name": "Surat",
+                  "state_id": "GJ"
+                },
+                {
+                  "id": "HR-GURUGRAM",
+                  "name": "Gurugram",
+                  "state_id": "HR"
+                },
+                {
+                  "id": "HR-HISAR",
+                  "name": "Hisar",
+                  "state_id": "HR"
+                },
+                {
+                  "id": "HP-SHIMLA",
+                  "name": "Shimla",
+                  "state_id": "HP"
+                },
+                {
+                  "id": "HP-KANGRA",
+                  "name": "Kangra",
+                  "state_id": "HP"
+                },
+                {
+                  "id": "JH-RANCHI",
+                  "name": "Ranchi",
+                  "state_id": "JH"
+                },
+                {
+                  "id": "JH-DHANBAD",
+                  "name": "Dhanbad",
+                  "state_id": "JH"
+                },
+                {
+                  "id": "KA-BENGALURU-URBAN",
+                  "name": "Bengaluru Urban",
+                  "state_id": "KA"
+                },
+                {
+                  "id": "KA-MYSURU",
+                  "name": "Mysuru",
+                  "state_id": "KA"
+                },
+                {
+                  "id": "KL-THIRUVANANTHAPURAM",
+                  "name": "Thiruvananthapuram",
+                  "state_id": "KL"
+                },
+                {
+                  "id": "KL-ERNAKULAM",
+                  "name": "Ernakulam",
+                  "state_id": "KL"
+                },
+                {
+                  "id": "MP-BHOPAL",
+                  "name": "Bhopal",
+                  "state_id": "MP"
+                },
+                {
+                  "id": "MP-INDORE",
+                  "name": "Indore",
+                  "state_id": "MP"
+                },
+                {
+                  "id": "MH-PUNE",
+                  "name": "Pune",
+                  "state_id": "MH"
+                },
+                {
+                  "id": "MH-NAGPUR",
+                  "name": "Nagpur",
+                  "state_id": "MH"
+                },
+                {
+                  "id": "MN-IMPHAL-WEST",
+                  "name": "Imphal West",
+                  "state_id": "MN"
+                },
+                {
+                  "id": "MN-THOUBAL",
+                  "name": "Thoubal",
+                  "state_id": "MN"
+                },
+                {
+                  "id": "ML-EAST-KHASI-HILLS",
+                  "name": "East Khasi Hills",
+                  "state_id": "ML"
+                },
+                {
+                  "id": "ML-WEST-GARO-HILLS",
+                  "name": "West Garo Hills",
+                  "state_id": "ML"
+                },
+                {
+                  "id": "MZ-AIZAWL",
+                  "name": "Aizawl",
+                  "state_id": "MZ"
+                },
+                {
+                  "id": "MZ-LUNGLEI",
+                  "name": "Lunglei",
+                  "state_id": "MZ"
+                },
+                {
+                  "id": "NL-KOHIMA",
+                  "name": "Kohima",
+                  "state_id": "NL"
+                },
+                {
+                  "id": "NL-MOKOKCHUNG",
+                  "name": "Mokokchung",
+                  "state_id": "NL"
+                },
+                {
+                  "id": "OD-KHORDHA",
+                  "name": "Khordha",
+                  "state_id": "OD"
+                },
+                {
+                  "id": "OD-CUTTACK",
+                  "name": "Cuttack",
+                  "state_id": "OD"
+                },
+                {
+                  "id": "PB-LUDHIANA",
+                  "name": "Ludhiana",
+                  "state_id": "PB"
+                },
+                {
+                  "id": "PB-AMRITSAR",
+                  "name": "Amritsar",
+                  "state_id": "PB"
+                },
+                {
+                  "id": "RJ-JAIPUR",
+                  "name": "Jaipur",
+                  "state_id": "RJ"
+                },
+                {
+                  "id": "RJ-JODHPUR",
+                  "name": "Jodhpur",
+                  "state_id": "RJ"
+                },
+                {
+                  "id": "SK-GANGTOK",
+                  "name": "Gangtok",
+                  "state_id": "SK"
+                },
+                {
+                  "id": "SK-NAMCHI",
+                  "name": "Namchi",
+                  "state_id": "SK"
+                },
+                {
+                  "id": "TN-CHENNAI",
+                  "name": "Chennai",
+                  "state_id": "TN"
+                },
+                {
+                  "id": "TN-COIMBATORE",
+                  "name": "Coimbatore",
+                  "state_id": "TN"
+                },
+                {
+                  "id": "TS-HYDERABAD",
+                  "name": "Hyderabad",
+                  "state_id": "TS"
+                },
+                {
+                  "id": "TS-NIZAMABAD",
+                  "name": "Nizamabad",
+                  "state_id": "TS"
+                },
+                {
+                  "id": "TR-WEST-TRIPURA",
+                  "name": "West Tripura",
+                  "state_id": "TR"
+                },
+                {
+                  "id": "TR-GOMATI",
+                  "name": "Gomati",
+                  "state_id": "TR"
+                },
+                {
+                  "id": "UP-LUCKNOW",
+                  "name": "Lucknow",
+                  "state_id": "UP"
+                },
+                {
+                  "id": "UP-VARANASI",
+                  "name": "Varanasi",
+                  "state_id": "UP"
+                },
+                {
+                  "id": "UK-DEHRADUN",
+                  "name": "Dehradun",
+                  "state_id": "UK"
+                },
+                {
+                  "id": "UK-HARIDWAR",
+                  "name": "Haridwar",
+                  "state_id": "UK"
+                },
+                {
+                  "id": "WB-KOLKATA",
+                  "name": "Kolkata",
+                  "state_id": "WB"
+                },
+                {
+                  "id": "WB-HOWRAH",
+                  "name": "Howrah",
+                  "state_id": "WB"
+                },
+                {
+                  "id": "AN-SOUTH-ANDAMAN",
+                  "name": "South Andaman",
+                  "state_id": "AN"
+                },
+                {
+                  "id": "AN-NICOBAR",
+                  "name": "Nicobar",
+                  "state_id": "AN"
+                },
+                {
+                  "id": "CH-CHANDIGARH",
+                  "name": "Chandigarh",
+                  "state_id": "CH"
+                },
+                {
+                  "id": "DN-DADRA-AND-NAGAR-HAVELI",
+                  "name": "Dadra and Nagar Haveli",
+                  "state_id": "DN"
+                },
+                {
+                  "id": "DN-DAMAN",
+                  "name": "Daman",
+                  "state_id": "DN"
+                },
+                {
+                  "id": "DL-NEW-DELHI",
+                  "name": "New Delhi",
+                  "state_id": "DL"
+                },
+                {
+                  "id": "JK-JAMMU",
+                  "name": "Jammu",
+                  "state_id": "JK"
+                },
+                {
+                  "id": "JK-SRINAGAR",
+                  "name": "Srinagar",
+                  "state_id": "JK"
+                },
+                {
+                  "id": "LA-LEH",
+                  "name": "Leh",
+                  "state_id": "LA"
+                },
+                {
+                  "id": "LA-KARGIL",
+                  "name": "Kargil",
+                  "state_id": "LA"
+                },
+                {
+                  "id": "LD-LAKSHADWEEP",
+                  "name": "Lakshadweep",
+                  "state_id": "LD"
+                },
+                {
+                  "id": "PY-PUDUCHERRY",
+                  "name": "Puducherry",
+                  "state_id": "PY"
+                },
+                {
+                  "id": "PY-KARAIKAL",
+                  "name": "Karaikal",
+                  "state_id": "PY"
+                }
+              ]
+            }
+          },
+          {
+            "evidence_id": "e2",
+            "tool": "get_warning_summary",
+            "result": {
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              },
+              "summary": {
+                "total": 26,
+                "counts": {
+                  "INFO": 0,
+                  "WATCH": 7,
+                  "WARNING": 15,
+                  "CRITICAL": 4
+                },
+                "facilities_affected": 3,
+                "medicines_at_risk": 5,
+                "bed_warnings": 5,
+                "staff_warnings": 1,
+                "by_country": {
+                  "IN": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_region": {
+                  "MH": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_district": {
+                  "MH-PUNE": {
+                    "INFO": 0,
+                    "WATCH": 7,
+                    "WARNING": 15,
+                    "CRITICAL": 4
+                  }
+                },
+                "by_facility": {
+                  "IN-MH-PUNE-003": {
+                    "INFO": 0,
+                    "WATCH": 6,
+                    "WARNING": 13,
+                    "CRITICAL": 2
+                  },
+                  "IN-MH-PUNE-002": {
+                    "INFO": 0,
+                    "WATCH": 0,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  },
+                  "IN-MH-PUNE-001": {
+                    "INFO": 0,
+                    "WATCH": 1,
+                    "WARNING": 1,
+                    "CRITICAL": 1
+                  }
+                }
+              },
+              "horizon": 14,
+              "model_versions": [
+                "forecast-v1-176a752efab3ae4e"
+              ],
+              "scenario_id": null
+            }
+          }
+        ]
+      },
+      "tool_seconds": 0.04708550000214018,
+      "fact_citations": [
+        {
+          "claim_index": 0,
+          "claim_field": "situation.text",
+          "claim_text": "Pune operates across multiple facilities with notable patient footfall, maintaining high bed utilisation alongside stable staff availability.",
+          "supplied_fact_ids": [
+            "e1_7e8e14d6b2694926_f001",
+            "e1_7e8e14d6b2694926_f002",
+            "e1_7e8e14d6b2694926_f003",
+            "e1_7e8e14d6b2694926_f004",
+            "e1_7e8e14d6b2694926_f005",
+            "e1_7e8e14d6b2694926_f006",
+            "e1_7e8e14d6b2694926_f007",
+            "e1_7e8e14d6b2694926_f008",
+            "e1_7e8e14d6b2694926_f009",
+            "e1_7e8e14d6b2694926_f010",
+            "e1_7e8e14d6b2694926_f011",
+            "e1_7e8e14d6b2694926_f012",
+            "e1_7e8e14d6b2694926_f013",
+            "e1_7e8e14d6b2694926_f014",
+            "e1_7e8e14d6b2694926_f015",
+            "e1_7e8e14d6b2694926_f016",
+            "e1_7e8e14d6b2694926_f017",
+            "e1_7e8e14d6b2694926_f018",
+            "e1_7e8e14d6b2694926_f019",
+            "e1_7e8e14d6b2694926_f020",
+            "e1_7e8e14d6b2694926_f021",
+            "e1_7e8e14d6b2694926_f022",
+            "e1_7e8e14d6b2694926_f023",
+            "e1_7e8e14d6b2694926_f024",
+            "e1_7e8e14d6b2694926_f025",
+            "e1_7e8e14d6b2694926_f026",
+            "e1_7e8e14d6b2694926_f027",
+            "e1_7e8e14d6b2694926_f028",
+            "e1_7e8e14d6b2694926_f029",
+            "e1_7e8e14d6b2694926_f030",
+            "e1_7e8e14d6b2694926_f031",
+            "e1_7e8e14d6b2694926_f032",
+            "e1_7e8e14d6b2694926_f033",
+            "e1_7e8e14d6b2694926_f034",
+            "e1_7e8e14d6b2694926_f035",
+            "e1_7e8e14d6b2694926_f036",
+            "e1_7e8e14d6b2694926_f037",
+            "e1_7e8e14d6b2694926_f038",
+            "e1_7e8e14d6b2694926_f039",
+            "e1_7e8e14d6b2694926_f040",
+            "e1_7e8e14d6b2694926_f041",
+            "e1_7e8e14d6b2694926_f042",
+            "e1_7e8e14d6b2694926_f043",
+            "e1_7e8e14d6b2694926_f044",
+            "e1_7e8e14d6b2694926_f045",
+            "e1_7e8e14d6b2694926_f046",
+            "e1_7e8e14d6b2694926_f047",
+            "e1_7e8e14d6b2694926_f048",
+            "e1_7e8e14d6b2694926_f049",
+            "e1_7e8e14d6b2694926_f050",
+            "e1_7e8e14d6b2694926_f051",
+            "e1_7e8e14d6b2694926_f052",
+            "e1_7e8e14d6b2694926_f053",
+            "e1_7e8e14d6b2694926_f054",
+            "e1_7e8e14d6b2694926_f055",
+            "e1_7e8e14d6b2694926_f056",
+            "e1_7e8e14d6b2694926_f057",
+            "e1_7e8e14d6b2694926_f058",
+            "e1_7e8e14d6b2694926_f059",
+            "e1_7e8e14d6b2694926_f060",
+            "e1_7e8e14d6b2694926_f061",
+            "e1_7e8e14d6b2694926_f062",
+            "e1_7e8e14d6b2694926_f063",
+            "e1_7e8e14d6b2694926_f064",
+            "e2_7e8e14d6b2694926_f001",
+            "e2_7e8e14d6b2694926_f002",
+            "e2_7e8e14d6b2694926_f003",
+            "e2_7e8e14d6b2694926_f004",
+            "e2_7e8e14d6b2694926_f005",
+            "e2_7e8e14d6b2694926_f006",
+            "e2_7e8e14d6b2694926_f007",
+            "e2_7e8e14d6b2694926_f008",
+            "e2_7e8e14d6b2694926_f009",
+            "e2_7e8e14d6b2694926_f010",
+            "e2_7e8e14d6b2694926_f011",
+            "e2_7e8e14d6b2694926_f012",
+            "e2_7e8e14d6b2694926_f013",
+            "e2_7e8e14d6b2694926_f014",
+            "e2_7e8e14d6b2694926_f015",
+            "e2_7e8e14d6b2694926_f016",
+            "e2_7e8e14d6b2694926_f017",
+            "e2_7e8e14d6b2694926_f018",
+            "e2_7e8e14d6b2694926_f019",
+            "e2_7e8e14d6b2694926_f020",
+            "e2_7e8e14d6b2694926_f021",
+            "e2_7e8e14d6b2694926_f022",
+            "e2_7e8e14d6b2694926_f023",
+            "e2_7e8e14d6b2694926_f024",
+            "e2_7e8e14d6b2694926_f025",
+            "e2_7e8e14d6b2694926_f026",
+            "e2_7e8e14d6b2694926_f027",
+            "e2_7e8e14d6b2694926_f028",
+            "e2_7e8e14d6b2694926_f029",
+            "e2_7e8e14d6b2694926_f030",
+            "e2_7e8e14d6b2694926_f031",
+            "e2_7e8e14d6b2694926_f032",
+            "e2_7e8e14d6b2694926_f033",
+            "e2_7e8e14d6b2694926_f034",
+            "e2_7e8e14d6b2694926_f035",
+            "e2_7e8e14d6b2694926_f036"
+          ],
+          "cited_fact_ids": [
+            "e1_7e8e14d6b2694926_f003",
+            "e1_7e8e14d6b2694926_f004",
+            "e1_7e8e14d6b2694926_f007",
+            "e1_7e8e14d6b2694926_f009"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f003",
+              "evidence_id": "e1",
+              "path": "summary.bed_utilisation",
+              "value": 79.8,
+              "unit": "%",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f004",
+              "evidence_id": "e1",
+              "path": "summary.facilities",
+              "value": 3,
+              "unit": "facilities",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f007",
+              "evidence_id": "e1",
+              "path": "summary.patient_footfall",
+              "value": 722,
+              "unit": "visits",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f009",
+              "evidence_id": "e1",
+              "path": "summary.staff_availability",
+              "value": 92.5,
+              "unit": "%",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 1,
+          "claim_field": "key_risks.0.text",
+          "claim_text": "Multiple facilities within the district are designated as at risk.",
+          "supplied_fact_ids": [
+            "e1_7e8e14d6b2694926_f001",
+            "e1_7e8e14d6b2694926_f002",
+            "e1_7e8e14d6b2694926_f003",
+            "e1_7e8e14d6b2694926_f004",
+            "e1_7e8e14d6b2694926_f005",
+            "e1_7e8e14d6b2694926_f006",
+            "e1_7e8e14d6b2694926_f007",
+            "e1_7e8e14d6b2694926_f008",
+            "e1_7e8e14d6b2694926_f009",
+            "e1_7e8e14d6b2694926_f010",
+            "e1_7e8e14d6b2694926_f011",
+            "e1_7e8e14d6b2694926_f012",
+            "e1_7e8e14d6b2694926_f013",
+            "e1_7e8e14d6b2694926_f014",
+            "e1_7e8e14d6b2694926_f015",
+            "e1_7e8e14d6b2694926_f016",
+            "e1_7e8e14d6b2694926_f017",
+            "e1_7e8e14d6b2694926_f018",
+            "e1_7e8e14d6b2694926_f019",
+            "e1_7e8e14d6b2694926_f020",
+            "e1_7e8e14d6b2694926_f021",
+            "e1_7e8e14d6b2694926_f022",
+            "e1_7e8e14d6b2694926_f023",
+            "e1_7e8e14d6b2694926_f024",
+            "e1_7e8e14d6b2694926_f025",
+            "e1_7e8e14d6b2694926_f026",
+            "e1_7e8e14d6b2694926_f027",
+            "e1_7e8e14d6b2694926_f028",
+            "e1_7e8e14d6b2694926_f029",
+            "e1_7e8e14d6b2694926_f030",
+            "e1_7e8e14d6b2694926_f031",
+            "e1_7e8e14d6b2694926_f032",
+            "e1_7e8e14d6b2694926_f033",
+            "e1_7e8e14d6b2694926_f034",
+            "e1_7e8e14d6b2694926_f035",
+            "e1_7e8e14d6b2694926_f036",
+            "e1_7e8e14d6b2694926_f037",
+            "e1_7e8e14d6b2694926_f038",
+            "e1_7e8e14d6b2694926_f039",
+            "e1_7e8e14d6b2694926_f040",
+            "e1_7e8e14d6b2694926_f041",
+            "e1_7e8e14d6b2694926_f042",
+            "e1_7e8e14d6b2694926_f043",
+            "e1_7e8e14d6b2694926_f044",
+            "e1_7e8e14d6b2694926_f045",
+            "e1_7e8e14d6b2694926_f046",
+            "e1_7e8e14d6b2694926_f047",
+            "e1_7e8e14d6b2694926_f048",
+            "e1_7e8e14d6b2694926_f049",
+            "e1_7e8e14d6b2694926_f050",
+            "e1_7e8e14d6b2694926_f051",
+            "e1_7e8e14d6b2694926_f052",
+            "e1_7e8e14d6b2694926_f053",
+            "e1_7e8e14d6b2694926_f054",
+            "e1_7e8e14d6b2694926_f055",
+            "e1_7e8e14d6b2694926_f056",
+            "e1_7e8e14d6b2694926_f057",
+            "e1_7e8e14d6b2694926_f058",
+            "e1_7e8e14d6b2694926_f059",
+            "e1_7e8e14d6b2694926_f060",
+            "e1_7e8e14d6b2694926_f061",
+            "e1_7e8e14d6b2694926_f062",
+            "e1_7e8e14d6b2694926_f063",
+            "e1_7e8e14d6b2694926_f064",
+            "e2_7e8e14d6b2694926_f001",
+            "e2_7e8e14d6b2694926_f002",
+            "e2_7e8e14d6b2694926_f003",
+            "e2_7e8e14d6b2694926_f004",
+            "e2_7e8e14d6b2694926_f005",
+            "e2_7e8e14d6b2694926_f006",
+            "e2_7e8e14d6b2694926_f007",
+            "e2_7e8e14d6b2694926_f008",
+            "e2_7e8e14d6b2694926_f009",
+            "e2_7e8e14d6b2694926_f010",
+            "e2_7e8e14d6b2694926_f011",
+            "e2_7e8e14d6b2694926_f012",
+            "e2_7e8e14d6b2694926_f013",
+            "e2_7e8e14d6b2694926_f014",
+            "e2_7e8e14d6b2694926_f015",
+            "e2_7e8e14d6b2694926_f016",
+            "e2_7e8e14d6b2694926_f017",
+            "e2_7e8e14d6b2694926_f018",
+            "e2_7e8e14d6b2694926_f019",
+            "e2_7e8e14d6b2694926_f020",
+            "e2_7e8e14d6b2694926_f021",
+            "e2_7e8e14d6b2694926_f022",
+            "e2_7e8e14d6b2694926_f023",
+            "e2_7e8e14d6b2694926_f024",
+            "e2_7e8e14d6b2694926_f025",
+            "e2_7e8e14d6b2694926_f026",
+            "e2_7e8e14d6b2694926_f027",
+            "e2_7e8e14d6b2694926_f028",
+            "e2_7e8e14d6b2694926_f029",
+            "e2_7e8e14d6b2694926_f030",
+            "e2_7e8e14d6b2694926_f031",
+            "e2_7e8e14d6b2694926_f032",
+            "e2_7e8e14d6b2694926_f033",
+            "e2_7e8e14d6b2694926_f034",
+            "e2_7e8e14d6b2694926_f035",
+            "e2_7e8e14d6b2694926_f036"
+          ],
+          "cited_fact_ids": [
+            "e1_7e8e14d6b2694926_f012"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f012",
+              "evidence_id": "e1",
+              "path": "summary.status_counts.AT_RISK",
+              "value": 2,
+              "unit": "facilities",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 2,
+          "claim_field": "key_risks.1.text",
+          "claim_text": "Critical warnings include registered medicine resource types at risk and active bed warnings.",
+          "supplied_fact_ids": [
+            "e1_7e8e14d6b2694926_f001",
+            "e1_7e8e14d6b2694926_f002",
+            "e1_7e8e14d6b2694926_f003",
+            "e1_7e8e14d6b2694926_f004",
+            "e1_7e8e14d6b2694926_f005",
+            "e1_7e8e14d6b2694926_f006",
+            "e1_7e8e14d6b2694926_f007",
+            "e1_7e8e14d6b2694926_f008",
+            "e1_7e8e14d6b2694926_f009",
+            "e1_7e8e14d6b2694926_f010",
+            "e1_7e8e14d6b2694926_f011",
+            "e1_7e8e14d6b2694926_f012",
+            "e1_7e8e14d6b2694926_f013",
+            "e1_7e8e14d6b2694926_f014",
+            "e1_7e8e14d6b2694926_f015",
+            "e1_7e8e14d6b2694926_f016",
+            "e1_7e8e14d6b2694926_f017",
+            "e1_7e8e14d6b2694926_f018",
+            "e1_7e8e14d6b2694926_f019",
+            "e1_7e8e14d6b2694926_f020",
+            "e1_7e8e14d6b2694926_f021",
+            "e1_7e8e14d6b2694926_f022",
+            "e1_7e8e14d6b2694926_f023",
+            "e1_7e8e14d6b2694926_f024",
+            "e1_7e8e14d6b2694926_f025",
+            "e1_7e8e14d6b2694926_f026",
+            "e1_7e8e14d6b2694926_f027",
+            "e1_7e8e14d6b2694926_f028",
+            "e1_7e8e14d6b2694926_f029",
+            "e1_7e8e14d6b2694926_f030",
+            "e1_7e8e14d6b2694926_f031",
+            "e1_7e8e14d6b2694926_f032",
+            "e1_7e8e14d6b2694926_f033",
+            "e1_7e8e14d6b2694926_f034",
+            "e1_7e8e14d6b2694926_f035",
+            "e1_7e8e14d6b2694926_f036",
+            "e1_7e8e14d6b2694926_f037",
+            "e1_7e8e14d6b2694926_f038",
+            "e1_7e8e14d6b2694926_f039",
+            "e1_7e8e14d6b2694926_f040",
+            "e1_7e8e14d6b2694926_f041",
+            "e1_7e8e14d6b2694926_f042",
+            "e1_7e8e14d6b2694926_f043",
+            "e1_7e8e14d6b2694926_f044",
+            "e1_7e8e14d6b2694926_f045",
+            "e1_7e8e14d6b2694926_f046",
+            "e1_7e8e14d6b2694926_f047",
+            "e1_7e8e14d6b2694926_f048",
+            "e1_7e8e14d6b2694926_f049",
+            "e1_7e8e14d6b2694926_f050",
+            "e1_7e8e14d6b2694926_f051",
+            "e1_7e8e14d6b2694926_f052",
+            "e1_7e8e14d6b2694926_f053",
+            "e1_7e8e14d6b2694926_f054",
+            "e1_7e8e14d6b2694926_f055",
+            "e1_7e8e14d6b2694926_f056",
+            "e1_7e8e14d6b2694926_f057",
+            "e1_7e8e14d6b2694926_f058",
+            "e1_7e8e14d6b2694926_f059",
+            "e1_7e8e14d6b2694926_f060",
+            "e1_7e8e14d6b2694926_f061",
+            "e1_7e8e14d6b2694926_f062",
+            "e1_7e8e14d6b2694926_f063",
+            "e1_7e8e14d6b2694926_f064",
+            "e2_7e8e14d6b2694926_f001",
+            "e2_7e8e14d6b2694926_f002",
+            "e2_7e8e14d6b2694926_f003",
+            "e2_7e8e14d6b2694926_f004",
+            "e2_7e8e14d6b2694926_f005",
+            "e2_7e8e14d6b2694926_f006",
+            "e2_7e8e14d6b2694926_f007",
+            "e2_7e8e14d6b2694926_f008",
+            "e2_7e8e14d6b2694926_f009",
+            "e2_7e8e14d6b2694926_f010",
+            "e2_7e8e14d6b2694926_f011",
+            "e2_7e8e14d6b2694926_f012",
+            "e2_7e8e14d6b2694926_f013",
+            "e2_7e8e14d6b2694926_f014",
+            "e2_7e8e14d6b2694926_f015",
+            "e2_7e8e14d6b2694926_f016",
+            "e2_7e8e14d6b2694926_f017",
+            "e2_7e8e14d6b2694926_f018",
+            "e2_7e8e14d6b2694926_f019",
+            "e2_7e8e14d6b2694926_f020",
+            "e2_7e8e14d6b2694926_f021",
+            "e2_7e8e14d6b2694926_f022",
+            "e2_7e8e14d6b2694926_f023",
+            "e2_7e8e14d6b2694926_f024",
+            "e2_7e8e14d6b2694926_f025",
+            "e2_7e8e14d6b2694926_f026",
+            "e2_7e8e14d6b2694926_f027",
+            "e2_7e8e14d6b2694926_f028",
+            "e2_7e8e14d6b2694926_f029",
+            "e2_7e8e14d6b2694926_f030",
+            "e2_7e8e14d6b2694926_f031",
+            "e2_7e8e14d6b2694926_f032",
+            "e2_7e8e14d6b2694926_f033",
+            "e2_7e8e14d6b2694926_f034",
+            "e2_7e8e14d6b2694926_f035",
+            "e2_7e8e14d6b2694926_f036"
+          ],
+          "cited_fact_ids": [
+            "e1_7e8e14d6b2694926_f032",
+            "e1_7e8e14d6b2694926_f057",
+            "e1_7e8e14d6b2694926_f062"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f032",
+              "evidence_id": "e1",
+              "path": "warnings.bed_warnings",
+              "value": 5,
+              "unit": null,
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f057",
+              "evidence_id": "e1",
+              "path": "warnings.counts.CRITICAL",
+              "value": 4,
+              "unit": null,
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            },
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f062",
+              "evidence_id": "e1",
+              "path": "warnings.medicines_at_risk",
+              "value": 5,
+              "unit": "medicine resource types",
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        },
+        {
+          "claim_index": 3,
+          "claim_field": "remaining_gaps.0.text",
+          "claim_text": "Total warning counts across the network reflect unresolved operational strain.",
+          "supplied_fact_ids": [
+            "e1_7e8e14d6b2694926_f001",
+            "e1_7e8e14d6b2694926_f002",
+            "e1_7e8e14d6b2694926_f003",
+            "e1_7e8e14d6b2694926_f004",
+            "e1_7e8e14d6b2694926_f005",
+            "e1_7e8e14d6b2694926_f006",
+            "e1_7e8e14d6b2694926_f007",
+            "e1_7e8e14d6b2694926_f008",
+            "e1_7e8e14d6b2694926_f009",
+            "e1_7e8e14d6b2694926_f010",
+            "e1_7e8e14d6b2694926_f011",
+            "e1_7e8e14d6b2694926_f012",
+            "e1_7e8e14d6b2694926_f013",
+            "e1_7e8e14d6b2694926_f014",
+            "e1_7e8e14d6b2694926_f015",
+            "e1_7e8e14d6b2694926_f016",
+            "e1_7e8e14d6b2694926_f017",
+            "e1_7e8e14d6b2694926_f018",
+            "e1_7e8e14d6b2694926_f019",
+            "e1_7e8e14d6b2694926_f020",
+            "e1_7e8e14d6b2694926_f021",
+            "e1_7e8e14d6b2694926_f022",
+            "e1_7e8e14d6b2694926_f023",
+            "e1_7e8e14d6b2694926_f024",
+            "e1_7e8e14d6b2694926_f025",
+            "e1_7e8e14d6b2694926_f026",
+            "e1_7e8e14d6b2694926_f027",
+            "e1_7e8e14d6b2694926_f028",
+            "e1_7e8e14d6b2694926_f029",
+            "e1_7e8e14d6b2694926_f030",
+            "e1_7e8e14d6b2694926_f031",
+            "e1_7e8e14d6b2694926_f032",
+            "e1_7e8e14d6b2694926_f033",
+            "e1_7e8e14d6b2694926_f034",
+            "e1_7e8e14d6b2694926_f035",
+            "e1_7e8e14d6b2694926_f036",
+            "e1_7e8e14d6b2694926_f037",
+            "e1_7e8e14d6b2694926_f038",
+            "e1_7e8e14d6b2694926_f039",
+            "e1_7e8e14d6b2694926_f040",
+            "e1_7e8e14d6b2694926_f041",
+            "e1_7e8e14d6b2694926_f042",
+            "e1_7e8e14d6b2694926_f043",
+            "e1_7e8e14d6b2694926_f044",
+            "e1_7e8e14d6b2694926_f045",
+            "e1_7e8e14d6b2694926_f046",
+            "e1_7e8e14d6b2694926_f047",
+            "e1_7e8e14d6b2694926_f048",
+            "e1_7e8e14d6b2694926_f049",
+            "e1_7e8e14d6b2694926_f050",
+            "e1_7e8e14d6b2694926_f051",
+            "e1_7e8e14d6b2694926_f052",
+            "e1_7e8e14d6b2694926_f053",
+            "e1_7e8e14d6b2694926_f054",
+            "e1_7e8e14d6b2694926_f055",
+            "e1_7e8e14d6b2694926_f056",
+            "e1_7e8e14d6b2694926_f057",
+            "e1_7e8e14d6b2694926_f058",
+            "e1_7e8e14d6b2694926_f059",
+            "e1_7e8e14d6b2694926_f060",
+            "e1_7e8e14d6b2694926_f061",
+            "e1_7e8e14d6b2694926_f062",
+            "e1_7e8e14d6b2694926_f063",
+            "e1_7e8e14d6b2694926_f064",
+            "e2_7e8e14d6b2694926_f001",
+            "e2_7e8e14d6b2694926_f002",
+            "e2_7e8e14d6b2694926_f003",
+            "e2_7e8e14d6b2694926_f004",
+            "e2_7e8e14d6b2694926_f005",
+            "e2_7e8e14d6b2694926_f006",
+            "e2_7e8e14d6b2694926_f007",
+            "e2_7e8e14d6b2694926_f008",
+            "e2_7e8e14d6b2694926_f009",
+            "e2_7e8e14d6b2694926_f010",
+            "e2_7e8e14d6b2694926_f011",
+            "e2_7e8e14d6b2694926_f012",
+            "e2_7e8e14d6b2694926_f013",
+            "e2_7e8e14d6b2694926_f014",
+            "e2_7e8e14d6b2694926_f015",
+            "e2_7e8e14d6b2694926_f016",
+            "e2_7e8e14d6b2694926_f017",
+            "e2_7e8e14d6b2694926_f018",
+            "e2_7e8e14d6b2694926_f019",
+            "e2_7e8e14d6b2694926_f020",
+            "e2_7e8e14d6b2694926_f021",
+            "e2_7e8e14d6b2694926_f022",
+            "e2_7e8e14d6b2694926_f023",
+            "e2_7e8e14d6b2694926_f024",
+            "e2_7e8e14d6b2694926_f025",
+            "e2_7e8e14d6b2694926_f026",
+            "e2_7e8e14d6b2694926_f027",
+            "e2_7e8e14d6b2694926_f028",
+            "e2_7e8e14d6b2694926_f029",
+            "e2_7e8e14d6b2694926_f030",
+            "e2_7e8e14d6b2694926_f031",
+            "e2_7e8e14d6b2694926_f032",
+            "e2_7e8e14d6b2694926_f033",
+            "e2_7e8e14d6b2694926_f034",
+            "e2_7e8e14d6b2694926_f035",
+            "e2_7e8e14d6b2694926_f036"
+          ],
+          "cited_fact_ids": [
+            "e1_7e8e14d6b2694926_f064"
+          ],
+          "unknown_fact_ids": [],
+          "resolved_facts": [
+            {
+              "fact_id": "e1_7e8e14d6b2694926_f064",
+              "evidence_id": "e1",
+              "path": "warnings.total",
+              "value": 26,
+              "unit": null,
+              "tool": "get_network_summary",
+              "context": {
+                "country_id": "IN",
+                "profile": "redistribution-ready",
+                "profile_version": "inventory-profile-v1",
+                "origin": "2026-09-27"
+              }
+            }
+          ]
+        }
+      ],
+      "status": "PASS",
+      "total_seconds": 29.571528400003444
+    }
+  ],
+  "new_actual_provider_requests": 2,
+  "scripted_requests": 0,
+  "ledger_after": 25,
+  "status": "PASS",
+  "preservation": {
+    "files_checked": 336,
+    "unchanged": 327,
+    "env_unchanged": true,
+    "ui_unchanged": true,
+    "operational_and_federation_assets_unchanged": true,
+    "historical_reports_unchanged": true,
+    "production_fallback_order_unchanged": true
+  }
+}

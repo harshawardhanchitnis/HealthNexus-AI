@@ -219,4 +219,4 @@ def test_live_capable_models_share_mock_grounding_contract(profiles,model):
     assert response.metadata['provider_requests']==1 and response.metadata['local_tool_calls']==2
     assert response.evidence and response.metadata['effective_model']==model
     input_data=json.loads(fake.bodies[0]['input'])
-    assert all(e['numeric_facts'] for e in input_data['server_prefetched_evidence'])
+    assert all(e['facts'] for e in input_data['server_prefetched_evidence'])

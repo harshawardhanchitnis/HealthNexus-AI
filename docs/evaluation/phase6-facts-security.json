@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-09-29T08:00:06.878472+00:00",
+  "status": "PASS",
+  "baseline_commit": "c526378",
+  "preservation": {
+    "files_checked": 336,
+    "unchanged": 327,
+    "env_unchanged": true,
+    "ui_unchanged": true,
+    "operational_and_federation_assets_unchanged": true,
+    "historical_reports_unchanged": true,
+    "production_fallback_order_unchanged": true
+  },
+  "secret_scan": {
+    "status": "PASS",
+    "files_scanned": 433,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "env_unchanged": true,
+  "api_key_unchanged": true,
+  "project_unchanged": true,
+  "billing_unchanged": true,
+  "no_deployment": true,
+  "no_ui_redesign": true,
+  "accepted_models_not_retrained": true,
+  "canonical_data_not_regenerated": true,
+  "operational_engines_unchanged": true,
+  "production_fallback_order_unchanged": true,
+  "ledger": {
+    "historical_requests": 23,
+    "new_actual_provider_requests": 2,
+    "total": 25,
+    "original_day_preserved": true,
+    "all_original_metadata_preserved": true,
+    "provider_model": "gemini-3.5-flash-lite",
+    "model_historical": 4,
+    "model_new": 2,
+    "model_total": 6,
+    "quota_remaining": "not inferred"
+  },
+  "authorized_scope": "Two independent Lite smokes only; no retry, fallback or reused interaction ID",
+  "live_grounded_smoke": "PASS 2/2",
+  "full_phase6_workflow_acceptance": "pending"
+}

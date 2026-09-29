@@ -55,7 +55,9 @@ Angular → FastAPI → trusted local operational engines. Public-source ingesti
 
 **Used:** Google OR-Tools, implemented and measured. The Gemini API layer uses the official `google-genai` SDK, Interactions, function results and structured evidence.
 
-**Gemini status:** Integration implemented; full live acceptance remains pending. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. The [Phase 8.5 matrix](docs/phase85-report.md#gemini-live-availability-matrix) separates provider availability from grounding. The latest [exact numeric-contract smoke](docs/phase6-grounding-report.md) returned HTTP 200 / valid schema from Flash-Lite with no numeric literals, but failed one citation path; verification stopped after one request. Strict validation remains intact. Offline summaries are clearly labelled and require no key.
+**Gemini status:** Integration implemented; full live workflow acceptance remains pending. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. Gemini now cites server-issued request-local fact IDs; canonical source paths and exact numeric validation remain server-owned. The [current fact-citation report](docs/phase6-fact-citations-report.md) records 436 passing backend tests, shared mocks and the limited authorized Lite smoke results. Earlier provider/grounding evidence remains intact. Offline summaries are clearly labelled and require no key.
+
+**Live grounded smoke acceptance: PASS 2/2. Full Phase 6 workflow acceptance remains pending.** Both independent Lite smokes passed the configured schema, citation and grounding checks. No full live workflow or deployment followed.
 
 **Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
 

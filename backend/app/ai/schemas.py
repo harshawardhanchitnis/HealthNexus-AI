@@ -1,4 +1,4 @@
-from typing import Any, Literal
+from typing import Any, Literal, Annotated
 from uuid import UUID
 from pydantic import BaseModel, ConfigDict, Field
 from app.models.provenance import CountryCode
@@ -92,6 +92,22 @@ class DraftAnswer(Strict):
     key_risks: list[Claim] = Field(default_factory=list, max_length=5)
     recommended_actions: list[Claim] = Field(default_factory=list, max_length=5)
     remaining_gaps: list[Claim] = Field(default_factory=list, max_length=4)
+
+
+FactId=Annotated[str,Field(min_length=1,max_length=64)]
+
+
+class FactClaim(Strict):
+    text: str = Field(min_length=1, max_length=700, description='Explain only the cited facts. Prefer focused qualitative text; do not calculate, round or convert values.')
+    evidence_refs: list[FactId] = Field(min_length=1, max_length=4, description='Copy exact fact IDs from the CURRENT evidence catalogue. No paths, values, units or previous-request IDs.')
+
+
+class FactDraftAnswer(Strict):
+    """Provider-only contract. Public UI claims remain server-resolved Claim objects."""
+    situation: FactClaim
+    key_risks: list[FactClaim] = Field(default_factory=list, max_length=5)
+    recommended_actions: list[FactClaim] = Field(default_factory=list, max_length=5)
+    remaining_gaps: list[FactClaim] = Field(default_factory=list, max_length=4)
 
 
 class Evidence(Strict):

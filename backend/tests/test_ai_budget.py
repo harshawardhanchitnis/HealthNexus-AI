@@ -8,7 +8,7 @@ import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'scripts'))
 from verify_gemini import DemoTransport, EXPECTED, compatible, fixture, parser, save_pass, seed_verifier_conversation
 from app.ai.config import DEFAULT_CHAIN
-from test_ai import service, request, Scripted, turn, call, ready, final
+from test_ai import service, request, Scripted, turn, call, ready, final, bind_final
 from test_profiles import profiles, trained
 from app.ai.budget import RequestBudget
 from app.ai.client import CopilotError, GeminiTransport, provider_error
@@ -160,11 +160,11 @@ def test_provider_retry_attempts_are_counted_in_service_metadata(profiles,monkey
     monkeypatch.setattr('app.ai.client.sleep',lambda _:None)
     class Unavailable(Exception):code=503
     args={'country_id':'BR','profile':'redistribution-ready'}
-    sequence=iter([turn([call('get_network_summary',args)]),ready(),final()])
+    sequence=iter([turn([call('get_network_summary',args)]),ready(),final()]);known={}
     def create(**body):
         sent.append(body)
         if len(sent)==1:raise Unavailable()
-        data=next(sequence)
+        data=bind_final(next(sequence),body,known)
         return SimpleNamespace(model_dump=lambda **_:data,output_text=data.get('output_text',''))
     monkeypatch.setattr(transport.client.interactions,'create',create)
     budget=RequestBudget(4);transport.before_request=budget.consume

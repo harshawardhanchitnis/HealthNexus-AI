@@ -8,10 +8,11 @@ from uuid import uuid4
 from pydantic import ValidationError
 from app.ai.config import AIConfig, VERSION as CONFIG_VERSION
 from app.ai.client import GeminiTransport, CopilotError
-from app.ai.schemas import Context, CopilotResponse, DraftAnswer, ToolTrace
+from app.ai.schemas import Context, CopilotResponse, FactDraftAnswer, ToolTrace
 from app.ai.system_prompt import SYSTEM, VERSION as PROMPT_VERSION, LIMITATIONS
-from app.ai.tool_registry import declarations, json_schema, intent, SUBSETS
-from app.ai.protocol import compact, byte_size, model_record
+from app.ai.tool_registry import declarations, intent, SUBSETS
+from app.ai.protocol import byte_size
+from app.ai.facts import FactCatalogue, VERSION as FACT_VERSION
 from app.ai.tools import ToolExecutor
 from app.ai.citations import build_evidence, sanitize_diagnostic
 from app.ai.fallback import clinical_request, offline_calls, offline_draft
@@ -130,6 +131,7 @@ class CopilotService:
                 self.requests[rid]={'request_id':rid,'conversation_id':cid,'country_id':request.country_id,
                     'profile':request.profile,'status':'running','phase':'Checking context','tools':[]}
             traces, records = [], {}
+            catalogue=FactCatalogue();fact_audits=[]
             selected_intent = intent(request)
             allowed = SUBSETS[selected_intent]
             if selected_intent=='emergency-planning' and not (request.state_id or request.district_id):
@@ -185,8 +187,8 @@ class CopilotService:
                         'context':request.model_dump(exclude={'message','request_id','conversation_id'}),
                         'active_scenario_id':executor.latest_scenario,'active_optimization_id':executor.latest_plan,
                         'instruction':'Continue using validated local evidence. Completed simulations and optimizations must not be repeated. No hidden provider memory is available. Retrieve fresh tools only for missing facts.',
-                        'server_prefetched_evidence':[model_record(eid,r['tool'],r['payload'],
-                            summary_only=selected_intent=='resilience-summary') for eid,r in records.items()]},ensure_ascii=False)
+                        'server_prefetched_evidence':[{k:v for k,v in catalogue.envelope(eid,r['tool'],r['payload'],
+                            summary_only=selected_intent=='resilience-summary').items() if k!='result'} for eid,r in records.items()]},ensure_ascii=False)
                     if len(data.encode('utf-8'))>120000:
                         raise CopilotError('handoff_context_limit','Validated handoff evidence exceeds its bound. Narrow the operational question.',422)
                     return data
@@ -253,7 +255,7 @@ class CopilotService:
                     if any(t.status!='success' for t in traces):
                         raise CopilotError('tools_unavailable','Fresh local evidence could not be prepared.')
                     input_data=json.dumps({'question':request.message,'context':json.loads(input_data)['context'],
-                        'server_prefetched_evidence':[model_record(eid,r['tool'],r['payload'],
+                        'server_prefetched_evidence':[catalogue.envelope(eid,r['tool'],r['payload'],
                             summary_only=selected_intent=='resilience-summary') for eid,r in records.items()]})
                 for turn in range(self.config.max_calls+1):
                     if prefetched: break
@@ -277,7 +279,7 @@ class CopilotService:
                             raise CopilotError('malformed_tool_call','Gemini returned a malformed function call.')
                         output=execute(call['name'],call['arguments'])
                         if 'result' in output:
-                            output=model_record(output['evidence_id'],call['name'],output['result'])
+                            output=catalogue.envelope(output['evidence_id'],call['name'],output['result'])
                         input_data.append({'type':'function_result','name':call['name'],'call_id':call['id'],
                             'result':[{'type':'text','text':json.dumps(output,ensure_ascii=False)}]})
                     if any(t.status=='success' and t.tool in ('optimize_redistribution','get_optimization_result') for t in traces):
@@ -298,7 +300,7 @@ class CopilotService:
                         'fresh_evidence':[{'evidence_id':eid,'tool':r['tool']} for eid,r in records.items()]}),
                     'system_instruction':SYSTEM,'store':True,
                     'generation_config':{'thinking_level':self.config.thinking,'max_output_tokens':self.config.max_output_tokens},
-                    'response_format':{'type':'text','mime_type':'application/json','schema':json_schema(DraftAnswer)}}
+                    'response_format':{'type':'text','mime_type':'application/json','schema':catalogue.schema()}}
                 if previous: body['previous_interaction_id']=previous
                 response=ask(body)
                 interaction_id=response.get('id')
@@ -306,10 +308,11 @@ class CopilotService:
                     raise CopilotError('response_incomplete','Gemini did not finish structured synthesis within its response budget.')
                 if any(s.get('type')=='function_call' for s in response.get('steps',[])):
                     raise CopilotError('malformed_tool_call','Gemini returned a tool call during schema-only synthesis.')
-                try: draft=DraftAnswer.model_validate_json(response.get('output_text',''))
+                try: provider_draft=FactDraftAnswer.model_validate_json(response.get('output_text',''))
                 except (ValidationError,TypeError):
                     raise CopilotError('response_schema','Gemini response failed the structured output schema.') from None
-            evidence=build_evidence(draft,records,context=request,origin=snapshot.as_of)
+                draft,evidence,fact_audits=catalogue.validate(provider_draft,records,context=request,origin=snapshot.as_of)
+            if request.mode=='offline':evidence=build_evidence(draft,records,context=request,origin=snapshot.as_of)
             results=[{'evidence_id':eid,'tool':r['tool'],'result':r['payload']} for eid,r in records.items()]
             response=CopilotResponse(request_id=rid,conversation_id=cid,mode=request.mode,answer=draft.situation.text,
                 **draft.model_dump(),context=Context.model_validate(request.model_dump(include=set(Context.model_fields))),
@@ -319,7 +322,10 @@ class CopilotService:
                     'provider_requests':provider_requests,'local_tool_calls':len(traces),'interaction_ids':interaction_ids,
                     'intent':selected_intent,'execution_sources':execution_sources,'request_diagnostics':diagnostics,
                     'tool_payload_diagnostics':[{'tool':r['tool'],'authoritative_bytes':byte_size(r['payload']),
-                        'model_payload_bytes':byte_size(compact(r['tool'],r['payload']))} for r in records.values()],
+                        'model_payload_bytes':byte_size(catalogue.envelopes[eid]) if eid in catalogue.envelopes else 0} for eid,r in records.items()],
+                    'fact_contract_version':FACT_VERSION,
+                    'fact_validation':{'catalogue_size':len(catalogue.facts),'resolved_references':sum(len(a['cited_fact_ids']) for a in fact_audits),
+                        'unknown_fact_ids':0,'semantic_validation':'PASS','numeric_validation':'PASS'} if request.mode=='gemini' else None,
                     **(transport.metadata() if transport else {'requested_model':self.config.model,'effective_model':None,
                         'fallback_used':False,'fallback_chain_attempted':[],'fallback_reason':None}),
                     'model':transport.effective_model if transport else None,'configured_model':self.config.model,
@@ -341,10 +347,13 @@ class CopilotService:
                 self.audit[-1].update(provider_requests=provider_requests,local_tool_calls=len(traces),
                     execution_sources=execution_sources,request_diagnostics=diagnostics,
                     **(transport.metadata() if transport else {}))
+                if fact_audits:self.audit[-1]['fact_citations']=sanitize_diagnostic(fact_audits,self.config.api_key)
             return response
         except CopilotError as error:
             if hasattr(error,'grounding_diagnostic'):
                 error.grounding_diagnostic=sanitize_diagnostic(error.grounding_diagnostic,self.config.api_key)
+            if hasattr(error,'citation_diagnostic'):
+                error.citation_diagnostic=sanitize_diagnostic(error.citation_diagnostic,self.config.api_key)
             if transport: error.metadata=transport.metadata()
             if transport and error.code in ('response_schema','evidence_invalid','unsupported_number','solver_terminology','unsafe_claim','malformed_tool_call'):
                 with self.lock:
@@ -366,6 +375,8 @@ class CopilotService:
                     if transport: self.audit[-1].update(transport.metadata())
                     if hasattr(error,'grounding_diagnostic'):
                         self.audit[-1]['grounding_diagnostic']=error.grounding_diagnostic
+                    if hasattr(error,'citation_diagnostic'):
+                        self.audit[-1]['citation_diagnostic']=error.citation_diagnostic
             raise
         except Exception:
             with self.lock:

@@ -138,7 +138,9 @@ def test_mid_workflow_preserves_fresh_evidence_and_sticks(profiles):
     handoff=json.loads(fallback.bodies[0]['input'])
     assert handoff['context']['profile']=='redistribution-ready'
     assert handoff['server_prefetched_evidence'][0]['evidence_id']=='e1'
-    assert handoff['server_prefetched_evidence'][0]['result']['summary']['facilities']==answer.evidence[0].value
+    from app.ai.facts import fact_label
+    assert next(f['value'] for f in handoff['server_prefetched_evidence'][0]['facts']
+        if f['label']==fact_label('summary.facilities'))==answer.evidence[0].value
     assert 'previous_interaction_id' not in fallback.bodies[0]
     assert answer.metadata['effective_model']==DEFAULT_CHAIN[1] and len(answer.tools_used)==1
     # New request must retrieve fresh evidence; provider ID stays within the fallback model.

@@ -1,0 +1,131 @@
+{
+  "status": "PASS",
+  "actual_provider_requests": 0,
+  "baseline_commit": "c526378",
+  "context": {
+    "country_id": "IN",
+    "state_id": "MH",
+    "district_id": "MH-PUNE",
+    "profile": "redistribution-ready"
+  },
+  "historical_failure": "bed_utilisation did not resolve; the source path was summary.bed_utilisation.",
+  "purpose": "Controlled reproduction of the requested bed-utilisation claim, not a replacement for the rejected prior live response.",
+  "supplied_fact": {
+    "fact_id": "e1_0123456789abcdef_f003",
+    "label": "Summary / Bed utilisation",
+    "value": 79.8,
+    "unit": "%",
+    "quote": "79.8"
+  },
+  "provider_draft": {
+    "situation": {
+      "text": "Bed utilisation reflects notable operational pressure.",
+      "evidence_refs": [
+        "e1_0123456789abcdef_f003"
+      ]
+    },
+    "key_risks": [],
+    "recommended_actions": [],
+    "remaining_gaps": []
+  },
+  "server_resolved_claim": {
+    "text": "Bed utilisation reflects notable operational pressure.",
+    "references": [
+      {
+        "evidence_id": "e1",
+        "field": "summary.bed_utilisation"
+      }
+    ]
+  },
+  "server_evidence": {
+    "evidence_id": "e1",
+    "tool": "get_network_summary",
+    "source_type": "get_network_summary",
+    "source_id": null,
+    "field": "summary.bed_utilisation",
+    "value": 79.8,
+    "profile": "redistribution-ready",
+    "unit": "%"
+  },
+  "raw_path_id_rejection": {
+    "claim_index": 0,
+    "claim_field": "situation.text",
+    "claim_text": "Bed utilisation reflects notable operational pressure.",
+    "supplied_fact_ids": [
+      "e1_0123456789abcdef_f001",
+      "e1_0123456789abcdef_f002",
+      "e1_0123456789abcdef_f003",
+      "e1_0123456789abcdef_f004",
+      "e1_0123456789abcdef_f005",
+      "e1_0123456789abcdef_f006",
+      "e1_0123456789abcdef_f007",
+      "e1_0123456789abcdef_f008",
+      "e1_0123456789abcdef_f009",
+      "e1_0123456789abcdef_f010",
+      "e1_0123456789abcdef_f011",
+      "e1_0123456789abcdef_f012",
+      "e1_0123456789abcdef_f013",
+      "e1_0123456789abcdef_f014",
+      "e1_0123456789abcdef_f015",
+      "e1_0123456789abcdef_f016",
+      "e1_0123456789abcdef_f017",
+      "e1_0123456789abcdef_f018",
+      "e1_0123456789abcdef_f019",
+      "e1_0123456789abcdef_f020",
+      "e1_0123456789abcdef_f021",
+      "e1_0123456789abcdef_f022",
+      "e1_0123456789abcdef_f023",
+      "e1_0123456789abcdef_f024",
+      "e1_0123456789abcdef_f025",
+      "e1_0123456789abcdef_f026",
+      "e1_0123456789abcdef_f027",
+      "e1_0123456789abcdef_f028",
+      "e1_0123456789abcdef_f029",
+      "e1_0123456789abcdef_f030",
+      "e1_0123456789abcdef_f031",
+      "e1_0123456789abcdef_f032",
+      "e1_0123456789abcdef_f033",
+      "e1_0123456789abcdef_f034",
+      "e1_0123456789abcdef_f035",
+      "e1_0123456789abcdef_f036",
+      "e1_0123456789abcdef_f037",
+      "e1_0123456789abcdef_f038",
+      "e1_0123456789abcdef_f039",
+      "e1_0123456789abcdef_f040",
+      "e1_0123456789abcdef_f041",
+      "e1_0123456789abcdef_f042",
+      "e1_0123456789abcdef_f043",
+      "e1_0123456789abcdef_f044",
+      "e1_0123456789abcdef_f045",
+      "e1_0123456789abcdef_f046",
+      "e1_0123456789abcdef_f047",
+      "e1_0123456789abcdef_f048",
+      "e1_0123456789abcdef_f049",
+      "e1_0123456789abcdef_f050",
+      "e1_0123456789abcdef_f051",
+      "e1_0123456789abcdef_f052",
+      "e1_0123456789abcdef_f053",
+      "e1_0123456789abcdef_f054",
+      "e1_0123456789abcdef_f055",
+      "e1_0123456789abcdef_f056",
+      "e1_0123456789abcdef_f057",
+      "e1_0123456789abcdef_f058",
+      "e1_0123456789abcdef_f059",
+      "e1_0123456789abcdef_f060",
+      "e1_0123456789abcdef_f061",
+      "e1_0123456789abcdef_f062",
+      "e1_0123456789abcdef_f063",
+      "e1_0123456789abcdef_f064"
+    ],
+    "cited_fact_ids": [
+      "bed_utilisation"
+    ],
+    "unknown_fact_ids": [
+      "bed_utilisation"
+    ],
+    "resolved_facts": [],
+    "reason": "unknown_fact_id"
+  },
+  "path_alias_or_repair": false,
+  "numeric_values_calculated": false
+}
