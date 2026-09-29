@@ -1,5 +1,15 @@
 # Validation — 2026-09-29
 
+## Phase 6 — exact numeric evidence contract
+
+- **385 backend tests pass in 53.36 s**, retaining all original 340 cases and adding 45 grounding/verifier cases. The original pre-live gate passed 382 cases; three final local hardening cases and a full rerun followed the stopped smoke with zero extra live calls. Python compilation, Windows `pip check`, strict TypeScript and unchanged Angular production build pass. One existing Starlette/AnyIO deprecation warning remains.
+- Shared mocked Flash-Lite and 3.6 Flash flows pass schema and numeric-evidence validation. No model-specific answer logic or new engine arithmetic is added. Production model order is unchanged.
+- Canonical ready/constrained plans, conservation, donor protection, all ten country/profile partitions and original saved federation reload/evaluation pass with zero provider sends. Historical evidence, UI, engines, existing tests and `.env` remain unchanged.
+- The three old rejected drafts were not persisted. Exact numbers/sentences and their A/B cause classification are explicitly unrecoverable. New numeric failures retain sanitized claim/source diagnostics. Full Phase 6 live acceptance remains pending; only a conditional two-send Flash-Lite smoke is authorized here.
+- The first Flash-Lite live smoke returned **HTTP 200 / valid schema**, with no numeric literals, but cited `bed_utilisation` instead of `summary.bed_utilisation`. Exact path validation correctly rejected it. **Stopped after one send**, no second smoke or full acceptance. Provider time 8.551 s; 7,950 total tokens. Historical ledger 22 + 1 = 23; final preservation/security pass. [Live evidence](evaluation/phase6-numeric-live.json), [exact citation diagnosis](evaluation/phase6-numeric-live-diagnosis.json), [security](evaluation/phase6-numeric-security.json).
+
+Evidence: [grounding report](phase6-grounding-report.md), [historical diagnosis](evaluation/phase6-numeric-diagnosis.json), [mock checks](evaluation/phase6-numeric-mock.json), [pre-live regressions](evaluation/phase6-numeric-regression.json), [final regressions](evaluation/phase6-numeric-final-regression.json), [canonical engines](evaluation/phase6-numeric-canonical.json).
+
 ## Phase 8.5 — premium Command Centre redesign
 
 - **340 backend tests pass in 55.88 s** with backend source/tests unchanged; one existing Starlette/AnyIO deprecation warning. Python compilation, Windows/container dependency checks, strict TypeScript and Angular production build pass. No build warnings or new dependencies; production npm audit reports zero known vulnerabilities.

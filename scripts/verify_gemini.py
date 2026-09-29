@@ -99,7 +99,7 @@ class DemoTransport:
                     risks=[claim('Forecast evaluation uses simulated operational histories; it does not establish clinical accuracy.','data_type',performance[0])]
                     champion=performance[1]['targets']['medicine']['champion']
                     value=performance[1]['targets']['medicine']['models'][champion]['test']['wape']
-                    risks.append(claim(f'Medicine forecast test WAPE is {value:g} on simulated histories.',
+                    risks.append(claim(f'Medicine forecast test WAPE is {value} on simulated histories.',
                         f'targets.medicine.models.{champion}.test.wape',performance[0]))
             else:situation=claim('Structured warnings identify operational pressure.','summary.total')
             return {'id':f'mock-final-{uuid4()}','status':'completed','output_text':json.dumps({

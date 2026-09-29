@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "baseline_commit": "7cec2c6",
+  "backend_tests": 382,
+  "existing_backend_tests_preserved": 340,
+  "new_grounding_and_verifier_cases": 42,
+  "backend_seconds": 62.07,
+  "warnings": 1,
+  "warning_note": "Existing Starlette/AnyIO deprecation only",
+  "python_compilation": "PASS",
+  "pip_check_windows": "PASS",
+  "strict_typescript": "PASS",
+  "angular_production": "PASS",
+  "frontend_source_unchanged": true,
+  "initial_bundle_kb": 387.99,
+  "estimated_transfer_kb": 104.69,
+  "build_invocation_note": "PowerShell forwarded --configuration incorrectly on first invocation; npm.cmd run build then passed with Angular defaultConfiguration production.",
+  "mock_models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.6-flash"
+  ],
+  "mock_schema_grounding": "PASS",
+  "live_provider_requests_before_smoke": 0,
+  "historical_ledger_used": 22,
+  "canonical_engines": "PASS",
+  "preservation": {
+    "checked": 326,
+    "unchanged": 321,
+    "environment_unchanged": true,
+    "ui_unchanged": true,
+    "existing_tests_unchanged": true,
+    "operational_assets_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 417,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  }
+}

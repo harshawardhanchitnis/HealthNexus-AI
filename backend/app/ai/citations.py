@@ -3,6 +3,7 @@ import json
 import re
 from app.ai.schemas import Evidence
 from app.ai.client import CopilotError
+from app.ai.numeric import NUMBER, canonical, numeric_sources, field_unit
 
 
 def resolve(payload, path):
@@ -12,33 +13,41 @@ def resolve(payload, path):
     return value
 
 
-def numeric_forms(value, probability=False):
-    found = set()
-    if isinstance(value, (float,int)) and not isinstance(value,bool):
-        for n in (value, value*100) if probability and 0<=value<=1 else (value,):
-            found.update((str(n), f'{n:g}', f'{n:.0f}', f'{n:.1f}', f'{n:.2f}'))
-    elif isinstance(value, dict):
-        for k,v in value.items(): found.update(numeric_forms(v, 'risk' in k or 'probability' in k))
-    elif isinstance(value, list):
-        for v in value: found.update(numeric_forms(v, probability))
-    elif isinstance(value,str):
-        found.update(re.findall(r'\d+(?:\.\d+)?',value))
-    return found
+def sanitize_diagnostic(value, secret=None):
+    text=json.dumps(value,ensure_ascii=False)
+    if secret: text=text.replace(secret,'[REDACTED]')
+    text=re.sub(r'AIza[0-9A-Za-z_-]{35}','[REDACTED]',text)
+    return json.loads(text)
 
 
-def build_evidence(draft, records):
+def build_evidence(draft, records, context=None, origin=None):
     evidence, seen = [], set()
-    for claim in [draft.situation, *draft.key_risks, *draft.recommended_actions, *draft.remaining_gaps]:
-        supported = set()
+    claims=[('situation.text',draft.situation)] + [(f'{name}.{i}.text',claim)
+        for name in ('key_risks','recommended_actions','remaining_gaps')
+        for i,claim in enumerate(getattr(draft,name))]
+    for claim_field,claim in claims:
+        supported=[];references=[]
         for reference in claim.references:
             try:
                 record = records[reference.evidence_id]
+                payload=record['payload']
+                if context is not None:
+                    scope=payload['context']
+                    if scope['country_id']!=context.country_id or (scope['profile']!=context.profile and not getattr(context,'compare_profiles',False)):
+                        raise ValueError('Evidence belongs to another request context')
+                    if any(value!=getattr(context,key,None) for key,value in record.get('request_scope',{}).items()):
+                        raise ValueError('Evidence belongs to another geography')
+                if origin is not None and payload.get('context',{}).get('origin')!=str(origin):
+                    raise ValueError('Evidence belongs to another forecast origin')
                 value = resolve(record['payload'], reference.field)
                 if len(json.dumps(value)) > 1500:
                     raise ValueError('Reference must select a concise field, not an entire result')
             except (KeyError,IndexError,ValueError,TypeError):
                 raise CopilotError('evidence_invalid', 'Gemini returned an unsupported evidence reference. Retry with a narrower question.') from None
-            supported.update(numeric_forms(value, 'risk' in reference.field or 'probability' in reference.field))
+            supported.extend(numeric_sources(value,reference.field,record['tool'],payload))
+            references.append({'evidence_id':reference.evidence_id,'tool':record['tool'],
+                'field':reference.field,'value':value,'unit':field_unit(record['tool'],reference.field,payload),
+                'context':payload.get('context',{})})
             key = (reference.evidence_id, reference.field)
             if key not in seen:
                 seen.add(key)
@@ -51,9 +60,17 @@ def build_evidence(draft, records):
                 evidence.append(Evidence(evidence_id=reference.evidence_id, tool=record['tool'],
                     source_type=record['tool'], source_id=payload.get('run_id') or payload.get('scenario_id'),
                     field=reference.field, value=value, profile=payload['context']['profile'], unit=unit))
-        for number in re.findall(r'\d+(?:\.\d+)?', re.sub(r'(?<=\d),(?=\d)', '', claim.text)):
-            if number not in supported:
-                raise CopilotError('unsupported_number', 'Gemini stated a number not supported by its cited tool fields. Retry with a narrower question.')
+        unsupported=[]
+        for match in NUMBER.finditer(claim.text):
+            percent=bool(re.match(r'\s*(?:%|percent\b)',claim.text[match.end():],re.IGNORECASE))
+            if not any(canonical(match.group())==number and (not percent or unit=='%') for number,unit in supported):
+                unsupported.append(match.group())
+        if unsupported:
+            error=CopilotError('unsupported_number', 'Gemini stated a number not supported by its cited tool fields. Retry with a narrower question.')
+            error.grounding_diagnostic=sanitize_diagnostic({'claim_field':claim_field,
+                'claim_text':claim.text,'unsupported_numbers':unsupported,'references':references,
+                'rule':'Exact cited values only; no rounding, arithmetic or implicit unit conversion.'})
+            raise error
         # A model must not strengthen FEASIBLE into OPTIMAL or claim executed transfers.
         text = claim.text.lower()
         if 'optimal' in text:

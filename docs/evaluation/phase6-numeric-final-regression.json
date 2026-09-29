@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "scope": "local software regressions, not live Phase 6 acceptance",
+  "backend_tests": 385,
+  "existing_tests_preserved": 340,
+  "new_grounding_and_verifier_cases": 45,
+  "backend_seconds": 53.36,
+  "before_live": {
+    "backend_tests": 382,
+    "backend_seconds": 62.07,
+    "record": "phase6-numeric-regression.json"
+  },
+  "after_stopped_smoke": {
+    "dotted_numeric_identifier_case": 1,
+    "historical_ledger_tamper_checks": 2
+  },
+  "python_compilation": "PASS",
+  "windows_pip_check": "PASS",
+  "strict_typescript": "PASS",
+  "angular_production": "PASS",
+  "warning_note": "One existing Starlette/AnyIO deprecation",
+  "mock_models": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.6-flash"
+  ],
+  "mock_schema_grounding": "PASS",
+  "provider_calls_in_final_regressions": 0,
+  "entire_task_actual_provider_requests": 1,
+  "historical_ledger_preserved": 22,
+  "ledger_after": 23,
+  "live_smoke_accepted": false,
+  "full_phase6_accepted": false,
+  "canonical_engines": "PASS",
+  "preservation": {
+    "checked": 326,
+    "unchanged": 320,
+    "environment_unchanged": true,
+    "ui_unchanged": true,
+    "existing_tests_unchanged": true,
+    "operational_assets_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 421,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "preservation": {
+    "checked": 326,
+    "unchanged": 320,
+    "environment_unchanged": true,
+    "ui_unchanged": true,
+    "existing_tests_unchanged": true,
+    "operational_assets_unchanged": true
+  },
+  "secret_scan": {
+    "status": "PASS",
+    "files_scanned": 422,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "historical_ledger_preserved": 22,
+  "new_actual_provider_requests": 1,
+  "ledger_after": 23,
+  "historical_per_model_counts_preserved": true,
+  "original_ledger_day_preserved": true,
+  "second_send_not_executed": true,
+  "same_key_unchanged": true,
+  "env_ignored_untracked_unchanged": true,
+  "same_configured_project": true,
+  "key_rotation": false,
+  "billing_changed": false,
+  "cloud_resources_created": false,
+  "ui_changed": false,
+  "deployment": false,
+  "production_fallback_order_changed": false,
+  "saved_operational_federation_assets_changed": false,
+  "full_phase6_acceptance_executed": false
+}

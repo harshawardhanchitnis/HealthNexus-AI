@@ -11,9 +11,9 @@ from app.ai.client import GeminiTransport, CopilotError
 from app.ai.schemas import Context, CopilotResponse, DraftAnswer, ToolTrace
 from app.ai.system_prompt import SYSTEM, VERSION as PROMPT_VERSION, LIMITATIONS
 from app.ai.tool_registry import declarations, json_schema, intent, SUBSETS
-from app.ai.protocol import compact, byte_size
+from app.ai.protocol import compact, byte_size, model_record
 from app.ai.tools import ToolExecutor
-from app.ai.citations import build_evidence
+from app.ai.citations import build_evidence, sanitize_diagnostic
 from app.ai.fallback import clinical_request, offline_calls, offline_draft
 from app.ai.failover import FailoverSession, quota_cooldown
 
@@ -150,7 +150,8 @@ class CopilotService:
                         raise ValueError('Tool is outside the server-selected intent whitelist')
                     payload=executor.execute(name,args)
                     eid=f'e{len(records)+1}'
-                    records[eid]={'tool':name,'payload':payload}
+                    records[eid]={'tool':name,'payload':payload,'request_scope':{
+                        key:getattr(request,key) for key in ('state_id','district_id','facility_id')}}
                     trace.status='success';trace.evidence_id=eid
                     trace.summary='Validated HealthNexus result; no external action executed.'
                     output={'evidence_id':eid,'result':payload}
@@ -184,8 +185,8 @@ class CopilotService:
                         'context':request.model_dump(exclude={'message','request_id','conversation_id'}),
                         'active_scenario_id':executor.latest_scenario,'active_optimization_id':executor.latest_plan,
                         'instruction':'Continue using validated local evidence. Completed simulations and optimizations must not be repeated. No hidden provider memory is available. Retrieve fresh tools only for missing facts.',
-                        'server_prefetched_evidence':[{'evidence_id':eid,'tool':r['tool'],
-                            'result':compact(r['tool'],r['payload'])} for eid,r in records.items()]},ensure_ascii=False)
+                        'server_prefetched_evidence':[model_record(eid,r['tool'],r['payload'],
+                            summary_only=selected_intent=='resilience-summary') for eid,r in records.items()]},ensure_ascii=False)
                     if len(data.encode('utf-8'))>120000:
                         raise CopilotError('handoff_context_limit','Validated handoff evidence exceeds its bound. Narrow the operational question.',422)
                     return data
@@ -252,8 +253,8 @@ class CopilotService:
                     if any(t.status!='success' for t in traces):
                         raise CopilotError('tools_unavailable','Fresh local evidence could not be prepared.')
                     input_data=json.dumps({'question':request.message,'context':json.loads(input_data)['context'],
-                        'server_prefetched_evidence':[{'evidence_id':eid,'tool':r['tool'],
-                            'result':compact(r['tool'],r['payload'])} for eid,r in records.items()]})
+                        'server_prefetched_evidence':[model_record(eid,r['tool'],r['payload'],
+                            summary_only=selected_intent=='resilience-summary') for eid,r in records.items()]})
                 for turn in range(self.config.max_calls+1):
                     if prefetched: break
                     if perf_counter()-start>self.config.workflow_timeout:
@@ -276,7 +277,7 @@ class CopilotService:
                             raise CopilotError('malformed_tool_call','Gemini returned a malformed function call.')
                         output=execute(call['name'],call['arguments'])
                         if 'result' in output:
-                            output={**output,'result':compact(call['name'],output['result'])}
+                            output=model_record(output['evidence_id'],call['name'],output['result'])
                         input_data.append({'type':'function_result','name':call['name'],'call_id':call['id'],
                             'result':[{'type':'text','text':json.dumps(output,ensure_ascii=False)}]})
                     if any(t.status=='success' and t.tool in ('optimize_redistribution','get_optimization_result') for t in traces):
@@ -308,7 +309,7 @@ class CopilotService:
                 try: draft=DraftAnswer.model_validate_json(response.get('output_text',''))
                 except (ValidationError,TypeError):
                     raise CopilotError('response_schema','Gemini response failed the structured output schema.') from None
-            evidence=build_evidence(draft,records)
+            evidence=build_evidence(draft,records,context=request,origin=snapshot.as_of)
             results=[{'evidence_id':eid,'tool':r['tool'],'result':r['payload']} for eid,r in records.items()]
             response=CopilotResponse(request_id=rid,conversation_id=cid,mode=request.mode,answer=draft.situation.text,
                 **draft.model_dump(),context=Context.model_validate(request.model_dump(include=set(Context.model_fields))),
@@ -342,6 +343,8 @@ class CopilotService:
                     **(transport.metadata() if transport else {}))
             return response
         except CopilotError as error:
+            if hasattr(error,'grounding_diagnostic'):
+                error.grounding_diagnostic=sanitize_diagnostic(error.grounding_diagnostic,self.config.api_key)
             if transport: error.metadata=transport.metadata()
             if transport and error.code in ('response_schema','evidence_invalid','unsupported_number','solver_terminology','unsafe_claim','malformed_tool_call'):
                 with self.lock:
@@ -361,6 +364,8 @@ class CopilotService:
                         'local_tool_calls':len(self.requests[rid]['tools']),'execution_sources':execution_sources,
                         'request_diagnostics':diagnostics,'interaction_ids':interaction_ids,'usage':usages})
                     if transport: self.audit[-1].update(transport.metadata())
+                    if hasattr(error,'grounding_diagnostic'):
+                        self.audit[-1]['grounding_diagnostic']=error.grounding_diagnostic
             raise
         except Exception:
             with self.lock:

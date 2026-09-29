@@ -83,7 +83,7 @@ class Reference(Strict):
 
 
 class Claim(Strict):
-    text: str = Field(min_length=1, max_length=700)
+    text: str = Field(min_length=1, max_length=700, description='Prefer qualitative explanation. Cite exact scalar fields; authoritative numbers are rendered by the server. Do not calculate or round.')
     references: list[Reference] = Field(min_length=1, max_length=4)
 
 

@@ -60,6 +60,10 @@ Desktop/mobile browser checks and screenshots are recorded separately in [browse
 
 [Historical live status](evaluation/phase6-live.json) records the daily-quota failure. Future live verification is authorized only after actual quota reset and explicit user approval; use `scripts/verify_gemini.py --live --acceptance --resume`. The current verifier writes separate budget reports and retains compatible per-case PASS evidence. Final structured/native protocol acceptance remains pending. No Phase 7 or federated aggregation work was added.
 
+## Current numeric grounding work
+
+The [29 September grounding report](phase6-grounding-report.md) supersedes the older live-status notes below for the narrow numeric-contract task. The final full suite passes 385 backend tests, preserving the original 340 cases. Both shared mock model flows and canonical engines pass. Earlier HTTP-200 unsupported-number drafts were not retained, so their exact claims cannot be reconstructed honestly. The new Flash-Lite request returned HTTP 200 / valid schema without numeric literals, but failed one exact citation path. The verifier stopped after one send, retaining the new draft and preserving 22 historical requests (23 cumulative). Full Phase 6 acceptance remains pending; the Phase 8.5 UI/domain engines and strict validator are preserved.
+
 ## Current failover validation
 
 See [failover policy, exact live attempt trace, model matrix and limitations](phase6-failover-report.md). Same key/project; no billing change. The latest live smoke sent three provider requests and executed two fresh local reads. There were zero successful interactions or token-usage reports. Positive/constrained Gemini interpretation was not attempted after smoke failed. Both local plans pass mocked and explicit offline acceptance. Provider-stage measurements include verifier pacing. Neither successful live fallback reasoning nor hackathon readiness is asserted yet.

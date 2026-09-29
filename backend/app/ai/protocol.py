@@ -1,5 +1,6 @@
 """Compact model context; complete authoritative objects remain in the response."""
 import json
+from app.ai.numeric import numeric_leaves, field_unit
 
 
 def compact(tool, payload):
@@ -38,3 +39,18 @@ def compact(tool, payload):
 
 def byte_size(value):
     return len(json.dumps(value, ensure_ascii=False, separators=(',',':')).encode('utf-8'))
+
+
+def model_record(eid, tool, payload, *, summary_only=False):
+    result=compact(tool,payload)
+    if summary_only and tool=='get_network_summary':
+        # Geography is already validated; nationwide discovery catalogues are irrelevant to this summary.
+        result={k:result[k] for k in ('context','summary','warnings','model_version','facilities','facilities_truncated') if k in result}
+    provenance={k:v for k,v in {'origin':payload.get('context',{}).get('origin'),
+        'model_version':payload.get('model_version')}.items() if v is not None}
+    facts=[]
+    for path,value in numeric_leaves(result):
+        facts.append({'evidence_id':eid,'path':path,'value':value,'quote':str(value),
+            'unit':field_unit(tool,path,payload),'provenance':provenance})
+        if len(facts)>=32:break
+    return {'evidence_id':eid,'tool':tool,'result':result,'numeric_facts':facts}

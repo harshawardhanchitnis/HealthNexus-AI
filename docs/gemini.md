@@ -93,6 +93,12 @@ The ready Pune tools reproduce 41,763 target, 17,745 safe capacity, 15,679 trans
 
 See [Phase 6 report](phase6-report.md) for earlier browser/performance evidence and [the efficiency report](phase6-budget-report.md) for current verification. No FedAvg is implemented. Phase 7 remains deferred until Phase 6 acceptance is completed.
 
+## Exact numeric evidence contract
+
+The current Copilot contract uses exact, request-local numeric facts with paths, units and available provenance. Gemini selects/explains/connects facts and prefers qualitative text with scalar citations; it must not calculate, round, convert fractions into percentages or turn WAPE into accuracy. The validator admits only exact cited values, with explicit percentage units and country/profile/geography/origin checks. Failed numeric drafts now retain sanitized claim/reference diagnostics. The response shape and production fallback order remain unchanged.
+
+See the [numeric grounding report](phase6-grounding-report.md) for the historical trace-retention limitation, deterministic/mocked checks and the at-most-two-send, no-failover Flash-Lite verifier. The first live request returned HTTP 200 with a valid schema and no numeric literals, but omitted `summary.` in one citation path and was rejected. The verifier stopped after one send; the retained ledger is 22 + 1 = 23 and is not reset on date rollover. Strict path validation remains intact. A citation-contract revision and further authorized smokes are needed before full Phase 6 live acceptance.
+
 ## Availability failover
 
 Exact default order: **gemini-3.8-flash → gemini-3.7-flash → gemini-3.6-flash → gemini-3.5-flash → gemini-3.5-flash-lite**. There is no 3.1/2.5/Pro/preview/non-Google fallback. Every candidate uses the same project/key, registry, strict tool schemas, local engines and claim validation. All use medium thinking for acceptance, supported by [official thinking documentation](https://ai.google.dev/gemini-api/docs/thinking). No model-specific answer templates or calculations are introduced.

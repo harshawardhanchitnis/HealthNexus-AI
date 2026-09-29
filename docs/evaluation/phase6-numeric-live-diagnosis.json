@@ -1,0 +1,118 @@
+{
+  "status": "STRICT_PATH_REJECTION_CONFIRMED",
+  "provider_requests_for_analysis": 0,
+  "model": "gemini-3.5-flash-lite",
+  "attempt": 1,
+  "error_class": "evidence_invalid",
+  "claim_field": "situation.text",
+  "claim_text": "The Pune network comprises multiple facilities across the district, with a portion currently classified as at risk while others remain healthy. Bed utilisation and overall medicine availability reflect notable operational pressure across the network.",
+  "invalid_reference": {
+    "claim_field": "situation.text",
+    "evidence_id": "e1",
+    "field": "bed_utilisation",
+    "tool": "get_network_summary",
+    "valid": false
+  },
+  "correct_reference_fact_already_supplied": {
+    "evidence_id": "e1",
+    "path": "summary.bed_utilisation",
+    "value": 79.8,
+    "quote": "79.8",
+    "unit": "%",
+    "provenance": {
+      "origin": "2026-09-27",
+      "model_version": "forecast-v1-176a752efab3ae4e"
+    }
+  },
+  "numeric_literals_in_claim_text": [],
+  "unsupported_numeric_claims_observed": 0,
+  "numeric_validation_completed": false,
+  "numeric_validation_note": "The original live response remains rejected. Evidence-path validation failed before full numeric validation could finish.",
+  "reference_audit": [
+    {
+      "claim_field": "situation.text",
+      "evidence_id": "e1",
+      "field": "summary.facilities",
+      "tool": "get_network_summary",
+      "valid": true,
+      "value": 3
+    },
+    {
+      "claim_field": "situation.text",
+      "evidence_id": "e1",
+      "field": "summary.status_counts.AT_RISK",
+      "tool": "get_network_summary",
+      "valid": true,
+      "value": 2
+    },
+    {
+      "claim_field": "situation.text",
+      "evidence_id": "e1",
+      "field": "bed_utilisation",
+      "tool": "get_network_summary",
+      "valid": false
+    },
+    {
+      "claim_field": "key_risks.0.text",
+      "evidence_id": "e2",
+      "field": "summary.total",
+      "tool": "get_warning_summary",
+      "valid": true,
+      "value": 26
+    },
+    {
+      "claim_field": "key_risks.0.text",
+      "evidence_id": "e2",
+      "field": "summary.medicines_at_risk",
+      "tool": "get_warning_summary",
+      "valid": true,
+      "value": 5
+    },
+    {
+      "claim_field": "key_risks.0.text",
+      "evidence_id": "e2",
+      "field": "summary.bed_warnings",
+      "tool": "get_warning_summary",
+      "valid": true,
+      "value": 5
+    },
+    {
+      "claim_field": "recommended_actions.0.text",
+      "evidence_id": "e2",
+      "field": "summary.counts.CRITICAL",
+      "tool": "get_warning_summary",
+      "valid": true,
+      "value": 4
+    },
+    {
+      "claim_field": "recommended_actions.0.text",
+      "evidence_id": "e2",
+      "field": "horizon",
+      "tool": "get_warning_summary",
+      "valid": true,
+      "value": 14
+    },
+    {
+      "claim_field": "remaining_gaps.0.text",
+      "evidence_id": "e1",
+      "field": "summary.status_counts.AT_RISK",
+      "tool": "get_network_summary",
+      "valid": true,
+      "value": 2
+    },
+    {
+      "claim_field": "remaining_gaps.0.text",
+      "evidence_id": "e2",
+      "field": "summary.counts.WARNING",
+      "tool": "get_warning_summary",
+      "valid": true,
+      "value": 15
+    }
+  ],
+  "classification": "MODEL_CITATION_PATH_ERROR_NOT_A_VALIDATOR_MAPPING_BUG",
+  "reason": "The model omitted summary. from a valid dotted field path. The original authoritative value and its full numeric-fact path were supplied. No alias, correction or accepted replacement answer is created.",
+  "historical_comparison": "The three Phase 8.5 failures used unsupported_number; their drafts are unavailable. This new retained failure is evidence_invalid and contains no numeric literals, so it cannot establish those historical causes.",
+  "next_contract_requirement": "Constrain model citation selection to the fresh supplied evidence paths, retaining exact path validation; a new live authorization is required for further testing.",
+  "second_smoke_sent": false,
+  "full_phase6_acceptance": false
+}

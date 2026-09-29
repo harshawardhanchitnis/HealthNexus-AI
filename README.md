@@ -55,7 +55,7 @@ Angular → FastAPI → trusted local operational engines. Public-source ingesti
 
 **Used:** Google OR-Tools, implemented and measured. The Gemini API layer uses the official `google-genai` SDK, Interactions, function results and structured evidence.
 
-**Gemini status:** Implementation complete; full live provider acceptance remains pending. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. All five previously returned HTTP 503 HIGH DEMAND. Phase 8.5 separates the final controlled availability matrix from full workflow acceptance; [the report](docs/phase85-report.md#gemini-live-availability-matrix) records the actual endpoint and grounding results. Offline summaries are clearly labelled and require no key.
+**Gemini status:** Integration implemented; full live acceptance remains pending. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. The [Phase 8.5 matrix](docs/phase85-report.md#gemini-live-availability-matrix) separates provider availability from grounding. The latest [exact numeric-contract smoke](docs/phase6-grounding-report.md) returned HTTP 200 / valid schema from Flash-Lite with no numeric literals, but failed one citation path; verification stopped after one request. Strict validation remains intact. Offline summaries are clearly labelled and require no key.
 
 **Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
 
