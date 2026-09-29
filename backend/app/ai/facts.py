@@ -59,10 +59,16 @@ class FactCatalogue:
         for key,value in result.items():
             if key!='context' and isinstance(value,(dict,list)) and len(json.dumps(value))<=500:
                 candidates[key]=value
-        preferred=('summary','solver','safe_capacity','impact','data_type','live_government_inventory',
+        preferred=('summary','solver','action_state','safe_capacity','impact','data_type','live_government_inventory',
             'scenario_id','run_id','total_deficit','deficit_by_resource','targets','transfers')
         def priority(path):
             root=path.split('.')[0]
+            if tool in ('optimize_redistribution','get_optimization_result') and (
+                    root=='action_state' or path in ('solver.status','safe_capacity',
+                    'impact.before.target_deficit','impact.after.target_deficit','impact.transferred_units',
+                    'impact.transfer_count','impact.donor_safety_violations','impact.new_donor_risks',
+                    'impact.before.expected_unmet','impact.after.expected_unmet')):
+                return (-1,path)
             if tool=='get_model_performance':
                 champion=payload.get('targets',{}).get('medicine',{}).get('champion')
                 if path in ('data_type','targets.medicine.champion',f'targets.medicine.models.{champion}.test.wape'):
@@ -162,7 +168,7 @@ def semantic_error(text,facts):
         (r'\bmedicin\w*\b|\binventor\w*\b|\bstock\w*\b',r'medicine|inventory|stock|resource|transfer|safe_capacity|target_deficit|data_type|probab|risk'),
         (r'\bstaff\b|\bpersonnel\b|\bnurses?\b|\bdoctors?\b',r'staff|personnel|nurse|doctor'),
         (r'\bwarning\w*\b|\balerts?\b',r'warning|counts|severity|status|summary.total'),
-        (r'\bdonors?\b|\btransfer\w*\b|\bredistribut\w*\b',r'donor|transfer|safe_capacity|deficit|solver|impact')]
+        (r'\bdonors?\b|\btransfer\w*\b|\bredistribut\w*\b',r'donor|transfer|safe_capacity|deficit|solver|impact|action_state')]
     for phrase,relevant in topics:
         if re.search(phrase,lower) and not re.search(relevant,paths):return 'unrelated_fact'
     return None

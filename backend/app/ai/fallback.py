@@ -40,7 +40,9 @@ def offline_draft(records):
     eid, record = list(records.items())[-1]
     payload = record['payload']
     def claim(text, field):
-        return Claim(text=text,references=[Reference(evidence_id=eid,field=field)])
+        refs=[Reference(evidence_id=eid,field=field)]
+        if 'action_state' in payload:refs.append(Reference(evidence_id=eid,field='action_state.plan_mode'))
+        return Claim(text=text,references=refs)
     if 'solver' in payload:
         status = payload['solver']['status']
         text = 'OR-Tools proved an optimal recommendation under its configured constraints.' if status=='OPTIMAL' else f'OR-Tools returned {status}; optimality is not claimed.'

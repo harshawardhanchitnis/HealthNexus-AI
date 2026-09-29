@@ -4,6 +4,7 @@ import re
 from app.ai.schemas import Evidence
 from app.ai.client import CopilotError
 from app.ai.numeric import NUMBER, canonical, numeric_sources, field_unit
+from app.ai.action_state import check_action_claim
 
 
 def resolve(payload, path):
@@ -77,6 +78,7 @@ def build_evidence(draft, records, context=None, origin=None):
             statuses = [resolve(records[r.evidence_id]['payload'],r.field) for r in claim.references]
             if 'OPTIMAL' not in statuses:
                 raise CopilotError('solver_terminology', 'Gemini overstated the available solver evidence.')
-        if re.search(r'\b(executed|dispatched|shipped|delivered|prescribe|dosage)\b', text):
+        check_action_claim(claim.text,references,records,claim_field)
+        if re.search(r'\b(prescribe|dosage)\b', text):
             raise CopilotError('unsafe_claim', 'Gemini returned wording outside administrative planning scope.')
     return evidence

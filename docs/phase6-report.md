@@ -1,6 +1,16 @@
 # Phase 6 — grounded resilience Copilot
 
-## Latest checkpoint — final synthesis budget fix
+## Latest checkpoint — advisory action-state grounding
+
+Optimization tools now expose server-owned advisory mode, false physical execution/external authorization/hospital contact, and not-executed transfer status through fact IDs. A bounded deterministic predicate/clause/facet guard rejects unsupported operational actions and preserves valid transfer nouns and negated action statements. Exact numerical and source membership/resolution code is unchanged. Native medium/2,400 and synthesis low/4,096, canonical engines, artifacts, UI, federation and fallback order are preserved.
+
+Preflight passed 555 tests; final regression passes **556 tests** (484 retained + 72 new), shared Lite/3.6 SDK mocks, compilation, dependencies and security/preservation. Exactly one Lite send returned HTTP 200/completed JSON: 10,156 input / 516 output / 0 thought / 10,672 total tokens, 12.832 seconds. Its remaining-gap claim still says **“optimal advisory transfers executed”** and lacks the scalar OPTIMAL citation. The production solver check rejects it first; exact saved-output offline replay independently confirms action-state failure, zero unknown IDs and no numeric literals. Ledger 29 + 1 = 30; no retry/fallback or later live case. [Full measured report](phase6-action-state-report.md), [original live trace](evaluation/phase6-action-live.json), [independent review](evaluation/phase6-action-review.json).
+
+Native orchestration: **PASS**. Final synthesis: **FAIL**. Positive workflow acceptance: **FAIL**. Full Phase 6 remains pending.
+
+**Positive live workflow remains pending because: the remaining-gap claim describes advisory transfers as executed and mentions optimal without citing solver status.**
+
+## Historical checkpoint — final synthesis budget fix
 
 Native planning remains medium/2,400; final synthesis uses low/4,096 and normally three to five concise claims. Exactly one new Lite request used deterministically reconstructed authoritative evidence, with no native provider calls, retry or fallback. It returned HTTP 200 / completed, complete four-claim JSON, 470 output tokens, zero thought tokens and 11,027 total tokens in 2.958 seconds. The response describes advisory transfers as executed actions and is not accepted. An unnecessary empty-ID guard in the stateless final-only verifier was corrected locally; the original failed trace is retained and no second live request tested the correction. Ledger 28 + 1 = 29. [Measured report and limits](phase6-synthesis-report.md).
 

@@ -123,7 +123,7 @@ def test_physical_execution_claims_rejected_in_final_acceptance(text):
         draft['recommended_actions'][0]['evidence_refs'].append(next(f.fact_id for f in catalog.facts.values() if f.path=='solver.status'))
     with pytest.raises(CopilotError) as error:
         validate_final(result(catalog,output_text=json.dumps(draft)),catalog,records,req,'2026-09-27')
-    assert error.value.code=='verification_physical_execution'
+    assert error.value.code=='unsafe_claim'
 
 
 @pytest.mark.parametrize('change',['unknown','stale','unsupported_number','full_resolution'])

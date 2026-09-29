@@ -13,6 +13,7 @@ from app.ai.system_prompt import SYSTEM, SYNTHESIS, VERSION as PROMPT_VERSION, L
 from app.ai.tool_registry import declarations, intent, SUBSETS
 from app.ai.protocol import byte_size
 from app.ai.facts import FactCatalogue, VERSION as FACT_VERSION
+from app.ai.action_state import VERSION as ACTION_STATE_VERSION
 from app.ai.tools import ToolExecutor
 from app.ai.citations import build_evidence, sanitize_diagnostic
 from app.ai.fallback import clinical_request, offline_calls, offline_draft
@@ -326,6 +327,7 @@ class CopilotService:
                     'tool_payload_diagnostics':[{'tool':r['tool'],'authoritative_bytes':byte_size(r['payload']),
                         'model_payload_bytes':byte_size(catalogue.envelopes[eid]) if eid in catalogue.envelopes else 0} for eid,r in records.items()],
                     'fact_contract_version':FACT_VERSION,
+                    'action_state_validation':{'version':ACTION_STATE_VERSION,'status':'PASS','unsupported_execution_claims':0},
                     'fact_validation':{'catalogue_size':len(catalogue.facts),'resolved_references':sum(len(a['cited_fact_ids']) for a in fact_audits),
                         'unknown_fact_ids':0,'semantic_validation':'PASS','numeric_validation':'PASS'} if request.mode=='gemini' else None,
                     **(transport.metadata() if transport else {'requested_model':self.config.model,'effective_model':None,
@@ -348,6 +350,7 @@ class CopilotService:
                     'mode':request.mode,'model':response.metadata['model'],'status':'completed',
                     'tools':[t.model_dump() for t in traces],'latency':response.metadata['total_seconds'],'usage':usages})
                 self.audit[-1].update(provider_requests=provider_requests,local_tool_calls=len(traces),
+                    action_state_validation=response.metadata['action_state_validation'],
                     execution_sources=execution_sources,request_diagnostics=diagnostics,
                     **(transport.metadata() if transport else {}))
                 if fact_audits:self.audit[-1]['fact_citations']=sanitize_diagnostic(fact_audits,self.config.api_key)
@@ -357,6 +360,8 @@ class CopilotService:
                 error.grounding_diagnostic=sanitize_diagnostic(error.grounding_diagnostic,self.config.api_key)
             if hasattr(error,'citation_diagnostic'):
                 error.citation_diagnostic=sanitize_diagnostic(error.citation_diagnostic,self.config.api_key)
+            if hasattr(error,'action_state_diagnostic'):
+                error.action_state_diagnostic=sanitize_diagnostic(error.action_state_diagnostic,self.config.api_key)
             if transport: error.metadata=transport.metadata()
             if transport and error.code in ('response_schema','evidence_invalid','unsupported_number','solver_terminology','unsafe_claim','malformed_tool_call'):
                 with self.lock:
@@ -380,6 +385,8 @@ class CopilotService:
                         self.audit[-1]['grounding_diagnostic']=error.grounding_diagnostic
                     if hasattr(error,'citation_diagnostic'):
                         self.audit[-1]['citation_diagnostic']=error.citation_diagnostic
+                    if hasattr(error,'action_state_diagnostic'):
+                        self.audit[-1]['action_state_diagnostic']=error.action_state_diagnostic
             raise
         except Exception:
             with self.lock:

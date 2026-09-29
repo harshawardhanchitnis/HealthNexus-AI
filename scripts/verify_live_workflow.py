@@ -156,7 +156,10 @@ class WorkflowMock(DemoTransport):
             plan=next((r for r in self.records.values() if r['tool'] in ('optimize_redistribution','get_optimization_result')),None)
             if plan:
                 def plan_claim(text,paths):
-                    return {'text':text,'evidence_refs':[next(f['fact_id'] for f in plan['facts'] if f['label']==fact_label(p)) for p in paths]}
+                    ids=[next(f['fact_id'] for f in plan['facts'] if f['label']==fact_label(p)) for p in paths]
+                    state=next((f for f in plan['facts'] if f['label']==fact_label('action_state.plan_mode')),None)
+                    if state:ids.append(state['fact_id'])
+                    return {'text':text,'evidence_refs':ids}
                 draft=json.loads(result['output_text'])
                 capacity=next(f['value'] for f in plan['facts'] if f['label']==fact_label('safe_capacity'))
                 if capacity:

@@ -9,6 +9,7 @@ from app.profiles.identity import fingerprint
 from app.warnings.engine import listing
 from app.data_ingestion.catalog import datasets
 from app.ai.tool_registry import validated
+from app.ai.action_state import advisory_state
 
 
 def dump(model, **options):
@@ -45,6 +46,7 @@ def plan_summary(result, offset=0, limit=10):
             'unresolved':result.impact.unresolved.get(f'{f.facility_id}:{r.resource_id}',0)}
         for f in result.after for r in f.resources if (f.facility_id,r.resource_id) in receivers]
     return {'run_id':result.run_id, 'scenario_id':result.preview.request.scenario_id,
+            'action_state':advisory_state(),
             'request':dump(result.preview.request), 'solver':dump(result.solver),
             'model_version':result.preview.model_version, 'snapshot_id':result.preview.snapshot_id,
             'policy_version':result.preview.config_version,

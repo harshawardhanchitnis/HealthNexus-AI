@@ -87,7 +87,11 @@ class DemoTransport:
             def claim(text,field,evidence=None):
                 selected=self.records[evidence or eid]
                 fact=next(f for f in selected['facts'] if f['label']==fact_label(field))
-                return {'text':text,'evidence_refs':[fact['fact_id']]}
+                ids=[fact['fact_id']]
+                if selected['tool'] in ('optimize_redistribution','get_optimization_result'):
+                    state=next((f for f in selected['facts'] if f['label']==fact_label('action_state.plan_mode')),None)
+                    if state:ids.append(state['fact_id'])
+                return {'text':text,'evidence_refs':ids}
             risks=[];gaps=[]
             plan=next(((e,r) for e,r in self.records.items() if r['tool'] in ('optimize_redistribution','get_optimization_result')),None)
             if plan:

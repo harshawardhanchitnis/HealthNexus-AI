@@ -1,0 +1,200 @@
+{
+  "status": "PASS",
+  "live_gemini_requests": 0,
+  "checks": {
+    "official_caches": {
+      "datasets": 2,
+      "records": 33
+    },
+    "profiles_and_models": "all 10 country/profile partitions validated",
+    "federation": {
+      "run_id": "fdbaaedb-773d-4b67-be50-ad406b130950",
+      "final_checksum": "d971711083cef53d8b4416eebdf4c76b35d20b94ce62752a3bd4240e4cb42fc8",
+      "global_test": {
+        "samples": 12936,
+        "absolute_error": 395198.90489160025,
+        "squared_error": 37024363.17226677,
+        "target_total": 4417026.003034783,
+        "mae": 30.55031732309835,
+        "rmse": 53.498769754107975,
+        "wape": 0.08947171798854547,
+        "normalized_mae": 0.0899031428354127
+      },
+      "raw_records_shared": 0,
+      "training_seconds": 4.801093400004902,
+      "bytes_exchanged": 614235,
+      "rounds": 5,
+      "reload": "PASS"
+    },
+    "failure_modes": "invalid country/profile/body, empty filters, reset, missing key with no provider use",
+    "operational_assets_immutable": 75,
+    "security": {
+      "status": "PASS",
+      "files_scanned": 460,
+      "env_ignored": true,
+      "env_tracked": false,
+      "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+    },
+    "static_frontend": "SPA base, runtime configuration and entry chunks PASS"
+  },
+  "timings": {
+    "app_startup_after_imports_seconds": 0.6037621000141371,
+    "readiness_seconds": 4.630751099990448,
+    "redistribution-ready_command_centre_api_seconds": 0.23937299998942763,
+    "redistribution-ready_forecast_seconds": 0.009538799989968538,
+    "redistribution-ready_scenario_seconds": 2.506755200010957,
+    "redistribution-ready_warnings_seconds": 0.02692089998163283,
+    "redistribution-ready_optimization_seconds": 0.23587669999687932,
+    "redistribution-ready_offline_copilot_seconds": 0.03706249999231659,
+    "constrained_command_centre_api_seconds": 0.27373449999140576,
+    "constrained_forecast_seconds": 0.012039099994581193,
+    "constrained_scenario_seconds": 2.622174400021322,
+    "constrained_warnings_seconds": 0.026244299981044605,
+    "constrained_optimization_seconds": 0.231723199976841,
+    "constrained_offline_copilot_seconds": 0.03535900000133552
+  },
+  "profiles": {
+    "redistribution-ready": {
+      "target_before": 41763,
+      "safe_donor_capacity": 17745,
+      "transferred": 15679,
+      "lanes": 10,
+      "unresolved": 26084,
+      "solver_status": "OPTIMAL",
+      "impact": {
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 26084,
+          "expected_unmet": 17378.197997959564,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 15679,
+        "percent_deficit_resolved": 37.5428010439863,
+        "critical_deficits_resolved": 2,
+        "critical_deficits_total": 5,
+        "facilities_protected": 0,
+        "donor_facilities_used": 2,
+        "transfer_count": 10,
+        "transferred_units": 15679,
+        "distance_km": 54.591838516215944,
+        "distance_weighted_units": 79247.99067343438,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-003:AMX": 0,
+          "IN-MH-PUNE-003:IFA": 0,
+          "IN-MH-PUNE-003:IVF": 2173,
+          "IN-MH-PUNE-003:ORS": 964,
+          "IN-MH-PUNE-003:PCM": 22947
+        },
+        "conservation": {
+          "PCM": {
+            "before": 22952,
+            "after": 22952
+          },
+          "IVF": {
+            "before": 2951,
+            "after": 2951
+          },
+          "ORS": {
+            "before": 5021,
+            "after": 5021
+          },
+          "AMX": {
+            "before": 7154,
+            "after": 7154
+          },
+          "IFA": {
+            "before": 9467,
+            "after": 9467
+          }
+        }
+      },
+      "solver_seconds": 0.0066902
+    },
+    "constrained": {
+      "target_before": 30230,
+      "safe_donor_capacity": 0,
+      "transferred": 0,
+      "lanes": 0,
+      "unresolved": 30230,
+      "solver_status": "OPTIMAL",
+      "impact": {
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "shortage_units_resolved": 0,
+        "percent_deficit_resolved": 0.0,
+        "critical_deficits_resolved": 0,
+        "critical_deficits_total": 6,
+        "facilities_protected": 0,
+        "donor_facilities_used": 0,
+        "transfer_count": 0,
+        "transferred_units": 0,
+        "distance_km": 0.0,
+        "distance_weighted_units": 0.0,
+        "donor_safety_violations": 0,
+        "new_donor_risks": 0,
+        "unresolved": {
+          "IN-MH-PUNE-001:AMX": 21,
+          "IN-MH-PUNE-001:IFA": 23,
+          "IN-MH-PUNE-001:IVF": 242,
+          "IN-MH-PUNE-001:ORS": 94,
+          "IN-MH-PUNE-001:PCM": 2765,
+          "IN-MH-PUNE-002:AMX": 64,
+          "IN-MH-PUNE-002:IFA": 82,
+          "IN-MH-PUNE-002:IVF": 420,
+          "IN-MH-PUNE-002:ORS": 179,
+          "IN-MH-PUNE-002:PCM": 4754,
+          "IN-MH-PUNE-003:AMX": 349,
+          "IN-MH-PUNE-003:IFA": 463,
+          "IN-MH-PUNE-003:IVF": 1642,
+          "IN-MH-PUNE-003:ORS": 781,
+          "IN-MH-PUNE-003:PCM": 18351
+        },
+        "conservation": {
+          "PCM": {
+            "before": 20174,
+            "after": 20174
+          },
+          "IVF": {
+            "before": 2784,
+            "after": 2784
+          },
+          "ORS": {
+            "before": 4911,
+            "after": 4911
+          },
+          "AMX": {
+            "before": 6021,
+            "after": 6021
+          },
+          "IFA": {
+            "before": 7751,
+            "after": 7751
+          }
+        }
+      },
+      "solver_seconds": 0.0018595
+    }
+  }
+}

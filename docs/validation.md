@@ -1,6 +1,14 @@
 # Validation — 2026-09-29
 
-## Phase 6 — final synthesis budget fix
+## Phase 6 — advisory action-state grounding
+
+- Pre-live **555 tests passed in 103.13 seconds**; final **556 tests pass in 114.61 seconds** (484 retained + 72 new). Shared Lite/3.6 official SDK HTTP mocks, compilation, `pip check`, canonical operational/federation results and security/preservation pass. The original two execution phrases and equivalent variants are rejected; valid advisory nouns/negation and facet-specific citations pass. [Preflight](evaluation/phase6-action-preflight.json), [final local evidence](evaluation/phase6-action-final.json), [mocks](evaluation/phase6-action-mock.json).
+- Exactly one Lite final-only send used reconstructed actual engine evidence at low/4,096: HTTP 200/completed, complete four-claim JSON, 10,156 input / 516 output / 0 thought / 10,672 total tokens, 12.832 seconds. Ledger 29 + 1 = 30; native provider requests, retries and fallback are zero.
+- The remaining-gap claim says **“optimal advisory transfers executed”** without citing scalar OPTIMAL status. The unchanged production solver check rejects it first. Independent offline replay rebuilds the exact saved catalogue and server payloads: schema/IDs/context pass, zero unknown IDs and no numeric literals; action-state and solver checks fail. The original sanitized draft remains unchanged. [Live trace](evaluation/phase6-action-live.json), [per-claim review](evaluation/phase6-action-review.json).
+- Numerical/reference validation source hashes, canonical positive/constrained plans, all ten country/profile partitions, saved federation, UI and prior TypeScript/build remain preserved. `.env`, key/project, billing and production fallback order are unchanged. No deployment or later live case. [Detailed report](phase6-action-state-report.md).
+- **Positive live workflow remains pending because: the remaining-gap claim describes advisory transfers as executed and mentions optimal without citing solver status.**
+
+## Phase 6 — historical final synthesis budget fix
 
 - Pre-live regression passed **479 backend tests in 71.00 seconds**, retaining all 459 previous cases. Shared Lite/3.6 official SDK HTTP mocks, compilation, dependency checks, canonical results, all ten country/profile partitions, saved federation and security/preservation passed. [Preflight](evaluation/phase6-synthesis-preflight.json).
 - Exactly one Lite synthesis send returned HTTP 200 / completed, complete four-claim JSON, 10,557 input / 470 output / 0 thought / 11,027 total tokens in 2.958 seconds at low/4,096. It used deterministic reconstructed local evidence and no native provider planning, previous interaction, retry or fallback. The ledger preserves 28 historical sends and appends one (29 total).

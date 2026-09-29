@@ -228,7 +228,8 @@ def mock_draft(catalog):
     """Test fixture only. Live never invokes or receives this mock answer."""
     def claim(text,path):
         fid=next(f.fact_id for f in catalog.facts.values() if f.evidence_id=='e2' and f.path==path)
-        return {'text':text,'evidence_refs':[fid]}
+        state=next((f.fact_id for f in catalog.facts.values() if f.evidence_id=='e2' and f.path=='action_state.plan_mode'),None)
+        return {'text':text,'evidence_refs':[fid,state] if state else [fid]}
     return {'situation':claim('OR-Tools proved an optimal advisory plan under the configured constraints.','solver.status'),
         'key_risks':[claim('Safe donor surplus is available for redistribution.','safe_capacity')],
         'recommended_actions':[claim('The advisory redistribution plan reduces resource pressure.','impact.transferred_units')],

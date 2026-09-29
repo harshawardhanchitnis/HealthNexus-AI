@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-09-29T09:46:03.699004+00:00",
+  "status": "PASS",
+  "backend_tests": 555,
+  "backend_seconds": 103.123,
+  "new_provider_requests": 0,
+  "mock": "PASS",
+  "canonical": "PASS",
+  "compile": "PASS",
+  "dependencies": "PASS",
+  "old_failure": {
+    "status": "PASS",
+    "source_report_sha256": "5d1b69a4cb7d2901628358b8fa52f880ce5c16a5a73fceebe671aebd2764c39b",
+    "cases": [
+      {
+        "exact_saved_claim": "The redistribution optimizer completed with an optimal status, executing safe transfers across available donor facilities without incurring safety violations.",
+        "status": "REJECTED",
+        "error_code": "unsafe_claim",
+        "diagnostic": {
+          "reason": "unsupported_execution_or_authorization",
+          "claim_field": "claim.text",
+          "normalized_claim": "the redistribution optimizer completed with an optimal status, executing safe transfers across available donor facilities without incurring safety violations.",
+          "failed_phrase": "executing safe transfers across available donor facilities without incurring safety violations",
+          "authoritative_action_states": [
+            {
+              "plan_mode": "advisory",
+              "physical_execution": false,
+              "externally_authorized": false,
+              "hospital_contacted": false,
+              "real_world_transfer_status": "not_executed"
+            }
+          ]
+        }
+      },
+      {
+        "exact_saved_claim": "Despite executing authorized transfers, a target deficit and remaining unmet resource needs persist at facilities at risk.",
+        "status": "REJECTED",
+        "error_code": "unsafe_claim",
+        "diagnostic": {
+          "reason": "unsupported_execution_or_authorization",
+          "claim_field": "claim.text",
+          "normalized_claim": "despite executing authorized transfers, a target deficit and remaining unmet resource needs persist at facilities at risk.",
+          "failed_phrase": "executing authorized transfers",
+          "authoritative_action_states": [
+            {
+              "plan_mode": "advisory",
+              "physical_execution": false,
+              "externally_authorized": false,
+              "hospital_contacted": false,
+              "real_world_transfer_status": "not_executed"
+            }
+          ]
+        }
+      }
+    ],
+    "new_provider_requests": 0
+  },
+  "preservation": {
+    "status": "PASS",
+    "original_file_identities": 511,
+    "unchanged_file_identities": 496,
+    "exact_numeric_validation_unchanged": true,
+    "fact_membership_resolution_validation_unchanged": true,
+    "env_ui_fallback_unchanged": true,
+    "operational_forecasting_ortools_federation_artifacts_unchanged": true,
+    "historical_reports_and_journals_unchanged": true
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 461,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "frontend": "unchanged; prior successful strict TypeScript/Angular production build preserved",
+  "implementation_sha256": "76cf83bc7471c0e5710f23b29209a3c86aa38b22411058230c4272d8f7076cdf"
+}

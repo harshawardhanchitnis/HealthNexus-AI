@@ -1,0 +1,320 @@
+{
+  "timestamp": "2026-09-29T09:49:29.557191+00:00",
+  "status": "FAIL",
+  "source_report_sha256": "41328935265765493b6d86dff4739ccb96a4ee34dad1e1340ade93f899d117ef",
+  "provider_status": "completed",
+  "http_status": 200,
+  "schema": "PASS",
+  "complete_json": true,
+  "original_catalogue_exactly_rebuilt": true,
+  "fact_id_resolution": "PASS (offline replay of exact saved catalogue and server payloads)",
+  "numeric_grounding": "PASS (offline review: no numeric literals in any saved claim)",
+  "context": "PASS (offline source scope/origin checks and unchanged build_evidence replay)",
+  "qualitative_grounding": "FAIL",
+  "action_state_grounding": "FAIL",
+  "solver_terminology": "FAIL",
+  "unknown_fact_ids": 0,
+  "unsupported_numbers": 0,
+  "unsupported_execution_claims": 1,
+  "claim_count": 4,
+  "per_claim_review": [
+    {
+      "claim_field": "situation.text",
+      "exact_claim": "An emergency scenario simulation for a severe dengue surge in the district reflects elevated demand impacts on intravenous fluids and other essential supplies.",
+      "cited_fact_ids": [
+        "e1_c92501dacc3841de_f043",
+        "e1_c92501dacc3841de_f050",
+        "e1_c92501dacc3841de_f053"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e1_c92501dacc3841de_f043",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.demand.scenario",
+          "value": 4850.885717293439,
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e1_c92501dacc3841de_f050",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.name",
+          "value": "IV fluids",
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e1_c92501dacc3841de_f053",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.unmet_demand.absolute",
+          "value": 1481.5818808941165,
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "numeric_literals": 0,
+      "production_validation": "PASS",
+      "action_state_validation": "PASS",
+      "topic_validation": "PASS"
+    },
+    {
+      "claim_field": "key_risks.0.text",
+      "exact_claim": "Simulation results show significant unmet demand and elevated stockout risks for critical medical resources during the surge.",
+      "cited_fact_ids": [
+        "e1_c92501dacc3841de_f048",
+        "e1_c92501dacc3841de_f053",
+        "e2_c92501dacc3841de_f046"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e1_c92501dacc3841de_f048",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.max_stockout_risk.scenario",
+          "value": 100.0,
+          "unit": "fraction",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e1_c92501dacc3841de_f053",
+          "evidence_id": "e1",
+          "path": "resource_impact.2.unmet_demand.absolute",
+          "value": 1481.5818808941165,
+          "unit": "bags",
+          "tool": "run_emergency_scenario",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_c92501dacc3841de_f046",
+          "evidence_id": "e2",
+          "path": "impact.before.critical_resource_warnings",
+          "value": 7,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "numeric_literals": 0,
+      "production_validation": "PASS",
+      "action_state_validation": "PASS",
+      "topic_validation": "PASS"
+    },
+    {
+      "claim_field": "recommended_actions.0.text",
+      "exact_claim": "The optimization solver successfully generated an advisory redistribution plan under optimal mathematical constraints without violating donor safety thresholds.",
+      "cited_fact_ids": [
+        "e2_c92501dacc3841de_f001",
+        "e2_c92501dacc3841de_f011",
+        "e2_c92501dacc3841de_f016"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e2_c92501dacc3841de_f001",
+          "evidence_id": "e2",
+          "path": "action_state",
+          "value": {
+            "plan_mode": "advisory",
+            "physical_execution": false,
+            "externally_authorized": false,
+            "hospital_contacted": false,
+            "real_world_transfer_status": "not_executed"
+          },
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_c92501dacc3841de_f011",
+          "evidence_id": "e2",
+          "path": "impact.donor_safety_violations",
+          "value": 0,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_c92501dacc3841de_f016",
+          "evidence_id": "e2",
+          "path": "solver.status",
+          "value": "OPTIMAL",
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "numeric_literals": 0,
+      "production_validation": "PASS",
+      "action_state_validation": "PASS",
+      "topic_validation": "PASS"
+    },
+    {
+      "claim_field": "remaining_gaps.0.text",
+      "exact_claim": "Even with optimal advisory transfers executed, a substantial target deficit and expected unmet demand persist across the district facilities.",
+      "cited_fact_ids": [
+        "e2_c92501dacc3841de_f007",
+        "e2_c92501dacc3841de_f008",
+        "e2_c92501dacc3841de_f014"
+      ],
+      "resolved_facts": [
+        {
+          "fact_id": "e2_c92501dacc3841de_f007",
+          "evidence_id": "e2",
+          "path": "impact.after.expected_unmet",
+          "value": 17378.197997959564,
+          "unit": null,
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_c92501dacc3841de_f008",
+          "evidence_id": "e2",
+          "path": "impact.after.target_deficit",
+          "value": 26084,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        },
+        {
+          "fact_id": "e2_c92501dacc3841de_f014",
+          "evidence_id": "e2",
+          "path": "impact.transferred_units",
+          "value": 15679,
+          "unit": "accounting items",
+          "tool": "optimize_redistribution",
+          "context": {
+            "country_id": "IN",
+            "profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "origin": "2026-09-27"
+          }
+        }
+      ],
+      "unknown_fact_ids": 0,
+      "numeric_literals": 0,
+      "production_validation": "solver_terminology",
+      "action_state_validation": "FAIL",
+      "action_state_diagnostic": {
+        "reason": "unsupported_execution_or_authorization",
+        "claim_field": "remaining_gaps.0.text",
+        "normalized_claim": "even with optimal advisory transfers executed, a substantial target deficit and expected unmet demand persist across the district facilities.",
+        "failed_phrase": "even with optimal advisory transfers executed",
+        "authoritative_action_states": [
+          {
+            "plan_mode": "advisory",
+            "physical_execution": false,
+            "externally_authorized": false,
+            "hospital_contacted": false,
+            "real_world_transfer_status": "not_executed"
+          }
+        ]
+      },
+      "topic_validation": "PASS"
+    }
+  ],
+  "authoritative_action_state": {
+    "plan_mode": "advisory",
+    "physical_execution": false,
+    "externally_authorized": false,
+    "hospital_contacted": false,
+    "real_world_transfer_status": "not_executed"
+  },
+  "primary_live_rejection": "solver_terminology (optimal mentioned without scalar OPTIMAL status citation in the same claim)",
+  "independent_action_rejection": [
+    {
+      "reason": "unsupported_execution_or_authorization",
+      "claim_field": "remaining_gaps.0.text",
+      "normalized_claim": "even with optimal advisory transfers executed, a substantial target deficit and expected unmet demand persist across the district facilities.",
+      "failed_phrase": "even with optimal advisory transfers executed",
+      "authoritative_action_states": [
+        {
+          "plan_mode": "advisory",
+          "physical_execution": false,
+          "externally_authorized": false,
+          "hospital_contacted": false,
+          "real_world_transfer_status": "not_executed"
+        }
+      ]
+    }
+  ],
+  "draft_rewritten": false,
+  "new_provider_requests": 1,
+  "ledger_total": 30,
+  "native_orchestration": "PASS (preserved previous live evidence)",
+  "final_synthesis": "FAIL",
+  "positive_workflow": "FAIL (acceptance pending)",
+  "phase6_complete": false,
+  "no_retry_no_fallback": true,
+  "remaining_live_cases_not_run": true,
+  "preservation": {
+    "status": "PASS",
+    "original_file_identities": 511,
+    "unchanged_file_identities": 495,
+    "exact_numeric_validation_unchanged": true,
+    "fact_membership_resolution_validation_unchanged": true,
+    "env_ui_fallback_unchanged": true,
+    "operational_forecasting_ortools_federation_artifacts_unchanged": true,
+    "historical_reports_and_journals_unchanged": true
+  },
+  "acceptance_statement": "Positive live workflow remains pending because: the remaining-gap claim describes advisory transfers as executed and mentions optimal without citing solver status."
+}
