@@ -16,11 +16,11 @@ import { Icon } from '../shared/icon';
     </div>
     <div class="about-hero">
       <app-icon name="network" />
-      <h2>India in depth.<br />BRICS in collaboration.</h2>
+      <h2>India operational resilience.<br />Evidence from collaborative learning.</h2>
       <p>
         India retains all 36 states and union territories and its 207-facility operational showcase.
-        Brazil, Russia, China and South Africa each have representative regional nodes, with
-        country-local datasets for the implemented experimental Federated Model.
+        The public deployment operates India only. Brazil, Russia, China and South Africa
+        appear solely in the preserved five-node experimental federation evidence.
       </p>
       <span>Public health datasets / Calibrated simulation / Traceable provenance</span>
     </div>
@@ -34,7 +34,7 @@ import { Icon } from '../shared/icon';
       <section class="panel prose">
         <h2>Connected decision-support capabilities</h2>
         <ul>
-          <li>Five-country geography and the existing India drill-down.</li>
+          <li>India operational geography and state/district drill-down.</li>
           <li>Two real public-source adapters: MoHFW / PIB Health Dynamics summary and WHO GHO.</li>
           <li>Small verified caches, normalized observations, provenance and offline re-import.</li>
           <li>Aggregate-anchored workforce and capacity assumptions.</li>
@@ -103,9 +103,9 @@ import { Icon } from '../shared/icon';
       </p>
       <h3>Coverage and limitations</h3>
       <p>
-        India's districts and facilities are sampled. Other countries have two representative
-        regions each. The five configured countries are the requested hackathon scope, not an
-        exhaustive list of current BRICS members. Public source years and coverage differ. HMIS live
+        India's districts and facilities are sampled. The saved experiment used five logical
+        country nodes; foreign operational networks are not available in the public deployment.
+        Public source years and coverage differ. HMIS live
         feeds, data.gov.in dataset imports and additional national portals remain planned.
       </p>
     </section>

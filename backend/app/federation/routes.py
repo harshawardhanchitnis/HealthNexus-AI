@@ -9,7 +9,9 @@ def federation_router(service):
     def status():return service.status()
 
     @router.get('/nodes')
-    def nodes():return {'items':service.nodes()}
+    def nodes():
+        try:return {'items':service.nodes()}
+        except (OSError,ValueError,KeyError):raise HTTPException(503,'Saved federation evidence is unavailable or incompatible.')
 
     @router.get('/saved-demo')
     def saved():

@@ -19,3 +19,4 @@ artifacts/
 *.log
 credentials*.json
 service-account*.json
+.firebase/

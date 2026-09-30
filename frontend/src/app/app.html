@@ -30,7 +30,7 @@
   <div class="sidebar-bottom">
     <div class="scope-card">
       <strong>Observe. Anticipate. Coordinate.</strong>
-      <p>National-scale decision support.<br />Five logical country nodes.</p>
+      <p>India operational command centre.<br />Verified federation experiment.</p>
       <span class="scope-tag">PUBLIC CONTEXT · SIMULATED OPERATIONS</span>
     </div>
     <div class="operator">
@@ -58,6 +58,7 @@
         id="country"
         class="country-selector"
         [value]="country()"
+        [disabled]="countries().length === 1"
         (change)="changeCountry($event)"
       >
         @for (c of countries(); track c.id) {

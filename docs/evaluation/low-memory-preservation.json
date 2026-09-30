@@ -1,0 +1,16 @@
+{
+  "baseline": "ae342e2",
+  "authorized_source_sha256": {
+    "backend/app/federation/config.py": "5ade3ef31336ecef6645f9bb78d2ef075f21ea3191f8e0eaf068f71788a7268b",
+    "backend/app/federation/routes.py": "935efd5e9ec8b5ac160458dc4d2b297e6a6875b0a951fa84d310b5209e4c2bfa",
+    "backend/app/federation/service.py": "e18f0056fbc7dff03288b0c6fd47b1c61aae2be35aea8ad6fcab83a379e63074",
+    "backend/app/forecasting/prediction.py": "ae1cdbcc75c1df071747c7d5308c0076f1e94ff655b3f388112ec65adee59b3c",
+    "backend/app/scenarios/engine.py": "2e5d5cd2cd5e3949610561b4f59f4e5dd3b84ea1b8ca2e6e3d6035516bf91c61",
+    "backend/app/scenarios/routes.py": "a8a76a786b4172d837cd39cd3acbf3e8efa11a3a4f985ec45125443a95e2be48",
+    "backend/app/scenarios/state.py": "d1ffcdba5230cd38818fb816fb4fcd2e64bdcb012358bc929481c2ee6746af1e"
+  },
+  "historical_ledger_sha256": "0979f18481ad928e7104b5e0c14ba9ba54189c8ac00441e5973973d3b774556b",
+  "historical_ledger_used": 50,
+  "provider_requests_this_task": 0,
+  "scope": "Explicit deployment-only cache, India scope and metadata edits. Models, data, evidence, equations and Gemini source remain frozen."
+}

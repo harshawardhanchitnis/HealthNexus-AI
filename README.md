@@ -4,7 +4,7 @@
 
 HealthNexus is a national-scale healthcare resilience and resource decision-support prototype. Its Command Centre connects Official Public Data, Calibrated Simulated Operations, evaluated forecasts, an Emergency Digital Twin, Google OR-Tools redistribution, an OpenFreeMap/MapLibre geographic view and experimental five-country federated learning. Demand, supply, workforce and facility disruptions share the same operational pipeline.
 
-India is the detailed showcase: **36 states/UTs, 69 illustrative districts, 207 fictional facilities**. Brazil, Russia, China and South Africa each have six representative facilities. These are five configured logical nodes, not connected government systems or exhaustive BRICS coverage.
+The public operational deployment covers **India only: 36 states/UTs, 69 illustrative districts, 207 fictional facilities**. Brazil, Russia, China and South Africa appear in the preserved five-node federation experiment, not as public operational networks. Full country-local development and federation training remain available locally with low-memory mode disabled.
 
 ![National Health Resilience Command Centre](docs/screenshots/phase85-command-centre.jpg)
 
@@ -32,7 +32,7 @@ Prediction alone does not move supplies. HealthNexus connects resource stress to
 - Geospatial Command at `/geospatial`: network, forecast, scenario and actual-plan modes with OpenFreeMap/MapLibre and an accessible synchronized list.
 - Two reproducible Operational Profiles: constrained and redistribution-ready.
 - Resilience Copilot with 13 authoritative tools, native Gemini function calling and explicit offline summaries.
-- A separate 417-parameter PyTorch Federated Model with actual FedAvg, country comparisons and measured progress.
+- Verified saved results from the separate 417-parameter FedAvg model, with country comparisons; optional PyTorch retraining in an unconstrained local environment.
 
 ## Demo
 
@@ -65,7 +65,7 @@ Observe → Forecast → Warn → Stress-test → Optimize → Map → Explain �
 
 **Gemini status:** Phase 6 is fully live-accepted: four live cases passed on Gemini 3.5 Flash-Lite with six total provider sends. `gemini-3.8-flash` remains primary, with the frozen `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite` order for availability fallback. The 13 local tools and exact evidence validation own operational facts. Historical intermediate failures remain recorded in the [final Phase 6 acceptance report](docs/phase6-final-acceptance-report.md); they are not the current verdict. Phase 9 makes zero Gemini requests and does not change the Copilot.
 
-**Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
+**Public endpoints:** [Firebase frontend](https://healthnexus-ai.web.app) and [Render backend](https://healthnexus-api-aizt.onrender.com). Render has reported 512 MiB memory failures; the explicit India-only low-memory runtime is locally verified and still requires cloud redeploy verification. Firestore remains an optional snapshot adapter. [Deployment instructions](docs/deployment.md) · [Memory gate](docs/low-memory-deployment-report.md) · [Gemini architecture](docs/gemini.md).
 
 ## AI / ML
 
@@ -83,7 +83,7 @@ Integer transfers remain domestic. Donors retain full-horizon reserves under all
 
 Five logical clients train a separate MLP and exchange model parameters plus aggregate metadata. The accepted five-round seed-42 run has **8.9472% global test WAPE**, **4.80 s training**, **614,235 logical boundary bytes**, and **0 raw operational training records shared**. India slightly degrades: **8.9496% → 8.9511% WAPE**. Four representative foreign nodes improve against their local-only MLPs. Federated learning does not guarantee every participant improves.
 
-The integrity-checked accepted report loads after a restart; a new training button runs genuine FedAvg. Linux verification agrees within the documented CPU tolerance, with last-bit checkpoint differences recorded separately. [Accepted experiment](docs/phase7-report.md) · [Method/privacy](docs/federated-learning.md).
+The integrity-checked accepted report loads after a restart without PyTorch. Public low-memory mode displays saved evidence and disables retraining; an unconstrained local runtime retains the genuine training controls. Linux verification agrees within the documented CPU tolerance, with last-bit checkpoint differences recorded separately. [Accepted experiment](docs/phase7-report.md) · [Method/privacy](docs/federated-learning.md).
 
 ## Data Sources
 

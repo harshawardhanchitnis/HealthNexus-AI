@@ -1,4 +1,5 @@
 from app.core.diagnostics import clone, stage, ACTIVE, diagnosed
+from app.core.runtime import low_memory
 from datetime import datetime, timezone
 from threading import RLock
 from uuid import uuid4
@@ -55,8 +56,9 @@ class OptimizationService:
         for value in paths.values():
             value.setflags(write=False)
         with self.lock:
-            self.prepared[key] = (preview.model_dump_json(),adapter.dump_json(projections),dict(paths),kind)
-            while len(self.prepared)>2:
+            if not low_memory() or sum(a.nbytes for a in paths.values()) <= 8*1024*1024:
+                self.prepared[key] = (preview.model_dump_json(),adapter.dump_json(projections),dict(paths),kind)
+            while len(self.prepared)>(1 if low_memory() else 2):
                 self.prepared.popitem(last=False)
         return preview,projections,paths,kind
 
@@ -161,7 +163,7 @@ class OptimizationService:
         if ACTIVE.get() is not None:
             ACTIVE.get().update(result.diagnostics)
         with self.lock:
-            if len(self.results) >= P.max_runs:
+            if len(self.results) >= (4 if low_memory() else P.max_runs):
                 raise ValueError("Stored planning limit reached; discard an existing plan")
             self.results[run_id] = result  # diagnosed stores an independent copy before returning
         return result

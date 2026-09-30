@@ -1,4 +1,6 @@
 from app.core.diagnostics import stage, clone
+from app.core.cache import BoundedCache
+from app.core.runtime import low_memory
 from datetime import datetime, timedelta, timezone
 from app.profiles.identity import fingerprint
 from threading import RLock
@@ -46,8 +48,8 @@ class ScenarioEngine:
     def __init__(self, forecasts=None, use_prepared=True):
         self.forecasts = forecasts or ForecastService()
         self.store = ScenarioStore()
-        self.cache = {}
-        self.baseline_cache = {}
+        self.cache = BoundedCache(24 if low_memory() else 1000)
+        self.baseline_cache = BoundedCache(24 if low_memory() else 1000)
         self.lock = RLock()
         self.disk_attempts = set()
         self.disk_hits = 0
@@ -61,7 +63,7 @@ class ScenarioEngine:
         bundle=self.forecasts.bundle(snapshot.country,snapshot.operational_profile)
         attempt=(snapshot.country,snapshot.operational_profile,str(snapshot.as_of),bundle.get('artifact_sha256'),id(snapshot))
         with self.lock:
-            if self.use_prepared and attempt not in self.disk_attempts:
+            if self.use_prepared and not low_memory() and attempt not in self.disk_attempts:
                 from app.profiles.preparation import restore
                 with stage('prepared_artifact_loading'):
                     self.disk_hits += int(restore(self,snapshot,bundle))
@@ -80,8 +82,6 @@ class ScenarioEngine:
                 with stage("forecast_prediction"):
                     predictions = {target: self.forecasts.predict(snapshot, facility.id, target, target, _bundle=bundle) for target in ("footfall", "admissions")}
                     predictions.update({i.medicine_id: self.forecasts.predict(snapshot, facility.id, "medicine", i.medicine_id, _bundle=bundle) for i in facility.inventory})
-                if len(self.cache) >= 1000:
-                    self.cache.clear()
                 self.cache[key] = predictions
             return self.cache[key], bundle
 
@@ -93,8 +93,6 @@ class ScenarioEngine:
             key = self.key(snapshot,f,bundle)
             with self.lock:
                 if key not in self.baseline_cache:
-                    if len(self.baseline_cache) >= 1000:
-                        self.baseline_cache.clear()
                     with stage("stock_projection_preparation"):
                         projected = project(f, forecasts, bundle, snapshot.as_of)
                     with stage("warning_evaluation"):

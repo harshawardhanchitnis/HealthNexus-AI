@@ -1,5 +1,6 @@
 from app.profiles.access import snapshot_for, selected_profile
 from app.profiles.config import ProfileID
+from app.core.runtime import low_memory
 import logging
 from typing import Literal
 from fastapi import APIRouter, HTTPException, Request, Response
@@ -61,8 +62,17 @@ def resilience_router(engine: ScenarioEngine):
         if scenario:
             all_warnings = engine.store.get(scenario, country, selected_profile(request)).warnings_created.items
         else:
-            _, all_list = engine.baseline(data, [f for f in data.facilities if f.id in ids])
-            all_warnings = all_list.items
+            facilities = [f for f in data.facilities if f.id in ids]
+            if low_memory():
+                # This endpoint returns warnings, not the discarded national
+                # projection. Bound that temporary projection to twelve facilities.
+                all_warnings = []
+                for start in range(0,len(facilities),12):
+                    _, batch = engine.baseline(data,facilities[start:start+12])
+                    all_warnings.extend(batch.items)
+            else:
+                _, all_list = engine.baseline(data,facilities)
+                all_warnings = all_list.items
         return listing([w for w in all_warnings if w.facility_id in ids and (not severity or w.severity == severity)
             and (not kind or w.warning_type == kind) and (not category or w.category == category)])
 

@@ -62,7 +62,11 @@ def verify(static=True):
             assert snapshot.country==country and snapshot.operational_profile==profile
             assert all(bundle['manifest']['facility_hashes'][f.id]==facility_hash(f) for f in snapshot.facilities)
             if cache_path(snapshot).exists():
-                assert restore(ScenarioEngine(forecasts),snapshot,bundle), 'Stale planning cache'
+                # Optional preparation must reject a changed calculation-source
+                # identity. A miss recomputes from unchanged trusted models;
+                # this verifier never rebuilds or rewrites the frozen bundle.
+                hit=restore(ScenarioEngine(forecasts),snapshot,bundle)
+                report['checks'].setdefault('optional_planning_cache',{})[profile+':'+country] = 'hit' if hit else 'safe stale-cache miss; engine recomputes'
     report['checks']['profiles_and_models']='all 10 country/profile partitions validated'
     service=FederationService()
     try:

@@ -12,4 +12,4 @@ LEARNING_RATE = .03
 BATCH_SIZE = 1024
 CPU_THREADS = 2
 NOTICE = 'Raw operational training records remain local in this prototype; model parameters and aggregate metadata are exchanged.'
-PHASE6_STATUS = 'Implementation complete; live provider acceptance pending due to Gemini service availability.'
+PHASE6_STATUS = 'Live grounded Gemini workflow acceptance completed on Flash-Lite; model availability varies. Gemini 3.8 Flash remains primary, not a claimed successful acceptance model.'

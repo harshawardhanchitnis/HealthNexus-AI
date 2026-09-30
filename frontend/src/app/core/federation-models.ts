@@ -19,6 +19,7 @@ export interface FederationRequest {
   rounds: number; local_epochs: number; seed: number; policy: 'sample-weighted' | 'balanced-country';
 }
 export interface FederationRun {
+  final_checksum?: string;
   saved_demo?: boolean;
   run_id: string; model_version: string; status: string; policy: string; config: FederationRequest;
   current_round: number; current_country: string | null; stage: string; message: string;
@@ -28,6 +29,7 @@ export interface FederationRun {
   update_bytes?: number; downlink_bytes?: number; aggregate_metadata_bytes?: number;
 }
 export interface FederationStatus {
+  live_training_available?: boolean; saved_evidence_available?: boolean; evidence_only?: boolean;
   available: boolean; active_run_id: string | null; parameter_count: number; client_count: number;
   raw_records_shared: number; notice: string; phase6_status: string;
 }

@@ -1,0 +1,207 @@
+{
+  "status": "PASS",
+  "provider_requests": 0,
+  "container": "healthnexus-memory-before",
+  "records": [
+    {
+      "VmRSS": 310640640,
+      "VmHWM": 344780800,
+      "stage": "startup",
+      "elapsed_seconds": 2.8444868000078714
+    },
+    {
+      "VmRSS": 310640640,
+      "VmHWM": 344780800,
+      "stage": "cycle-1:health",
+      "elapsed_seconds": 3.598110100007034
+    },
+    {
+      "VmRSS": 423047168,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:readiness",
+      "elapsed_seconds": 5.85236370000348
+    },
+    {
+      "VmRSS": 438185984,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:overview",
+      "elapsed_seconds": 6.607888400001684
+    },
+    {
+      "VmRSS": 438185984,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:facilities",
+      "elapsed_seconds": 7.334333999999217
+    },
+    {
+      "VmRSS": 496656384,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:forecast",
+      "elapsed_seconds": 8.873519800006761
+    },
+    {
+      "VmRSS": 496656384,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:model-performance",
+      "elapsed_seconds": 9.782875900011277
+    },
+    {
+      "VmRSS": 497016832,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:geospatial-network",
+      "elapsed_seconds": 10.782643000013195
+    },
+    {
+      "VmRSS": 501669888,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:redistribution-ready:scenario",
+      "elapsed_seconds": 11.931415700004436
+    },
+    {
+      "VmRSS": 501669888,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:redistribution-ready:warnings",
+      "elapsed_seconds": 12.824631399998907
+    },
+    {
+      "VmRSS": 512843776,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:redistribution-ready:district-optimizer",
+      "elapsed_seconds": 13.738223100008327
+    },
+    {
+      "VmRSS": 513204224,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:geospatial-district",
+      "elapsed_seconds": 14.623255300000892
+    },
+    {
+      "VmRSS": 515907584,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:redistribution-ready:cross_district-optimizer",
+      "elapsed_seconds": 15.612867700008792
+    },
+    {
+      "VmRSS": 515907584,
+      "VmHWM": 566411264,
+      "stage": "cycle-1:geospatial-cross_district",
+      "elapsed_seconds": 16.413094200004707
+    },
+    {
+      "VmRSS": 516055040,
+      "VmHWM": 609984512,
+      "stage": "cycle-1:constrained:scenario",
+      "elapsed_seconds": 17.673994299999322
+    },
+    {
+      "VmRSS": 516055040,
+      "VmHWM": 609984512,
+      "stage": "cycle-1:constrained:warnings",
+      "elapsed_seconds": 18.351251000000047
+    },
+    {
+      "VmRSS": 516775936,
+      "VmHWM": 609984512,
+      "stage": "cycle-1:constrained:district-optimizer",
+      "elapsed_seconds": 19.28030430000217
+    },
+    {
+      "VmRSS": 712499200,
+      "VmHWM": 712499200,
+      "stage": "cycle-1:national-warnings",
+      "elapsed_seconds": 23.799932900001295
+    },
+    {
+      "VmRSS": 712499200,
+      "VmHWM": 712499200,
+      "stage": "cycle-1:federation-evidence",
+      "elapsed_seconds": 24.500846000009915
+    },
+    {
+      "VmRSS": 712671232,
+      "VmHWM": 749588480,
+      "stage": "cycle-1:federation-nodes",
+      "elapsed_seconds": 25.367871800001012
+    },
+    {
+      "VmRSS": 712671232,
+      "VmHWM": 749588480,
+      "stage": "cycle-1:federation-status",
+      "elapsed_seconds": 26.250566700007766
+    },
+    {
+      "VmRSS": 712671232,
+      "VmHWM": 749588480,
+      "stage": "cycle-1:copilot-status",
+      "elapsed_seconds": 26.940229700005148
+    },
+    {
+      "VmRSS": 712671232,
+      "VmHWM": 749588480,
+      "stage": "cycle-1:complete",
+      "elapsed_seconds": 27.709112299999106
+    }
+  ],
+  "canonical_checks": [
+    {
+      "cycle": 1,
+      "profile": "redistribution-ready",
+      "scope": "district",
+      "metrics": [
+        41763,
+        17745,
+        15679,
+        10,
+        26084
+      ]
+    },
+    {
+      "cycle": 1,
+      "profile": "redistribution-ready",
+      "scope": "cross_district",
+      "metrics": [
+        41763,
+        9307,
+        9307,
+        10,
+        32456
+      ]
+    },
+    {
+      "cycle": 1,
+      "profile": "constrained",
+      "scope": "district",
+      "metrics": [
+        30230,
+        0,
+        0,
+        0,
+        30230
+      ]
+    }
+  ],
+  "forecast_sha256": {
+    "redistribution-ready:footfall": "244d04461a309b07326a38ea2dfa783c50abc4c866c17e66feee01b964fc718f",
+    "redistribution-ready:beds": "7a4e96a075034d5bb3ce63abb9d3fd304fe7ac81c1487ac4d72e276173338242",
+    "redistribution-ready:medicines/IVF": "661cd20eb39b07677421d076ccd41a66cc349ab52a499d42f89672d3c2a25029",
+    "redistribution-ready:medicines/PCM": "ad74621f08ae983f01fe71aabce0cac6cb039d31105084c07b505308944d4a9a",
+    "redistribution-ready:medicines/ORS": "a381f3d5fb705fa2319cd59e30db7211ad1437d52e5dc0fa9da4091ac95bd3fa",
+    "redistribution-ready:medicines/AMX": "3c6ac4b9bb7dc9098846e760599d45b1ecdd9093a4def26050d8361ed6e0773d",
+    "redistribution-ready:medicines/IFA": "14b4ba43844b9e7619f4d4a640a5f28695de32f5b247023c72efe570f4c216b4",
+    "constrained:footfall": "235fb899860cda90ed55e36ce93e179ce78a03c596653850c2cd4a4f7d5f09ff",
+    "constrained:beds": "a3f228a5812341d472535cfb2a2ff06bb3748772cecf214b91da5a97c06abbfc",
+    "constrained:medicines/IVF": "c2612967337940adce331c2ac52718c8fc89618ad06f1c3b1aa363f97fa5fcb3",
+    "constrained:medicines/PCM": "7e7341e6df2f1741b057dc5bd3973249f6c04bc68c9336eab2ba942d14862941",
+    "constrained:medicines/ORS": "a37a1e5fd8c570bf4c08e8ec3ef23ae79582bf38fe7b1f02b68748a6d98fef40",
+    "constrained:medicines/AMX": "6b3a83edd4b5824261317a17ddf50c6a55e51d236a1fc195fb81ae5ed90d11e1",
+    "constrained:medicines/IFA": "5825ef1996e739fda57cff4bc333ee771fc0b01a245e73f1cfaaab849a7ec4dd"
+  },
+  "cycles": 1,
+  "stability_seconds": 0,
+  "extra_cycles": 0,
+  "maximum_rss_bytes": 712671232,
+  "peak_rss_bytes": 749588480,
+  "memory_limit_bytes": 0,
+  "oom": false,
+  "restarts": 0
+}

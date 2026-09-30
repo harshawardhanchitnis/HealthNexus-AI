@@ -4,8 +4,10 @@ Firestore is explicit opt-in; a misconfigured cloud store never silently switche
 to synthetic data. Local demo data is the credential-free default.
 """
 from typing import Protocol
+from threading import RLock
 
 from app.core.config import ROOT, Settings
+from app.core.runtime import low_memory, operational_country
 from app.core.geography import COUNTRY_BY_ID
 from app.models.network import Snapshot
 from app.simulation.generator import generate_snapshot
@@ -21,17 +23,27 @@ class LocalRepository:
     mode = "local"
 
     def __init__(self, root=ROOT):
+        self.lock = RLock()
         self.root, self._profiles = root, {}
-        path = root / "data/generated/network.json"
-        self._snapshot = Snapshot.model_validate_json(path.read_text(encoding="utf-8")) if path.exists() else generate_snapshot()
-        self._countries = {"IN": self._snapshot}
+        self._snapshot = None
+        self._countries = {}
+        if not low_memory():
+            self.snapshot()
 
     def snapshot(self) -> Snapshot:
-        return self._snapshot
+        with self.lock:
+            if self._snapshot is None:
+                path = self.root / "data/generated/network.json"
+                self._snapshot = Snapshot.model_validate_json(path.read_bytes()) if path.exists() else generate_snapshot()
+                self._countries['IN'] = self._snapshot
+            return self._snapshot
 
     def country_snapshot(self, country_id: str) -> Snapshot:
+        operational_country(country_id)
         if country_id not in COUNTRY_BY_ID:
             raise ValueError("Unsupported country")
+        if country_id == 'IN':
+            return self.snapshot()
         if country_id not in self._countries:
             path = self.root / "data/generated/nodes" / country_id / "network.json"
             data = Snapshot.model_validate_json(path.read_text(encoding="utf-8")) if path.exists() else generate_snapshot(country_id=country_id)
@@ -41,6 +53,7 @@ class LocalRepository:
         return self._countries[country_id]
 
     def profile_snapshot(self, country_id, profile='constrained'):
+        operational_country(country_id)
         from app.profiles.config import folder
         path = folder(profile, country_id, self.root)/'network.json'
         if not path.exists():
@@ -49,12 +62,13 @@ class LocalRepository:
             raise ValueError('Operational profile has not been generated')
         stamp = (path.stat().st_mtime_ns, path.stat().st_size)
         key = (country_id, profile)
-        if key not in self._profiles or self._profiles[key][0] != stamp:
-            data = Snapshot.model_validate_json(path.read_bytes())
-            if data.country != country_id or data.operational_profile != profile:
-                raise ValueError('Operational profile partition mismatch')
-            self._profiles[key] = (stamp, data)
-        return self._profiles[key][1]
+        with self.lock:
+            if key not in self._profiles or self._profiles[key][0] != stamp:
+                data = Snapshot.model_validate_json(path.read_bytes())
+                if data.country != country_id or data.operational_profile != profile:
+                    raise ValueError('Operational profile partition mismatch')
+                self._profiles[key] = (stamp, data)
+            return self._profiles[key][1]
 
 
 class FirestoreRepository:
@@ -70,6 +84,7 @@ class FirestoreRepository:
         return self.country_snapshot("IN")
 
     def country_snapshot(self, country_id: str) -> Snapshot:
+        operational_country(country_id)
         if country_id not in COUNTRY_BY_ID:
             raise ValueError("Unsupported country")
         parent = self.client.collection("country_nodes").document(country_id)

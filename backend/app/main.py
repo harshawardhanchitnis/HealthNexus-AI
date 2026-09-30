@@ -8,6 +8,7 @@ from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import Settings
+from app.core.runtime import low_memory
 from app.core.geography import COUNTRIES, COUNTRY_BY_ID
 from app.data_ingestion.catalog import datasets
 from app.models.provenance import CountryCode
@@ -38,6 +39,18 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
 
     @app.middleware("http")
     async def profile_notice(request, call_next):
+        if low_memory() and request.url.path.startswith('/api/') and not request.url.path.startswith('/api/federation/'):
+            country = request.query_params.get('country_id','IN')
+            if request.method == 'POST':
+                try:
+                    body = await request.json()
+                    if isinstance(body, dict):
+                        if body.get('country_id','IN') != 'IN':
+                            country = body['country_id']
+                except ValueError:
+                    pass
+            if country != 'IN':
+                return JSONResponse(status_code=422,content={'detail':'This public deployment is India-operational-only; foreign nodes are saved federation evidence only.'})
         try:
             request.state.operational_profile = selected_profile(request)
         except HTTPException as exc:
@@ -72,8 +85,9 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
 
     @app.get("/api/countries")
     def countries():
-        return {"items": COUNTRIES, "federation_status": "experimental_fedavg",
-            "scope_note": "Five configured hackathon nodes; not an exhaustive list of current BRICS members.",
+        return {"items": [c for c in COUNTRIES if not low_memory() or c['id']=='IN'], "federation_status": "experimental_fedavg",
+            "low_memory":low_memory(),
+            "scope_note": "India operational deployment; five logical nodes in saved experimental federation evidence." if low_memory() else "Five configured hackathon nodes; not an exhaustive list of current BRICS members.",
             "redistribution": "domestic_only"}
 
     @app.get("/api/data-sources")

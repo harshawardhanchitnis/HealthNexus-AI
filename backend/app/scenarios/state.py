@@ -1,17 +1,19 @@
 """Bounded process-local demo store. No baseline persistence or disk writes."""
 from threading import RLock
 from app.core.risk_config import MAX_SCENARIOS
+from app.core.runtime import low_memory
 
 
 class ScenarioStore:
     def __init__(self):
         self.lock = RLock()
         self.results = {}
+        self.limit = 4 if low_memory() else MAX_SCENARIOS
 
     def put(self, result):
         with self.lock:
-            if len(self.results) >= MAX_SCENARIOS:
-                raise ValueError(f"Scenario limit ({MAX_SCENARIOS}) reached. Discard an existing scenario first.")
+            if len(self.results) >= self.limit:
+                raise ValueError(f"Scenario limit ({self.limit}) reached. Discard an existing scenario first.")
             self.results[result.scenario.scenario_id] = result
 
     def get(self, scenario_id, country, profile="constrained"):

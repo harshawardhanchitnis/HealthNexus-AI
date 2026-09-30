@@ -6,6 +6,7 @@ import logging
 from threading import RLock
 from uuid import uuid4
 from app.core.config import ROOT
+from app.core.runtime import low_memory
 from app.federation.config import COUNTRIES, MODEL_VERSION, NOTICE, PARAMETER_COUNT, PHASE6_STATUS
 from app.federation.schemas import RunRequest
 from app.federation.storage import RunStore
@@ -21,7 +22,15 @@ class FederationService:
         self.active = None
 
     def status(self):
-        return {'implementation':'experimental_fedavg','available':find_spec('torch') is not None,'model_version':MODEL_VERSION,
+        available = not low_memory() and find_spec('torch') is not None
+        try:
+            self.saved()
+            saved_available = True
+        except (OSError,ValueError,KeyError):
+            saved_available = False
+        return {'implementation':'experimental_fedavg','available':available,
+            'live_training_available':available, 'saved_evidence_available':saved_available,
+            'evidence_only':not available, 'model_version':MODEL_VERSION,
             'target':'patient footfall, direct horizons 1–14 days','default_rounds':5,'default_local_epochs':1,
             'default_policy':'sample-weighted','parameter_count':PARAMETER_COUNT,'client_count':5,
             'raw_records_shared':0,'notice':NOTICE,'active_run_id':self.active,
@@ -29,6 +38,8 @@ class FederationService:
             'operational_model_replaced':False,'phase6_status':PHASE6_STATUS}
 
     def nodes(self):
+        if not self.status()['available']:
+            return [{**n, 'status':'saved_evidence', 'raw_records_shared':0} for n in self.saved()['nodes']]
         from app.federation.data import prepare_country
         result = []
         for country in COUNTRIES:
@@ -39,6 +50,8 @@ class FederationService:
         return result
 
     def start(self,request:RunRequest,background=True):
+        if low_memory():
+            raise ValueError('Live federated retraining is disabled on the 512 MiB public demo deployment. The verified measured federation experiment remains available.')
         if not self.status()['available']:raise ValueError('Install backend/requirements-federation.txt for CPU training')
         with self.lock:
             if self.active is not None:raise ValueError('A federation run is already active')

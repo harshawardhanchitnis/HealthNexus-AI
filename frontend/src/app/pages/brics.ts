@@ -14,9 +14,9 @@ import { Icon } from '../shared/icon';
   styleUrl: './brics.scss',
   template: `
     <div class="page-heading">
-      <div><div class="eyebrow">BRICS / EXPERIMENTAL COLLABORATION</div>
+      <div><div class="eyebrow">SAVED EXPERIMENT / FEDERATED LEARNING</div>
         <h1>Federated Intelligence</h1>
-        <p>Five country models learn together. Operational records stay at each logical node.</p>
+        <p>Evidence from the measured five-node FedAvg experiment. Public operations cover India.</p>
       </div><span class="subtle-tag">MODEL UPDATES ONLY</span>
     </div>
     <div class="info-banner"><app-icon name="network" /><div>
@@ -25,6 +25,7 @@ import { Icon } from '../shared/icon';
       forecasts and medicine redistribution remain country-local and unchanged.
     </div></div>
     @if (error()) { <div class="empty-state" role="alert">{{ error() }}</div> }
+    @if (status()?.available) {
     <details class="panel federation-controls" [open]="!run() || busy()"><summary>Federation controls · inspect or run an explicit local experiment</summary>
       <div class="controls-title"><h2>Train across five logical nodes</h2>
         <p>Seed 42 · CPU PyTorch · {{ status()?.parameter_count | number }} parameters</p></div>
@@ -51,6 +52,9 @@ import { Icon } from '../shared/icon';
         </div>
       }
     </details>
+    } @else if (status()) {
+      <p class="info-banner">Verified saved experiment only. Live federated retraining is unavailable on this deployment. Five experimental nodes do not represent live foreign operational networks.</p>
+    }
     @if(run(); as measured) {<section class="federation-summary" aria-label="Measured federation summary">
       <article><span>Logical nodes</span><strong>{{measured.nodes.length}}</strong><small>Country-local training</small></article>
       <article><span>Rounds / epochs</span><strong>{{measured.config.rounds}} / {{measured.config.local_epochs}}</strong><small>Seed {{measured.config.seed}}</small></article>
@@ -78,7 +82,7 @@ import { Icon } from '../shared/icon';
           }
           @if(node(country.id); as measured) {@if(measured.wape_change_vs_local != null) {<p class="node-outcome" [class.degraded]="measured.change === 'degraded'"><strong>{{measured.change}}</strong> {{measured.wape_change_vs_local! * 100 | number:'1.4-4'}} pp vs local</p>}}
           <p class="node-training">{{nodeState(country.id)}}</p>
-          <a routerLink="/overview" [queryParams]="{profile:api.profile(),country_id:country.id}" class="button secondary">Explore {{country.name}} <app-icon name="arrow"/></a>
+          @if (status()?.available) {<a routerLink="/overview" [queryParams]="{profile:api.profile(),country_id:country.id}" class="button secondary">Explore {{country.name}} <app-icon name="arrow"/></a>}
         </section>
       }
     </div>
@@ -88,6 +92,12 @@ import { Icon } from '../shared/icon';
         @if (current.saved_demo) { <span class="subtle-tag">SAVED MEASURED RUN · SEED 42</span> }
         @else if (current.status === 'completed') { <button class="button secondary" (click)="discard()">Discard run</button> }
       </div>
+      @if(current.saved_demo) {
+        <details class="training-trace"><summary>Verified saved evidence integrity</summary>
+          <p>Report and global parameter artifact validated by the backend on load.</p>
+          <p>Run: {{current.run_id}}</p><p>Parameter checksum: <code>{{current.final_checksum}}</code></p>
+        </details>
+      }
       <div class="run-totals"><span><strong>{{current.training_seconds == null ? 'In progress' : (current.training_seconds | number:'1.2-2') + ' s'}}</strong>Total local run</span>
         <span><strong>{{current.bytes_exchanged | number}} B</strong>Logical boundary traffic</span>
         <span><strong>{{current.global_test?.wape | percent:'1.2-2'}}</strong>Global held-out test WAPE</span></div>
@@ -130,11 +140,14 @@ export class BricsPage implements OnDestroy {
   private polling = false;
   roundCount = 5;localEpochs = 1;policy: FederationRequest['policy'] = 'sample-weighted';
   constructor() {
-    forkJoin({countries:this.api.countries(),nodes:this.api.federationNodes(),status:this.api.federationStatus()}).subscribe({
-      next: data => {this.countries.set(data.countries.items);this.nodes.set(data.nodes.items);this.status.set(data.status);
+    forkJoin({nodes:this.api.federationNodes(),status:this.api.federationStatus()}).subscribe({
+      next: data => {
+        const labels: Record<string,string> = {IN:'India',BR:'Brazil',RU:'Russia',CN:'China',ZA:'South Africa'};
+        this.countries.set(data.nodes.items.map(n=>({id:n.country_id,name:labels[n.country_id] || n.country_id,detailed:n.country_id==='IN'} as Country)));
+        this.nodes.set(data.nodes.items);this.status.set(data.status);
         if(data.status.active_run_id)this.watch(data.status.active_run_id);
-        else this.api.savedFederation().subscribe({next:r=>this.run.set(r),error:()=>this.error.set('Saved measured federation evidence is unavailable. Local training remains available when country tables are ready.')});},
-      error: () => this.error.set('Federation service is unavailable. Check the backend and country-local training tables.'),
+        else this.api.savedFederation().subscribe({next:r=>this.run.set(r),error:()=>this.error.set('Saved measured federation evidence is unavailable or failed integrity validation.')});},
+      error: () => this.error.set('Federation evidence is unavailable. Check the backend and saved experiment integrity.'),
     });
   }
   ngOnDestroy() {if(this.poll)clearInterval(this.poll);}

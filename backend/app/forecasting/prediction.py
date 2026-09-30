@@ -8,6 +8,8 @@ from threadpoolctl import ThreadpoolController
 from threading import RLock
 
 from app.core.config import ROOT
+from app.core.runtime import low_memory, operational_country
+from app.core.cache import BoundedCache
 from app.forecasting.data import digest, facility_hash
 from app.forecasting.features import feature_block, MODEL_NAMES
 from app.forecasting.evaluation import intervals
@@ -20,6 +22,7 @@ class ModelUnavailable(ValueError):
 
 
 def load_bundle(country: str, root: Path = ROOT):
+    operational_country(country)
     folder = root / "artifacts/models" / country
     try:
         integrity = json.loads((folder / "integrity.json").read_text())
@@ -36,12 +39,14 @@ def load_bundle(country: str, root: Path = ROOT):
 
 class ForecastService:
     def __init__(self, root: Path = ROOT):
-        self.root, self.cache = root, {}
+        self.low_memory = low_memory()
+        self.root, self.cache = root, BoundedCache(1 if self.low_memory else 5)
         self.identities, self.bindings = {}, {}
-        self.points = {}
+        self.points = BoundedCache(512 if self.low_memory else 10000)
         self.lock, self.controller = RLock(), None
 
     def bundle(self, country, profile='constrained'):
+        operational_country(country)
         from app.profiles.config import folder
         from app.profiles.binding import bind_profile
         model_dir = self.root / 'artifacts/models' / country
@@ -55,7 +60,16 @@ class ForecastService:
                 self.cache[country] = load_bundle(country, self.root)
                 self.identities[country] = identity
                 self.bindings = {k:v for k,v in self.bindings.items() if k[0] != country}
-                self.points = {k:v for k,v in self.points.items() if k[0] != country}
+                for key in list(self.points):
+                    if key[0] == country:
+                        del self.points[key]
+                for old in list(self.identities):
+                    if old not in self.cache:
+                        del self.identities[old]
+                        self.bindings = {k:v for k,v in self.bindings.items() if k[0] != old}
+                        for key in list(self.points):
+                            if key[0] == old:
+                                del self.points[key]
                 # Discover native libraries once, after loading the model libraries.
                 self.controller = ThreadpoolController()
             base = self.cache[country]
@@ -98,13 +112,12 @@ class ForecastService:
                     points=[predicted[i*14:(i+1)*14]*r[2] for i,r in enumerate(rows)]
                 else:
                     points=[r[3][:,MODEL_NAMES.index(champion)].astype(float) for r in rows]
-                if len(self.points)+len(rows)>10000:
-                    self.points.clear()
                 for row,point in zip(rows,points):
                     point.setflags(write=False)
                     self.points[row[0]]=point
 
     def predict(self, snapshot, facility_id, target, resource_id, horizon=14, *, _bundle=None):
+        operational_country(snapshot.country)
         from app.profiles.config import VERSION
         if snapshot.profile_version != VERSION:
             raise ModelUnavailable("Unsupported inventory profile version")
@@ -124,7 +137,8 @@ class ForecastService:
         start = as_of-timedelta(days=27)
         context = {**context, "trend_offset": manifest["days"]-28}
         values = np.asarray(context["last28"])
-        prepared = self.points.get(self.point_key(snapshot,facility,bundle,target,resource_id))
+        with self.lock:
+            prepared = self.points.get(self.point_key(snapshot,facility,bundle,target,resource_id))
         if prepared is None:
             x, scale, baseline = feature_block(values, 27, start, context)
         else:

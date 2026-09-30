@@ -1,0 +1,18 @@
+{
+  "prediction_points": {
+    "entries": 512,
+    "limit": 512,
+    "retained_object_bytes": 326736
+  },
+  "facility_forecasts": {
+    "entries": 24,
+    "limit": 24,
+    "retained_object_bytes": 5387255
+  },
+  "baseline_projections": {
+    "entries": 24,
+    "limit": 24,
+    "retained_object_bytes": 3330903
+  },
+  "scope": "Measured Python object graph after national India warnings; not server RSS or whole-process memory."
+}

@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "baseline": "ae342e2",
+  "container_id": "926edf13d4e4fc1b88dc9bc1c637258929e465adebd7a70ce03156c458ea9614",
+  "image_id": "sha256:a9227f2a03606fb0a28fee0b7412f23cad50eba353510fe1047ffaf75757ef5b",
+  "container_started_at": "2026-09-30T15:59:40.068621797Z",
+  "memory_limit_bytes": 536870912,
+  "memory_swap_limit_bytes": 536870912,
+  "measurement": "Linux server /proc/1/status RSS and HWM, sequential HTTP requests; startup recorded after liveness is reachable. Baseline image uncapped to measure the failure footprint. New image hard limited to 512 MiB with no extra swap.",
+  "stages": [
+    {
+      "stage": "Startup",
+      "before_rss_mib": 296.25,
+      "before_peak_mib": 328.80859375,
+      "after_rss_mib": 188.37890625,
+      "after_peak_mib": 188.37890625
+    },
+    {
+      "stage": "Readiness",
+      "before_rss_mib": 403.44921875,
+      "before_peak_mib": 540.171875,
+      "after_rss_mib": 191.6328125,
+      "after_peak_mib": 195.59765625
+    },
+    {
+      "stage": "Forecasts",
+      "before_rss_mib": 473.6484375,
+      "before_peak_mib": 540.171875,
+      "after_rss_mib": 362.578125,
+      "after_peak_mib": 379.54296875
+    },
+    {
+      "stage": "Severe dengue scenario",
+      "before_rss_mib": 478.4296875,
+      "before_peak_mib": 540.171875,
+      "after_rss_mib": 368.078125,
+      "after_peak_mib": 379.54296875
+    },
+    {
+      "stage": "District optimizer",
+      "before_rss_mib": 489.0859375,
+      "before_peak_mib": 540.171875,
+      "after_rss_mib": 375.984375,
+      "after_peak_mib": 379.54296875
+    },
+    {
+      "stage": "Cross-district optimizer",
+      "before_rss_mib": 492.0078125,
+      "before_peak_mib": 540.171875,
+      "after_rss_mib": 379.59375,
+      "after_peak_mib": 379.59375
+    },
+    {
+      "stage": "Saved federation evidence",
+      "before_rss_mib": 679.4921875,
+      "before_peak_mib": 679.4921875,
+      "after_rss_mib": 400.90625,
+      "after_peak_mib": 400.90625
+    }
+  ],
+  "before_maximum_rss_mib": 679.65625,
+  "before_peak_rss_mib": 714.86328125,
+  "after_maximum_rss_mib": 401.421875,
+  "after_peak_rss_mib": 401.421875,
+  "full_cycles_same_container": 9,
+  "stability_intervals_seconds": [
+    180
+  ],
+  "early_plateau_check": "Earlier pre-lock image diagnostic failed its conservative drift check during allocator warm-up, then passed an additional 180-second run in the same container. Those raw FAIL/PASS receipts remain preserved. The final image with locked profile loading passed its cold two-cycle plus 180-second gate directly.",
+  "oom": false,
+  "restarts": 0,
+  "forecast_responses_exact": 14,
+  "canonical": {
+    "district": [
+      41763,
+      17745,
+      15679,
+      10,
+      26084
+    ],
+    "constrained": [
+      30230,
+      0,
+      0,
+      0,
+      30230
+    ],
+    "cross_district": [
+      41763,
+      9307,
+      9307,
+      10,
+      32456
+    ],
+    "metric_order": [
+      "target",
+      "safe_capacity",
+      "recommended",
+      "lanes",
+      "unresolved"
+    ],
+    "donor_violations": 0,
+    "new_donor_risks": 0,
+    "conservation": true
+  },
+  "saved_federation_checksum": "d971711083cef53d8b4416eebdf4c76b35d20b94ce62752a3bd4240e4cb42fc8",
+  "backend_tests": 690,
+  "frontend_tests": 16,
+  "typescript": "strict app/spec checks and production build PASS",
+  "angular_production_build": "PASS",
+  "python_compilation": "PASS",
+  "host_and_container_pip_check": "PASS",
+  "npm_audit_vulnerabilities": 0,
+  "pytorch_in_public_image": false,
+  "operational_countries": [
+    "IN"
+  ],
+  "map_preserved": true,
+  "provider_requests": 0,
+  "historical_ledger_used": 50,
+  "new_render_environment": {
+    "HEALTHNEXUS_LOW_MEMORY": "true"
+  },
+  "firebase_redeploy_required": true,
+  "firebase_deployed_by_codex": false,
+  "cloud_fixed_claimed": false,
+  "prior_image_full_cycles_same_container": 20
+}

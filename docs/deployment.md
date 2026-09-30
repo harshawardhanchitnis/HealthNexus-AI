@@ -1,6 +1,41 @@
 # Deployment decision — ₹0 first
 
-No cloud resources were created, no billing was enabled, and nothing is claimed publicly deployed. This review used official documentation on 2026-09-28. The complete interactive demo is verified locally in Docker.
+## Current Render Free / India-only runtime (2026-09-30)
+
+The public endpoints are Firebase `https://healthnexus-ai.web.app` and Render
+`https://healthnexus-api-aizt.onrender.com`. Render reported out-of-memory restarts.
+The new local capacity gate is documented in [the memory report](low-memory-deployment-report.md);
+it does **not** establish that the cloud deployment is fixed.
+
+The **only new Render environment variable** is `HEALTHNEXUS_LOW_MEMORY=true`.
+Keep the existing API key, Gemini enabled/model/fallback settings, storage and CORS.
+Use the existing service, repository-root context and `backend/Dockerfile`.
+The public image defaults to `INSTALL_FEDERATION_TRAINING=0`: no PyTorch installation.
+India is the sole operational country; foreign operational requests return a clear 422.
+Saved five-node federation evidence is validated and readable without training or
+foreign operational model deserialization. Live federation starts return controlled 409.
+
+Low-memory readiness streams trusted India artifact hashes and verifies compatibility
+metadata and saved federation integrity. It never predicts, unpickles operational models,
+imports PyTorch or probes Gemini. The capability response remains cached for 30 seconds.
+The immutable bundle still contains 77 files with its original pinned SHA-256.
+
+Full local/unconstrained behavior remains available with `HEALTHNEXUS_LOW_MEMORY=false`.
+`docker compose` explicitly builds with `INSTALL_FEDERATION_TRAINING=1`; a standalone
+training image can be built with `docker build --build-arg INSTALL_FEDERATION_TRAINING=1
+-f backend/Dockerfile -t healthnexus-local .`. Do not use that training image on Render Free.
+
+Frontend source changed to show India operations and saved experiment capabilities.
+Angular has been rebuilt; its production runtime configuration retains the Render HTTPS
+origin above. **A new Firebase Hosting deployment is required, but was not executed.**
+No Firebase configuration, map provider, CORS, billing or API key was changed.
+
+## Historical hosting review (2026-09-28)
+
+The following review predates the existing public deployment and the low-memory runtime.
+At that time no cloud resources were created or billing enabled by Codex, and the
+complete interactive demo was verified locally in Docker. Its image/memory measurements
+describe the older training-enabled image, not the new public runtime.
 
 | Component | Prepared / verified | Billing and decision |
 |---|---|---|
