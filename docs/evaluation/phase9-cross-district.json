@@ -1,0 +1,910 @@
+{
+  "baseline": "723c6a8",
+  "live_gemini_requests": 0,
+  "profiles": {
+    "redistribution-ready": {
+      "district": {
+        "target_before": 41763,
+        "safe_capacity": 17745,
+        "planned_accounting_items": 15679,
+        "lanes": 10,
+        "unresolved": 26084,
+        "donor_violations": 0,
+        "new_donor_risks": 0,
+        "solver_status": "OPTIMAL",
+        "geography": {
+          "donor_scope": "district",
+          "receiver_district_id": "MH-PUNE",
+          "receiver_district_name": "Pune",
+          "donor_districts": [
+            {
+              "id": "MH-PUNE",
+              "name": "Pune"
+            }
+          ],
+          "donor_district_count": 1,
+          "cross_district_lane_count": 0,
+          "total_lane_count": 10,
+          "action_state": {
+            "plan_mode": "advisory",
+            "physical_execution": false,
+            "externally_authorized": false,
+            "hospital_contacted": false,
+            "real_world_transfer_status": "not_executed"
+          },
+          "distance_method": "Haversine geographic proxy; not road distance or travel time",
+          "quantity_basis": "mixed-resource inventory-item accounting sums; physical units remain per lane"
+        },
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 26084,
+          "expected_unmet": 17378.197997959564,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        }
+      },
+      "cross_district": {
+        "target_before": 41763,
+        "safe_capacity": 9307,
+        "planned_accounting_items": 9307,
+        "lanes": 10,
+        "unresolved": 32456,
+        "donor_violations": 0,
+        "new_donor_risks": 0,
+        "solver_status": "OPTIMAL",
+        "geography": {
+          "donor_scope": "cross_district",
+          "receiver_district_id": "MH-PUNE",
+          "receiver_district_name": "Pune",
+          "donor_districts": [
+            {
+              "id": "MH-NAGPUR",
+              "name": "Nagpur"
+            }
+          ],
+          "donor_district_count": 1,
+          "cross_district_lane_count": 10,
+          "total_lane_count": 10,
+          "action_state": {
+            "plan_mode": "advisory",
+            "physical_execution": false,
+            "externally_authorized": false,
+            "hospital_contacted": false,
+            "real_world_transfer_status": "not_executed"
+          },
+          "distance_method": "Haversine geographic proxy; not road distance or travel time",
+          "quantity_basis": "mixed-resource inventory-item accounting sums; physical units remain per lane"
+        },
+        "before": {
+          "target_deficit": 41763,
+          "expected_unmet": 27655.218070826377,
+          "critical_resource_warnings": 7,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 32456,
+          "expected_unmet": 19974.721343812438,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 1,
+          "max_stockout_risk": 1.0
+        }
+      },
+      "lanes": [
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-0",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-001",
+          "donor_name": "Nagpur \u00b7 PHC 01",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "AMX",
+          "unit": "capsules",
+          "quantity": 158,
+          "distance_km": 2.3000073911633194,
+          "donor_stock_before": 818,
+          "donor_stock_after": 660,
+          "donor_protected_reserve": 314,
+          "donor_projected_stock_after": 353.13884427647434,
+          "donor_protected_minimum_after": 314.05488230781305,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3276,
+          "receiver_deficit_after": 1839,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.032
+          },
+          "rationale": {
+            "safe_surplus_before": 158,
+            "receiver_expected_unmet_before": 1230.9780182226204,
+            "receiver_priority": 240.7143,
+            "target_units_supplied_by_this_transfer": 158,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 158,
+            "weighted_units_resolved": 107598,
+            "transport_cost": 158416
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-1",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-001",
+          "donor_name": "Nagpur \u00b7 PHC 01",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IFA",
+          "unit": "tablets",
+          "quantity": 209,
+          "distance_km": 2.3000073911633194,
+          "donor_stock_before": 1021,
+          "donor_stock_after": 812,
+          "donor_protected_reserve": 407,
+          "donor_projected_stock_after": 460.64819375666974,
+          "donor_protected_minimum_after": 407.0926610547265,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3490,
+          "receiver_deficit_after": 1225,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "WATCH",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 209,
+            "receiver_expected_unmet_before": 844.5187087913197,
+            "receiver_priority": 237.8571,
+            "target_units_supplied_by_this_transfer": 209,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 209,
+            "weighted_units_resolved": 137522,
+            "transport_cost": 209518
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-2",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-001",
+          "donor_name": "Nagpur \u00b7 PHC 01",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IVF",
+          "unit": "bags",
+          "quantity": 45,
+          "distance_km": 2.3000073911633194,
+          "donor_stock_before": 354,
+          "donor_stock_after": 309,
+          "donor_protected_reserve": 144,
+          "donor_projected_stock_after": 172.05393246898097,
+          "donor_protected_minimum_after": 144.74936064031004,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3256,
+          "receiver_deficit_after": 2354,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 45,
+            "receiver_expected_unmet_before": 2313.10398872695,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 45,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 45,
+            "weighted_units_resolved": 43740,
+            "transport_cost": 45190
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-3",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-001",
+          "donor_name": "Nagpur \u00b7 PHC 01",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "ORS",
+          "unit": "sachets",
+          "quantity": 102,
+          "distance_km": 2.3000073911633194,
+          "donor_stock_before": 620,
+          "donor_stock_after": 518,
+          "donor_protected_reserve": 254,
+          "donor_projected_stock_after": 292.251839036476,
+          "donor_protected_minimum_after": 254.5717519410935,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3655,
+          "receiver_deficit_after": 2836,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 0.388,
+            "7": 0.726,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 102,
+            "receiver_expected_unmet_before": 1979.5233458528737,
+            "receiver_priority": 335.0,
+            "target_units_supplied_by_this_transfer": 102,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 102,
+            "weighted_units_resolved": 92310,
+            "transport_cost": 102304
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-4",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-001",
+          "donor_name": "Nagpur \u00b7 PHC 01",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "PCM",
+          "unit": "tablets",
+          "quantity": 172,
+          "distance_km": 2.3000073911633194,
+          "donor_stock_before": 2449,
+          "donor_stock_after": 2277,
+          "donor_protected_reserve": 1038,
+          "donor_projected_stock_after": 1247.2892210341056,
+          "donor_protected_minimum_after": 1038.177528522012,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 28086,
+          "receiver_deficit_after": 24202,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 172,
+            "receiver_expected_unmet_before": 21287.094009232613,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 172,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 172,
+            "weighted_units_resolved": 167184,
+            "transport_cost": 172444
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-5",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-003",
+          "donor_name": "Nagpur \u00b7 District Hospital 03",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "AMX",
+          "unit": "capsules",
+          "quantity": 1279,
+          "distance_km": 5.8955687725782076,
+          "donor_stock_before": 6098,
+          "donor_stock_after": 4819,
+          "donor_protected_reserve": 2440,
+          "donor_projected_stock_after": 2738.06058367058,
+          "donor_protected_minimum_after": 2440.644517489325,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3276,
+          "receiver_deficit_after": 1839,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.032
+          },
+          "rationale": {
+            "safe_surplus_before": 1279,
+            "receiver_expected_unmet_before": 1230.9780182226204,
+            "receiver_priority": 240.7143,
+            "target_units_supplied_by_this_transfer": 1279,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 1279,
+            "weighted_units_resolved": 870999,
+            "transport_cost": 1286774
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-6",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-003",
+          "donor_name": "Nagpur \u00b7 District Hospital 03",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IFA",
+          "unit": "tablets",
+          "quantity": 2056,
+          "distance_km": 5.8955687725782076,
+          "donor_stock_before": 8366,
+          "donor_stock_after": 6310,
+          "donor_protected_reserve": 3162,
+          "donor_projected_stock_after": 3607.800912027191,
+          "donor_protected_minimum_after": 3162.67937454765,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3490,
+          "receiver_deficit_after": 1225,
+          "receiver_warning_before": "WARNING",
+          "receiver_warning_after": "WATCH",
+          "receiver_risk_before": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "rationale": {
+            "safe_surplus_before": 2056,
+            "receiver_expected_unmet_before": 844.5187087913197,
+            "receiver_priority": 237.8571,
+            "target_units_supplied_by_this_transfer": 2056,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 2056,
+            "weighted_units_resolved": 1352848,
+            "transport_cost": 2068436
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-7",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-003",
+          "donor_name": "Nagpur \u00b7 District Hospital 03",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "IVF",
+          "unit": "bags",
+          "quantity": 857,
+          "distance_km": 5.8955687725782076,
+          "donor_stock_before": 3143,
+          "donor_stock_after": 2286,
+          "donor_protected_reserve": 1125,
+          "donor_projected_stock_after": 1317.8812568744565,
+          "donor_protected_minimum_after": 1125.9124120352606,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3256,
+          "receiver_deficit_after": 2354,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 857,
+            "receiver_expected_unmet_before": 2313.10398872695,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 857,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 857,
+            "weighted_units_resolved": 833004,
+            "transport_cost": 862242
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-8",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-003",
+          "donor_name": "Nagpur \u00b7 District Hospital 03",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "ORS",
+          "unit": "sachets",
+          "quantity": 717,
+          "distance_km": 5.8955687725782076,
+          "donor_stock_before": 4735,
+          "donor_stock_after": 4018,
+          "donor_protected_reserve": 2003,
+          "donor_projected_stock_after": 2300.4338693402674,
+          "donor_protected_minimum_after": 2003.453073240396,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 3655,
+          "receiver_deficit_after": 2836,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 0.388,
+            "7": 0.726,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 717,
+            "receiver_expected_unmet_before": 1979.5233458528737,
+            "receiver_priority": 335.0,
+            "target_units_supplied_by_this_transfer": 717,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 717,
+            "weighted_units_resolved": 648885,
+            "transport_cost": 721402
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        },
+        {
+          "transfer_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f-9",
+          "optimizer_run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f",
+          "donor_id": "IN-MH-NAGPUR-003",
+          "donor_name": "Nagpur \u00b7 District Hospital 03",
+          "donor_state_id": "MH",
+          "donor_district_id": "MH-NAGPUR",
+          "receiver_state_id": "MH",
+          "receiver_district_id": "MH-PUNE",
+          "cross_district": true,
+          "plan_mode": "advisory",
+          "receiver_id": "IN-MH-PUNE-003",
+          "receiver_name": "Pune \u00b7 District Hospital 03",
+          "resource_id": "PCM",
+          "unit": "tablets",
+          "quantity": 3712,
+          "distance_km": 5.8955687725782076,
+          "donor_stock_before": 20433,
+          "donor_stock_after": 16721,
+          "donor_protected_reserve": 8107,
+          "donor_projected_stock_after": 9716.214969559082,
+          "donor_protected_minimum_after": 8107.093437906835,
+          "donor_risk_before": {
+            "14": 0.0,
+            "3": 0.0,
+            "7": 0.0
+          },
+          "donor_risk_after": {
+            "3": 0.0,
+            "7": 0.0,
+            "14": 0.0
+          },
+          "receiver_deficit_before": 28086,
+          "receiver_deficit_after": 24202,
+          "receiver_warning_before": "CRITICAL",
+          "receiver_warning_after": "WARNING",
+          "receiver_risk_before": {
+            "3": 1.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "receiver_risk_after": {
+            "3": 0.0,
+            "7": 1.0,
+            "14": 1.0
+          },
+          "rationale": {
+            "safe_surplus_before": 3712,
+            "receiver_expected_unmet_before": 21287.094009232613,
+            "receiver_priority": 352.1429,
+            "target_units_supplied_by_this_transfer": 3712,
+            "geographic_penalty_per_unit": 1000,
+            "reserve_note": "Reported after values include every transfer in this plan; reserve checked across all paired paths."
+          },
+          "optimization_status": "OPTIMAL",
+          "objective_contribution": {
+            "critical_units_resolved": 3712,
+            "weighted_units_resolved": 3608064,
+            "transport_cost": 3734372
+          },
+          "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+          "provenance": {
+            "operational_profile": "redistribution-ready",
+            "profile_version": "inventory-profile-v1",
+            "snapshot_id": "cd046f7ecf6a25844ad7a4ecf26803a881d63564bb719a68d9254ee73bf7ad92",
+            "scenario_snapshot_id": "4a3f5d2a79e8d47551f419ec21fa264efbe59f9137b2aa9f58cb19d3ab4762bc",
+            "config_version": "redistribution-v1",
+            "model_version": "forecast-v1-176a752efab3ae4e",
+            "data_status": "simulated"
+          }
+        }
+      ],
+      "paired_demand_path_safety": "PASS",
+      "baseline_immutable": true,
+      "scenario_id": "f1582154-b399-435d-8010-2304aa7906f5",
+      "run_id": "e1f6d78b-1169-4fb0-9e59-76e34c96c08f"
+    },
+    "constrained": {
+      "district": {
+        "target_before": 30230,
+        "safe_capacity": 0,
+        "planned_accounting_items": 0,
+        "lanes": 0,
+        "unresolved": 30230,
+        "donor_violations": 0,
+        "new_donor_risks": 0,
+        "solver_status": "OPTIMAL",
+        "geography": {
+          "donor_scope": "district",
+          "receiver_district_id": "MH-PUNE",
+          "receiver_district_name": "Pune",
+          "donor_districts": [],
+          "donor_district_count": 0,
+          "cross_district_lane_count": 0,
+          "total_lane_count": 0,
+          "action_state": {
+            "plan_mode": "advisory",
+            "physical_execution": false,
+            "externally_authorized": false,
+            "hospital_contacted": false,
+            "real_world_transfer_status": "not_executed"
+          },
+          "distance_method": "Haversine geographic proxy; not road distance or travel time",
+          "quantity_basis": "mixed-resource inventory-item accounting sums; physical units remain per lane"
+        },
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        }
+      },
+      "cross_district": {
+        "target_before": 30230,
+        "safe_capacity": 0,
+        "planned_accounting_items": 0,
+        "lanes": 0,
+        "unresolved": 30230,
+        "donor_violations": 0,
+        "new_donor_risks": 0,
+        "solver_status": "OPTIMAL",
+        "geography": {
+          "donor_scope": "cross_district",
+          "receiver_district_id": "MH-PUNE",
+          "receiver_district_name": "Pune",
+          "donor_districts": [],
+          "donor_district_count": 0,
+          "cross_district_lane_count": 0,
+          "total_lane_count": 0,
+          "action_state": {
+            "plan_mode": "advisory",
+            "physical_execution": false,
+            "externally_authorized": false,
+            "hospital_contacted": false,
+            "real_world_transfer_status": "not_executed"
+          },
+          "distance_method": "Haversine geographic proxy; not road distance or travel time",
+          "quantity_basis": "mixed-resource inventory-item accounting sums; physical units remain per lane"
+        },
+        "before": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        },
+        "after": {
+          "target_deficit": 30230,
+          "expected_unmet": 17075.155797617244,
+          "critical_resource_warnings": 0,
+          "facilities_at_risk": 3,
+          "max_stockout_risk": 1.0
+        }
+      },
+      "lanes": [],
+      "paired_demand_path_safety": "PASS",
+      "baseline_immutable": true,
+      "scenario_id": "e75fe4cd-e09c-4234-82a8-00d33e3d934f",
+      "run_id": "e5978c08-4d79-4947-aea0-55e0fa502696"
+    }
+  },
+  "status": "PASS"
+}

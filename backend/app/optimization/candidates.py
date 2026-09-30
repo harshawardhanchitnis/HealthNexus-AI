@@ -55,11 +55,13 @@ def make_edges(donors, receivers, facilities, country, scope):
         for ri, r in enumerate(receivers):
             if d.country_id != country or r.country_id != country or d.country_id != r.country_id:
                 raise ValueError("International redistribution is prohibited")
-            if d.resource_id != r.resource_id or d.facility_id == r.facility_id:
+            if d.resource_id != r.resource_id or d.unit != r.unit or d.facility_id == r.facility_id:
                 continue
             same_state = d.state_id == r.state_id
             same_district = same_state and d.district_id is not None and d.district_id == r.district_id
             if scope == "state" and not same_state or scope == "district" and not same_district:
+                continue
+            if scope == "cross_district" and (not same_state or not d.district_id or not r.district_id or same_district):
                 continue
             df, rf = facilities[d.facility_id], facilities[r.facility_id]
             distance = haversine(df.latitude, df.longitude, rf.latitude, rf.longitude)

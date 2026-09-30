@@ -35,6 +35,7 @@ export class App {
     {path:'/copilot',label:'7 · Offline summary'},
   ];
   nav = [
+    { path: '/geospatial', icon: 'layers', label: 'Geospatial Command' },
     { path: '/overview', icon: 'dashboard', label: 'Command Centre' },
     { path: '/network', icon: 'network', label: 'Country network' },
     { path: '/facilities', icon: 'hospital', label: 'Facilities' },
@@ -156,6 +157,7 @@ export class App {
       '/emergency',
       '/warnings',
       '/redistribution',
+      '/geospatial',
     ].includes(path)
       ? path
       : '/overview';

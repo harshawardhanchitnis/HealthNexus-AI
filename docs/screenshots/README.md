@@ -41,3 +41,10 @@ Captured from the actual production Angular/nginx interface backed by the verifi
 The federation page labels the original accepted saved experiment; it is not a newly timed run. The Copilot screenshot is deterministic offline mode and does not show a successful Gemini response.
 
 Captures use actual browser viewports. Full-page stitching was avoided because the browser renderer duplicated portions of long pages in its exported image. No application data or screenshot pixels were altered to hide that export limitation.
+
+## Phase 9 actual map captures
+
+The [Phase 9 browser receipt](../evaluation/phase9-browser.json) records five measured responsive sizes, actual cross-district and constrained plans, normal OpenFreeMap tiles, and a blocked-tile fallback. All images are unedited browser captures: [1440×900](phase9-cross-district-1440x900.png), [1280×800](phase9-cross-district-1280x800.png), [1024×768](phase9-cross-district-1024x768.png), [768×1024](phase9-cross-district-768x1024.png), [390×844](phase9-cross-district-390x844.png), [mobile map](phase9-cross-district-mobile-map.png), [constrained](phase9-constrained-mobile.png), [tile failure](phase9-tile-failure-mobile.png).
+
+
+Phase 9 captures were refreshed on 2026-09-30 using the final Docker images and district-aware display geometry. Desktop/tablet images are direct full-content CDP PNG captures; the 390x844 context and separate scrolled mobile map are direct viewport captures. They retain visible attribution and illustrative-location notices. Earlier screenshot-method notes describe pre-Phase 9 captures.

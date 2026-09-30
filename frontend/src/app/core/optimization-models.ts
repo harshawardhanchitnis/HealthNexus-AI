@@ -5,7 +5,7 @@ export interface PlanningRequest {
   state_id?: string;
   district_id?: string;
   scenario_id?: string;
-  scope: 'district' | 'state' | 'national';
+  scope: 'district' | 'cross_district' | 'state' | 'national';
   resources: string[];
   horizon: 14;
   time_limit_seconds: number;
@@ -74,6 +74,12 @@ export interface PlanningTransfer {
   transfer_id: string;
   donor_id: string;
   donor_name: string;
+  donor_state_id: string;
+  donor_district_id: string;
+  receiver_state_id: string;
+  receiver_district_id: string;
+  cross_district: boolean;
+  plan_mode: string;
   receiver_id: string;
   receiver_name: string;
   resource_id: string;
@@ -97,6 +103,7 @@ export interface PlanningTransfer {
   objective_contribution: Record<string, number>;
 }
 export interface PlanningResult {
+  geography: { receiver_district_name: string; donor_scope: string; donor_districts: {id:string;name:string}[]; donor_district_count:number; cross_district_lane_count:number; };
   run_id: string;
   created_at: string;
   preview: PlanningPreview;

@@ -31,6 +31,7 @@
   <section class="outcome-message"><h2>Protected redistribution reduces the shortage. A supply gap remains.</h2><p>{{plan.impact.percent_deficit_resolved | number:'1.1-1'}}% of the target deficit resolved. Resource-specific units and risks are shown below; mixed medicine accounting items are not interchangeable.</p><p>Critical receiver medicine warnings: {{plan.impact.before.critical_resource_warnings}} → {{plan.impact.after.critical_resource_warnings}}. Maximum individual stock-out risk: {{plan.impact.before.max_stockout_risk | percent:'1.0-0'}} → {{plan.impact.after.max_stockout_risk | percent:'1.0-0'}}.</p></section>
  }
 }
+<section class="panel" aria-label="Donor Network"><div class="panel-heading"><div><h2>Donor Network</h2><p>Receiver: {{ district || state || country }}</p></div><div class="demo-actions"><button class="button secondary" [disabled]="!district || running()" [attr.aria-pressed]="scope === 'district'" (click)="changeScope('district')">District</button><button class="button secondary" [disabled]="!district || !state || country !== 'IN' || running()" [attr.aria-pressed]="scope === 'cross_district'" (click)="changeScope('cross_district')">Cross-District</button><a class="button primary" routerLink="/geospatial" queryParamsHandling="merge" [queryParams]="{mode: result() ? 'redistribution' : 'network', donor_scope: scope, run_id: result()?.run_id || null}">View on Map</a></div></div>@if(scope === 'cross_district') {<p>Searches eligible donors in other districts within the selected state while preserving donor reserve constraints.</p>}@if(result(); as plan) {<p>Donor districts: <strong>{{donorDistrictNames()}}</strong> · Cross-district lanes: <strong>{{plan.geography.cross_district_lane_count}}</strong>. All recommendations remain advisory.</p>}</section>
 <section class="twin-intro">
   <div>
     <span class="tag">COUNTRY-LOCAL • NON-DESTRUCTIVE</span>
@@ -67,7 +68,8 @@
         </select></label
       >
       <label
-        >Donor search scope<select [(ngModel)]="scope" (ngModelChange)="loadPreview()">
+        >Donor search scope<select [(ngModel)]="scope" (ngModelChange)="changeScope($event)">
+          <option value="cross_district" [disabled]="!state || !district || country !== 'IN'">Cross-District — same state, other districts</option>
           <option value="national">National — same country</option>
           <option value="state" [disabled]="!state">State / region</option>
           <option value="district" [disabled]="!district">District</option>

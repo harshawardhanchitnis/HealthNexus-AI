@@ -20,7 +20,7 @@ def apply_plan(projections, paths, preview, quantities, origin, run_id, status, 
         outgoing[e.donor] += q
         incoming[e.receiver] += q
         d, r = donors[e.donor], receivers[e.receiver]
-        if d.country_id != r.country_id or d.resource_id != r.resource_id:
+        if d.country_id != r.country_id or d.resource_id != r.resource_id or d.unit != r.unit:
             raise ValueError("Invalid transfer association")
         net[(d.facility_id, d.resource_id)] -= q
         net[(r.facility_id, r.resource_id)] += q
@@ -99,6 +99,8 @@ def apply_plan(projections, paths, preview, quantities, origin, run_id, status, 
         severity = max((w.severity.value for w in after_warnings if w.facility_id == r.facility_id and w.resource_id == r.resource_id), key=lambda v: SEVERITY_RANK[v], default="NORMAL")
         transfers.append(Transfer(transfer_id=f"{run_id}-{i}", optimizer_run_id=run_id,
             donor_id=d.facility_id, donor_name=d.facility_name, receiver_id=r.facility_id, receiver_name=r.facility_name,
+            donor_state_id=d.state_id, donor_district_id=d.district_id, receiver_state_id=r.state_id, receiver_district_id=r.district_id,
+            cross_district=d.state_id == r.state_id and d.district_id != r.district_id,
             resource_id=r.resource_id, unit=r.unit, quantity=q, distance_km=e.distance_km,
             donor_stock_before=d.current_stock, donor_stock_after=a.stockout.current_stock,
             donor_protected_reserve=d.protected_reserve, donor_projected_stock_after=min(p.closing_stock for p in a.stockout.trajectory),

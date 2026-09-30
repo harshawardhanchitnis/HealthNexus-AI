@@ -9,7 +9,10 @@ flowchart TD
     W --> T["Emergency Digital Twin"]
     F --> T
     T --> O["Google OR-Tools<br/>Domestic Redistribution Plan"]
-    O --> A["Administrator / Angular Command Centre"]
+    O --> X["Read-only GeoJSON + Same-State Other-District Advisory Geography"]
+    X --> MAP["OpenFreeMap / MapLibre Geospatial Command"]
+    MAP --> A["Administrator / Angular Command Centre"]
+    O --> A
     W --> A
     F --> A
     O --> E["13 Typed Authoritative Tools + Evidence Validation"]
@@ -29,9 +32,9 @@ flowchart TD
     B --> A
 ```
 
-Operational forecasting remains authoritative: saved country-local HGB/selected baselines, empirical uncertainty, 500 residual stock paths and immutable scenarios feed donor policy and OR-Tools. The separate federated MLP does not replace those models. The FedAvg aggregator accepts typed serialized updates, not raw training tables.
+Operational forecasting remains authoritative: saved country-local HGB/selected baselines, empirical uncertainty, 500 residual stock paths and immutable scenarios feed donor policy and OR-Tools. The separate federated MLP does not replace those models. The Phase 9 read-only map consumes actual projections, warning objects and saved advisory plan lanes; its public basemap never supplies operational facts. The FedAvg aggregator accepts typed serialized updates, not raw training tables.
 
-Gemini selects registered tools and explains validated evidence. It never owns forecasts, risk severity, donor capacity or transfer quantities. Local summaries are a separate explicitly selected mode. **Implementation complete; live provider acceptance pending due to Gemini service availability.**
+Gemini selects registered tools and explains validated evidence. It never owns forecasts, risk severity, donor capacity or transfer quantities. Local summaries are a separate explicitly selected mode. **Phase 6 fully live-accepted on Gemini 3.5 Flash-Lite; the primary/fallback chain remains unchanged.**
 
 Two inventory profiles share compatible demand model weights but keep separate snapshots, hashes, scenarios and caches. `constrained` preserves the insufficient network; `redistribution-ready` models uneven replenishment. Profile identity cannot silently mix across a plan.
 
@@ -48,3 +51,6 @@ Firebase Hosting and Cloud Run remain deployment targets. Cloud Run requires bil
 Official Public Data are historical aggregate statistics. Calibrated Simulated Operations are facility-level engineering data, not live government feeds. All geographic coverage and timestamps remain visible. Country-local training is logical separation inside a same-process prototype. Model updates may leak; no differential privacy, secure aggregation, authenticated clients or encrypted federation network is implemented.
 
 For detailed schemas/identities see [API](api.md), [operational models](model-card.md), [scenario policy](phase4-report.md), [optimizer](phase5-report.md), [profiles/caches](phase55-report.md), [Gemini](gemini.md) and [federation](federated-learning.md).
+
+
+Phase 9 map coordinates are read-only display geometry: project-owned rounded district anchors plus stable SHA-256 facility offsets. Original snapshot latitude/longitude and optimizer Haversine inputs remain immutable. Map lanes retain actual plan quantities and `distance_km`; the separate `map_distance_km` is labelled illustrative, never road routing or logistics feasibility.

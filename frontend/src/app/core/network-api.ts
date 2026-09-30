@@ -1,3 +1,4 @@
+import { GeospatialView } from './geospatial-models';
 import { Router } from '@angular/router';
 import { FederationStatus, FederationNode, FederationRequest, FederationRun } from './federation-models';
 import { CopilotRequest, CopilotResponse, CopilotStatus, CopilotProgress } from './copilot-models';
@@ -93,6 +94,9 @@ export class NetworkApi {
     for (const [key, value] of Object.entries(scope))
       if (value !== '') params = params.set(key, value);
     return params;
+  }
+  geospatial(scope: Record<string, string>) {
+    return this.http.get<GeospatialView>('/api/geospatial', {params: this.params(scope)});
   }
   countries() {
     return this.http.get<{ items: Country[] }>('/api/countries');

@@ -17,6 +17,7 @@ import { WarningCards } from '../shared/warning-cards';
           explanation.
         </p>
       </div>
+      <a class="button secondary" routerLink="/geospatial" [queryParams]="{mode:scenario()?'emergency':'forecast',run_id:null}" queryParamsHandling="merge">View on Map</a>
       <a class="button primary" routerLink="/emergency" queryParamsHandling="preserve"
         >Open simulator →</a
       >

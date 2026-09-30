@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 export const routes: Routes = [
+  {path:'geospatial',loadComponent:()=>import('./pages/geospatial').then(m=>m.GeospatialPage)},
   { path: 'copilot', loadComponent: () => import('./pages/copilot').then((m) => m.CopilotPage) },
   {
     path: 'redistribution',

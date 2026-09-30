@@ -2,7 +2,7 @@
 
 **Predict shortages. Coordinate safe resources. Share intelligence.**
 
-HealthNexus is a national-scale healthcare resilience and resource decision-support prototype. Its Command Centre connects Official Public Data, Calibrated Simulated Operations, evaluated forecasts, an Emergency Digital Twin, Google OR-Tools redistribution and experimental five-country federated learning. Demand, supply, workforce and facility disruptions share the same operational pipeline.
+HealthNexus is a national-scale healthcare resilience and resource decision-support prototype. Its Command Centre connects Official Public Data, Calibrated Simulated Operations, evaluated forecasts, an Emergency Digital Twin, Google OR-Tools redistribution, an OpenFreeMap/MapLibre geographic view and experimental five-country federated learning. Demand, supply, workforce and facility disruptions share the same operational pipeline.
 
 India is the detailed showcase: **36 states/UTs, 69 illustrative districts, 207 fictional facilities**. Brazil, Russia, China and South Africa each have six representative facilities. These are five configured logical nodes, not connected government systems or exhaustive BRICS coverage.
 
@@ -28,6 +28,8 @@ Prediction alone does not move supplies. HealthNexus connects resource stress to
 - Baseline Forecasts with empirical uncertainty and Estimated Stock-Out Risk.
 - Early Warnings and four non-destructive emergency scenario types.
 - Google OR-Tools CP-SAT plans with safe donor reserves, conservation and a greedy comparison.
+- Same-state, other-district donor scope with explicit advisory lane geography.
+- Geospatial Command at `/geospatial`: network, forecast, scenario and actual-plan modes with OpenFreeMap/MapLibre and an accessible synchronized list.
 - Two reproducible Operational Profiles: constrained and redistribution-ready.
 - Resilience Copilot with 13 authoritative tools, native Gemini function calling and explicit offline summaries.
 - A separate 417-parameter PyTorch Federated Model with actual FedAvg, country comparisons and measured progress.
@@ -47,19 +49,21 @@ Start **Guided demo · Pune** on Command Centre. Follow Network → Forecast →
 
 Totals combine resource-specific medicine units for accounting; tablets, bags and sachets are not interchangeable. OR-Tools and greedy tie in this district case. Maximum individual receiver stock-out risk remains 100%; redistribution does not resolve every shortage. [Current measured acceptance](docs/evaluation/phase85-demo.json) · [90-second / 3-minute scripts](docs/final-demo-script.md).
 
+## Cross-District Safe Redistribution and Geospatial Command Centre
+
+Choose **District** or **Cross-District** in Safe Resource Redistribution. Cross-District searches only other districts in the same Indian state while preserving the original 7-day cover, reserve, 500-path and conservation checks. The measured Pune severe-dengue case finds Nagpur donors: 9,307 safe accounting items across 10 advisory lanes, with 32,456 target items unresolved and zero new donor risks. The original district plan remains 15,679 recommended items; the constrained case remains zero transfers. No plan executes physical shipments.
+
+**Geospatial Command** maps the simulated network using deterministic district-aware map-only illustrative coordinates, separate from preserved optimizer inputs and the actual plan GeoJSON. It has national/state/district filters and four modes: Network, Forecast, Emergency and Redistribution. The public OpenFreeMap basemap is visual only; failure leaves the HealthNexus list and operational summaries usable. The map has no key. Distances are Haversine geographic proxies, not road routes or travel time. [Phase 9 measured report](docs/phase9-cross-district-map-report.md).
+
 ## Architecture
 
-Angular → FastAPI → trusted local operational engines. Public-source ingestion and provenance anchor simulation; forecasting drives warnings and scenario projections. OR-Tools independently solves plans. Gemini interprets typed tool evidence when available. Experimental country-local PyTorch models share parameters through FedAvg; they do not replace operational forecasting. [Architecture diagram](docs/architecture.md).
+Observe → Forecast → Warn → Stress-test → Optimize → Map → Explain → Learn collaboratively. Angular → FastAPI → trusted local operational engines. Public-source ingestion and provenance anchor simulation; forecasting drives warnings and scenario projections. OR-Tools independently solves plans. Gemini interprets typed tool evidence when available. Experimental country-local PyTorch models share parameters through FedAvg; they do not replace operational forecasting. [Architecture diagram](docs/architecture.md).
 
 ## Google Technologies
 
 **Used:** Google OR-Tools, implemented and measured. The Gemini API layer uses the official `google-genai` SDK, Interactions, function results and structured evidence.
 
-**Gemini status:** Integration implemented; full live workflow acceptance remains pending. Primary `gemini-3.8-flash`; fallbacks `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite`. Gemini now cites server-issued request-local fact IDs; canonical source paths and exact numeric validation remain server-owned. The [current fact-citation report](docs/phase6-fact-citations-report.md) records 436 passing backend tests, shared mocks and the limited authorized Lite smoke results. Earlier provider/grounding evidence remains intact. Offline summaries are clearly labelled and require no key.
-
-**Live grounded smoke acceptance: PASS 2/2. Full Phase 6 workflow acceptance remains pending.** Both independent Lite smokes passed the configured schema, citation and grounding checks. That checkpoint accepted only the two smokes and did not deploy.
-
-The latest [bounded final acceptance run](docs/phase6-final-acceptance-report.md) separates ordinary recommendation narrative from server-owned action/solver statuses. Preflight passed **587 tests** and all four shared SDK mock cases on Lite/3.6. Three actual Lite sends proved fresh native simulation and OR-Tools, then completed JSON was rejected for **“Despite executing recommended transfers”**. The ledger is **33**; no retry, fallback, follow-up, constrained/provenance live case or deployment followed. The raw draft and additional citation limitations are preserved. Native orchestration is PASS; positive synthesis/workflow acceptance and full Phase 6 remain pending. Canonical engines/results, exact numeric grounding, UI, fallback order, credentials and federation are unchanged. Earlier [action-state](docs/phase6-action-state-report.md) and [synthesis-budget](docs/phase6-synthesis-report.md) reports remain historical evidence.
+**Gemini status:** Phase 6 is fully live-accepted: four live cases passed on Gemini 3.5 Flash-Lite with six total provider sends. `gemini-3.8-flash` remains primary, with the frozen `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite` order for availability fallback. The 13 local tools and exact evidence validation own operational facts. Historical intermediate failures remain recorded in the [final Phase 6 acceptance report](docs/phase6-final-acceptance-report.md); they are not the current verdict. Phase 9 makes zero Gemini requests and does not change the Copilot.
 
 **Deployment targets:** Firebase Hosting and Google Cloud Run. Neither is claimed deployed. Firestore is an optional existing snapshot adapter, not required for the local demo. [₹0 deployment decision](docs/deployment.md) · [Gemini architecture](docs/gemini.md).
 
@@ -141,7 +145,7 @@ Verifier checks source caches, all country/profile/model partitions, planning-ca
 
 ## Model Evaluation
 
-[Final technical report](docs/final-technical-report.md) is the current source of truth. Historical reports remain available. Final acceptance: **340 backend tests**, Python compilation, dependency sanity, strict TypeScript, Angular production build, actual Docker/API/startup, desktop/mobile review and canonical demo verifier. [Validation](docs/validation.md) · [Verified pitch facts](docs/hackathon-facts.md).
+[Phase 9 release report](docs/phase9-cross-district-map-report.md) is the current source of truth; [the earlier technical report](docs/final-technical-report.md) records prior acceptance. Historical reports remain available. Current Phase 9 acceptance: **677 backend tests**, **14 frontend tests**, Python compilation, dependency sanity, strict TypeScript, Angular production build, actual Docker/API/startup, desktop/mobile review and canonical demo verifier. [Validation](docs/validation.md) · [Verified pitch facts](docs/hackathon-facts.md).
 
 ## Privacy & Safety
 
@@ -161,7 +165,7 @@ HealthNexus assists administrative resource planning. It does not diagnose, pres
 - Unequal federation sample sizes and simulator similarities limit conclusions; India degradation remains visible.
 - New scenario/plan/conversation/run IDs are process-local and expire at restart; canonical saved evidence persists.
 - No production administrator authentication, distributed job queue, DP, secure aggregation or penetration test is claimed.
-- Gemini real-provider acceptance is pending; the core demo works explicitly offline.
+- Phase 6 is live-accepted on Flash-Lite; explicit offline mode remains available.
 
 ## Repository Structure
 
@@ -180,7 +184,5 @@ HealthNexus assists administrative resource planning. It does not diagnose, pres
 ## Hackathon Team
 
 Team and member details have not yet been provided; confirm them before the final submission. No names or affiliations are invented.
-
-Phase 6 operational answers now use Gemini-selected semantic frames and exact local evidence IDs, with HealthNexus-rendered prose. The bounded live verdict is recorded in [the final acceptance report](docs/phase6-final-acceptance-report.md).
 
 **Phase 6 fully live-accepted.** Four live cases pass on Gemini 3.5 Flash-Lite with exactly six provider sends. Named semantic slots prevent duplicate kinds; HealthNexus renders grounded advisory prose from validated evidence. All 636 backend tests pass before and after acceptance, and strict TypeScript passes. Positive and constrained engine results remain unchanged. Historical ledger: 42. [Completed acceptance report](docs/phase6-final-acceptance-report.md).

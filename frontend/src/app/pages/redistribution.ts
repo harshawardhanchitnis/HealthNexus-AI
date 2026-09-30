@@ -25,7 +25,6 @@ export class RedistributionPage {
   district = '';
   scenarioId = '';
   scope: PlanningRequest['scope'] = 'national';
-  private initializedScope = false;
   resource = '';
   seconds = 10;
   scenarios = signal<ScenarioMetadata[]>([]);
@@ -77,13 +76,12 @@ export class RedistributionPage {
           this.state = p.get('state_id') || '';
           this.district = p.get('district_id') || '';
           this.scenarioId = p.get('scenario_id') || '';
-          if (!this.initializedScope) {
-            this.scope = this.district ? 'district' : 'national';
-            this.initializedScope = true;
-          }
+          const donorScope = p.get('donor_scope');
+          if (['district','cross_district','state','national'].includes(donorScope || '')) this.scope = donorScope as PlanningRequest['scope'];
+          else if (!p.get('run_id')) this.scope = this.district ? 'district' : 'national';
           if (
             (this.scope === 'district' && !this.district) ||
-            (this.scope === 'state' && !this.state)
+            (this.scope === 'state' && !this.state) || (this.scope === 'cross_district' && (!this.state || !this.district || this.country !== 'IN'))
           )
             this.scope = 'national';
         }),
@@ -118,6 +116,7 @@ export class RedistributionPage {
             );
             return;
           }
+          if (this.route.snapshot.queryParamMap.get('donor_scope') && this.scope !== q.scope) { this.error.set('Saved plan donor scope does not match.'); return; }
           this.scope = q.scope;
           this.resource = q.resources.length === 1 ? q.resources[0] : '';
           this.seconds = q.time_limit_seconds;
@@ -137,6 +136,10 @@ export class RedistributionPage {
       time_limit_seconds: this.seconds,
     };
   }
+  changeScope(value: PlanningRequest['scope']) {
+    this.router.navigate([], {relativeTo:this.route,queryParams:{donor_scope:value,run_id:null},queryParamsHandling:'merge'});
+  }
+  donorDistrictNames() { return this.result()?.geography.donor_districts.map(d=>d.name).join(', ') || 'None'; }
   changeScenario() {
     this.router.navigate([], {
       relativeTo: this.route,
@@ -182,7 +185,7 @@ export class RedistributionPage {
         this.running.set(false);
         this.router.navigate([], {
           relativeTo: this.route,
-          queryParams: { run_id: p.run_id },
+          queryParams: { run_id: p.run_id, donor_scope: p.preview.request.scope },
           queryParamsHandling: 'merge',
         });
       },

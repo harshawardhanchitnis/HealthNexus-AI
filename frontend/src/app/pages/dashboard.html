@@ -4,7 +4,7 @@
     <h1>{{ titles[page()] }}</h1>
     <p>{{ subtitles[page()] }}</p>
   </div>
-  @if(page() === 'overview') {<div class="hero-actions"><button class="button primary" (click)="loadDemo('redistribution-ready')">Guided Pune Demo <app-icon name="arrow" /></button><a class="button secondary" routerLink="/emergency" queryParamsHandling="preserve">Simulate Emergency</a></div>}
+  @if(page() === 'overview') {<div class="hero-actions"><button class="button primary" (click)="loadDemo('redistribution-ready')">Guided Pune Demo <app-icon name="arrow" /></button><a class="button secondary" routerLink="/emergency" queryParamsHandling="preserve">Simulate Emergency</a><a class="button secondary" routerLink="/geospatial" [queryParams]="{mode:'network',scenario_id:null,run_id:null,donor_scope:null}" queryParamsHandling="merge">View on Map</a></div>}
   <button class="button secondary" (click)="refresh()" [disabled]="loading()">
     <app-icon name="refresh" />Refresh data
   </button>

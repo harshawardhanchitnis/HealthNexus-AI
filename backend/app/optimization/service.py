@@ -67,7 +67,7 @@ class OptimizationService:
             raise ValueError("Planning and snapshot country mismatch")
         selected = select(snapshot, request.state_id, request.district_id)
         receiver_ids = {f.id for f in selected}
-        scope_facilities = select(snapshot, request.state_id if request.scope == "state" else None,
+        scope_facilities = select(snapshot, request.state_id if request.scope in ("state", "cross_district") else None,
             request.district_id if request.scope == "district" else None)
         if any(f.country_id != request.country_id for f in scope_facilities):
             raise ValueError("International redistribution is prohibited")
@@ -117,6 +117,8 @@ class OptimizationService:
             # Keep only resource pools requested by a receiver; all safe capacities for
             # these resources remain visible even if the domestic scope has no edge.
             donors = [d for d in donors if d.resource_id in {r.resource_id for r in receivers}]
+            if request.scope == "cross_district":
+                donors = [d for d in donors if d.state_id == request.state_id and d.district_id and d.district_id != request.district_id]
             edges = make_edges(donors, receivers, {f.id: f for f in scope_facilities}, request.country_id, request.scope)
             preview = Preview(request=request, snapshot_id=fingerprint(snapshot, scope_facilities), scenario_snapshot_id=scenario_snapshot,
                 scenario_facility_ids=sorted(overlay), origin=snapshot.as_of, config_version=P.version, model_version=bundle["report"]["model_version"],
@@ -151,6 +153,8 @@ class OptimizationService:
             solver=metadata, transfers=transfers, impact=impact, greedy=greedy_impact, greedy_transfers=greedy_transfers,
             before=[f for f in projections if f.facility_id in detail_ids], after=[f for f in after if f.facility_id in detail_ids],
             before_warnings=before_warnings, after_warnings=after_warnings, message=message)
+        from app.optimization.geography import plan_geography
+        result.geography = plan_geography(result, snapshot)
         result.diagnostics = dict(ACTIVE.get() or {})
         result.diagnostics['solver_only'] = sum(s.seconds for s in metadata.stages)
         result.diagnostics['solver_construction'] = metadata.construction_seconds

@@ -16,7 +16,7 @@ class RedistributionRequest(BaseModel):
     scenario_id: str | None = None
     state_id: str | None = None
     district_id: str | None = None
-    scope: Literal["district", "state", "national"] = "national"
+    scope: Literal["district", "cross_district", "state", "national"] = "national"
     resources: list[Resource] = Field(default_factory=lambda: ["PCM", "IVF", "ORS", "AMX", "IFA"], min_length=1, max_length=5)
     horizon: Literal[14] = 14
     time_limit_seconds: float = Field(default=10, ge=.01, le=30)
@@ -29,6 +29,8 @@ class RedistributionRequest(BaseModel):
             raise ValueError("District scope requires district_id")
         if self.scope == "state" and not self.state_id:
             raise ValueError("State scope requires state_id")
+        if self.scope == "cross_district" and (self.country_id != "IN" or not self.state_id or not self.district_id):
+            raise ValueError("Cross-district scope requires India and a receiver state/district")
         return self
 
 
@@ -138,6 +140,12 @@ class Transfer(BaseModel):
     optimizer_run_id: str
     donor_id: str
     donor_name: str
+    donor_state_id: str | None = None
+    donor_district_id: str | None = None
+    receiver_state_id: str | None = None
+    receiver_district_id: str | None = None
+    cross_district: bool = False
+    plan_mode: Literal["advisory"] = "advisory"
     receiver_id: str
     receiver_name: str
     resource_id: Resource
@@ -165,6 +173,7 @@ class Transfer(BaseModel):
 
 
 class PlanResult(BaseModel):
+    geography: dict = Field(default_factory=dict)
     diagnostics: dict[str, float] = Field(default_factory=dict)
     run_id: str
     created_at: datetime

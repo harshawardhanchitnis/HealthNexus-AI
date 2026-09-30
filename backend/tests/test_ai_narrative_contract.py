@@ -209,7 +209,12 @@ def test_production_preserves_exact_raw_draft_on_success_and_rejection(profiles,
 
 
 @pytest.mark.parametrize('fault,code,sends',[('429','rate_limited',1),('503','provider_unavailable',1),('unsafe_final','response_schema',3)])
-def test_official_sdk_stop_after_any_failure_keeps_raw_draft_no_retry_no_next_case(tmp_path,fault,code,sends):
+def test_official_sdk_stop_after_any_failure_keeps_raw_draft_no_retry_no_next_case(tmp_path,fault,code,sends,monkeypatch):
+    # Phase 9 permits additive map/optimizer UI changes; the accepted AI, models,
+    # engines, evidence and private ledger remain frozen by the new baseline guard.
+    from verify_phase9_preservation import preserved
+    import verify_phase6_completion
+    monkeypatch.setattr(verify_phase6_completion, 'preserved', preserved)
     from verify_phase6_completion import run
     report=run(False,mock_fault=fault,output=tmp_path/'fault.json')
     assert report['status']=='STOPPED_AFTER_FAILURE' and report['new_provider_requests']==0

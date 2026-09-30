@@ -1,0 +1,118 @@
+{
+  "kind": "actual_local_browser_observation",
+  "route": "/geospatial",
+  "browser": "Codex in-app Chromium",
+  "runtime": "Final Docker nginx + FastAPI production images, including post-restart map runtime",
+  "profile": "redistribution-ready",
+  "scenario": "India / Maharashtra / Pune / severe dengue / 14 days",
+  "cross_district": {
+    "receiver": "Pune",
+    "donor_districts": [
+      "Nagpur"
+    ],
+    "safe_capacity": 9307,
+    "recommended_accounting_items": 9307,
+    "lanes": 10,
+    "unresolved": 32456,
+    "facility_markers": 5,
+    "attribution": [
+      "OpenFreeMap",
+      "OpenMapTiles",
+      "OpenStreetMap"
+    ]
+  },
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "document_width": 1425,
+      "horizontal_overflow": false,
+      "facility_buttons": 5,
+      "lane_buttons": 10,
+      "screenshot": "docs/screenshots/phase9-cross-district-1440x900.png"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "document_width": 1265,
+      "horizontal_overflow": false,
+      "facility_buttons": 5,
+      "lane_buttons": 10,
+      "screenshot": "docs/screenshots/phase9-cross-district-1280x800.png"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "document_width": 1009,
+      "horizontal_overflow": false,
+      "facility_buttons": 5,
+      "lane_buttons": 10,
+      "screenshot": "docs/screenshots/phase9-cross-district-1024x768.png"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "document_width": 753,
+      "horizontal_overflow": false,
+      "facility_buttons": 5,
+      "lane_buttons": 10,
+      "screenshot": "docs/screenshots/phase9-cross-district-768x1024.png"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "document_width": 375,
+      "horizontal_overflow": false,
+      "facility_buttons": 5,
+      "lane_buttons": 10,
+      "screenshot": "docs/screenshots/phase9-cross-district-390x844.png"
+    }
+  ],
+  "additional_screenshots": [
+    "docs/screenshots/phase9-cross-district-mobile-map.png",
+    "docs/screenshots/phase9-constrained-mobile.png",
+    "docs/screenshots/phase9-tile-failure-mobile.png"
+  ],
+  "constrained": {
+    "safe_capacity": 0,
+    "lanes": 0,
+    "unresolved": 30230,
+    "pressure_markers_visible": true
+  },
+  "tile_failure": {
+    "test": "Chromium CDP blocks only tiles.openfreemap.org with cache disabled",
+    "public_basemap_requests_before_shutdown": 1,
+    "notice_visible": true,
+    "local_overlay_visible": true,
+    "facility_and_lane_list_usable": true,
+    "summary_retained": true,
+    "fresh_tab_browser_errors_and_warnings": 0,
+    "block_reset_and_basemap_restored": true,
+    "final_docker_retest": "PASS; overlays/list/summary usable, zero captured console errors/warnings; block and cache override removed"
+  },
+  "normal_basemap_tiles_rendered": true,
+  "fresh_tab_console_errors_and_warnings": 0,
+  "live_gemini_requests": 0,
+  "map_coordinate_version": "illustrative-district-v1",
+  "district_geometry_review": {
+    "status": "PASS",
+    "receiver_near": "Pune",
+    "donors_near": "Nagpur",
+    "desktop_auto_fit_both": true,
+    "mobile_fresh_load_auto_fit_both": true,
+    "map_distance_km_range": [
+      619.8547875764694,
+      620.649244109176
+    ],
+    "optimizer_coordinates_and_distances_unchanged": true,
+    "actual_lane_inspector": {
+      "resource": "IVF",
+      "quantity": 45,
+      "unit": "bags",
+      "map_distance_km": 620.649244109176,
+      "optimizer_distance_km": 2.3000073911633194
+    }
+  },
+  "capture_method": "Unedited CDP PNG captures; desktop/tablet full content, mobile context and separate map viewport",
+  "date": "2026-09-30"
+}

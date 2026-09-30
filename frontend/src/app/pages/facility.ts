@@ -16,6 +16,7 @@ import { PredictiveOutlook } from '../shared/predictive-outlook';
     <a routerLink="/facilities" queryParamsHandling="preserve" class="inline-link back-link"
       >← Back to facilities</a
     >
+    @if(facility();as selectedFacility){<a routerLink="/geospatial" [queryParams]="mapContext(selectedFacility)" queryParamsHandling="merge" class="inline-link">View on Map →</a>}
     @if (error()) {
       <div class="empty-state" role="alert">
         <h1>Facility unavailable</h1>
@@ -179,6 +180,15 @@ export class FacilityPage {
   countryName = signal('India');
   provenance = signal<Provenance | null>(null);
   calibration = signal<Calibration>({});
+  mapContext(f:Facility){
+    const q=this.route.snapshot.queryParamMap;
+    const sameScope=q.get('state_id')===f.state_id && q.get('district_id')===f.district_id;
+    const mode=sameScope?q.get('mode')||'network':'network';
+    return {state_id:f.state_id,district_id:f.district_id,facility_id:f.id,mode,
+      scenario_id:mode==='emergency'||mode==='redistribution'?q.get('scenario_id'):null,
+      run_id:mode==='redistribution'?q.get('run_id'):null,
+      donor_scope:mode==='redistribution'?q.get('donor_scope'):null};
+  }
   constructor() {
     combineLatest([this.route.paramMap, this.route.queryParamMap])
       .pipe(

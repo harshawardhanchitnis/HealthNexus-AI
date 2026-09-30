@@ -163,6 +163,8 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
     app.include_router(resilience_router(scenarios))
     planner = OptimizationService(scenarios)
     app.include_router(optimization_router(planner))
+    from app.geospatial import geospatial_router
+    app.include_router(geospatial_router(scenarios, planner))
     from app.ai.orchestrator import CopilotService
     from app.ai.routes import copilot_router
     app.state.copilot = CopilotService(scenarios, planner)
