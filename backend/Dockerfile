@@ -5,8 +5,9 @@ COPY backend/requirements.txt backend/requirements.txt
 RUN pip install --no-cache-dir -r backend/requirements.txt && pip install --no-cache-dir torch==2.8.0+cpu --index-url https://download.pytorch.org/whl/cpu
 COPY backend backend
 COPY data data
-COPY artifacts/models artifacts/models
-COPY artifacts/planning artifacts/planning
+COPY scripts/restore_demo.py scripts/restore_demo.py
+COPY deployment-assets/demo-assets.zip /tmp/demo-assets.zip
+RUN echo "966f452b95d7bacff92ccfdbb0fce8ba1beb4593ad0bcb8064d6c0d03397f7dd  /tmp/demo-assets.zip" | sha256sum -c - && python scripts/restore_demo.py /tmp/demo-assets.zip && rm /tmp/demo-assets.zip
 RUN useradd --uid 10001 --create-home healthnexus && mkdir -p artifacts/federation && chown -R healthnexus:healthnexus artifacts/federation
 USER healthnexus
 EXPOSE 8000

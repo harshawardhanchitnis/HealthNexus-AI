@@ -53,6 +53,37 @@ The experimental federation worker runs in the background. Request-based Cloud R
 
 ## Laptop reset and portability
 
+### Render clean-checkout packaging (2026-09-30)
+
+The reviewed canonical bundle is now versioned at `deployment-assets/demo-assets.zip`:
+77 asset files, 72,340,666 bytes, SHA-256
+`966f452b95d7bacff92ccfdbb0fce8ba1beb4593ad0bcb8064d6c0d03397f7dd`.
+It contains only `data/generated/`, `artifacts/models/` and `artifacts/planning/`
+assets plus their checksum manifest; no credentials. Loose operational assets
+remain gitignored. The Docker context excludes them and all other local artifacts.
+
+For the existing Render service, retain repository-root build context and use
+`backend/Dockerfile`; do not set the service root to `backend`. The image build
+checks the archive's pinned SHA-256, runs the existing path/checksum-validating
+`scripts/restore_demo.py`, and removes the ZIP from the final runtime filesystem.
+No models are trained and no data are regenerated. The existing non-root user,
+`PORT` handling, health check and startup command are unchanged.
+
+```powershell
+docker build -f backend/Dockerfile -t healthnexus-render-test .
+```
+
+Local deployment gates passed: all 77 restored files match canonical hashes;
+`/health` and `/readiness` return HTTP 200; all ten country/profile partitions
+are ready; district, constrained and cross-district HTTP plans retain their
+accepted accounting totals, donor safety and conservation; saved federation
+evidence reloads with its accepted checksum. Gemini was disabled and provider
+calls were zero. Python compilation, host/container `pip check`, the existing
+canonical verifier and eight readiness/reload tests passed. These local gates
+do not establish Render Free memory/CPU capacity or claim a successful cloud
+deployment. Pushing the packaging commit triggers the already configured
+service's automatic deployment; no new service or billing change is required.
+
 On this existing checkout:
 
 ```powershell

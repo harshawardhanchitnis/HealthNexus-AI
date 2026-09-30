@@ -9,11 +9,11 @@
 .env.*
 !.env.example
 artifacts
-!artifacts/models
-!artifacts/models/**
-!artifacts/planning
-!artifacts/planning/**
+data/generated
 docs
-scripts
+scripts/*
+!scripts/restore_demo.py
+deployment-assets/*
+!deployment-assets/demo-assets.zip
 credentials*.json
 service-account*.json
