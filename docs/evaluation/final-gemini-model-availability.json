@@ -1,0 +1,640 @@
+{
+  "timestamp": "2026-09-30T09:14:16.731311+00:00",
+  "baseline": "3c144e7",
+  "live": true,
+  "models": [
+    "gemini-3.8-flash",
+    "gemini-3.7-flash",
+    "gemini-3.6-flash",
+    "gemini-3.5-flash",
+    "gemini-3.5-flash-lite"
+  ],
+  "question": "Summarize the current resource resilience status in Pune.",
+  "context": {
+    "country_id": "IN",
+    "state_id": "MH",
+    "district_id": "MH-PUNE",
+    "profile": "redistribution-ready"
+  },
+  "quota_confirmation": "User explicitly confirmed quota available for this run.",
+  "contract": "Frozen resilience-summary FactDraftAnswer + current fact-ID/numeric/qualitative validation",
+  "semantic_slots": false,
+  "prose_author": "provider; server validates and resolves evidence",
+  "status": "COMPLETED",
+  "thinking": "low",
+  "max_output_tokens": 4096,
+  "production_fallback_changed": false,
+  "fallback": false,
+  "sdk_retry": false,
+  "maximum_sends": 10,
+  "attempts": [
+    {
+      "model": "gemini-3.8-flash",
+      "attempt": 1,
+      "http_status": 503,
+      "provider_status": null,
+      "accepted": false,
+      "schema": "NOT REACHED",
+      "fact_ids": "NOT REACHED",
+      "grounding": "NOT REACHED",
+      "unknown_ids": null,
+      "unsupported_numbers": null,
+      "usage": null,
+      "wire_sends": 1,
+      "retry_after": "30",
+      "provider_seconds": 16.276866000000155,
+      "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "quota_kind": null,
+      "model_specific_quota": false,
+      "error_code": "provider_unavailable",
+      "failure_reason": "provider_unavailable",
+      "total_seconds": 20.706141300004674,
+      "classification": "503_HIGH_DEMAND"
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "attempt": 2,
+      "http_status": 503,
+      "provider_status": null,
+      "accepted": false,
+      "schema": "NOT REACHED",
+      "fact_ids": "NOT REACHED",
+      "grounding": "NOT REACHED",
+      "unknown_ids": null,
+      "unsupported_numbers": null,
+      "usage": null,
+      "wire_sends": 1,
+      "retry_after": "30",
+      "provider_seconds": 1.5440434999982244,
+      "provider_message": "gemini-3.8-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "quota_kind": null,
+      "model_specific_quota": false,
+      "error_code": "provider_unavailable",
+      "failure_reason": "provider_unavailable",
+      "total_seconds": 1.8530066999956034,
+      "classification": "503_HIGH_DEMAND"
+    },
+    {
+      "model": "gemini-3.7-flash",
+      "attempt": 1,
+      "http_status": 503,
+      "provider_status": null,
+      "accepted": false,
+      "schema": "NOT REACHED",
+      "fact_ids": "NOT REACHED",
+      "grounding": "NOT REACHED",
+      "unknown_ids": null,
+      "unsupported_numbers": null,
+      "usage": null,
+      "wire_sends": 1,
+      "retry_after": "30",
+      "provider_seconds": 33.03936289999547,
+      "provider_message": "gemini-3.7-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "quota_kind": null,
+      "model_specific_quota": false,
+      "error_code": "provider_unavailable",
+      "failure_reason": "provider_unavailable",
+      "total_seconds": 33.39319780000369,
+      "classification": "503_HIGH_DEMAND"
+    },
+    {
+      "model": "gemini-3.7-flash",
+      "attempt": 2,
+      "http_status": 503,
+      "provider_status": null,
+      "accepted": false,
+      "schema": "NOT REACHED",
+      "fact_ids": "NOT REACHED",
+      "grounding": "NOT REACHED",
+      "unknown_ids": null,
+      "unsupported_numbers": null,
+      "usage": null,
+      "wire_sends": 1,
+      "retry_after": "30",
+      "provider_seconds": 9.754103999999643,
+      "provider_message": "gemini-3.7-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.",
+      "quota_kind": null,
+      "model_specific_quota": false,
+      "error_code": "provider_unavailable",
+      "failure_reason": "provider_unavailable",
+      "total_seconds": 10.226320099995064,
+      "classification": "503_HIGH_DEMAND"
+    },
+    {
+      "model": "gemini-3.6-flash",
+      "attempt": 1,
+      "http_status": 200,
+      "provider_status": "completed",
+      "accepted": true,
+      "schema": "PASS",
+      "fact_ids": "PASS",
+      "grounding": "PASS",
+      "unknown_ids": 0,
+      "unsupported_numbers": 0,
+      "usage": {
+        "input_tokens_by_modality": [
+          {
+            "modality": "text",
+            "tokens": 7795
+          }
+        ],
+        "total_cached_tokens": 0,
+        "total_input_tokens": 7795,
+        "total_output_tokens": 534,
+        "total_thought_tokens": 0,
+        "total_tokens": 8329,
+        "total_tool_use_tokens": 0
+      },
+      "wire_sends": 1,
+      "retry_after": null,
+      "provider_seconds": 7.088162100000773,
+      "answer": "The district resource network currently shows multiple facilities operating under risk conditions, with significant bed utilization and moderate medicine availability across reported sites.",
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary",
+          "value": {
+            "facilities": 3,
+            "status_counts": {
+              "HEALTHY": 1,
+              "WATCH": 0,
+              "AT_RISK": 2,
+              "CRITICAL": 0
+            },
+            "patient_footfall": 722,
+            "medicine_availability": 66.7,
+            "total_beds": 292,
+            "occupied_beds": 233,
+            "available_beds": 44,
+            "reserved_beds": 15,
+            "bed_utilisation": 79.8,
+            "staff_present": 136,
+            "staff_scheduled": 147,
+            "staff_availability": 92.5
+          },
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary.bed_utilisation",
+          "value": 79.8,
+          "profile": "redistribution-ready",
+          "unit": "%"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary.medicine_availability",
+          "value": 66.7,
+          "profile": "redistribution-ready",
+          "unit": "%"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary.status_counts.AT_RISK",
+          "value": 2,
+          "profile": "redistribution-ready",
+          "unit": "facilities"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.bed_warnings",
+          "value": 5,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.by_district.MH-PUNE.CRITICAL",
+          "value": 4,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.by_district.MH-PUNE.WARNING",
+          "value": 15,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.medicines_at_risk",
+          "value": 5,
+          "profile": "redistribution-ready",
+          "unit": "medicine resource types"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "facilities",
+          "value": [
+            {
+              "id": "IN-MH-PUNE-001",
+              "name": "Pune \u00b7 PHC 01",
+              "state_id": "MH",
+              "district_id": "MH-PUNE"
+            },
+            {
+              "id": "IN-MH-PUNE-002",
+              "name": "Pune \u00b7 CHC 02",
+              "state_id": "MH",
+              "district_id": "MH-PUNE"
+            },
+            {
+              "id": "IN-MH-PUNE-003",
+              "name": "Pune \u00b7 District Hospital 03",
+              "state_id": "MH",
+              "district_id": "MH-PUNE"
+            }
+          ],
+          "profile": "redistribution-ready",
+          "unit": "facilities"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.facilities_affected",
+          "value": 3,
+          "profile": "redistribution-ready",
+          "unit": "facilities"
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "get_warning_summary",
+          "source_type": "get_warning_summary",
+          "source_id": null,
+          "field": "summary.total",
+          "value": 26,
+          "profile": "redistribution-ready",
+          "unit": "warnings"
+        },
+        {
+          "evidence_id": "e2",
+          "tool": "get_warning_summary",
+          "source_type": "get_warning_summary",
+          "source_id": null,
+          "field": "horizon",
+          "value": 14,
+          "profile": "redistribution-ready",
+          "unit": "days"
+        }
+      ],
+      "fact_validation": {
+        "catalogue_size": 100,
+        "resolved_references": 12,
+        "unknown_fact_ids": 0,
+        "semantic_validation": "PASS",
+        "numeric_validation": "PASS"
+      },
+      "action_validation": {
+        "version": "advisory-action-state-v1",
+        "status": "PASS",
+        "unsupported_execution_claims": 0
+      },
+      "tools": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.017310100003669504,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.009515400000964291,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.026825500004633795,
+      "total_seconds": 8.015736399996968,
+      "classification": "AVAILABLE_ACCEPTED"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "attempt": 1,
+      "http_status": null,
+      "provider_status": null,
+      "accepted": false,
+      "schema": "NOT REACHED",
+      "fact_ids": "NOT REACHED",
+      "grounding": "NOT REACHED",
+      "unknown_ids": null,
+      "unsupported_numbers": null,
+      "usage": null,
+      "wire_sends": 1,
+      "provider_seconds": 60.11422840000159,
+      "provider_message": "",
+      "quota_kind": null,
+      "model_specific_quota": false,
+      "error_code": "provider_timeout",
+      "failure_reason": "provider_timeout",
+      "total_seconds": 61.13349929999822,
+      "classification": "OTHER_PROVIDER_ERROR"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "attempt": 2,
+      "http_status": null,
+      "provider_status": null,
+      "accepted": false,
+      "schema": "NOT REACHED",
+      "fact_ids": "NOT REACHED",
+      "grounding": "NOT REACHED",
+      "unknown_ids": null,
+      "unsupported_numbers": null,
+      "usage": null,
+      "wire_sends": 1,
+      "provider_seconds": 60.0932385000051,
+      "provider_message": "",
+      "quota_kind": null,
+      "model_specific_quota": false,
+      "error_code": "provider_timeout",
+      "failure_reason": "provider_timeout",
+      "total_seconds": 60.62104949999775,
+      "classification": "OTHER_PROVIDER_ERROR"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "attempt": 1,
+      "http_status": 200,
+      "provider_status": "completed",
+      "accepted": true,
+      "schema": "PASS",
+      "fact_ids": "PASS",
+      "grounding": "PASS",
+      "unknown_ids": 0,
+      "unsupported_numbers": 0,
+      "usage": {
+        "input_tokens_by_modality": [
+          {
+            "modality": "text",
+            "tokens": 7595
+          }
+        ],
+        "total_cached_tokens": 0,
+        "total_input_tokens": 7595,
+        "total_output_tokens": 606,
+        "total_thought_tokens": 0,
+        "total_tokens": 8201,
+        "total_tool_use_tokens": 0
+      },
+      "wire_sends": 1,
+      "retry_after": null,
+      "provider_seconds": 5.929264000005787,
+      "answer": "The Pune district healthcare network encompasses a total of 3 facilities with significant patient footfall, operating under elevated bed utilization and constrained resource availability.",
+      "evidence": [
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary",
+          "value": {
+            "facilities": 3,
+            "status_counts": {
+              "HEALTHY": 1,
+              "WATCH": 0,
+              "AT_RISK": 2,
+              "CRITICAL": 0
+            },
+            "patient_footfall": 722,
+            "medicine_availability": 66.7,
+            "total_beds": 292,
+            "occupied_beds": 233,
+            "available_beds": 44,
+            "reserved_beds": 15,
+            "bed_utilisation": 79.8,
+            "staff_present": 136,
+            "staff_scheduled": 147,
+            "staff_availability": 92.5
+          },
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary.bed_utilisation",
+          "value": 79.8,
+          "profile": "redistribution-ready",
+          "unit": "%"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary.facilities",
+          "value": 3,
+          "profile": "redistribution-ready",
+          "unit": "facilities"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary.patient_footfall",
+          "value": 722,
+          "profile": "redistribution-ready",
+          "unit": "visits"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "summary.status_counts.AT_RISK",
+          "value": 2,
+          "profile": "redistribution-ready",
+          "unit": "facilities"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.bed_warnings",
+          "value": 5,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.medicines_at_risk",
+          "value": 5,
+          "profile": "redistribution-ready",
+          "unit": "medicine resource types"
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.staff_warnings",
+          "value": 1,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.by_district.MH-PUNE.CRITICAL",
+          "value": 4,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.counts.CRITICAL",
+          "value": 4,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.counts.WARNING",
+          "value": 15,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.counts.WATCH",
+          "value": 7,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.by_facility.IN-MH-PUNE-001.CRITICAL",
+          "value": 1,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.by_facility.IN-MH-PUNE-002.CRITICAL",
+          "value": 1,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.by_facility.IN-MH-PUNE-003.CRITICAL",
+          "value": 2,
+          "profile": "redistribution-ready",
+          "unit": null
+        },
+        {
+          "evidence_id": "e1",
+          "tool": "get_network_summary",
+          "source_type": "get_network_summary",
+          "source_id": null,
+          "field": "warnings.total",
+          "value": 26,
+          "profile": "redistribution-ready",
+          "unit": null
+        }
+      ],
+      "fact_validation": {
+        "catalogue_size": 100,
+        "resolved_references": 16,
+        "unknown_fact_ids": 0,
+        "semantic_validation": "PASS",
+        "numeric_validation": "PASS"
+      },
+      "action_validation": {
+        "version": "advisory-action-state-v1",
+        "status": "PASS",
+        "unsupported_execution_claims": 0
+      },
+      "tools": [
+        {
+          "tool": "get_network_summary",
+          "status": "success",
+          "seconds": 0.01771980000194162,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e1"
+        },
+        {
+          "tool": "get_warning_summary",
+          "status": "success",
+          "seconds": 0.014892899998812936,
+          "summary": "Validated HealthNexus result; no external action executed.",
+          "evidence_id": "e2"
+        }
+      ],
+      "tool_seconds": 0.03261270000075456,
+      "total_seconds": 6.731187199999113,
+      "classification": "AVAILABLE_ACCEPTED"
+    }
+  ],
+  "ledger_before": 42,
+  "new_provider_sends": 8,
+  "mock_sends": 0,
+  "ledger_after": 50,
+  "preservation": {
+    "status": "PASS",
+    "frozen_file_identities": 678,
+    "env_unchanged": true,
+    "production_fallback_unchanged": true,
+    "operational_models_federation_evidence_unchanged": true
+  }
+}
