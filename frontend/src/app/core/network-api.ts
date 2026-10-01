@@ -2,7 +2,8 @@ import { GeospatialView } from './geospatial-models';
 import { Router } from '@angular/router';
 import { FederationStatus, FederationNode, FederationRequest, FederationRun } from './federation-models';
 import { CopilotRequest, CopilotResponse, CopilotStatus, CopilotProgress } from './copilot-models';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
+import { shareReplay, tap } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Forecast, Performance } from './forecast-models';
 import { PlanningRequest, PlanningPreview, PlanningResult } from './optimization-models';
@@ -27,6 +28,13 @@ import {
 } from './models';
 @Injectable({ providedIn: 'root' })
 export class NetworkApi {
+  // Conservative until server capabilities arrive. Never infer policy from a hostname.
+  districtOnly = signal(true);
+  private countryRequest = this.httpCountries();
+  private httpCountries() {
+    return inject(HttpClient).get<{items: Country[]; low_memory?: boolean}>('/api/countries').pipe(
+      tap(data => this.districtOnly.set(data.low_memory === true)), shareReplay({bufferSize:1,refCount:false}));
+  }
   private http = inject(HttpClient);
   private router = inject(Router);
   federationStatus() { return this.http.get<FederationStatus>('/api/federation/status'); }
@@ -99,7 +107,7 @@ export class NetworkApi {
     return this.http.get<GeospatialView>('/api/geospatial', {params: this.params(scope)});
   }
   countries() {
-    return this.http.get<{ items: Country[] }>('/api/countries');
+    return this.countryRequest;
   }
   forecast(facility: string, resource: string, country = 'IN', horizon = 14) {
     const suffix =

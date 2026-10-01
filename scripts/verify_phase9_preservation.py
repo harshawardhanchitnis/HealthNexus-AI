@@ -12,6 +12,12 @@ AUTHORIZED_SOURCE = {
     'backend/app/scenarios/engine.py', 'backend/app/forecasting/prediction.py',
     'backend/app/federation/config.py', 'backend/app/federation/routes.py',
     'backend/app/federation/service.py',
+    # Explicitly authorized district-computation policy and bounded AI retention.
+    # Provider protocol, prompts, grounding, fact IDs and fallback logic are frozen.
+    'backend/app/ai/orchestrator.py', 'backend/app/ai/tools.py',
+    # Complete identical SHA-256 checks now stream file data instead of allocating
+    # a whole history file; optional Linux page-cache hints do not change bytes.
+    'backend/app/forecasting/data.py',
 }
 
 

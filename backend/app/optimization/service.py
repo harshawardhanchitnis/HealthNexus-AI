@@ -1,5 +1,5 @@
 from app.core.diagnostics import clone, stage, ACTIVE, diagnosed
-from app.core.runtime import low_memory
+from app.core.runtime import low_memory, planning_scope, compute_scope, PLAN_LIMIT
 from datetime import datetime, timezone
 from threading import RLock
 from uuid import uuid4
@@ -29,6 +29,9 @@ class OptimizationService:
         self.lock = RLock()
 
     def prepare(self, snapshot, request):
+        planning_scope(request)
+        compute_scope(select(snapshot, request.state_id if request.scope in ('state', 'cross_district') else None,
+            request.district_id if request.scope == 'district' else None), cross_district=request.scope == 'cross_district')
         if snapshot.country != request.country_id or snapshot.operational_profile != request.profile:
             raise ValueError('Planning country/profile does not match snapshot')
         # Validate artifacts and scenario existence before every cache lookup.
@@ -136,6 +139,9 @@ class OptimizationService:
 
     @diagnosed
     def run(self, snapshot, request):
+        with self.lock:
+            if len(self.results) >= (PLAN_LIMIT if low_memory() else P.max_runs):
+                raise ValueError('Stored planning limit reached; discard an existing plan')
         preview, projections, paths, scenario_type = self.prepare(snapshot, request)
         with stage("solver_construction_and_solve"):
             quantities, metadata = solve(preview.donors, preview.receivers, preview.edges, request.time_limit_seconds)
@@ -163,7 +169,7 @@ class OptimizationService:
         if ACTIVE.get() is not None:
             ACTIVE.get().update(result.diagnostics)
         with self.lock:
-            if len(self.results) >= (4 if low_memory() else P.max_runs):
+            if len(self.results) >= (PLAN_LIMIT if low_memory() else P.max_runs):
                 raise ValueError("Stored planning limit reached; discard an existing plan")
             self.results[run_id] = result  # diagnosed stores an independent copy before returning
         return result

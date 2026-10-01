@@ -4,13 +4,17 @@
     "backend/app/federation/config.py": "5ade3ef31336ecef6645f9bb78d2ef075f21ea3191f8e0eaf068f71788a7268b",
     "backend/app/federation/routes.py": "935efd5e9ec8b5ac160458dc4d2b297e6a6875b0a951fa84d310b5209e4c2bfa",
     "backend/app/federation/service.py": "e18f0056fbc7dff03288b0c6fd47b1c61aae2be35aea8ad6fcab83a379e63074",
-    "backend/app/forecasting/prediction.py": "ae1cdbcc75c1df071747c7d5308c0076f1e94ff655b3f388112ec65adee59b3c",
-    "backend/app/scenarios/engine.py": "2e5d5cd2cd5e3949610561b4f59f4e5dd3b84ea1b8ca2e6e3d6035516bf91c61",
-    "backend/app/scenarios/routes.py": "a8a76a786b4172d837cd39cd3acbf3e8efa11a3a4f985ec45125443a95e2be48",
-    "backend/app/scenarios/state.py": "d1ffcdba5230cd38818fb816fb4fcd2e64bdcb012358bc929481c2ee6746af1e"
+    "backend/app/forecasting/prediction.py": "6e70af0cbf55ce9c5912bfc38e74192045af6ffb01f01125370b8c7c051a0898",
+    "backend/app/scenarios/engine.py": "266587fd578cc7221c1c8817a312b47c58acac2bc208a03402c1fd03b85cd7c9",
+    "backend/app/scenarios/routes.py": "b1d2c8af42b55fb26f8374c02daa895ab5a506f34baeb9b64d5959e670b6b98a",
+    "backend/app/scenarios/state.py": "53fd029c682f322e1f89b5fd919ee60f0322813db463c73d1313d027823d8cbb",
+    "backend/app/ai/orchestrator.py": "1bc5357c56dad8b2a3d43fe4c872528b461afc860afa7adda760104fd573ad3e",
+    "backend/app/ai/tools.py": "80584354c269fa50c26e792d7700619777eaf1a92109009c0d374142290382c1",
+    "backend/app/forecasting/data.py": "77c019efd46d61f85c00eea77cbd97d118ede0b8a382bb670ff436384285c79d"
   },
   "historical_ledger_sha256": "0979f18481ad928e7104b5e0c14ba9ba54189c8ac00441e5973973d3b774556b",
   "historical_ledger_used": 50,
   "provider_requests_this_task": 0,
-  "scope": "Explicit deployment-only cache, India scope and metadata edits. Models, data, evidence, equations and Gemini source remain frozen."
+  "scope": "Explicit user-authorized district computation restrictions, cache/history/admission bounds and truthful deployment metadata. Prediction/scenario equations, models, data, evidence, provider protocol, prompts, grounding, fact validation and fallback order remain preserved. Artifact I/O streams identical complete hashes and optionally releases already-read Linux file-cache pages; all bytes/integrity checks are preserved.",
+  "supersedes": "652cc65 public memory policy; user approved additional memory cuts on 2026-10-01."
 }

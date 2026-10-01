@@ -1,16 +1,12 @@
 """Low-memory artifact capability checks; no prediction, unpickling or training."""
-import hashlib
 import json
 from pathlib import Path
 import zipfile
+from app.core.artifact_io import artifact_sha256
 
 
 def sha256(path):
-    checksum = hashlib.sha256()
-    with Path(path).open('rb') as stream:
-        for chunk in iter(lambda: stream.read(65536), b''):
-            checksum.update(chunk)
-    return checksum.hexdigest()
+    return artifact_sha256(path)
 
 
 def india_artifacts(root):

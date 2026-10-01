@@ -1,4 +1,14 @@
-# Validation — 2026-09-29
+# Validation — 2026-10-01
+
+## District computation budget — current local release
+
+- **710 backend tests and 22 frontend tests pass.** Strict app/spec TypeScript, Angular production build, Python compileall, host/container `pip check` and npm audit pass (zero vulnerabilities). One existing upstream Starlette/AnyIO deprecation remains.
+- The final no-cache public backend image ran under **450,000,000 bytes**, no swap and 0.1 CPU. Six complete journeys in one unrestarted container measured **336,113,664 bytes** total cgroup peak; adding the largest sampled server file RSS conservatively gives **416,133,120 bytes**. Forced limit-reclamation, OOM and restart counts are zero; retained-memory plateau passes. Earlier failed cold/plateau receipts remain available.
+- Canonical ready district, ready Pune/Nagpur cross-district and constrained results remain exact; donor violations/new risks remain zero and conservation passes. Fourteen complete forecast hashes are unchanged. All ten local country/profile model partitions and saved five-node federation reload pass.
+- Desktop/mobile browser flows verify national warning/planner selection notices, actual Pune warnings/scenarios/plans, ten cross-district map lanes, zero constrained lanes and nationwide 207-facility browsing. No captured console errors/warnings. This is manual flow verification, not accessibility certification.
+- Zero live Gemini calls; the 50-request ledger, ignored `.env`, engines, model/data artifacts and saved federation evidence remain preserved. Credential-pattern scanning is not penetration testing. Render cloud memory still needs rollout verification; Firebase publication was not performed.
+
+[Measured report](district-computation-budget-report.md) · [Release gate](evaluation/district-budget-release.json) · [Raw cold measurement](evaluation/district-memory-cold.json) · [Browser gallery](screenshots/district-budget/README.md).
 
 **Phase 6 fully live-accepted (29 September 2026).** Four live cases pass on Gemini 3.5 Flash-Lite with six actual sends, no retries/fallback/replay; ledger 36 -> 42. All 636 backend tests pass before and after live acceptance. Operational/provenance answers use named semantic slots and deterministic server prose. [Completed acceptance report](phase6-final-acceptance-report.md). Earlier failures below are historical and superseded, with raw evidence preserved.
 

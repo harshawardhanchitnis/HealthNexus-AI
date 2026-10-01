@@ -16,6 +16,7 @@
     >Emergency Simulator</a
   >
 </div>
+@if(districtRequired()) { <app-computation-notice /> }
 @if(result(); as plan) {
  <div class="optimizer-kpis plan-overview" aria-label="Measured plan outcome">
   <article><span>Target before</span><strong>{{plan.impact.before.target_deficit | number}}</strong><small>Accounting items</small></article>
@@ -40,7 +41,7 @@
   </div>
   <div class="twin-scope">
     <strong>{{ district || state || country }}</strong
-    ><span>14-day planning horizon · {{ scope }} donor search</span>
+    ><span>{{ districtRequired() ? 'Select district scope for live planning' : '14-day planning horizon · ' + scope + ' donor search' }}</span>
   </div>
 </section>
 <details class="panel twin-form" [open]="!result()"><summary>Planning context & donor protection policy</summary>
@@ -48,7 +49,7 @@
     <div>
       <h2>Planning context</h2>
       <p>
-        Navigation filters select receivers. Donor search may extend across the selected country.
+        Navigation filters select receivers. {{districtOnly() ? 'Donor search stays within the district or includes another district in the same state.' : 'Donor search may extend across the selected country.'}}
       </p>
     </div>
     <span class="tag">GOOGLE OR-TOOLS</span>
@@ -69,9 +70,10 @@
       >
       <label
         >Donor search scope<select [(ngModel)]="scope" (ngModelChange)="changeScope($event)">
+          @if(districtOnly() && (scope==='national' || scope==='state')) { <option [value]="scope" disabled>Select district scope</option> }
           <option value="cross_district" [disabled]="!state || !district || country !== 'IN'">Cross-District — same state, other districts</option>
-          <option value="national">National — same country</option>
-          <option value="state" [disabled]="!state">State / region</option>
+          @if(!districtOnly()) { <option value="national">National — same country</option>
+          <option value="state" [disabled]="!state">State / region</option> }
           <option value="district" [disabled]="!district">District</option>
         </select></label
       >

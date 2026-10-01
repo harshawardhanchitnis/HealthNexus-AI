@@ -1,5 +1,8 @@
 # India-only public deployment memory gate — 2026-09-30
 
+This report is historical. The [district computation budget report](district-computation-budget-report.md)
+records the subsequent approved cuts and the stricter total-container 450 MB gate.
+
 This report covers the explicit `HEALTHNEXUS_LOW_MEMORY=true` runtime. Local
 capacity verification is separate from the existing Render service's deployment
 and cloud health. No Firebase deployment or live Gemini call was performed.

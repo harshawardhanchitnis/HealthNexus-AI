@@ -1,6 +1,6 @@
 from app.core.diagnostics import stage, clone
 from app.core.cache import BoundedCache
-from app.core.runtime import low_memory
+from app.core.runtime import low_memory, compute_scope
 from datetime import datetime, timedelta, timezone
 from app.profiles.identity import fingerprint
 from threading import RLock
@@ -48,8 +48,8 @@ class ScenarioEngine:
     def __init__(self, forecasts=None, use_prepared=True):
         self.forecasts = forecasts or ForecastService()
         self.store = ScenarioStore()
-        self.cache = BoundedCache(24 if low_memory() else 1000)
-        self.baseline_cache = BoundedCache(24 if low_memory() else 1000)
+        self.cache = BoundedCache(6 if low_memory() else 1000)
+        self.baseline_cache = BoundedCache(6 if low_memory() else 1000)
         self.lock = RLock()
         self.disk_attempts = set()
         self.disk_hits = 0
@@ -60,6 +60,7 @@ class ScenarioEngine:
                 facility.id, facility_hash(facility), bundle["report"]["model_version"], bundle.get("artifact_sha256"))
 
     def prepare_inputs(self, snapshot, facilities):
+        compute_scope(facilities, cross_district=True)
         bundle=self.forecasts.bundle(snapshot.country,snapshot.operational_profile)
         attempt=(snapshot.country,snapshot.operational_profile,str(snapshot.as_of),bundle.get('artifact_sha256'),id(snapshot))
         with self.lock:
@@ -86,6 +87,7 @@ class ScenarioEngine:
             return self.cache[key], bundle
 
     def baseline(self, snapshot, facilities):
+        compute_scope(facilities, cross_district=True)
         self.prepare_inputs(snapshot, facilities)
         projections, warnings = [], []
         for f in facilities:
@@ -105,6 +107,9 @@ class ScenarioEngine:
         return outcome(projections, warnings), listing(warnings)
 
     def run(self, snapshot, definition: ScenarioRequest):
+        with self.store.lock:
+            if len(self.store.results) >= self.store.limit:
+                raise ValueError(f'Scenario limit ({self.store.limit}) reached. Discard an existing scenario first.')
         if definition.profile != snapshot.operational_profile:
             raise ValueError("Scenario and baseline operational profile mismatch")
         if definition.country_id != snapshot.country:
@@ -113,7 +118,9 @@ class ScenarioEngine:
         request.start_date = request.start_date or snapshot.as_of+timedelta(days=1)
         if request.start_date <= snapshot.as_of or (request.start_date-snapshot.as_of).days+request.duration-1 > C.HORIZON:
             raise ValueError("Event must start after the forecast origin and fit entirely within its 14-day horizon")
-        facilities = [f.model_copy(deep=True) for f in select(snapshot, request.state_id, request.district_id, request.facility_ids)]
+        selected = select(snapshot, request.state_id, request.district_id, request.facility_ids)
+        compute_scope(selected)
+        facilities = [f.model_copy(deep=True) for f in selected]
         self.prepare_inputs(snapshot, facilities)
         scenario_id = str(uuid4())
         base, changed, warnings, base_warnings = [], [], [], []
@@ -131,7 +138,10 @@ class ScenarioEngine:
         snapshot_id = fingerprint(snapshot, facilities)
         result = ScenarioResult(scenario=ScenarioMetadata(scenario_id=scenario_id, definition=request,
             created_at=datetime.now(timezone.utc), baseline_snapshot_id=snapshot_id, origin=snapshot.as_of,
-            config_version=C.CONFIG_VERSION, effective_parameters=parameters(request), assumptions=ASSUMPTIONS),
+            config_version=C.CONFIG_VERSION, effective_parameters=parameters(request),
+            assumptions=[text if not text.startswith('Process-local scenarios') else
+                f'Process-local scenarios survive navigation, not server restarts; maximum {self.store.limit} stored runs. Baseline data is never overwritten.'
+                for text in ASSUMPTIONS]),
             baseline=before, scenario_result=after, delta=deltas, resource_impact=impacts,
             baseline_warnings=listing(base_warnings), warnings_created=listing(warnings))
         self.store.put(result)

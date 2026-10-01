@@ -10,6 +10,7 @@ from app.warnings.engine import listing
 from app.data_ingestion.catalog import datasets
 from app.ai.tool_registry import validated
 from app.ai.action_state import advisory_state
+from app.core.runtime import compute_scope
 
 
 def dump(model, **options):
@@ -97,6 +98,7 @@ class ToolExecutor:
         if sid:
             rows = self.scenario(snapshot, sid).warnings_created.items
         else:
+            compute_scope(facilities)
             _, result = self.engine.baseline(snapshot, facilities)
             rows = result.items
         return listing([w for w in rows if w.facility_id in ids and
@@ -118,6 +120,7 @@ class ToolExecutor:
 
     def dispatch(self, name, snapshot, facilities, args):
         if name == 'get_network_summary':
+            compute_scope(facilities)
             _, warnings = self.engine.baseline(snapshot, facilities)
             return {'summary':summarize(facilities), 'warnings':dump(warnings.summary),
                 'model_version':self.engine.forecasts.bundle(snapshot.country,snapshot.operational_profile)['report']['model_version'],

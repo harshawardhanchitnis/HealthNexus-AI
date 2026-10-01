@@ -1,14 +1,14 @@
 """Bounded process-local demo store. No baseline persistence or disk writes."""
 from threading import RLock
 from app.core.risk_config import MAX_SCENARIOS
-from app.core.runtime import low_memory
+from app.core.runtime import low_memory, SCENARIO_LIMIT
 
 
 class ScenarioStore:
     def __init__(self):
         self.lock = RLock()
         self.results = {}
-        self.limit = 4 if low_memory() else MAX_SCENARIOS
+        self.limit = SCENARIO_LIMIT if low_memory() else MAX_SCENARIOS
 
     def put(self, result):
         with self.lock:

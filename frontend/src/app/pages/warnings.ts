@@ -1,13 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, forkJoin, of, switchMap, tap } from 'rxjs';
+import { catchError, combineLatest, forkJoin, of, switchMap, tap } from 'rxjs';
+import { computationPolicy } from '../core/computation-policy';
 import { NetworkApi } from '../core/network-api';
 import { WarningList, ScenarioMetadata } from '../core/resilience-models';
 import { WarningCards } from '../shared/warning-cards';
+import { ComputationNotice } from '../shared/computation-notice';
 @Component({
   selector: 'app-warnings',
-  imports: [RouterLink, WarningCards],
+  imports: [RouterLink, WarningCards, ComputationNotice],
   template: `<div class="page-heading">
       <div>
         <div class="eyebrow">EARLY WARNING ENGINE / 14-DAY OUTLOOK</div>
@@ -73,7 +75,7 @@ import { WarningCards } from '../shared/warning-cards';
       }}
       Simulated operations; no clinical validation.
     </div>
-    @if (loading()) {
+    @if (districtRequired()) { <app-computation-notice /> } @else if (loading()) {
       <div class="loading-state" role="status">
         Evaluating saved forecasts and operational warning rules…
       </div>
@@ -134,23 +136,27 @@ export class WarningsPage {
   category = signal('');
   loading = signal(true);
   error = signal('');
+  districtRequired = signal(false);
   constructor() {
-    this.route.queryParamMap
+    combineLatest([this.route.queryParamMap, computationPolicy(this.api)])
       .pipe(
         tap(() => {
           this.loading.set(true);
           this.error.set('');
         }),
-        switchMap((p) => {
+        switchMap(([p]) => {
           const country = p.get('country_id') || 'IN';
           this.scenario.set(p.get('scenario_id') || '');
           this.severity.set(p.get('severity') || '');
           this.category.set(p.get('category') || '');
+          this.districtRequired.set(this.api.districtOnly() && !p.get('district_id') && !p.get('facility_id'));
+          if (this.districtRequired()) return of(null);
           return forkJoin({
             warnings: this.api.warnings({
               country_id: country,
               state_id: p.get('state_id') || '',
               district_id: p.get('district_id') || '',
+              facility_id: p.get('facility_id') || '',
               scenario_id: this.scenario(),
               severity: this.severity(),
               category: this.category(),

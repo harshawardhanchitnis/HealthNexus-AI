@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { signal } from '@angular/core';
 import { ActivatedRoute, convertToParamMap, provideRouter, Router } from '@angular/router';
 import { BehaviorSubject, of, throwError } from 'rxjs';
 import { GeospatialPage } from './geospatial';
@@ -10,7 +11,7 @@ describe('Geospatial context and authoritative workflows',()=>{
   const base={country_id:'IN',profile:'redistribution-ready',state_id:'MH',district_id:'MH-PUNE',donor_scope:'cross_district'};
   beforeEach(()=>{
     params=new BehaviorSubject(convertToParamMap(base));api=jasmine.createSpyObj('NetworkApi',['geospatial','optimize','runScenario']);
-    api.geospatial.and.returnValue(of(mapView()));
+    Object.defineProperty(api,'districtOnly',{value:signal(true)});api.geospatial.and.returnValue(of(mapView()));
     TestBed.configureTestingModule({providers:[provideRouter([]),{provide:ActivatedRoute,useValue:{queryParamMap:params}},{provide:NetworkApi,useValue:api}]});
     router=TestBed.inject(Router);spyOn(router,'navigate').and.resolveTo(true);
     page=TestBed.runInInjectionContext(()=>new GeospatialPage());
@@ -47,5 +48,9 @@ describe('Geospatial context and authoritative workflows',()=>{
   });
   it('demo selection changes operational context without supplying an optimizer result',()=>{
     page.loadDemo();expect(router.navigate).toHaveBeenCalledWith(['/geospatial'],{queryParams:{...base,mode:'network'}});expect(api.optimize).not.toHaveBeenCalled();
+  });
+  it('does not send inherited patient-demand filters as medicine lane filters',()=>{
+    params.next(convertToParamMap({...base,mode:'network',resource:'footfall'}));
+    expect(page.resource).toBe('');expect(api.geospatial.calls.mostRecent().args[0]['resource']).toBe('');
   });
 });

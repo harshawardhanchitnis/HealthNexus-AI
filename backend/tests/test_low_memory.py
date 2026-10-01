@@ -87,7 +87,7 @@ def test_exact_profile_predictions_and_shared_models(monkeypatch):
     a=low.bundle('IN','constrained');b=low.bundle('IN','redistribution-ready')
     assert a['models'] is b['models'] and len(low.cache)==1
     for index in range(700):low.points[('measurement',index)]=index
-    assert len(low.points)==512 and ('measurement',0) not in low.points
+    assert len(low.points)==128 and ('measurement',0) not in low.points
 
 
 def test_normal_local_operational_countries_remain(monkeypatch):
@@ -104,7 +104,7 @@ def test_batched_warning_outputs_are_exact_and_caches_bounded(monkeypatch):
         forecasts=ForecastService()
         app=create_app(forecast_service=forecasts)
         with TestClient(app) as client:
-            data=client.get('/api/warnings?country_id=IN&profile=redistribution-ready').json()
+            data=client.get('/api/warnings?country_id=IN&profile=redistribution-ready&state_id=MH&district_id=MH-PUNE').json()
             assert 'items' in data
             # Request-time timestamps are intentionally different; every warning
             # identity, numeric value, severity and explanation must be exact.
@@ -113,9 +113,9 @@ def test_batched_warning_outputs_are_exact_and_caches_bounded(monkeypatch):
             else:assert data==expected
             if mode=='true':
                 assert app.state.repository._snapshot is None
-                assert len(forecasts.cache)==1 and len(forecasts.points)<=512
+                assert len(forecasts.cache)==1 and len(forecasts.points)<=128
                 engine=app.state.copilot.engine
-                assert len(engine.cache)<=24 and len(engine.baseline_cache)<=24
+                assert len(engine.cache)<=6 and len(engine.baseline_cache)<=6
 
 
 def test_low_memory_store_is_bounded_without_losing_existing_handles(monkeypatch):
@@ -123,9 +123,9 @@ def test_low_memory_store_is_bounded_without_losing_existing_handles(monkeypatch
     from types import SimpleNamespace
     monkeypatch.setenv('HEALTHNEXUS_LOW_MEMORY','true')
     store=ScenarioStore()
-    for i in range(4):store.put(SimpleNamespace(scenario=SimpleNamespace(scenario_id=str(i))))
+    for i in range(2):store.put(SimpleNamespace(scenario=SimpleNamespace(scenario_id=str(i))))
     with pytest.raises(ValueError,match='Scenario limit'):store.put(SimpleNamespace(scenario=SimpleNamespace(scenario_id='extra')))
-    assert list(store.results)==['0','1','2','3']
+    assert list(store.results)==['0','1']
 
 
 def test_corrupt_india_manifest_is_not_ready(monkeypatch,tmp_path):
@@ -147,3 +147,20 @@ def test_simultaneous_profile_requests_share_one_snapshot_load(monkeypatch):
         assert load.call_count==1
         assert all(result is results[0] for result in results)
         assert repo._snapshot is None
+
+
+def test_one_active_profile_cache_preserves_both_snapshots_and_results(monkeypatch):
+    monkeypatch.setenv('HEALTHNEXUS_LOW_MEMORY','true')
+    repo=LocalRepository()
+    ready=repo.profile_snapshot('IN','redistribution-ready')
+    original=ready.model_dump_json()
+    constrained=repo.profile_snapshot('IN','constrained')
+    assert len(repo._profiles)==1 and ('IN','constrained') in repo._profiles
+    assert constrained.operational_profile=='constrained'
+    # Eviction removes only a repository reference, not a held immutable snapshot.
+    assert ready.model_dump_json()==original
+    reloaded=repo.profile_snapshot('IN','redistribution-ready')
+    assert len(repo._profiles)==1 and reloaded.model_dump_json()==original
+    monkeypatch.setenv('HEALTHNEXUS_LOW_MEMORY','false')
+    repo.profile_snapshot('IN','constrained')
+    assert len(repo._profiles)==2

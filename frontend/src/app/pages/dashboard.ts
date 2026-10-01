@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, combineLatest, forkJoin, of, Subject, startWith, switchMap, tap } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
+import { computationPolicy } from '../core/computation-policy';
 import { Alert, FacilityList, Overview, Status, Supply } from '../core/models';
 import { Icon } from '../shared/icon';
 import { StatusBadge } from '../shared/status-badge';
@@ -30,6 +31,7 @@ export class Dashboard {
   supply = signal<Supply[]>([]);
   warningSummary = signal<WarningList | null>(null);
   warningError = signal(false);
+  districtRequired() { return this.api.districtOnly() && !this.scope['district_id']; }
   search = '';
   status = '';
   offset = 0;
@@ -59,6 +61,7 @@ export class Dashboard {
         }),
       ),
       this.reload$.pipe(startWith(undefined)),
+      computationPolicy(this.api),
     ])
       .pipe(
         tap(([data, params]) => {
@@ -111,7 +114,7 @@ export class Dashboard {
           this.supply.set(result.supply.items);
           this.warningSummary.set(null);
           this.warningError.set(false);
-          if(this.page()==='overview') {
+          if(this.page()==='overview' && !this.districtRequired()) {
             const signature=JSON.stringify(this.scope);
             this.api.warnings(this.scope).subscribe({next:w=>{if(signature===JSON.stringify(this.scope))this.warningSummary.set(w);},error:()=>this.warningError.set(true)});
           }

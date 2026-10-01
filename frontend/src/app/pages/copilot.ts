@@ -5,8 +5,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
 import { CopilotContext, CopilotMode, CopilotPlan, CopilotResponse, CopilotStatus, CopilotTrace } from '../core/copilot-models';
+import { ComputationNotice } from '../shared/computation-notice';
 
-@Component({selector:'app-copilot', imports:[FormsModule, DecimalPipe, JsonPipe, RouterLink],
+@Component({selector:'app-copilot', imports:[FormsModule, DecimalPipe, JsonPipe, RouterLink, ComputationNotice],
   templateUrl:'./copilot.html', styleUrl:'./copilot.scss'})
 export class CopilotPage implements OnDestroy {
   private api=inject(NetworkApi); private route=inject(ActivatedRoute); private router=inject(Router);
@@ -14,6 +15,7 @@ export class CopilotPage implements OnDestroy {
   error=signal(''); replies=signal<{question:string;response:CopilotResponse}[]>([]);
   context=signal<CopilotContext>({country_id:'IN',profile:'constrained'});
   message=''; mode:CopilotMode='offline'; allowPlanning=false; compareProfiles=false;
+  districtRequired(){return this.api.districtOnly() && !this.context().district_id && !this.context().facility_id;}
   private conversation?:string; private signature=''; private active?:Subscription; private polling?:Subscription;
   private progress?:Subscription; private parameters:Subscription;
   modelAttempts=signal<{model:string;status:string;http_status?:number;seconds:number}[]>([]);
@@ -47,7 +49,7 @@ export class CopilotPage implements OnDestroy {
       kind==='evaluation'?'How reliable is the medicine-demand forecast?':kind==='compare'?'Compare the constrained network with the redistribution-ready stress-test.':'Summarize the most urgent healthcare-resource risks in the selected scope.';
   }
   send() {
-    if(this.busy()||!this.message.trim()) return;
+    if(this.districtRequired()||this.busy()||!this.message.trim()) return;
     this.busy.set(true);this.error.set('');this.trace.set([]);this.modelAttempts.set([]);this.phase.set('Checking context…');
     const question=this.message.trim(), rid=crypto.randomUUID(), context=this.context();
     const body={...context,message:question,mode:this.mode,allow_planning:this.allowPlanning,compare_profiles:this.compareProfiles,

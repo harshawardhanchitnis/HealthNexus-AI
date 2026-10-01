@@ -10,6 +10,8 @@ import { ScenarioDefinition, ScenarioResult, ScenarioType } from '../core/resili
 import { Forecast } from '../core/forecast-models';
 import { ScenarioChart } from '../shared/scenario-chart';
 import { WarningCards } from '../shared/warning-cards';
+import { ComputationNotice } from '../shared/computation-notice';
+import { operationalError } from '../core/operational-error';
 
 @Component({
   selector: 'app-emergency',
@@ -22,6 +24,7 @@ import { WarningCards } from '../shared/warning-cards';
     RouterLink,
     ScenarioChart,
     WarningCards,
+    ComputationNotice,
   ],
   templateUrl: './emergency.html',
 })
@@ -71,6 +74,7 @@ export class EmergencyPage {
   running = signal(false);
   error = signal('');
   notice = signal('');
+  districtRequired() { return this.api.districtOnly() && !this.district(); }
   selected = signal('');
   chartResource = signal('footfall');
   focus = computed(
@@ -166,7 +170,7 @@ export class EmergencyPage {
       ? detail
       : Array.isArray(detail)
         ? detail.map((x) => (x as { msg: string }).msg).join('; ')
-        : 'Projection unavailable. Check backend connectivity and saved model artifacts.';
+        : operationalError(e,'Projection unavailable. Check backend connectivity and saved model artifacts.');
   }
   title(kind = this.kind) {
     return this.types.find((t) => t.id === kind)?.name || kind;
@@ -191,7 +195,7 @@ export class EmergencyPage {
     });
   }
   run() {
-    if (this.running()) return;
+    if (this.districtRequired() || this.running()) return;
     this.running.set(true);
     this.error.set('');
     this.notice.set('');

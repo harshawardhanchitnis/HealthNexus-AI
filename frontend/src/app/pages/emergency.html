@@ -23,6 +23,7 @@
     >
   }
 </div>
+@if(districtRequired()) { <app-computation-notice /> }
 <section class="twin-intro">
   <div>
     <span class="tag">NON-DESTRUCTIVE SCENARIO</span>
@@ -153,7 +154,7 @@
       type="button"
       (click)="run()"
       class="button primary"
-      [disabled]="running() || loading() || form.invalid || !facilities().length"
+      [disabled]="districtRequired() || running() || loading() || form.invalid || !facilities().length"
     >
       {{ running() ? 'Computing scenario…' : 'Run Simulation' }}
     </button>

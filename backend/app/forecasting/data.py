@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from app.core.config import ROOT
+from app.core.artifact_io import artifact_sha256
 from app.data_ingestion.base import save_json
 from app.forecasting.features import FEATURES, feature_block, origins_for, split_bounds
 from app.models.network import Snapshot
@@ -16,7 +17,7 @@ TARGETS = ("footfall", "medicine", "admissions")
 
 
 def digest(path: Path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    return artifact_sha256(path)
 
 
 def facility_hash(facility):

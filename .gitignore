@@ -20,3 +20,6 @@ artifacts/
 credentials*.json
 service-account*.json
 .firebase/
+# Local presentation/download exports; not application source or deployment assets.
+Chrome Downloads - Images, Videos/
+Hackathon Submissions/

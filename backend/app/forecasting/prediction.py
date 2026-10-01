@@ -8,6 +8,7 @@ from threadpoolctl import ThreadpoolController
 from threading import RLock
 
 from app.core.config import ROOT
+from app.core.artifact_io import artifact_reader
 from app.core.runtime import low_memory, operational_country
 from app.core.cache import BoundedCache
 from app.forecasting.data import digest, facility_hash
@@ -28,7 +29,8 @@ def load_bundle(country: str, root: Path = ROOT):
         integrity = json.loads((folder / "integrity.json").read_text())
         if integrity["sklearn_version"] != sklearn.__version__ or digest(folder / "bundle.joblib") != integrity["sha256"]:
             raise ModelUnavailable("Model version/integrity mismatch. Rebuild trusted local artifacts.")
-        bundle = joblib.load(folder / "bundle.joblib")
+        with artifact_reader(folder / "bundle.joblib") as stream:
+            bundle = joblib.load(stream)
     except FileNotFoundError:
         raise ModelUnavailable(f"Forecast models unavailable for {country}. Run scripts/forecast.py generate, build and train; API startup never trains.")
     if bundle["manifest"]["country_id"] != country:
@@ -42,7 +44,7 @@ class ForecastService:
         self.low_memory = low_memory()
         self.root, self.cache = root, BoundedCache(1 if self.low_memory else 5)
         self.identities, self.bindings = {}, {}
-        self.points = BoundedCache(512 if self.low_memory else 10000)
+        self.points = BoundedCache(128 if self.low_memory else 10000)
         self.lock, self.controller = RLock(), None
 
     def bundle(self, country, profile='constrained'):
@@ -107,7 +109,7 @@ class ForecastService:
                     continue
                 champion=report['targets'][target]['champion']
                 if champion==MODEL_NAMES[-1]:
-                    with self.controller.limit(limits=2):
+                    with self.controller.limit(limits=1 if self.low_memory else 2):
                         predicted=np.maximum(0,bundle['models'][target].predict(np.concatenate([r[1] for r in rows])))
                     points=[predicted[i*14:(i+1)*14]*r[2] for i,r in enumerate(rows)]
                 else:
@@ -147,7 +149,7 @@ class ForecastService:
         if prepared is not None:
             point = prepared
         elif champion == MODEL_NAMES[-1]:
-            with self.lock, self.controller.limit(limits=2):
+            with self.lock, self.controller.limit(limits=1 if self.low_memory else 2):
                 point = np.maximum(0, bundle["models"][target].predict(x))*scale
         else:
             point = baseline[:, MODEL_NAMES.index(champion)].astype(float)

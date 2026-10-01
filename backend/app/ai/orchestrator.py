@@ -20,6 +20,7 @@ from app.ai.tools import ToolExecutor
 from app.ai.citations import build_evidence, sanitize_diagnostic
 from app.ai.fallback import clinical_request, offline_calls, offline_draft
 from app.ai.failover import FailoverSession, quota_cooldown
+from app.core.runtime import low_memory, ComputeScopeError, compute_scope
 
 
 def context_key(request):
@@ -31,9 +32,12 @@ class CopilotService:
         self.engine, self.planner = engine, planner
         self.config = config or AIConfig()
         self.transport_factory = transport_factory
-        self.lock, self.capacity = RLock(), BoundedSemaphore(2)
+        self.lock, self.capacity = RLock(), BoundedSemaphore(1 if low_memory() else 2)
         self.conversations, self.requests = OrderedDict(), OrderedDict()
-        self.audit = deque(maxlen=100)
+        self.audit_limit = 8 if low_memory() else 100
+        self.conversation_limit = 4 if low_memory() else 20
+        self.request_limit = 8 if low_memory() else 100
+        self.audit = deque(maxlen=self.audit_limit)
         self.runtime_status = 'not_attempted'
         self.quality_failures = {}
         self.quota_blocked_until = {}
@@ -71,7 +75,7 @@ class CopilotService:
             del self.conversations[cid]
             for rid in [k for k,v in self.requests.items() if v.get('conversation_id')==cid]:
                 del self.requests[rid]
-            self.audit = deque((x for x in self.audit if x.get('conversation_id')!=cid),maxlen=100)
+            self.audit = deque((x for x in self.audit if x.get('conversation_id')!=cid),maxlen=self.audit_limit)
             # Provider interaction history may remain according to Google's retention policy.
 
     def run(self, repository, original):
@@ -89,7 +93,7 @@ class CopilotService:
         if not request.message.strip():
             raise CopilotError('empty_message','Enter an operational question.',422)
         if not self.capacity.acquire(blocking=False):
-            raise CopilotError('busy','Two Copilot workflows are active. Retry shortly.',429)
+            raise CopilotError('busy','Copilot workflow capacity reached. Retry shortly.',429)
         cid, row, transport, owned = None, None, None, False
         timing={'gemini_network_seconds':0.,'tool_seconds':0.}
         usages=[];interaction_count=0;provider_requests=0;interaction_ids=[]
@@ -98,7 +102,8 @@ class CopilotService:
             executor = ToolExecutor(repository,self.engine,self.planner,request)
             snapshot = executor.snapshot(request.profile)
             from app.scenarios.engine import select
-            select(snapshot,request.state_id,request.district_id,[request.facility_id] if request.facility_id else None)
+            scoped=select(snapshot,request.state_id,request.district_id,[request.facility_id] if request.facility_id else None)
+            compute_scope(scoped)
             if request.scenario_id: executor.scenario(snapshot,request.scenario_id)
             with self.lock:
                 now=monotonic()
@@ -113,7 +118,7 @@ class CopilotService:
                 if row and row['busy']:
                     raise CopilotError('conversation_busy','Wait for this conversation request to finish.',409)
                 if not row:
-                    if len(self.conversations)>=20:
+                    if len(self.conversations)>=self.conversation_limit:
                         idle=next((k for k,v in self.conversations.items() if not v['busy']),None)
                         if idle is None: raise CopilotError('busy','Conversation capacity reached.',429)
                         del self.conversations[idle]
@@ -122,7 +127,7 @@ class CopilotService:
                     self.conversations[cid]=row
                 if rid in self.requests:
                     raise CopilotError('request_exists','Request ID already exists. Submit a new request ID.',409)
-                while len(self.requests)>=100:
+                while len(self.requests)>=self.request_limit:
                     old=next((k for k,v in self.requests.items() if v['status']!='running'),None)
                     if old is None: raise CopilotError('busy','Request capacity reached.',429)
                     del self.requests[old]
@@ -160,6 +165,9 @@ class CopilotService:
                     trace.status='success';trace.evidence_id=eid
                     trace.summary='Validated HealthNexus result; no external action executed.'
                     output={'evidence_id':eid,'result':payload}
+                except ComputeScopeError:
+                    trace.status='error';trace.summary='Select a district for live operational computation.'
+                    raise
                 except (ValueError,LookupError,ValidationError):
                     trace.status='error';trace.summary='Invalid arguments, stale artifacts or incompatible scope. Check selected context.'
                     output={'error':trace.summary}
@@ -412,6 +420,11 @@ class CopilotService:
                         self.audit[-1]['provider_draft']=provider_text
                         if frame_protocol:self.audit[-1]['provider_semantic_frame']=provider_text
             raise
+        except ComputeScopeError as error:
+            with self.lock:
+                if owned and rid in self.requests:
+                    self.requests[rid].update(status='error',phase=str(error),error_code='district_required')
+            raise CopilotError('district_required',str(error),422) from None
         except Exception:
             with self.lock:
                 if owned and rid in self.requests:

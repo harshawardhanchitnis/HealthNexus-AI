@@ -99,7 +99,7 @@
           <span [style.width.%]="view.summary.staff_availability"></span>
         </div>
       </article>
-      @if(page() === 'overview') {<article class="kpi projected-kpi"><div class="kpi-label">Projected warnings <span class="kpi-icon blue"><app-icon name="bell" /></span></div><div class="kpi-value">{{warningSummary()?.summary?.total ?? '—'}}</div><div class="kpi-note">14-day Baseline Forecast · <a routerLink="/warnings" queryParamsHandling="preserve">Review queue →</a></div><div class="kpi-context">{{warningError() ? 'Forecast unavailable' : warningSummary() ? 'Model-based + rule-derived' : 'Preparing outlook…'}}</div></article>}
+      @if(page() === 'overview') {<article class="kpi projected-kpi"><div class="kpi-label">Projected warnings <span class="kpi-icon blue"><app-icon name="bell" /></span></div><div class="kpi-value">{{warningSummary()?.summary?.total ?? '—'}}</div><div class="kpi-note">14-day Baseline Forecast · <a routerLink="/warnings" queryParamsHandling="preserve">Review queue →</a></div><div class="kpi-context">{{districtRequired() ? 'Select a district for live warnings' : warningError() ? 'Forecast unavailable' : warningSummary() ? 'Model-based + rule-derived' : 'Preparing outlook…'}}</div></article>}
     </div>
   @if (page() === 'overview') {
     <section class="command-response panel operational-pipeline" aria-label="Operational decision pipeline">

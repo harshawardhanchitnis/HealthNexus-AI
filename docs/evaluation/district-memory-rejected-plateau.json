@@ -1,0 +1,1496 @@
+{
+  "status": "FAIL",
+  "provider_requests": 0,
+  "measurement": "cgroup v2 total current/peak including page cache and all container processes; server /proc/1 RSS separately",
+  "budget_bytes": 450000000,
+  "peak_total_bytes": 353644544,
+  "maximum_rss_bytes": 407998464,
+  "maximum_observed_total_bytes": 349339648,
+  "plateau": false,
+  "healthy": true,
+  "oom": false,
+  "restarts": 0,
+  "container": "healthnexus-district-budget-final",
+  "container_id": "1eb3f15f7e6f10c37e17ba8d3f25427254e860a13ad380ce9693100756e5ae6b",
+  "image_id": "sha256:0e4d21aa8dcf99571622d3aafe433a2ea5825b51ad60c703384a18c32f2af5f2",
+  "memory_limit_bytes": 450000000,
+  "memory_swap_limit_bytes": 450000000,
+  "cycles": 2,
+  "extra_cycles": 4,
+  "stability_seconds": 180,
+  "records": [
+    {
+      "stage": "startup",
+      "elapsed_seconds": 78.48656479999772,
+      "total_bytes": 139411456,
+      "total_peak_bytes": 152305664,
+      "VmHWM": 199184384,
+      "VmRSS": 199184384
+    },
+    {
+      "stage": "readiness",
+      "elapsed_seconds": 81.38761530000193,
+      "total_bytes": 142643200,
+      "total_peak_bytes": 152305664,
+      "VmHWM": 206753792,
+      "VmRSS": 202584064
+    },
+    {
+      "stage": "capabilities",
+      "elapsed_seconds": 82.3823842999991,
+      "total_bytes": 142946304,
+      "total_peak_bytes": 152305664,
+      "VmHWM": 206753792,
+      "VmRSS": 202584064
+    },
+    {
+      "stage": "national-computation-rejected",
+      "elapsed_seconds": 88.18392409999797,
+      "total_bytes": 236216320,
+      "total_peak_bytes": 244076544,
+      "VmHWM": 305131520,
+      "VmRSS": 296259584
+    },
+    {
+      "stage": "concurrent-cold-forecasts",
+      "elapsed_seconds": 100.47943300000043,
+      "total_bytes": 312303616,
+      "total_peak_bytes": 315940864,
+      "VmHWM": 377180160,
+      "VmRSS": 377180160
+    },
+    {
+      "stage": "cycle-1:overview",
+      "elapsed_seconds": 101.68543169999612,
+      "total_bytes": 311767040,
+      "total_peak_bytes": 316461056,
+      "VmHWM": 377180160,
+      "VmRSS": 377180160
+    },
+    {
+      "stage": "cycle-1:network-map",
+      "elapsed_seconds": 103.08243840000068,
+      "total_bytes": 312553472,
+      "total_peak_bytes": 317091840,
+      "VmHWM": 377360384,
+      "VmRSS": 377360384
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:forecasts",
+      "elapsed_seconds": 104.78220010000223,
+      "total_bytes": 312692736,
+      "total_peak_bytes": 317091840,
+      "VmHWM": 377360384,
+      "VmRSS": 377360384
+    },
+    {
+      "stage": "cycle-1:constrained:forecasts",
+      "elapsed_seconds": 107.18794459999481,
+      "total_bytes": 313004032,
+      "total_peak_bytes": 317550592,
+      "VmHWM": 377360384,
+      "VmRSS": 377360384
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:scenario",
+      "elapsed_seconds": 113.78626349999104,
+      "total_bytes": 328732672,
+      "total_peak_bytes": 333053952,
+      "VmHWM": 382046208,
+      "VmRSS": 382046208
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:live-warnings",
+      "elapsed_seconds": 116.28561399999307,
+      "total_bytes": 330182656,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 382046208,
+      "VmRSS": 382046208
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:forecast-map",
+      "elapsed_seconds": 118.09055539999099,
+      "total_bytes": 317853696,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 382046208,
+      "VmRSS": 382046208
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:district-map",
+      "elapsed_seconds": 122.68171199999051,
+      "total_bytes": 322117632,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 393940992,
+      "VmRSS": 393940992
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:district-optimizer",
+      "elapsed_seconds": 123.68705959999352,
+      "total_bytes": 321703936,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 393940992,
+      "VmRSS": 393940992
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:cross_district-map",
+      "elapsed_seconds": 129.98391879998962,
+      "total_bytes": 326561792,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 398987264,
+      "VmRSS": 398987264
+    },
+    {
+      "stage": "cycle-1:redistribution-ready:cross_district-optimizer",
+      "elapsed_seconds": 131.00185749999946,
+      "total_bytes": 326750208,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 398987264,
+      "VmRSS": 398987264
+    },
+    {
+      "stage": "cycle-1:constrained:scenario",
+      "elapsed_seconds": 134.08012539999618,
+      "total_bytes": 327180288,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 398987264,
+      "VmRSS": 398987264
+    },
+    {
+      "stage": "cycle-1:constrained:live-warnings",
+      "elapsed_seconds": 135.27960840000014,
+      "total_bytes": 326721536,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 398987264,
+      "VmRSS": 398987264
+    },
+    {
+      "stage": "cycle-1:constrained:forecast-map",
+      "elapsed_seconds": 136.58105849999993,
+      "total_bytes": 327745536,
+      "total_peak_bytes": 334557184,
+      "VmHWM": 398987264,
+      "VmRSS": 398987264
+    },
+    {
+      "stage": "cycle-1:constrained:district-map",
+      "elapsed_seconds": 140.77987469999061,
+      "total_bytes": 333099008,
+      "total_peak_bytes": 337432576,
+      "VmHWM": 404393984,
+      "VmRSS": 404393984
+    },
+    {
+      "stage": "cycle-1:constrained:district-optimizer",
+      "elapsed_seconds": 141.78067079999892,
+      "total_bytes": 333221888,
+      "total_peak_bytes": 337432576,
+      "VmHWM": 404393984,
+      "VmRSS": 404393984
+    },
+    {
+      "stage": "cycle-1:full-stores",
+      "elapsed_seconds": 144.97806949999358,
+      "total_bytes": 334262272,
+      "total_peak_bytes": 337780736,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-1:offline-copilot",
+      "elapsed_seconds": 148.997818799995,
+      "total_bytes": 336596992,
+      "total_peak_bytes": 341643264,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-1:federation-evidence",
+      "elapsed_seconds": 151.67908609998995,
+      "total_bytes": 344199168,
+      "total_peak_bytes": 348524544,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-1:federation-nodes",
+      "elapsed_seconds": 153.9951435999974,
+      "total_bytes": 345214976,
+      "total_peak_bytes": 349954048,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-1:federation-status",
+      "elapsed_seconds": 156.0817956999963,
+      "total_bytes": 347283456,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-1:complete",
+      "elapsed_seconds": 157.18011800000386,
+      "total_bytes": 333492224,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:overview",
+      "elapsed_seconds": 158.2848582000006,
+      "total_bytes": 333840384,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:network-map",
+      "elapsed_seconds": 159.47993549999956,
+      "total_bytes": 333864960,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:forecasts",
+      "elapsed_seconds": 161.08283060000394,
+      "total_bytes": 333451264,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:constrained:forecasts",
+      "elapsed_seconds": 162.87699730000168,
+      "total_bytes": 333168640,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:scenario",
+      "elapsed_seconds": 164.88009500000044,
+      "total_bytes": 334000128,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:live-warnings",
+      "elapsed_seconds": 165.98246339999605,
+      "total_bytes": 333983744,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:forecast-map",
+      "elapsed_seconds": 167.1838429999916,
+      "total_bytes": 334057472,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:district-map",
+      "elapsed_seconds": 174.67880179999338,
+      "total_bytes": 333529088,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:district-optimizer",
+      "elapsed_seconds": 175.87544879999768,
+      "total_bytes": 334045184,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 405475328,
+      "VmRSS": 405475328
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:cross_district-map",
+      "elapsed_seconds": 181.1876246000029,
+      "total_bytes": 335331328,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:redistribution-ready:cross_district-optimizer",
+      "elapsed_seconds": 182.3716873999947,
+      "total_bytes": 335196160,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:constrained:scenario",
+      "elapsed_seconds": 185.08051299999352,
+      "total_bytes": 335835136,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:constrained:live-warnings",
+      "elapsed_seconds": 186.29352829999698,
+      "total_bytes": 335278080,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:constrained:forecast-map",
+      "elapsed_seconds": 188.67520060000243,
+      "total_bytes": 345567232,
+      "total_peak_bytes": 351772672,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:constrained:district-map",
+      "elapsed_seconds": 196.5846339999989,
+      "total_bytes": 335265792,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:constrained:district-optimizer",
+      "elapsed_seconds": 197.57424689999607,
+      "total_bytes": 335593472,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:full-stores",
+      "elapsed_seconds": 200.7965589999949,
+      "total_bytes": 335785984,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:offline-copilot",
+      "elapsed_seconds": 203.87984819999838,
+      "total_bytes": 335507456,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:federation-evidence",
+      "elapsed_seconds": 205.08372480000253,
+      "total_bytes": 335482880,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:federation-nodes",
+      "elapsed_seconds": 206.17718389999936,
+      "total_bytes": 335773696,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:federation-status",
+      "elapsed_seconds": 207.2734991000034,
+      "total_bytes": 334929920,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-2:complete",
+      "elapsed_seconds": 208.3750321999978,
+      "total_bytes": 335642624,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:overview",
+      "elapsed_seconds": 209.57050269999309,
+      "total_bytes": 334991360,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:network-map",
+      "elapsed_seconds": 210.9778973999928,
+      "total_bytes": 335474688,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:forecasts",
+      "elapsed_seconds": 212.87192839999625,
+      "total_bytes": 335048704,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:constrained:forecasts",
+      "elapsed_seconds": 214.77010829999927,
+      "total_bytes": 335732736,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:scenario",
+      "elapsed_seconds": 216.97313159999612,
+      "total_bytes": 335552512,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:live-warnings",
+      "elapsed_seconds": 218.07336439999926,
+      "total_bytes": 335847424,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:forecast-map",
+      "elapsed_seconds": 219.36955289999605,
+      "total_bytes": 335970304,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:district-map",
+      "elapsed_seconds": 223.77561149999383,
+      "total_bytes": 335253504,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:district-optimizer",
+      "elapsed_seconds": 224.8712544000009,
+      "total_bytes": 335339520,
+      "total_peak_bytes": 352194560,
+      "VmHWM": 407277568,
+      "VmRSS": 407277568
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:cross_district-map",
+      "elapsed_seconds": 235.27155039999343,
+      "total_bytes": 349335552,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407638016,
+      "VmRSS": 407638016
+    },
+    {
+      "stage": "cycle-3:redistribution-ready:cross_district-optimizer",
+      "elapsed_seconds": 236.37835109999287,
+      "total_bytes": 336113664,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407638016,
+      "VmRSS": 407638016
+    },
+    {
+      "stage": "cycle-3:constrained:scenario",
+      "elapsed_seconds": 239.27145960000053,
+      "total_bytes": 336281600,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407638016,
+      "VmRSS": 407638016
+    },
+    {
+      "stage": "cycle-3:constrained:live-warnings",
+      "elapsed_seconds": 240.4749856999988,
+      "total_bytes": 335192064,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407638016,
+      "VmRSS": 407638016
+    },
+    {
+      "stage": "cycle-3:constrained:forecast-map",
+      "elapsed_seconds": 241.671800600001,
+      "total_bytes": 335441920,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407638016,
+      "VmRSS": 407638016
+    },
+    {
+      "stage": "cycle-3:constrained:district-map",
+      "elapsed_seconds": 245.37379830000282,
+      "total_bytes": 336506880,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-3:constrained:district-optimizer",
+      "elapsed_seconds": 246.36945739999646,
+      "total_bytes": 336666624,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-3:full-stores",
+      "elapsed_seconds": 249.2683127999917,
+      "total_bytes": 335904768,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-3:offline-copilot",
+      "elapsed_seconds": 251.97220370000286,
+      "total_bytes": 336781312,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-3:federation-evidence",
+      "elapsed_seconds": 253.07487820000097,
+      "total_bytes": 336408576,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-3:federation-nodes",
+      "elapsed_seconds": 253.9732970999903,
+      "total_bytes": 336400384,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-3:federation-status",
+      "elapsed_seconds": 255.1133606999938,
+      "total_bytes": 335818752,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-3:complete",
+      "elapsed_seconds": 256.2713323999924,
+      "total_bytes": 335712256,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:overview",
+      "elapsed_seconds": 259.4669627999974,
+      "total_bytes": 336355328,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:network-map",
+      "elapsed_seconds": 260.77222820000316,
+      "total_bytes": 335474688,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:forecasts",
+      "elapsed_seconds": 262.270105100004,
+      "total_bytes": 335949824,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:constrained:forecasts",
+      "elapsed_seconds": 263.77762330000405,
+      "total_bytes": 336121856,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:scenario",
+      "elapsed_seconds": 265.5769062999898,
+      "total_bytes": 335884288,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:live-warnings",
+      "elapsed_seconds": 267.77008619999106,
+      "total_bytes": 345915392,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:forecast-map",
+      "elapsed_seconds": 270.4736416999949,
+      "total_bytes": 346492928,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:district-map",
+      "elapsed_seconds": 279.9665410000016,
+      "total_bytes": 335720448,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:district-optimizer",
+      "elapsed_seconds": 281.06304529999034,
+      "total_bytes": 336510976,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:cross_district-map",
+      "elapsed_seconds": 286.9730206999957,
+      "total_bytes": 335966208,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:redistribution-ready:cross_district-optimizer",
+      "elapsed_seconds": 288.06406229999266,
+      "total_bytes": 335261696,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:constrained:scenario",
+      "elapsed_seconds": 291.26767629999085,
+      "total_bytes": 335519744,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:constrained:live-warnings",
+      "elapsed_seconds": 292.5662810999929,
+      "total_bytes": 335708160,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:constrained:forecast-map",
+      "elapsed_seconds": 293.66867269999057,
+      "total_bytes": 336642048,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:constrained:district-map",
+      "elapsed_seconds": 297.3831523999979,
+      "total_bytes": 336113664,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:constrained:district-optimizer",
+      "elapsed_seconds": 298.461378299995,
+      "total_bytes": 336478208,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:full-stores",
+      "elapsed_seconds": 301.5951134999923,
+      "total_bytes": 335867904,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:offline-copilot",
+      "elapsed_seconds": 304.1734725999995,
+      "total_bytes": 336547840,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:federation-evidence",
+      "elapsed_seconds": 305.2606652999966,
+      "total_bytes": 336068608,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:federation-nodes",
+      "elapsed_seconds": 306.35954740000307,
+      "total_bytes": 335822848,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:federation-status",
+      "elapsed_seconds": 307.48385730000155,
+      "total_bytes": 336515072,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-4:complete",
+      "elapsed_seconds": 308.96539080000366,
+      "total_bytes": 346247168,
+      "total_peak_bytes": 353566720,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:overview",
+      "elapsed_seconds": 312.7604496999993,
+      "total_bytes": 349339648,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:network-map",
+      "elapsed_seconds": 314.4616907000018,
+      "total_bytes": 335560704,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:forecasts",
+      "elapsed_seconds": 315.96555629999784,
+      "total_bytes": 336699392,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:constrained:forecasts",
+      "elapsed_seconds": 317.56174940000346,
+      "total_bytes": 336375808,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:scenario",
+      "elapsed_seconds": 319.5707984999899,
+      "total_bytes": 336850944,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:live-warnings",
+      "elapsed_seconds": 320.8616325999901,
+      "total_bytes": 335867904,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:forecast-map",
+      "elapsed_seconds": 322.0695538,
+      "total_bytes": 336015360,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:district-map",
+      "elapsed_seconds": 326.074211500003,
+      "total_bytes": 336678912,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:district-optimizer",
+      "elapsed_seconds": 327.0672135999921,
+      "total_bytes": 336605184,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:cross_district-map",
+      "elapsed_seconds": 332.6621121999924,
+      "total_bytes": 335790080,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:redistribution-ready:cross_district-optimizer",
+      "elapsed_seconds": 333.77127139999357,
+      "total_bytes": 336781312,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:constrained:scenario",
+      "elapsed_seconds": 336.76232829999935,
+      "total_bytes": 336248832,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:constrained:live-warnings",
+      "elapsed_seconds": 337.9631381999934,
+      "total_bytes": 336678912,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:constrained:forecast-map",
+      "elapsed_seconds": 339.1736788999988,
+      "total_bytes": 337321984,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407818240,
+      "VmRSS": 407818240
+    },
+    {
+      "stage": "cycle-5:constrained:district-map",
+      "elapsed_seconds": 342.96273679999285,
+      "total_bytes": 336478208,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-5:constrained:district-optimizer",
+      "elapsed_seconds": 344.2709418000013,
+      "total_bytes": 341168128,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-5:full-stores",
+      "elapsed_seconds": 350.05660409999837,
+      "total_bytes": 347377664,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-5:offline-copilot",
+      "elapsed_seconds": 354.8578137000004,
+      "total_bytes": 336515072,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-5:federation-evidence",
+      "elapsed_seconds": 356.05622610000137,
+      "total_bytes": 336744448,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-5:federation-nodes",
+      "elapsed_seconds": 357.1654218999902,
+      "total_bytes": 336134144,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-5:federation-status",
+      "elapsed_seconds": 358.2587113999907,
+      "total_bytes": 336347136,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-5:complete",
+      "elapsed_seconds": 359.2641692999896,
+      "total_bytes": 336101376,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:overview",
+      "elapsed_seconds": 362.3599153999967,
+      "total_bytes": 335704064,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:network-map",
+      "elapsed_seconds": 366.3630631999986,
+      "total_bytes": 336285696,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:forecasts",
+      "elapsed_seconds": 368.110502800002,
+      "total_bytes": 336633856,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:constrained:forecasts",
+      "elapsed_seconds": 369.65621829999145,
+      "total_bytes": 336347136,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:scenario",
+      "elapsed_seconds": 371.76170499999716,
+      "total_bytes": 335941632,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:live-warnings",
+      "elapsed_seconds": 372.855610300001,
+      "total_bytes": 336244736,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:forecast-map",
+      "elapsed_seconds": 374.0628141999914,
+      "total_bytes": 336134144,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:district-map",
+      "elapsed_seconds": 378.26485859999957,
+      "total_bytes": 336048128,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:district-optimizer",
+      "elapsed_seconds": 379.35399619999225,
+      "total_bytes": 336756736,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:cross_district-map",
+      "elapsed_seconds": 387.45773239999835,
+      "total_bytes": 346873856,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:redistribution-ready:cross_district-optimizer",
+      "elapsed_seconds": 389.1739215999987,
+      "total_bytes": 349261824,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:constrained:scenario",
+      "elapsed_seconds": 394.46349049999844,
+      "total_bytes": 336494592,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:constrained:live-warnings",
+      "elapsed_seconds": 395.7549333999923,
+      "total_bytes": 336035840,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:constrained:forecast-map",
+      "elapsed_seconds": 396.96596390000195,
+      "total_bytes": 336879616,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:constrained:district-map",
+      "elapsed_seconds": 401.15611139999237,
+      "total_bytes": 335261696,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:constrained:district-optimizer",
+      "elapsed_seconds": 402.26408520000405,
+      "total_bytes": 335646720,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:full-stores",
+      "elapsed_seconds": 405.6583482999995,
+      "total_bytes": 336183296,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:offline-copilot",
+      "elapsed_seconds": 408.67399119999027,
+      "total_bytes": 336846848,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:federation-evidence",
+      "elapsed_seconds": 409.9550154000026,
+      "total_bytes": 336191488,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:federation-nodes",
+      "elapsed_seconds": 411.15735359999235,
+      "total_bytes": 336297984,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:federation-status",
+      "elapsed_seconds": 412.259747899996,
+      "total_bytes": 336007168,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    },
+    {
+      "stage": "cycle-6:complete",
+      "elapsed_seconds": 413.35993829999643,
+      "total_bytes": 336560128,
+      "total_peak_bytes": 353644544,
+      "VmHWM": 407998464,
+      "VmRSS": 407998464
+    }
+  ],
+  "checks": [
+    {
+      "operation": "/api/warnings",
+      "status": 422,
+      "seconds": 4.286747500009369,
+      "district_required": true
+    },
+    {
+      "operation": "/api/geospatial?mode=forecast",
+      "status": 422,
+      "seconds": 0.09591329999966547,
+      "district_required": true
+    },
+    {
+      "operation": "/api/scenarios",
+      "status": 422,
+      "seconds": 0.1959126000001561,
+      "district_required": true
+    },
+    {
+      "operation": "/api/optimization/preview",
+      "status": 422,
+      "seconds": 0.012849400009145029,
+      "district_required": true
+    },
+    {
+      "operation": "/api/optimization/redistribution",
+      "status": 422,
+      "seconds": 0.0903379999945173,
+      "district_required": true
+    },
+    {
+      "operation": "/api/ai/copilot",
+      "status": 422,
+      "seconds": 0.10131739999633282,
+      "district_required": true
+    },
+    {
+      "cycle": 1,
+      "profile": "redistribution-ready",
+      "scope": "district",
+      "metrics": [
+        41763,
+        17745,
+        15679,
+        10,
+        26084
+      ],
+      "seconds": 2.9809521999995923,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 1,
+      "profile": "redistribution-ready",
+      "scope": "cross_district",
+      "metrics": [
+        41763,
+        9307,
+        9307,
+        10,
+        32456
+      ],
+      "seconds": 4.689133599997149,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 1,
+      "profile": "constrained",
+      "scope": "district",
+      "metrics": [
+        30230,
+        0,
+        0,
+        0,
+        30230
+      ],
+      "seconds": 2.3956215999933193,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 2,
+      "profile": "redistribution-ready",
+      "scope": "district",
+      "metrics": [
+        41763,
+        17745,
+        15679,
+        10,
+        26084
+      ],
+      "seconds": 5.894080600002781,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 2,
+      "profile": "redistribution-ready",
+      "scope": "cross_district",
+      "metrics": [
+        41763,
+        9307,
+        9307,
+        10,
+        32456
+      ],
+      "seconds": 3.793473099998664,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 2,
+      "profile": "constrained",
+      "scope": "district",
+      "metrics": [
+        30230,
+        0,
+        0,
+        0,
+        30230
+      ],
+      "seconds": 5.099202899989905,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 3,
+      "profile": "redistribution-ready",
+      "scope": "district",
+      "metrics": [
+        41763,
+        17745,
+        15679,
+        10,
+        26084
+      ],
+      "seconds": 2.793843100007507,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 3,
+      "profile": "redistribution-ready",
+      "scope": "cross_district",
+      "metrics": [
+        41763,
+        9307,
+        9307,
+        10,
+        32456
+      ],
+      "seconds": 7.9974884999974165,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 3,
+      "profile": "constrained",
+      "scope": "district",
+      "metrics": [
+        30230,
+        0,
+        0,
+        0,
+        30230
+      ],
+      "seconds": 2.2226024999981746,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 4,
+      "profile": "redistribution-ready",
+      "scope": "district",
+      "metrics": [
+        41763,
+        17745,
+        15679,
+        10,
+        26084
+      ],
+      "seconds": 7.8972730999958,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 4,
+      "profile": "redistribution-ready",
+      "scope": "cross_district",
+      "metrics": [
+        41763,
+        9307,
+        9307,
+        10,
+        32456
+      ],
+      "seconds": 4.112290799996117,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 4,
+      "profile": "constrained",
+      "scope": "district",
+      "metrics": [
+        30230,
+        0,
+        0,
+        0,
+        30230
+      ],
+      "seconds": 2.1894258999964222,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 5,
+      "profile": "redistribution-ready",
+      "scope": "district",
+      "metrics": [
+        41763,
+        17745,
+        15679,
+        10,
+        26084
+      ],
+      "seconds": 2.4815319000044838,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 5,
+      "profile": "redistribution-ready",
+      "scope": "cross_district",
+      "metrics": [
+        41763,
+        9307,
+        9307,
+        10,
+        32456
+      ],
+      "seconds": 3.994948799998383,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 5,
+      "profile": "constrained",
+      "scope": "district",
+      "metrics": [
+        30230,
+        0,
+        0,
+        0,
+        30230
+      ],
+      "seconds": 2.284301099993172,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 6,
+      "profile": "redistribution-ready",
+      "scope": "district",
+      "metrics": [
+        41763,
+        17745,
+        15679,
+        10,
+        26084
+      ],
+      "seconds": 2.583162299997639,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 6,
+      "profile": "redistribution-ready",
+      "scope": "cross_district",
+      "metrics": [
+        41763,
+        9307,
+        9307,
+        10,
+        32456
+      ],
+      "seconds": 4.096715299994685,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    },
+    {
+      "cycle": 6,
+      "profile": "constrained",
+      "scope": "district",
+      "metrics": [
+        30230,
+        0,
+        0,
+        0,
+        30230
+      ],
+      "seconds": 2.3899914999929024,
+      "donor_violations": 0,
+      "new_donor_risks": 0,
+      "conservation": "PASS"
+    }
+  ],
+  "concurrent_burst": [
+    {
+      "status": 200,
+      "seconds": 11.07498889999988
+    },
+    {
+      "status": 429,
+      "seconds": 0.8742857000033837
+    },
+    {
+      "status": 429,
+      "seconds": 0.014015799999469891
+    },
+    {
+      "status": 429,
+      "seconds": 0.01235739998810459
+    },
+    {
+      "status": 429,
+      "seconds": 0.01377820000925567
+    },
+    {
+      "status": 429,
+      "seconds": 0.012889300007373095
+    },
+    {
+      "status": 429,
+      "seconds": 0.5641885999939404
+    },
+    {
+      "status": 429,
+      "seconds": 0.4615782000037143
+    }
+  ],
+  "forecast_sha256": {
+    "redistribution-ready:footfall": "244d04461a309b07326a38ea2dfa783c50abc4c866c17e66feee01b964fc718f",
+    "redistribution-ready:beds": "7a4e96a075034d5bb3ce63abb9d3fd304fe7ac81c1487ac4d72e276173338242",
+    "redistribution-ready:medicines/IVF": "661cd20eb39b07677421d076ccd41a66cc349ab52a499d42f89672d3c2a25029",
+    "redistribution-ready:medicines/PCM": "ad74621f08ae983f01fe71aabce0cac6cb039d31105084c07b505308944d4a9a",
+    "redistribution-ready:medicines/ORS": "a381f3d5fb705fa2319cd59e30db7211ad1437d52e5dc0fa9da4091ac95bd3fa",
+    "redistribution-ready:medicines/AMX": "3c6ac4b9bb7dc9098846e760599d45b1ecdd9093a4def26050d8361ed6e0773d",
+    "redistribution-ready:medicines/IFA": "14b4ba43844b9e7619f4d4a640a5f28695de32f5b247023c72efe570f4c216b4",
+    "constrained:footfall": "235fb899860cda90ed55e36ce93e179ce78a03c596653850c2cd4a4f7d5f09ff",
+    "constrained:beds": "a3f228a5812341d472535cfb2a2ff06bb3748772cecf214b91da5a97c06abbfc",
+    "constrained:medicines/IVF": "c2612967337940adce331c2ac52718c8fc89618ad06f1c3b1aa363f97fa5fcb3",
+    "constrained:medicines/PCM": "7e7341e6df2f1741b057dc5bd3973249f6c04bc68c9336eab2ba942d14862941",
+    "constrained:medicines/ORS": "a37a1e5fd8c570bf4c08e8ec3ef23ae79582bf38fe7b1f02b68748a6d98fef40",
+    "constrained:medicines/AMX": "6b3a83edd4b5824261317a17ddf50c6a55e51d236a1fc195fb81ae5ed90d11e1",
+    "constrained:medicines/IFA": "5825ef1996e739fda57cff4bc333ee771fc0b01a245e73f1cfaaab849a7ec4dd"
+  },
+  "limitations": "Finite local acceptance, not a guarantee for arbitrary traffic or a cloud measurement. No live provider call."
+}

@@ -11,6 +11,7 @@ from app.optimization.geography import ACTION_STATE
 from app.forecasting.prediction import ModelUnavailable
 from app.map_coordinates import map_coordinates, VERSION
 from app.optimization.distance import haversine
+from app.core.runtime import compute_scope
 
 Mode = Literal['network', 'forecast', 'emergency', 'redistribution']
 STATUS = {'NORMAL': 'HEALTHY', 'INFO': 'HEALTHY', 'WARNING': 'AT_RISK'}
@@ -54,6 +55,7 @@ def read_map(snapshot, engine, planner, mode='network', state_id=None, district_
             f.provenance.model_sha256 != bundle.get('artifact_sha256') for f in plan.before):
             raise ValueError('Optimization model identity is stale')
     if mode == 'forecast':
+        compute_scope(facilities)
         outcome, listing = engine.baseline(snapshot, facilities)
         projections = {f.facility_id: f for f in outcome.facilities}; warnings = listing.items
     elif mode == 'emergency':

@@ -7,6 +7,8 @@ from typing import Protocol
 from threading import RLock
 
 from app.core.config import ROOT, Settings
+from app.core.artifact_io import artifact_bytes
+from app.core.allocator import release_transient_memory
 from app.core.runtime import low_memory, operational_country
 from app.core.geography import COUNTRY_BY_ID
 from app.models.network import Snapshot
@@ -34,7 +36,7 @@ class LocalRepository:
         with self.lock:
             if self._snapshot is None:
                 path = self.root / "data/generated/network.json"
-                self._snapshot = Snapshot.model_validate_json(path.read_bytes()) if path.exists() else generate_snapshot()
+                self._snapshot = Snapshot.model_validate_json(artifact_bytes(path)) if path.exists() else generate_snapshot()
                 self._countries['IN'] = self._snapshot
             return self._snapshot
 
@@ -64,10 +66,17 @@ class LocalRepository:
         key = (country_id, profile)
         with self.lock:
             if key not in self._profiles or self._profiles[key][0] != stamp:
-                data = Snapshot.model_validate_json(path.read_bytes())
+                # Keep one active inventory snapshot in the public runtime.
+                # Both immutable profiles remain on disk; existing scenario/plan
+                # handles own their validated results and are never evicted here.
+                if low_memory():
+                    self._profiles.clear()
+                    release_transient_memory()
+                data = Snapshot.model_validate_json(artifact_bytes(path))
                 if data.country != country_id or data.operational_profile != profile:
                     raise ValueError('Operational profile partition mismatch')
                 self._profiles[key] = (stamp, data)
+                release_transient_memory()
             return self._profiles[key][1]
 
 

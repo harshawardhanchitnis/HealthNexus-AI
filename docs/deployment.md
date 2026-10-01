@@ -2,6 +2,11 @@
 
 ## Current Render Free / India-only runtime (2026-09-30)
 
+The subsequent [district computation budget](district-computation-budget-report.md)
+limits public live computation to district / same-state cross-district scope,
+while retaining nationwide browsing. Use that report for current cache/admission
+bounds and the 450 MB capacity gate; the existing Render environment flag is unchanged.
+
 The public endpoints are Firebase `https://healthnexus-ai.web.app` and Render
 `https://healthnexus-api-aizt.onrender.com`. Render reported out-of-memory restarts.
 The new local capacity gate is documented in [the memory report](low-memory-deployment-report.md);

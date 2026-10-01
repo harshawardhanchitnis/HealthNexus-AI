@@ -1,6 +1,7 @@
 <div class="page-heading"><div><div class="eyebrow">OPERATIONS / GROUNDED TOOL ORCHESTRATION</div>
   <h1>Resilience Copilot</h1><p>Ask an operational question. Inspect the engines, evidence and remaining gaps.</p></div>
   <button class="button secondary" (click)="reset()" [disabled]="busy()">New conversation</button></div>
+@if(districtRequired()){<app-computation-notice />}
 <section class="panel copilot-status">
   <p>Gemini live acceptance is pending following HTTP 503 HIGH DEMAND across the configured models. HealthNexus operational engines remain available. Select OFFLINE for deterministic local summaries; it does not use Gemini.</p>
   <div><strong>{{ mode === 'offline' ? 'OFFLINE — deterministic local summaries' : modelLabel(latestModel()) }}</strong>
@@ -101,7 +102,7 @@
       <label for="copilot-message">Operational question</label><textarea id="copilot-message" name="message" [(ngModel)]="message" maxlength="2000" rows="4" [disabled]="busy()" placeholder="Ask about shortages, forecasts, scenario pressures or safe redistribution…"></textarea>
       <label class="check"><input type="checkbox" name="planning" [(ngModel)]="allowPlanning" [disabled]="busy()" />Allow non-destructive simulations and optimizer plans</label>
       <label class="check"><input type="checkbox" name="comparison" [(ngModel)]="compareProfiles" [disabled]="busy()" />Explicitly allow comparing both operational profiles</label>
-      <button class="button" type="submit" [disabled]="busy() || !message.trim()">{{ busy() ? 'Working…' : mode === 'offline' ? 'Run local summary' : 'Ask Gemini Copilot' }}</button>
+      <button class="button" type="submit" [disabled]="districtRequired() || busy() || !message.trim()">{{ busy() ? 'Working…' : mode === 'offline' ? 'Run local summary' : 'Ask Gemini Copilot' }}</button>
       <small>Keys stay on the backend. Clear the conversation when changing response mode.</small>
     </form>
   </div>

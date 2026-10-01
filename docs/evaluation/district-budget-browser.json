@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "date": "2026-10-01",
+  "method": "Manual browser flow through final Docker images; actual local tools, no provider transport",
+  "base_url": "http://127.0.0.1:14211",
+  "frontend_image_id": "sha256:7bc151c4eab69d6f9b9e52600e4f955e70ea96f40990ecf4731ea1b23312886f",
+  "desktop": true,
+  "mobile_viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "temporary_viewport_reset": true,
+  "checks": [
+    "National planner: clear district selection, no expensive automatic run",
+    "National warnings: clear district selection",
+    "Mobile district-selection notice, 390 x 844",
+    "Actual Pune warnings after selecting a district",
+    "Actual severe 14-day ready-profile dengue simulation",
+    "Actual district plan: 15,679 items, 10 lanes, 26,084 remaining",
+    "Actual cross-district plan: 9,307 items, 10 lanes, 32,456 remaining",
+    "Desktop Pune/Nagpur map with actual ten advisory lanes",
+    "Mobile Pune/Nagpur map, 390 x 844",
+    "Actual constrained plan: zero donors/lanes, 30,230 remaining",
+    "Nationwide illustrative network retained, 207 fictional facilities"
+  ],
+  "captured_console_errors": [],
+  "captured_console_warnings": [],
+  "live_gemini_requests": 0,
+  "screenshots": [
+    "docs/screenshots/district-budget/01-national-planner.png",
+    "docs/screenshots/district-budget/02-national-warnings.png",
+    "docs/screenshots/district-budget/03-mobile-warnings.png",
+    "docs/screenshots/district-budget/04-pune-warnings.png",
+    "docs/screenshots/district-budget/05-ready-emergency.png",
+    "docs/screenshots/district-budget/06-district-plan.png",
+    "docs/screenshots/district-budget/07-cross-district-plan.png",
+    "docs/screenshots/district-budget/08-cross-map-desktop.png",
+    "docs/screenshots/district-budget/09-cross-map-mobile.png",
+    "docs/screenshots/district-budget/10-constrained-map.png",
+    "docs/screenshots/district-budget/11-national-network.png"
+  ]
+}

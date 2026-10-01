@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "budget_bytes": 450000000,
+  "peak_total_bytes": 336113664,
+  "maximum_rss_bytes": 347312128,
+  "plateau": true,
+  "healthy": true,
+  "oom": false,
+  "restarts": 0,
+  "memory_events": {
+    "low": 0,
+    "high": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_kill": 0,
+    "oom_group_kill": 0
+  },
+  "cycles": 2,
+  "extra_cycles": 4,
+  "stability_seconds": 180,
+  "image_id": "sha256:78b3e3ddc20def074eff52a430a207e968af4c64b3bb4f33ce0af3058abe86b5",
+  "container_id": "db5fde0414d5916c28086acc77423e06bae768fdca06f66c5ce4103eb9a09999",
+  "memory_limit_bytes": 450000000,
+  "memory_swap_limit_bytes": 450000000,
+  "shared_file_allowance_bytes": 80019456,
+  "conservative_peak_with_shared_file_allowance_bytes": 416133120,
+  "shared_file_allowance_method": "Post-run check from complete original cold record: measured cgroup peak plus largest sampled server RssFile. Raw cold receipt remains unchanged; this deliberately counts already-charged mapped files again.",
+  "backend_tests": 710,
+  "frontend_tests": 22,
+  "strict_typescript": "PASS app/spec",
+  "angular_production_build": "PASS",
+  "compileall": "PASS",
+  "pip_check": "PASS host and final public Docker image",
+  "npm_audit_vulnerabilities": 0,
+  "forecast_response_hashes_unchanged": 14,
+  "canonical": "PASS district/constrained/cross-district",
+  "federation_reload": "PASS ten local country/profile partitions and accepted five-node evidence",
+  "preservation": {
+    "status": "PASS",
+    "baseline": "723c6a8",
+    "protected_identities": 346,
+    "historical_ledger_used": 50,
+    "live_gemini_requests": 0,
+    "env_unchanged": true,
+    "accepted_engines_models_federation_evidence_unchanged": true,
+    "authorized_deployment_source_pins": 10
+  },
+  "security": {
+    "status": "PASS",
+    "files_scanned": 649,
+    "env_ignored": true,
+    "env_tracked": false,
+    "scope": "tracked/non-ignored files and production frontend bundles; credential patterns, not penetration testing"
+  },
+  "live_gemini_requests": 0,
+  "firebase_deployed": false,
+  "cloud_fix_verified": false,
+  "limitations": "Finite local acceptance; shared-file allowance is a conservative estimate, not a separate peak measurement. Render memory and public journey require verification after redeploy.",
+  "browser": {
+    "status": "PASS",
+    "receipt": "docs/evaluation/district-budget-browser.json",
+    "screenshots": 11,
+    "live_gemini_requests": 0
+  },
+  "post_browser_memory": {
+    "current_total_bytes": 254898176,
+    "measured_total_peak_bytes": 336113664,
+    "memory_events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0
+    },
+    "server_rss": {
+      "VmHWM": 396509184,
+      "VmRSS": 320880640,
+      "RssFile": 80019456
+    },
+    "conservative_peak_with_shared_file_allowance_bytes": 416133120,
+    "status": "PASS"
+  },
+  "scripts_compileall": true
+}

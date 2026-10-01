@@ -3,14 +3,17 @@ import { DatePipe, DecimalPipe, PercentPipe, KeyValuePipe } from '@angular/commo
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, forkJoin, of, Subscription, switchMap, tap } from 'rxjs';
+import { catchError, combineLatest, forkJoin, of, Subscription, switchMap, tap } from 'rxjs';
+import { computationPolicy } from '../core/computation-policy';
 import { NetworkApi } from '../core/network-api';
 import { PlanningRequest, PlanningPreview, PlanningResult } from '../core/optimization-models';
 import { ScenarioMetadata } from '../core/resilience-models';
+import { ComputationNotice } from '../shared/computation-notice';
+import { operationalError } from '../core/operational-error';
 
 @Component({
   selector: 'app-redistribution',
-  imports: [FormsModule, DatePipe, DecimalPipe, PercentPipe, KeyValuePipe, RouterLink],
+  imports: [FormsModule, DatePipe, DecimalPipe, PercentPipe, KeyValuePipe, RouterLink, ComputationNotice],
   templateUrl: './redistribution.html',
 })
 export class RedistributionPage {
@@ -25,6 +28,8 @@ export class RedistributionPage {
   district = '';
   scenarioId = '';
   scope: PlanningRequest['scope'] = 'national';
+  districtOnly = this.api.districtOnly;
+  districtRequired() { return this.districtOnly() && (!this.district || !['district','cross_district'].includes(this.scope)); }
   resource = '';
   seconds = 10;
   scenarios = signal<ScenarioMetadata[]>([]);
@@ -62,9 +67,9 @@ export class RedistributionPage {
   medicineCount = computed(() => new Set(this.result()?.transfers.map((t) => t.resource_id)).size);
   constructor() {
     this.destroy.onDestroy(() => this.pending?.unsubscribe());
-    this.route.queryParamMap
+    combineLatest([this.route.queryParamMap, computationPolicy(this.api)])
       .pipe(
-        tap((p) => {
+        tap(([p]) => {
           this.pending?.unsubscribe();
           this.running.set(false);
           this.loading.set(true);
@@ -85,13 +90,13 @@ export class RedistributionPage {
           )
             this.scope = 'national';
         }),
-        switchMap((p) =>
-          forkJoin({
+        switchMap(([p]) =>
+          this.districtRequired() ? of({scenarios:[] as ScenarioMetadata[],plan:null}) : forkJoin({
             scenarios: this.api.scenarios(this.country),
             plan: p.get('run_id') ? this.api.plan(p.get('run_id')!, this.country) : of(null),
           }).pipe(
             catchError((e) => {
-              this.error.set(e.error?.detail || 'Unable to load planning context.');
+              this.error.set(operationalError(e, 'Unable to load planning context.'));
               return of(null);
             }),
           ),
@@ -151,6 +156,7 @@ export class RedistributionPage {
     this.router.navigate([], {relativeTo:this.route,queryParams:{scenario_id:null,run_id:null},queryParamsHandling:'merge'});
   }
   loadPreview() {
+    if (this.districtRequired()) { this.loading.set(false); return; }
     if (this.route.snapshot.queryParamMap.get('run_id')) {
       this.router.navigate([], {
         relativeTo: this.route,
@@ -172,12 +178,12 @@ export class RedistributionPage {
       },
       error: (e) => {
         this.loading.set(false);
-        this.error.set(e.error?.detail || 'Could not calculate safe donor capacity.');
+        this.error.set(operationalError(e, 'Could not calculate safe donor capacity.'));
       },
     });
   }
   optimize() {
-    if (!this.preview() || this.running()) return;
+    if (this.districtRequired() || !this.preview() || this.running()) return;
     this.running.set(true);
     this.error.set('');
     this.pending = this.api.optimize(this.body()).subscribe({
@@ -191,7 +197,7 @@ export class RedistributionPage {
       },
       error: (e) => {
         this.running.set(false);
-        this.error.set(e.error?.detail || 'Optimization failed.');
+        this.error.set(operationalError(e, 'Optimization failed.'));
       },
     });
   }
@@ -219,7 +225,7 @@ export class RedistributionPage {
       },
       error: (e) => {
         this.running.set(false);
-        this.error.set(e.error?.detail || 'Could not discard plan.');
+        this.error.set(operationalError(e, 'Could not discard plan.'));
       },
     });
   }

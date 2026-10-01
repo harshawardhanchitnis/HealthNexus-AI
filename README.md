@@ -6,6 +6,8 @@ HealthNexus is a national-scale healthcare resilience and resource decision-supp
 
 The public operational deployment covers **India only: 36 states/UTs, 69 illustrative districts, 207 fictional facilities**. Brazil, Russia, China and South Africa appear in the preserved five-node federation experiment, not as public operational networks. Full country-local development and federation training remain available locally with low-memory mode disabled.
 
+In the public low-memory runtime, nationwide browsing remains available; live warnings, simulations and Copilot calculations require a district or facility. Planning supports district and bounded same-state cross-district scope. The local 450 MB container gate passed six complete journeys at a measured 336.1 MB peak; a conservative shared-file allowance raises the estimate to 416.1 MB. This is finite local evidence, not a guarantee about cloud traffic. [Current memory report and limits](docs/district-computation-budget-report.md).
+
 ![National Health Resilience Command Centre](docs/screenshots/phase85-command-centre.jpg)
 
 [Phase 8.5 redesign and measured verification](docs/phase85-report.md) · [Desktop/mobile gallery](docs/screenshots/README.md)
@@ -65,7 +67,7 @@ Observe → Forecast → Warn → Stress-test → Optimize → Map → Explain �
 
 **Gemini status:** Phase 6 is fully live-accepted: four live cases passed on Gemini 3.5 Flash-Lite with six total provider sends. `gemini-3.8-flash` remains primary, with the frozen `3.7-flash → 3.6-flash → 3.5-flash → 3.5-flash-lite` order for availability fallback. The 13 local tools and exact evidence validation own operational facts. Historical intermediate failures remain recorded in the [final Phase 6 acceptance report](docs/phase6-final-acceptance-report.md); they are not the current verdict. Phase 9 makes zero Gemini requests and does not change the Copilot.
 
-**Public endpoints:** [Firebase frontend](https://healthnexus-ai.web.app) and [Render backend](https://healthnexus-api-aizt.onrender.com). Render has reported 512 MiB memory failures; the explicit India-only low-memory runtime is locally verified and still requires cloud redeploy verification. Firestore remains an optional snapshot adapter. [Deployment instructions](docs/deployment.md) · [Memory gate](docs/low-memory-deployment-report.md) · [Gemini architecture](docs/gemini.md).
+**Public endpoints:** [Firebase frontend](https://healthnexus-ai.web.app) and [Render backend](https://healthnexus-api-aizt.onrender.com). Render has reported memory failures; the district computation budget is locally verified and still requires cloud redeploy verification. Firebase publication of the updated UI remains a manual step. Firestore remains an optional snapshot adapter. [Deployment instructions](docs/deployment.md) · [Memory gate](docs/district-computation-budget-report.md) · [Gemini architecture](docs/gemini.md).
 
 ## AI / ML
 
@@ -155,7 +157,7 @@ HealthNexus assists administrative resource planning. It does not diagnose, pres
 
 ## Deployment
 
-**Docker verified. Cloud deployment not performed.** Firebase static Hosting is prepared; Cloud Run requires billing, which was not enabled. No live Firestore migration was attempted. Recommended ₹0 submission uses the reproducible local demo and actual captures. [Prerequisites, commands and limitations](docs/deployment.md).
+**Existing Firebase/Render deployment; updated Docker images verified locally.** Keep `HEALTHNEXUS_LOW_MEMORY=true` on the existing Render service. Its configured auto-deploy follows `main`; verify cloud memory after rollout. The updated production frontend retains the Render API origin and requires manual Firebase redeployment. No billing, new service or Firestore migration was performed. [Prerequisites, commands and limitations](docs/deployment.md).
 
 ## Limitations
 

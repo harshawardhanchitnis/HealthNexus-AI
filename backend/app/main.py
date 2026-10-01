@@ -8,7 +8,8 @@ from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import Settings
-from app.core.runtime import low_memory
+from app.core.runtime import low_memory, capabilities
+from app.core.admission import OperationalAdmission
 from app.core.geography import COUNTRIES, COUNTRY_BY_ID
 from app.data_ingestion.catalog import datasets
 from app.models.provenance import CountryCode
@@ -34,9 +35,6 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
         app.state.federation.close()
 
     app = FastAPI(title="HealthNexus AI", version="0.8.0", lifespan=lifespan)
-    app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
-        allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"])
-
     @app.middleware("http")
     async def profile_notice(request, call_next):
         if low_memory() and request.url.path.startswith('/api/') and not request.url.path.startswith('/api/federation/'):
@@ -87,6 +85,7 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
     def countries():
         return {"items": [c for c in COUNTRIES if not low_memory() or c['id']=='IN'], "federation_status": "experimental_fedavg",
             "low_memory":low_memory(),
+            "runtime_capabilities": capabilities(),
             "scope_note": "India operational deployment; five logical nodes in saved experimental federation evidence." if low_memory() else "Five configured hackathon nodes; not an exhaustive list of current BRICS members.",
             "redistribution": "domestic_only"}
 
@@ -203,6 +202,11 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
                 readiness_cache.update(result=capabilities(ROOT,app.state.copilot,app.state.federation),checked_at=monotonic())
             result = readiness_cache['result']
         return JSONResponse(status_code=200 if result['status']=='ready' else 503,content=result)
+    # Added last so admission covers body consumption/serialization as well as
+    # profile middleware. CORS wraps it to keep controlled busy errors readable.
+    app.add_middleware(OperationalAdmission)
+    app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
+        allow_credentials=False, allow_methods=["GET", "POST", "DELETE"], allow_headers=["Content-Type"], expose_headers=['Retry-After'])
     return app
 
 
