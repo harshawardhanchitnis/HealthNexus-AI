@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 import logging
 from contextlib import asynccontextmanager
 
-from fastapi import Depends, FastAPI, HTTPException, Query, Request
+from fastapi import Depends, FastAPI, HTTPException, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import Settings
@@ -189,6 +189,10 @@ def create_app(repository: NetworkRepository | None = None, forecast_service=Non
     @app.get('/health')
     def liveness():
         return {'status':'ok', 'service':'HealthNexus AI'}
+
+    @app.head('/health', include_in_schema=False)
+    async def liveness_head():
+        return Response(status_code=200)
 
     from threading import Lock
     from time import monotonic
