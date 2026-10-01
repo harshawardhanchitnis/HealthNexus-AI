@@ -7,10 +7,11 @@ import { NetworkApi } from '../core/network-api';
 import { Facility } from '../core/models';
 import { Forecast } from '../core/forecast-models';
 import { ForecastChart } from '../shared/forecast-chart';
+import { ReadNotice } from '../shared/read-notice';
 
 @Component({
   selector: 'app-forecasts',
-  imports: [DatePipe, DecimalPipe, PercentPipe, RouterLink, ForecastChart],
+  imports: [DatePipe, DecimalPipe, PercentPipe, RouterLink, ForecastChart, ReadNotice],
   templateUrl: './forecasts.html',
 })
 export class ForecastsPage {
@@ -90,6 +91,11 @@ export class ForecastsPage {
     });
   }
   facilityName() { return this.facilities().find(f => f.id === this.selected())?.name || this.selected(); }
+  readKeys() {
+    const p = this.route.snapshot.queryParamMap;
+    return [this.api.readKey('/api/facilities', {country_id: p.get('country_id') || 'IN', state_id: p.get('state_id') || '', district_id: p.get('district_id') || '', limit:250}),
+      this.api.forecastKey(this.selected(), this.resource(), p.get('country_id') || 'IN', this.horizon())];
+  }
   label() {
     return this.resources.find((r) => r.id === this.resource())?.name || this.resource();
   }

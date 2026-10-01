@@ -10,17 +10,20 @@ export const routes: Routes = [
     path: 'emergency',
     loadComponent: () => import('./pages/emergency').then((m) => m.EmergencyPage),
   },
-  { path: 'warnings', loadComponent: () => import('./pages/warnings').then((m) => m.WarningsPage) },
+  { path: 'warnings', data: { preload: true }, loadComponent: () => import('./pages/warnings').then((m) => m.WarningsPage) },
   {
     path: 'forecasts',
+    data: { preload: true },
     loadComponent: () => import('./pages/forecasts').then((m) => m.ForecastsPage),
   },
   {
     path: 'model-performance',
+    data: { preload: true },
     loadComponent: () => import('./pages/model-performance').then((m) => m.ModelPerformancePage),
   },
   {
     path: 'data-sources',
+    data: { preload: true },
     loadComponent: () => import('./pages/data-sources').then((m) => m.DataSourcesPage),
   },
   { path: 'brics', loadComponent: () => import('./pages/brics').then((m) => m.BricsPage) },
@@ -28,10 +31,11 @@ export const routes: Routes = [
   ...['overview', 'network', 'facilities', 'supply', 'alerts'].map((page) => ({
     path: page,
     loadComponent: () => import('./pages/dashboard').then((m) => m.Dashboard),
-    data: { page },
+    data: { page, preload: true },
   })),
   {
     path: 'facilities/:id',
+    data: { preload: true },
     loadComponent: () => import('./pages/facility').then((m) => m.FacilityPage),
   },
   { path: 'about', loadComponent: () => import('./pages/about').then((m) => m.AboutPage) },

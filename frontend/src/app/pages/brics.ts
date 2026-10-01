@@ -7,10 +7,11 @@ import { NetworkApi } from '../core/network-api';
 import { Country } from '../core/models';
 import { FederationNode, FederationRun, FederationStatus, FederationRequest } from '../core/federation-models';
 import { Icon } from '../shared/icon';
+import { ReadNotice } from '../shared/read-notice';
 
 @Component({
   selector: 'app-brics',
-  imports: [RouterLink, DecimalPipe, PercentPipe, FormsModule, Icon],
+  imports: [RouterLink, DecimalPipe, PercentPipe, FormsModule, Icon, ReadNotice],
   styleUrl: './brics.scss',
   template: `
     <div class="page-heading">
@@ -93,6 +94,7 @@ import { Icon } from '../shared/icon';
         @else if (current.status === 'completed') { <button class="button secondary" (click)="discard()">Discard run</button> }
       </div>
       @if(current.saved_demo) {
+        <app-read-notice [keys]="[api.readKey('/api/federation/saved-demo')]" />
         <details class="training-trace"><summary>Verified saved evidence integrity</summary>
           <p>Report and global parameter artifact validated by the backend on load.</p>
           <p>Run: {{current.run_id}}</p><p>Parameter checksum: <code>{{current.final_checksum}}</code></p>

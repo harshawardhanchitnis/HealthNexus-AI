@@ -24,8 +24,9 @@
     <span class="loader"></span>Loading the healthcare network…
   </div>
 } @else if (data(); as view) {
+  <app-read-notice [keys]="cacheKeys()" />
   <div class="snapshot-line">
-    <span class="snapshot-status"><i></i>BACKEND CONNECTED</span
+    <span class="snapshot-status"><i></i>SNAPSHOT AVAILABLE</span
     ><span>Simulated operations · {{ view.as_of | date: 'dd MMM yyyy' }} · {{ scopeName() }}</span>
   </div>
   <div class="info-banner source-context" [class.trust-strip]="page() === 'overview'">

@@ -1,13 +1,14 @@
 import { Component, inject, input, signal, effect } from '@angular/core';
 import { DecimalPipe, PercentPipe, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
 import { Forecast } from '../core/forecast-models';
+import { ReadNotice } from './read-notice';
 
 @Component({
   selector: 'app-predictive-outlook',
-  imports: [DecimalPipe, PercentPipe, DatePipe, RouterLink],
+  imports: [DecimalPipe, PercentPipe, DatePipe, RouterLink, ReadNotice],
   template: `
     <section class="panel predictive-outlook">
       <div class="panel-heading">
@@ -26,6 +27,7 @@ import { Forecast } from '../core/forecast-models';
       @if (error()) {
         <p class="forecast-notice">{{ error() }}</p>
       } @else if (footfall(); as f) {
+        <app-read-notice [keys]="readKeys()" />
         <div class="outlook-grid">
           <p>
             Next 7 days:
@@ -57,12 +59,13 @@ export class PredictiveOutlook {
   footfall = signal<Forecast | null>(null);
   medicine = signal<Forecast | null>(null);
   error = signal('');
+  readKeys() { return [this.api.forecastKey(this.facility(), 'footfall', this.country(), 7), this.api.forecastKey(this.facility(), 'IVF', this.country(), 14)]; }
   constructor() {
     effect((cleanup) => {
       this.footfall.set(null);
       this.medicine.set(null);
       this.error.set('');
-      const sub = forkJoin({
+      const sub = combineLatest({
         footfall: this.api.forecast(this.facility(), 'footfall', this.country(), 7),
         medicine: this.api.forecast(this.facility(), 'IVF', this.country(), 14),
       }).subscribe({

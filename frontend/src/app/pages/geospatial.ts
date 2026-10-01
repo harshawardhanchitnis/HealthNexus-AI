@@ -10,8 +10,9 @@ import { FacilityFeature, GeospatialView, LaneFeature, MapMode } from '../core/g
 import { PlanningRequest } from '../core/optimization-models';
 import { ComputationNotice } from '../shared/computation-notice';
 import { operationalError } from '../core/operational-error';
+import { ReadNotice } from '../shared/read-notice';
 
-@Component({selector:'app-geospatial',imports:[MapCanvas,RouterLink,DecimalPipe,PercentPipe,ComputationNotice],
+@Component({selector:'app-geospatial',imports:[MapCanvas,RouterLink,DecimalPipe,PercentPipe,ComputationNotice,ReadNotice],
   templateUrl:'./geospatial.html',styleUrl:'./geospatial.scss'})
 export class GeospatialPage {
   private api=inject(NetworkApi);private route=inject(ActivatedRoute);private router=inject(Router);private destroy=inject(DestroyRef);
@@ -26,6 +27,7 @@ export class GeospatialPage {
   view=signal<GeospatialView|null>(null);error=signal('');loading=signal(false);busy=signal(false);
   selected=signal('');selectedLane=signal('');
   facility=computed<FacilityFeature|undefined>(()=>this.view()?.facilities.features.find(f=>f.id===this.selected()));
+  readKeys() { return [this.api.readKey('/api/geospatial', this.context())]; }
   lane=computed<LaneFeature|undefined>(()=>this.view()?.transfers.features.find(f=>f.id===this.selectedLane()));
   constructor(){
     this.destroy.onDestroy(()=>this.task?.unsubscribe());

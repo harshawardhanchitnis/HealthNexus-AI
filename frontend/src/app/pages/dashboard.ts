@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, combineLatest, forkJoin, of, Subject, startWith, switchMap, tap } from 'rxjs';
+import { catchError, combineLatest, of, Subject, startWith, switchMap, tap } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
 import { computationPolicy } from '../core/computation-policy';
 import { Alert, FacilityList, Overview, Status, Supply } from '../core/models';
@@ -11,10 +11,11 @@ import { StatusBadge } from '../shared/status-badge';
 import { TrendChart } from '../shared/trend-chart';
 import { WarningList } from '../core/resilience-models';
 import { WarningCards } from '../shared/warning-cards';
+import { ReadNotice } from '../shared/read-notice';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink, DecimalPipe, DatePipe, Icon, StatusBadge, TrendChart, WarningCards],
+  imports: [RouterLink, DecimalPipe, DatePipe, Icon, StatusBadge, TrendChart, WarningCards, ReadNotice],
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
@@ -22,6 +23,9 @@ export class Dashboard {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private reload$ = new Subject<void>();
+  private forceNext = false;
+  private context = '';
+  cacheKeys = signal<string[]>([]);
   page = signal('overview');
   loading = signal(true);
   error = signal('');
@@ -66,33 +70,55 @@ export class Dashboard {
       .pipe(
         tap(([data, params]) => {
           this.page.set(data['page']);
-          this.loading.set(true);
           this.error.set('');
           this.scope = {
-            profile: this.api.profile(),
+            profile: params.get('profile') || 'constrained',
             country_id: params.get('country_id') || 'IN',
             state_id: params.get('state_id') || '',
             district_id: params.get('district_id') || '',
           };
+          const context = JSON.stringify([this.page(), this.scope, this.search, this.status, this.offset]);
+          if (context !== this.context) {
+            this.data.set(null);
+            this.facilities.set(null);
+            this.warningSummary.set(null);
+            this.context = context;
+          }
+          this.loading.set(!this.data());
         }),
-        switchMap(() =>
-          forkJoin({
-            overview: this.api.overview(this.scope),
-            facilities: this.api.facilities({
+        switchMap(() => {
+          const force = this.forceNext;
+          this.forceNext = false;
+          const facilityScope = {
               ...this.scope,
               search: this.search,
               status: this.status,
               offset: this.offset,
               limit: this.page() === 'overview' ? 5 : 15,
-            }),
+          };
+          this.cacheKeys.set([
+            this.api.readKey('/api/overview', this.scope),
+            this.api.readKey('/api/facilities', facilityScope),
+            ...(this.page() === 'alerts' ? [this.api.readKey('/api/alerts', this.scope)] : []),
+            ...(this.page() === 'supply' ? [this.api.readKey('/api/inventory', this.scope)] : []),
+            ...(this.page() === 'overview' && !this.districtRequired() ? [this.api.readKey('/api/warnings', this.scope)] : []),
+          ]);
+          this.warningError.set(false);
+          return combineLatest({
+            overview: this.api.overview(this.scope, force),
+            facilities: this.api.facilities(facilityScope, force),
             alerts:
               this.page() === 'alerts'
-                ? this.api.alerts(this.scope)
+                ? this.api.alerts(this.scope, force)
                 : of({ items: [] as Alert[], total: 0 }),
             supply:
               this.page() === 'supply'
-                ? this.api.inventory(this.scope)
+                ? this.api.inventory(this.scope, force)
                 : of({ items: [] as Supply[] }),
+            warnings: this.page() === 'overview' && !this.districtRequired()
+              ? this.api.warnings(this.scope, force).pipe(catchError(() => {
+                  this.warningError.set(true); return of(null);
+                }), startWith(null)) : of(null),
           }).pipe(
             catchError((error) => {
               this.error.set(
@@ -102,8 +128,8 @@ export class Dashboard {
               );
               return of(null);
             }),
-          ),
-        ),
+          );
+        }),
         takeUntilDestroyed(),
       )
       .subscribe((result) => {
@@ -112,17 +138,13 @@ export class Dashboard {
           this.facilities.set(result.facilities);
           this.alerts.set(result.alerts.items);
           this.supply.set(result.supply.items);
-          this.warningSummary.set(null);
-          this.warningError.set(false);
-          if(this.page()==='overview' && !this.districtRequired()) {
-            const signature=JSON.stringify(this.scope);
-            this.api.warnings(this.scope).subscribe({next:w=>{if(signature===JSON.stringify(this.scope))this.warningSummary.set(w);},error:()=>this.warningError.set(true)});
-          }
+          this.warningSummary.set(result.warnings);
         }
         this.loading.set(false);
       });
   }
   refresh() {
+    this.forceNext = true;
     this.reload$.next();
   }
   apiProfile() { return this.api.profile(); }
@@ -132,7 +154,7 @@ export class Dashboard {
   applySearch(event: Event) {
     event.preventDefault();
     this.offset = 0;
-    this.refresh();
+    this.reload$.next();
   }
   changeSearch(event: Event) {
     this.search = (event.target as HTMLInputElement).value;
@@ -140,11 +162,11 @@ export class Dashboard {
   changeStatus(event: Event) {
     this.status = (event.target as HTMLSelectElement).value;
     this.offset = 0;
-    this.refresh();
+    this.reload$.next();
   }
   paginate(step: number) {
     this.offset += step * 15;
-    this.refresh();
+    this.reload$.next();
   }
   selectRegion(id: string) {
     this.router.navigate(['/overview'], {

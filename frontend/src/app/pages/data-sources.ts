@@ -6,10 +6,11 @@ import { catchError, of, switchMap, tap } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
 import { SourcesResponse } from '../core/models';
 import { Icon } from '../shared/icon';
+import { ReadNotice } from '../shared/read-notice';
 
 @Component({
   selector: 'app-data-sources',
-  imports: [DatePipe, DecimalPipe, Icon],
+  imports: [DatePipe, DecimalPipe, Icon, ReadNotice],
   template: `
     <div class="page-heading">
       <div>
@@ -26,6 +27,7 @@ import { Icon } from '../shared/icon';
     } @else if (!data()) {
       <div class="loading-state" role="status">Loading public source catalogue…</div>
     } @else if (data(); as sources) {
+      <app-read-notice [keys]="readKeys()" />
       <div class="evidence-hero">
         <div>
           <span class="eyebrow">PUBLIC DATA → CALIBRATION → SIMULATED OPERATIONS</span>
@@ -224,6 +226,7 @@ export class DataSourcesPage {
   data = signal<SourcesResponse | null>(null);
   error = signal('');
   filter = signal('');
+  readKeys() { return [this.api.readKey('/api/data-sources', { country_id: this.route.snapshot.queryParamMap.get('country_id') || '' })]; }
   filteredRecords = computed(() =>
     (this.data()?.records || []).filter((row) =>
       `${row.country_id} ${row.label} ${row.indicator} ${row.year}`

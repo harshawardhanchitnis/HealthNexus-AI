@@ -14,6 +14,7 @@
 @if(loading()){<p role="status">Loading authoritative geographic context…</p>}
 @if(missingHandle()){<p class="map-note" role="status">{{mode()==='emergency'?'Run or select an actual scenario to view its projection.':'Optimize or select an actual saved plan to view advisory lanes.'}} Current network shown below.</p>}
 @if(view();as data){
+ <app-read-notice [keys]="readKeys()" />
  @if(data.summary.plan;as p){<div class="map-plan"><div><span>Receiver</span><strong>{{p.geography.receiver_district_name}}</strong></div><div><span>Donor districts</span><strong>@for(d of p.geography.donor_districts;track d.id){ {{d.name}} } @empty{None}</strong></div><div><span>Cross-district lanes</span><strong>{{p.geography.cross_district_lane_count}}</strong></div><div><span>Safe capacity</span><strong>{{p.safe_capacity|number}}</strong></div><div><span>Recommended items</span><strong>{{p.planned_accounting_items|number}}</strong></div><div><span>Remaining target</span><strong>{{p.unresolved|number}}</strong></div></div>
  @if(p.planned_accounting_items===0){<div class="outcome-message" role="status">No safe advisory redistribution lanes are available under the configured reserve constraints. Receiver pressure remains visible.</div>}}
 }

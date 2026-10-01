@@ -5,10 +5,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, of, switchMap, tap } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
 import { Performance } from '../core/forecast-models';
+import { ReadNotice } from '../shared/read-notice';
 
 @Component({
   selector: 'app-model-performance',
-  imports: [DecimalPipe, PercentPipe, DatePipe, RouterLink],
+  imports: [DecimalPipe, PercentPipe, DatePipe, RouterLink, ReadNotice],
   template: `
     <div class="page-heading">
       <div>
@@ -29,6 +30,7 @@ import { Performance } from '../core/forecast-models';
         <p>{{ error() }}</p>
       </div>
     } @else if (data(); as d) {
+      <app-read-notice [keys]="readKeys()" />
       <div class="forecast-notice">
         {{ d.data_type }} · {{ d.country_id }} · Evaluated
         {{ d.evaluated_at | date: 'dd MMM yyyy' }}. Results measure this simulator, not real-world
@@ -138,6 +140,7 @@ export class ModelPerformancePage {
   ];
   models = ['naive', 'seasonal_naive', 'moving_average', 'hist_gradient_boosting'];
   keys = Object.keys;
+  readKeys() { return [this.api.readKey('/api/models/forecasting/metrics', { country_id: this.route.snapshot.queryParamMap.get('country_id') || 'IN' })]; }
   constructor() {
     this.route.queryParamMap
       .pipe(

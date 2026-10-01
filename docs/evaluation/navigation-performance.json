@@ -1,0 +1,278 @@
+{
+  "date": "2026-10-01",
+  "baseline": "989e571360fe88dbcbfeb61190a933adb9310f05",
+  "environment": "Local production builds; localhost backend with HEALTHNEXUS_LOW_MEMORY=true and GEMINI_ENABLED=false; same warmed backend; profile constrained, India national network scope",
+  "measurement": "Actual pointerdown to valid main DOM content via temporary MutationObserver. CDP focus emulation used identically for matched samples. DOM readiness, not compositor paint or Render/Firebase latency. Instrumentation and focus emulation removed afterward.",
+  "samples": [
+    {
+      "sample": "before-matched",
+      "transitions": [
+        {
+          "view": "Country network",
+          "content_title": "Network Intelligence",
+          "dom_ready_ms": 2182.4,
+          "api_request_count": 3,
+          "http_status_counts": {
+            "200": 2,
+            "429": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Facilities",
+          "content_title": "Facility explorer",
+          "dom_ready_ms": 2091.8,
+          "api_request_count": 3,
+          "http_status_counts": {
+            "200": 2,
+            "429": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Medicine & supply",
+          "content_title": "Medicine & supply",
+          "dom_ready_ms": 2121.7,
+          "api_request_count": 5,
+          "http_status_counts": {
+            "200": 3,
+            "429": 2
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Command Centre",
+          "content_title": "National Health Resilience",
+          "dom_ready_ms": 2102.2,
+          "api_request_count": 3,
+          "http_status_counts": {
+            "200": 2,
+            "429": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Country network",
+          "content_title": "Network Intelligence",
+          "dom_ready_ms": 2127.5,
+          "api_request_count": 3,
+          "http_status_counts": {
+            "200": 2,
+            "429": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Facilities",
+          "content_title": "Facility explorer",
+          "dom_ready_ms": 2123.7,
+          "api_request_count": 3,
+          "http_status_counts": {
+            "200": 2,
+            "429": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Medicine & supply",
+          "content_title": "Medicine & supply",
+          "dom_ready_ms": 2094.3,
+          "api_request_count": 4,
+          "http_status_counts": {
+            "200": 3,
+            "429": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Command Centre",
+          "content_title": "National Health Resilience",
+          "dom_ready_ms": 2088.9,
+          "api_request_count": 3,
+          "http_status_counts": {
+            "200": 2,
+            "429": 1
+          },
+          "lazy_chunk_request_count": 0
+        }
+      ],
+      "total_api_requests": 27
+    },
+    {
+      "sample": "after-matched",
+      "transitions": [
+        {
+          "view": "Country network",
+          "content_title": "Network Intelligence",
+          "dom_ready_ms": 58.7,
+          "api_request_count": 1,
+          "http_status_counts": {
+            "200": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Facilities",
+          "content_title": "Facility explorer",
+          "dom_ready_ms": 27.6,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Medicine & supply",
+          "content_title": "Medicine & supply",
+          "dom_ready_ms": 49.7,
+          "api_request_count": 1,
+          "http_status_counts": {
+            "200": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Command Centre",
+          "content_title": "National Health Resilience",
+          "dom_ready_ms": 26.8,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Country network",
+          "content_title": "Network Intelligence",
+          "dom_ready_ms": 24.4,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Facilities",
+          "content_title": "Facility explorer",
+          "dom_ready_ms": 29,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Medicine & supply",
+          "content_title": "Medicine & supply",
+          "dom_ready_ms": 17.1,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Command Centre",
+          "content_title": "National Health Resilience",
+          "dom_ready_ms": 23.8,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        }
+      ],
+      "total_api_requests": 2
+    },
+    {
+      "sample": "after-secondary",
+      "transitions": [
+        {
+          "view": "Forecasts",
+          "content_title": "Forecast Explorer",
+          "dom_ready_ms": 122.8,
+          "api_request_count": 2,
+          "http_status_counts": {
+            "200": 2
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Model Performance",
+          "content_title": "Model Performance",
+          "dom_ready_ms": 39.9,
+          "api_request_count": 1,
+          "http_status_counts": {
+            "200": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Data Sources",
+          "content_title": "Evidence & Data Sources",
+          "dom_ready_ms": 88.7,
+          "api_request_count": 1,
+          "http_status_counts": {
+            "200": 1
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Federated Intelligence",
+          "content_title": "Federated Intelligence",
+          "dom_ready_ms": 158.2,
+          "api_request_count": 3,
+          "http_status_counts": {
+            "200": 3
+          },
+          "lazy_chunk_request_count": 2
+        },
+        {
+          "view": "Geospatial Command",
+          "content_title": "Geospatial Command",
+          "dom_ready_ms": 210.5,
+          "api_request_count": 1,
+          "http_status_counts": {
+            "200": 1
+          },
+          "lazy_chunk_request_count": 2
+        },
+        {
+          "view": "Forecasts",
+          "content_title": "Forecast Explorer",
+          "dom_ready_ms": 47.3,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Model Performance",
+          "content_title": "Model Performance",
+          "dom_ready_ms": 20.3,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Data Sources",
+          "content_title": "Evidence & Data Sources",
+          "dom_ready_ms": 18.1,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Federated Intelligence",
+          "content_title": "Federated Intelligence",
+          "dom_ready_ms": 100.9,
+          "api_request_count": 2,
+          "http_status_counts": {
+            "200": 2
+          },
+          "lazy_chunk_request_count": 0
+        },
+        {
+          "view": "Geospatial Command",
+          "content_title": "Geospatial Command",
+          "dom_ready_ms": 59.5,
+          "api_request_count": 0,
+          "http_status_counts": {},
+          "lazy_chunk_request_count": 0
+        }
+      ],
+      "total_api_requests": 10
+    }
+  ],
+  "backend_logic_changed": false,
+  "live_gemini_requests": 0,
+  "historical_ledger": 50,
+  "publication_note": "Normalized measured timings and request counts only; temporary transport addresses, generated chunk filenames and raw browser instrumentation are excluded."
+}

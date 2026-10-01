@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, combineLatest, of, switchMap, tap } from 'rxjs';
 import { NetworkApi } from '../core/network-api';
+import { ReadNotice } from '../shared/read-notice';
 import { Alert, Facility, Calibration, Provenance } from '../core/models';
 import { StatusBadge } from '../shared/status-badge';
 import { TrendChart } from '../shared/trend-chart';
@@ -11,7 +12,7 @@ import { Icon } from '../shared/icon';
 import { PredictiveOutlook } from '../shared/predictive-outlook';
 @Component({
   selector: 'app-facility',
-  imports: [RouterLink, DecimalPipe, DatePipe, StatusBadge, TrendChart, Icon, PredictiveOutlook],
+  imports: [RouterLink, DecimalPipe, DatePipe, StatusBadge, TrendChart, Icon, PredictiveOutlook, ReadNotice],
   template: `
     <a routerLink="/facilities" queryParamsHandling="preserve" class="inline-link back-link"
       >← Back to facilities</a
@@ -25,6 +26,7 @@ import { PredictiveOutlook } from '../shared/predictive-outlook';
     } @else if (loading()) {
       <div class="loading-state" role="status">Loading facility…</div>
     } @else if (facility(); as f) {
+      <app-read-notice [keys]="readKeys()" />
       <div class="page-heading">
         <div>
           <div class="eyebrow">
@@ -222,4 +224,5 @@ export class FacilityPage {
         this.loading.set(false);
       });
   }
+  readKeys() { return [this.api.readKey('/api/facilities/' + encodeURIComponent(this.route.snapshot.paramMap.get('id') || ''), {country_id: this.route.snapshot.queryParamMap.get('country_id') || 'IN'})]; }
 }

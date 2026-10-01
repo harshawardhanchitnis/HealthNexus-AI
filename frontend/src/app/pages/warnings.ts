@@ -1,15 +1,16 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { catchError, combineLatest, forkJoin, of, switchMap, tap } from 'rxjs';
+import { catchError, combineLatest, of, startWith, switchMap, tap } from 'rxjs';
 import { computationPolicy } from '../core/computation-policy';
 import { NetworkApi } from '../core/network-api';
 import { WarningList, ScenarioMetadata } from '../core/resilience-models';
 import { WarningCards } from '../shared/warning-cards';
 import { ComputationNotice } from '../shared/computation-notice';
+import { ReadNotice } from '../shared/read-notice';
 @Component({
   selector: 'app-warnings',
-  imports: [RouterLink, WarningCards, ComputationNotice],
+  imports: [RouterLink, WarningCards, ComputationNotice, ReadNotice],
   template: `<div class="page-heading">
       <div>
         <div class="eyebrow">EARLY WARNING ENGINE / 14-DAY OUTLOOK</div>
@@ -84,6 +85,8 @@ import { ComputationNotice } from '../shared/computation-notice';
         {{ error() }} <button class="button secondary" (click)="reset()">Return to baseline</button>
       </div>
     } @else if (data(); as d) {
+      <app-read-notice [keys]="readKeys()" />
+      @if (scenarioListError()) { <p class="forecast-notice" role="status">Saved scenario list unavailable. The warning evidence below remains available for the selected context.</p> }
       <div class="kpi-grid">
         <article class="kpi">
           <div class="kpi-label">Critical</div>
@@ -137,12 +140,18 @@ export class WarningsPage {
   loading = signal(true);
   error = signal('');
   districtRequired = signal(false);
+  scenarioListError = signal(false);
+  readKeys() {
+    const p = this.route.snapshot.queryParamMap;
+    return [this.api.readKey('/api/warnings', {country_id:p.get('country_id') || 'IN', state_id:p.get('state_id') || '', district_id:p.get('district_id') || '', facility_id:p.get('facility_id') || '', scenario_id:this.scenario(), severity:this.severity(), category:this.category()})];
+  }
   constructor() {
     combineLatest([this.route.queryParamMap, computationPolicy(this.api)])
       .pipe(
         tap(() => {
           this.loading.set(true);
           this.error.set('');
+          this.scenarioListError.set(false);
         }),
         switchMap(([p]) => {
           const country = p.get('country_id') || 'IN';
@@ -151,7 +160,7 @@ export class WarningsPage {
           this.category.set(p.get('category') || '');
           this.districtRequired.set(this.api.districtOnly() && !p.get('district_id') && !p.get('facility_id'));
           if (this.districtRequired()) return of(null);
-          return forkJoin({
+          return combineLatest({
             warnings: this.api.warnings({
               country_id: country,
               state_id: p.get('state_id') || '',
@@ -161,7 +170,8 @@ export class WarningsPage {
               severity: this.severity(),
               category: this.category(),
             }),
-            scenarios: this.api.scenarios(country),
+            scenarios: this.api.scenarios(country).pipe(
+              catchError(() => { this.scenarioListError.set(true); return of([] as ScenarioMetadata[]); }), startWith([] as ScenarioMetadata[])),
           }).pipe(
             catchError((e) => {
               this.error.set(
